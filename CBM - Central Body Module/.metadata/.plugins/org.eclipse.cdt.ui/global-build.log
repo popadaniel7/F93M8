@@ -18,3 +18,17 @@ rm -rf ./APPL/InputCtrl/InputCtrl.cyclo ./APPL/InputCtrl/InputCtrl.d ./APPL/Inpu
 rm -rf ./APPL/ActCtrl/ActCtrl.cyclo ./APPL/ActCtrl/ActCtrl.d ./APPL/ActCtrl/ActCtrl.o ./APPL/ActCtrl/ActCtrl.su
 rm -rf CBM_APPL.bin CBM_APPL.elf CBM_APPL.hex CBM_APPL.list CBM_APPL.map CBM_APPL.srec default.size.stdout
  
+01:06:25 **** Build of configuration Debug for project CBM_APPL ****
+make -j12 all 
+arm-none-eabi-size  CBM_APPL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  72688	    562	  24112	  97362	  17c52	CBM_APPL.elf
+Finished building: default.size.stdout
+ 
+01:06:25 **** Build of configuration Debug for project CBM_FBL ****
+make -j12 all 
+arm-none-eabi-size  CBM_FBL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  29276	     36	   2644	  31956	   7cd4	CBM_FBL.elf
+Finished building: default.size.stdout
+ 

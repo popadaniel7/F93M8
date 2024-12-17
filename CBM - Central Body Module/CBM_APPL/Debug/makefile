@@ -82,8 +82,8 @@ all: main-build
 main-build: CBM_APPL.elf secondary-outputs
 
 # Tool invocations
-CBM_APPL.elf CBM_APPL.map: $(OBJS) $(USER_OBJS) C:\Users\Daniel\Desktop\FG9322\CBM\ -\ Central\ Body\ Module\CBM_APPL\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "CBM_APPL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Daniel\Desktop\FG9322\CBM - Central Body Module\CBM_APPL\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CBM_APPL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+CBM_APPL.elf CBM_APPL.map: $(OBJS) $(USER_OBJS) C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM\ -\ Central\ Body\ Module\CBM_APPL\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "CBM_APPL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\CBM_APPL\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CBM_APPL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

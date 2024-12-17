@@ -84,8 +84,8 @@ all: main-build
 main-build: DMU_FBL.elf secondary-outputs
 
 # Tool invocations
-DMU_FBL.elf DMU_FBL.map: $(OBJS) $(USER_OBJS) C:\Users\Daniel\Desktop\FG9322\DMU\ -\ Digital\ Main\ Unit\DMU_FBL\STM32F407VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "DMU_FBL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Daniel\Desktop\FG9322\DMU - Digital Main Unit\DMU_FBL\STM32F407VETX_FLASH.ld" -Wl,-Map="DMU_FBL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+DMU_FBL.elf DMU_FBL.map: $(OBJS) $(USER_OBJS) C:\Users\Daniel\Desktop\FG9326M8GTEI4\DMU\ -\ Digital\ Main\ Unit\DMU_FBL\STM32F407VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "DMU_FBL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Daniel\Desktop\FG9326M8GTEI4\DMU - Digital Main Unit\DMU_FBL\STM32F407VETX_FLASH.ld" -Wl,-Map="DMU_FBL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
