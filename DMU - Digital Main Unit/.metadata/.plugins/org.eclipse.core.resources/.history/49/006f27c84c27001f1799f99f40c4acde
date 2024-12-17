@@ -1,0 +1,48 @@
+#include "ObjectDetection.h"
+#include "network.h"
+#include "network_data.h"
+#include "ai_datatypes_defines.h"
+#include "ai_platform.h"
+
+void ObjectDetection_main(void);
+
+uint32 ObjectDetection_mainCounter = 0;
+
+ai_error modelError;
+ai_i32 nBatch;
+float yVal;
+AI_ALIGNED(4) ai_u8 activations[AI_NETWORK_DATA_ACTIVATIONS_SIZE];
+AI_ALIGNED(4) ai_i8 in_data[AI_NETWORK_IN_1_SIZE_BYTES];
+AI_ALIGNED(4) ai_i8 out_data[AI_NETWORK_OUT_1_SIZE_BYTES];
+ai_handle network = AI_HANDLE_NULL;
+ai_network_params ai_params =
+{
+		AI_NETWORK_DATA_WEIGHTS(ai_network_data_weights_get()),
+		AI_NETWORK_DATA_ACTIVATIONS(activations)
+};
+ai_buffer ai_input[1];
+ai_buffer ai_output[1];
+
+void ObjectDetection_main(void)
+{
+	if(ObjectDetection_mainCounter == 0)
+	{
+		ai_input[0].data = AI_HANDLE_PTR(in_data);
+		ai_output[0].data = AI_HANDLE_PTR(out_data);
+		ai_network_create(&network, AI_NETWORK_DATA_CONFIG);
+		ai_network_init(network, ai_params);
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
+	// test workaround temporary
+	for (uint32_t i = 0; i < AI_NETWORK_IN_1_SIZE; i++)
+	{
+		((ai_float *)in_data)[i] = (ai_float)2.0f;
+	}
+	// test workaround temporary
+
+	ObjectDetection_mainCounter++;
+}

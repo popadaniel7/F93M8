@@ -1,0 +1,19 @@
+#include "ObjectDetection.h"
+#include "network.h"
+
+void ObjectDetection_main(void);
+
+uint32 ObjectDetection_mainCounter = 0;
+ai_handle network_OD;
+const ai_network_params* params_OD;
+
+void ObjectDetection_main(void)
+{
+
+	if(ObjectDetection_mainCounter == 0)
+	{
+		ai_network_init(network_OD, params_OD);
+	}
+
+	ObjectDetection_mainCounter++;
+}

@@ -1,0 +1,51 @@
+#include "SpiH.h"
+#include "spi.h"
+
+__attribute__((section(".ccmram"))) uint32 SpiH_Status = 0;
+__attribute__((section(".ccmram"))) uint32 SpiH_ErrArr[7] = {0};
+__attribute__((section(".ccmram"))) uint32 SpiH_MainCounter = 0;
+extern __attribute__((section(".ccmram"))) uint32 Nvm_SpiStatus;
+extern SPI_HandleTypeDef hspi1;
+void SpiH_MainFunction(void);
+
+void SpiH_MainFunction(void)
+{
+	SpiH_Status = HAL_SPI_GetState(&hspi1);
+	Nvm_SpiStatus = HAL_SPI_GetError(&hspi1);
+	if(Nvm_SpiStatus == 0) for(uint8 i = 0; i < 7; i++)
+	else
+	{
+		/* Do nothing. */
+	}
+	SpiH_MainCounter++;
+}
+
+void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+{
+	switch(hspi->ErrorCode)
+	{
+	case HAL_SPI_ERROR_MODF:
+		SpiH_ErrArr[0]++;
+		break;
+	case HAL_SPI_ERROR_CRC:
+		SpiH_ErrArr[1]++;
+		break;
+	case HAL_SPI_ERROR_OVR:
+		SpiH_ErrArr[2]++;
+		break;
+	case HAL_SPI_ERROR_FRE:
+		SpiH_ErrArr[3]++;
+		break;
+	case HAL_SPI_ERROR_DMA:
+		SpiH_ErrArr[4]++;
+		break;
+	case HAL_SPI_ERROR_FLAG:
+		SpiH_ErrArr[5]++;
+		break;
+	case HAL_SPI_ERROR_ABORT:
+		SpiH_ErrArr[6]++;
+		break;
+	default:
+		break;
+	}
+}

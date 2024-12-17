@@ -1,0 +1,56 @@
+#include "RevCam.h"
+#include <stddef.h>
+
+__attribute__((section(".ccmram"))) uint32 RevCam_MainCounter = 0x00;
+__attribute__((section(".ccmram"))) uint8 RevCam_RxSig_ReverseCameraRequest = 0x00;
+__attribute__((section(".ccmram"))) uint32 RevCam_DcmiStatus = 0x00;
+__attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus = 0x00;
+__attribute__((section(".ccmram"))) uint8 RevCam_InitStatus = 0x00;
+__attribute__((section(".ccmram"))) uint32 RevCam_I2cInitRetry = 0;
+__attribute__((section(".ccmram"))) uint32 RevCam_DcmiInitRetry = 0;
+__attribute__((section(".ccmram"))) uint32 RevCam_OV7670InitRetry = 0;
+extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_Gear;
+extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_IsReverseCameraActive;
+extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_IgnitionStatus;
+
+void RevCam_MainFunction(void);
+extern uint16* FsmcH_GetDrawAddress(void);
+extern uint8 DcmiH_OV7670_Start(uint32 capMode, uint32 destAddress);
+extern uint8 DcmiH_OV7670_Stop();
+extern uint8 DcmiH_OV7670_InitHandler();
+
+void RevCam_MainFunction(void)
+{
+	static uint16* drawAddr = NULL;
+
+	if(0 == RevCam_MainCounter) RevCam_InitStatus = DcmiH_OV7670_InitHandler();
+	else
+	{
+		/* Do nothing. */
+	}
+
+	if(0 == RevCam_InitStatus && 0 == RevCam_DcmiStatus && 4 != RevCam_I2cStatus)
+	{
+		drawAddr = FsmcH_GetDrawAddress();
+		if((0x01 == RevCam_RxSig_ReverseCameraRequest || 0x03 == DigitalCluster_RxSig_Gear) && 0x01 <= DigitalCluster_RxSig_IgnitionStatus)
+		{
+			if(0 == DigitalCluster_IsReverseCameraActive)
+			{
+				DigitalCluster_IsReverseCameraActive = 1;
+				DcmiH_OV7670_Start(0, (uint32)drawAddr);
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			DigitalCluster_IsReverseCameraActive = 0;
+			DcmiH_OV7670_Stop();
+		}
+	}
+	else RevCam_InitStatus = DcmiH_OV7670_InitHandler();
+
+	RevCam_MainCounter++;
+}

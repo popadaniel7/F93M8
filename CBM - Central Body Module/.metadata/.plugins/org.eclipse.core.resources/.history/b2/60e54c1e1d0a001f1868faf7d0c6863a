@@ -1,0 +1,55 @@
+#include "Std_Types.h"
+
+#define IGN_ARRPOS 0
+#define ACC_ARRPOS 1
+#define BR_ARRPOS 2
+#define PS_ARRPOS 3
+#define GB_ARRPOS 4
+#define LSNS_ARRPOS 5
+#define RSNS_ARRPOS 6
+#define AQSNS_ARRPOS 7
+#define GSNS_ARRPOS 8
+#define HC05_ARRPOS 9
+#define STATUS_IGN_ARRPOS 0
+#define STATUS_ACC_ARRPOS 1
+#define STATUS_BR_ARRPOS 2
+#define STATUS_PS_ARRPOS 3
+#define STATUS_GB_ARRPOS 4
+#define STATUS_LSNS_ARRPOS 5
+#define STATUS_RSNS_ARRPOS 6
+#define STATUS_AQSNS_ARRPOS 7
+#define STATUS_GSNS_ARRPOS 8
+#define STATUS_HC05_ARRPOS 9
+#define INPUT_NUMBER 10
+#define STATUS_NUMBER 10
+#define RAW_INPUTS 9
+#define UV_ERRCODE 0x10
+#define OOB_ERRCODE 0x20
+
+typedef struct
+{
+	uint8 errorStatus;
+	uint8 DCYStatus;
+	uint32 debounceTimer_undervoltage;
+	uint32 debounceTimer_outofbound;
+}InStat;
+
+extern uint8 Param_UndervoltageThreshold_Calibration;
+extern uint8 Param_ErrorSettingDebouceThreshold_Calibration;
+extern uint16 Param_OutofboundThreshold_Calibration;
+extern uint16 Param_DebouncePreviouState_Calibration;
+extern uint16 Param_Input_Calibration[INPUT_NUMBER];
+extern uint8 LockState_VehicleState;
+extern uint8 VehicleSpeed_VehicleState;
+extern uint8 WiperStock_VehicleState;
+extern uint8 Rpm_VehicleState;
+extern uint8 Gear_VehicleState;
+extern uint32 StatusList_InputValue[INPUT_NUMBER];
+extern InStat StatusList_InputStatus[STATUS_NUMBER];
+extern uint32 StatusList_OutputValue[INPUT_NUMBER];
+extern uint8 StatusList_ComOutValue[INPUT_NUMBER];
+extern uint8 StatusList_RawValue[RAW_INPUTS];
+extern uint8 StatusButton_LockUnlock;
+extern uint32 InputCtrl_CodingData[INPUT_NUMBER];
+
+extern void InputCtrl_MainFunction(void);

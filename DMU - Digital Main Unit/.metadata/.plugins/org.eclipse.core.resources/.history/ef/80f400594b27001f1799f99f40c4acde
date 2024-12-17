@@ -1,0 +1,40 @@
+#include "ObjectDetection.h"
+#include "network.h"
+#include "network_data.h"
+#include "ai_datatypes_defines.h"
+#include "ai_platform.h"
+
+void ObjectDetection_main(void);
+
+uint32 ObjectDetection_mainCounter = 0;
+
+ai_error modelError;
+ai_i32 nBatch;
+uint32 timestamp;
+float yVal;
+
+ai_handle network = AI_HANDLE_NULL;
+ai_handle network_OD;
+ai_buffer ai_input[0] = 0;
+ai_buffer ai_output[0] = 0;
+const ai_network_params* params_OD =
+{
+
+};
+
+void ObjectDetection_main(void)
+{
+
+	if(ObjectDetection_mainCounter == 0)
+	{
+		AI_ALIGNED(4) ai_u8 activations[AI_NETWORK_DATA_ACTIVATIONS_SIZE];
+		AI_ALIGNED(4) ai_i8 in_data[AI_NETWORK_IN_1_SIZE_BYTES];
+		AI_ALIGNED(4) ai_i8 out_data[AI_NETWORK_OUT_1_SIZE_BYTES];
+		ai_buffer ai_input[AI_NETWORK_IN_NUM] = AI_NETWORK_IN;
+		ai_buffer ai_output[AI_NETWORK_OUT_NUM] = AI_NETWORK_OUT;
+
+		ai_network_init(network_OD, params_OD);
+	}
+
+	ObjectDetection_mainCounter++;
+}
