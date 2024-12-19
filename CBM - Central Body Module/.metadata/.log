@@ -9493,3 +9493,78 @@ java.lang.IllegalStateException: Provisioning system has not been initialized
 	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.getPlanner(UpdateChecker.java:176)
 	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.checkForUpdates(UpdateChecker.java:136)
 	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker$UpdateCheckThread.run(UpdateChecker.java:78)
+!SESSION 2024-12-19 11:07:10.100 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-19 11:07:14.019
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-19 11:07:14.021
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-19 11:07:19.373
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.jobs 4 2 2024-12-19 11:07:20.644
+!MESSAGE An internal error occurred during: "C/C++ Indexer".
+!STACK 0
+org.eclipse.cdt.core.parser.ParseError
+	at org.eclipse.cdt.internal.core.parser.scanner.CPreprocessor.nextToken(CPreprocessor.java:777)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.fetchToken(AbstractGNUSourceCodeParser.java:292)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.nextToken(AbstractGNUSourceCodeParser.java:331)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.LA(AbstractGNUSourceCodeParser.java:354)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.parseDeclarationOrExpressionStatement(AbstractGNUSourceCodeParser.java:1999)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.parseDeclarationOrExpressionStatement(AbstractGNUSourceCodeParser.java:1977)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.statement(GNUCSourceParser.java:1920)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.compoundStatement(AbstractGNUSourceCodeParser.java:899)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.parseCompoundStatement(AbstractGNUSourceCodeParser.java:2286)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.statement(GNUCSourceParser.java:1889)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.parseSwitchBody(AbstractGNUSourceCodeParser.java:2157)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.parseSwitchStatement(GNUCSourceParser.java:2152)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.statement(GNUCSourceParser.java:1894)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.compoundStatement(AbstractGNUSourceCodeParser.java:899)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.parseCompoundStatement(AbstractGNUSourceCodeParser.java:2286)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.statement(GNUCSourceParser.java:1889)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.parseIfStatement(GNUCSourceParser.java:2075)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.statement(GNUCSourceParser.java:1892)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.compoundStatement(AbstractGNUSourceCodeParser.java:899)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.functionBody(AbstractGNUSourceCodeParser.java:1538)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.handleFunctionBody(AbstractGNUSourceCodeParser.java:1527)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.functionDefinition(GNUCSourceParser.java:437)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.simpleDeclaration(GNUCSourceParser.java:371)
+	at org.eclipse.cdt.internal.core.dom.parser.c.GNUCSourceParser.declaration(GNUCSourceParser.java:305)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.declarationList(AbstractGNUSourceCodeParser.java:1429)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.parseTranslationUnit(AbstractGNUSourceCodeParser.java:1368)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.translationUnit(AbstractGNUSourceCodeParser.java:1363)
+	at org.eclipse.cdt.internal.core.dom.parser.AbstractGNUSourceCodeParser.parse(AbstractGNUSourceCodeParser.java:688)
+	at org.eclipse.cdt.core.dom.parser.AbstractCLikeLanguage.getASTTranslationUnit(AbstractCLikeLanguage.java:171)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.createAST(AbstractIndexerTask.java:1244)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.parseFile(AbstractIndexerTask.java:1102)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.parseLinkage(AbstractIndexerTask.java:910)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:572)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:164)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMUpdateTask.run(PDOMUpdateTask.java:96)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:160)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 2 2 2024-12-19 11:07:20.938
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.Workbench$39
+!SESSION 2024-12-19 11:25:01.170 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-12-19 11:25:04.392
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-19 11:25:04.392
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-19 11:25:08.119
+!MESSAGE Started RMI Server, listening on port 41337

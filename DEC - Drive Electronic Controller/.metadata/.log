@@ -1,0 +1,381 @@
+!SESSION 2024-12-19 10:32:59.628 -----------------------------------------------
+eclipse.buildId=1.10.6
+java.version=17.0.4.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -perspective com.infineon.aurix.buildmanager.perspective.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -perspective com.infineon.aurix.buildmanager.perspective.c
+
+!ENTRY org.eclipse.ui 2 0 2024-12-19 10:33:26.528
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-12-19 10:33:26.528
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY org.eclipse.ui 2 0 2024-12-19 10:33:26.722
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2024-12-19 10:33:26.722
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY com.infineon.aurix.buildsystem 4 0 2024-12-19 10:33:29.763
+!MESSAGE ConnectException
+!STACK 0
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:573)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:44)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1047)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:472)
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:404)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:476)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:476)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:380)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:372)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:157)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2673)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:294)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:654)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:552)
+	... 3 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185)
+	... 29 more
+
+!ENTRY com.infineon.aurix.buildsystem.analytics 2 0 2024-12-19 10:33:29.784
+!MESSAGE Unable to initialize Analytics Service.
+
+!ENTRY com.infineon.aurix.buildsystem.analytics 4 0 2024-12-19 10:33:29.784
+!MESSAGE java.net.MalformedURLException: no protocol: 
+!STACK 0
+java.lang.IllegalArgumentException: java.net.MalformedURLException: no protocol: 
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:679)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:125)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:108)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService.<init>(AnalyticsService.java:69)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService.getInstance(AnalyticsService.java:98)
+	at com.infineon.aurix.buildsystem.AnalyticsUtils.send(AnalyticsUtils.java:24)
+	at com.infineon.aurix.buildsystem.Analytics.sendToolStarted(Analytics.java:6)
+	at com.infineon.aurix.buildsystem.AurixIDEStartup.earlyStartup(AurixIDEStartup.java:24)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2656)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.MalformedURLException: no protocol: 
+	at java.base/java.net.URL.<init>(URL.java:674)
+	at java.base/java.net.URL.<init>(URL.java:569)
+	at java.base/java.net.URL.<init>(URL.java:516)
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:677)
+	... 12 more
+
+!ENTRY com.infineon.aurix.buildsystem.notification 2 0 2024-12-19 10:33:29.802
+!MESSAGE Unable to initialize Notification Service.
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:33:29.802
+!MESSAGE java.net.MalformedURLException: no protocol: 
+!STACK 0
+java.lang.IllegalArgumentException: java.net.MalformedURLException: no protocol: 
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:679)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:125)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:108)
+	at com.infineon.aurix.buildsystem.notification.NotificationService.<init>(NotificationService.java:64)
+	at com.infineon.aurix.buildsystem.notification.NotificationService.getInstance(NotificationService.java:89)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService.send(AnalyticsService.java:190)
+	at com.infineon.aurix.buildsystem.AnalyticsUtils.send(AnalyticsUtils.java:24)
+	at com.infineon.aurix.buildsystem.Analytics.sendToolStarted(Analytics.java:6)
+	at com.infineon.aurix.buildsystem.AurixIDEStartup.earlyStartup(AurixIDEStartup.java:24)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2656)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.MalformedURLException: no protocol: 
+	at java.base/java.net.URL.<init>(URL.java:674)
+	at java.base/java.net.URL.<init>(URL.java:569)
+	at java.base/java.net.URL.<init>(URL.java:516)
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:677)
+	... 13 more
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:33:29.835
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.analytics 2 0 2024-12-19 10:33:35.811
+!MESSAGE Analytics Service can't be started because No analytics endpoint is configured
+
+!ENTRY com.infineon.aurix.buildsystem.analytics 1 0 2024-12-19 10:33:35.812
+!MESSAGE Analytics service enabled
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:33:52.734
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.remote-repo 1 0 2024-12-19 10:34:35.118
+!MESSAGE Using bundled version for artifact: project-initializer:tricore-tc3xx
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:34:35.118
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2024-12-19 10:34:36.272
+!MESSAGE Processing template: C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\Cpu0_Main.ftlc
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:34:42.276
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.remote-repo 1 0 2024-12-19 10:34:50.800
+!MESSAGE Using bundled version for artifact: project-initializer:tricore-tc3xx
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:34:50.800
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2024-12-19 10:34:52.096
+!MESSAGE Processing template: C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_FBL\Cpu0_Main.ftlc
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-19 10:34:59.659
+!MESSAGE Indexed 'DEC_APP' (180 sources, 676 headers) in 20.8 sec: 182,689 declarations; 271,111 references; 13 unresolved inclusions; 5,031 syntax errors; 1,138 unresolved names (0.25%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-19 10:35:16.149
+!MESSAGE Indexed 'DEC_FBL' (179 sources, 674 headers) in 16.5 sec: 182,661 declarations; 271,046 references; 12 unresolved inclusions; 5,031 syntax errors; 1,136 unresolved names (0.25%)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2024-12-19 10:35:59.360
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 126 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2024-12-19 10:36:00.442
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 1080 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2024-12-19 10:36:00.501
+!MESSAGE Include paths were discovered in 57 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:38:59.304
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:12.127
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:18.328
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:23.447
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:32.710
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:41.176
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:48.774
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:54.774
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:39:59.877
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:40:04.589
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:40:08.901
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:40:17.789
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:40:49.324
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2024-12-19 10:40:54.140
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:889)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
