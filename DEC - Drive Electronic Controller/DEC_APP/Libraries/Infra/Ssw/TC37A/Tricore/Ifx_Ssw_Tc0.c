@@ -131,7 +131,6 @@ __asm("\t .extern core0_main");
 #pragma GCC optimize "O2"
 #endif
 
-
 IFX_SSW_WEAK void hardware_init_hook(void)
 {}
 
@@ -188,9 +187,10 @@ static void __StartUpSoftware_Phase3ApplicationResetPath(void)
     Ifx_Ssw_jumpToFunction(__StartUpSoftware_Phase5);
 }
 
-
+extern IfxMtu_MbistSel McuSm_MbistConfigSsh[];
 static void __StartUpSoftware_Phase4(void)
 {
+    uint8 i = 0;
     /* This is for ADAS chip, where clock is provided by MMIC chip. This has to be
      * implemented according the board.
      */
@@ -209,6 +209,11 @@ static void __StartUpSoftware_Phase4(void)
     /* Initialize the clock system */
     IFX_CFG_SSW_CALLOUT_PLL_INIT();
 
+    while(McuSm_MbistConfigSsh[i] != 255U)
+    {
+        IfxMtu_clearSram(McuSm_MbistConfigSsh[i]);
+        i++;
+    }
     /* MBIST Tests and evaluation */
     IFX_CFG_SSW_CALLOUT_MBIST();
 

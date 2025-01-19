@@ -181,4 +181,27 @@
   <v1:propertySetting propertyId="scr_p01_2.symbolicname" value="SCRWCAN0_RXD"/>
   <v1:propertySetting propertyId="an3.symbolicname" value="G0_QREQ0_CH3"/>
   <v1:propertySetting propertyId="p00_6.symbolicname" value="EMOT_PWM"/>
+  <v1:configSetting configurationId="g0_qreq0.ch6.bind" altId="g0_qreq0.ch6.bind.ch6">
+    <v1:connectionSetting altId="an6.an.bind.anares"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="an6.an.bind" altId="an6.an.bind.anares">
+    <v1:connectionSetting altId="g0_qreq0.ch6.bind.ch6"/>
+  </v1:configSetting>
+  <v1:propertySetting propertyId="an6.symbolicname" value="G0_QREQ0_CH6"/>
+  <v1:configSetting configurationId="tout1.out.bind" altId="tout1.out.bind.out">
+    <v1:connectionSetting altId="p02_1.out.bind.alt1"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="tout2.out.bind" altId="tout2.out.bind.out">
+    <v1:connectionSetting altId="p02_2.out.bind.alt1"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p02_1.dir" altId="p02_1.dir.out"/>
+  <v1:configSetting configurationId="p02_2.out.bind" altId="p02_2.out.bind.alt1">
+    <v1:connectionSetting altId="tout2.out.bind.out"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p02_2.dir" altId="p02_2.dir.out"/>
+  <v1:configSetting configurationId="p02_1.out.bind" altId="p02_1.out.bind.alt1">
+    <v1:connectionSetting altId="tout1.out.bind.out"/>
+  </v1:configSetting>
+  <v1:propertySetting propertyId="p02_2.symbolicname" value="TOUT2_OUT"/>
+  <v1:propertySetting propertyId="p02_1.symbolicname" value="TOUT1_OUT"/>
 </v1:pinSettings>

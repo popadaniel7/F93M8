@@ -10,16 +10,33 @@ RM := rm -rf
 -include sources.mk
 -include Libraries/iLLD/TC37A/Tricore/_PinMap/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/_Impl/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Stm/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Src/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Smu/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Scu/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Port/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Port/Io/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Pms/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Mtu/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Gtm/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Timer/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Gtm/Atom/Pwm/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Flash/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Fce/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Fce/Crc/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Evadc/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Evadc/Adc/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Dts/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Dts/Dts/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Dma/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Dma/Dma/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Cpu/Trap/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Cpu/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Cpu/Irq/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Can/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Can/Can/subdir.mk
+-include Libraries/Service/CpuGeneric/SysSe/Bsp/subdir.mk
+-include Libraries/Service/CpuGeneric/StdIf/subdir.mk
 -include Libraries/Infra/Ssw/TC37A/Tricore/subdir.mk
 -include Libraries/Infra/Platform/Tricore/Compilers/subdir.mk
 -include Libraries/subdir.mk
@@ -28,28 +45,22 @@ RM := rm -rf
 -include BSW/Sys/Wdg/subdir.mk
 -include BSW/Sys/SysMgr/subdir.mk
 -include BSW/Sys/Smu/subdir.mk
--include BSW/Sys/Scr/subdir.mk
--include BSW/Sys/Pms/subdir.mk
+-include BSW/Sys/Os/FreeRTOS/portable/Tasking/TC3/subdir.mk
+-include BSW/Sys/Os/FreeRTOS/portable/MemMang/subdir.mk
+-include BSW/Sys/Os/FreeRTOS/subdir.mk
+-include BSW/Sys/Os/subdir.mk
 -include BSW/Sys/McuSm/subdir.mk
 -include BSW/Sys/EcuM/subdir.mk
 -include BSW/Sys/Crc/subdir.mk
 -include BSW/Mem/Nvm/subdir.mk
--include BSW/Mem/MemIf/subdir.mk
 -include BSW/Mem/Fls/subdir.mk
--include BSW/Io/Stm/subdir.mk
--include BSW/Io/Pwm/subdir.mk
--include BSW/Io/Port/subdir.mk
 -include BSW/Io/Irq/subdir.mk
 -include BSW/Io/Gtm/subdir.mk
--include BSW/Io/Gpt/subdir.mk
 -include BSW/Io/Dma/subdir.mk
--include BSW/Io/Ccu/subdir.mk
 -include BSW/Io/Ain/subdir.mk
 -include BSW/Diag/Dem/subdir.mk
 -include BSW/Diag/Dcm/subdir.mk
 -include BSW/Com/E2e/subdir.mk
--include BSW/Com/CanIsoTp/subdir.mk
--include BSW/Com/CanIf/subdir.mk
 -include BSW/Com/Can/subdir.mk
 -include APP/Iven/subdir.mk
 -include APP/EncCal/subdir.mk
@@ -107,7 +118,7 @@ all: main-build
 main-build: DEC_APP.elf secondary-outputs
 
 dependents:
-	-cd "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)" && $(MAKE) clean all
+	-cd "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)" && $(MAKE) all
 
 # Tool invocations
 DEC_APP.elf: $(OBJS) "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)/SCR_AURIX_TC3x" makefile $(OPTIONAL_TOOL_DEPS)

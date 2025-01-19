@@ -50,12 +50,12 @@
 
 /* Set this macro to 1, to do LBIST checks. */
 #ifndef IFX_CFG_SSW_ENABLE_LBIST
-#define IFX_CFG_SSW_ENABLE_LBIST          (0U)
+#define IFX_CFG_SSW_ENABLE_LBIST          (1U)
 #endif
 
 /* Set this macro to 1, to do MONBIST checks. */
 #ifndef IFX_CFG_SSW_ENABLE_MONBIST
-#define IFX_CFG_SSW_ENABLE_MONBIST        (0U)
+#define IFX_CFG_SSW_ENABLE_MONBIST        (1U)
 #endif
 
 /* Set this macro to 1, to do MMIC checks. */
@@ -70,12 +70,12 @@
 
 /* Set this macro to 1, to do MBIST checks. */
 #ifndef IFX_CFG_SSW_ENABLE_MBIST
-#define IFX_CFG_SSW_ENABLE_MBIST          (0U)
+#define IFX_CFG_SSW_ENABLE_MBIST          (1U)
 #endif
 
 /* Set this macro to 1, to do SMU Alarm handling. */
 #ifndef IFX_CFG_SSW_ENABLE_SMU
-#define IFX_CFG_SSW_ENABLE_SMU            (0U)
+#define IFX_CFG_SSW_ENABLE_SMU            (1U)
 #endif
 
 /* Set this macro to 1, to enable emem initialisation. */
@@ -178,13 +178,14 @@ extern void Ifx_Ssw_Monbist(void);
  */
 #if IFX_CFG_SSW_ENABLE_MBIST == 1U
 #include "IfxMtu.h"
+#include "McuSm.h"
 
 #define IFX_CFG_SSW_CALLOUT_MBIST() \
     {                               \
         IFX_EXTERN const IfxMtu_MbistConfig *const mbistGangConfig[]; \
         if (IfxMtu_runMbistAll(mbistGangConfig) == 1U)                \
         {                                                             \
-            __debug();                                                \
+            McuSm_PerformResetHook(1u, 1u);                           \
         }                                                             \
     }
 
@@ -202,8 +203,9 @@ extern void Ifx_Ssw_Monbist(void);
  * This need to be configured by application to do SMU alarm handling.
  * This hook is by default defined to empty call by startup implementation.
  */
+extern void Smu_Init(void);
 #if IFX_CFG_SSW_ENABLE_SMU == 1U
-#define IFX_CFG_SSW_CALLOUT_SMU()
+#define IFX_CFG_SSW_CALLOUT_SMU() Smu_Init()
 #endif /* End of IFX_CFG_SSW_ENABLE_SMU */
 
 /* Callout hook API macro to unlock EMEM.

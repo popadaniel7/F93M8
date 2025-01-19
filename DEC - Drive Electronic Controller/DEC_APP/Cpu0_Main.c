@@ -47,8 +47,8 @@ void core0_main(void)
     
     IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getCpuWatchdogPassword());
 
-    /* boot_mode = 0 - XRAM not programmed */
-    IfxScr_init(0);
+//    /* boot_mode = 0 - XRAM not programmed */
+//    IfxScr_init(0);
     IfxScuWdt_setSafetyEndinit(IfxScuWdt_getCpuWatchdogPassword());
 
     /* Write SCR program to XRAM */
