@@ -1,0 +1,20 @@
+#include "Ifx_Types.h"
+
+#define NVM_MAX_BLOCKS              3u
+#define DFLASH_EMPTY_WORD           0xFFFFFFFFu
+#define NVM_HEADER_SIZE_U32         (7u)/* Compute header size in uint32 units (header fields except data payload) */
+/* Header: crc, blockId, blockSize, blockStatus, markedForReadAll, markedForWriteAll, padding */
+
+extern void Nvm_SwitchActiveSector(void);
+extern uint32 Nvm_CalculateCrc(uint32 *data, uint32 length);
+extern uint32 Nvm_FindBlockAddress(uint32 blockId);
+extern uint32 Nvm_FindNextWriteAddress(void);
+extern void Nvm_RestorePersistentBlocks(uint32 newSectorAddress);
+extern void Nvm_SwitchActiveSector(void);
+extern void Nvm_WriteBlock(uint16 blockId, uint32 *data, uint16 length);
+extern void Nvm_ReadBlock(uint32 blockId, uint32 *data, uint32 length);
+extern void Nvm_WriteAll(void);
+extern void Nvm_ReadAll(void);
+extern void Nvm_LoadDefaults(void);
+extern uint8 Nvm_GetBlockStatus(uint32 blockId);
+extern uint32 Nvm_GetBlockCrc(uint32 blockId);

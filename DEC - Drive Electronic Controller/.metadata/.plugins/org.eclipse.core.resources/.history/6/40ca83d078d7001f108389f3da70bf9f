@@ -1,0 +1,79 @@
+#include "Iven.h"
+
+#define ICM_NUMBER_OF_MESSAGES 14U
+
+typedef struct
+{
+        uint8 messageStatus;
+        uint8 messageCount;
+}Iven_IcmTable_t;
+
+static uint32 Iven_MainCounter = 0;
+Iven_IcmTable_t Iven_IcmLookupTable[ICM_NUMBER_OF_MESSAGES];
+uint8 Iven_CanTx_IcmId = 0;
+
+uint8 Iven_StatusDriveControlMessageState = 0;
+uint8 Iven_StatusLoadListMessageState = 0;
+uint8 Iven_StatusPowerSupplyNetworkMessageState = 0;
+uint8 Iven_CanRx_PSNWarn = 0;
+uint8 Iven_CanRx_CurrentConsumption  = 0;
+uint8 Iven_CanRx_CurrentConsumption2 = 0;
+uint8 Iven_CanRx_MeasuredVoltageSupply = 0;
+uint8 Iven_StatusActuatorMessageState = 0;
+uint8 Iven_CanRx_StatusDoorLeft = 0;
+uint8 Iven_CanRx_StatusDoorRight = 0;
+uint8 Iven_IsCbmAvailableOnTheBus = 0;
+uint8 Iven_IsPdmAvailableOnTheBus = 0;
+uint8 Iven_CanRx_PowerSteeringControl = 0;
+uint8 Iven_CanRx_GearboxControl = 0;
+uint8 Iven_CanRx_AccelerationControl = 0;
+uint8 Iven_CanRx_BrakeControl = 0;
+uint8 Iven_CanRx_IgnitionControl = 0;
+uint8 Iven_CanTx_PowerSteeringStatus = 0;
+uint8 Iven_CanTx_IrSenStat = 0;
+
+void Iven_MainFunction(void);
+
+void Iven_MainFunction(void)
+{
+    static uint32 timestamp = 0;
+    static uint32 iteratorAux = 0;
+    /* Process IVENs start. */
+
+
+
+    /* Process IVENs end. */
+    for(uint8 i = 0; i < ICM_NUMBER_OF_MESSAGES; i++)
+    {
+        if(0u == timestamp)
+        {
+            if(1u == Iven_IcmLookupTable[i].messageStatus)
+            {
+                Iven_IcmLookupTable[i].messageCount++;
+                timestamp = Iven_MainCounter;
+                iteratorAux = i;
+                Iven_CanTx_IcmId = i;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+        else
+        {
+            if(600u <= Iven_MainCounter - timestamp)
+            {
+                timestamp = 0;
+                Iven_IcmLookupTable[iteratorAux].messageStatus = 0;
+                iteratorAux = 0;
+                Iven_CanTx_IcmId = 0;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    Iven_MainCounter++;
+}

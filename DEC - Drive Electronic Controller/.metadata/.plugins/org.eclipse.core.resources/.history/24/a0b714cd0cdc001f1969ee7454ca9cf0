@@ -1,0 +1,28 @@
+#include "Ifx_Types.h"
+
+
+#define IVEN_ICM_NUMBER_OF_MESSAGES 16U
+#define IVEN_ICMID1     0U
+#define IVEN_ICMID2     1U
+#define IVEN_ICMID13    2U
+#define IVEN_ICMID25    3U
+#define IVEN_ICMID26    4U
+#define IVEN_ICMID27    5U
+#define IVEN_ICMID28    6U
+#define IVEN_ICMID29    7U
+#define IVEN_ICMID30    8U
+#define IVEN_ICMID31    9U
+#define IVEN_ICMID32    10U
+#define IVEN_ICMID33    11U
+#define IVEN_ICMID34    12U
+#define IVEN_ICMID35    13U
+#define IVEN_ICMID37    14U
+#define IVEN_ICMID40    15U
+
+typedef struct
+{
+        uint8 messageStatus;
+        uint8 messageCount;
+}Iven_IcmTable_t;
+
+extern void Iven_MainFunction(void);

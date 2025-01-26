@@ -1,0 +1,4 @@
+#include "Ifx_Types.h"
+
+extern void Nvm_SwitchActiveSector(void);
+extern uint32 Nvm_CalculateCrc(uint32 *data, uint32 length);

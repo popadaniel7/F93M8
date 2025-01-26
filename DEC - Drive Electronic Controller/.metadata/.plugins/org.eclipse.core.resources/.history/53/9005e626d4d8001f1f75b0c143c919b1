@@ -1,0 +1,26 @@
+#include "Ifx_Types.h"
+
+#define ENCCAL_CALIBRATION_SIZE 33U
+#define ENCCAL_CODING_SIZE      20U
+
+typedef struct
+{
+        uint8 model[8];
+        uint8 vin[17];
+        uint8 chassisNumber[3];
+        uint8 upholstery[24];
+        uint8 paint[24];
+}EncCal_VOData_t;
+
+extern uint32 EncCal_Calibration_Buffer[ENCCAL_CALIBRATION_SIZE];
+extern uint8 EncCal_Coding_Buffer[ENCCAL_CODING_SIZE];
+
+extern void EncCal_InitCalibration(void);
+extern void EncCal_InitCoding(void);
+extern void EncCal_ReadCalibration(uint32* data);
+extern void EncCal_ReadCoding(uint32* data);
+extern void EncCal_WriteCalibration(uint32* data);
+extern void EncCal_WriteCoding(uint32* data);
+extern uint8 EncCal_CheckCalibration(uint32* data);
+extern uint8 EncCal_CheckCoding(uint32* data);
+extern void EncCal_MainFunction(void);

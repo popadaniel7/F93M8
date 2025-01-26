@@ -1,0 +1,25 @@
+#include "Scr_Io_sdcc.h"
+#include "Scr_Scu_sdcc.h"
+#include "Scr_Rtc_sdcc.h"
+#include "Scr_Irq_sdcc.h"
+
+void main()
+{
+    /* SCU (Standby Controller) module configurations*/
+    SCR_SCU_PAGE = 1;          /* Switch to page 1          */
+    SCR_PMCON1 = 0x39;         /* OCDS, RTC and SSC enabled */
+    SCR_SCU_PAGE = 0;          /* Switch to page 0          */
+    SCR_IRCON0 = 0x0;          /* Reset interrupts          */
+    /* IO (Port) module configuration                                                     */
+    SCR_IO_PAGE = 2;           /* Switch to page 2                                        */
+    SCR_P01_PDISC = 0x00;      /* Enable P0 all pins                                      */
+    SCR_IO_PAGE = 0;           /* Switch to page 0                                        */
+    SCR_P00_OUT = (1 << 4);    /* Initialize P01.2 (P33.10) out to 1                      */
+    SCR_IO_PAGE = 1;           /* Switch to page 1                                        */
+    SCR_P00_IOCR4 = 0x80;      /* set P01.2 / P33.10 as input          */
+    SCR_IO_PAGE = 0;
+
+    while(1)
+    {
+    }
+}

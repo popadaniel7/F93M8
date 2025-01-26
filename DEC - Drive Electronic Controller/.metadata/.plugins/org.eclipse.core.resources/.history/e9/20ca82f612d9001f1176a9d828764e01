@@ -1,0 +1,229 @@
+#include "EnergyMgmt.h"
+#include "EncCal.h"
+
+static uint32 EnergyMgmt_MainCounter = 0u;
+uint8 EnergyMgmt_CanTx_CommandLoad1 = 0u; // CBM
+uint8 EnergyMgmt_CanTx_CommandLoad2 = 0u; // DMU
+uint8 EnergyMgmt_CanTx_CommandLoad3 = 0u; // DEC
+uint8 EnergyMgmt_CanTx_CommandLoad4 = 0u; // L4
+uint8 EnergyMgmt_CanTx_CommandLoad5 = 0u; // L5
+uint8 EnergyMgmt_CanTx_CommandLoad6 = 0u; // L6
+uint8 EnergyMgmt_CanTx_CommandLoad7 = 0u; // LOAD_RESISTOR_1
+uint8 EnergyMgmt_CanTx_CommandLoad8 = 0u; // LOAD_RESISTOR_2
+uint8 EnergyMgmt_CanRx_IgnitionStatus = 0u;
+uint8 EnergyMgmt_CanTx_VehicleState = 0u;
+uint8 EnergyMgmt_CanRx_StatusDoorLeft = 0u;
+uint8 EnergyMgmt_CanRx_StatusDoorRight = 0u;
+uint8 EnergyMgmt_CanRx_StatusHc05 = 0u;
+uint8 EnergyMgmt_CanRx_VoltageMeasured = 0u;
+uint8 EnergyMgmt_CanRx_CurrentMeasured = 0u;
+uint8 EnergyMgmt_CanRx_CurrentMeasured2 = 0u;
+
+void EnergyMgmt_MainFunction(void);
+
+void EnergyMgmt_MainFunction(void)
+{
+    static uint32 timestamp = 0u;
+    static uint8 flag = 0u;
+    static uint8 evaluateCarLockState = 0u;
+    static uint32 cutoffTime = 0u;
+    static uint32 totalCurrent = 0u;
+    static uint32 totCurrTimer = 0u;
+
+    cutoffTime = EncCal_Coding_ConsumerCutoffTime * 60u * 1000u;
+    totalCurrent = EnergyMgmt_CanRx_CurrentMeasured * 1000u + EnergyMgmt_CanRx_CurrentMeasured2 * 10u;
+
+    if(2u == EncCal_Coding_CbmL)
+    {
+        EnergyMgmt_CanTx_CommandLoad1 = 0u;
+    }
+    else
+    {
+        EnergyMgmt_CanTx_CommandLoad1 = 1u; // always-on
+    }
+
+    EnergyMgmt_CanTx_CommandLoad3 = 1u; // always-on
+
+    switch(EnergyMgmt_CanRx_IgnitionStatus)
+    {
+        case 255u:
+        case 254u:
+        case 253u:
+        case 3u:
+            if(0u == timestamp)
+            {
+                timestamp = EnergyMgmt_MainCounter;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if(cutoffTime < EnergyMgmt_MainCounter - timestamp)
+            {
+                flag = 1u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if((0u == EnergyMgmt_CanRx_StatusDoorLeft && 0u == EnergyMgmt_CanRx_StatusDoorRight)
+                    && (0u == EnergyMgmt_CanRx_StatusHc05))
+            {
+                evaluateCarLockState = 1u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if(1u == flag || 1u == evaluateCarLockState)
+            {
+                EnergyMgmt_CanTx_CommandLoad2 = 0u;
+                EnergyMgmt_CanTx_CommandLoad4 = 0u;
+                EnergyMgmt_CanTx_CommandLoad5 = 0u;
+                EnergyMgmt_CanTx_CommandLoad6 = 0u;
+            }
+            else
+            {
+                if(2u == EncCal_Coding_DmuL)
+                {
+                    EnergyMgmt_CanTx_CommandLoad2 = 0u;
+                }
+                else
+                {
+                    EnergyMgmt_CanTx_CommandLoad2 = 1u;
+                }
+
+                EnergyMgmt_CanTx_CommandLoad4 = 0u;
+                EnergyMgmt_CanTx_CommandLoad5 = 0u;
+                EnergyMgmt_CanTx_CommandLoad6 = 0u;
+            }
+            break;
+        case 0u:
+            timestamp = 0u;
+            flag = 0u;
+            evaluateCarLockState = 0u;
+            EnergyMgmt_CanTx_CommandLoad2 = 0u;
+            EnergyMgmt_CanTx_CommandLoad4 = 0u;
+            EnergyMgmt_CanTx_CommandLoad5 = 0u;
+            EnergyMgmt_CanTx_CommandLoad6 = 0u;
+            break;
+        case 1u:
+            timestamp = 0u;
+            flag = 0u;
+            evaluateCarLockState = 0u;
+
+            if(2u == EncCal_Coding_DmuL)
+            {
+                EnergyMgmt_CanTx_CommandLoad2 = 0u;
+            }
+            else
+            {
+                EnergyMgmt_CanTx_CommandLoad2 = 1u;
+            }
+
+            EnergyMgmt_CanTx_CommandLoad4 = 0u;
+            EnergyMgmt_CanTx_CommandLoad5 = 0u;
+            EnergyMgmt_CanTx_CommandLoad6 = 0u;
+            break;
+        case 2u:
+            timestamp = 0;
+            flag = 0u;
+            evaluateCarLockState = 0u;
+
+            if(2u == EncCal_Coding_DmuL)
+            {
+                EnergyMgmt_CanTx_CommandLoad2 = 0u;
+            }
+            else
+            {
+                EnergyMgmt_CanTx_CommandLoad2 = 1u;
+            }
+
+            if(2u == EncCal_Coding_L4)
+            {
+                EnergyMgmt_CanTx_CommandLoad4 = 0u;
+            }
+            else
+            {
+                EnergyMgmt_CanTx_CommandLoad4 = 1u;
+            }
+
+            if(2u == EncCal_Coding_L5)
+            {
+                EnergyMgmt_CanTx_CommandLoad5 = 0u;
+            }
+            else
+            {
+                EnergyMgmt_CanTx_CommandLoad5 = 1u;
+            }
+
+            if(2u == EncCal_Coding_L6)
+            {
+                EnergyMgmt_CanTx_CommandLoad6 = 0u;
+            }
+            else
+            {
+                EnergyMgmt_CanTx_CommandLoad6 = 1u;
+            }
+            break;
+        default:
+            break;
+    }
+
+    if(8u == EnergyMgmt_CanTx_VehicleState)
+    {
+        if(2u == EncCal_Coding_DmuL)
+        {
+            EnergyMgmt_CanTx_CommandLoad2 = 0u;
+        }
+        else
+        {
+            EnergyMgmt_CanTx_CommandLoad2 = 1u;
+        }
+
+        if(2u == EncCal_Coding_L5)
+        {
+            EnergyMgmt_CanTx_CommandLoad5 = 0u;
+        }
+        else
+        {
+            EnergyMgmt_CanTx_CommandLoad5 = 1u;
+        }
+
+        if(2u == EncCal_Coding_L6)
+        {
+            EnergyMgmt_CanTx_CommandLoad6 = 0u;
+        }
+        else
+        {
+            EnergyMgmt_CanTx_CommandLoad6 = 1u;
+        }
+
+        if(2u == EncCal_Coding_L7)
+        {
+            EnergyMgmt_CanTx_CommandLoad7 = 0u;
+        }
+        else
+        {
+            EnergyMgmt_CanTx_CommandLoad7 = 1u;
+        }
+
+        if(2u == EncCal_Coding_L8)
+        {
+            EnergyMgmt_CanTx_CommandLoad8 = 0u;
+        }
+        else
+        {
+            EnergyMgmt_CanTx_CommandLoad8 = 1u;
+        }
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    EnergyMgmt_MainCounter++;
+}

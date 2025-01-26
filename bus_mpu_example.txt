@@ -1,0 +1,52 @@
+#include "MPU_Memory_Protection.h"
+
+/* Protection Set 1 => "QM domain" 
+ * Protection Set 2 => "ASIL B domain" 
+ *
+ * Data Protection Ranges:  0 => QM region, 1 => ASIL B region
+ * Code Protection Ranges:  0 => QM region, 1 => ASIL B region
+ */
+
+void configureBusMPU(void)
+{
+    /* 1) Define the QM memory region as Data Range 0 and Code Range 0 */
+    define_data_protection_range(QM_START, QM_END, DATA_PROTECTION_RANGE_0);
+    define_code_protection_range(QM_START, QM_END, CODE_PROTECTION_RANGE_0);
+
+    /* 2) Define the ASIL B memory region as Data Range 1 and Code Range 1 */
+    define_data_protection_range(ASILB_START, ASILB_END, DATA_PROTECTION_RANGE_1);
+    define_code_protection_range(ASILB_START, ASILB_END, CODE_PROTECTION_RANGE_1);
+
+    /******************************************************************
+     * Protection Set 1 (QM Domain)
+     *  - Full access (R/W/Execute) to QM memory
+     *  - Prevent writes into ASIL B (optionally allow read or execute)
+     ******************************************************************/
+    enable_data_read (PROTECTION_SET_1, DATA_PROTECTION_RANGE_0); /* QM read  */
+    enable_data_write(PROTECTION_SET_1, DATA_PROTECTION_RANGE_0); /* QM write */
+    enable_code_execution(PROTECTION_SET_1, CODE_PROTECTION_RANGE_0); /* execute QM code */
+
+    enable_data_read (PROTECTION_SET_1, DATA_PROTECTION_RANGE_1); /* optionally allow read from ASIL B */
+    /* NO enable_data_write() for range_1 => can't write ASIL B */
+    /* optionally skip enable_code_execution() for range_1 => can't execute from ASIL B */
+
+    /******************************************************************
+     * Protection Set 2 (ASIL B Domain)
+     *  - Full R/W/Execute access to both QM and ASIL B memory
+     ******************************************************************/
+    enable_data_read (PROTECTION_SET_2, DATA_PROTECTION_RANGE_0); /* read QM */
+    enable_data_write(PROTECTION_SET_2, DATA_PROTECTION_RANGE_0); /* write QM */
+    enable_code_execution(PROTECTION_SET_2, CODE_PROTECTION_RANGE_0); /* execute from QM */
+
+    enable_data_read (PROTECTION_SET_2, DATA_PROTECTION_RANGE_1); /* read ASIL B */
+    enable_data_write(PROTECTION_SET_2, DATA_PROTECTION_RANGE_1); /* write ASIL B */
+    enable_code_execution(PROTECTION_SET_2, CODE_PROTECTION_RANGE_1); /* execute ASIL B code */
+
+    /* 3) Enable the MPU (final step) */
+    enable_memory_protection();
+}
+
+/* Example usage:
+   - If the QM domain is active, call set_active_protection_set(PROTECTION_SET_1).
+   - If running ASIL B code/domain, call set_active_protection_set(PROTECTION_SET_2).
+ */

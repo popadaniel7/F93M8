@@ -1,0 +1,204 @@
+#include "Crc.h"
+#include "string.h"
+#include "Fls.h"
+#include "Nvm.h"
+#include "EncCal.h"
+/*********************************************************************************************************************/
+/*------------------------------------------------------Macros-------------------------------------------------------*/
+/*********************************************************************************************************************/
+#define NVM_MAX_BLOCKS              2u
+/*********************************************************************************************************************/
+/*-------------------------------------------------Data Structures--------------------------------------------------*/
+/*********************************************************************************************************************/
+typedef struct
+{
+        uint32 crc;
+        uint32* actualBlockValues;
+        uint16 blockId;
+        uint16 blockSize;
+        uint8 blockStatus;
+        uint8 markedForReadAll;
+        uint8 markedForWriteAll;
+        uint8 padding;
+} Nvm_BlockType;
+
+void Nvm_SwitchActiveSector(void);
+uint32 Nvm_CalculateCrc(uint32 *data, uint32 length);
+uint32 Nvm_FindBlockAddress(uint32 blockId);
+uint32 Nvm_FindNextWriteAddress(void);
+void Nvm_RestorePersistentBlocks(uint32 newSectorAddress);
+void Nvm_SwitchActiveSector(void);
+void Nvm_WriteBlock(uint32 blockId, uint32 *data, uint16 length);
+void Nvm_ReadBlock(uint32 blockId, uint32 *data, uint32 length);
+void Nvm_WriteAll();
+void Nvm_ReadAll();
+uint8 Nvm_GetBlockStatus(uint32 blockId);
+/*********************************************************************************************************************/
+/*-------------------------------------------------Global Variables--------------------------------------------------*/
+/*********************************************************************************************************************/
+static uint32 ActiveSectorAddress = DFLASH_STARTING_ADDRESS; /* Active Sector */
+static Nvm_BlockType Nvm_BlockList[NVM_MAX_BLOCKS] =
+{
+        {0u, EncCal_Calibration_Buffer, 1u, (uint16)ENCCAL_CALIBRATION_SIZE, 0u, 1u, 0u, 0u},
+        {0u, (uint32*)EncCal_Coding_Buffer, 2u, (uint16)ENCCAL_CODING_SIZE, 0u, 1u, 0u, 0u},
+};
+uint8 Nvm_WriteAllFinished = 0u;
+uint8 Nvm_ReadAllFinished = 0u;
+/*********************************************************************************************************************/
+/*---------------------------------------------Function Implementations----------------------------------------------*/
+/*********************************************************************************************************************/
+uint32 Nvm_CalculateCrc(uint32 *data, uint32 length)
+{
+    return Crc_Calculate(data, (uint16)length, 0);
+}
+
+uint32 Nvm_FindBlockAddress(uint32 blockId)
+{
+    uint32 address = ActiveSectorAddress;
+
+    while (address < (ActiveSectorAddress + DFLASH_SECTOR_SIZE))
+    {
+        if (MEM(address) == blockId)
+        {
+            return address;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        address += sizeof(Nvm_BlockType);
+    }
+
+    return 0xFFFFFFFF; /* Block not found */
+}
+
+uint32 Nvm_FindNextWriteAddress(void)
+{
+    uint32 address = ActiveSectorAddress;
+
+    while (MEM(address) != 0xFFFFFFFF)
+    {
+        address += sizeof(Nvm_BlockType);
+
+        if (address >= (ActiveSectorAddress + DFLASH_SECTOR_SIZE))
+        {
+            Nvm_SwitchActiveSector();
+            return ActiveSectorAddress;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+
+    return address;
+}
+
+void Nvm_RestorePersistentBlocks(uint32 newSectorAddress)
+{
+    for (uint32 i = 0; i < NVM_MAX_BLOCKS; i++)
+    {
+        if (Nvm_BlockList[i].markedForReadAll || Nvm_BlockList[i].markedForWriteAll)
+        {
+            uint32 oldAddress = Nvm_FindBlockAddress(Nvm_BlockList[i].blockId);
+
+            if (oldAddress != 0xFFFFFFFF)
+            {
+                Fls_ReadBlock(oldAddress, Nvm_BlockList[i].actualBlockValues, Nvm_BlockList[i].blockSize);
+                uint32 crc = Nvm_CalculateCrc(Nvm_BlockList[i].actualBlockValues, Nvm_BlockList[i].blockSize);
+                Nvm_BlockList[i].crc = crc;
+                Fls_WriteBlock(newSectorAddress, (uint32 *)&Nvm_BlockList[i], sizeof(Nvm_BlockType) / sizeof(uint32));
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+}
+
+void Nvm_SwitchActiveSector(void)
+{
+    uint32 newSector = (ActiveSectorAddress == DFLASH_STARTING_ADDRESS) ?
+            (DFLASH_STARTING_ADDRESS + DFLASH_SECTOR_SIZE) : DFLASH_STARTING_ADDRESS;
+    Fls_Erase(newSector);
+    Nvm_RestorePersistentBlocks(newSector);
+    ActiveSectorAddress = newSector;
+}
+
+void Nvm_WriteBlock(uint16 blockId, uint32 *data, uint16 length)
+{
+    uint32 address = Nvm_FindNextWriteAddress();
+    uint32 crc = Nvm_CalculateCrc(data, length);
+    Nvm_BlockType block = {crc, {0u}, blockId, (uint16)length, 0u, 0u, 0u, 0u};
+    memcpy(block.actualBlockValues, data, length * sizeof(uint32));
+    Fls_WriteBlock(address, (uint32 *)&block, sizeof(Nvm_BlockType) / sizeof(uint32));
+}
+
+uint8 Nvm_GetBlockStatus(uint32 blockId)
+{
+    return Nvm_BlockList[blockId].blockStatus;
+}
+
+void Nvm_ReadBlock(uint32 blockId, uint32 *data, uint32 length)
+{
+    uint32 address = Nvm_FindBlockAddress(blockId);
+
+    if (address != 0xFFFFFFFF)
+    {
+        Nvm_BlockType block;
+        Fls_ReadBlock(address, (uint32 *)&block, sizeof(Nvm_BlockType) / sizeof(uint32));
+        uint32 calculatedCrc = Nvm_CalculateCrc(block.actualBlockValues, length);
+        if (calculatedCrc == block.crc)
+        {
+            memcpy(data, block.actualBlockValues, length * sizeof(uint32));
+        }
+        else
+        {
+            block.blockStatus = 0xFEU;
+        }
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+void Nvm_WriteAll()
+{
+    for (uint32 i = 0; i < NVM_MAX_BLOCKS; i++)
+    {
+        if (Nvm_BlockList[i].markedForWriteAll)
+        {
+            Nvm_WriteBlock(Nvm_BlockList[i].blockId, Nvm_BlockList[i].actualBlockValues, Nvm_BlockList[i].blockSize);
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+
+    Nvm_WriteAllFinished = 1u;
+}
+
+void Nvm_ReadAll()
+{
+    for (uint32 i = 0; i < NVM_MAX_BLOCKS; i++)
+    {
+        if (Nvm_BlockList[i].markedForReadAll)
+        {
+            Nvm_ReadBlock(Nvm_BlockList[i].blockId, Nvm_BlockList[i].actualBlockValues, Nvm_BlockList[i].blockSize);
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+
+    Nvm_ReadAllFinished = 1u;
+}

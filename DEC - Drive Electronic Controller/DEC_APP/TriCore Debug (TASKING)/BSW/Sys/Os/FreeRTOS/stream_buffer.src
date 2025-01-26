@@ -1,0 +1,6384 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
+	.compiler_invocation	"ctc -f cc4716a --dep-file=BSW/Sys/Os/FreeRTOS/stream_buffer.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EMotorCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EPSCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\E2e -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Eru -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\StdIf -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Pwm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Timer -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\SCR Debug (SDCC) -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Sys/Os/FreeRTOS/stream_buffer.src ../BSW/Sys/Os/FreeRTOS/stream_buffer.c"
+	.compiler_name		"ctc"
+	;source	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c'
+
+	
+$TC162
+	
+	.sdecl	'.text.portmacro.vPortSetCCPN',code,cluster('vPortSetCCPN')
+	.sect	'.text.portmacro.vPortSetCCPN'
+	.align	2
+	
+; Function vPortSetCCPN
+.L133:
+vPortSetCCPN:	.type	func
+	disable
+.L767:
+	mfcr	d15,#65068
+.L768:
+	insert	d0,d15,#0,#0,#8
+.L769:
+	and	d15,d4,#255
+.L770:
+	or	d0,d15
+.L771:
+	mtcr	#65068,d0
+	isync
+.L772:
+	enable
+.L773:
+	ret
+.L324:
+	
+__vPortSetCCPN_function_end:
+	.size	vPortSetCCPN,__vPortSetCCPN_function_end-vPortSetCCPN
+.L193:
+	; End of function
+	
+	.sdecl	'.text.portmacro.vPortSetICR',code,cluster('vPortSetICR')
+	.sect	'.text.portmacro.vPortSetICR'
+	.align	2
+	
+; Function vPortSetICR
+.L135:
+vPortSetICR:	.type	func
+	disable
+.L778:
+	mtcr	#65068,d4
+	isync
+.L779:
+	enable
+.L780:
+	ret
+.L328:
+	
+__vPortSetICR_function_end:
+	.size	vPortSetICR,__vPortSetICR_function_end-vPortSetICR
+.L198:
+	; End of function
+	
+	.sdecl	'.text.portmacro.xPortSetCCPN',code,cluster('xPortSetCCPN')
+	.sect	'.text.portmacro.xPortSetCCPN'
+	.align	2
+	
+; Function xPortSetCCPN
+.L137:
+xPortSetCCPN:	.type	func
+	disable
+.L785:
+	mfcr	d2,#65068
+.L544:
+	insert	d0,d2,#0,#0,#8
+.L786:
+	and	d15,d4,#255
+.L787:
+	or	d0,d15
+.L788:
+	mtcr	#65068,d0
+	isync
+.L789:
+	enable
+.L790:
+	j	.L2
+.L2:
+	ret
+.L332:
+	
+__xPortSetCCPN_function_end:
+	.size	xPortSetCCPN,__xPortSetCCPN_function_end-xPortSetCCPN
+.L203:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferGenericCreate',code,cluster('xStreamBufferGenericCreate')
+	.sect	'.text.stream_buffer.xStreamBufferGenericCreate'
+	.align	2
+	
+	.global	xStreamBufferGenericCreate
+; Function xStreamBufferGenericCreate
+.L139:
+xStreamBufferGenericCreate:	.type	func
+	mov	e8,d5,d4
+	mov.aa	a15,a4
+.L547:
+	mov.aa	a12,a5
+.L548:
+	jne	d6,#1,.L3
+.L966:
+	mov	d10,#1
+.L549:
+	j	.L4
+.L3:
+	mov	d10,#0
+.L4:
+	jne	d9,#0,.L5
+.L550:
+	mov	d9,#1
+.L5:
+	add	d15,d8,#1
+.L551:
+	add	d15,d15,#36
+.L552:
+	jge.u	d8,d15,.L6
+.L967:
+	add	d8,#1
+.L546:
+	add	d4,d8,#36
+	call	pvPortMalloc
+.L545:
+	mov.aa	a13,a2
+.L553:
+	j	.L7
+.L6:
+	mov.a	a13,#0
+.L7:
+	jz.a	a13,.L8
+.L968:
+	lea	a5,[a13]36
+.L969:
+	mov.aa	a4,a13
+.L554:
+	mov	e4,d9,d8
+.L556:
+	mov	d6,d10
+.L557:
+	mov.aa	a6,a15
+.L558:
+	mov.aa	a7,a12
+.L559:
+	call	prvInitialiseNewStreamBuffer
+.L555:
+	j	.L9
+.L8:
+.L9:
+	mov.aa	a2,a13
+.L560:
+	j	.L10
+.L10:
+	ret
+.L471:
+	
+__xStreamBufferGenericCreate_function_end:
+	.size	xStreamBufferGenericCreate,__xStreamBufferGenericCreate_function_end-xStreamBufferGenericCreate
+.L273:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.vStreamBufferDelete',code,cluster('vStreamBufferDelete')
+	.sect	'.text.stream_buffer.vStreamBufferDelete'
+	.align	2
+	
+	.global	vStreamBufferDelete
+; Function vStreamBufferDelete
+.L141:
+vStreamBufferDelete:	.type	func
+	ld.bu	d15,[a4]28
+.L874:
+	jnz.t	d15:1,.L11
+.L875:
+	call	vPortFree
+.L561:
+	j	.L12
+.L11:
+	mov	d4,#0
+.L876:
+	mov	d5,#36
+	call	memset
+.L12:
+	ret
+.L403:
+	
+__vStreamBufferDelete_function_end:
+	.size	vStreamBufferDelete,__vStreamBufferDelete_function_end-vStreamBufferDelete
+.L228:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferReset',code,cluster('xStreamBufferReset')
+	.sect	'.text.stream_buffer.xStreamBufferReset'
+	.align	2
+	
+	.global	xStreamBufferReset
+; Function xStreamBufferReset
+.L143:
+xStreamBufferReset:	.type	func
+	mov.aa	a15,a4
+.L563:
+	mov	d8,#0
+.L564:
+	mov.a	a12,#0
+.L565:
+	mov.a	a13,#0
+.L566:
+	ld.w	d9,[a15]30
+.L567:
+	call	vPortEnterCritical
+.L562:
+	ld.w	d15,[a15]16
+.L894:
+	jne	d15,#0,.L13
+.L895:
+	ld.w	d15,[a15]20
+.L896:
+	jne	d15,#0,.L14
+.L897:
+	ld.a	a5,[a15]24
+.L898:
+	ld.w	d4,[a15]8
+.L899:
+	ld.w	d5,[a15]12
+.L900:
+	ld.bu	d6,[a15]28
+.L901:
+	mov.aa	a4,a15
+.L568:
+	mov.aa	a6,a12
+.L570:
+	mov.aa	a7,a13
+.L571:
+	call	prvInitialiseNewStreamBuffer
+.L569:
+	st.w	[a15]30,d9
+.L902:
+	mov	d8,#1
+.L14:
+.L13:
+	call	vPortExitCritical
+.L903:
+	mov	d2,d8
+.L572:
+	j	.L15
+.L15:
+	ret
+.L420:
+	
+__xStreamBufferReset_function_end:
+	.size	xStreamBufferReset,__xStreamBufferReset_function_end-xStreamBufferReset
+.L243:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferSetTriggerLevel',code,cluster('xStreamBufferSetTriggerLevel')
+	.sect	'.text.stream_buffer.xStreamBufferSetTriggerLevel'
+	.align	2
+	
+	.global	xStreamBufferSetTriggerLevel
+; Function xStreamBufferSetTriggerLevel
+.L145:
+xStreamBufferSetTriggerLevel:	.type	func
+	jne	d4,#0,.L16
+.L926:
+	mov	d4,#1
+.L16:
+	ld.w	d15,[a4]8
+.L927:
+	jge.u	d4,d15,.L17
+.L928:
+	st.w	[a4]12,d4
+.L929:
+	mov	d2,#1
+.L573:
+	j	.L18
+.L17:
+	mov	d2,#0
+.L18:
+	j	.L19
+.L19:
+	ret
+.L440:
+	
+__xStreamBufferSetTriggerLevel_function_end:
+	.size	xStreamBufferSetTriggerLevel,__xStreamBufferSetTriggerLevel_function_end-xStreamBufferSetTriggerLevel
+.L258:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferSpacesAvailable',code,cluster('xStreamBufferSpacesAvailable')
+	.sect	'.text.stream_buffer.xStreamBufferSpacesAvailable'
+	.align	2
+	
+	.global	xStreamBufferSpacesAvailable
+; Function xStreamBufferSpacesAvailable
+xStreamBufferSpacesAvailable:	.type	func
+.L20:
+	ld.w	d1,[a4]
+.L574:
+	ld.w	d15,[a4]8
+.L908:
+	ld.w	d0,[a4]
+.L575:
+	add	d0,d15
+.L909:
+	ld.w	d15,[a4]4
+.L910:
+	sub	d0,d15
+.L911:
+	ld.w	d15,[a4]
+.L912:
+	jne	d15,d1,.L20
+.L913:
+	add	d2,d0,#-1
+.L576:
+	ld.w	d15,[a4]8
+.L914:
+	jlt.u	d2,d15,.L21
+.L915:
+	ld.w	d15,[a4]8
+.L916:
+	sub	d2,d15
+.L917:
+	j	.L22
+.L21:
+.L22:
+	j	.L23
+.L23:
+	ret
+.L429:
+	
+__xStreamBufferSpacesAvailable_function_end:
+	.size	xStreamBufferSpacesAvailable,__xStreamBufferSpacesAvailable_function_end-xStreamBufferSpacesAvailable
+.L248:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferBytesAvailable',code,cluster('xStreamBufferBytesAvailable')
+	.sect	'.text.stream_buffer.xStreamBufferBytesAvailable'
+	.align	2
+	
+	.global	xStreamBufferBytesAvailable
+; Function xStreamBufferBytesAvailable
+.L148:
+xStreamBufferBytesAvailable:	.type	func
+	call	prvBytesInBuffer
+.L577:
+	j	.L24
+.L24:
+	ret
+.L435:
+	
+__xStreamBufferBytesAvailable_function_end:
+	.size	xStreamBufferBytesAvailable,__xStreamBufferBytesAvailable_function_end-xStreamBufferBytesAvailable
+.L253:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferSend',code,cluster('xStreamBufferSend')
+	.sect	'.text.stream_buffer.xStreamBufferSend'
+	.align	2
+	
+	.global	xStreamBufferSend
+; Function xStreamBufferSend
+.L150:
+xStreamBufferSend:	.type	func
+	sub.a	a10,#16
+.L578:
+	mov.aa	a15,a4
+.L580:
+	mov.aa	a12,a5
+.L581:
+	mov	d8,d4
+.L582:
+	st.w	[a10],d5
+.L795:
+	mov	d9,#0
+.L584:
+	mov	d10,d8
+.L586:
+	ld.w	d15,[a15]8
+.L796:
+	add	d0,d15,#-1
+.L587:
+	ld.bu	d15,[a15]28
+.L797:
+	jz.t	d15:0,.L25
+.L798:
+	add	d10,d8,#4
+.L799:
+	jge.u	d0,d10,.L26
+.L800:
+	mov	d0,#0
+.L588:
+	st.w	[a10],d0
+.L801:
+	j	.L27
+.L26:
+.L27:
+	j	.L28
+.L25:
+	jge.u	d0,d8,.L29
+.L802:
+	mov	d10,d0
+.L803:
+	j	.L30
+.L29:
+.L30:
+.L28:
+	ld.w	d15,[a10]
+.L804:
+	jeq	d15,#0,.L31
+.L805:
+	lea	a4,[a10]4
+.L579:
+	call	vTaskSetTimeOutState
+.L32:
+	call	vPortEnterCritical
+.L806:
+	mov.aa	a4,a15
+.L589:
+	call	xStreamBufferSpacesAvailable
+.L585:
+	mov	d9,d2
+.L591:
+	jge.u	d9,d10,.L33
+.L807:
+	mov.a	a4,#0
+	mov	d4,#0
+	call	xTaskGenericNotifyStateClear
+.L590:
+	ld.w	d15,[a15]20
+.L808:
+	call	xTaskGetCurrentTaskHandle
+.L809:
+	st.a	[a15]20,a2
+.L810:
+	j	.L34
+.L33:
+	call	vPortExitCritical
+.L593:
+	j	.L35
+.L34:
+	call	vPortExitCritical
+.L811:
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a4,#0
+	ld.w	d7,[a10]
+	call	xTaskGenericNotifyWait
+.L812:
+	mov.a	a2,#0
+.L813:
+	st.a	[a15]20,a2
+.L814:
+	lea	a4,[a10]4
+.L815:
+	lea	a5,[a10]0
+	call	xTaskCheckForTimeOut
+.L816:
+	jeq	d2,#0,.L32
+.L35:
+	j	.L36
+.L31:
+.L36:
+	jne	d9,#0,.L37
+.L817:
+	mov.aa	a4,a15
+.L594:
+	call	xStreamBufferSpacesAvailable
+.L592:
+	mov	d9,d2
+.L595:
+	j	.L38
+.L37:
+.L38:
+	mov.aa	a4,a15
+.L596:
+	mov.aa	a5,a12
+.L598:
+	mov	e4,d9,d8
+	mov	d6,d10
+.L599:
+	call	prvWriteMessageToBuffer
+.L597:
+	mov	d8,d2
+.L583:
+	jlt.u	d8,#1,.L39
+.L818:
+	mov.aa	a4,a15
+.L601:
+	call	prvBytesInBuffer
+.L600:
+	ld.w	d15,[a15]12
+.L819:
+	jlt.u	d2,d15,.L40
+.L820:
+	call	vTaskSuspendAll
+	ld.w	d15,[a15]16
+	jeq	d15,#0,.L41
+	ld.a	a4,[a15]16
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a5,#0
+	call	xTaskGenericNotify
+	mov.a	a2,#0
+	st.a	[a15]16,a2
+.L41:
+	call	xTaskResumeAll
+	j	.L42
+.L40:
+.L42:
+	j	.L43
+.L39:
+.L43:
+	mov	d2,d8
+.L602:
+	j	.L44
+.L44:
+	ret
+.L338:
+	
+__xStreamBufferSend_function_end:
+	.size	xStreamBufferSend,__xStreamBufferSend_function_end-xStreamBufferSend
+.L208:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferSendFromISR',code,cluster('xStreamBufferSendFromISR')
+	.sect	'.text.stream_buffer.xStreamBufferSendFromISR'
+	.align	2
+	
+	.global	xStreamBufferSendFromISR
+; Function xStreamBufferSendFromISR
+.L152:
+xStreamBufferSendFromISR:	.type	func
+	mov.aa	a15,a4
+.L604:
+	mov.aa	a12,a5
+.L605:
+	mov	d8,d4
+.L606:
+	mov.aa	a13,a6
+.L608:
+	mov	d9,d8
+.L609:
+	ld.bu	d15,[a15]28
+.L825:
+	jz.t	d15:0,.L45
+.L826:
+	add	d9,d8,#4
+.L827:
+	j	.L46
+.L45:
+.L46:
+	mov.aa	a4,a15
+	call	xStreamBufferSpacesAvailable
+.L603:
+	mov.aa	a4,a15
+.L612:
+	mov.aa	a5,a12
+.L613:
+	mov	e4,d2,d8
+	mov	d6,d9
+.L614:
+	call	prvWriteMessageToBuffer
+.L611:
+	mov	d8,d2
+.L607:
+	jlt.u	d8,#1,.L47
+.L828:
+	mov.aa	a4,a15
+.L616:
+	call	prvBytesInBuffer
+.L615:
+	ld.w	d15,[a15]12
+.L829:
+	jlt.u	d2,d15,.L48
+.L364:
+	mov	d15,#31
+.L368:
+	disable
+.L830:
+	mfcr	d9,#65068
+.L610:
+	insert	d0,d9,#0,#0,#8
+.L831:
+	and	d15,#255
+.L832:
+	or	d0,d15
+.L833:
+	mtcr	#65068,d0
+	isync
+.L834:
+	enable
+.L835:
+	j	.L49
+.L49:
+	ld.w	d15,[a15]16
+	jeq	d15,#0,.L50
+	ld.a	a4,[a15]16
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a5,#0
+	mov.aa	a6,a13
+.L617:
+	call	xTaskGenericNotifyFromISR
+.L618:
+	mov.a	a2,#0
+	st.a	[a15]16,a2
+.L50:
+	disable
+.L836:
+	mtcr	#65068,d9
+	isync
+.L837:
+	enable
+.L365:
+	j	.L51
+.L48:
+.L51:
+	j	.L52
+.L47:
+.L52:
+	mov	d2,d8
+.L619:
+	j	.L53
+.L53:
+	ret
+.L353:
+	
+__xStreamBufferSendFromISR_function_end:
+	.size	xStreamBufferSendFromISR,__xStreamBufferSendFromISR_function_end-xStreamBufferSendFromISR
+.L213:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.prvWriteMessageToBuffer',code,cluster('prvWriteMessageToBuffer')
+	.sect	'.text.stream_buffer.prvWriteMessageToBuffer'
+	.align	2
+	
+; Function prvWriteMessageToBuffer
+.L154:
+prvWriteMessageToBuffer:	.type	func
+	sub.a	a10,#8
+.L620:
+	mov.aa	a15,a4
+.L625:
+	mov.aa	a12,a5
+.L626:
+	mov	d15,d4
+.L627:
+	ld.w	d2,[a15]4
+.L628:
+	ld.bu	d0,[a15]28
+.L1031:
+	jz.t	d0:0,.L54
+.L1032:
+	st.w	[a10],d15
+.L1033:
+	jlt.u	d5,d6,.L55
+.L1034:
+	lea	a5,[a10]0
+.L621:
+	mov	d4,#4
+.L623:
+	mov.aa	a4,a15
+	mov	d5,d2
+.L624:
+	call	prvWriteBytesToBuffer
+.L622:
+	j	.L56
+.L55:
+	mov	d15,#0
+.L56:
+	j	.L57
+.L54:
+	jge.u	d15,d5,.L58
+.L1035:
+	j	.L59
+.L58:
+	mov	d15,d5
+.L59:
+.L57:
+	jeq	d15,#0,.L60
+.L1036:
+	mov.aa	a4,a15
+.L630:
+	mov.aa	a5,a12
+.L631:
+	mov	e4,d2,d15
+	call	prvWriteBytesToBuffer
+.L629:
+	st.w	[a15]4,d2
+.L60:
+	mov	d2,d15
+.L632:
+	j	.L61
+.L61:
+	ret
+.L515:
+	
+__prvWriteMessageToBuffer_function_end:
+	.size	prvWriteMessageToBuffer,__prvWriteMessageToBuffer_function_end-prvWriteMessageToBuffer
+.L313:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferReceive',code,cluster('xStreamBufferReceive')
+	.sect	'.text.stream_buffer.xStreamBufferReceive'
+	.align	2
+	
+	.global	xStreamBufferReceive
+; Function xStreamBufferReceive
+.L156:
+xStreamBufferReceive:	.type	func
+	mov.aa	a15,a4
+.L634:
+	mov.aa	a12,a5
+.L635:
+	mov	e8,d5,d4
+.L842:
+	mov	d10,#0
+.L636:
+	ld.bu	d15,[a15]28
+.L843:
+	jz.t	d15:0,.L62
+.L844:
+	mov	d11,#4
+.L638:
+	j	.L63
+.L62:
+	mov	d11,#0
+.L63:
+	jeq	d9,#0,.L64
+.L639:
+	call	vPortEnterCritical
+.L633:
+	mov.aa	a4,a15
+.L640:
+	call	prvBytesInBuffer
+.L641:
+	mov	d12,d2
+.L643:
+	jlt.u	d11,d12,.L65
+.L845:
+	mov.a	a4,#0
+	mov	d4,#0
+	call	xTaskGenericNotifyStateClear
+.L642:
+	ld.w	d15,[a15]16
+.L846:
+	call	xTaskGetCurrentTaskHandle
+.L847:
+	st.a	[a15]16,a2
+.L848:
+	j	.L66
+.L65:
+.L66:
+	call	vPortExitCritical
+.L849:
+	jlt.u	d11,d12,.L67
+.L850:
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a4,#0
+.L645:
+	mov	d7,d9
+.L646:
+	call	xTaskGenericNotifyWait
+.L647:
+	mov.a	a2,#0
+.L851:
+	st.a	[a15]16,a2
+.L852:
+	mov.aa	a4,a15
+.L648:
+	call	prvBytesInBuffer
+.L644:
+	mov	d12,d2
+.L649:
+	j	.L68
+.L67:
+.L68:
+	j	.L69
+.L64:
+	mov.aa	a4,a15
+	call	prvBytesInBuffer
+.L650:
+	mov	d12,d2
+.L69:
+	jge.u	d11,d12,.L70
+.L853:
+	mov.aa	a4,a15
+.L651:
+	mov.aa	a5,a12
+.L652:
+	mov	e4,d12,d8
+.L653:
+	call	prvReadMessageFromBuffer
+.L637:
+	mov	d10,d2
+.L655:
+	jeq	d10,#0,.L71
+.L854:
+	call	vTaskSuspendAll
+.L654:
+	ld.w	d15,[a15]20
+	jeq	d15,#0,.L72
+	ld.a	a4,[a15]20
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a5,#0
+	call	xTaskGenericNotify
+	mov.a	a2,#0
+	st.a	[a15]20,a2
+.L72:
+	call	xTaskResumeAll
+	j	.L73
+.L71:
+.L73:
+	j	.L74
+.L70:
+.L74:
+	mov	d2,d10
+.L656:
+	j	.L75
+.L75:
+	ret
+.L374:
+	
+__xStreamBufferReceive_function_end:
+	.size	xStreamBufferReceive,__xStreamBufferReceive_function_end-xStreamBufferReceive
+.L218:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferNextMessageLengthBytes',code,cluster('xStreamBufferNextMessageLengthBytes')
+	.sect	'.text.stream_buffer.xStreamBufferNextMessageLengthBytes'
+	.align	2
+	
+	.global	xStreamBufferNextMessageLengthBytes
+; Function xStreamBufferNextMessageLengthBytes
+.L158:
+xStreamBufferNextMessageLengthBytes:	.type	func
+	sub.a	a10,#8
+.L657:
+	mov.aa	a15,a4
+.L659:
+	ld.bu	d15,[a15]28
+.L974:
+	jz.t	d15:0,.L76
+.L975:
+	mov.aa	a4,a15
+	call	prvBytesInBuffer
+.L658:
+	jlt.u	d2,#5,.L77
+.L976:
+	ld.w	d5,[a15]
+.L977:
+	lea	a5,[a10]0
+.L978:
+	mov	d4,#4
+.L979:
+	mov.aa	a4,a15
+.L661:
+	call	prvReadBytesFromBuffer
+.L660:
+	ld.w	d2,[a10]
+.L662:
+	j	.L78
+.L77:
+	mov	d2,#0
+.L78:
+	j	.L79
+.L76:
+	mov	d2,#0
+.L79:
+	j	.L80
+.L80:
+	ret
+.L480:
+	
+__xStreamBufferNextMessageLengthBytes_function_end:
+	.size	xStreamBufferNextMessageLengthBytes,__xStreamBufferNextMessageLengthBytes_function_end-xStreamBufferNextMessageLengthBytes
+.L278:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferReceiveFromISR',code,cluster('xStreamBufferReceiveFromISR')
+	.sect	'.text.stream_buffer.xStreamBufferReceiveFromISR'
+	.align	2
+	
+	.global	xStreamBufferReceiveFromISR
+; Function xStreamBufferReceiveFromISR
+.L160:
+xStreamBufferReceiveFromISR:	.type	func
+	mov.aa	a15,a4
+.L664:
+	mov.aa	a12,a5
+.L665:
+	mov	d8,d4
+.L666:
+	mov.aa	a13,a6
+.L668:
+	mov	d10,#0
+.L669:
+	ld.bu	d15,[a15]28
+.L859:
+	jz.t	d15:0,.L81
+.L860:
+	mov	d9,#4
+.L671:
+	j	.L82
+.L81:
+	mov	d9,#0
+.L82:
+	mov.aa	a4,a15
+	call	prvBytesInBuffer
+.L663:
+	jge.u	d9,d2,.L83
+.L861:
+	mov.aa	a4,a15
+.L672:
+	mov.aa	a5,a12
+.L673:
+	mov	e4,d2,d8
+	call	prvReadMessageFromBuffer
+.L670:
+	mov	d10,d2
+.L675:
+	jeq	d10,#0,.L84
+.L396:
+	mov	d15,#31
+.L399:
+	disable
+.L862:
+	mfcr	d8,#65068
+.L667:
+	insert	d0,d8,#0,#0,#8
+.L863:
+	and	d15,#255
+.L864:
+	or	d0,d15
+.L865:
+	mtcr	#65068,d0
+	isync
+.L866:
+	enable
+.L867:
+	j	.L85
+.L85:
+	ld.w	d15,[a15]20
+	jeq	d15,#0,.L86
+	ld.a	a4,[a15]20
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a5,#0
+	mov.aa	a6,a13
+.L676:
+	call	xTaskGenericNotifyFromISR
+.L674:
+	mov.a	a2,#0
+	st.a	[a15]20,a2
+.L86:
+	disable
+.L868:
+	mtcr	#65068,d8
+	isync
+.L869:
+	enable
+.L397:
+	j	.L87
+.L84:
+.L87:
+	j	.L88
+.L83:
+.L88:
+	mov	d2,d10
+.L677:
+	j	.L89
+.L89:
+	ret
+.L385:
+	
+__xStreamBufferReceiveFromISR_function_end:
+	.size	xStreamBufferReceiveFromISR,__xStreamBufferReceiveFromISR_function_end-xStreamBufferReceiveFromISR
+.L223:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.prvReadMessageFromBuffer',code,cluster('prvReadMessageFromBuffer')
+	.sect	'.text.stream_buffer.prvReadMessageFromBuffer'
+	.align	2
+	
+; Function prvReadMessageFromBuffer
+.L162:
+prvReadMessageFromBuffer:	.type	func
+	sub.a	a10,#8
+.L678:
+	mov.aa	a15,a4
+.L683:
+	mov.aa	a12,a5
+.L684:
+	mov	e8,d5,d4
+.L1022:
+	ld.w	d5,[a15]
+.L682:
+	ld.bu	d15,[a15]28
+.L1023:
+	jz.t	d15:0,.L90
+.L1024:
+	lea	a5,[a10]0
+.L679:
+	mov	d4,#4
+.L681:
+	mov.aa	a4,a15
+	call	prvReadBytesFromBuffer
+.L680:
+	mov	d5,d2
+.L685:
+	ld.w	d15,[a10]
+.L687:
+	add	d9,#-4
+.L688:
+	jge.u	d8,d15,.L91
+.L689:
+	mov	d15,#0
+.L1025:
+	j	.L92
+.L91:
+.L92:
+	j	.L93
+.L90:
+	mov	d15,d8
+.L93:
+	jge.u	d15,d9,.L94
+.L690:
+	j	.L95
+.L94:
+	mov	d15,d9
+.L95:
+	jeq	d15,#0,.L96
+.L1026:
+	mov.aa	a4,a15
+.L691:
+	mov.aa	a5,a12
+.L692:
+	mov	d4,d15
+.L693:
+	call	prvReadBytesFromBuffer
+.L686:
+	st.w	[a15],d2
+.L96:
+	mov	d2,d15
+.L694:
+	j	.L97
+.L97:
+	ret
+.L506:
+	
+__prvReadMessageFromBuffer_function_end:
+	.size	prvReadMessageFromBuffer,__prvReadMessageFromBuffer_function_end-prvReadMessageFromBuffer
+.L308:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferIsEmpty',code,cluster('xStreamBufferIsEmpty')
+	.sect	'.text.stream_buffer.xStreamBufferIsEmpty'
+	.align	2
+	
+	.global	xStreamBufferIsEmpty
+; Function xStreamBufferIsEmpty
+.L164:
+xStreamBufferIsEmpty:	.type	func
+	ld.w	d0,[a4]
+.L695:
+	ld.w	d15,[a4]4
+.L888:
+	jne	d15,d0,.L98
+.L889:
+	mov	d2,#1
+.L696:
+	j	.L99
+.L98:
+	mov	d2,#0
+.L99:
+	j	.L100
+.L100:
+	ret
+.L414:
+	
+__xStreamBufferIsEmpty_function_end:
+	.size	xStreamBufferIsEmpty,__xStreamBufferIsEmpty_function_end-xStreamBufferIsEmpty
+.L238:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferIsFull',code,cluster('xStreamBufferIsFull')
+	.sect	'.text.stream_buffer.xStreamBufferIsFull'
+	.align	2
+	
+	.global	xStreamBufferIsFull
+; Function xStreamBufferIsFull
+.L166:
+xStreamBufferIsFull:	.type	func
+	ld.bu	d15,[a4]28
+.L881:
+	jz.t	d15:0,.L101
+.L882:
+	mov	d15,#4
+.L698:
+	j	.L102
+.L101:
+	mov	d15,#0
+.L102:
+	call	xStreamBufferSpacesAvailable
+.L697:
+	jlt.u	d15,d2,.L103
+.L883:
+	mov	d2,#1
+.L699:
+	j	.L104
+.L103:
+	mov	d2,#0
+.L104:
+	j	.L105
+.L105:
+	ret
+.L408:
+	
+__xStreamBufferIsFull_function_end:
+	.size	xStreamBufferIsFull,__xStreamBufferIsFull_function_end-xStreamBufferIsFull
+.L233:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferSendCompletedFromISR',code,cluster('xStreamBufferSendCompletedFromISR')
+	.sect	'.text.stream_buffer.xStreamBufferSendCompletedFromISR'
+	.align	2
+	
+	.global	xStreamBufferSendCompletedFromISR
+; Function xStreamBufferSendCompletedFromISR
+.L168:
+xStreamBufferSendCompletedFromISR:	.type	func
+	mov.aa	a15,a4
+.L702:
+	mov.aa	a6,a5
+.L703:
+	mov	d15,#31
+.L454:
+	disable
+.L934:
+	mfcr	d8,#65068
+.L705:
+	insert	d0,d8,#0,#0,#8
+.L935:
+	and	d15,#255
+.L936:
+	or	d0,d15
+.L937:
+	mtcr	#65068,d0
+	isync
+.L938:
+	enable
+.L939:
+	j	.L106
+.L106:
+	ld.w	d15,[a15]16
+.L940:
+	jeq	d15,#0,.L107
+.L941:
+	ld.a	a4,[a15]16
+.L701:
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a5,#0
+.L700:
+	call	xTaskGenericNotifyFromISR
+.L704:
+	mov.a	a2,#0
+.L942:
+	st.a	[a15]16,a2
+.L943:
+	mov	d2,#1
+.L706:
+	j	.L108
+.L107:
+	mov	d2,#0
+.L108:
+	disable
+.L944:
+	mtcr	#65068,d8
+	isync
+.L945:
+	enable
+.L457:
+	j	.L109
+.L109:
+	ret
+.L446:
+	
+__xStreamBufferSendCompletedFromISR_function_end:
+	.size	xStreamBufferSendCompletedFromISR,__xStreamBufferSendCompletedFromISR_function_end-xStreamBufferSendCompletedFromISR
+.L263:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.xStreamBufferReceiveCompletedFromISR',code,cluster('xStreamBufferReceiveCompletedFromISR')
+	.sect	'.text.stream_buffer.xStreamBufferReceiveCompletedFromISR'
+	.align	2
+	
+	.global	xStreamBufferReceiveCompletedFromISR
+; Function xStreamBufferReceiveCompletedFromISR
+.L170:
+xStreamBufferReceiveCompletedFromISR:	.type	func
+	mov.aa	a15,a4
+.L709:
+	mov.aa	a6,a5
+.L710:
+	mov	d15,#31
+.L466:
+	disable
+.L950:
+	mfcr	d8,#65068
+.L712:
+	insert	d0,d8,#0,#0,#8
+.L951:
+	and	d15,#255
+.L952:
+	or	d0,d15
+.L953:
+	mtcr	#65068,d0
+	isync
+.L954:
+	enable
+.L955:
+	j	.L110
+.L110:
+	ld.w	d15,[a15]20
+.L956:
+	jeq	d15,#0,.L111
+.L957:
+	ld.a	a4,[a15]20
+.L708:
+	mov	d4,#0
+	mov	d5,#0
+	mov	d6,#0
+	mov.a	a5,#0
+.L707:
+	call	xTaskGenericNotifyFromISR
+.L711:
+	mov.a	a2,#0
+.L958:
+	st.a	[a15]20,a2
+.L959:
+	mov	d2,#1
+.L713:
+	j	.L112
+.L111:
+	mov	d2,#0
+.L112:
+	disable
+.L960:
+	mtcr	#65068,d8
+	isync
+.L961:
+	enable
+.L469:
+	j	.L113
+.L113:
+	ret
+.L459:
+	
+__xStreamBufferReceiveCompletedFromISR_function_end:
+	.size	xStreamBufferReceiveCompletedFromISR,__xStreamBufferReceiveCompletedFromISR_function_end-xStreamBufferReceiveCompletedFromISR
+.L268:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.prvWriteBytesToBuffer',code,cluster('prvWriteBytesToBuffer')
+	.sect	'.text.stream_buffer.prvWriteBytesToBuffer'
+	.align	2
+	
+; Function prvWriteBytesToBuffer
+.L172:
+prvWriteBytesToBuffer:	.type	func
+	mov.aa	a15,a4
+.L717:
+	mov.aa	a12,a5
+.L718:
+	mov	e8,d5,d4
+.L1011:
+	ld.w	d15,[a15]8
+.L719:
+	sub	d15,d9
+.L720:
+	jge.u	d15,d8,.L114
+.L721:
+	ld.w	d15,[a15]8
+.L722:
+	sub	d15,d9
+.L723:
+	j	.L115
+.L114:
+	mov	d15,d8
+.L115:
+	ld.a	a2,[a15]24
+.L724:
+	addsc.a	a4,a2,d9,#0
+.L715:
+	mov.aa	a5,a12
+	mov	d4,d15
+.L716:
+	call	memcpy
+.L714:
+	jge.u	d15,d8,.L116
+.L725:
+	ld.a	a4,[a15]24
+.L1012:
+	addsc.a	a5,a12,d15,#0
+.L726:
+	sub	d4,d8,d15
+.L727:
+	call	memcpy
+.L1013:
+	j	.L117
+.L116:
+.L117:
+	add	d2,d9,d8
+.L728:
+	ld.w	d15,[a15]8
+.L1014:
+	jlt.u	d2,d15,.L118
+.L1015:
+	ld.w	d15,[a15]8
+.L1016:
+	sub	d2,d15
+.L1017:
+	j	.L119
+.L118:
+.L119:
+	j	.L120
+.L120:
+	ret
+.L498:
+	
+__prvWriteBytesToBuffer_function_end:
+	.size	prvWriteBytesToBuffer,__prvWriteBytesToBuffer_function_end-prvWriteBytesToBuffer
+.L303:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.prvReadBytesFromBuffer',code,cluster('prvReadBytesFromBuffer')
+	.sect	'.text.stream_buffer.prvReadBytesFromBuffer'
+	.align	2
+	
+; Function prvReadBytesFromBuffer
+.L174:
+prvReadBytesFromBuffer:	.type	func
+	mov.aa	a15,a4
+.L733:
+	mov.aa	a12,a5
+.L734:
+	mov	e8,d5,d4
+.L1041:
+	ld.w	d15,[a15]8
+.L735:
+	sub	d15,d9
+.L736:
+	jge.u	d15,d8,.L121
+.L737:
+	ld.w	d15,[a15]8
+.L738:
+	sub	d15,d9
+.L739:
+	j	.L122
+.L121:
+	mov	d15,d8
+.L122:
+	ld.a	a2,[a15]24
+.L740:
+	addsc.a	a5,a2,d9,#0
+.L729:
+	mov.aa	a4,a12
+.L730:
+	mov	d4,d15
+.L731:
+	call	memcpy
+.L732:
+	jge.u	d15,d8,.L123
+.L741:
+	addsc.a	a4,a12,d15,#0
+.L1042:
+	ld.a	a5,[a15]24
+.L742:
+	sub	d4,d8,d15
+.L743:
+	call	memcpy
+.L1043:
+	j	.L124
+.L123:
+.L124:
+	add	d2,d9,d8
+.L744:
+	ld.w	d15,[a15]8
+.L1044:
+	jlt.u	d2,d15,.L125
+.L1045:
+	ld.w	d15,[a15]8
+.L1046:
+	sub	d2,d15
+.L125:
+	j	.L126
+.L126:
+	ret
+.L524:
+	
+__prvReadBytesFromBuffer_function_end:
+	.size	prvReadBytesFromBuffer,__prvReadBytesFromBuffer_function_end-prvReadBytesFromBuffer
+.L318:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.prvBytesInBuffer',code,cluster('prvBytesInBuffer')
+	.sect	'.text.stream_buffer.prvBytesInBuffer'
+	.align	2
+	
+; Function prvBytesInBuffer
+.L176:
+prvBytesInBuffer:	.type	func
+	ld.w	d15,[a4]8
+.L1000:
+	ld.w	d0,[a4]4
+.L745:
+	add	d15,d0
+.L1001:
+	ld.w	d0,[a4]
+.L1002:
+	sub	d2,d15,d0
+.L746:
+	ld.w	d15,[a4]8
+.L1003:
+	jlt.u	d2,d15,.L127
+.L1004:
+	ld.w	d15,[a4]8
+.L1005:
+	sub	d2,d15
+.L1006:
+	j	.L128
+.L127:
+.L128:
+	j	.L129
+.L129:
+	ret
+.L494:
+	
+__prvBytesInBuffer_function_end:
+	.size	prvBytesInBuffer,__prvBytesInBuffer_function_end-prvBytesInBuffer
+.L298:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.prvInitialiseNewStreamBuffer',code,cluster('prvInitialiseNewStreamBuffer')
+	.sect	'.text.stream_buffer.prvInitialiseNewStreamBuffer'
+	.align	2
+	
+; Function prvInitialiseNewStreamBuffer
+.L178:
+prvInitialiseNewStreamBuffer:	.type	func
+	mov.aa	a15,a4
+.L750:
+	mov.aa	a12,a5
+.L751:
+	mov	d15,d4
+.L752:
+	mov	e8,d6,d5
+.L540:
+	mov	d4,#85
+.L748:
+	mov.aa	a4,a12
+.L747:
+	mov	d5,d15
+.L749:
+	call	memset
+.L541:
+	mov	d4,#0
+.L1051:
+	mov	d5,#36
+	mov.aa	a4,a15
+.L753:
+	call	memset
+.L754:
+	st.a	[a15]24,a12
+.L1052:
+	st.w	[a15]8,d15
+.L755:
+	st.w	[a15]12,d8
+.L756:
+	st.b	[a15]28,d9
+.L757:
+	ret
+.L530:
+	
+__prvInitialiseNewStreamBuffer_function_end:
+	.size	prvInitialiseNewStreamBuffer,__prvInitialiseNewStreamBuffer_function_end-prvInitialiseNewStreamBuffer
+.L323:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.uxStreamBufferGetStreamBufferNumber',code,cluster('uxStreamBufferGetStreamBufferNumber')
+	.sect	'.text.stream_buffer.uxStreamBufferGetStreamBufferNumber'
+	.align	2
+	
+	.global	uxStreamBufferGetStreamBufferNumber
+; Function uxStreamBufferGetStreamBufferNumber
+.L180:
+uxStreamBufferGetStreamBufferNumber:	.type	func
+	ld.w	d2,[a4]30
+.L989:
+	j	.L130
+.L130:
+	ret
+.L490:
+	
+__uxStreamBufferGetStreamBufferNumber_function_end:
+	.size	uxStreamBufferGetStreamBufferNumber,__uxStreamBufferGetStreamBufferNumber_function_end-uxStreamBufferGetStreamBufferNumber
+.L288:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.vStreamBufferSetStreamBufferNumber',code,cluster('vStreamBufferSetStreamBufferNumber')
+	.sect	'.text.stream_buffer.vStreamBufferSetStreamBufferNumber'
+	.align	2
+	
+	.global	vStreamBufferSetStreamBufferNumber
+; Function vStreamBufferSetStreamBufferNumber
+.L182:
+vStreamBufferSetStreamBufferNumber:	.type	func
+	st.w	[a4]30,d4
+.L984:
+	ret
+.L487:
+	
+__vStreamBufferSetStreamBufferNumber_function_end:
+	.size	vStreamBufferSetStreamBufferNumber,__vStreamBufferSetStreamBufferNumber_function_end-vStreamBufferSetStreamBufferNumber
+.L283:
+	; End of function
+	
+	.sdecl	'.text.stream_buffer.ucStreamBufferGetStreamBufferType',code,cluster('ucStreamBufferGetStreamBufferType')
+	.sect	'.text.stream_buffer.ucStreamBufferGetStreamBufferType'
+	.align	2
+	
+	.global	ucStreamBufferGetStreamBufferType
+; Function ucStreamBufferGetStreamBufferType
+.L184:
+ucStreamBufferGetStreamBufferType:	.type	func
+	ld.bu	d15,[a4]28
+.L994:
+	and	d2,d15,#1
+.L995:
+	j	.L131
+.L131:
+	ret
+.L492:
+	
+__ucStreamBufferGetStreamBufferType_function_end:
+	.size	ucStreamBufferGetStreamBufferType,__ucStreamBufferGetStreamBufferType_function_end-ucStreamBufferGetStreamBufferType
+.L293:
+	; End of function
+	
+	.calls	'xStreamBufferGenericCreate','pvPortMalloc'
+	.calls	'xStreamBufferGenericCreate','prvInitialiseNewStreamBuffer'
+	.calls	'vStreamBufferDelete','vPortFree'
+	.calls	'vStreamBufferDelete','memset'
+	.calls	'xStreamBufferReset','vPortEnterCritical'
+	.calls	'xStreamBufferReset','prvInitialiseNewStreamBuffer'
+	.calls	'xStreamBufferReset','vPortExitCritical'
+	.calls	'xStreamBufferBytesAvailable','prvBytesInBuffer'
+	.calls	'xStreamBufferSend','vTaskSetTimeOutState'
+	.calls	'xStreamBufferSend','vPortEnterCritical'
+	.calls	'xStreamBufferSend','xStreamBufferSpacesAvailable'
+	.calls	'xStreamBufferSend','xTaskGenericNotifyStateClear'
+	.calls	'xStreamBufferSend','xTaskGetCurrentTaskHandle'
+	.calls	'xStreamBufferSend','vPortExitCritical'
+	.calls	'xStreamBufferSend','xTaskGenericNotifyWait'
+	.calls	'xStreamBufferSend','xTaskCheckForTimeOut'
+	.calls	'xStreamBufferSend','prvWriteMessageToBuffer'
+	.calls	'xStreamBufferSend','prvBytesInBuffer'
+	.calls	'xStreamBufferSend','vTaskSuspendAll'
+	.calls	'xStreamBufferSend','xTaskGenericNotify'
+	.calls	'xStreamBufferSend','xTaskResumeAll'
+	.calls	'xStreamBufferSendFromISR','xStreamBufferSpacesAvailable'
+	.calls	'xStreamBufferSendFromISR','prvWriteMessageToBuffer'
+	.calls	'xStreamBufferSendFromISR','prvBytesInBuffer'
+	.calls	'xStreamBufferSendFromISR','xTaskGenericNotifyFromISR'
+	.calls	'prvWriteMessageToBuffer','prvWriteBytesToBuffer'
+	.calls	'xStreamBufferReceive','vPortEnterCritical'
+	.calls	'xStreamBufferReceive','prvBytesInBuffer'
+	.calls	'xStreamBufferReceive','xTaskGenericNotifyStateClear'
+	.calls	'xStreamBufferReceive','xTaskGetCurrentTaskHandle'
+	.calls	'xStreamBufferReceive','vPortExitCritical'
+	.calls	'xStreamBufferReceive','xTaskGenericNotifyWait'
+	.calls	'xStreamBufferReceive','prvReadMessageFromBuffer'
+	.calls	'xStreamBufferReceive','vTaskSuspendAll'
+	.calls	'xStreamBufferReceive','xTaskGenericNotify'
+	.calls	'xStreamBufferReceive','xTaskResumeAll'
+	.calls	'xStreamBufferNextMessageLengthBytes','prvBytesInBuffer'
+	.calls	'xStreamBufferNextMessageLengthBytes','prvReadBytesFromBuffer'
+	.calls	'xStreamBufferReceiveFromISR','prvBytesInBuffer'
+	.calls	'xStreamBufferReceiveFromISR','prvReadMessageFromBuffer'
+	.calls	'xStreamBufferReceiveFromISR','xTaskGenericNotifyFromISR'
+	.calls	'prvReadMessageFromBuffer','prvReadBytesFromBuffer'
+	.calls	'xStreamBufferIsFull','xStreamBufferSpacesAvailable'
+	.calls	'xStreamBufferSendCompletedFromISR','xTaskGenericNotifyFromISR'
+	.calls	'xStreamBufferReceiveCompletedFromISR','xTaskGenericNotifyFromISR'
+	.calls	'prvWriteBytesToBuffer','memcpy'
+	.calls	'prvReadBytesFromBuffer','memcpy'
+	.calls	'prvInitialiseNewStreamBuffer','memset'
+	.calls	'vPortSetCCPN','',0
+	.calls	'vPortSetICR','',0
+	.calls	'xPortSetCCPN','',0
+	.calls	'xStreamBufferGenericCreate','',0
+	.calls	'vStreamBufferDelete','',0
+	.calls	'xStreamBufferReset','',0
+	.calls	'xStreamBufferSetTriggerLevel','',0
+	.calls	'xStreamBufferSpacesAvailable','',0
+	.calls	'xStreamBufferBytesAvailable','',0
+	.calls	'xStreamBufferSend','',16
+	.calls	'xStreamBufferSendFromISR','',0
+	.calls	'prvWriteMessageToBuffer','',8
+	.calls	'xStreamBufferReceive','',0
+	.calls	'xStreamBufferNextMessageLengthBytes','',8
+	.calls	'xStreamBufferReceiveFromISR','',0
+	.calls	'prvReadMessageFromBuffer','',8
+	.calls	'xStreamBufferIsEmpty','',0
+	.calls	'xStreamBufferIsFull','',0
+	.calls	'xStreamBufferSendCompletedFromISR','',0
+	.calls	'xStreamBufferReceiveCompletedFromISR','',0
+	.calls	'prvWriteBytesToBuffer','',0
+	.calls	'prvReadBytesFromBuffer','',0
+	.calls	'prvBytesInBuffer','',0
+	.calls	'prvInitialiseNewStreamBuffer','',0
+	.calls	'uxStreamBufferGetStreamBufferNumber','',0
+	.calls	'vStreamBufferSetStreamBufferNumber','',0
+	.extern	memcpy
+	.extern	memset
+	.extern	vPortEnterCritical
+	.extern	vPortExitCritical
+	.extern	pvPortMalloc
+	.extern	vPortFree
+	.extern	vTaskSuspendAll
+	.extern	xTaskResumeAll
+	.extern	xTaskGenericNotify
+	.extern	xTaskGenericNotifyFromISR
+	.extern	xTaskGenericNotifyWait
+	.extern	xTaskGenericNotifyStateClear
+	.extern	vTaskSetTimeOutState
+	.extern	xTaskCheckForTimeOut
+	.extern	xTaskGetCurrentTaskHandle
+	.calls	'ucStreamBufferGetStreamBufferType','',0
+	.sdecl	'.debug_info',debug
+	.sect	'.debug_info'
+.L186:
+	.word	3910
+	.half	3
+	.word	.L187
+	.byte	4
+.L185:
+	.byte	1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L188
+.L407:
+	.byte	2
+	.byte	'long int',0,4,5
+.L327:
+	.byte	3
+	.byte	'vPortSetICR',0,1,1,167,1,54,1,1
+.L329:
+	.byte	4
+	.byte	'ulICR',0,1,167,1,81
+	.word	239
+.L373:
+	.byte	5,0
+.L325:
+	.byte	2
+	.byte	'unsigned char',0,1,8
+.L337:
+	.byte	2
+	.byte	'unsigned int',0,4,7
+.L331:
+	.byte	6
+	.byte	'xPortSetCCPN',0,1,1,174,1,63
+	.word	239
+	.byte	1,1
+.L333:
+	.byte	4
+	.byte	'ucCCPN',0,1,174,1,91
+	.word	288
+.L370:
+	.byte	7
+.L335:
+	.byte	8
+	.byte	'xICR',0,1,176,1,14
+	.word	305
+	.byte	0,0,2
+	.byte	'int',0,4,5,9
+	.byte	'__mtcr',0,1,1,1,1,10
+	.word	379
+	.byte	10
+	.word	379
+	.byte	0,11
+	.word	379
+	.byte	12
+	.byte	'__mfcr',0
+	.word	409
+	.byte	1,1,1,1,10
+	.word	379
+	.byte	0,13
+	.byte	'__disable',0,1,1,1,1,13
+	.byte	'__enable',0,1,1,1,1,14
+	.byte	'void',0
+.L376:
+	.byte	15
+	.word	465
+	.byte	16
+	.word	471
+	.byte	17
+	.word	465
+.L341:
+	.byte	15
+	.word	481
+	.byte	16
+	.word	486
+	.byte	18
+	.byte	'memcpy',0,2,53,17
+	.word	471
+	.byte	1,1,1,1,19,2,53,33
+	.word	476
+	.byte	19,2,53,56
+	.word	491
+	.byte	19,2,53,68
+	.word	305
+	.byte	0,18
+	.byte	'memset',0,2,56,17
+	.word	471
+	.byte	1,1,1,1,19,2,56,33
+	.word	471
+	.byte	19,2,56,36
+	.word	379
+	.byte	19,2,56,41
+	.word	305
+	.byte	0,20
+	.byte	'vPortEnterCritical',0,1,102,13,1,1,1,1,20
+	.byte	'vPortExitCritical',0,1,103,13,1,1,1,1,18
+	.byte	'pvPortMalloc',0,3,175,1,8
+	.word	471
+	.byte	1,1,1,1,4
+	.byte	'xSize',0,3,175,1,29
+	.word	305
+	.byte	0,21
+	.byte	'vPortFree',0,3,178,1,6,1,1,1,1,4
+	.byte	'pv',0,3,178,1,24
+	.word	471
+	.byte	0,20
+	.byte	'vTaskSuspendAll',0,4,218,10,6,1,1,1,1,22
+	.byte	'xTaskResumeAll',0,4,146,11,12
+	.word	239
+	.byte	1,1,1,1,23
+	.byte	'tskTaskControlBlock',0,4,86,8,1,15
+	.word	764
+	.byte	24
+	.byte	'TaskHandle_t',0,4,87,38
+	.word	789
+.L366:
+	.byte	2
+	.byte	'unsigned long int',0,4,7,25,4,107,9,1,26
+	.byte	'eNoAction',0,0,26
+	.byte	'eSetBits',0,1,26
+	.byte	'eIncrement',0,2,26
+	.byte	'eSetValueWithOverwrite',0,3,26
+	.byte	'eSetValueWithoutOverwrite',0,4,0,15
+	.word	305
+	.byte	18
+	.byte	'xTaskGenericNotify',0,4,148,16,12
+	.word	239
+	.byte	1,1,1,1,4
+	.byte	'xTaskToNotify',0,4,148,16,45
+	.word	794
+	.byte	4
+	.byte	'uxIndexToNotify',0,4,149,16,44
+	.word	815
+	.byte	4
+	.byte	'ulValue',0,4,150,16,41
+	.word	305
+	.byte	4
+	.byte	'eAction',0,4,151,16,46
+	.word	836
+	.byte	4
+	.byte	'pulPreviousNotificationValue',0,4,152,16,43
+	.word	931
+	.byte	0,15
+	.word	764
+.L448:
+	.byte	15
+	.word	239
+	.byte	18
+	.byte	'xTaskGenericNotifyFromISR',0,4,172,17,12
+	.word	239
+	.byte	1,1,1,1,4
+	.byte	'xTaskToNotify',0,4,172,17,52
+	.word	794
+	.byte	4
+	.byte	'uxIndexToNotify',0,4,173,17,51
+	.word	815
+	.byte	4
+	.byte	'ulValue',0,4,174,17,48
+	.word	305
+	.byte	4
+	.byte	'eAction',0,4,175,17,53
+	.word	836
+	.byte	4
+	.byte	'pulPreviousNotificationValue',0,4,176,17,50
+	.word	931
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,4,177,17,52
+	.word	1094
+	.byte	0,18
+	.byte	'xTaskGenericNotifyWait',0,4,188,18,12
+	.word	239
+	.byte	1,1,1,1,4
+	.byte	'uxIndexToWaitOn',0,4,188,18,48
+	.word	815
+	.byte	4
+	.byte	'ulBitsToClearOnEntry',0,4,189,18,45
+	.word	305
+	.byte	4
+	.byte	'ulBitsToClearOnExit',0,4,190,18,45
+	.word	305
+	.byte	4
+	.byte	'pulNotificationValue',0,4,191,18,47
+	.word	931
+	.byte	4
+	.byte	'xTicksToWait',0,4,192,18,47
+	.word	305
+	.byte	0,18
+	.byte	'xTaskGenericNotifyStateClear',0,4,141,21,12
+	.word	239
+	.byte	1,1,1,1,4
+	.byte	'xTask',0,4,141,21,55
+	.word	794
+	.byte	4
+	.byte	'uxIndexToClear',0,4,142,21,54
+	.word	815
+	.byte	0
+.L350:
+	.byte	27
+	.byte	'xTIME_OUT',0,4,119,16,8,28
+	.byte	'xOverflowCount',0
+	.word	239
+	.byte	4,2,35,0,28
+	.byte	'xTimeOnEntering',0
+	.word	305
+	.byte	4,2,35,4,0,15
+	.word	1549
+	.byte	17
+	.word	1614
+	.byte	21
+	.byte	'vTaskSetTimeOutState',0,4,228,21,6,1,1,1,1,4
+	.byte	'pxTimeOut',0,4,228,21,46
+	.word	1619
+	.byte	0,17
+	.word	1614
+	.byte	15
+	.word	305
+	.byte	17
+	.word	1679
+	.byte	18
+	.byte	'xTaskCheckForTimeOut',0,4,185,22,12
+	.word	239
+	.byte	1,1,1,1,4
+	.byte	'pxTimeOut',0,4,185,22,52
+	.word	1674
+	.byte	4
+	.byte	'pxTicksToWait',0,4,186,22,53
+	.word	1684
+	.byte	0,22
+	.byte	'xTaskGetCurrentTaskHandle',0,4,209,23,14
+	.word	794
+	.byte	1,1,1,1,11
+	.word	305
+	.byte	11
+	.word	305
+	.byte	11
+	.word	794
+	.byte	11
+	.word	794
+.L477:
+	.byte	15
+	.word	288
+	.byte	27
+	.byte	'StreamBufferDef_t',0,5,223,1,16,36,28
+	.byte	'xTail',0
+	.word	1805
+	.byte	4,2,35,0,28
+	.byte	'xHead',0
+	.word	1810
+	.byte	4,2,35,4,28
+	.byte	'xLength',0
+	.word	305
+	.byte	4,2,35,8,28
+	.byte	'xTriggerLevelBytes',0
+	.word	305
+	.byte	4,2,35,12,28
+	.byte	'xTaskWaitingToReceive',0
+	.word	1815
+	.byte	4,2,35,16,28
+	.byte	'xTaskWaitingToSend',0
+	.word	1820
+	.byte	4,2,35,20,28
+	.byte	'pucBuffer',0
+	.word	1825
+	.byte	4,2,35,24,28
+	.byte	'ucFlags',0
+	.word	288
+	.byte	1,2,35,28,28
+	.byte	'uxStreamBufferNumber',0
+	.word	815
+	.byte	4,2,35,30,0,15
+	.word	1830
+	.byte	15
+	.word	1830
+.L339:
+	.byte	24
+	.byte	'StreamBufferHandle_t',0,6,72,36
+	.word	2060
+.L405:
+	.byte	15
+	.word	1830
+.L345:
+	.byte	17
+	.word	2094
+.L357:
+	.byte	17
+	.word	1094
+.L359:
+	.byte	17
+	.word	2094
+.L380:
+	.byte	17
+	.word	2094
+.L389:
+	.byte	17
+	.word	1094
+.L391:
+	.byte	17
+	.word	2094
+	.byte	17
+	.word	1830
+	.byte	15
+	.word	2129
+.L412:
+	.byte	17
+	.word	2134
+.L416:
+	.byte	17
+	.word	2134
+.L422:
+	.byte	17
+	.word	2094
+	.byte	15
+	.word	239
+	.byte	17
+	.word	2154
+	.byte	29,1,1,10
+	.word	2060
+	.byte	10
+	.word	239
+	.byte	10
+	.word	2159
+	.byte	0,15
+	.word	2164
+	.byte	15
+	.word	2164
+.L425:
+	.byte	24
+	.byte	'StreamBufferCallbackFunction_t',0,6,77,17
+	.word	2188
+.L431:
+	.byte	17
+	.word	2134
+.L437:
+	.byte	17
+	.word	2134
+.L443:
+	.byte	17
+	.word	2094
+.L450:
+	.byte	17
+	.word	2094
+.L462:
+	.byte	17
+	.word	2094
+.L482:
+	.byte	17
+	.word	2094
+.L495:
+	.byte	17
+	.word	2134
+.L499:
+	.byte	17
+	.word	2094
+	.byte	17
+	.word	288
+.L501:
+	.byte	15
+	.word	2272
+.L516:
+	.byte	17
+	.word	2094
+.L531:
+	.byte	17
+	.word	2094
+.L533:
+	.byte	17
+	.word	1825
+.L542:
+	.byte	17
+	.word	239
+	.byte	2
+	.byte	'short int',0,2,5,24
+	.byte	'__wchar_t',0,5,1,1
+	.word	2302
+	.byte	24
+	.byte	'__size_t',0,5,1,1
+	.word	305
+	.byte	24
+	.byte	'__ptrdiff_t',0,5,1,1
+	.word	379
+	.byte	30,1,15
+	.word	2370
+	.byte	24
+	.byte	'__codeptr',0,5,1,1
+	.word	2372
+	.byte	24
+	.byte	'__intptr_t',0,5,1,1
+	.word	379
+	.byte	24
+	.byte	'__uintptr_t',0,5,1,1
+	.word	305
+	.byte	24
+	.byte	'uint8_t',0,7,242,1,41
+	.word	288
+	.byte	2
+	.byte	'unsigned short int',0,2,7,24
+	.byte	'uint16_t',0,7,246,1,41
+	.word	2451
+	.byte	24
+	.byte	'uint32_t',0,7,254,1,41
+	.word	305
+	.byte	24
+	.byte	'size_t',0,2,29,25
+	.word	305
+	.byte	29,1,1,10
+	.word	471
+	.byte	0,15
+	.word	2524
+	.byte	24
+	.byte	'TaskFunction_t',0,8,36,17
+	.word	2533
+	.byte	24
+	.byte	'StackType_t',0,1,74,30
+	.word	305
+	.byte	24
+	.byte	'BaseType_t',0,1,75,30
+	.word	239
+	.byte	24
+	.byte	'UBaseType_t',0,1,76,30
+	.word	815
+	.byte	24
+	.byte	'TickType_t',0,1,82,30
+	.word	305
+	.byte	31,16
+	.word	471
+	.byte	32,3,0,27
+	.byte	'xSTATIC_LIST_ITEM',0,9,177,9,8,20,28
+	.byte	'xDummy2',0
+	.word	305
+	.byte	4,2,35,0,28
+	.byte	'pvDummy3',0
+	.word	2639
+	.byte	16,2,35,4,0,24
+	.byte	'StaticListItem_t',0,9,188,9,34
+	.word	2648
+	.byte	31,8
+	.word	471
+	.byte	32,1,0,27
+	.byte	'xSTATIC_MINI_LIST_ITEM',0,9,192,9,12,12,28
+	.byte	'xDummy2',0
+	.word	305
+	.byte	4,2,35,0,28
+	.byte	'pvDummy3',0
+	.word	2734
+	.byte	8,2,35,4,0,24
+	.byte	'StaticMiniListItem_t',0,9,200,9,43
+	.word	2743
+	.byte	27
+	.byte	'xSTATIC_LIST',0,9,206,9,16,20,28
+	.byte	'uxDummy2',0
+	.word	815
+	.byte	4,2,35,0,28
+	.byte	'pvDummy3',0
+	.word	471
+	.byte	4,2,35,4,28
+	.byte	'xDummy4',0
+	.word	2743
+	.byte	12,2,35,8,0,24
+	.byte	'StaticList_t',0,9,217,9,3
+	.word	2838
+	.byte	31,12
+	.word	471
+	.byte	32,2,0,33,9,172,10,5,4,28
+	.byte	'pvDummy2',0
+	.word	471
+	.byte	4,2,35,0,28
+	.byte	'uxDummy2',0
+	.word	815
+	.byte	4,2,35,0,0,31,40
+	.word	2838
+	.byte	32,1,0,31,12
+	.word	815
+	.byte	32,2,0,31,2
+	.word	288
+	.byte	32,1,0,27
+	.byte	'xSTATIC_QUEUE',0,9,168,10,16,76,28
+	.byte	'pvDummy1',0
+	.word	2933
+	.byte	12,2,35,0,28
+	.byte	'u',0
+	.word	2942
+	.byte	4,2,35,12,28
+	.byte	'xDummy3',0
+	.word	2985
+	.byte	40,2,35,16,28
+	.byte	'uxDummy4',0
+	.word	2994
+	.byte	12,2,35,56,28
+	.byte	'ucDummy5',0
+	.word	3003
+	.byte	2,2,35,68,28
+	.byte	'uxDummy8',0
+	.word	815
+	.byte	4,2,35,70,28
+	.byte	'ucDummy9',0
+	.word	288
+	.byte	1,2,35,74,0,24
+	.byte	'StaticQueue_t',0,9,194,10,3
+	.word	3012
+	.byte	31,16
+	.word	305
+	.byte	32,3,0,27
+	.byte	'xSTATIC_STREAM_BUFFER',0,9,138,11,16,36,28
+	.byte	'uxDummy1',0
+	.word	3174
+	.byte	16,2,35,0,28
+	.byte	'pvDummy2',0
+	.word	2933
+	.byte	12,2,35,16,28
+	.byte	'ucDummy3',0
+	.word	288
+	.byte	1,2,35,28,28
+	.byte	'uxDummy4',0
+	.word	815
+	.byte	4,2,35,30,0,24
+	.byte	'StaticStreamBuffer_t',0,9,149,11,3
+	.word	3183
+	.byte	15
+	.word	.L758-.L186
+	.byte	11
+	.word	815
+	.byte	15
+	.word	.L758-.L186
+	.byte	27
+	.byte	'xMINI_LIST_ITEM',0,10,157,1,12,12,28
+	.byte	'xItemValue',0
+	.word	305
+	.byte	4,2,35,0,28
+	.byte	'pxNext',0
+	.word	3314
+	.byte	4,2,35,4,28
+	.byte	'pxPrevious',0
+	.word	3314
+	.byte	4,2,35,8,0,27
+	.byte	'xLIST',0,10,172,1,16,20,28
+	.byte	'uxNumberOfItems',0
+	.word	3319
+	.byte	4,2,35,0,28
+	.byte	'pxIndex',0
+	.word	3324
+	.byte	4,2,35,4,28
+	.byte	'xListEnd',0
+	.word	3329
+	.byte	12,2,35,8,0,15
+	.word	3408
+.L758:
+	.byte	27
+	.byte	'xLIST_ITEM',0,10,144,1,8,20,28
+	.byte	'xItemValue',0
+	.word	305
+	.byte	4,2,35,0,28
+	.byte	'pxNext',0
+	.word	3314
+	.byte	4,2,35,4,28
+	.byte	'pxPrevious',0
+	.word	3314
+	.byte	4,2,35,8,28
+	.byte	'pvOwner',0
+	.word	471
+	.byte	4,2,35,12,28
+	.byte	'pvContainer',0
+	.word	3481
+	.byte	4,2,35,16,0,24
+	.byte	'ListItem_t',0,10,154,1,27
+	.word	3486
+	.byte	24
+	.byte	'MiniListItem_t',0,10,164,1,36
+	.word	3329
+	.byte	25,4,96,9,1,26
+	.byte	'eRunning',0,0,26
+	.byte	'eReady',0,1,26
+	.byte	'eBlocked',0,2,26
+	.byte	'eSuspended',0,3,26
+	.byte	'eDeleted',0,4,26
+	.byte	'eInvalid',0,5,0,24
+	.byte	'eTaskState',0,4,104,3
+	.word	3642
+	.byte	24
+	.byte	'eNotifyAction',0,4,114,3
+	.word	836
+	.byte	24
+	.byte	'TimeOut_t',0,4,123,3
+	.word	1549
+	.byte	27
+	.byte	'xMEMORY_REGION',0,4,128,1,16,12,28
+	.byte	'pvBaseAddress',0
+	.word	471
+	.byte	4,2,35,0,28
+	.byte	'ulLengthInBytes',0
+	.word	305
+	.byte	4,2,35,4,28
+	.byte	'ulParameters',0
+	.word	305
+	.byte	4,2,35,8,0,24
+	.byte	'MemoryRegion_t',0,4,133,1,3
+	.word	3773
+	.byte	24
+	.byte	'StreamBuffer_t',0,5,242,1,3
+	.word	1830
+	.byte	0
+	.sdecl	'.debug_abbrev',debug
+	.sect	'.debug_abbrev'
+.L187:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,46,1,3,8,32,13,58,15,59,15
+	.byte	57,15,54,15,39,12,0,0,4,5,0,3,8,58,15,59,15,57,15,73,19,0,0,5,11,0,0,0,6,46,1,3,8,32,13,58,15,59,15,57
+	.byte	15,73,19,54,15,39,12,0,0,7,11,1,0,0,8,52,0,3,8,58,15,59,15,57,15,73,19,0,0,9,46,1,3,8,54,15,39,12,63,12
+	.byte	60,12,0,0,10,5,0,73,19,0,0,11,53,0,73,19,0,0,12,46,1,3,8,73,19,54,15,39,12,63,12,60,12,0,0,13,46,0,3,8
+	.byte	54,15,39,12,63,12,60,12,0,0,14,59,0,3,8,0,0,15,15,0,73,19,0,0,16,55,0,73,19,0,0,17,38,0,73,19,0,0,18,46
+	.byte	1,3,8,58,15,59,15,57,15,73,19,54,15,39,12,63,12,60,12,0,0,19,5,0,58,15,59,15,57,15,73,19,0,0,20,46,0,3
+	.byte	8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,21,46,1,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12
+	.byte	0,0,22,46,0,3,8,58,15,59,15,57,15,73,19,54,15,39,12,63,12,60,12,0,0,23,19,0,3,8,58,15,59,15,57,15,60,12
+	.byte	0,0,24,22,0,3,8,58,15,59,15,57,15,73,19,0,0,25,4,1,58,15,59,15,57,15,11,15,0,0,26,40,0,3,8,28,13,0,0,27
+	.byte	19,1,3,8,58,15,59,15,57,15,11,15,0,0,28,13,0,3,8,73,19,11,15,56,9,0,0,29,21,1,54,15,39,12,0,0,30,21,0
+	.byte	54,15,0,0,31,1,1,11,15,73,19,0,0,32,33,0,47,15,0,0,33,23,1,58,15,59,15,57,15,11,15,0,0,0
+	.sdecl	'.debug_line',debug
+	.sect	'.debug_line'
+.L188:
+	.word	.L760-.L759
+.L759:
+	.half	3
+	.word	.L762-.L761
+.L761:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	'C:\\Infineon\\AURIX-Studio-1.10.6\\tools\\Compilers\\Tasking_1.1r8\\ctc\\include\\',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0
+	.byte	'string.h',0,2,0,0
+	.byte	'portable.h',0,3,0,0
+	.byte	'task.h',0,3,0,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0
+	.byte	'stream_buffer.h',0,3,0,0
+	.byte	'stdint.h',0,2,0,0
+	.byte	'projdefs.h',0,3,0,0
+	.byte	'FreeRTOS.h',0,3,0,0
+	.byte	'list.h',0,3,0,0,0
+.L762:
+.L760:
+	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_info'
+.L189:
+	.word	414
+	.half	3
+	.word	.L190
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L192,.L191
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'vPortSetCCPN',0,1,160,1,54,1,1
+	.word	.L133,.L324,.L132
+	.byte	4
+	.byte	'ucCCPN',0,1,160,1,82
+	.word	.L325,.L326
+	.byte	5
+	.word	.L133,.L324
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_abbrev'
+.L190:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_line'
+.L191:
+	.word	.L764-.L763
+.L763:
+	.half	3
+	.word	.L766-.L765
+.L765:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L766:
+	.byte	5,14,7,0,5,2
+	.word	.L133
+	.byte	3,161,1,1,5,34,9
+	.half	.L767-.L133
+	.byte	3,1,1,5,50,9
+	.half	.L768-.L767
+	.byte	1,5,87,9
+	.half	.L769-.L768
+	.byte	1,5,76,9
+	.half	.L770-.L769
+	.byte	1,5,11,9
+	.half	.L771-.L770
+	.byte	1,5,13,9
+	.half	.L772-.L771
+	.byte	3,1,1,5,1,9
+	.half	.L773-.L772
+	.byte	3,1,1,7,9
+	.half	.L193-.L773
+	.byte	0,1,1
+.L764:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_ranges'
+.L192:
+	.word	-1,.L133,0,.L193-.L133,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetICR')
+	.sect	'.debug_info'
+.L194:
+	.word	388
+	.half	3
+	.word	.L195
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L197,.L196
+	.byte	2
+	.word	.L185
+	.byte	3
+	.word	.L327,.L135,.L328,.L134
+	.byte	4
+	.word	.L329,.L330
+	.byte	5
+	.word	.L135,.L328
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR')
+	.sect	'.debug_abbrev'
+.L195:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,49,16,17,1,18,1,64,6,0,0,4
+	.byte	5,0,49,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetICR')
+	.sect	'.debug_line'
+.L196:
+	.word	.L775-.L774
+.L774:
+	.half	3
+	.word	.L777-.L776
+.L776:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L777:
+	.byte	5,14,7,0,5,2
+	.word	.L135
+	.byte	3,168,1,1,5,11,9
+	.half	.L778-.L135
+	.byte	3,1,1,5,13,9
+	.half	.L779-.L778
+	.byte	3,1,1,5,1,9
+	.half	.L780-.L779
+	.byte	3,1,1,7,9
+	.half	.L198-.L780
+	.byte	0,1,1
+.L775:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR')
+	.sect	'.debug_ranges'
+.L197:
+	.word	-1,.L135,0,.L198-.L135,0,0
+	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_info'
+.L199:
+	.word	398
+	.half	3
+	.word	.L200
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L202,.L201
+	.byte	2
+	.word	.L185
+	.byte	3
+	.word	.L331,.L137,.L332,.L136
+	.byte	4
+	.word	.L333,.L334
+	.byte	5
+	.word	.L137,.L332
+	.byte	6
+	.word	.L335,.L336
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_abbrev'
+.L200:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,49,16,17,1,18,1,64,6,0,0,4
+	.byte	5,0,49,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,49,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_line'
+.L201:
+	.word	.L782-.L781
+.L781:
+	.half	3
+	.word	.L784-.L783
+.L783:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L784:
+	.byte	5,14,7,0,5,2
+	.word	.L137
+	.byte	3,177,1,1,5,18,9
+	.half	.L785-.L137
+	.byte	3,1,1,5,33,9
+	.half	.L544-.L785
+	.byte	3,1,1,5,70,9
+	.half	.L786-.L544
+	.byte	1,5,59,9
+	.half	.L787-.L786
+	.byte	1,5,11,9
+	.half	.L788-.L787
+	.byte	1,5,13,9
+	.half	.L789-.L788
+	.byte	3,1,1,5,5,9
+	.half	.L790-.L789
+	.byte	3,1,1,5,1,9
+	.half	.L2-.L790
+	.byte	3,1,1,7,9
+	.half	.L203-.L2
+	.byte	0,1,1
+.L782:
+	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_ranges'
+.L202:
+	.word	-1,.L137,0,.L203-.L137,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferSend')
+	.sect	'.debug_info'
+.L204:
+	.word	553
+	.half	3
+	.word	.L205
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L207,.L206
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferSend',0,1,130,5,8
+	.word	.L337
+	.byte	1,1,1
+	.word	.L150,.L338,.L149
+	.byte	4
+	.byte	'xStreamBuffer',0,1,130,5,48
+	.word	.L339,.L340
+	.byte	4
+	.byte	'pvTxData',0,1,131,5,40
+	.word	.L341,.L342
+	.byte	4
+	.byte	'xDataLengthBytes',0,1,132,5,34
+	.word	.L337,.L343
+	.byte	4
+	.byte	'xTicksToWait',0,1,133,5,38
+	.word	.L337,.L344
+	.byte	5
+	.word	.L150,.L338
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,135,5,28
+	.word	.L345,.L346
+	.byte	6
+	.byte	'xReturn',0,1,136,5,12
+	.word	.L337,.L347
+	.byte	6
+	.byte	'xSpace',0,1,136,5,21
+	.word	.L337,.L348
+	.byte	6
+	.byte	'xRequiredSpace',0,1,137,5,12
+	.word	.L337,.L349
+	.byte	6
+	.byte	'xTimeOut',0,1,138,5,15
+	.word	.L350,.L351
+	.byte	6
+	.byte	'xMaxReportedSpace',0,1,139,5,12
+	.word	.L337,.L352
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferSend')
+	.sect	'.debug_abbrev'
+.L205:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferSend')
+	.sect	'.debug_line'
+.L206:
+	.word	.L792-.L791
+.L791:
+	.half	3
+	.word	.L794-.L793
+.L793:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L794:
+	.byte	5,8,7,0,5,2
+	.word	.L150
+	.byte	3,129,5,1,5,28,9
+	.half	.L795-.L150
+	.byte	3,6,1,5,27,9
+	.half	.L584-.L795
+	.byte	3,1,1,5,39,9
+	.half	.L586-.L584
+	.byte	3,9,1,5,49,9
+	.half	.L796-.L586
+	.byte	1,5,25,9
+	.half	.L587-.L796
+	.byte	3,6,1,5,5,9
+	.half	.L797-.L587
+	.byte	1,5,24,7,9
+	.half	.L798-.L797
+	.byte	3,2,1,5,9,9
+	.half	.L799-.L798
+	.byte	3,7,1,5,28,7,9
+	.half	.L800-.L799
+	.byte	3,4,1,5,26,9
+	.half	.L588-.L800
+	.byte	1,5,44,9
+	.half	.L801-.L588
+	.byte	1,5,9,9
+	.half	.L27-.L801
+	.byte	3,2,1,9
+	.half	.L25-.L27
+	.byte	3,10,1,5,28,7,9
+	.half	.L802-.L25
+	.byte	3,2,1,5,47,9
+	.half	.L803-.L802
+	.byte	1,5,9,9
+	.half	.L28-.L803
+	.byte	3,8,1,5,5,9
+	.half	.L804-.L28
+	.byte	1,5,32,7,9
+	.half	.L805-.L804
+	.byte	3,2,1,5,13,9
+	.half	.L32-.L805
+	.byte	3,6,1,5,56,9
+	.half	.L806-.L32
+	.byte	3,2,1,5,24,9
+	.half	.L585-.L806
+	.byte	1,5,17,9
+	.half	.L591-.L585
+	.byte	3,2,1,5,30,7,9
+	.half	.L807-.L591
+	.byte	3,3,1,5,21,9
+	.half	.L590-.L807
+	.byte	3,3,1,5,83,9
+	.half	.L808-.L590
+	.byte	3,1,1,5,56,9
+	.half	.L809-.L808
+	.byte	1,5,59,9
+	.half	.L810-.L809
+	.byte	3,124,1,5,21,9
+	.half	.L33-.L810
+	.byte	3,8,1,9
+	.half	.L593-.L33
+	.byte	3,1,1,5,13,9
+	.half	.L34-.L593
+	.byte	3,3,1,5,22,9
+	.half	.L811-.L34
+	.byte	3,3,1,5,50,9
+	.half	.L812-.L811
+	.byte	3,1,1,5,48,9
+	.half	.L813-.L812
+	.byte	1,5,41,9
+	.half	.L814-.L813
+	.byte	3,1,1,5,52,9
+	.half	.L815-.L814
+	.byte	1,5,79,9
+	.half	.L816-.L815
+	.byte	1,5,5,7,9
+	.half	.L35-.L816
+	.byte	3,1,1,9
+	.half	.L36-.L35
+	.byte	3,6,1,5,48,7,9
+	.half	.L817-.L36
+	.byte	3,2,1,5,16,9
+	.half	.L592-.L817
+	.byte	1,5,64,9
+	.half	.L595-.L592
+	.byte	1,5,92,9
+	.half	.L38-.L595
+	.byte	3,7,1,5,13,9
+	.half	.L597-.L38
+	.byte	1,5,5,9
+	.half	.L583-.L597
+	.byte	3,2,1,5,31,7,9
+	.half	.L818-.L583
+	.byte	3,5,1,5,65,9
+	.half	.L600-.L818
+	.byte	1,5,9,9
+	.half	.L819-.L600
+	.byte	1,5,13,7,9
+	.half	.L820-.L819
+	.byte	3,2,1,5,9,9
+	.half	.L42-.L820
+	.byte	3,2,1,5,5,9
+	.half	.L43-.L42
+	.byte	3,11,1,5,1,9
+	.half	.L44-.L43
+	.byte	3,1,1,7,9
+	.half	.L208-.L44
+	.byte	0,1,1
+.L792:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferSend')
+	.sect	'.debug_ranges'
+.L207:
+	.word	-1,.L150,0,.L208-.L150,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferSendFromISR')
+	.sect	'.debug_info'
+.L209:
+	.word	648
+	.half	3
+	.word	.L210
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L212,.L211
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferSendFromISR',0,1,133,6,8
+	.word	.L337
+	.byte	1,1,1
+	.word	.L152,.L353,.L151
+	.byte	4
+	.byte	'xStreamBuffer',0,1,133,6,55
+	.word	.L339,.L354
+	.byte	4
+	.byte	'pvTxData',0,1,134,6,47
+	.word	.L341,.L355
+	.byte	4
+	.byte	'xDataLengthBytes',0,1,135,6,41
+	.word	.L337,.L356
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,136,6,53
+	.word	.L357,.L358
+	.byte	5
+	.word	.L152,.L353
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,138,6,28
+	.word	.L359,.L360
+	.byte	6
+	.byte	'xReturn',0,1,139,6,12
+	.word	.L337,.L361
+	.byte	6
+	.byte	'xSpace',0,1,139,6,21
+	.word	.L337,.L362
+	.byte	6
+	.byte	'xRequiredSpace',0,1,140,6,12
+	.word	.L337,.L363
+	.byte	5
+	.word	.L364,.L365
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,166,6,13
+	.word	.L366,.L367
+	.byte	7
+	.word	.L331,.L368,.L49
+	.byte	8
+	.word	.L333,.L369
+	.byte	9
+	.word	.L370,.L368,.L49
+	.byte	10
+	.word	.L335,.L371
+	.byte	0,0,7
+	.word	.L327,.L50,.L365
+	.byte	8
+	.word	.L329,.L372
+	.byte	11
+	.word	.L373,.L50,.L365
+	.byte	0,0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferSendFromISR')
+	.sect	'.debug_abbrev'
+.L210:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferSendFromISR')
+	.sect	'.debug_line'
+.L211:
+	.word	.L822-.L821
+.L821:
+	.half	3
+	.word	.L824-.L823
+.L823:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L824:
+	.byte	5,8,7,0,5,2
+	.word	.L152
+	.byte	3,132,6,1,5,27,9
+	.half	.L608-.L152
+	.byte	3,7,1,5,25,9
+	.half	.L609-.L608
+	.byte	3,9,1,5,5,9
+	.half	.L825-.L609
+	.byte	1,5,24,7,9
+	.half	.L826-.L825
+	.byte	3,2,1,5,58,9
+	.half	.L827-.L826
+	.byte	1,5,44,9
+	.half	.L46-.L827
+	.byte	3,7,1,5,92,9
+	.half	.L603-.L46
+	.byte	3,1,1,5,13,9
+	.half	.L611-.L603
+	.byte	1,5,5,9
+	.half	.L607-.L611
+	.byte	3,2,1,5,31,7,9
+	.half	.L828-.L607
+	.byte	3,3,1,5,65,9
+	.half	.L615-.L828
+	.byte	1,5,9,9
+	.half	.L829-.L615
+	.byte	1,5,13,7,9
+	.half	.L364-.L829
+	.byte	3,2,1,4,2,5,14,9
+	.half	.L368-.L364
+	.byte	3,140,123,1,5,18,9
+	.half	.L830-.L368
+	.byte	3,1,1,5,33,9
+	.half	.L610-.L830
+	.byte	3,1,1,5,70,9
+	.half	.L831-.L610
+	.byte	1,5,59,9
+	.half	.L832-.L831
+	.byte	1,5,11,9
+	.half	.L833-.L832
+	.byte	1,5,13,9
+	.half	.L834-.L833
+	.byte	3,1,1,5,5,9
+	.half	.L835-.L834
+	.byte	3,1,1,4,1,5,13,9
+	.half	.L49-.L835
+	.byte	3,240,4,1,4,2,5,14,9
+	.half	.L50-.L49
+	.byte	3,131,123,1,5,11,9
+	.half	.L836-.L50
+	.byte	3,1,1,5,13,9
+	.half	.L837-.L836
+	.byte	3,1,1,4,1,9
+	.half	.L365-.L837
+	.byte	3,251,4,1,5,9,9
+	.half	.L51-.L365
+	.byte	3,2,1,5,5,9
+	.half	.L52-.L51
+	.byte	3,12,1,5,1,9
+	.half	.L53-.L52
+	.byte	3,1,1,7,9
+	.half	.L213-.L53
+	.byte	0,1,1
+.L822:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferSendFromISR')
+	.sect	'.debug_ranges'
+.L212:
+	.word	-1,.L152,0,.L213-.L152,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferReceive')
+	.sect	'.debug_info'
+.L214:
+	.word	534
+	.half	3
+	.word	.L215
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L217,.L216
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferReceive',0,1,234,6,8
+	.word	.L337
+	.byte	1,1,1
+	.word	.L156,.L374,.L155
+	.byte	4
+	.byte	'xStreamBuffer',0,1,234,6,51
+	.word	.L339,.L375
+	.byte	4
+	.byte	'pvRxData',0,1,235,6,37
+	.word	.L376,.L377
+	.byte	4
+	.byte	'xBufferLengthBytes',0,1,236,6,37
+	.word	.L337,.L378
+	.byte	4
+	.byte	'xTicksToWait',0,1,237,6,41
+	.word	.L337,.L379
+	.byte	5
+	.word	.L156,.L374
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,239,6,28
+	.word	.L380,.L381
+	.byte	6
+	.byte	'xReceivedLength',0,1,240,6,12
+	.word	.L337,.L382
+	.byte	6
+	.byte	'xBytesAvailable',0,1,240,6,33
+	.word	.L337,.L383
+	.byte	6
+	.byte	'xBytesToStoreMessageLength',0,1,240,6,50
+	.word	.L337,.L384
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferReceive')
+	.sect	'.debug_abbrev'
+.L215:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferReceive')
+	.sect	'.debug_line'
+.L216:
+	.word	.L839-.L838
+.L838:
+	.half	3
+	.word	.L841-.L840
+.L840:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L841:
+	.byte	5,8,7,0,5,2
+	.word	.L156
+	.byte	3,233,6,1,5,28,9
+	.half	.L842-.L156
+	.byte	3,6,1,5,25,9
+	.half	.L636-.L842
+	.byte	3,10,1,5,5,9
+	.half	.L843-.L636
+	.byte	1,5,36,7,9
+	.half	.L844-.L843
+	.byte	3,2,1,5,69,9
+	.half	.L638-.L844
+	.byte	1,5,36,9
+	.half	.L62-.L638
+	.byte	3,4,1,5,5,9
+	.half	.L63-.L62
+	.byte	3,3,1,5,9,7,9
+	.half	.L639-.L63
+	.byte	3,4,1,5,49,9
+	.half	.L633-.L639
+	.byte	3,2,1,5,29,9
+	.half	.L641-.L633
+	.byte	1,5,13,9
+	.half	.L643-.L641
+	.byte	3,7,1,5,26,7,9
+	.half	.L845-.L643
+	.byte	3,3,1,5,17,9
+	.half	.L642-.L845
+	.byte	3,3,1,5,82,9
+	.half	.L846-.L642
+	.byte	3,1,1,5,55,9
+	.half	.L847-.L846
+	.byte	1,9
+	.half	.L848-.L847
+	.byte	3,124,1,5,9,9
+	.half	.L66-.L848
+	.byte	3,11,1,9
+	.half	.L849-.L66
+	.byte	3,2,1,5,22,7,9
+	.half	.L850-.L849
+	.byte	3,4,1,5,53,9
+	.half	.L647-.L850
+	.byte	3,1,1,5,51,9
+	.half	.L851-.L647
+	.byte	1,5,49,9
+	.half	.L852-.L851
+	.byte	3,3,1,5,29,9
+	.half	.L644-.L852
+	.byte	1,5,91,9
+	.half	.L649-.L644
+	.byte	3,124,1,5,9,9
+	.half	.L68-.L649
+	.byte	3,6,1,5,45,9
+	.half	.L64-.L68
+	.byte	3,7,1,5,25,9
+	.half	.L650-.L64
+	.byte	1,5,5,9
+	.half	.L69-.L650
+	.byte	3,8,1,5,99,7,9
+	.half	.L853-.L69
+	.byte	3,2,1,5,25,9
+	.half	.L637-.L853
+	.byte	1,5,9,9
+	.half	.L655-.L637
+	.byte	3,3,1,5,13,7,9
+	.half	.L854-.L655
+	.byte	3,3,1,5,9,9
+	.half	.L73-.L854
+	.byte	3,2,1,5,5,9
+	.half	.L74-.L73
+	.byte	3,11,1,5,1,9
+	.half	.L75-.L74
+	.byte	3,1,1,7,9
+	.half	.L218-.L75
+	.byte	0,1,1
+.L839:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferReceive')
+	.sect	'.debug_ranges'
+.L217:
+	.word	-1,.L156,0,.L218-.L156,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferReceiveFromISR')
+	.sect	'.debug_info'
+.L219:
+	.word	682
+	.half	3
+	.word	.L220
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L222,.L221
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferReceiveFromISR',0,1,250,7,8
+	.word	.L337
+	.byte	1,1,1
+	.word	.L160,.L385,.L159
+	.byte	4
+	.byte	'xStreamBuffer',0,1,250,7,58
+	.word	.L339,.L386
+	.byte	4
+	.byte	'pvRxData',0,1,251,7,44
+	.word	.L376,.L387
+	.byte	4
+	.byte	'xBufferLengthBytes',0,1,252,7,44
+	.word	.L337,.L388
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,253,7,56
+	.word	.L389,.L390
+	.byte	5
+	.word	.L160,.L385
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,255,7,28
+	.word	.L391,.L392
+	.byte	6
+	.byte	'xReceivedLength',0,1,128,8,12
+	.word	.L337,.L393
+	.byte	6
+	.byte	'xBytesAvailable',0,1,128,8,33
+	.word	.L337,.L394
+	.byte	6
+	.byte	'xBytesToStoreMessageLength',0,1,128,8,50
+	.word	.L337,.L395
+	.byte	5
+	.word	.L396,.L397
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,161,8,13
+	.word	.L366,.L398
+	.byte	7
+	.word	.L331,.L399,.L85
+	.byte	8
+	.word	.L333,.L400
+	.byte	9
+	.word	.L370,.L399,.L85
+	.byte	10
+	.word	.L335,.L401
+	.byte	0,0,7
+	.word	.L327,.L86,.L397
+	.byte	8
+	.word	.L329,.L402
+	.byte	11
+	.word	.L373,.L86,.L397
+	.byte	0,0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferReceiveFromISR')
+	.sect	'.debug_abbrev'
+.L220:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferReceiveFromISR')
+	.sect	'.debug_line'
+.L221:
+	.word	.L856-.L855
+.L855:
+	.half	3
+	.word	.L858-.L857
+.L857:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L858:
+	.byte	5,8,7,0,5,2
+	.word	.L160
+	.byte	3,249,7,1,5,28,9
+	.half	.L668-.L160
+	.byte	3,6,1,5,25,9
+	.half	.L669-.L668
+	.byte	3,10,1,5,5,9
+	.half	.L859-.L669
+	.byte	1,5,36,7,9
+	.half	.L860-.L859
+	.byte	3,2,1,5,69,9
+	.half	.L671-.L860
+	.byte	1,5,36,9
+	.half	.L81-.L671
+	.byte	3,4,1,5,41,9
+	.half	.L82-.L81
+	.byte	3,3,1,5,5,9
+	.half	.L663-.L82
+	.byte	3,7,1,5,99,7,9
+	.half	.L861-.L663
+	.byte	3,2,1,5,25,9
+	.half	.L670-.L861
+	.byte	1,5,9,9
+	.half	.L675-.L670
+	.byte	3,3,1,5,13,7,9
+	.half	.L396-.L675
+	.byte	3,2,1,4,2,5,14,9
+	.half	.L399-.L396
+	.byte	3,145,121,1,5,18,9
+	.half	.L862-.L399
+	.byte	3,1,1,5,33,9
+	.half	.L667-.L862
+	.byte	3,1,1,5,70,9
+	.half	.L863-.L667
+	.byte	1,5,59,9
+	.half	.L864-.L863
+	.byte	1,5,11,9
+	.half	.L865-.L864
+	.byte	1,5,13,9
+	.half	.L866-.L865
+	.byte	3,1,1,5,5,9
+	.half	.L867-.L866
+	.byte	3,1,1,4,1,5,13,9
+	.half	.L85-.L867
+	.byte	3,235,6,1,4,2,5,14,9
+	.half	.L86-.L85
+	.byte	3,136,121,1,5,11,9
+	.half	.L868-.L86
+	.byte	3,1,1,5,13,9
+	.half	.L869-.L868
+	.byte	3,1,1,4,1,9
+	.half	.L397-.L869
+	.byte	3,246,6,1,5,9,9
+	.half	.L87-.L397
+	.byte	3,2,1,5,5,9
+	.half	.L88-.L87
+	.byte	3,12,1,5,1,9
+	.half	.L89-.L88
+	.byte	3,1,1,7,9
+	.half	.L223-.L89
+	.byte	0,1,1
+.L856:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferReceiveFromISR')
+	.sect	'.debug_ranges'
+.L222:
+	.word	-1,.L160,0,.L223-.L160,0,0
+	.sdecl	'.debug_info',debug,cluster('vStreamBufferDelete')
+	.sect	'.debug_info'
+.L224:
+	.word	351
+	.half	3
+	.word	.L225
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L227,.L226
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'vStreamBufferDelete',0,1,221,3,6,1,1,1
+	.word	.L141,.L403,.L140
+	.byte	4
+	.byte	'xStreamBuffer',0,1,221,3,48
+	.word	.L339,.L404
+	.byte	5
+	.word	.L141,.L403
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,223,3,22
+	.word	.L405,.L406
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vStreamBufferDelete')
+	.sect	'.debug_abbrev'
+.L225:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vStreamBufferDelete')
+	.sect	'.debug_line'
+.L226:
+	.word	.L871-.L870
+.L870:
+	.half	3
+	.word	.L873-.L872
+.L872:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L873:
+	.byte	5,25,7,0,5,2
+	.word	.L141
+	.byte	3,228,3,1,5,5,9
+	.half	.L874-.L141
+	.byte	1,5,24,7,9
+	.half	.L875-.L874
+	.byte	3,6,1,5,51,9
+	.half	.L561-.L875
+	.byte	1,5,42,9
+	.half	.L11-.L561
+	.byte	3,14,1,5,48,9
+	.half	.L876-.L11
+	.byte	1,5,1,9
+	.half	.L12-.L876
+	.byte	3,2,1,7,9
+	.half	.L228-.L12
+	.byte	0,1,1
+.L871:
+	.sdecl	'.debug_ranges',debug,cluster('vStreamBufferDelete')
+	.sect	'.debug_ranges'
+.L227:
+	.word	-1,.L141,0,.L228-.L141,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferIsFull')
+	.sect	'.debug_info'
+.L229:
+	.word	416
+	.half	3
+	.word	.L230
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L232,.L231
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferIsFull',0,1,255,8,12
+	.word	.L407
+	.byte	1,1,1
+	.word	.L166,.L408,.L165
+	.byte	4
+	.byte	'xStreamBuffer',0,1,255,8,54
+	.word	.L339,.L409
+	.byte	5
+	.word	.L166,.L408
+	.byte	6
+	.byte	'xReturn',0,1,129,9,16
+	.word	.L407,.L410
+	.byte	6
+	.byte	'xBytesToStoreMessageLength',0,1,130,9,12
+	.word	.L337,.L411
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,131,9,34
+	.word	.L412,.L413
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferIsFull')
+	.sect	'.debug_abbrev'
+.L230:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferIsFull')
+	.sect	'.debug_line'
+.L231:
+	.word	.L878-.L877
+.L877:
+	.half	3
+	.word	.L880-.L879
+.L879:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L880:
+	.byte	5,25,7,0,5,2
+	.word	.L166
+	.byte	3,138,9,1,5,5,9
+	.half	.L881-.L166
+	.byte	1,5,36,7,9
+	.half	.L882-.L881
+	.byte	3,2,1,5,69,9
+	.half	.L698-.L882
+	.byte	1,5,36,9
+	.half	.L101-.L698
+	.byte	3,4,1,5,39,9
+	.half	.L102-.L101
+	.byte	3,4,1,5,5,9
+	.half	.L697-.L102
+	.byte	1,5,17,7,9
+	.half	.L883-.L697
+	.byte	3,2,1,5,25,9
+	.half	.L699-.L883
+	.byte	1,5,17,9
+	.half	.L103-.L699
+	.byte	3,4,1,5,5,9
+	.half	.L104-.L103
+	.byte	3,3,1,5,1,9
+	.half	.L105-.L104
+	.byte	3,1,1,7,9
+	.half	.L233-.L105
+	.byte	0,1,1
+.L878:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferIsFull')
+	.sect	'.debug_ranges'
+.L232:
+	.word	-1,.L166,0,.L233-.L166,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferIsEmpty')
+	.sect	'.debug_info'
+.L234:
+	.word	396
+	.half	3
+	.word	.L235
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L237,.L236
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferIsEmpty',0,1,231,8,12
+	.word	.L407
+	.byte	1,1,1
+	.word	.L164,.L414,.L163
+	.byte	4
+	.byte	'xStreamBuffer',0,1,231,8,55
+	.word	.L339,.L415
+	.byte	5
+	.word	.L164,.L414
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,233,8,34
+	.word	.L416,.L417
+	.byte	6
+	.byte	'xReturn',0,1,234,8,16
+	.word	.L407,.L418
+	.byte	6
+	.byte	'xTail',0,1,235,8,12
+	.word	.L337,.L419
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferIsEmpty')
+	.sect	'.debug_abbrev'
+.L235:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferIsEmpty')
+	.sect	'.debug_line'
+.L236:
+	.word	.L885-.L884
+.L884:
+	.half	3
+	.word	.L887-.L886
+.L886:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L887:
+	.byte	5,27,7,0,5,2
+	.word	.L164
+	.byte	3,239,8,1,5,23,9
+	.half	.L695-.L164
+	.byte	3,2,1,5,5,9
+	.half	.L888-.L695
+	.byte	1,5,17,7,9
+	.half	.L889-.L888
+	.byte	3,2,1,5,25,9
+	.half	.L696-.L889
+	.byte	1,5,17,9
+	.half	.L98-.L696
+	.byte	3,4,1,5,5,9
+	.half	.L99-.L98
+	.byte	3,3,1,5,1,9
+	.half	.L100-.L99
+	.byte	3,1,1,7,9
+	.half	.L238-.L100
+	.byte	0,1,1
+.L885:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferIsEmpty')
+	.sect	'.debug_ranges'
+.L237:
+	.word	-1,.L164,0,.L238-.L164,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferReset')
+	.sect	'.debug_info'
+.L239:
+	.word	468
+	.half	3
+	.word	.L240
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L242,.L241
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferReset',0,1,254,3,12
+	.word	.L407
+	.byte	1,1,1
+	.word	.L143,.L420,.L142
+	.byte	4
+	.byte	'xStreamBuffer',0,1,254,3,53
+	.word	.L339,.L421
+	.byte	5
+	.word	.L143,.L420
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,128,4,28
+	.word	.L422,.L423
+	.byte	6
+	.byte	'xReturn',0,1,129,4,16
+	.word	.L407,.L424
+	.byte	6
+	.byte	'pxSendCallback',0,1,130,4,36
+	.word	.L425,.L426
+	.byte	6
+	.byte	'pxReceiveCallback',0,1,130,4,59
+	.word	.L425,.L427
+	.byte	6
+	.byte	'uxStreamBufferNumber',0,1,133,4,21
+	.word	.L366,.L428
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferReset')
+	.sect	'.debug_abbrev'
+.L240:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferReset')
+	.sect	'.debug_line'
+.L241:
+	.word	.L891-.L890
+.L890:
+	.half	3
+	.word	.L893-.L892
+.L892:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L893:
+	.byte	5,12,7,0,5,2
+	.word	.L143
+	.byte	3,253,3,1,5,24,9
+	.half	.L563-.L143
+	.byte	3,3,1,5,51,9
+	.half	.L564-.L563
+	.byte	3,1,1,5,77,9
+	.half	.L565-.L564
+	.byte	1,5,46,9
+	.half	.L566-.L565
+	.byte	3,12,1,5,5,9
+	.half	.L567-.L566
+	.byte	3,5,1,5,29,9
+	.half	.L562-.L567
+	.byte	3,2,1,5,13,9
+	.half	.L894-.L562
+	.byte	1,5,82,7,9
+	.half	.L895-.L894
+	.byte	1,5,103,9
+	.half	.L896-.L895
+	.byte	1,5,57,7,9
+	.half	.L897-.L896
+	.byte	3,10,1,9
+	.half	.L898-.L897
+	.byte	3,1,1,9
+	.half	.L899-.L898
+	.byte	3,1,1,9
+	.half	.L900-.L899
+	.byte	3,1,1,5,43,9
+	.half	.L901-.L900
+	.byte	3,2,1,5,54,9
+	.half	.L569-.L901
+	.byte	3,4,1,5,21,9
+	.half	.L902-.L569
+	.byte	3,6,1,5,5,9
+	.half	.L13-.L902
+	.byte	3,3,1,9
+	.half	.L903-.L13
+	.byte	3,2,1,5,1,9
+	.half	.L15-.L903
+	.byte	3,1,1,7,9
+	.half	.L243-.L15
+	.byte	0,1,1
+.L891:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferReset')
+	.sect	'.debug_ranges'
+.L242:
+	.word	-1,.L143,0,.L243-.L143,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferSpacesAvailable')
+	.sect	'.debug_info'
+.L244:
+	.word	411
+	.half	3
+	.word	.L245
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L247,.L246
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferSpacesAvailable',0,1,213,4,8
+	.word	.L337
+	.byte	1,1,1
+	.word	.L20,.L429,.L146
+	.byte	4
+	.byte	'xStreamBuffer',0,1,213,4,59
+	.word	.L339,.L430
+	.byte	5
+	.word	.L20,.L429
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,215,4,34
+	.word	.L431,.L432
+	.byte	6
+	.byte	'xSpace',0,1,216,4,12
+	.word	.L337,.L433
+	.byte	6
+	.byte	'xOriginalTail',0,1,217,4,12
+	.word	.L337,.L434
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferSpacesAvailable')
+	.sect	'.debug_abbrev'
+.L245:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferSpacesAvailable')
+	.sect	'.debug_line'
+.L246:
+	.word	.L905-.L904
+.L904:
+	.half	3
+	.word	.L907-.L906
+.L906:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L907:
+	.byte	5,39,7,0,5,2
+	.word	.L20
+	.byte	3,225,4,1,5,32,9
+	.half	.L574-.L20
+	.byte	3,1,1,5,58,9
+	.half	.L908-.L574
+	.byte	1,5,42,9
+	.half	.L575-.L908
+	.byte	1,5,33,9
+	.half	.L909-.L575
+	.byte	3,1,1,5,16,9
+	.half	.L910-.L909
+	.byte	1,5,45,9
+	.half	.L911-.L910
+	.byte	3,1,1,5,54,9
+	.half	.L912-.L911
+	.byte	1,5,12,7,9
+	.half	.L913-.L912
+	.byte	3,2,1,5,33,9
+	.half	.L576-.L913
+	.byte	3,2,1,5,5,9
+	.half	.L914-.L576
+	.byte	1,5,33,7,9
+	.half	.L915-.L914
+	.byte	3,2,1,5,16,9
+	.half	.L916-.L915
+	.byte	1,5,42,9
+	.half	.L917-.L916
+	.byte	1,5,5,9
+	.half	.L22-.L917
+	.byte	3,7,1,5,1,9
+	.half	.L23-.L22
+	.byte	3,1,1,7,9
+	.half	.L248-.L23
+	.byte	0,1,1
+.L905:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferSpacesAvailable')
+	.sect	'.debug_ranges'
+.L247:
+	.word	-1,.L20,0,.L248-.L20,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferBytesAvailable')
+	.sect	'.debug_info'
+.L249:
+	.word	384
+	.half	3
+	.word	.L250
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L252,.L251
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferBytesAvailable',0,1,246,4,8
+	.word	.L337
+	.byte	1,1,1
+	.word	.L148,.L435,.L147
+	.byte	4
+	.byte	'xStreamBuffer',0,1,246,4,58
+	.word	.L339,.L436
+	.byte	5
+	.word	.L148,.L435
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,248,4,34
+	.word	.L437,.L438
+	.byte	6
+	.byte	'xReturn',0,1,249,4,12
+	.word	.L337,.L439
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferBytesAvailable')
+	.sect	'.debug_abbrev'
+.L250:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferBytesAvailable')
+	.sect	'.debug_line'
+.L251:
+	.word	.L919-.L918
+.L918:
+	.half	3
+	.word	.L921-.L920
+.L920:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L921:
+	.byte	5,33,7,0,5,2
+	.word	.L148
+	.byte	3,252,4,1,5,5,9
+	.half	.L577-.L148
+	.byte	3,1,1,5,1,9
+	.half	.L24-.L577
+	.byte	3,1,1,7,9
+	.half	.L253-.L24
+	.byte	0,1,1
+.L919:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferBytesAvailable')
+	.sect	'.debug_ranges'
+.L252:
+	.word	-1,.L148,0,.L253-.L148,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferSetTriggerLevel')
+	.sect	'.debug_info'
+.L254:
+	.word	412
+	.half	3
+	.word	.L255
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L257,.L256
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferSetTriggerLevel',0,1,183,4,12
+	.word	.L407
+	.byte	1,1,1
+	.word	.L145,.L440,.L144
+	.byte	4
+	.byte	'xStreamBuffer',0,1,183,4,63
+	.word	.L339,.L441
+	.byte	4
+	.byte	'xTriggerLevel',0,1,184,4,49
+	.word	.L337,.L442
+	.byte	5
+	.word	.L145,.L440
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,186,4,28
+	.word	.L443,.L444
+	.byte	6
+	.byte	'xReturn',0,1,187,4,16
+	.word	.L407,.L445
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferSetTriggerLevel')
+	.sect	'.debug_abbrev'
+.L255:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferSetTriggerLevel')
+	.sect	'.debug_line'
+.L256:
+	.word	.L923-.L922
+.L922:
+	.half	3
+	.word	.L925-.L924
+.L924:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L925:
+	.byte	5,5,7,0,5,2
+	.word	.L145
+	.byte	3,191,4,1,5,23,7,9
+	.half	.L926-.L145
+	.byte	3,2,1,5,39,9
+	.half	.L16-.L926
+	.byte	3,5,1,5,5,9
+	.half	.L927-.L16
+	.byte	1,5,44,7,9
+	.half	.L928-.L927
+	.byte	3,2,1,5,17,9
+	.half	.L929-.L928
+	.byte	3,1,1,5,59,9
+	.half	.L573-.L929
+	.byte	3,127,1,5,17,9
+	.half	.L17-.L573
+	.byte	3,5,1,5,5,9
+	.half	.L18-.L17
+	.byte	3,3,1,5,1,9
+	.half	.L19-.L18
+	.byte	3,1,1,7,9
+	.half	.L258-.L19
+	.byte	0,1,1
+.L923:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferSetTriggerLevel')
+	.sect	'.debug_ranges'
+.L257:
+	.word	-1,.L145,0,.L258-.L145,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferSendCompletedFromISR')
+	.sect	'.debug_info'
+.L259:
+	.word	547
+	.half	3
+	.word	.L260
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L262,.L261
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferSendCompletedFromISR',0,1,162,9,12
+	.word	.L407
+	.byte	1,1,1
+	.word	.L168,.L446,.L167
+	.byte	4
+	.byte	'xStreamBuffer',0,1,162,9,68
+	.word	.L339,.L447
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,163,9,60
+	.word	.L448,.L449
+	.byte	5
+	.word	.L168,.L446
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,165,9,28
+	.word	.L450,.L451
+	.byte	6
+	.byte	'xReturn',0,1,166,9,16
+	.word	.L407,.L452
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,167,9,17
+	.word	.L366,.L453
+	.byte	7
+	.word	.L331,.L454,.L106
+	.byte	8
+	.word	.L333,.L455
+	.byte	9
+	.word	.L370,.L454,.L106
+	.byte	10
+	.word	.L335,.L456
+	.byte	0,0,7
+	.word	.L327,.L108,.L457
+	.byte	8
+	.word	.L329,.L458
+	.byte	11
+	.word	.L373,.L108,.L457
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferSendCompletedFromISR')
+	.sect	'.debug_abbrev'
+.L260:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferSendCompletedFromISR')
+	.sect	'.debug_line'
+.L261:
+	.word	.L931-.L930
+.L930:
+	.half	3
+	.word	.L933-.L932
+.L932:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L933:
+	.byte	5,12,7,0,5,2
+	.word	.L168
+	.byte	3,161,9,1,5,46,9
+	.half	.L703-.L168
+	.byte	3,9,1,4,2,5,14,9
+	.half	.L454-.L703
+	.byte	3,135,120,1,5,18,9
+	.half	.L934-.L454
+	.byte	3,1,1,5,33,9
+	.half	.L705-.L934
+	.byte	3,1,1,5,70,9
+	.half	.L935-.L705
+	.byte	1,5,59,9
+	.half	.L936-.L935
+	.byte	1,5,11,9
+	.half	.L937-.L936
+	.byte	1,5,13,9
+	.half	.L938-.L937
+	.byte	3,1,1,5,5,9
+	.half	.L939-.L938
+	.byte	3,1,1,4,1,5,31,9
+	.half	.L106-.L939
+	.byte	3,247,7,1,5,9,9
+	.half	.L940-.L106
+	.byte	1,5,22,7,9
+	.half	.L941-.L940
+	.byte	3,2,1,5,57,9
+	.half	.L704-.L941
+	.byte	3,4,1,5,55,9
+	.half	.L942-.L704
+	.byte	1,5,21,9
+	.half	.L943-.L942
+	.byte	3,1,1,5,22,9
+	.half	.L706-.L943
+	.byte	3,123,1,5,21,9
+	.half	.L107-.L706
+	.byte	3,9,1,4,2,5,14,9
+	.half	.L108-.L107
+	.byte	3,241,119,1,5,11,9
+	.half	.L944-.L108
+	.byte	3,1,1,5,13,9
+	.half	.L945-.L944
+	.byte	3,1,1,4,1,5,5,9
+	.half	.L457-.L945
+	.byte	3,146,8,1,5,1,9
+	.half	.L109-.L457
+	.byte	3,1,1,7,9
+	.half	.L263-.L109
+	.byte	0,1,1
+.L931:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferSendCompletedFromISR')
+	.sect	'.debug_ranges'
+.L262:
+	.word	-1,.L168,0,.L263-.L168,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferReceiveCompletedFromISR')
+	.sect	'.debug_info'
+.L264:
+	.word	550
+	.half	3
+	.word	.L265
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L267,.L266
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferReceiveCompletedFromISR',0,1,193,9,12
+	.word	.L407
+	.byte	1,1,1
+	.word	.L170,.L459,.L169
+	.byte	4
+	.byte	'xStreamBuffer',0,1,193,9,71
+	.word	.L339,.L460
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,194,9,63
+	.word	.L448,.L461
+	.byte	5
+	.word	.L170,.L459
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,196,9,28
+	.word	.L462,.L463
+	.byte	6
+	.byte	'xReturn',0,1,197,9,16
+	.word	.L407,.L464
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,198,9,17
+	.word	.L366,.L465
+	.byte	7
+	.word	.L331,.L466,.L110
+	.byte	8
+	.word	.L333,.L467
+	.byte	9
+	.word	.L370,.L466,.L110
+	.byte	10
+	.word	.L335,.L468
+	.byte	0,0,7
+	.word	.L327,.L112,.L469
+	.byte	8
+	.word	.L329,.L470
+	.byte	11
+	.word	.L373,.L112,.L469
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferReceiveCompletedFromISR')
+	.sect	'.debug_abbrev'
+.L265:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferReceiveCompletedFromISR')
+	.sect	'.debug_line'
+.L266:
+	.word	.L947-.L946
+.L946:
+	.half	3
+	.word	.L949-.L948
+.L948:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L949:
+	.byte	5,12,7,0,5,2
+	.word	.L170
+	.byte	3,192,9,1,5,46,9
+	.half	.L710-.L170
+	.byte	3,9,1,4,2,5,14,9
+	.half	.L466-.L710
+	.byte	3,232,119,1,5,18,9
+	.half	.L950-.L466
+	.byte	3,1,1,5,33,9
+	.half	.L712-.L950
+	.byte	3,1,1,5,70,9
+	.half	.L951-.L712
+	.byte	1,5,59,9
+	.half	.L952-.L951
+	.byte	1,5,11,9
+	.half	.L953-.L952
+	.byte	1,5,13,9
+	.half	.L954-.L953
+	.byte	3,1,1,5,5,9
+	.half	.L955-.L954
+	.byte	3,1,1,4,1,5,31,9
+	.half	.L110-.L955
+	.byte	3,150,8,1,5,9,9
+	.half	.L956-.L110
+	.byte	1,5,22,7,9
+	.half	.L957-.L956
+	.byte	3,2,1,5,54,9
+	.half	.L711-.L957
+	.byte	3,4,1,5,52,9
+	.half	.L958-.L711
+	.byte	1,5,21,9
+	.half	.L959-.L958
+	.byte	3,1,1,5,22,9
+	.half	.L713-.L959
+	.byte	3,123,1,5,21,9
+	.half	.L111-.L713
+	.byte	3,9,1,4,2,5,14,9
+	.half	.L112-.L111
+	.byte	3,210,119,1,5,11,9
+	.half	.L960-.L112
+	.byte	3,1,1,5,13,9
+	.half	.L961-.L960
+	.byte	3,1,1,4,1,5,5,9
+	.half	.L469-.L961
+	.byte	3,177,8,1,5,1,9
+	.half	.L113-.L469
+	.byte	3,1,1,7,9
+	.half	.L268-.L113
+	.byte	0,1,1
+.L947:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferReceiveCompletedFromISR')
+	.sect	'.debug_ranges'
+.L267:
+	.word	-1,.L170,0,.L268-.L170,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferGenericCreate')
+	.sect	'.debug_info'
+.L269:
+	.word	529
+	.half	3
+	.word	.L270
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L272,.L271
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferGenericCreate',0,1,193,2,26
+	.word	.L339
+	.byte	1,1,1
+	.word	.L139,.L471,.L138
+	.byte	4
+	.byte	'xBufferSizeBytes',0,1,193,2,61
+	.word	.L337,.L472
+	.byte	4
+	.byte	'xTriggerLevelBytes',0,1,194,2,61
+	.word	.L337,.L473
+	.byte	4
+	.byte	'xIsMessageBuffer',0,1,195,2,65
+	.word	.L407,.L474
+	.byte	4
+	.byte	'pxSendCompletedCallback',0,1,196,2,85
+	.word	.L425,.L475
+	.byte	4
+	.byte	'pxReceiveCompletedCallback',0,1,197,2,85
+	.word	.L425,.L476
+	.byte	5
+	.word	.L139,.L471
+	.byte	6
+	.byte	'pucAllocatedMemory',0,1,199,2,19
+	.word	.L477,.L478
+	.byte	6
+	.byte	'ucFlags',0,1,200,2,17
+	.word	.L325,.L479
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferGenericCreate')
+	.sect	'.debug_abbrev'
+.L270:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferGenericCreate')
+	.sect	'.debug_line'
+.L271:
+	.word	.L963-.L962
+.L962:
+	.half	3
+	.word	.L965-.L964
+.L964:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L965:
+	.byte	5,26,7,0,5,2
+	.word	.L139
+	.byte	3,192,2,1,5,9,9
+	.half	.L548-.L139
+	.byte	3,13,1,5,21,7,9
+	.half	.L966-.L548
+	.byte	3,3,1,5,48,9
+	.half	.L549-.L966
+	.byte	1,5,21,9
+	.half	.L3-.L549
+	.byte	3,6,1,5,9,9
+	.half	.L4-.L3
+	.byte	3,8,1,5,32,7,9
+	.half	.L550-.L4
+	.byte	3,2,1,5,51,9
+	.half	.L5-.L550
+	.byte	3,11,1,5,55,9
+	.half	.L551-.L5
+	.byte	1,5,9,9
+	.half	.L552-.L551
+	.byte	1,5,29,7,9
+	.half	.L967-.L552
+	.byte	3,2,1,5,79,9
+	.half	.L546-.L967
+	.byte	3,1,1,5,32,9
+	.half	.L545-.L546
+	.byte	1,5,31,9
+	.half	.L553-.L545
+	.byte	3,127,1,5,32,9
+	.half	.L6-.L553
+	.byte	3,5,1,5,9,9
+	.half	.L7-.L6
+	.byte	3,3,1,5,62,7,9
+	.half	.L968-.L7
+	.byte	3,3,1,5,43,9
+	.half	.L969-.L968
+	.byte	3,5,1,5,71,9
+	.half	.L555-.L969
+	.byte	1,5,9,9
+	.half	.L9-.L555
+	.byte	3,9,1,5,5,9
+	.half	.L10-.L9
+	.byte	3,1,1,7,9
+	.half	.L273-.L10
+	.byte	0,1,1
+.L963:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferGenericCreate')
+	.sect	'.debug_ranges'
+.L272:
+	.word	-1,.L139,0,.L273-.L139,0,0
+	.sdecl	'.debug_info',debug,cluster('xStreamBufferNextMessageLengthBytes')
+	.sect	'.debug_info'
+.L274:
+	.word	446
+	.half	3
+	.word	.L275
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L277,.L276
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'xStreamBufferNextMessageLengthBytes',0,1,210,7,8
+	.word	.L337
+	.byte	1,1,1
+	.word	.L158,.L480,.L157
+	.byte	4
+	.byte	'xStreamBuffer',0,1,210,7,66
+	.word	.L339,.L481
+	.byte	5
+	.word	.L158,.L480
+	.byte	6
+	.byte	'pxStreamBuffer',0,1,212,7,28
+	.word	.L482,.L483
+	.byte	6
+	.byte	'xReturn',0,1,213,7,12
+	.word	.L337,.L484
+	.byte	6
+	.byte	'xBytesAvailable',0,1,213,7,21
+	.word	.L337,.L485
+	.byte	6
+	.byte	'xTempReturn',0,1,214,7,38
+	.word	.L337,.L486
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xStreamBufferNextMessageLengthBytes')
+	.sect	'.debug_abbrev'
+.L275:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xStreamBufferNextMessageLengthBytes')
+	.sect	'.debug_line'
+.L276:
+	.word	.L971-.L970
+.L970:
+	.half	3
+	.word	.L973-.L972
+.L972:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L973:
+	.byte	5,8,7,0,5,2
+	.word	.L158
+	.byte	3,209,7,1,5,25,9
+	.half	.L659-.L158
+	.byte	3,9,1,5,5,9
+	.half	.L974-.L659
+	.byte	1,5,45,7,9
+	.half	.L975-.L974
+	.byte	3,2,1,5,9,9
+	.half	.L658-.L975
+	.byte	3,2,1,5,137,1,7,9
+	.half	.L976-.L658
+	.byte	3,5,1,5,77,9
+	.half	.L977-.L976
+	.byte	1,5,90,9
+	.half	.L978-.L977
+	.byte	1,5,137,1,9
+	.half	.L979-.L978
+	.byte	1,5,34,9
+	.half	.L660-.L979
+	.byte	3,1,1,5,137,1,9
+	.half	.L662-.L660
+	.byte	3,127,1,5,21,9
+	.half	.L77-.L662
+	.byte	3,10,1,5,9,9
+	.half	.L78-.L77
+	.byte	3,121,1,5,17,9
+	.half	.L76-.L78
+	.byte	3,12,1,5,5,9
+	.half	.L79-.L76
+	.byte	3,3,1,5,1,9
+	.half	.L80-.L79
+	.byte	3,1,1,7,9
+	.half	.L278-.L80
+	.byte	0,1,1
+.L971:
+	.sdecl	'.debug_ranges',debug,cluster('xStreamBufferNextMessageLengthBytes')
+	.sect	'.debug_ranges'
+.L277:
+	.word	-1,.L158,0,.L278-.L158,0,0
+	.sdecl	'.debug_info',debug,cluster('vStreamBufferSetStreamBufferNumber')
+	.sect	'.debug_info'
+.L279:
+	.word	371
+	.half	3
+	.word	.L280
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L282,.L281
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'vStreamBufferSetStreamBufferNumber',0,1,130,11,10,1,1,1
+	.word	.L182,.L487,.L181
+	.byte	4
+	.byte	'xStreamBuffer',0,1,130,11,67
+	.word	.L339,.L488
+	.byte	4
+	.byte	'uxStreamBufferNumber',0,1,131,11,58
+	.word	.L366,.L489
+	.byte	5
+	.word	.L182,.L487
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vStreamBufferSetStreamBufferNumber')
+	.sect	'.debug_abbrev'
+.L280:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vStreamBufferSetStreamBufferNumber')
+	.sect	'.debug_line'
+.L281:
+	.word	.L981-.L980
+.L980:
+	.half	3
+	.word	.L983-.L982
+.L982:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L983:
+	.byte	5,45,7,0,5,2
+	.word	.L182
+	.byte	3,132,11,1,5,5,9
+	.half	.L984-.L182
+	.byte	3,1,1,7,9
+	.half	.L283-.L984
+	.byte	0,1,1
+.L981:
+	.sdecl	'.debug_ranges',debug,cluster('vStreamBufferSetStreamBufferNumber')
+	.sect	'.debug_ranges'
+.L282:
+	.word	-1,.L182,0,.L283-.L182,0,0
+	.sdecl	'.debug_info',debug,cluster('uxStreamBufferGetStreamBufferNumber')
+	.sect	'.debug_info'
+.L284:
+	.word	342
+	.half	3
+	.word	.L285
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L287,.L286
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'uxStreamBufferGetStreamBufferNumber',0,1,248,10,17
+	.word	.L366
+	.byte	1,1,1
+	.word	.L180,.L490,.L179
+	.byte	4
+	.byte	'xStreamBuffer',0,1,248,10,75
+	.word	.L339,.L491
+	.byte	5
+	.word	.L180,.L490
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('uxStreamBufferGetStreamBufferNumber')
+	.sect	'.debug_abbrev'
+.L285:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('uxStreamBufferGetStreamBufferNumber')
+	.sect	'.debug_line'
+.L286:
+	.word	.L986-.L985
+.L985:
+	.half	3
+	.word	.L988-.L987
+.L987:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L988:
+	.byte	5,29,7,0,5,2
+	.word	.L180
+	.byte	3,249,10,1,5,9,9
+	.half	.L989-.L180
+	.byte	1,5,5,9
+	.half	.L130-.L989
+	.byte	3,1,1,7,9
+	.half	.L288-.L130
+	.byte	0,1,1
+.L986:
+	.sdecl	'.debug_ranges',debug,cluster('uxStreamBufferGetStreamBufferNumber')
+	.sect	'.debug_ranges'
+.L287:
+	.word	-1,.L180,0,.L288-.L180,0,0
+	.sdecl	'.debug_info',debug,cluster('ucStreamBufferGetStreamBufferType')
+	.sect	'.debug_info'
+.L289:
+	.word	340
+	.half	3
+	.word	.L290
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L292,.L291
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'ucStreamBufferGetStreamBufferType',0,1,141,11,13
+	.word	.L325
+	.byte	1,1,1
+	.word	.L184,.L492,.L183
+	.byte	4
+	.byte	'xStreamBuffer',0,1,141,11,69
+	.word	.L339,.L493
+	.byte	5
+	.word	.L184,.L492
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('ucStreamBufferGetStreamBufferType')
+	.sect	'.debug_abbrev'
+.L290:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('ucStreamBufferGetStreamBufferType')
+	.sect	'.debug_line'
+.L291:
+	.word	.L991-.L990
+.L990:
+	.half	3
+	.word	.L993-.L992
+.L992:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L993:
+	.byte	5,30,7,0,5,2
+	.word	.L184
+	.byte	3,142,11,1,5,40,9
+	.half	.L994-.L184
+	.byte	1,5,9,9
+	.half	.L995-.L994
+	.byte	1,5,5,9
+	.half	.L131-.L995
+	.byte	3,1,1,7,9
+	.half	.L293-.L131
+	.byte	0,1,1
+.L991:
+	.sdecl	'.debug_ranges',debug,cluster('ucStreamBufferGetStreamBufferType')
+	.sect	'.debug_ranges'
+.L292:
+	.word	-1,.L184,0,.L293-.L184,0,0
+	.sdecl	'.debug_info',debug,cluster('prvBytesInBuffer')
+	.sect	'.debug_info'
+.L294:
+	.word	344
+	.half	3
+	.word	.L295
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L297,.L296
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'prvBytesInBuffer',0,1,186,10,15
+	.word	.L337
+	.byte	1,1
+	.word	.L176,.L494,.L175
+	.byte	4
+	.byte	'pxStreamBuffer',0,1,186,10,62
+	.word	.L495,.L496
+	.byte	5
+	.word	.L176,.L494
+	.byte	6
+	.byte	'xCount',0,1,189,10,12
+	.word	.L337,.L497
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvBytesInBuffer')
+	.sect	'.debug_abbrev'
+.L295:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvBytesInBuffer')
+	.sect	'.debug_line'
+.L296:
+	.word	.L997-.L996
+.L996:
+	.half	3
+	.word	.L999-.L998
+.L998:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L999:
+	.byte	5,28,7,0,5,2
+	.word	.L176
+	.byte	3,190,10,1,5,54,9
+	.half	.L1000-.L176
+	.byte	1,5,38,9
+	.half	.L745-.L1000
+	.byte	1,5,29,9
+	.half	.L1001-.L745
+	.byte	3,1,1,5,12,9
+	.half	.L1002-.L1001
+	.byte	1,5,33,9
+	.half	.L746-.L1002
+	.byte	3,2,1,5,5,9
+	.half	.L1003-.L746
+	.byte	1,5,33,7,9
+	.half	.L1004-.L1003
+	.byte	3,2,1,5,16,9
+	.half	.L1005-.L1004
+	.byte	1,5,42,9
+	.half	.L1006-.L1005
+	.byte	1,5,5,9
+	.half	.L128-.L1006
+	.byte	3,7,1,5,1,9
+	.half	.L129-.L128
+	.byte	3,1,1,7,9
+	.half	.L298-.L129
+	.byte	0,1,1
+.L997:
+	.sdecl	'.debug_ranges',debug,cluster('prvBytesInBuffer')
+	.sect	'.debug_ranges'
+.L297:
+	.word	-1,.L176,0,.L298-.L176,0,0
+	.sdecl	'.debug_info',debug,cluster('prvWriteBytesToBuffer')
+	.sect	'.debug_info'
+.L299:
+	.word	415
+	.half	3
+	.word	.L300
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L302,.L301
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'prvWriteBytesToBuffer',0,1,224,9,15
+	.word	.L337
+	.byte	1,1
+	.word	.L172,.L498,.L171
+	.byte	4
+	.byte	'pxStreamBuffer',0,1,224,9,61
+	.word	.L499,.L500
+	.byte	4
+	.byte	'pucData',0,1,225,9,54
+	.word	.L501,.L502
+	.byte	4
+	.byte	'xCount',0,1,226,9,45
+	.word	.L337,.L503
+	.byte	4
+	.byte	'xHead',0,1,227,9,45
+	.word	.L337,.L504
+	.byte	5
+	.word	.L172,.L498
+	.byte	6
+	.byte	'xFirstLength',0,1,229,9,12
+	.word	.L337,.L505
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvWriteBytesToBuffer')
+	.sect	'.debug_abbrev'
+.L300:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvWriteBytesToBuffer')
+	.sect	'.debug_line'
+.L301:
+	.word	.L1008-.L1007
+.L1007:
+	.half	3
+	.word	.L1010-.L1009
+.L1009:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L1010:
+	.byte	5,15,7,0,5,2
+	.word	.L172
+	.byte	3,223,9,1,5,20,9
+	.half	.L1011-.L172
+	.byte	3,12,1,5,52,9
+	.half	.L115-.L1011
+	.byte	3,4,1,5,63,9
+	.half	.L724-.L115
+	.byte	1,5,104,9
+	.half	.L715-.L724
+	.byte	1,5,5,9
+	.half	.L714-.L715
+	.byte	3,4,1,5,51,7,9
+	.half	.L725-.L714
+	.byte	3,4,1,5,91,9
+	.half	.L1012-.L725
+	.byte	1,5,118,9
+	.half	.L726-.L1012
+	.byte	1,5,77,9
+	.half	.L1013-.L726
+	.byte	3,127,1,5,11,9
+	.half	.L117-.L1013
+	.byte	3,8,1,5,32,9
+	.half	.L728-.L117
+	.byte	3,2,1,5,5,9
+	.half	.L1014-.L728
+	.byte	1,5,32,7,9
+	.half	.L1015-.L1014
+	.byte	3,2,1,5,15,9
+	.half	.L1016-.L1015
+	.byte	1,5,41,9
+	.half	.L1017-.L1016
+	.byte	1,5,5,9
+	.half	.L119-.L1017
+	.byte	3,7,1,5,1,9
+	.half	.L120-.L119
+	.byte	3,1,1,7,9
+	.half	.L303-.L120
+	.byte	0,1,1
+.L1008:
+	.sdecl	'.debug_ranges',debug,cluster('prvWriteBytesToBuffer')
+	.sect	'.debug_ranges'
+.L302:
+	.word	-1,.L172,0,.L303-.L172,0,0
+	.sdecl	'.debug_info',debug,cluster('prvReadMessageFromBuffer')
+	.sect	'.debug_info'
+.L304:
+	.word	526
+	.half	3
+	.word	.L305
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L307,.L306
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'prvReadMessageFromBuffer',0,1,179,8,15
+	.word	.L337
+	.byte	1,1
+	.word	.L162,.L506,.L161
+	.byte	4
+	.byte	'pxStreamBuffer',0,1,179,8,58
+	.word	.L405,.L507
+	.byte	4
+	.byte	'pvRxData',0,1,180,8,48
+	.word	.L376,.L508
+	.byte	4
+	.byte	'xBufferLengthBytes',0,1,181,8,48
+	.word	.L337,.L509
+	.byte	4
+	.byte	'xBytesAvailable',0,1,182,8,48
+	.word	.L337,.L510
+	.byte	5
+	.word	.L162,.L506
+	.byte	6
+	.byte	'xCount',0,1,184,8,12
+	.word	.L337,.L511
+	.byte	6
+	.byte	'xNextMessageLength',0,1,184,8,20
+	.word	.L337,.L512
+	.byte	6
+	.byte	'xTempNextMessageLength',0,1,185,8,38
+	.word	.L337,.L513
+	.byte	6
+	.byte	'xNextTail',0,1,186,8,12
+	.word	.L337,.L514
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvReadMessageFromBuffer')
+	.sect	'.debug_abbrev'
+.L305:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvReadMessageFromBuffer')
+	.sect	'.debug_line'
+.L306:
+	.word	.L1019-.L1018
+.L1018:
+	.half	3
+	.word	.L1021-.L1020
+.L1020:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L1021:
+	.byte	5,15,7,0,5,2
+	.word	.L162
+	.byte	3,178,8,1,5,38,9
+	.half	.L1022-.L162
+	.byte	3,7,1,5,25,9
+	.half	.L682-.L1022
+	.byte	3,2,1,5,5,9
+	.half	.L1023-.L682
+	.byte	1,5,76,7,9
+	.half	.L1024-.L1023
+	.byte	3,4,1,5,100,9
+	.half	.L679-.L1024
+	.byte	1,5,133,1,9
+	.half	.L681-.L679
+	.byte	1,5,19,9
+	.half	.L680-.L681
+	.byte	1,5,41,9
+	.half	.L685-.L680
+	.byte	3,1,1,5,25,9
+	.half	.L687-.L685
+	.byte	3,4,1,5,9,9
+	.half	.L688-.L687
+	.byte	3,4,1,5,32,7,9
+	.half	.L689-.L688
+	.byte	3,3,1,5,35,9
+	.half	.L1025-.L689
+	.byte	1,5,9,9
+	.half	.L92-.L1025
+	.byte	3,2,1,5,28,9
+	.half	.L90-.L92
+	.byte	3,9,1,5,14,9
+	.half	.L93-.L90
+	.byte	3,4,1,7,9
+	.half	.L690-.L93
+	.byte	1,5,5,9
+	.half	.L95-.L690
+	.byte	3,2,1,5,105,7,9
+	.half	.L1026-.L95
+	.byte	3,3,1,5,31,9
+	.half	.L686-.L1026
+	.byte	1,5,5,9
+	.half	.L96-.L686
+	.byte	3,3,1,5,1,9
+	.half	.L97-.L96
+	.byte	3,1,1,7,9
+	.half	.L308-.L97
+	.byte	0,1,1
+.L1019:
+	.sdecl	'.debug_ranges',debug,cluster('prvReadMessageFromBuffer')
+	.sect	'.debug_ranges'
+.L307:
+	.word	-1,.L162,0,.L308-.L162,0,0
+	.sdecl	'.debug_info',debug,cluster('prvWriteMessageToBuffer')
+	.sect	'.debug_info'
+.L309:
+	.word	482
+	.half	3
+	.word	.L310
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L312,.L311
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'prvWriteMessageToBuffer',0,1,184,6,15
+	.word	.L337
+	.byte	1,1
+	.word	.L154,.L515,.L153
+	.byte	4
+	.byte	'pxStreamBuffer',0,1,184,6,63
+	.word	.L516,.L517
+	.byte	4
+	.byte	'pvTxData',0,1,185,6,53
+	.word	.L341,.L518
+	.byte	4
+	.byte	'xDataLengthBytes',0,1,186,6,47
+	.word	.L337,.L519
+	.byte	4
+	.byte	'xSpace',0,1,187,6,47
+	.word	.L337,.L520
+	.byte	4
+	.byte	'xRequiredSpace',0,1,188,6,47
+	.word	.L337,.L521
+	.byte	5
+	.word	.L154,.L515
+	.byte	6
+	.byte	'xNextHead',0,1,190,6,12
+	.word	.L337,.L522
+	.byte	6
+	.byte	'xMessageLength',0,1,191,6,38
+	.word	.L337,.L523
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvWriteMessageToBuffer')
+	.sect	'.debug_abbrev'
+.L310:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvWriteMessageToBuffer')
+	.sect	'.debug_line'
+.L311:
+	.word	.L1028-.L1027
+.L1027:
+	.half	3
+	.word	.L1030-.L1029
+.L1029:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L1030:
+	.byte	5,15,7,0,5,2
+	.word	.L154
+	.byte	3,183,6,1,5,38,9
+	.half	.L627-.L154
+	.byte	3,6,1,5,25,9
+	.half	.L628-.L627
+	.byte	3,3,1,5,5,9
+	.half	.L1031-.L628
+	.byte	1,5,24,7,9
+	.half	.L1032-.L1031
+	.byte	3,5,1,5,9,9
+	.half	.L1033-.L1032
+	.byte	3,5,1,5,87,7,9
+	.half	.L1034-.L1033
+	.byte	3,5,1,5,105,9
+	.half	.L621-.L1034
+	.byte	1,5,138,1,9
+	.half	.L623-.L621
+	.byte	1,5,149,1,9
+	.half	.L622-.L623
+	.byte	1,5,30,9
+	.half	.L55-.L622
+	.byte	3,5,1,5,9,9
+	.half	.L56-.L55
+	.byte	3,125,1,5,28,9
+	.half	.L54-.L56
+	.byte	3,11,1,7,9
+	.half	.L1035-.L54
+	.byte	1,5,5,9
+	.half	.L57-.L1035
+	.byte	3,3,1,5,120,7,9
+	.half	.L1036-.L57
+	.byte	3,3,1,5,31,9
+	.half	.L629-.L1036
+	.byte	1,5,5,9
+	.half	.L60-.L629
+	.byte	3,3,1,5,1,9
+	.half	.L61-.L60
+	.byte	3,1,1,7,9
+	.half	.L313-.L61
+	.byte	0,1,1
+.L1028:
+	.sdecl	'.debug_ranges',debug,cluster('prvWriteMessageToBuffer')
+	.sect	'.debug_ranges'
+.L312:
+	.word	-1,.L154,0,.L313-.L154,0,0
+	.sdecl	'.debug_info',debug,cluster('prvReadBytesFromBuffer')
+	.sect	'.debug_info'
+.L314:
+	.word	416
+	.half	3
+	.word	.L315
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L317,.L316
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'prvReadBytesFromBuffer',0,1,142,10,15
+	.word	.L337
+	.byte	1,1
+	.word	.L174,.L524,.L173
+	.byte	4
+	.byte	'pxStreamBuffer',0,1,142,10,56
+	.word	.L405,.L525
+	.byte	4
+	.byte	'pucData',0,1,143,10,49
+	.word	.L477,.L526
+	.byte	4
+	.byte	'xCount',0,1,144,10,46
+	.word	.L337,.L527
+	.byte	4
+	.byte	'xTail',0,1,145,10,46
+	.word	.L337,.L528
+	.byte	5
+	.word	.L174,.L524
+	.byte	6
+	.byte	'xFirstLength',0,1,147,10,12
+	.word	.L337,.L529
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvReadBytesFromBuffer')
+	.sect	'.debug_abbrev'
+.L315:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvReadBytesFromBuffer')
+	.sect	'.debug_line'
+.L316:
+	.word	.L1038-.L1037
+.L1037:
+	.half	3
+	.word	.L1040-.L1039
+.L1039:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L1040:
+	.byte	5,15,7,0,5,2
+	.word	.L174
+	.byte	3,141,10,1,5,20,9
+	.half	.L1041-.L174
+	.byte	3,12,1,5,76,9
+	.half	.L122-.L1041
+	.byte	3,6,1,5,87,9
+	.half	.L740-.L122
+	.byte	1,5,100,9
+	.half	.L729-.L740
+	.byte	1,5,5,9
+	.half	.L732-.L729
+	.byte	3,4,1,5,47,7,9
+	.half	.L741-.L732
+	.byte	3,3,1,5,94,9
+	.half	.L1042-.L741
+	.byte	1,5,116,9
+	.half	.L742-.L1042
+	.byte	1,5,132,1,9
+	.half	.L1043-.L742
+	.byte	1,5,11,9
+	.half	.L124-.L1043
+	.byte	3,8,1,5,32,9
+	.half	.L744-.L124
+	.byte	3,2,1,5,5,9
+	.half	.L1044-.L744
+	.byte	1,5,32,7,9
+	.half	.L1045-.L1044
+	.byte	3,2,1,5,15,9
+	.half	.L1046-.L1045
+	.byte	1,5,5,9
+	.half	.L125-.L1046
+	.byte	3,3,1,5,1,9
+	.half	.L126-.L125
+	.byte	3,1,1,7,9
+	.half	.L318-.L126
+	.byte	0,1,1
+.L1038:
+	.sdecl	'.debug_ranges',debug,cluster('prvReadBytesFromBuffer')
+	.sect	'.debug_ranges'
+.L317:
+	.word	-1,.L174,0,.L318-.L174,0,0
+	.sdecl	'.debug_info',debug,cluster('prvInitialiseNewStreamBuffer')
+	.sect	'.debug_info'
+.L319:
+	.word	550
+	.half	3
+	.word	.L320
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L322,.L321
+	.byte	2
+	.word	.L185
+	.byte	3
+	.byte	'prvInitialiseNewStreamBuffer',0,1,207,10,13,1,1
+	.word	.L178,.L530,.L177
+	.byte	4
+	.byte	'pxStreamBuffer',0,1,207,10,66
+	.word	.L531,.L532
+	.byte	4
+	.byte	'pucBuffer',0,1,208,10,59
+	.word	.L533,.L534
+	.byte	4
+	.byte	'xBufferSizeBytes',0,1,209,10,50
+	.word	.L337,.L535
+	.byte	4
+	.byte	'xTriggerLevelBytes',0,1,210,10,50
+	.word	.L337,.L536
+	.byte	4
+	.byte	'ucFlags',0,1,211,10,51
+	.word	.L325,.L537
+	.byte	4
+	.byte	'pxSendCompletedCallback',0,1,212,10,74
+	.word	.L425,.L538
+	.byte	4
+	.byte	'pxReceiveCompletedCallback',0,1,213,10,74
+	.word	.L425,.L539
+	.byte	5
+	.word	.L178,.L530
+	.byte	5
+	.word	.L540,.L541
+	.byte	6
+	.byte	'xWriteValue',0,1,223,10,26
+	.word	.L542,.L543
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvInitialiseNewStreamBuffer')
+	.sect	'.debug_abbrev'
+.L320:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8,58
+	.byte	15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvInitialiseNewStreamBuffer')
+	.sect	'.debug_line'
+.L321:
+	.word	.L1048-.L1047
+.L1047:
+	.half	3
+	.word	.L1050-.L1049
+.L1049:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/stream_buffer.c',0,0,0,0,0
+.L1050:
+	.byte	5,13,7,0,5,2
+	.word	.L178
+	.byte	3,206,10,1,5,38,9
+	.half	.L540-.L178
+	.byte	3,16,1,5,9,9
+	.half	.L748-.L540
+	.byte	3,1,1,5,49,9
+	.half	.L541-.L748
+	.byte	3,4,1,5,55,9
+	.half	.L1051-.L541
+	.byte	1,5,31,9
+	.half	.L754-.L1051
+	.byte	3,1,1,5,29,9
+	.half	.L1052-.L754
+	.byte	3,1,1,5,40,9
+	.half	.L755-.L1052
+	.byte	3,1,1,5,29,9
+	.half	.L756-.L755
+	.byte	3,1,1,5,1,9
+	.half	.L757-.L756
+	.byte	3,12,1,7,9
+	.half	.L323-.L757
+	.byte	0,1,1
+.L1048:
+	.sdecl	'.debug_ranges',debug,cluster('prvInitialiseNewStreamBuffer')
+	.sect	'.debug_ranges'
+.L322:
+	.word	-1,.L178,0,.L323-.L178,0,0
+	.sdecl	'.debug_loc',debug,cluster('prvBytesInBuffer')
+	.sect	'.debug_loc'
+.L175:
+	.word	-1,.L176,0,.L494-.L176
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L496:
+	.word	-1,.L176,0,.L494-.L176
+	.half	1
+	.byte	100
+	.word	0,0
+.L497:
+	.word	-1,.L176,.L745-.L176,.L746-.L176
+	.half	1
+	.byte	95
+	.word	.L746-.L176,.L494-.L176
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvInitialiseNewStreamBuffer')
+	.sect	'.debug_loc'
+.L177:
+	.word	-1,.L178,0,.L530-.L178
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L534:
+	.word	-1,.L178,0,.L747-.L178
+	.half	1
+	.byte	101
+	.word	.L751-.L178,.L530-.L178
+	.half	1
+	.byte	108
+	.word	.L747-.L178,.L541-.L178
+	.half	1
+	.byte	100
+	.word	0,0
+.L539:
+	.word	-1,.L178,0,.L541-.L178
+	.half	1
+	.byte	103
+	.word	0,0
+.L538:
+	.word	-1,.L178,0,.L541-.L178
+	.half	1
+	.byte	102
+	.word	0,0
+.L532:
+	.word	-1,.L178,0,.L747-.L178
+	.half	1
+	.byte	100
+	.word	.L750-.L178,.L530-.L178
+	.half	1
+	.byte	111
+	.word	.L753-.L178,.L754-.L178
+	.half	1
+	.byte	100
+	.word	0,0
+.L537:
+	.word	-1,.L178,0,.L541-.L178
+	.half	1
+	.byte	86
+	.word	.L756-.L178,.L757-.L178
+	.half	1
+	.byte	89
+	.word	0,0
+.L535:
+	.word	-1,.L178,0,.L748-.L178
+	.half	1
+	.byte	84
+	.word	.L752-.L178,.L530-.L178
+	.half	1
+	.byte	95
+	.word	.L749-.L178,.L541-.L178
+	.half	1
+	.byte	85
+	.word	0,0
+.L536:
+	.word	-1,.L178,0,.L749-.L178
+	.half	1
+	.byte	85
+	.word	.L755-.L178,.L756-.L178
+	.half	1
+	.byte	88
+	.word	0,0
+.L543:
+	.word	-1,.L178,.L748-.L178,.L541-.L178
+	.half	1
+	.byte	84
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvReadBytesFromBuffer')
+	.sect	'.debug_loc'
+.L173:
+	.word	-1,.L174,0,.L524-.L174
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L526:
+	.word	-1,.L174,0,.L729-.L174
+	.half	1
+	.byte	101
+	.word	.L734-.L174,.L524-.L174
+	.half	1
+	.byte	108
+	.word	.L730-.L174,.L732-.L174
+	.half	1
+	.byte	100
+	.word	0,0
+.L525:
+	.word	-1,.L174,0,.L730-.L174
+	.half	1
+	.byte	100
+	.word	.L733-.L174,.L524-.L174
+	.half	1
+	.byte	111
+	.word	0,0
+.L527:
+	.word	-1,.L174,0,.L731-.L174
+	.half	1
+	.byte	84
+	.word	.L736-.L174,.L737-.L174
+	.half	1
+	.byte	88
+	.word	.L121-.L174,.L122-.L174
+	.half	1
+	.byte	88
+	.word	.L732-.L174,.L741-.L174
+	.half	1
+	.byte	88
+	.word	.L742-.L174,.L743-.L174
+	.half	1
+	.byte	88
+	.word	.L124-.L174,.L744-.L174
+	.half	1
+	.byte	88
+	.word	0,0
+.L529:
+	.word	0,0
+.L528:
+	.word	-1,.L174,0,.L732-.L174
+	.half	1
+	.byte	85
+	.word	.L735-.L174,.L736-.L174
+	.half	1
+	.byte	89
+	.word	.L738-.L174,.L739-.L174
+	.half	1
+	.byte	89
+	.word	.L740-.L174,.L729-.L174
+	.half	1
+	.byte	89
+	.word	.L124-.L174,.L744-.L174
+	.half	1
+	.byte	89
+	.word	.L744-.L174,.L524-.L174
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvReadMessageFromBuffer')
+	.sect	'.debug_loc'
+.L161:
+	.word	-1,.L162,0,.L678-.L162
+	.half	2
+	.byte	138,0
+	.word	.L678-.L162,.L506-.L162
+	.half	2
+	.byte	138,8
+	.word	.L506-.L162,.L506-.L162
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L508:
+	.word	-1,.L162,0,.L679-.L162
+	.half	1
+	.byte	101
+	.word	.L684-.L162,.L506-.L162
+	.half	1
+	.byte	108
+	.word	.L90-.L162,.L93-.L162
+	.half	1
+	.byte	101
+	.word	.L692-.L162,.L686-.L162
+	.half	1
+	.byte	101
+	.word	0,0
+.L507:
+	.word	-1,.L162,0,.L680-.L162
+	.half	1
+	.byte	100
+	.word	.L683-.L162,.L506-.L162
+	.half	1
+	.byte	111
+	.word	.L90-.L162,.L93-.L162
+	.half	1
+	.byte	100
+	.word	.L691-.L162,.L686-.L162
+	.half	1
+	.byte	100
+	.word	0,0
+.L509:
+	.word	-1,.L162,0,.L681-.L162
+	.half	1
+	.byte	84
+	.word	.L688-.L162,.L689-.L162
+	.half	1
+	.byte	88
+	.word	.L90-.L162,.L93-.L162
+	.half	1
+	.byte	84
+	.word	.L90-.L162,.L93-.L162
+	.half	1
+	.byte	88
+	.word	0,0
+.L510:
+	.word	-1,.L162,0,.L682-.L162
+	.half	1
+	.byte	85
+	.word	.L687-.L162,.L90-.L162
+	.half	1
+	.byte	89
+	.word	.L93-.L162,.L690-.L162
+	.half	1
+	.byte	89
+	.word	.L94-.L162,.L95-.L162
+	.half	1
+	.byte	89
+	.word	0,0
+.L511:
+	.word	0,0
+.L512:
+	.word	-1,.L162,.L687-.L162,.L90-.L162
+	.half	1
+	.byte	95
+	.word	.L93-.L162,.L506-.L162
+	.half	1
+	.byte	95
+	.word	.L693-.L162,.L686-.L162
+	.half	1
+	.byte	84
+	.word	.L694-.L162,.L506-.L162
+	.half	1
+	.byte	82
+	.word	0,0
+.L514:
+	.word	-1,.L162,.L682-.L162,.L680-.L162
+	.half	1
+	.byte	85
+	.word	.L680-.L162,.L90-.L162
+	.half	1
+	.byte	82
+	.word	.L685-.L162,.L686-.L162
+	.half	1
+	.byte	85
+	.word	0,0
+.L513:
+	.word	-1,.L162,0,.L506-.L162
+	.half	2
+	.byte	145,120
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvWriteBytesToBuffer')
+	.sect	'.debug_loc'
+.L171:
+	.word	-1,.L172,0,.L498-.L172
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L502:
+	.word	-1,.L172,0,.L714-.L172
+	.half	1
+	.byte	101
+	.word	.L718-.L172,.L498-.L172
+	.half	1
+	.byte	108
+	.word	0,0
+.L500:
+	.word	-1,.L172,0,.L715-.L172
+	.half	1
+	.byte	100
+	.word	.L717-.L172,.L498-.L172
+	.half	1
+	.byte	111
+	.word	0,0
+.L503:
+	.word	-1,.L172,0,.L716-.L172
+	.half	1
+	.byte	84
+	.word	.L720-.L172,.L721-.L172
+	.half	1
+	.byte	88
+	.word	.L114-.L172,.L115-.L172
+	.half	1
+	.byte	88
+	.word	.L714-.L172,.L725-.L172
+	.half	1
+	.byte	88
+	.word	.L726-.L172,.L727-.L172
+	.half	1
+	.byte	88
+	.word	.L117-.L172,.L728-.L172
+	.half	1
+	.byte	88
+	.word	0,0
+.L505:
+	.word	0,0
+.L504:
+	.word	-1,.L172,0,.L714-.L172
+	.half	1
+	.byte	85
+	.word	.L719-.L172,.L720-.L172
+	.half	1
+	.byte	89
+	.word	.L722-.L172,.L723-.L172
+	.half	1
+	.byte	89
+	.word	.L724-.L172,.L715-.L172
+	.half	1
+	.byte	89
+	.word	.L117-.L172,.L728-.L172
+	.half	1
+	.byte	89
+	.word	.L728-.L172,.L498-.L172
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvWriteMessageToBuffer')
+	.sect	'.debug_loc'
+.L153:
+	.word	-1,.L154,0,.L620-.L154
+	.half	2
+	.byte	138,0
+	.word	.L620-.L154,.L515-.L154
+	.half	2
+	.byte	138,8
+	.word	.L515-.L154,.L515-.L154
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L518:
+	.word	-1,.L154,0,.L621-.L154
+	.half	1
+	.byte	101
+	.word	.L626-.L154,.L515-.L154
+	.half	1
+	.byte	108
+	.word	.L55-.L154,.L56-.L154
+	.half	1
+	.byte	101
+	.word	.L54-.L154,.L57-.L154
+	.half	1
+	.byte	101
+	.word	.L631-.L154,.L629-.L154
+	.half	1
+	.byte	101
+	.word	0,0
+.L517:
+	.word	-1,.L154,0,.L622-.L154
+	.half	1
+	.byte	100
+	.word	.L625-.L154,.L515-.L154
+	.half	1
+	.byte	111
+	.word	.L55-.L154,.L56-.L154
+	.half	1
+	.byte	100
+	.word	.L54-.L154,.L57-.L154
+	.half	1
+	.byte	100
+	.word	.L630-.L154,.L629-.L154
+	.half	1
+	.byte	100
+	.word	0,0
+.L519:
+	.word	-1,.L154,0,.L623-.L154
+	.half	1
+	.byte	84
+	.word	.L627-.L154,.L515-.L154
+	.half	1
+	.byte	95
+	.word	.L55-.L154,.L56-.L154
+	.half	1
+	.byte	84
+	.word	.L54-.L154,.L57-.L154
+	.half	1
+	.byte	84
+	.word	.L632-.L154,.L515-.L154
+	.half	1
+	.byte	82
+	.word	0,0
+.L523:
+	.word	-1,.L154,0,.L515-.L154
+	.half	2
+	.byte	145,120
+	.word	0,0
+.L522:
+	.word	-1,.L154,.L628-.L154,.L629-.L154
+	.half	1
+	.byte	82
+	.word	.L624-.L154,.L622-.L154
+	.half	1
+	.byte	85
+	.word	0,0
+.L521:
+	.word	-1,.L154,0,.L622-.L154
+	.half	1
+	.byte	86
+	.word	.L55-.L154,.L56-.L154
+	.half	1
+	.byte	86
+	.word	.L54-.L154,.L57-.L154
+	.half	1
+	.byte	86
+	.word	0,0
+.L520:
+	.word	-1,.L154,0,.L624-.L154
+	.half	1
+	.byte	85
+	.word	.L55-.L154,.L56-.L154
+	.half	1
+	.byte	85
+	.word	.L54-.L154,.L57-.L154
+	.half	1
+	.byte	85
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('ucStreamBufferGetStreamBufferType')
+	.sect	'.debug_loc'
+.L183:
+	.word	-1,.L184,0,.L492-.L184
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L493:
+	.word	-1,.L184,0,.L492-.L184
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('uxStreamBufferGetStreamBufferNumber')
+	.sect	'.debug_loc'
+.L179:
+	.word	-1,.L180,0,.L490-.L180
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L491:
+	.word	-1,.L180,0,.L490-.L180
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_loc'
+.L326:
+	.word	-1,.L133,0,.L324-.L133
+	.half	1
+	.byte	84
+	.word	0,0
+.L132:
+	.word	-1,.L133,0,.L324-.L133
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vPortSetICR')
+	.sect	'.debug_loc'
+.L330:
+	.word	-1,.L135,0,.L328-.L135
+	.half	1
+	.byte	84
+	.word	0,0
+.L134:
+	.word	-1,.L135,0,.L328-.L135
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vStreamBufferDelete')
+	.sect	'.debug_loc'
+.L406:
+	.word	0,0
+.L140:
+	.word	-1,.L141,0,.L403-.L141
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L404:
+	.word	-1,.L141,0,.L561-.L141
+	.half	1
+	.byte	100
+	.word	.L11-.L141,.L12-.L141
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vStreamBufferSetStreamBufferNumber')
+	.sect	'.debug_loc'
+.L489:
+	.word	-1,.L182,0,.L487-.L182
+	.half	1
+	.byte	84
+	.word	0,0
+.L181:
+	.word	-1,.L182,0,.L487-.L182
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L488:
+	.word	-1,.L182,0,.L487-.L182
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_loc'
+.L334:
+	.word	-1,.L137,0,.L332-.L137
+	.half	1
+	.byte	84
+	.word	0,0
+.L336:
+	.word	-1,.L137,.L544-.L137,.L332-.L137
+	.half	1
+	.byte	82
+	.word	0,0
+.L136:
+	.word	-1,.L137,0,.L332-.L137
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferBytesAvailable')
+	.sect	'.debug_loc'
+.L438:
+	.word	0,0
+.L439:
+	.word	-1,.L148,.L577-.L148,.L435-.L148
+	.half	1
+	.byte	82
+	.word	0,0
+.L436:
+	.word	-1,.L148,0,.L577-.L148
+	.half	1
+	.byte	100
+	.word	0,0
+.L147:
+	.word	-1,.L148,0,.L435-.L148
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferGenericCreate')
+	.sect	'.debug_loc'
+.L478:
+	.word	-1,.L139,.L545-.L139,.L6-.L139
+	.half	1
+	.byte	98
+	.word	.L553-.L139,.L6-.L139
+	.half	1
+	.byte	109
+	.word	.L7-.L139,.L471-.L139
+	.half	1
+	.byte	109
+	.word	.L554-.L139,.L555-.L139
+	.half	1
+	.byte	100
+	.word	.L560-.L139,.L471-.L139
+	.half	1
+	.byte	98
+	.word	0,0
+.L476:
+	.word	-1,.L139,0,.L545-.L139
+	.half	1
+	.byte	101
+	.word	.L548-.L139,.L471-.L139
+	.half	1
+	.byte	108
+	.word	.L6-.L139,.L7-.L139
+	.half	1
+	.byte	101
+	.word	.L559-.L139,.L555-.L139
+	.half	1
+	.byte	103
+	.word	0,0
+.L475:
+	.word	-1,.L139,0,.L545-.L139
+	.half	1
+	.byte	100
+	.word	.L547-.L139,.L471-.L139
+	.half	1
+	.byte	111
+	.word	.L6-.L139,.L7-.L139
+	.half	1
+	.byte	100
+	.word	.L558-.L139,.L555-.L139
+	.half	1
+	.byte	102
+	.word	0,0
+.L479:
+	.word	-1,.L139,.L549-.L139,.L3-.L139
+	.half	1
+	.byte	90
+	.word	.L4-.L139,.L471-.L139
+	.half	1
+	.byte	90
+	.word	.L557-.L139,.L555-.L139
+	.half	1
+	.byte	86
+	.word	0,0
+.L472:
+	.word	-1,.L139,0,.L546-.L139
+	.half	1
+	.byte	84
+	.word	.L5-.L139,.L551-.L139
+	.half	1
+	.byte	88
+	.word	.L552-.L139,.L6-.L139
+	.half	1
+	.byte	88
+	.word	.L6-.L139,.L7-.L139
+	.half	1
+	.byte	84
+	.word	.L554-.L139,.L556-.L139
+	.half	1
+	.byte	88
+	.word	0,0
+.L474:
+	.word	-1,.L139,0,.L545-.L139
+	.half	1
+	.byte	86
+	.word	.L6-.L139,.L7-.L139
+	.half	1
+	.byte	86
+	.word	0,0
+.L138:
+	.word	-1,.L139,0,.L471-.L139
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L473:
+	.word	-1,.L139,0,.L5-.L139
+	.half	1
+	.byte	85
+	.word	.L4-.L139,.L550-.L139
+	.half	1
+	.byte	89
+	.word	.L554-.L139,.L556-.L139
+	.half	1
+	.byte	89
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferIsEmpty')
+	.sect	'.debug_loc'
+.L417:
+	.word	0,0
+.L418:
+	.word	-1,.L164,.L696-.L164,.L98-.L164
+	.half	1
+	.byte	82
+	.word	.L99-.L164,.L414-.L164
+	.half	1
+	.byte	82
+	.word	0,0
+.L415:
+	.word	-1,.L164,0,.L414-.L164
+	.half	1
+	.byte	100
+	.word	0,0
+.L163:
+	.word	-1,.L164,0,.L414-.L164
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L419:
+	.word	-1,.L164,.L695-.L164,.L414-.L164
+	.half	5
+	.byte	144,32,157,32,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferIsFull')
+	.sect	'.debug_loc'
+.L413:
+	.word	0,0
+.L411:
+	.word	-1,.L166,.L698-.L166,.L101-.L166
+	.half	1
+	.byte	95
+	.word	.L102-.L166,.L408-.L166
+	.half	1
+	.byte	95
+	.word	0,0
+.L410:
+	.word	-1,.L166,.L699-.L166,.L103-.L166
+	.half	1
+	.byte	82
+	.word	.L104-.L166,.L408-.L166
+	.half	1
+	.byte	82
+	.word	0,0
+.L409:
+	.word	-1,.L166,0,.L697-.L166
+	.half	1
+	.byte	100
+	.word	0,0
+.L165:
+	.word	-1,.L166,0,.L408-.L166
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferNextMessageLengthBytes')
+	.sect	'.debug_loc'
+.L483:
+	.word	0,0
+.L485:
+	.word	-1,.L158,.L658-.L158,.L660-.L158
+	.half	1
+	.byte	82
+	.word	.L77-.L158,.L78-.L158
+	.half	1
+	.byte	82
+	.word	0,0
+.L484:
+	.word	-1,.L158,.L662-.L158,.L77-.L158
+	.half	1
+	.byte	82
+	.word	.L78-.L158,.L76-.L158
+	.half	1
+	.byte	82
+	.word	.L79-.L158,.L480-.L158
+	.half	1
+	.byte	82
+	.word	0,0
+.L481:
+	.word	-1,.L158,0,.L658-.L158
+	.half	1
+	.byte	100
+	.word	.L659-.L158,.L480-.L158
+	.half	1
+	.byte	111
+	.word	.L661-.L158,.L660-.L158
+	.half	1
+	.byte	100
+	.word	.L76-.L158,.L79-.L158
+	.half	1
+	.byte	100
+	.word	0,0
+.L157:
+	.word	-1,.L158,0,.L657-.L158
+	.half	2
+	.byte	138,0
+	.word	.L657-.L158,.L480-.L158
+	.half	2
+	.byte	138,8
+	.word	.L480-.L158,.L480-.L158
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L486:
+	.word	-1,.L158,0,.L480-.L158
+	.half	2
+	.byte	145,120
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferReceive')
+	.sect	'.debug_loc'
+.L377:
+	.word	-1,.L156,0,.L633-.L156
+	.half	1
+	.byte	101
+	.word	.L635-.L156,.L374-.L156
+	.half	1
+	.byte	108
+	.word	.L64-.L156,.L650-.L156
+	.half	1
+	.byte	101
+	.word	.L652-.L156,.L637-.L156
+	.half	1
+	.byte	101
+	.word	0,0
+.L381:
+	.word	0,0
+.L378:
+	.word	-1,.L156,0,.L633-.L156
+	.half	1
+	.byte	84
+	.word	.L64-.L156,.L650-.L156
+	.half	1
+	.byte	84
+	.word	.L652-.L156,.L653-.L156
+	.half	1
+	.byte	88
+	.word	0,0
+.L383:
+	.word	-1,.L156,.L641-.L156,.L642-.L156
+	.half	1
+	.byte	82
+	.word	.L643-.L156,.L644-.L156
+	.half	1
+	.byte	92
+	.word	.L644-.L156,.L68-.L156
+	.half	1
+	.byte	82
+	.word	.L649-.L156,.L64-.L156
+	.half	1
+	.byte	92
+	.word	.L650-.L156,.L69-.L156
+	.half	1
+	.byte	82
+	.word	.L69-.L156,.L374-.L156
+	.half	1
+	.byte	92
+	.word	0,0
+.L384:
+	.word	-1,.L156,.L638-.L156,.L62-.L156
+	.half	1
+	.byte	91
+	.word	.L63-.L156,.L374-.L156
+	.half	1
+	.byte	91
+	.word	0,0
+.L382:
+	.word	-1,.L156,.L636-.L156,.L637-.L156
+	.half	1
+	.byte	90
+	.word	.L637-.L156,.L654-.L156
+	.half	1
+	.byte	82
+	.word	.L655-.L156,.L374-.L156
+	.half	1
+	.byte	90
+	.word	.L656-.L156,.L374-.L156
+	.half	1
+	.byte	82
+	.word	0,0
+.L375:
+	.word	-1,.L156,0,.L633-.L156
+	.half	1
+	.byte	100
+	.word	.L634-.L156,.L374-.L156
+	.half	1
+	.byte	111
+	.word	.L640-.L156,.L641-.L156
+	.half	1
+	.byte	100
+	.word	.L648-.L156,.L644-.L156
+	.half	1
+	.byte	100
+	.word	.L64-.L156,.L650-.L156
+	.half	1
+	.byte	100
+	.word	.L651-.L156,.L637-.L156
+	.half	1
+	.byte	100
+	.word	0,0
+.L155:
+	.word	-1,.L156,0,.L374-.L156
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L379:
+	.word	-1,.L156,0,.L633-.L156
+	.half	1
+	.byte	85
+	.word	.L63-.L156,.L639-.L156
+	.half	1
+	.byte	89
+	.word	.L645-.L156,.L646-.L156
+	.half	1
+	.byte	89
+	.word	.L646-.L156,.L647-.L156
+	.half	1
+	.byte	87
+	.word	.L64-.L156,.L650-.L156
+	.half	1
+	.byte	85
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferReceiveCompletedFromISR')
+	.sect	'.debug_loc'
+.L461:
+	.word	-1,.L170,0,.L707-.L170
+	.half	1
+	.byte	101
+	.word	.L710-.L170,.L711-.L170
+	.half	1
+	.byte	102
+	.word	.L111-.L170,.L112-.L170
+	.half	1
+	.byte	101
+	.word	.L111-.L170,.L112-.L170
+	.half	1
+	.byte	102
+	.word	0,0
+.L463:
+	.word	0,0
+.L467:
+	.word	0,0
+.L470:
+	.word	0,0
+.L465:
+	.word	0,0
+.L468:
+	.word	-1,.L170,.L712-.L170,.L459-.L170
+	.half	1
+	.byte	88
+	.word	0,0
+.L464:
+	.word	-1,.L170,.L713-.L170,.L111-.L170
+	.half	1
+	.byte	82
+	.word	.L112-.L170,.L459-.L170
+	.half	1
+	.byte	82
+	.word	0,0
+.L460:
+	.word	-1,.L170,0,.L708-.L170
+	.half	1
+	.byte	100
+	.word	.L709-.L170,.L459-.L170
+	.half	1
+	.byte	111
+	.word	.L111-.L170,.L112-.L170
+	.half	1
+	.byte	100
+	.word	0,0
+.L169:
+	.word	-1,.L170,0,.L459-.L170
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferReceiveFromISR')
+	.sect	'.debug_loc'
+.L387:
+	.word	-1,.L160,0,.L663-.L160
+	.half	1
+	.byte	101
+	.word	.L665-.L160,.L385-.L160
+	.half	1
+	.byte	108
+	.word	.L673-.L160,.L670-.L160
+	.half	1
+	.byte	101
+	.word	0,0
+.L390:
+	.word	-1,.L160,0,.L663-.L160
+	.half	1
+	.byte	102
+	.word	.L668-.L160,.L385-.L160
+	.half	1
+	.byte	109
+	.word	.L676-.L160,.L674-.L160
+	.half	1
+	.byte	102
+	.word	0,0
+.L392:
+	.word	0,0
+.L400:
+	.word	0,0
+.L402:
+	.word	0,0
+.L398:
+	.word	0,0
+.L388:
+	.word	-1,.L160,0,.L663-.L160
+	.half	1
+	.byte	84
+	.word	.L666-.L160,.L667-.L160
+	.half	1
+	.byte	88
+	.word	0,0
+.L394:
+	.word	-1,.L160,.L663-.L160,.L670-.L160
+	.half	1
+	.byte	82
+	.word	0,0
+.L395:
+	.word	-1,.L160,.L671-.L160,.L81-.L160
+	.half	1
+	.byte	89
+	.word	.L82-.L160,.L385-.L160
+	.half	1
+	.byte	89
+	.word	0,0
+.L401:
+	.word	-1,.L160,.L667-.L160,.L87-.L160
+	.half	1
+	.byte	88
+	.word	0,0
+.L393:
+	.word	-1,.L160,.L669-.L160,.L670-.L160
+	.half	1
+	.byte	90
+	.word	.L670-.L160,.L674-.L160
+	.half	1
+	.byte	82
+	.word	.L675-.L160,.L385-.L160
+	.half	1
+	.byte	90
+	.word	.L677-.L160,.L385-.L160
+	.half	1
+	.byte	82
+	.word	0,0
+.L386:
+	.word	-1,.L160,0,.L663-.L160
+	.half	1
+	.byte	100
+	.word	.L664-.L160,.L385-.L160
+	.half	1
+	.byte	111
+	.word	.L672-.L160,.L670-.L160
+	.half	1
+	.byte	100
+	.word	0,0
+.L159:
+	.word	-1,.L160,0,.L385-.L160
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferReset')
+	.sect	'.debug_loc'
+.L427:
+	.word	-1,.L143,.L566-.L143,.L420-.L143
+	.half	1
+	.byte	109
+	.word	.L571-.L143,.L569-.L143
+	.half	1
+	.byte	103
+	.word	0,0
+.L426:
+	.word	-1,.L143,.L565-.L143,.L420-.L143
+	.half	1
+	.byte	108
+	.word	.L570-.L143,.L569-.L143
+	.half	1
+	.byte	102
+	.word	0,0
+.L423:
+	.word	0,0
+.L428:
+	.word	-1,.L143,.L567-.L143,.L420-.L143
+	.half	1
+	.byte	89
+	.word	0,0
+.L424:
+	.word	-1,.L143,.L564-.L143,.L420-.L143
+	.half	1
+	.byte	88
+	.word	.L572-.L143,.L420-.L143
+	.half	1
+	.byte	82
+	.word	0,0
+.L421:
+	.word	-1,.L143,0,.L562-.L143
+	.half	1
+	.byte	100
+	.word	.L563-.L143,.L420-.L143
+	.half	1
+	.byte	111
+	.word	.L568-.L143,.L569-.L143
+	.half	1
+	.byte	100
+	.word	0,0
+.L142:
+	.word	-1,.L143,0,.L420-.L143
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferSend')
+	.sect	'.debug_loc'
+.L342:
+	.word	-1,.L150,0,.L32-.L150
+	.half	1
+	.byte	101
+	.word	.L581-.L150,.L338-.L150
+	.half	1
+	.byte	108
+	.word	.L598-.L150,.L597-.L150
+	.half	1
+	.byte	101
+	.word	0,0
+.L346:
+	.word	0,0
+.L343:
+	.word	-1,.L150,0,.L32-.L150
+	.half	1
+	.byte	84
+	.word	.L582-.L150,.L583-.L150
+	.half	1
+	.byte	88
+	.word	0,0
+.L352:
+	.word	-1,.L150,.L587-.L150,.L588-.L150
+	.half	5
+	.byte	144,32,157,32,0
+	.word	.L25-.L150,.L28-.L150
+	.half	5
+	.byte	144,32,157,32,0
+	.word	0,0
+.L349:
+	.word	-1,.L150,.L586-.L150,.L338-.L150
+	.half	1
+	.byte	90
+	.word	.L599-.L150,.L597-.L150
+	.half	1
+	.byte	86
+	.word	0,0
+.L347:
+	.word	-1,.L150,.L597-.L150,.L600-.L150
+	.half	1
+	.byte	82
+	.word	.L583-.L150,.L338-.L150
+	.half	1
+	.byte	88
+	.word	.L602-.L150,.L338-.L150
+	.half	1
+	.byte	82
+	.word	0,0
+.L348:
+	.word	-1,.L150,.L584-.L150,.L585-.L150
+	.half	1
+	.byte	89
+	.word	.L585-.L150,.L590-.L150
+	.half	1
+	.byte	82
+	.word	.L591-.L150,.L592-.L150
+	.half	1
+	.byte	89
+	.word	.L33-.L150,.L593-.L150
+	.half	1
+	.byte	82
+	.word	.L592-.L150,.L38-.L150
+	.half	1
+	.byte	82
+	.word	.L595-.L150,.L338-.L150
+	.half	1
+	.byte	89
+	.word	0,0
+.L340:
+	.word	-1,.L150,0,.L579-.L150
+	.half	1
+	.byte	100
+	.word	.L580-.L150,.L338-.L150
+	.half	1
+	.byte	111
+	.word	.L589-.L150,.L585-.L150
+	.half	1
+	.byte	100
+	.word	.L594-.L150,.L592-.L150
+	.half	1
+	.byte	100
+	.word	.L596-.L150,.L597-.L150
+	.half	1
+	.byte	100
+	.word	.L601-.L150,.L600-.L150
+	.half	1
+	.byte	100
+	.word	0,0
+.L149:
+	.word	-1,.L150,0,.L578-.L150
+	.half	2
+	.byte	138,0
+	.word	.L578-.L150,.L338-.L150
+	.half	2
+	.byte	138,16
+	.word	.L338-.L150,.L338-.L150
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L344:
+	.word	-1,.L150,0,.L338-.L150
+	.half	2
+	.byte	145,112
+	.word	0,.L32-.L150
+	.half	1
+	.byte	85
+	.word	0,0
+.L351:
+	.word	-1,.L150,0,.L338-.L150
+	.half	2
+	.byte	145,116
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferSendCompletedFromISR')
+	.sect	'.debug_loc'
+.L449:
+	.word	-1,.L168,0,.L700-.L168
+	.half	1
+	.byte	101
+	.word	.L703-.L168,.L704-.L168
+	.half	1
+	.byte	102
+	.word	.L107-.L168,.L108-.L168
+	.half	1
+	.byte	101
+	.word	.L107-.L168,.L108-.L168
+	.half	1
+	.byte	102
+	.word	0,0
+.L451:
+	.word	0,0
+.L455:
+	.word	0,0
+.L458:
+	.word	0,0
+.L453:
+	.word	0,0
+.L456:
+	.word	-1,.L168,.L705-.L168,.L446-.L168
+	.half	1
+	.byte	88
+	.word	0,0
+.L452:
+	.word	-1,.L168,.L706-.L168,.L107-.L168
+	.half	1
+	.byte	82
+	.word	.L108-.L168,.L446-.L168
+	.half	1
+	.byte	82
+	.word	0,0
+.L447:
+	.word	-1,.L168,0,.L701-.L168
+	.half	1
+	.byte	100
+	.word	.L702-.L168,.L446-.L168
+	.half	1
+	.byte	111
+	.word	.L107-.L168,.L108-.L168
+	.half	1
+	.byte	100
+	.word	0,0
+.L167:
+	.word	-1,.L168,0,.L446-.L168
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferSendFromISR')
+	.sect	'.debug_loc'
+.L355:
+	.word	-1,.L152,0,.L603-.L152
+	.half	1
+	.byte	101
+	.word	.L605-.L152,.L353-.L152
+	.half	1
+	.byte	108
+	.word	.L613-.L152,.L611-.L152
+	.half	1
+	.byte	101
+	.word	0,0
+.L358:
+	.word	-1,.L152,0,.L603-.L152
+	.half	1
+	.byte	102
+	.word	.L608-.L152,.L353-.L152
+	.half	1
+	.byte	109
+	.word	.L617-.L152,.L618-.L152
+	.half	1
+	.byte	102
+	.word	0,0
+.L360:
+	.word	0,0
+.L369:
+	.word	0,0
+.L372:
+	.word	0,0
+.L367:
+	.word	0,0
+.L356:
+	.word	-1,.L152,0,.L603-.L152
+	.half	1
+	.byte	84
+	.word	.L606-.L152,.L607-.L152
+	.half	1
+	.byte	88
+	.word	0,0
+.L371:
+	.word	-1,.L152,.L610-.L152,.L51-.L152
+	.half	1
+	.byte	89
+	.word	0,0
+.L363:
+	.word	-1,.L152,.L609-.L152,.L610-.L152
+	.half	1
+	.byte	89
+	.word	.L614-.L152,.L611-.L152
+	.half	1
+	.byte	86
+	.word	0,0
+.L361:
+	.word	-1,.L152,.L611-.L152,.L615-.L152
+	.half	1
+	.byte	82
+	.word	.L607-.L152,.L353-.L152
+	.half	1
+	.byte	88
+	.word	.L619-.L152,.L353-.L152
+	.half	1
+	.byte	82
+	.word	0,0
+.L362:
+	.word	-1,.L152,.L603-.L152,.L611-.L152
+	.half	1
+	.byte	82
+	.word	0,0
+.L354:
+	.word	-1,.L152,0,.L603-.L152
+	.half	1
+	.byte	100
+	.word	.L604-.L152,.L353-.L152
+	.half	1
+	.byte	111
+	.word	.L612-.L152,.L611-.L152
+	.half	1
+	.byte	100
+	.word	.L616-.L152,.L615-.L152
+	.half	1
+	.byte	100
+	.word	0,0
+.L151:
+	.word	-1,.L152,0,.L353-.L152
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferSetTriggerLevel')
+	.sect	'.debug_loc'
+.L444:
+	.word	0,0
+.L445:
+	.word	-1,.L145,.L573-.L145,.L17-.L145
+	.half	1
+	.byte	82
+	.word	.L18-.L145,.L440-.L145
+	.half	1
+	.byte	82
+	.word	0,0
+.L441:
+	.word	-1,.L145,0,.L440-.L145
+	.half	1
+	.byte	100
+	.word	0,0
+.L144:
+	.word	-1,.L145,0,.L440-.L145
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L442:
+	.word	-1,.L145,0,.L440-.L145
+	.half	1
+	.byte	84
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xStreamBufferSpacesAvailable')
+	.sect	'.debug_loc'
+.L432:
+	.word	0,0
+.L434:
+	.word	-1,.L20,.L574-.L20,.L429-.L20
+	.half	1
+	.byte	81
+	.word	0,0
+.L433:
+	.word	-1,.L20,.L575-.L20,.L576-.L20
+	.half	5
+	.byte	144,32,157,32,0
+	.word	.L576-.L20,.L429-.L20
+	.half	1
+	.byte	82
+	.word	0,0
+.L430:
+	.word	-1,.L20,0,.L429-.L20
+	.half	1
+	.byte	100
+	.word	0,0
+.L146:
+	.word	-1,.L20,0,.L429-.L20
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_frame',debug
+	.sect	'.debug_frame'
+.L1053:
+	.word	48
+	.word	-1
+	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
+	.byte	8,39
+	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L133,.L324-.L133
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('vPortSetICR')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L135,.L328-.L135
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L137,.L332-.L137
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferGenericCreate')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L139,.L471-.L139
+	.sdecl	'.debug_frame',debug,cluster('vStreamBufferDelete')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L141,.L403-.L141
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferReset')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L143,.L420-.L143
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferSetTriggerLevel')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L145,.L440-.L145
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferSpacesAvailable')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L20,.L429-.L20
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferBytesAvailable')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L148,.L435-.L148
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferSend')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1053,.L150,.L338-.L150
+	.byte	4
+	.word	(.L578-.L150)/2
+	.byte	19,16,22,26,3,19,138,16,4
+	.word	(.L338-.L578)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferSendFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L152,.L353-.L152
+	.sdecl	'.debug_frame',debug,cluster('prvWriteMessageToBuffer')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1053,.L154,.L515-.L154
+	.byte	4
+	.word	(.L620-.L154)/2
+	.byte	19,8,22,26,3,19,138,8,4
+	.word	(.L515-.L620)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferReceive')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L156,.L374-.L156
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferNextMessageLengthBytes')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1053,.L158,.L480-.L158
+	.byte	4
+	.word	(.L657-.L158)/2
+	.byte	19,8,22,26,3,19,138,8,4
+	.word	(.L480-.L657)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferReceiveFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L160,.L385-.L160
+	.sdecl	'.debug_frame',debug,cluster('prvReadMessageFromBuffer')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1053,.L162,.L506-.L162
+	.byte	4
+	.word	(.L678-.L162)/2
+	.byte	19,8,22,26,3,19,138,8,4
+	.word	(.L506-.L678)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferIsEmpty')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L164,.L414-.L164
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferIsFull')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L166,.L408-.L166
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferSendCompletedFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L168,.L446-.L168
+	.sdecl	'.debug_frame',debug,cluster('xStreamBufferReceiveCompletedFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L170,.L459-.L170
+	.sdecl	'.debug_frame',debug,cluster('prvWriteBytesToBuffer')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L172,.L498-.L172
+	.sdecl	'.debug_frame',debug,cluster('prvReadBytesFromBuffer')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L174,.L524-.L174
+	.sdecl	'.debug_frame',debug,cluster('prvBytesInBuffer')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L176,.L494-.L176
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvInitialiseNewStreamBuffer')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1053,.L178,.L530-.L178
+	.sdecl	'.debug_frame',debug,cluster('uxStreamBufferGetStreamBufferNumber')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L180,.L490-.L180
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('vStreamBufferSetStreamBufferNumber')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L182,.L487-.L182
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('ucStreamBufferGetStreamBufferType')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1053,.L184,.L492-.L184
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	; Module end

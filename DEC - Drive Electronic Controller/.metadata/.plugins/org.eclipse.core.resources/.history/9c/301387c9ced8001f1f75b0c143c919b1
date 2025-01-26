@@ -1,0 +1,17 @@
+#include "Ifx_Types.h"
+
+#define ENCCAL_CALIBRATION_SIZE 33U
+#define ENCCAL_CODING_SIZE      20U
+
+extern uint32 EncCal_Calibration_Buffer[ENCCAL_CALIBRATION_SIZE];
+extern uint32 EncCal_Coding_Buffer[ENCCAL_CODING_SIZE];
+
+extern void EncCal_InitCalibration(void);
+extern void EncCal_InitCoding(void);
+extern void EncCal_ReadCalibration(uint8* data);
+extern void EncCal_ReadCoding(uint8* data);
+extern void EncCal_WriteCalibration(uint8* data);
+extern void EncCal_WriteCoding(uint8* data);
+extern void EncCal_CheckCalibration(uint8* data);
+extern void EncCal_CheckCoding(uint8* data);
+extern void EncCal_MainFunction(void);

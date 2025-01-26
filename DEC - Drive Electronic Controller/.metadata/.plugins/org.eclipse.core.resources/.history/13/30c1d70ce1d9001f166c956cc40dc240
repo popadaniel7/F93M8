@@ -1,0 +1,107 @@
+#include "Ain.h"
+#include "Dma.h"
+#include <math.h>
+
+#define ADC_MAX_VALUE 4095.0f
+#define ADC_VREF_VALUE 50
+
+static uint32 Ain_MainCounter = 0;
+float  IRSensorValue = 0;
+uint32 CurrentSenseEpsValue_Right = 0;
+uint32 CurrentSenseEpsValue_Left = 0;
+uint32 VoltageSenseIRSensorValue = 0;
+uint32 VoltageSenseEpsFanValue = 0;
+uint8  Ain_CanRx_MeasuredVoltage = 0;
+
+void Ain_MainFunction(void);
+float Ain_AdcToVoltage(float rawAdc, float refVoltage);
+float Ain_ConvertCurrentSense(float rawAdc);
+float Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(float voltage);
+void Ain_ProcessIRSensorValue(void);
+
+float Ain_ConvertCurrentSense(float rawAdc)
+{
+    return ((float)rawAdc / 4095.0f) * 43.0f;
+}
+
+void Ain_ProcessIRSensorValue(void)
+{
+    static float actualVoltageReference = 0;
+    static float localVoltageCalculated = 0;
+    static uint32 localCounter = 0;
+    static float localAverage = 0;
+    static uint16 localRefValue = 0;
+
+    localRefValue  = ADC_VREF_VALUE;
+    localCounter++;
+    actualVoltageReference = localRefValue | Ain_CanRx_MeasuredVoltage;
+    localVoltageCalculated = Ain_AdcToVoltage((float)Dma_DestinationAdcBuffer[0], actualVoltageReference);
+    localAverage += Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(localVoltageCalculated);
+
+    if(8u == localCounter)
+    {
+        IRSensorValue = (float)localAverage / (float)localCounter;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+/* Approximate GP2Y0A21YK0F distance calculation from sensor voltage */
+float Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(float voltage)
+{
+    float distanceCm = 0.0f;
+    /* Avoid division by zero for safety. If voltage is extremely small,
+       it means object is out of range or sensor is saturating low. */
+    if (voltage <= 0.20f)
+    {
+        /* Return some large number or special code to indicate "out of range" */
+        return 0xFFFF;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+    /* Empirical polynomial. You can refine or create a lookup table. */
+    distanceCm = 27.728f * powf(voltage, -1.2045f);
+    /* Clamp result within sensor’s effective range, say 10–80 cm */
+    if (distanceCm < 10.0f)
+    {
+        distanceCm = 10.0f;
+    }
+    else if (distanceCm > 80.0f)
+    {
+        distanceCm = 80.0f;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    return distanceCm;
+}
+
+float Ain_AdcToVoltage(float rawAdc, float refVoltage)
+{
+    return ((float)rawAdc / ADC_MAX_VALUE) * (float)(refVoltage / 10.0f);
+}
+
+void Ain_MainFunction(void)
+{
+    if(2 < Ain_MainCounter)
+    {
+        Ain_ProcessIRSensorValue();
+        CurrentSenseEpsValue_Right = Ain_ConvertCurrentSense(Dma_DestinationAdcBuffer[1]);
+        CurrentSenseEpsValue_Left = Ain_ConvertCurrentSense(Dma_DestinationAdcBuffer[2]);
+        VoltageSenseIRSensorValue = Dma_DestinationAdcBuffer[3];
+        VoltageSenseEpsFanValue = Dma_DestinationAdcBuffer[4];
+        EpsEncoderValue = Dma_DestinationAdcBuffer[5];
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    Ain_MainCounter++;
+}

@@ -1,0 +1,8555 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
+	.compiler_invocation	"ctc -f cc13288a --dep-file=BSW/Sys/Os/FreeRTOS/queue.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EMotorCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EPSCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\E2e -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Eru -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\StdIf -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Pwm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Timer -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\SCR Debug (SDCC) -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Sys/Os/FreeRTOS/queue.src ../BSW/Sys/Os/FreeRTOS/queue.c"
+	.compiler_name		"ctc"
+	;source	'../BSW/Sys/Os/FreeRTOS/queue.c'
+
+	
+$TC162
+	
+	.sdecl	'.text.portmacro.vPortSetCCPN',code,cluster('vPortSetCCPN')
+	.sect	'.text.portmacro.vPortSetCCPN'
+	.align	2
+	
+; Function vPortSetCCPN
+.L287:
+vPortSetCCPN:	.type	func
+	disable
+.L1058:
+	mfcr	d15,#65068
+.L1059:
+	insert	d0,d15,#0,#0,#8
+.L1060:
+	and	d15,d4,#255
+.L1061:
+	or	d0,d15
+.L1062:
+	mtcr	#65068,d0
+	isync
+.L1063:
+	enable
+.L1064:
+	ret
+.L535:
+	
+__vPortSetCCPN_function_end:
+	.size	vPortSetCCPN,__vPortSetCCPN_function_end-vPortSetCCPN
+.L364:
+	; End of function
+	
+	.sdecl	'.text.portmacro.vPortSetICR',code,cluster('vPortSetICR')
+	.sect	'.text.portmacro.vPortSetICR'
+	.align	2
+	
+; Function vPortSetICR
+.L289:
+vPortSetICR:	.type	func
+	disable
+.L1069:
+	mtcr	#65068,d4
+	isync
+.L1070:
+	enable
+.L1071:
+	ret
+.L539:
+	
+__vPortSetICR_function_end:
+	.size	vPortSetICR,__vPortSetICR_function_end-vPortSetICR
+.L369:
+	; End of function
+	
+	.sdecl	'.text.portmacro.xPortSetCCPN',code,cluster('xPortSetCCPN')
+	.sect	'.text.portmacro.xPortSetCCPN'
+	.align	2
+	
+; Function xPortSetCCPN
+.L291:
+xPortSetCCPN:	.type	func
+	disable
+.L1076:
+	mfcr	d2,#65068
+.L824:
+	insert	d0,d2,#0,#0,#8
+.L1077:
+	and	d15,d4,#255
+.L1078:
+	or	d0,d15
+.L1079:
+	mtcr	#65068,d0
+	isync
+.L1080:
+	enable
+.L1081:
+	j	.L2
+.L2:
+	ret
+.L543:
+	
+__xPortSetCCPN_function_end:
+	.size	xPortSetCCPN,__xPortSetCCPN_function_end-xPortSetCCPN
+.L374:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueGenericReset',code,cluster('xQueueGenericReset')
+	.sect	'.text.queue.xQueueGenericReset'
+	.align	2
+	
+	.global	xQueueGenericReset
+; Function xQueueGenericReset
+.L293:
+xQueueGenericReset:	.type	func
+	mov.aa	a15,a4
+.L826:
+	mov	d8,d4
+.L827:
+	mov	d9,#1
+.L828:
+	jz.a	a15,.L3
+.L1403:
+	ld.w	d15,[a15]60
+.L1404:
+	jlt.u	d15,#1,.L4
+.L1405:
+	mov	d0,#-1
+.L1406:
+	ld.w	d15,[a15]60
+.L1407:
+	div.u	e0,d0,d15
+.L1408:
+	ld.w	d2,[a15]64
+.L1409:
+	jlt.u	d0,d2,.L5
+.L1410:
+	call	vPortEnterCritical
+.L825:
+	ld.a	a2,[a15]
+.L1411:
+	ld.w	d15,[a15]60
+.L1412:
+	ld.w	d0,[a15]64
+.L1413:
+	mul	d15,d0
+.L1414:
+	addsc.a	a2,a2,d15,#0
+.L1415:
+	st.a	[a15]8,a2
+.L1416:
+	mov	d15,#0
+.L1417:
+	st.w	[a15]56,d15
+.L1418:
+	ld.a	a2,[a15]
+.L1419:
+	st.a	[a15]4,a2
+.L1420:
+	ld.a	a2,[a15]
+.L1421:
+	ld.w	d15,[a15]60
+.L1422:
+	add	d15,#-1
+.L1423:
+	ld.w	d0,[a15]64
+.L1424:
+	mul	d15,d0
+.L1425:
+	addsc.a	a2,a2,d15,#0
+.L1426:
+	st.a	[a15]12,a2
+.L1427:
+	mov	d15,#-1
+.L1428:
+	st.b	[a15]68,d15
+.L1429:
+	mov	d15,#-1
+.L1430:
+	st.b	[a15]69,d15
+.L1431:
+	jne	d8,#0,.L6
+.L1432:
+	ld.w	d15,[a15]16
+	jne	d15,#0,.L7
+	mov	d15,#1
+	j	.L8
+.L7:
+	mov	d15,#0
+.L8:
+	jne	d15,#0,.L9
+.L1433:
+	lea	a4,[a15]16
+	call	xTaskRemoveFromEventList
+.L1434:
+	jeq	d2,#0,.L10
+.L1435:
+	syscall	#0
+.L1436:
+	j	.L11
+.L10:
+.L11:
+	j	.L12
+.L9:
+.L12:
+	j	.L13
+.L6:
+	lea	a4,[a15]16
+	call	vListInitialise
+.L1437:
+	lea	a4,[a15]36
+	call	vListInitialise
+.L13:
+	call	vPortExitCritical
+.L1438:
+	j	.L14
+.L5:
+.L4:
+.L3:
+	mov	d9,#0
+.L14:
+	mov	d2,d9
+.L829:
+	j	.L15
+.L15:
+	ret
+.L765:
+	
+__xQueueGenericReset_function_end:
+	.size	xQueueGenericReset,__xQueueGenericReset_function_end-xQueueGenericReset
+.L479:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueGenericCreate',code,cluster('xQueueGenericCreate')
+	.sect	'.text.queue.xQueueGenericCreate'
+	.align	2
+	
+	.global	xQueueGenericCreate
+; Function xQueueGenericCreate
+.L295:
+xQueueGenericCreate:	.type	func
+	mov	e8,d5,d4
+	mov	d10,d6
+.L832:
+	mov.a	a15,#0
+.L833:
+	jlt.u	d8,#1,.L16
+.L834:
+	mov	d15,#-1
+.L835:
+	div.u	e0,d15,d8
+.L836:
+	jlt.u	d0,d9,.L17
+.L838:
+	mul	d15,d8,d9
+.L837:
+	mov	d0,#-77
+.L1388:
+	jlt.u	d0,d15,.L18
+.L839:
+	mul	d15,d8,d9
+.L840:
+	add	d4,d15,#76
+.L831:
+	call	pvPortMalloc
+.L830:
+	mov.aa	a15,a2
+.L842:
+	jz.a	a15,.L19
+.L1389:
+	lea	a4,[a15]76
+.L843:
+	mov	e4,d9,d8
+.L845:
+	mov	d6,d10
+.L846:
+	mov.aa	a5,a15
+.L841:
+	call	prvInitialiseNewQueue
+.L844:
+	j	.L20
+.L19:
+.L20:
+	j	.L21
+.L18:
+.L17:
+.L16:
+.L21:
+	mov.aa	a2,a15
+.L847:
+	j	.L22
+.L22:
+	ret
+.L746:
+	
+__xQueueGenericCreate_function_end:
+	.size	xQueueGenericCreate,__xQueueGenericCreate_function_end-xQueueGenericCreate
+.L469:
+	; End of function
+	
+	.sdecl	'.text.queue.prvInitialiseNewQueue',code,cluster('prvInitialiseNewQueue')
+	.sect	'.text.queue.prvInitialiseNewQueue'
+	.align	2
+	
+; Function prvInitialiseNewQueue
+.L297:
+prvInitialiseNewQueue:	.type	func
+	mov	d15,d6
+.L851:
+	mov.aa	a15,a5
+.L852:
+	jne	d5,#0,.L23
+.L1540:
+	st.a	[a15],a15
+.L1541:
+	j	.L24
+.L23:
+	st.a	[a15],a4
+.L24:
+	st.w	[a15]60,d4
+.L1542:
+	st.w	[a15]64,d5
+.L1543:
+	mov	d4,#1
+.L850:
+	mov.aa	a4,a15
+.L848:
+	call	xQueueGenericReset
+.L849:
+	st.b	[a15]74,d15
+.L1544:
+	ret
+.L809:
+	
+__prvInitialiseNewQueue_function_end:
+	.size	prvInitialiseNewQueue,__prvInitialiseNewQueue_function_end-prvInitialiseNewQueue
+.L524:
+	; End of function
+	
+	.sdecl	'.text.queue.prvInitialiseMutex',code,cluster('prvInitialiseMutex')
+	.sect	'.text.queue.prvInitialiseMutex'
+	.align	2
+	
+; Function prvInitialiseMutex
+.L299:
+prvInitialiseMutex:	.type	func
+	jz.a	a4,.L25
+.L1549:
+	mov.a	a15,#0
+.L1550:
+	st.a	[a4]8,a15
+.L1551:
+	mov.a	a15,#0
+.L1552:
+	st.a	[a4],a15
+.L1553:
+	mov	d15,#0
+.L1554:
+	st.w	[a4]12,d15
+.L1555:
+	mov.a	a5,#0
+.L1556:
+	mov	d4,#0
+.L1557:
+	mov	d5,#0
+	call	xQueueGenericSend
+.L853:
+	j	.L26
+.L25:
+.L26:
+	ret
+.L818:
+	
+__prvInitialiseMutex_function_end:
+	.size	prvInitialiseMutex,__prvInitialiseMutex_function_end-prvInitialiseMutex
+.L529:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueCreateMutex',code,cluster('xQueueCreateMutex')
+	.sect	'.text.queue.xQueueCreateMutex'
+	.align	2
+	
+	.global	xQueueCreateMutex
+; Function xQueueCreateMutex
+.L301:
+xQueueCreateMutex:	.type	func
+	mov	d6,d4
+.L855:
+	mov	d4,#1
+.L854:
+	mov	d5,#0
+.L857:
+	call	xQueueGenericCreate
+.L856:
+	mov.aa	a15,a2
+.L859:
+	mov.aa	a4,a15
+.L858:
+	call	prvInitialiseMutex
+.L860:
+	mov.aa	a2,a15
+.L861:
+	j	.L27
+.L27:
+	ret
+.L707:
+	
+__xQueueCreateMutex_function_end:
+	.size	xQueueCreateMutex,__xQueueCreateMutex_function_end-xQueueCreateMutex
+.L444:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueGiveMutexRecursive',code,cluster('xQueueGiveMutexRecursive')
+	.sect	'.text.queue.xQueueGiveMutexRecursive'
+	.align	2
+	
+	.global	xQueueGiveMutexRecursive
+; Function xQueueGiveMutexRecursive
+.L303:
+xQueueGiveMutexRecursive:	.type	func
+	mov.aa	a15,a4
+.L863:
+	ld.a	a12,[a15]8
+.L1376:
+	call	xTaskGetCurrentTaskHandle
+.L862:
+	jne.a	a12,a2,.L28
+.L1377:
+	ld.w	d15,[a15]12
+.L1378:
+	add	d15,#-1
+	st.w	[a15]12,d15
+.L1379:
+	ld.w	d15,[a15]12
+.L1380:
+	jne	d15,#0,.L29
+.L1381:
+	mov.a	a5,#0
+.L1382:
+	mov	d4,#0
+.L1383:
+	mov	d5,#0
+	mov.aa	a4,a15
+.L864:
+	call	xQueueGenericSend
+.L865:
+	j	.L30
+.L29:
+.L30:
+	mov	d2,#1
+.L866:
+	j	.L31
+.L28:
+	mov	d2,#0
+.L31:
+	j	.L32
+.L32:
+	ret
+.L741:
+	
+__xQueueGiveMutexRecursive_function_end:
+	.size	xQueueGiveMutexRecursive,__xQueueGiveMutexRecursive_function_end-xQueueGiveMutexRecursive
+.L464:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueTakeMutexRecursive',code,cluster('xQueueTakeMutexRecursive')
+	.sect	'.text.queue.xQueueTakeMutexRecursive'
+	.align	2
+	
+	.global	xQueueTakeMutexRecursive
+; Function xQueueTakeMutexRecursive
+.L305:
+xQueueTakeMutexRecursive:	.type	func
+	mov.aa	a15,a4
+.L868:
+	mov	d15,d4
+.L869:
+	ld.a	a12,[a15]8
+.L1367:
+	call	xTaskGetCurrentTaskHandle
+.L867:
+	jne.a	a12,a2,.L33
+.L1368:
+	ld.w	d15,[a15]12
+.L870:
+	add	d15,#1
+	st.w	[a15]12,d15
+.L1369:
+	mov	d2,#1
+.L871:
+	j	.L34
+.L33:
+	mov.aa	a4,a15
+.L873:
+	mov	d4,d15
+.L875:
+	call	xQueueSemaphoreTake
+.L874:
+	jeq	d2,#0,.L35
+.L1370:
+	ld.w	d15,[a15]12
+.L872:
+	add	d15,#1
+	st.w	[a15]12,d15
+.L1371:
+	j	.L36
+.L35:
+.L36:
+.L34:
+	j	.L37
+.L37:
+	ret
+.L735:
+	
+__xQueueTakeMutexRecursive_function_end:
+	.size	xQueueTakeMutexRecursive,__xQueueTakeMutexRecursive_function_end-xQueueTakeMutexRecursive
+.L459:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueCreateCountingSemaphore',code,cluster('xQueueCreateCountingSemaphore')
+	.sect	'.text.queue.xQueueCreateCountingSemaphore'
+	.align	2
+	
+	.global	xQueueCreateCountingSemaphore
+; Function xQueueCreateCountingSemaphore
+.L307:
+xQueueCreateCountingSemaphore:	.type	func
+	mov	d15,d5
+.L878:
+	mov.a	a2,#0
+.L879:
+	jeq	d4,#0,.L38
+.L1315:
+	jlt.u	d4,d15,.L39
+.L1316:
+	mov	d5,#0
+.L876:
+	mov	d6,#2
+	call	xQueueGenericCreate
+.L877:
+	jz.a	a2,.L40
+.L1317:
+	st.w	[a2]56,d15
+.L1318:
+	j	.L41
+.L40:
+.L41:
+	j	.L42
+.L39:
+.L38:
+.L42:
+	j	.L43
+.L43:
+	ret
+.L715:
+	
+__xQueueCreateCountingSemaphore_function_end:
+	.size	xQueueCreateCountingSemaphore,__xQueueCreateCountingSemaphore_function_end-xQueueCreateCountingSemaphore
+.L449:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueGenericSend',code,cluster('xQueueGenericSend')
+	.sect	'.text.queue.xQueueGenericSend'
+	.align	2
+	
+	.global	xQueueGenericSend
+; Function xQueueGenericSend
+.L309:
+xQueueGenericSend:	.type	func
+	sub.a	a10,#16
+.L880:
+	mov.aa	a15,a4
+.L883:
+	mov.aa	a12,a5
+.L884:
+	st.w	[a10],d4
+	mov	d8,d5
+.L885:
+	mov	d9,#0
+.L886:
+	jnz.a	a12,.L44
+.L1086:
+	ld.w	d15,[a15]64
+	jeq	d15,#0,.L45
+.L45:
+.L44:
+	jne	d8,#2,.L46
+.L1087:
+	ld.w	d15,[a15]60
+	jeq	d15,#1,.L47
+.L47:
+.L46:
+	call	xTaskGetSchedulerState
+.L881:
+	jne	d2,#0,.L48
+	ld.w	d15,[a10]
+	jeq	d15,#0,.L49
+.L49:
+.L48:
+	j	.L50
+.L51:
+	call	vPortEnterCritical
+.L1088:
+	ld.w	d0,[a15]56
+.L1089:
+	ld.w	d15,[a15]60
+.L1090:
+	jlt.u	d0,d15,.L52
+.L1091:
+	jne	d8,#2,.L53
+.L52:
+	mov.aa	a4,a15
+.L887:
+	mov.aa	a5,a12
+.L889:
+	mov	d4,d8
+.L890:
+	call	prvCopyDataToQueue
+.L888:
+	ld.w	d15,[a15]36
+	jne	d15,#0,.L54
+	mov	d15,#1
+	j	.L55
+.L54:
+	mov	d15,#0
+.L55:
+	jne	d15,#0,.L56
+.L1092:
+	lea	a4,[a15]36
+	call	xTaskRemoveFromEventList
+.L891:
+	jeq	d2,#0,.L57
+.L1093:
+	syscall	#0
+.L1094:
+	j	.L58
+.L57:
+.L58:
+	j	.L59
+.L56:
+	jeq	d2,#0,.L60
+.L1095:
+	syscall	#0
+.L892:
+	j	.L61
+.L60:
+.L61:
+.L59:
+	call	vPortExitCritical
+.L1096:
+	mov	d2,#1
+.L1097:
+	j	.L62
+.L53:
+	ld.w	d15,[a10]
+.L1098:
+	jne	d15,#0,.L63
+.L1099:
+	call	vPortExitCritical
+.L1100:
+	mov	d2,#0
+.L1101:
+	j	.L64
+.L63:
+	jne	d9,#0,.L65
+.L1102:
+	lea	a4,[a10]4
+	call	vTaskInternalSetTimeOutState
+.L1103:
+	mov	d9,#1
+.L1104:
+	j	.L66
+.L65:
+.L66:
+	call	vPortExitCritical
+.L1105:
+	call	vTaskSuspendAll
+.L1106:
+	call	vPortEnterCritical
+	ld.b	d15,[a15]68
+	jne	d15,#-1,.L67
+	mov	d15,#0
+	st.b	[a15]68,d15
+.L67:
+	ld.b	d15,[a15]69
+	jne	d15,#-1,.L68
+	mov	d15,#0
+	st.b	[a15]69,d15
+.L68:
+	call	vPortExitCritical
+.L1107:
+	lea	a4,[a10]4
+.L1108:
+	lea	a5,[a10]0
+	call	xTaskCheckForTimeOut
+.L1109:
+	jne	d2,#0,.L69
+.L1110:
+	mov.aa	a4,a15
+.L893:
+	call	prvIsQueueFull
+.L894:
+	jeq	d2,#0,.L70
+.L1111:
+	lea	a4,[a15]16
+.L1112:
+	ld.w	d4,[a10]
+	call	vTaskPlaceOnEventList
+.L1113:
+	mov.aa	a4,a15
+.L895:
+	call	prvUnlockQueue
+.L896:
+	call	xTaskResumeAll
+.L1114:
+	jne	d2,#0,.L71
+.L1115:
+	syscall	#0
+.L71:
+	j	.L72
+.L70:
+	mov.aa	a4,a15
+.L897:
+	call	prvUnlockQueue
+.L898:
+	call	xTaskResumeAll
+.L72:
+	j	.L73
+.L69:
+	mov.aa	a4,a15
+.L899:
+	call	prvUnlockQueue
+.L900:
+	call	xTaskResumeAll
+.L1116:
+	mov	d2,#0
+.L1117:
+	j	.L74
+.L73:
+.L50:
+	j	.L51
+.L882:
+	mov	d2,#0
+.L1118:
+	j	.L75
+.L75:
+.L74:
+.L64:
+.L62:
+	ret
+.L549:
+	
+__xQueueGenericSend_function_end:
+	.size	xQueueGenericSend,__xQueueGenericSend_function_end-xQueueGenericSend
+.L379:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueGenericSendFromISR',code,cluster('xQueueGenericSendFromISR')
+	.sect	'.text.queue.xQueueGenericSendFromISR'
+	.align	2
+	
+	.global	xQueueGenericSendFromISR
+; Function xQueueGenericSendFromISR
+.L311:
+xQueueGenericSendFromISR:	.type	func
+	mov.aa	a15,a4
+.L902:
+	mov.aa	a12,a6
+.L903:
+	jnz.a	a5,.L76
+.L1227:
+	ld.w	d15,[a15]64
+	jeq	d15,#0,.L77
+.L77:
+.L76:
+	jne	d4,#2,.L78
+.L1228:
+	ld.w	d15,[a15]60
+	jeq	d15,#1,.L79
+.L79:
+.L78:
+	mov	d15,#31
+.L633:
+	disable
+.L1229:
+	mfcr	d8,#65068
+.L904:
+	insert	d0,d8,#0,#0,#8
+.L1230:
+	and	d15,#255
+.L1231:
+	or	d0,d15
+.L1232:
+	mtcr	#65068,d0
+	isync
+.L1233:
+	enable
+.L1234:
+	j	.L80
+.L80:
+	ld.w	d15,[a15]56
+.L1235:
+	ld.w	d0,[a15]60
+.L1236:
+	jlt.u	d15,d0,.L81
+.L1237:
+	jne	d4,#2,.L82
+.L81:
+	ld.b	d15,[a15]69
+.L905:
+	ld.w	d0,[a15]56
+.L1238:
+	mov.aa	a4,a15
+	call	prvCopyDataToQueue
+.L901:
+	jne	d15,#-1,.L83
+.L1239:
+	ld.w	d15,[a15]36
+.L906:
+	jne	d15,#0,.L84
+	mov	d15,#1
+	j	.L85
+.L84:
+	mov	d15,#0
+.L85:
+	jne	d15,#0,.L86
+.L1240:
+	lea	a4,[a15]36
+	call	xTaskRemoveFromEventList
+.L1241:
+	jeq	d2,#0,.L87
+.L1242:
+	jz.a	a12,.L88
+.L1243:
+	mov	d15,#1
+.L1244:
+	st.w	[a12],d15
+.L1245:
+	j	.L89
+.L88:
+.L89:
+	j	.L90
+.L87:
+.L90:
+	j	.L91
+.L86:
+.L91:
+	j	.L92
+.L83:
+	call	uxTaskGetNumberOfTasks
+.L908:
+	jge.u	d15,d2,.L93
+	add	d15,#1
+.L907:
+	st.b	[a15]69,d15
+.L93:
+.L92:
+	mov	d2,#1
+.L636:
+	j	.L94
+.L82:
+	mov	d2,#0
+.L94:
+	disable
+.L1246:
+	mtcr	#65068,d8
+	isync
+.L1247:
+	enable
+.L643:
+	j	.L95
+.L95:
+	ret
+.L621:
+	
+__xQueueGenericSendFromISR_function_end:
+	.size	xQueueGenericSendFromISR,__xQueueGenericSendFromISR_function_end-xQueueGenericSendFromISR
+.L414:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueGiveFromISR',code,cluster('xQueueGiveFromISR')
+	.sect	'.text.queue.xQueueGiveFromISR'
+	.align	2
+	
+	.global	xQueueGiveFromISR
+; Function xQueueGiveFromISR
+.L313:
+xQueueGiveFromISR:	.type	func
+	mov.aa	a15,a4
+.L911:
+	mov.aa	a12,a5
+.L912:
+	ld.w	d15,[a15]
+	jne	d15,#0,.L96
+	ld.w	d15,[a15]8
+	jeq	d15,#0,.L97
+.L97:
+.L96:
+	mov	d15,#31
+.L653:
+	disable
+.L1252:
+	mfcr	d9,#65068
+.L913:
+	insert	d0,d9,#0,#0,#8
+.L1253:
+	and	d15,#255
+.L1254:
+	or	d0,d15
+.L1255:
+	mtcr	#65068,d0
+	isync
+.L1256:
+	enable
+.L1257:
+	j	.L98
+.L98:
+	ld.w	d0,[a15]56
+.L914:
+	ld.w	d15,[a15]60
+.L1258:
+	jge.u	d0,d15,.L99
+.L658:
+	ld.b	d8,[a15]69
+.L915:
+	add	d15,d0,#1
+.L1259:
+	st.w	[a15]56,d15
+.L1260:
+	jne	d8,#-1,.L100
+.L1261:
+	ld.w	d15,[a15]36
+	jne	d15,#0,.L101
+	mov	d15,#1
+	j	.L102
+.L101:
+	mov	d15,#0
+.L102:
+	jne	d15,#0,.L103
+.L1262:
+	lea	a4,[a15]36
+.L910:
+	call	xTaskRemoveFromEventList
+.L909:
+	jeq	d2,#0,.L104
+.L1263:
+	jz.a	a12,.L105
+.L1264:
+	mov	d15,#1
+.L1265:
+	st.w	[a12],d15
+.L1266:
+	j	.L106
+.L105:
+.L106:
+	j	.L107
+.L104:
+.L107:
+	j	.L108
+.L103:
+.L108:
+	j	.L109
+.L100:
+	call	uxTaskGetNumberOfTasks
+.L917:
+	jge.u	d8,d2,.L110
+	add	d8,#1
+.L916:
+	st.b	[a15]69,d8
+.L110:
+.L109:
+	mov	d2,#1
+.L659:
+	j	.L111
+.L99:
+	mov	d2,#0
+.L111:
+	disable
+.L1267:
+	mtcr	#65068,d9
+	isync
+.L1268:
+	enable
+.L664:
+	j	.L112
+.L112:
+	ret
+.L645:
+	
+__xQueueGiveFromISR_function_end:
+	.size	xQueueGiveFromISR,__xQueueGiveFromISR_function_end-xQueueGiveFromISR
+.L419:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueReceive',code,cluster('xQueueReceive')
+	.sect	'.text.queue.xQueueReceive'
+	.align	2
+	
+	.global	xQueueReceive
+; Function xQueueReceive
+.L315:
+xQueueReceive:	.type	func
+	sub.a	a10,#16
+.L918:
+	mov.aa	a15,a4
+.L921:
+	mov.aa	a12,a5
+.L922:
+	st.w	[a10],d4
+.L1175:
+	mov	d8,#0
+.L923:
+	jnz.a	a12,.L113
+.L1176:
+	ld.w	d15,[a15]64
+	jeq	d15,#0,.L114
+.L114:
+.L113:
+	call	xTaskGetSchedulerState
+.L919:
+	jne	d2,#0,.L115
+	ld.w	d15,[a10]
+	jeq	d15,#0,.L116
+.L116:
+.L115:
+	j	.L117
+.L118:
+	call	vPortEnterCritical
+.L604:
+	ld.w	d15,[a15]56
+.L924:
+	jlt.u	d15,#1,.L119
+.L1177:
+	mov.aa	a4,a15
+.L926:
+	mov.aa	a5,a12
+.L928:
+	call	prvCopyDataFromQueue
+.L927:
+	add	d15,#-1
+.L925:
+	st.w	[a15]56,d15
+.L1178:
+	ld.w	d15,[a15]16
+	jne	d15,#0,.L120
+	mov	d15,#1
+	j	.L121
+.L120:
+	mov	d15,#0
+.L121:
+	jne	d15,#0,.L122
+.L1179:
+	lea	a4,[a15]16
+	call	xTaskRemoveFromEventList
+.L1180:
+	jeq	d2,#0,.L123
+.L1181:
+	syscall	#0
+.L1182:
+	j	.L124
+.L123:
+.L124:
+	j	.L125
+.L122:
+.L125:
+	call	vPortExitCritical
+.L1183:
+	mov	d2,#1
+.L1184:
+	j	.L126
+.L119:
+	ld.w	d15,[a10]
+.L929:
+	jne	d15,#0,.L127
+.L1185:
+	call	vPortExitCritical
+.L1186:
+	mov	d2,#0
+.L1187:
+	j	.L128
+.L127:
+	jne	d8,#0,.L129
+.L1188:
+	lea	a4,[a10]4
+	call	vTaskInternalSetTimeOutState
+.L1189:
+	mov	d8,#1
+.L1190:
+	j	.L130
+.L129:
+.L130:
+	call	vPortExitCritical
+.L1191:
+	call	vTaskSuspendAll
+.L1192:
+	call	vPortEnterCritical
+	ld.b	d15,[a15]68
+	jne	d15,#-1,.L131
+	mov	d0,#0
+	st.b	[a15]68,d0
+.L131:
+	ld.b	d15,[a15]69
+	jne	d15,#-1,.L132
+	mov	d15,#0
+	st.b	[a15]69,d15
+.L132:
+	call	vPortExitCritical
+.L1193:
+	lea	a4,[a10]4
+.L1194:
+	lea	a5,[a10]0
+	call	xTaskCheckForTimeOut
+.L1195:
+	jne	d2,#0,.L133
+.L1196:
+	mov.aa	a4,a15
+.L930:
+	call	prvIsQueueEmpty
+.L931:
+	jeq	d2,#0,.L134
+.L1197:
+	lea	a4,[a15]36
+.L1198:
+	ld.w	d4,[a10]
+	call	vTaskPlaceOnEventList
+.L1199:
+	mov.aa	a4,a15
+.L932:
+	call	prvUnlockQueue
+.L933:
+	call	xTaskResumeAll
+.L1200:
+	jne	d2,#0,.L135
+.L1201:
+	syscall	#0
+.L1202:
+	j	.L136
+.L135:
+.L136:
+	j	.L137
+.L134:
+	mov.aa	a4,a15
+.L934:
+	call	prvUnlockQueue
+.L935:
+	call	xTaskResumeAll
+.L137:
+	j	.L138
+.L133:
+	mov.aa	a4,a15
+.L936:
+	call	prvUnlockQueue
+.L937:
+	call	xTaskResumeAll
+.L1203:
+	mov.aa	a4,a15
+.L938:
+	call	prvIsQueueEmpty
+.L939:
+	jeq	d2,#0,.L139
+.L1204:
+	mov	d2,#0
+.L1205:
+	j	.L140
+.L139:
+.L138:
+.L117:
+	j	.L118
+.L920:
+	mov	d2,#0
+.L1206:
+	j	.L141
+.L141:
+.L140:
+.L128:
+.L126:
+	ret
+.L595:
+	
+__xQueueReceive_function_end:
+	.size	xQueueReceive,__xQueueReceive_function_end-xQueueReceive
+.L394:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueSemaphoreTake',code,cluster('xQueueSemaphoreTake')
+	.sect	'.text.queue.xQueueSemaphoreTake'
+	.align	2
+	
+	.global	xQueueSemaphoreTake
+; Function xQueueSemaphoreTake
+.L317:
+xQueueSemaphoreTake:	.type	func
+	sub.a	a10,#16
+.L940:
+	mov.aa	a15,a4
+.L943:
+	st.w	[a10],d4
+.L1323:
+	mov	d8,#0
+.L944:
+	mov	d9,#0
+.L945:
+	call	xTaskGetSchedulerState
+.L941:
+	jne	d2,#0,.L142
+	ld.w	d15,[a10]
+	jeq	d15,#0,.L143
+.L143:
+.L142:
+	j	.L144
+.L145:
+	call	vPortEnterCritical
+.L729:
+	ld.w	d15,[a15]56
+.L947:
+	jlt.u	d15,#1,.L146
+.L1324:
+	add	d15,#-1
+.L948:
+	st.w	[a15]56,d15
+.L1325:
+	ld.w	d15,[a15]
+.L1326:
+	jne	d15,#0,.L147
+.L1327:
+	call	pvTaskIncrementMutexHeldCount
+.L1328:
+	st.a	[a15]8,a2
+.L1329:
+	j	.L148
+.L147:
+.L148:
+	ld.w	d15,[a15]16
+	jne	d15,#0,.L149
+	mov	d15,#1
+	j	.L150
+.L149:
+	mov	d15,#0
+.L150:
+	jne	d15,#0,.L151
+.L1330:
+	lea	a4,[a15]16
+	call	xTaskRemoveFromEventList
+.L1331:
+	jeq	d2,#0,.L152
+.L1332:
+	syscall	#0
+.L1333:
+	j	.L153
+.L152:
+.L153:
+	j	.L154
+.L151:
+.L154:
+	call	vPortExitCritical
+.L1334:
+	mov	d2,#1
+.L1335:
+	j	.L155
+.L146:
+	ld.w	d15,[a10]
+.L949:
+	jne	d15,#0,.L156
+.L1336:
+	call	vPortExitCritical
+.L1337:
+	mov	d2,#0
+.L1338:
+	j	.L157
+.L156:
+	jne	d8,#0,.L158
+.L1339:
+	lea	a4,[a10]4
+	call	vTaskInternalSetTimeOutState
+.L1340:
+	mov	d8,#1
+.L1341:
+	j	.L159
+.L158:
+.L159:
+	call	vPortExitCritical
+.L1342:
+	call	vTaskSuspendAll
+.L1343:
+	call	vPortEnterCritical
+	ld.b	d15,[a15]68
+	jne	d15,#-1,.L160
+	mov	d0,#0
+	st.b	[a15]68,d0
+.L160:
+	ld.b	d15,[a15]69
+	jne	d15,#-1,.L161
+	mov	d15,#0
+	st.b	[a15]69,d15
+.L161:
+	call	vPortExitCritical
+.L1344:
+	lea	a4,[a10]4
+.L1345:
+	lea	a5,[a10]0
+	call	xTaskCheckForTimeOut
+.L1346:
+	jne	d2,#0,.L162
+.L1347:
+	mov.aa	a4,a15
+.L950:
+	call	prvIsQueueEmpty
+.L951:
+	jeq	d2,#0,.L163
+.L1348:
+	ld.w	d15,[a15]
+.L1349:
+	jne	d15,#0,.L164
+.L1350:
+	call	vPortEnterCritical
+.L1351:
+	ld.a	a4,[a15]8
+	call	xTaskPriorityInherit
+.L946:
+	mov	d9,d2
+.L953:
+	call	vPortExitCritical
+.L952:
+	j	.L165
+.L164:
+.L165:
+	lea	a4,[a15]36
+.L1352:
+	ld.w	d4,[a10]
+	call	vTaskPlaceOnEventList
+.L1353:
+	mov.aa	a4,a15
+.L954:
+	call	prvUnlockQueue
+.L955:
+	call	xTaskResumeAll
+.L1354:
+	jne	d2,#0,.L166
+.L1355:
+	syscall	#0
+.L1356:
+	j	.L167
+.L166:
+.L167:
+	j	.L168
+.L163:
+	mov.aa	a4,a15
+.L956:
+	call	prvUnlockQueue
+.L957:
+	call	xTaskResumeAll
+.L168:
+	j	.L169
+.L162:
+	mov.aa	a4,a15
+.L958:
+	call	prvUnlockQueue
+.L959:
+	call	xTaskResumeAll
+.L1357:
+	mov.aa	a4,a15
+.L960:
+	call	prvIsQueueEmpty
+.L961:
+	jeq	d2,#0,.L170
+.L1358:
+	jeq	d9,#0,.L171
+.L1359:
+	call	vPortEnterCritical
+.L732:
+	mov.aa	a4,a15
+.L962:
+	call	prvGetDisinheritPriorityAfterTimeout
+.L963:
+	ld.a	a4,[a15]8
+.L1360:
+	mov	d4,d2
+.L964:
+	call	vTaskPriorityDisinheritAfterTimeout
+.L733:
+	call	vPortExitCritical
+.L171:
+	mov	d2,#0
+.L1361:
+	j	.L172
+.L170:
+.L169:
+.L144:
+	j	.L145
+.L942:
+	mov	d2,#0
+.L1362:
+	j	.L173
+.L173:
+.L172:
+.L157:
+.L155:
+	ret
+.L721:
+	
+__xQueueSemaphoreTake_function_end:
+	.size	xQueueSemaphoreTake,__xQueueSemaphoreTake_function_end-xQueueSemaphoreTake
+.L454:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueuePeek',code,cluster('xQueuePeek')
+	.sect	'.text.queue.xQueuePeek'
+	.align	2
+	
+	.global	xQueuePeek
+; Function xQueuePeek
+.L319:
+xQueuePeek:	.type	func
+	sub.a	a10,#16
+.L965:
+	mov.aa	a15,a4
+.L968:
+	mov.aa	a12,a5
+.L969:
+	st.w	[a10],d4
+.L1123:
+	mov	d8,#0
+.L970:
+	jnz.a	a12,.L174
+.L1124:
+	ld.w	d15,[a15]64
+	jeq	d15,#0,.L175
+.L175:
+.L174:
+	call	xTaskGetSchedulerState
+.L966:
+	jne	d2,#0,.L176
+	ld.w	d15,[a10]
+	jeq	d15,#0,.L177
+.L177:
+.L176:
+	j	.L178
+.L179:
+	call	vPortEnterCritical
+.L575:
+	ld.w	d15,[a15]56
+.L971:
+	jlt.u	d15,#1,.L180
+.L1125:
+	ld.a	a13,[a15]12
+.L973:
+	mov.aa	a4,a15
+.L974:
+	mov.aa	a5,a12
+.L976:
+	call	prvCopyDataFromQueue
+.L975:
+	st.a	[a15]12,a13
+.L1126:
+	ld.w	d15,[a15]36
+.L972:
+	jne	d15,#0,.L181
+	mov	d15,#1
+	j	.L182
+.L181:
+	mov	d15,#0
+.L182:
+	jne	d15,#0,.L183
+.L1127:
+	lea	a4,[a15]36
+	call	xTaskRemoveFromEventList
+.L1128:
+	jeq	d2,#0,.L184
+.L1129:
+	syscall	#0
+.L1130:
+	j	.L185
+.L184:
+.L185:
+	j	.L186
+.L183:
+.L186:
+	call	vPortExitCritical
+.L1131:
+	mov	d2,#1
+.L1132:
+	j	.L187
+.L180:
+	ld.w	d15,[a10]
+.L977:
+	jne	d15,#0,.L188
+.L1133:
+	call	vPortExitCritical
+.L1134:
+	mov	d2,#0
+.L1135:
+	j	.L189
+.L188:
+	jne	d8,#0,.L190
+.L1136:
+	lea	a4,[a10]4
+	call	vTaskInternalSetTimeOutState
+.L1137:
+	mov	d8,#1
+.L1138:
+	j	.L191
+.L190:
+.L191:
+	call	vPortExitCritical
+.L1139:
+	call	vTaskSuspendAll
+.L1140:
+	call	vPortEnterCritical
+	ld.b	d15,[a15]68
+	jne	d15,#-1,.L192
+	mov	d0,#0
+	st.b	[a15]68,d0
+.L192:
+	ld.b	d15,[a15]69
+	jne	d15,#-1,.L193
+	mov	d15,#0
+	st.b	[a15]69,d15
+.L193:
+	call	vPortExitCritical
+.L1141:
+	lea	a4,[a10]4
+.L1142:
+	lea	a5,[a10]0
+	call	xTaskCheckForTimeOut
+.L1143:
+	jne	d2,#0,.L194
+.L1144:
+	mov.aa	a4,a15
+.L978:
+	call	prvIsQueueEmpty
+.L979:
+	jeq	d2,#0,.L195
+.L1145:
+	lea	a4,[a15]36
+.L1146:
+	ld.w	d4,[a10]
+	call	vTaskPlaceOnEventList
+.L1147:
+	mov.aa	a4,a15
+.L980:
+	call	prvUnlockQueue
+.L981:
+	call	xTaskResumeAll
+.L1148:
+	jne	d2,#0,.L196
+.L1149:
+	syscall	#0
+.L1150:
+	j	.L197
+.L196:
+.L197:
+	j	.L198
+.L195:
+	mov.aa	a4,a15
+.L982:
+	call	prvUnlockQueue
+.L983:
+	call	xTaskResumeAll
+.L198:
+	j	.L199
+.L194:
+	mov.aa	a4,a15
+.L984:
+	call	prvUnlockQueue
+.L985:
+	call	xTaskResumeAll
+.L1151:
+	mov.aa	a4,a15
+.L986:
+	call	prvIsQueueEmpty
+.L987:
+	jeq	d2,#0,.L200
+.L1152:
+	mov	d2,#0
+.L1153:
+	j	.L201
+.L200:
+.L199:
+.L178:
+	j	.L179
+.L967:
+	mov	d2,#0
+.L1154:
+	j	.L202
+.L202:
+.L201:
+.L189:
+.L187:
+	ret
+.L564:
+	
+__xQueuePeek_function_end:
+	.size	xQueuePeek,__xQueuePeek_function_end-xQueuePeek
+.L384:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueReceiveFromISR',code,cluster('xQueueReceiveFromISR')
+	.sect	'.text.queue.xQueueReceiveFromISR'
+	.align	2
+	
+	.global	xQueueReceiveFromISR
+; Function xQueueReceiveFromISR
+.L321:
+xQueueReceiveFromISR:	.type	func
+	mov.aa	a15,a4
+.L989:
+	mov.aa	a12,a6
+.L990:
+	jnz.a	a5,.L203
+.L1273:
+	ld.w	d15,[a15]64
+	jeq	d15,#0,.L204
+.L204:
+.L203:
+	mov	d15,#31
+.L676:
+	disable
+.L1274:
+	mfcr	d9,#65068
+.L991:
+	insert	d0,d9,#0,#0,#8
+.L1275:
+	and	d15,#255
+.L1276:
+	or	d0,d15
+.L1277:
+	mtcr	#65068,d0
+	isync
+.L1278:
+	enable
+.L1279:
+	j	.L205
+.L205:
+	ld.w	d15,[a15]56
+.L992:
+	jlt.u	d15,#1,.L206
+.L681:
+	ld.b	d8,[a15]68
+.L994:
+	mov.aa	a4,a15
+	call	prvCopyDataFromQueue
+.L988:
+	add	d15,#-1
+.L993:
+	st.w	[a15]56,d15
+.L1280:
+	jne	d8,#-1,.L207
+.L1281:
+	ld.w	d15,[a15]16
+	jne	d15,#0,.L208
+	mov	d15,#1
+	j	.L209
+.L208:
+	mov	d15,#0
+.L209:
+	jne	d15,#0,.L210
+.L1282:
+	lea	a4,[a15]16
+	call	xTaskRemoveFromEventList
+.L1283:
+	jeq	d2,#0,.L211
+.L1284:
+	jz.a	a12,.L212
+.L1285:
+	mov	d15,#1
+.L1286:
+	st.w	[a12],d15
+.L1287:
+	j	.L213
+.L212:
+.L213:
+	j	.L214
+.L211:
+.L214:
+	j	.L215
+.L210:
+.L215:
+	j	.L216
+.L207:
+	call	uxTaskGetNumberOfTasks
+.L996:
+	jge.u	d8,d2,.L217
+	add	d8,#1
+.L995:
+	st.b	[a15]68,d8
+.L217:
+.L216:
+	mov	d2,#1
+.L682:
+	j	.L218
+.L206:
+	mov	d2,#0
+.L218:
+	disable
+.L1288:
+	mtcr	#65068,d9
+	isync
+.L1289:
+	enable
+.L687:
+	j	.L219
+.L219:
+	ret
+.L666:
+	
+__xQueueReceiveFromISR_function_end:
+	.size	xQueueReceiveFromISR,__xQueueReceiveFromISR_function_end-xQueueReceiveFromISR
+.L424:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueuePeekFromISR',code,cluster('xQueuePeekFromISR')
+	.sect	'.text.queue.xQueuePeekFromISR'
+	.align	2
+	
+	.global	xQueuePeekFromISR
+; Function xQueuePeekFromISR
+.L323:
+xQueuePeekFromISR:	.type	func
+	mov.aa	a15,a4
+.L998:
+	jnz.a	a5,.L220
+.L1159:
+	ld.w	d15,[a15]64
+	jeq	d15,#0,.L221
+.L221:
+.L220:
+	mov	d15,#31
+.L588:
+	disable
+.L1160:
+	mfcr	d8,#65068
+.L999:
+	insert	d0,d8,#0,#0,#8
+.L1161:
+	and	d15,#255
+.L1162:
+	or	d0,d15
+.L1163:
+	mtcr	#65068,d0
+	isync
+.L1164:
+	enable
+.L1165:
+	j	.L222
+.L222:
+	ld.w	d15,[a15]56
+.L1166:
+	jlt.u	d15,#1,.L223
+.L1167:
+	ld.a	a12,[a15]12
+.L1000:
+	mov.aa	a4,a15
+	call	prvCopyDataFromQueue
+.L997:
+	st.a	[a15]12,a12
+.L1168:
+	mov	d2,#1
+.L1001:
+	j	.L224
+.L223:
+	mov	d2,#0
+.L224:
+	disable
+.L1169:
+	mtcr	#65068,d8
+	isync
+.L1170:
+	enable
+.L592:
+	j	.L225
+.L225:
+	ret
+.L578:
+	
+__xQueuePeekFromISR_function_end:
+	.size	xQueuePeekFromISR,__xQueuePeekFromISR_function_end-xQueuePeekFromISR
+.L389:
+	; End of function
+	
+	.sdecl	'.text.queue.uxQueueMessagesWaiting',code,cluster('uxQueueMessagesWaiting')
+	.sect	'.text.queue.uxQueueMessagesWaiting'
+	.align	2
+	
+	.global	uxQueueMessagesWaiting
+; Function uxQueueMessagesWaiting
+.L325:
+uxQueueMessagesWaiting:	.type	func
+	mov.aa	a15,a4
+.L1003:
+	call	vPortEnterCritical
+.L1002:
+	ld.w	d15,[a15]56
+.L1004:
+	call	vPortExitCritical
+.L1211:
+	mov	d2,d15
+.L1005:
+	j	.L226
+.L226:
+	ret
+.L607:
+	
+__uxQueueMessagesWaiting_function_end:
+	.size	uxQueueMessagesWaiting,__uxQueueMessagesWaiting_function_end-uxQueueMessagesWaiting
+.L399:
+	; End of function
+	
+	.sdecl	'.text.queue.uxQueueSpacesAvailable',code,cluster('uxQueueSpacesAvailable')
+	.sect	'.text.queue.uxQueueSpacesAvailable'
+	.align	2
+	
+	.global	uxQueueSpacesAvailable
+; Function uxQueueSpacesAvailable
+.L327:
+uxQueueSpacesAvailable:	.type	func
+	mov.aa	a15,a4
+.L1007:
+	call	vPortEnterCritical
+.L1006:
+	ld.w	d15,[a15]60
+.L1216:
+	ld.w	d0,[a15]56
+.L1008:
+	sub	d15,d0
+.L1217:
+	call	vPortExitCritical
+.L1218:
+	mov	d2,d15
+.L1009:
+	j	.L227
+.L227:
+	ret
+.L611:
+	
+__uxQueueSpacesAvailable_function_end:
+	.size	uxQueueSpacesAvailable,__uxQueueSpacesAvailable_function_end-uxQueueSpacesAvailable
+.L404:
+	; End of function
+	
+	.sdecl	'.text.queue.uxQueueMessagesWaitingFromISR',code,cluster('uxQueueMessagesWaitingFromISR')
+	.sect	'.text.queue.uxQueueMessagesWaitingFromISR'
+	.align	2
+	
+	.global	uxQueueMessagesWaitingFromISR
+; Function uxQueueMessagesWaitingFromISR
+.L329:
+uxQueueMessagesWaitingFromISR:	.type	func
+	ld.w	d2,[a4]56
+.L1010:
+	j	.L228
+.L228:
+	ret
+.L701:
+	
+__uxQueueMessagesWaitingFromISR_function_end:
+	.size	uxQueueMessagesWaitingFromISR,__uxQueueMessagesWaitingFromISR_function_end-uxQueueMessagesWaitingFromISR
+.L439:
+	; End of function
+	
+	.sdecl	'.text.queue.vQueueDelete',code,cluster('vQueueDelete')
+	.sect	'.text.queue.vQueueDelete'
+	.align	2
+	
+	.global	vQueueDelete
+; Function vQueueDelete
+.L331:
+vQueueDelete:	.type	func
+	call	vPortFree
+.L1011:
+	ret
+.L617:
+	
+__vQueueDelete_function_end:
+	.size	vQueueDelete,__vQueueDelete_function_end-vQueueDelete
+.L409:
+	; End of function
+	
+	.sdecl	'.text.queue.uxQueueGetQueueNumber',code,cluster('uxQueueGetQueueNumber')
+	.sect	'.text.queue.uxQueueGetQueueNumber'
+	.align	2
+	
+	.global	uxQueueGetQueueNumber
+; Function uxQueueGetQueueNumber
+.L333:
+uxQueueGetQueueNumber:	.type	func
+	ld.w	d2,[a4]70
+.L1448:
+	j	.L229
+.L229:
+	ret
+.L774:
+	
+__uxQueueGetQueueNumber_function_end:
+	.size	uxQueueGetQueueNumber,__uxQueueGetQueueNumber_function_end-uxQueueGetQueueNumber
+.L489:
+	; End of function
+	
+	.sdecl	'.text.queue.vQueueSetQueueNumber',code,cluster('vQueueSetQueueNumber')
+	.sect	'.text.queue.vQueueSetQueueNumber'
+	.align	2
+	
+	.global	vQueueSetQueueNumber
+; Function vQueueSetQueueNumber
+.L335:
+vQueueSetQueueNumber:	.type	func
+	st.w	[a4]70,d4
+.L1443:
+	ret
+.L771:
+	
+__vQueueSetQueueNumber_function_end:
+	.size	vQueueSetQueueNumber,__vQueueSetQueueNumber_function_end-vQueueSetQueueNumber
+.L484:
+	; End of function
+	
+	.sdecl	'.text.queue.ucQueueGetQueueType',code,cluster('ucQueueGetQueueType')
+	.sect	'.text.queue.ucQueueGetQueueType'
+	.align	2
+	
+	.global	ucQueueGetQueueType
+; Function ucQueueGetQueueType
+.L337:
+ucQueueGetQueueType:	.type	func
+	ld.bu	d2,[a4]74
+.L1453:
+	j	.L230
+.L230:
+	ret
+.L776:
+	
+__ucQueueGetQueueType_function_end:
+	.size	ucQueueGetQueueType,__ucQueueGetQueueType_function_end-ucQueueGetQueueType
+.L494:
+	; End of function
+	
+	.sdecl	'.text.queue.prvGetDisinheritPriorityAfterTimeout',code,cluster('prvGetDisinheritPriorityAfterTimeout')
+	.sect	'.text.queue.prvGetDisinheritPriorityAfterTimeout'
+	.align	2
+	
+; Function prvGetDisinheritPriorityAfterTimeout
+.L339:
+prvGetDisinheritPriorityAfterTimeout:	.type	func
+	ld.w	d15,[a4]36
+.L1562:
+	jlt.u	d15,#1,.L231
+.L1563:
+	ld.a	a15,[a4]48
+	ld.w	d15,[a15]
+.L1564:
+	rsub	d2,d15,#10
+.L1012:
+	j	.L232
+.L231:
+	mov	d2,#0
+.L232:
+	j	.L233
+.L233:
+	ret
+.L820:
+	
+__prvGetDisinheritPriorityAfterTimeout_function_end:
+	.size	prvGetDisinheritPriorityAfterTimeout,__prvGetDisinheritPriorityAfterTimeout_function_end-prvGetDisinheritPriorityAfterTimeout
+.L534:
+	; End of function
+	
+	.sdecl	'.text.queue.prvCopyDataToQueue',code,cluster('prvCopyDataToQueue')
+	.sect	'.text.queue.prvCopyDataToQueue'
+	.align	2
+	
+; Function prvCopyDataToQueue
+.L341:
+prvCopyDataToQueue:	.type	func
+	mov.aa	a15,a4
+.L1015:
+	mov	d10,d4
+.L1016:
+	mov	d8,#0
+.L1017:
+	ld.w	d9,[a15]56
+.L1018:
+	ld.w	d15,[a15]64
+.L1490:
+	jne	d15,#0,.L234
+.L1491:
+	ld.w	d15,[a15]
+.L1492:
+	jne	d15,#0,.L235
+.L1493:
+	ld.a	a4,[a15]8
+.L1014:
+	call	xTaskPriorityDisinherit
+.L1013:
+	mov	d8,d2
+.L1019:
+	mov.a	a2,#0
+.L1494:
+	st.a	[a15]8,a2
+.L1495:
+	j	.L236
+.L235:
+.L236:
+	j	.L237
+.L234:
+	jne	d10,#0,.L238
+.L1496:
+	ld.a	a4,[a15]4
+.L1021:
+	ld.w	d4,[a15]64
+.L1022:
+	call	memcpy
+.L1020:
+	ld.a	a2,[a15]4
+.L1497:
+	ld.w	d15,[a15]64
+.L1498:
+	addsc.a	a2,a2,d15,#0
+	st.a	[a15]4,a2
+.L1499:
+	ld.w	d0,[a15]4
+.L1500:
+	ld.w	d15,[a15]8
+.L1501:
+	jlt.u	d0,d15,.L239
+.L1502:
+	ld.a	a2,[a15]
+.L1503:
+	st.a	[a15]4,a2
+.L1504:
+	j	.L240
+.L239:
+.L240:
+	j	.L241
+.L238:
+	ld.a	a4,[a15]12
+.L1024:
+	ld.w	d4,[a15]64
+.L1025:
+	call	memcpy
+.L1023:
+	ld.w	d15,[a15]12
+.L1505:
+	ld.w	d0,[a15]64
+.L1506:
+	sub	d0,d15,d0
+	st.w	[a15]12,d0
+.L1507:
+	ld.w	d15,[a15]12
+.L1508:
+	ld.w	d0,[a15]
+.L1509:
+	jge.u	d15,d0,.L242
+.L1510:
+	ld.w	d15,[a15]8
+.L1511:
+	ld.w	d0,[a15]64
+.L1512:
+	sub	d15,d0
+.L1513:
+	st.w	[a15]12,d15
+.L1514:
+	j	.L243
+.L242:
+.L243:
+	jne	d10,#2,.L244
+.L1515:
+	jlt.u	d9,#1,.L245
+.L1516:
+	add	d9,#-1
+.L1517:
+	j	.L246
+.L245:
+.L246:
+	j	.L247
+.L244:
+.L247:
+.L241:
+.L237:
+	add	d15,d9,#1
+.L1518:
+	st.w	[a15]56,d15
+.L1519:
+	mov	d2,d8
+.L1026:
+	j	.L248
+.L248:
+	ret
+.L795:
+	
+__prvCopyDataToQueue_function_end:
+	.size	prvCopyDataToQueue,__prvCopyDataToQueue_function_end-prvCopyDataToQueue
+.L514:
+	; End of function
+	
+	.sdecl	'.text.queue.prvCopyDataFromQueue',code,cluster('prvCopyDataFromQueue')
+	.sect	'.text.queue.prvCopyDataFromQueue'
+	.align	2
+	
+; Function prvCopyDataFromQueue
+.L343:
+prvCopyDataFromQueue:	.type	func
+	ld.w	d15,[a4]64
+.L1524:
+	jeq	d15,#0,.L249
+.L1525:
+	ld.a	a15,[a4]12
+.L1526:
+	ld.w	d15,[a4]64
+.L1527:
+	addsc.a	a15,a15,d15,#0
+	st.a	[a4]12,a15
+.L1528:
+	ld.w	d15,[a4]12
+.L1529:
+	ld.w	d0,[a4]8
+.L1530:
+	jlt.u	d15,d0,.L250
+.L1531:
+	ld.a	a15,[a4]
+.L1532:
+	st.a	[a4]12,a15
+.L1533:
+	j	.L251
+.L250:
+.L251:
+	ld.a	a15,[a4]12
+.L1534:
+	ld.w	d4,[a4]64
+.L1535:
+	mov.aa	a4,a5
+.L1028:
+	mov.aa	a5,a15
+.L1027:
+	call	memcpy
+.L249:
+	ret
+.L804:
+	
+__prvCopyDataFromQueue_function_end:
+	.size	prvCopyDataFromQueue,__prvCopyDataFromQueue_function_end-prvCopyDataFromQueue
+.L519:
+	; End of function
+	
+	.sdecl	'.text.queue.prvUnlockQueue',code,cluster('prvUnlockQueue')
+	.sect	'.text.queue.prvUnlockQueue'
+	.align	2
+	
+; Function prvUnlockQueue
+.L345:
+prvUnlockQueue:	.type	func
+	mov.aa	a15,a4
+.L1029:
+	call	vPortEnterCritical
+.L781:
+	ld.b	d8,[a15]69
+.L1030:
+	j	.L252
+.L253:
+	ld.w	d15,[a15]36
+	jne	d15,#0,.L254
+	mov	d15,#1
+	j	.L255
+.L254:
+	mov	d15,#0
+.L255:
+	jne	d15,#0,.L256
+.L1458:
+	lea	a4,[a15]36
+	call	xTaskRemoveFromEventList
+.L1459:
+	jeq	d2,#0,.L257
+.L1460:
+	call	vTaskMissedYield
+.L1461:
+	j	.L258
+.L257:
+.L258:
+	j	.L259
+.L256:
+	j	.L260
+.L259:
+	add	d8,#-1
+.L252:
+	jge	d8,#1,.L253
+.L260:
+	mov	d15,#-1
+.L1462:
+	st.b	[a15]69,d15
+.L782:
+	call	vPortExitCritical
+.L1463:
+	call	vPortEnterCritical
+.L785:
+	ld.b	d8,[a15]68
+.L1031:
+	j	.L261
+.L262:
+	ld.w	d15,[a15]16
+	jne	d15,#0,.L263
+	mov	d15,#1
+	j	.L264
+.L263:
+	mov	d15,#0
+.L264:
+	jne	d15,#0,.L265
+.L1464:
+	lea	a4,[a15]16
+	call	xTaskRemoveFromEventList
+.L1465:
+	jeq	d2,#0,.L266
+.L1466:
+	call	vTaskMissedYield
+.L1467:
+	j	.L267
+.L266:
+.L267:
+	add	d8,#-1
+.L1468:
+	j	.L268
+.L265:
+	j	.L269
+.L268:
+.L261:
+	jge	d8,#1,.L262
+.L269:
+	mov	d15,#-1
+.L1469:
+	st.b	[a15]68,d15
+.L786:
+	call	vPortExitCritical
+.L1470:
+	ret
+.L778:
+	
+__prvUnlockQueue_function_end:
+	.size	prvUnlockQueue,__prvUnlockQueue_function_end-prvUnlockQueue
+.L499:
+	; End of function
+	
+	.sdecl	'.text.queue.prvIsQueueEmpty',code,cluster('prvIsQueueEmpty')
+	.sect	'.text.queue.prvIsQueueEmpty'
+	.align	2
+	
+; Function prvIsQueueEmpty
+.L347:
+prvIsQueueEmpty:	.type	func
+	mov.aa	a15,a4
+.L1033:
+	call	vPortEnterCritical
+.L1032:
+	ld.w	d15,[a15]56
+.L1475:
+	jne	d15,#0,.L270
+.L1476:
+	mov	d15,#1
+.L1034:
+	j	.L271
+.L270:
+	mov	d15,#0
+.L271:
+	call	vPortExitCritical
+.L1477:
+	mov	d2,d15
+.L1035:
+	j	.L272
+.L272:
+	ret
+.L788:
+	
+__prvIsQueueEmpty_function_end:
+	.size	prvIsQueueEmpty,__prvIsQueueEmpty_function_end-prvIsQueueEmpty
+.L504:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueIsQueueEmptyFromISR',code,cluster('xQueueIsQueueEmptyFromISR')
+	.sect	'.text.queue.xQueueIsQueueEmptyFromISR'
+	.align	2
+	
+	.global	xQueueIsQueueEmptyFromISR
+; Function xQueueIsQueueEmptyFromISR
+.L349:
+xQueueIsQueueEmptyFromISR:	.type	func
+	ld.w	d15,[a4]56
+.L1294:
+	jne	d15,#0,.L273
+.L1295:
+	mov	d2,#1
+.L1036:
+	j	.L274
+.L273:
+	mov	d2,#0
+.L274:
+	j	.L275
+.L275:
+	ret
+.L689:
+	
+__xQueueIsQueueEmptyFromISR_function_end:
+	.size	xQueueIsQueueEmptyFromISR,__xQueueIsQueueEmptyFromISR_function_end-xQueueIsQueueEmptyFromISR
+.L429:
+	; End of function
+	
+	.sdecl	'.text.queue.prvIsQueueFull',code,cluster('prvIsQueueFull')
+	.sect	'.text.queue.prvIsQueueFull'
+	.align	2
+	
+; Function prvIsQueueFull
+.L351:
+prvIsQueueFull:	.type	func
+	mov.aa	a15,a4
+.L1038:
+	call	vPortEnterCritical
+.L1037:
+	ld.w	d15,[a15]56
+.L1482:
+	ld.w	d0,[a15]60
+.L1483:
+	jne	d15,d0,.L276
+.L1484:
+	mov	d15,#1
+.L1039:
+	j	.L277
+.L276:
+	mov	d15,#0
+.L277:
+	call	vPortExitCritical
+.L1485:
+	mov	d2,d15
+.L1040:
+	j	.L278
+.L278:
+	ret
+.L792:
+	
+__prvIsQueueFull_function_end:
+	.size	prvIsQueueFull,__prvIsQueueFull_function_end-prvIsQueueFull
+.L509:
+	; End of function
+	
+	.sdecl	'.text.queue.xQueueIsQueueFullFromISR',code,cluster('xQueueIsQueueFullFromISR')
+	.sect	'.text.queue.xQueueIsQueueFullFromISR'
+	.align	2
+	
+	.global	xQueueIsQueueFullFromISR
+; Function xQueueIsQueueFullFromISR
+.L353:
+xQueueIsQueueFullFromISR:	.type	func
+	ld.w	d15,[a4]56
+.L1300:
+	ld.w	d0,[a4]60
+.L1301:
+	jne	d15,d0,.L279
+.L1302:
+	mov	d2,#1
+.L1041:
+	j	.L280
+.L279:
+	mov	d2,#0
+.L280:
+	j	.L281
+.L281:
+	ret
+.L695:
+	
+__xQueueIsQueueFullFromISR_function_end:
+	.size	xQueueIsQueueFullFromISR,__xQueueIsQueueFullFromISR_function_end-xQueueIsQueueFullFromISR
+.L434:
+	; End of function
+	
+	.sdecl	'.text.queue.vQueueWaitForMessageRestricted',code,cluster('vQueueWaitForMessageRestricted')
+	.sect	'.text.queue.vQueueWaitForMessageRestricted'
+	.align	2
+	
+	.global	vQueueWaitForMessageRestricted
+; Function vQueueWaitForMessageRestricted
+.L355:
+vQueueWaitForMessageRestricted:	.type	func
+	mov.aa	a15,a4
+.L1043:
+	mov	e8,d5,d4
+.L1394:
+	call	vPortEnterCritical
+.L1042:
+	ld.b	d15,[a15]68
+	jne	d15,#-1,.L282
+	mov	d15,#0
+	st.b	[a15]68,d15
+.L282:
+	ld.b	d15,[a15]69
+	jne	d15,#-1,.L283
+	mov	d15,#0
+	st.b	[a15]69,d15
+.L283:
+	call	vPortExitCritical
+.L1395:
+	ld.w	d15,[a15]56
+.L1396:
+	jne	d15,#0,.L284
+.L1397:
+	lea	a4,[a15]36
+.L1044:
+	mov	e4,d9,d8
+.L1045:
+	call	vTaskPlaceOnEventListRestricted
+.L1398:
+	j	.L285
+.L284:
+.L285:
+	mov.aa	a4,a15
+.L1046:
+	call	prvUnlockQueue
+.L1047:
+	ret
+.L758:
+	
+__vQueueWaitForMessageRestricted_function_end:
+	.size	vQueueWaitForMessageRestricted,__vQueueWaitForMessageRestricted_function_end-vQueueWaitForMessageRestricted
+.L474:
+	; End of function
+	
+	.calls	'xQueueGenericReset','vPortEnterCritical'
+	.calls	'xQueueGenericReset','xTaskRemoveFromEventList'
+	.calls	'xQueueGenericReset','vListInitialise'
+	.calls	'xQueueGenericReset','vPortExitCritical'
+	.calls	'xQueueGenericCreate','pvPortMalloc'
+	.calls	'xQueueGenericCreate','prvInitialiseNewQueue'
+	.calls	'prvInitialiseNewQueue','xQueueGenericReset'
+	.calls	'prvInitialiseMutex','xQueueGenericSend'
+	.calls	'xQueueCreateMutex','xQueueGenericCreate'
+	.calls	'xQueueCreateMutex','prvInitialiseMutex'
+	.calls	'xQueueGiveMutexRecursive','xTaskGetCurrentTaskHandle'
+	.calls	'xQueueGiveMutexRecursive','xQueueGenericSend'
+	.calls	'xQueueTakeMutexRecursive','xTaskGetCurrentTaskHandle'
+	.calls	'xQueueTakeMutexRecursive','xQueueSemaphoreTake'
+	.calls	'xQueueCreateCountingSemaphore','xQueueGenericCreate'
+	.calls	'xQueueGenericSend','xTaskGetSchedulerState'
+	.calls	'xQueueGenericSend','vPortEnterCritical'
+	.calls	'xQueueGenericSend','prvCopyDataToQueue'
+	.calls	'xQueueGenericSend','xTaskRemoveFromEventList'
+	.calls	'xQueueGenericSend','vPortExitCritical'
+	.calls	'xQueueGenericSend','vTaskInternalSetTimeOutState'
+	.calls	'xQueueGenericSend','vTaskSuspendAll'
+	.calls	'xQueueGenericSend','xTaskCheckForTimeOut'
+	.calls	'xQueueGenericSend','prvIsQueueFull'
+	.calls	'xQueueGenericSend','vTaskPlaceOnEventList'
+	.calls	'xQueueGenericSend','prvUnlockQueue'
+	.calls	'xQueueGenericSend','xTaskResumeAll'
+	.calls	'xQueueGenericSendFromISR','prvCopyDataToQueue'
+	.calls	'xQueueGenericSendFromISR','xTaskRemoveFromEventList'
+	.calls	'xQueueGenericSendFromISR','uxTaskGetNumberOfTasks'
+	.calls	'xQueueGiveFromISR','xTaskRemoveFromEventList'
+	.calls	'xQueueGiveFromISR','uxTaskGetNumberOfTasks'
+	.calls	'xQueueReceive','xTaskGetSchedulerState'
+	.calls	'xQueueReceive','vPortEnterCritical'
+	.calls	'xQueueReceive','prvCopyDataFromQueue'
+	.calls	'xQueueReceive','xTaskRemoveFromEventList'
+	.calls	'xQueueReceive','vPortExitCritical'
+	.calls	'xQueueReceive','vTaskInternalSetTimeOutState'
+	.calls	'xQueueReceive','vTaskSuspendAll'
+	.calls	'xQueueReceive','xTaskCheckForTimeOut'
+	.calls	'xQueueReceive','prvIsQueueEmpty'
+	.calls	'xQueueReceive','vTaskPlaceOnEventList'
+	.calls	'xQueueReceive','prvUnlockQueue'
+	.calls	'xQueueReceive','xTaskResumeAll'
+	.calls	'xQueueSemaphoreTake','xTaskGetSchedulerState'
+	.calls	'xQueueSemaphoreTake','vPortEnterCritical'
+	.calls	'xQueueSemaphoreTake','pvTaskIncrementMutexHeldCount'
+	.calls	'xQueueSemaphoreTake','xTaskRemoveFromEventList'
+	.calls	'xQueueSemaphoreTake','vPortExitCritical'
+	.calls	'xQueueSemaphoreTake','vTaskInternalSetTimeOutState'
+	.calls	'xQueueSemaphoreTake','vTaskSuspendAll'
+	.calls	'xQueueSemaphoreTake','xTaskCheckForTimeOut'
+	.calls	'xQueueSemaphoreTake','prvIsQueueEmpty'
+	.calls	'xQueueSemaphoreTake','xTaskPriorityInherit'
+	.calls	'xQueueSemaphoreTake','vTaskPlaceOnEventList'
+	.calls	'xQueueSemaphoreTake','prvUnlockQueue'
+	.calls	'xQueueSemaphoreTake','xTaskResumeAll'
+	.calls	'xQueueSemaphoreTake','prvGetDisinheritPriorityAfterTimeout'
+	.calls	'xQueueSemaphoreTake','vTaskPriorityDisinheritAfterTimeout'
+	.calls	'xQueuePeek','xTaskGetSchedulerState'
+	.calls	'xQueuePeek','vPortEnterCritical'
+	.calls	'xQueuePeek','prvCopyDataFromQueue'
+	.calls	'xQueuePeek','xTaskRemoveFromEventList'
+	.calls	'xQueuePeek','vPortExitCritical'
+	.calls	'xQueuePeek','vTaskInternalSetTimeOutState'
+	.calls	'xQueuePeek','vTaskSuspendAll'
+	.calls	'xQueuePeek','xTaskCheckForTimeOut'
+	.calls	'xQueuePeek','prvIsQueueEmpty'
+	.calls	'xQueuePeek','vTaskPlaceOnEventList'
+	.calls	'xQueuePeek','prvUnlockQueue'
+	.calls	'xQueuePeek','xTaskResumeAll'
+	.calls	'xQueueReceiveFromISR','prvCopyDataFromQueue'
+	.calls	'xQueueReceiveFromISR','xTaskRemoveFromEventList'
+	.calls	'xQueueReceiveFromISR','uxTaskGetNumberOfTasks'
+	.calls	'xQueuePeekFromISR','prvCopyDataFromQueue'
+	.calls	'uxQueueMessagesWaiting','vPortEnterCritical'
+	.calls	'uxQueueMessagesWaiting','vPortExitCritical'
+	.calls	'uxQueueSpacesAvailable','vPortEnterCritical'
+	.calls	'uxQueueSpacesAvailable','vPortExitCritical'
+	.calls	'vQueueDelete','vPortFree'
+	.calls	'prvCopyDataToQueue','xTaskPriorityDisinherit'
+	.calls	'prvCopyDataToQueue','memcpy'
+	.calls	'prvCopyDataFromQueue','memcpy'
+	.calls	'prvUnlockQueue','vPortEnterCritical'
+	.calls	'prvUnlockQueue','xTaskRemoveFromEventList'
+	.calls	'prvUnlockQueue','vTaskMissedYield'
+	.calls	'prvUnlockQueue','vPortExitCritical'
+	.calls	'prvIsQueueEmpty','vPortEnterCritical'
+	.calls	'prvIsQueueEmpty','vPortExitCritical'
+	.calls	'prvIsQueueFull','vPortEnterCritical'
+	.calls	'prvIsQueueFull','vPortExitCritical'
+	.calls	'vQueueWaitForMessageRestricted','vPortEnterCritical'
+	.calls	'vQueueWaitForMessageRestricted','vPortExitCritical'
+	.calls	'vQueueWaitForMessageRestricted','vTaskPlaceOnEventListRestricted'
+	.calls	'vQueueWaitForMessageRestricted','prvUnlockQueue'
+	.calls	'vPortSetCCPN','',0
+	.calls	'vPortSetICR','',0
+	.calls	'xPortSetCCPN','',0
+	.calls	'xQueueGenericReset','',0
+	.calls	'xQueueGenericCreate','',0
+	.calls	'prvInitialiseNewQueue','',0
+	.calls	'prvInitialiseMutex','',0
+	.calls	'xQueueCreateMutex','',0
+	.calls	'xQueueGiveMutexRecursive','',0
+	.calls	'xQueueTakeMutexRecursive','',0
+	.calls	'xQueueCreateCountingSemaphore','',0
+	.calls	'xQueueGenericSend','',16
+	.calls	'xQueueGenericSendFromISR','',0
+	.calls	'xQueueGiveFromISR','',0
+	.calls	'xQueueReceive','',16
+	.calls	'xQueueSemaphoreTake','',16
+	.calls	'xQueuePeek','',16
+	.calls	'xQueueReceiveFromISR','',0
+	.calls	'xQueuePeekFromISR','',0
+	.calls	'uxQueueMessagesWaiting','',0
+	.calls	'uxQueueSpacesAvailable','',0
+	.calls	'uxQueueMessagesWaitingFromISR','',0
+	.calls	'vQueueDelete','',0
+	.calls	'uxQueueGetQueueNumber','',0
+	.calls	'vQueueSetQueueNumber','',0
+	.calls	'ucQueueGetQueueType','',0
+	.calls	'prvGetDisinheritPriorityAfterTimeout','',0
+	.calls	'prvCopyDataToQueue','',0
+	.calls	'prvCopyDataFromQueue','',0
+	.calls	'prvUnlockQueue','',0
+	.calls	'prvIsQueueEmpty','',0
+	.calls	'xQueueIsQueueEmptyFromISR','',0
+	.calls	'prvIsQueueFull','',0
+	.calls	'xQueueIsQueueFullFromISR','',0
+	.extern	memcpy
+	.extern	vPortEnterCritical
+	.extern	vPortExitCritical
+	.extern	pvPortMalloc
+	.extern	vPortFree
+	.extern	vListInitialise
+	.extern	vTaskSuspendAll
+	.extern	xTaskResumeAll
+	.extern	uxTaskGetNumberOfTasks
+	.extern	xTaskCheckForTimeOut
+	.extern	vTaskPlaceOnEventList
+	.extern	vTaskPlaceOnEventListRestricted
+	.extern	xTaskRemoveFromEventList
+	.extern	xTaskGetCurrentTaskHandle
+	.extern	vTaskMissedYield
+	.extern	xTaskGetSchedulerState
+	.extern	xTaskPriorityInherit
+	.extern	xTaskPriorityDisinherit
+	.extern	vTaskPriorityDisinheritAfterTimeout
+	.extern	pvTaskIncrementMutexHeldCount
+	.extern	vTaskInternalSetTimeOutState
+	.calls	'vQueueWaitForMessageRestricted','',0
+	.sdecl	'.debug_info',debug
+	.sect	'.debug_info'
+.L357:
+	.word	4307
+	.half	3
+	.word	.L358
+	.byte	4
+.L356:
+	.byte	1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L359
+.L548:
+	.byte	2
+	.byte	'long int',0,4,5
+.L538:
+	.byte	3
+	.byte	'vPortSetICR',0,1,1,167,1,54,1,1
+.L540:
+	.byte	4
+	.byte	'ulICR',0,1,167,1,81
+	.word	231
+.L594:
+	.byte	5,0
+.L536:
+	.byte	2
+	.byte	'unsigned char',0,1,8
+.L554:
+	.byte	2
+	.byte	'unsigned int',0,4,7
+.L542:
+	.byte	6
+	.byte	'xPortSetCCPN',0,1,1,174,1,63
+	.word	231
+	.byte	1,1
+.L544:
+	.byte	4
+	.byte	'ucCCPN',0,1,174,1,91
+	.word	280
+.L590:
+	.byte	7
+.L546:
+	.byte	8
+	.byte	'xICR',0,1,176,1,14
+	.word	297
+	.byte	0,0,2
+	.byte	'int',0,4,5,9
+	.byte	'__mtcr',0,1,1,1,1,10
+	.word	371
+	.byte	10
+	.word	371
+	.byte	0,11
+	.word	371
+	.byte	12
+	.byte	'__mfcr',0
+	.word	401
+	.byte	1,1,1,1,10
+	.word	371
+	.byte	0,9
+	.byte	'__syscall',0,1,1,1,1,10
+	.word	371
+	.byte	0,13
+	.byte	'__disable',0,1,1,1,1,13
+	.byte	'__enable',0,1,1,1,1,14
+	.byte	'void',0,15
+	.word	478
+	.byte	16
+	.word	484
+	.byte	17
+	.word	478
+.L798:
+	.byte	15
+	.word	494
+	.byte	16
+	.word	499
+	.byte	18
+	.byte	'memcpy',0,2,53,17
+	.word	484
+	.byte	1,1,1,1,19,2,53,33
+	.word	489
+	.byte	19,2,53,56
+	.word	504
+	.byte	19,2,53,68
+	.word	297
+	.byte	0,20
+	.byte	'vPortEnterCritical',0,1,102,13,1,1,1,1,20
+	.byte	'vPortExitCritical',0,1,103,13,1,1,1,1,18
+	.byte	'pvPortMalloc',0,3,175,1,8
+	.word	484
+	.byte	1,1,1,1,4
+	.byte	'xSize',0,3,175,1,29
+	.word	297
+	.byte	0,21
+	.byte	'vPortFree',0,3,178,1,6,1,1,1,1,4
+	.byte	'pv',0,3,178,1,24
+	.word	484
+	.byte	0
+.L583:
+	.byte	2
+	.byte	'unsigned long int',0,4,7,11
+	.word	680
+	.byte	15
+	.word	.L1048-.L357
+	.byte	15
+	.word	.L1049-.L357
+.L1048:
+	.byte	22
+	.byte	'xLIST_ITEM',0,4,144,1,8,20,23
+	.byte	'xItemValue',0
+	.word	297
+	.byte	4,2,35,0,23
+	.byte	'pxNext',0
+	.word	706
+	.byte	4,2,35,4,23
+	.byte	'pxPrevious',0
+	.word	706
+	.byte	4,2,35,8,23
+	.byte	'pvOwner',0
+	.word	484
+	.byte	4,2,35,12,23
+	.byte	'pvContainer',0
+	.word	711
+	.byte	4,2,35,16,0,15
+	.word	716
+	.byte	22
+	.byte	'xMINI_LIST_ITEM',0,4,157,1,12,12,23
+	.byte	'xItemValue',0
+	.word	297
+	.byte	4,2,35,0,23
+	.byte	'pxNext',0
+	.word	706
+	.byte	4,2,35,4,23
+	.byte	'pxPrevious',0
+	.word	706
+	.byte	4,2,35,8,0
+.L1049:
+	.byte	22
+	.byte	'xLIST',0,4,172,1,16,20,23
+	.byte	'uxNumberOfItems',0
+	.word	701
+	.byte	4,2,35,0,23
+	.byte	'pxIndex',0
+	.word	828
+	.byte	4,2,35,4,23
+	.byte	'xListEnd',0
+	.word	833
+	.byte	12,2,35,8,0,15
+	.word	912
+	.byte	17
+	.word	985
+	.byte	21
+	.byte	'vListInitialise',0,4,177,3,6,1,1,1,1,4
+	.byte	'pxList',0,4,177,3,38
+	.word	990
+	.byte	0,20
+	.byte	'vTaskSuspendAll',0,5,218,10,6,1,1,1,1,24
+	.byte	'xTaskResumeAll',0,5,146,11,12
+	.word	231
+	.byte	1,1,1,1,24
+	.byte	'uxTaskGetNumberOfTasks',0,5,197,11,13
+	.word	680
+	.byte	1,1,1,1
+.L560:
+	.byte	22
+	.byte	'xTIME_OUT',0,5,119,16,8,23
+	.byte	'xOverflowCount',0
+	.word	231
+	.byte	4,2,35,0,23
+	.byte	'xTimeOnEntering',0
+	.word	297
+	.byte	4,2,35,4,0,15
+	.word	1126
+	.byte	17
+	.word	1191
+	.byte	15
+	.word	297
+	.byte	17
+	.word	1201
+	.byte	18
+	.byte	'xTaskCheckForTimeOut',0,5,185,22,12
+	.word	231
+	.byte	1,1,1,1,4
+	.byte	'pxTimeOut',0,5,185,22,52
+	.word	1196
+	.byte	4
+	.byte	'pxTicksToWait',0,5,186,22,53
+	.word	1206
+	.byte	0,17
+	.word	985
+	.byte	17
+	.word	297
+	.byte	21
+	.byte	'vTaskPlaceOnEventList',0,5,141,23,6,1,1,1,1,4
+	.byte	'pxEventList',0,5,141,23,44
+	.word	1288
+	.byte	4
+	.byte	'xTicksToWait',0,5,142,23,46
+	.word	1293
+	.byte	0,17
+	.word	985
+	.byte	17
+	.word	231
+	.byte	21
+	.byte	'vTaskPlaceOnEventListRestricted',0,5,158,23,6,1,1,1,1,4
+	.byte	'pxEventList',0,5,158,23,54
+	.word	1373
+	.byte	4
+	.byte	'xTicksToWait',0,5,159,23,50
+	.word	297
+	.byte	4
+	.byte	'xWaitIndefinitely',0,5,160,23,56
+	.word	1378
+	.byte	0,17
+	.word	912
+	.byte	15
+	.word	1495
+	.byte	17
+	.word	1500
+	.byte	18
+	.byte	'xTaskRemoveFromEventList',0,5,186,23,12
+	.word	231
+	.byte	1,1,1,1,4
+	.byte	'pxEventList',0,5,186,23,59
+	.word	1505
+	.byte	0,25
+	.byte	'tskTaskControlBlock',0,5,86,8,1,15
+	.word	1570
+	.byte	26
+	.byte	'TaskHandle_t',0,5,87,38
+	.word	1595
+	.byte	24
+	.byte	'xTaskGetCurrentTaskHandle',0,5,209,23,14
+	.word	1600
+	.byte	1,1,1,1,15
+	.word	1570
+	.byte	20
+	.byte	'vTaskMissedYield',0,5,215,23,6,1,1,1,1,24
+	.byte	'xTaskGetSchedulerState',0,5,221,23,12
+	.word	231
+	.byte	1,1,1,1,17
+	.word	1600
+	.byte	18
+	.byte	'xTaskPriorityInherit',0,5,227,23,12
+	.word	231
+	.byte	1,1,1,1,4
+	.byte	'pxMutexHolder',0,5,227,23,53
+	.word	1727
+	.byte	0,17
+	.word	1600
+	.byte	18
+	.byte	'xTaskPriorityDisinherit',0,5,233,23,12
+	.word	231
+	.byte	1,1,1,1,4
+	.byte	'pxMutexHolder',0,5,233,23,56
+	.word	1790
+	.byte	0,17
+	.word	1600
+	.byte	21
+	.byte	'vTaskPriorityDisinheritAfterTimeout',0,5,243,23,6,1,1,1,1,4
+	.byte	'pxMutexHolder',0,5,243,23,62
+	.word	1856
+	.byte	4
+	.byte	'uxHighestPriorityWaitingTask',0,5,244,23,55
+	.word	680
+	.byte	0,24
+	.byte	'pvTaskIncrementMutexHeldCount',0,5,160,24,14
+	.word	1600
+	.byte	1,1,1,1,17
+	.word	1191
+	.byte	21
+	.byte	'vTaskInternalSetTimeOutState',0,5,166,24,6,1,1,1,1,4
+	.byte	'pxTimeOut',0,5,166,24,54
+	.word	2011
+	.byte	0
+.L783:
+	.byte	2
+	.byte	'char',0,1,6
+.L571:
+	.byte	15
+	.word	2074
+	.byte	22
+	.byte	'QueuePointers',0,6,69,16,8,23
+	.byte	'pcTail',0
+	.word	2082
+	.byte	4,2,35,0,23
+	.byte	'pcReadFrom',0
+	.word	2082
+	.byte	4,2,35,4,0,22
+	.byte	'SemaphoreData',0,6,75,16,8,23
+	.byte	'xMutexHolder',0
+	.word	1600
+	.byte	4,2,35,0,23
+	.byte	'uxRecursiveCallCount',0
+	.word	680
+	.byte	4,2,35,4,0,27,6,105,5,8,23
+	.byte	'xQueue',0
+	.word	2087
+	.byte	8,2,35,0,23
+	.byte	'xSemaphore',0
+	.word	2143
+	.byte	8,2,35,0,0,11
+	.word	680
+	.byte	11
+	.word	2074
+	.byte	11
+	.word	2074
+	.byte	22
+	.byte	'QueueDefinition',0,6,100,16,76,23
+	.byte	'pcHead',0
+	.word	2082
+	.byte	4,2,35,0,23
+	.byte	'pcWriteTo',0
+	.word	2082
+	.byte	4,2,35,4,23
+	.byte	'u',0
+	.word	2215
+	.byte	8,2,35,8,23
+	.byte	'xTasksWaitingToSend',0
+	.word	912
+	.byte	20,2,35,16,23
+	.byte	'xTasksWaitingToReceive',0
+	.word	912
+	.byte	20,2,35,36,23
+	.byte	'uxMessagesWaiting',0
+	.word	2257
+	.byte	4,2,35,56,23
+	.byte	'uxLength',0
+	.word	680
+	.byte	4,2,35,60,23
+	.byte	'uxItemSize',0
+	.word	680
+	.byte	4,2,35,64,23
+	.byte	'cRxLock',0
+	.word	2262
+	.byte	1,2,35,68,23
+	.byte	'cTxLock',0
+	.word	2267
+	.byte	1,2,35,69,23
+	.byte	'uxQueueNumber',0
+	.word	680
+	.byte	4,2,35,70,23
+	.byte	'ucQueueType',0
+	.word	280
+	.byte	1,2,35,74,0,15
+	.word	2272
+	.byte	15
+	.word	2272
+.L550:
+	.byte	26
+	.byte	'QueueHandle_t',0,7,51,36
+	.word	2549
+.L552:
+	.byte	17
+	.word	499
+.L556:
+	.byte	17
+	.word	231
+.L753:
+	.byte	15
+	.word	2272
+.L562:
+	.byte	17
+	.word	2586
+.L566:
+	.byte	17
+	.word	484
+.L573:
+	.byte	17
+	.word	2586
+.L576:
+	.byte	17
+	.word	680
+.L580:
+	.byte	17
+	.word	484
+.L586:
+	.byte	17
+	.word	2586
+.L597:
+	.byte	17
+	.word	484
+.L602:
+	.byte	17
+	.word	2586
+.L605:
+	.byte	17
+	.word	680
+.L608:
+	.byte	17
+	.word	2554
+.L612:
+	.byte	17
+	.word	2554
+.L615:
+	.byte	17
+	.word	2586
+.L619:
+	.byte	17
+	.word	2586
+.L623:
+	.byte	17
+	.word	499
+	.byte	15
+	.word	231
+.L625:
+	.byte	17
+	.word	2661
+.L627:
+	.byte	17
+	.word	231
+.L631:
+	.byte	17
+	.word	2586
+.L637:
+	.byte	17
+	.word	2074
+.L639:
+	.byte	17
+	.word	680
+.L641:
+	.byte	17
+	.word	680
+.L647:
+	.byte	17
+	.word	2661
+.L651:
+	.byte	17
+	.word	2586
+.L656:
+	.byte	17
+	.word	680
+.L660:
+	.byte	17
+	.word	2074
+.L662:
+	.byte	17
+	.word	680
+.L668:
+	.byte	17
+	.word	484
+.L670:
+	.byte	17
+	.word	2661
+.L674:
+	.byte	17
+	.word	2586
+.L679:
+	.byte	17
+	.word	680
+.L683:
+	.byte	17
+	.word	2074
+.L685:
+	.byte	17
+	.word	680
+.L690:
+	.byte	17
+	.word	2554
+.L693:
+	.byte	17
+	.word	2586
+.L696:
+	.byte	17
+	.word	2554
+.L699:
+	.byte	17
+	.word	2586
+.L702:
+	.byte	17
+	.word	2554
+.L705:
+	.byte	17
+	.word	2586
+.L708:
+	.byte	17
+	.word	280
+.L711:
+	.byte	17
+	.word	680
+.L713:
+	.byte	17
+	.word	680
+.L716:
+	.byte	17
+	.word	680
+.L718:
+	.byte	17
+	.word	680
+.L726:
+	.byte	17
+	.word	2586
+.L730:
+	.byte	17
+	.word	680
+.L739:
+	.byte	17
+	.word	2586
+.L744:
+	.byte	17
+	.word	2586
+.L747:
+	.byte	17
+	.word	680
+.L749:
+	.byte	17
+	.word	680
+.L751:
+	.byte	17
+	.word	280
+.L756:
+	.byte	15
+	.word	280
+.L761:
+	.byte	17
+	.word	231
+.L763:
+	.byte	17
+	.word	2586
+.L769:
+	.byte	17
+	.word	2586
+.L779:
+	.byte	17
+	.word	2586
+	.byte	17
+	.word	2272
+.L789:
+	.byte	15
+	.word	2866
+.L796:
+	.byte	17
+	.word	2586
+.L800:
+	.byte	17
+	.word	231
+.L805:
+	.byte	17
+	.word	2586
+.L807:
+	.byte	17
+	.word	484
+.L810:
+	.byte	17
+	.word	680
+.L812:
+	.byte	17
+	.word	680
+.L815:
+	.byte	17
+	.word	280
+.L821:
+	.byte	17
+	.word	2871
+	.byte	2
+	.byte	'short int',0,2,5,26
+	.byte	'__wchar_t',0,6,1,1
+	.word	2916
+	.byte	26
+	.byte	'__size_t',0,6,1,1
+	.word	297
+	.byte	26
+	.byte	'__ptrdiff_t',0,6,1,1
+	.word	371
+	.byte	28,1,15
+	.word	2984
+	.byte	26
+	.byte	'__codeptr',0,6,1,1
+	.word	2986
+	.byte	26
+	.byte	'__intptr_t',0,6,1,1
+	.word	371
+	.byte	26
+	.byte	'__uintptr_t',0,6,1,1
+	.word	297
+	.byte	26
+	.byte	'size_t',0,8,29,25
+	.word	297
+	.byte	26
+	.byte	'int8_t',0,9,241,1,41
+	.word	2074
+	.byte	26
+	.byte	'uint8_t',0,9,242,1,41
+	.word	280
+	.byte	2
+	.byte	'unsigned short int',0,2,7,26
+	.byte	'uint16_t',0,9,246,1,41
+	.word	3096
+	.byte	26
+	.byte	'uint32_t',0,9,254,1,41
+	.word	297
+	.byte	29,1,1,10
+	.word	484
+	.byte	0,15
+	.word	3154
+	.byte	26
+	.byte	'TaskFunction_t',0,10,36,17
+	.word	3163
+	.byte	26
+	.byte	'StackType_t',0,1,74,30
+	.word	297
+	.byte	26
+	.byte	'BaseType_t',0,1,75,30
+	.word	231
+	.byte	26
+	.byte	'UBaseType_t',0,1,76,30
+	.word	680
+	.byte	26
+	.byte	'TickType_t',0,1,82,30
+	.word	297
+	.byte	30,16
+	.word	484
+	.byte	31,3,0,22
+	.byte	'xSTATIC_LIST_ITEM',0,11,177,9,8,20,23
+	.byte	'xDummy2',0
+	.word	297
+	.byte	4,2,35,0,23
+	.byte	'pvDummy3',0
+	.word	3269
+	.byte	16,2,35,4,0,26
+	.byte	'StaticListItem_t',0,11,188,9,34
+	.word	3278
+	.byte	30,8
+	.word	484
+	.byte	31,1,0,22
+	.byte	'xSTATIC_MINI_LIST_ITEM',0,11,192,9,12,12,23
+	.byte	'xDummy2',0
+	.word	297
+	.byte	4,2,35,0,23
+	.byte	'pvDummy3',0
+	.word	3364
+	.byte	8,2,35,4,0,26
+	.byte	'StaticMiniListItem_t',0,11,200,9,43
+	.word	3373
+	.byte	22
+	.byte	'xSTATIC_LIST',0,11,206,9,16,20,23
+	.byte	'uxDummy2',0
+	.word	680
+	.byte	4,2,35,0,23
+	.byte	'pvDummy3',0
+	.word	484
+	.byte	4,2,35,4,23
+	.byte	'xDummy4',0
+	.word	3373
+	.byte	12,2,35,8,0,26
+	.byte	'StaticList_t',0,11,217,9,3
+	.word	3468
+	.byte	30,12
+	.word	484
+	.byte	31,2,0,27,11,172,10,5,4,23
+	.byte	'pvDummy2',0
+	.word	484
+	.byte	4,2,35,0,23
+	.byte	'uxDummy2',0
+	.word	680
+	.byte	4,2,35,0,0,30,40
+	.word	3468
+	.byte	31,1,0,30,12
+	.word	680
+	.byte	31,2,0,30,2
+	.word	280
+	.byte	31,1,0,22
+	.byte	'xSTATIC_QUEUE',0,11,168,10,16,76,23
+	.byte	'pvDummy1',0
+	.word	3563
+	.byte	12,2,35,0,23
+	.byte	'u',0
+	.word	3572
+	.byte	4,2,35,12,23
+	.byte	'xDummy3',0
+	.word	3615
+	.byte	40,2,35,16,23
+	.byte	'uxDummy4',0
+	.word	3624
+	.byte	12,2,35,56,23
+	.byte	'ucDummy5',0
+	.word	3633
+	.byte	2,2,35,68,23
+	.byte	'uxDummy8',0
+	.word	680
+	.byte	4,2,35,70,23
+	.byte	'ucDummy9',0
+	.word	280
+	.byte	1,2,35,74,0,26
+	.byte	'StaticQueue_t',0,11,194,10,3
+	.word	3642
+	.byte	30,16
+	.word	297
+	.byte	31,3,0,22
+	.byte	'xSTATIC_STREAM_BUFFER',0,11,138,11,16,36,23
+	.byte	'uxDummy1',0
+	.word	3804
+	.byte	16,2,35,0,23
+	.byte	'pvDummy2',0
+	.word	3563
+	.byte	12,2,35,16,23
+	.byte	'ucDummy3',0
+	.word	280
+	.byte	1,2,35,28,23
+	.byte	'uxDummy4',0
+	.word	680
+	.byte	4,2,35,30,0,26
+	.byte	'StaticStreamBuffer_t',0,11,149,11,3
+	.word	3813
+	.byte	26
+	.byte	'ListItem_t',0,4,154,1,27
+	.word	716
+	.byte	26
+	.byte	'MiniListItem_t',0,4,164,1,36
+	.word	833
+	.byte	26
+	.byte	'List_t',0,4,179,1,3
+	.word	912
+	.byte	32,5,96,9,1,33
+	.byte	'eRunning',0,0,33
+	.byte	'eReady',0,1,33
+	.byte	'eBlocked',0,2,33
+	.byte	'eSuspended',0,3,33
+	.byte	'eDeleted',0,4,33
+	.byte	'eInvalid',0,5,0,26
+	.byte	'eTaskState',0,5,104,3
+	.word	4004
+	.byte	26
+	.byte	'TimeOut_t',0,5,123,3
+	.word	1126
+	.byte	22
+	.byte	'xMEMORY_REGION',0,5,128,1,16,12,23
+	.byte	'pvBaseAddress',0
+	.word	484
+	.byte	4,2,35,0,23
+	.byte	'ulLengthInBytes',0
+	.word	297
+	.byte	4,2,35,4,23
+	.byte	'ulParameters',0
+	.word	297
+	.byte	4,2,35,8,0,26
+	.byte	'MemoryRegion_t',0,5,133,1,3
+	.word	4113
+	.byte	26
+	.byte	'QueuePointers_t',0,6,73,3
+	.word	2087
+	.byte	26
+	.byte	'SemaphoreData_t',0,6,79,3
+	.word	2143
+	.byte	26
+	.byte	'xQUEUE',0,6,133,1,3
+	.word	2272
+	.byte	26
+	.byte	'Queue_t',0,6,137,1,16
+	.word	2272
+	.byte	0
+	.sdecl	'.debug_abbrev',debug
+	.sect	'.debug_abbrev'
+.L358:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,46,1,3,8,32,13,58,15,59,15
+	.byte	57,15,54,15,39,12,0,0,4,5,0,3,8,58,15,59,15,57,15,73,19,0,0,5,11,0,0,0,6,46,1,3,8,32,13,58,15,59,15,57
+	.byte	15,73,19,54,15,39,12,0,0,7,11,1,0,0,8,52,0,3,8,58,15,59,15,57,15,73,19,0,0,9,46,1,3,8,54,15,39,12,63,12
+	.byte	60,12,0,0,10,5,0,73,19,0,0,11,53,0,73,19,0,0,12,46,1,3,8,73,19,54,15,39,12,63,12,60,12,0,0,13,46,0,3,8
+	.byte	54,15,39,12,63,12,60,12,0,0,14,59,0,3,8,0,0,15,15,0,73,19,0,0,16,55,0,73,19,0,0,17,38,0,73,19,0,0,18,46
+	.byte	1,3,8,58,15,59,15,57,15,73,19,54,15,39,12,63,12,60,12,0,0,19,5,0,58,15,59,15,57,15,73,19,0,0,20,46,0,3
+	.byte	8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,21,46,1,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12
+	.byte	0,0,22,19,1,3,8,58,15,59,15,57,15,11,15,0,0,23,13,0,3,8,73,19,11,15,56,9,0,0,24,46,0,3,8,58,15,59,15,57
+	.byte	15,73,19,54,15,39,12,63,12,60,12,0,0,25,19,0,3,8,58,15,59,15,57,15,60,12,0,0,26,22,0,3,8,58,15,59,15,57
+	.byte	15,73,19,0,0,27,23,1,58,15,59,15,57,15,11,15,0,0,28,21,0,54,15,0,0,29,21,1,54,15,39,12,0,0,30,1,1,11,15
+	.byte	73,19,0,0,31,33,0,47,15,0,0,32,4,1,58,15,59,15,57,15,11,15,0,0,33,40,0,3,8,28,13,0,0,0
+	.sdecl	'.debug_line',debug
+	.sect	'.debug_line'
+.L359:
+	.word	.L1051-.L1050
+.L1050:
+	.half	3
+	.word	.L1053-.L1052
+.L1052:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	'C:\\Infineon\\AURIX-Studio-1.10.6\\tools\\Compilers\\Tasking_1.1r8\\ctc\\include\\',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0
+	.byte	'string.h',0,2,0,0
+	.byte	'portable.h',0,3,0,0
+	.byte	'list.h',0,3,0,0
+	.byte	'task.h',0,3,0,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0
+	.byte	'queue.h',0,3,0,0
+	.byte	'stdlib.h',0,2,0,0
+	.byte	'stdint.h',0,2,0,0
+	.byte	'projdefs.h',0,3,0,0
+	.byte	'FreeRTOS.h',0,3,0,0,0
+.L1053:
+.L1051:
+	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_info'
+.L360:
+	.word	414
+	.half	3
+	.word	.L361
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L363,.L362
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'vPortSetCCPN',0,1,160,1,54,1,1
+	.word	.L287,.L535,.L286
+	.byte	4
+	.byte	'ucCCPN',0,1,160,1,82
+	.word	.L536,.L537
+	.byte	5
+	.word	.L287,.L535
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_abbrev'
+.L361:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_line'
+.L362:
+	.word	.L1055-.L1054
+.L1054:
+	.half	3
+	.word	.L1057-.L1056
+.L1056:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L1057:
+	.byte	5,14,7,0,5,2
+	.word	.L287
+	.byte	3,161,1,1,5,34,9
+	.half	.L1058-.L287
+	.byte	3,1,1,5,50,9
+	.half	.L1059-.L1058
+	.byte	1,5,87,9
+	.half	.L1060-.L1059
+	.byte	1,5,76,9
+	.half	.L1061-.L1060
+	.byte	1,5,11,9
+	.half	.L1062-.L1061
+	.byte	1,5,13,9
+	.half	.L1063-.L1062
+	.byte	3,1,1,5,1,9
+	.half	.L1064-.L1063
+	.byte	3,1,1,7,9
+	.half	.L364-.L1064
+	.byte	0,1,1
+.L1055:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_ranges'
+.L363:
+	.word	-1,.L287,0,.L364-.L287,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetICR')
+	.sect	'.debug_info'
+.L365:
+	.word	388
+	.half	3
+	.word	.L366
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L368,.L367
+	.byte	2
+	.word	.L356
+	.byte	3
+	.word	.L538,.L289,.L539,.L288
+	.byte	4
+	.word	.L540,.L541
+	.byte	5
+	.word	.L289,.L539
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR')
+	.sect	'.debug_abbrev'
+.L366:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,49,16,17,1,18,1,64,6,0,0,4
+	.byte	5,0,49,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetICR')
+	.sect	'.debug_line'
+.L367:
+	.word	.L1066-.L1065
+.L1065:
+	.half	3
+	.word	.L1068-.L1067
+.L1067:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L1068:
+	.byte	5,14,7,0,5,2
+	.word	.L289
+	.byte	3,168,1,1,5,11,9
+	.half	.L1069-.L289
+	.byte	3,1,1,5,13,9
+	.half	.L1070-.L1069
+	.byte	3,1,1,5,1,9
+	.half	.L1071-.L1070
+	.byte	3,1,1,7,9
+	.half	.L369-.L1071
+	.byte	0,1,1
+.L1066:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR')
+	.sect	'.debug_ranges'
+.L368:
+	.word	-1,.L289,0,.L369-.L289,0,0
+	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_info'
+.L370:
+	.word	398
+	.half	3
+	.word	.L371
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L373,.L372
+	.byte	2
+	.word	.L356
+	.byte	3
+	.word	.L542,.L291,.L543,.L290
+	.byte	4
+	.word	.L544,.L545
+	.byte	5
+	.word	.L291,.L543
+	.byte	6
+	.word	.L546,.L547
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_abbrev'
+.L371:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,49,16,17,1,18,1,64,6,0,0,4
+	.byte	5,0,49,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,49,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_line'
+.L372:
+	.word	.L1073-.L1072
+.L1072:
+	.half	3
+	.word	.L1075-.L1074
+.L1074:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L1075:
+	.byte	5,14,7,0,5,2
+	.word	.L291
+	.byte	3,177,1,1,5,18,9
+	.half	.L1076-.L291
+	.byte	3,1,1,5,33,9
+	.half	.L824-.L1076
+	.byte	3,1,1,5,70,9
+	.half	.L1077-.L824
+	.byte	1,5,59,9
+	.half	.L1078-.L1077
+	.byte	1,5,11,9
+	.half	.L1079-.L1078
+	.byte	1,5,13,9
+	.half	.L1080-.L1079
+	.byte	3,1,1,5,5,9
+	.half	.L1081-.L1080
+	.byte	3,1,1,5,1,9
+	.half	.L2-.L1081
+	.byte	3,1,1,7,9
+	.half	.L374-.L2
+	.byte	0,1,1
+.L1073:
+	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_ranges'
+.L373:
+	.word	-1,.L291,0,.L374-.L291,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueGenericSend')
+	.sect	'.debug_info'
+.L375:
+	.word	488
+	.half	3
+	.word	.L376
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L378,.L377
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueGenericSend',0,1,195,6,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L309,.L549,.L308
+	.byte	4
+	.byte	'xQueue',0,1,195,6,45
+	.word	.L550,.L551
+	.byte	4
+	.byte	'pvItemToQueue',0,1,196,6,50
+	.word	.L552,.L553
+	.byte	4
+	.byte	'xTicksToWait',0,1,197,6,42
+	.word	.L554,.L555
+	.byte	4
+	.byte	'xCopyPosition',0,1,198,6,48
+	.word	.L556,.L557
+	.byte	5
+	.word	.L309,.L549
+	.byte	6
+	.byte	'xEntryTimeSet',0,1,200,6,16
+	.word	.L548,.L558
+	.byte	6
+	.byte	'xYieldRequired',0,1,200,6,41
+	.word	.L548,.L559
+	.byte	6
+	.byte	'xTimeOut',0,1,201,6,15
+	.word	.L560,.L561
+	.byte	6
+	.byte	'pxQueue',0,1,202,6,21
+	.word	.L562,.L563
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueGenericSend')
+	.sect	'.debug_abbrev'
+.L376:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueGenericSend')
+	.sect	'.debug_line'
+.L377:
+	.word	.L1083-.L1082
+.L1082:
+	.half	3
+	.word	.L1085-.L1084
+.L1084:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1085:
+	.byte	5,12,7,0,5,2
+	.word	.L309
+	.byte	3,194,6,1,5,30,9
+	.half	.L885-.L309
+	.byte	3,5,1,5,5,9
+	.half	.L886-.L885
+	.byte	3,5,1,7,9
+	.half	.L1086-.L886
+	.byte	1,9
+	.half	.L44-.L1086
+	.byte	3,1,1,7,9
+	.half	.L1087-.L44
+	.byte	1,5,9,9
+	.half	.L46-.L1087
+	.byte	3,3,1,5,12,9
+	.half	.L48-.L46
+	.byte	3,7,1,5,9,9
+	.half	.L51-.L48
+	.byte	3,2,1,5,26,9
+	.half	.L1088-.L51
+	.byte	3,6,1,5,55,9
+	.half	.L1089-.L1088
+	.byte	1,5,17,9
+	.half	.L1090-.L1089
+	.byte	1,5,87,7,9
+	.half	.L1091-.L1090
+	.byte	1,5,82,7,9
+	.half	.L52-.L1091
+	.byte	3,194,0,1,5,25,9
+	.half	.L888-.L52
+	.byte	3,4,1,5,21,9
+	.half	.L55-.L888
+	.byte	1,5,65,7,9
+	.half	.L1092-.L55
+	.byte	3,2,1,5,25,9
+	.half	.L891-.L1092
+	.byte	1,5,29,7,9
+	.half	.L1093-.L891
+	.byte	3,6,1,5,61,9
+	.half	.L1094-.L1093
+	.byte	1,5,25,9
+	.half	.L58-.L1094
+	.byte	3,2,1,5,26,9
+	.half	.L56-.L58
+	.byte	3,5,1,5,25,7,9
+	.half	.L1095-.L56
+	.byte	3,6,1,5,57,9
+	.half	.L892-.L1095
+	.byte	1,5,17,9
+	.half	.L59-.L892
+	.byte	3,9,1,5,24,9
+	.half	.L1096-.L59
+	.byte	3,1,1,5,17,9
+	.half	.L1097-.L1096
+	.byte	1,5,21,9
+	.half	.L53-.L1097
+	.byte	3,4,1,5,17,9
+	.half	.L1098-.L53
+	.byte	1,5,21,7,9
+	.half	.L1099-.L1098
+	.byte	3,4,1,5,28,9
+	.half	.L1100-.L1099
+	.byte	3,5,1,5,21,9
+	.half	.L1101-.L1100
+	.byte	1,5,22,9
+	.half	.L63-.L1101
+	.byte	3,2,1,5,52,7,9
+	.half	.L1102-.L63
+	.byte	3,4,1,5,35,9
+	.half	.L1103-.L1102
+	.byte	3,1,1,5,62,9
+	.half	.L1104-.L1103
+	.byte	3,127,1,5,9,9
+	.half	.L66-.L1104
+	.byte	3,10,1,5,24,9
+	.half	.L1105-.L66
+	.byte	3,5,1,5,9,9
+	.half	.L1106-.L1105
+	.byte	3,1,1,5,36,9
+	.half	.L1107-.L1106
+	.byte	3,3,1,5,47,9
+	.half	.L1108-.L1107
+	.byte	1,5,9,9
+	.half	.L1109-.L1108
+	.byte	1,5,33,7,9
+	.half	.L1110-.L1109
+	.byte	3,2,1,5,13,9
+	.half	.L894-.L1110
+	.byte	1,5,50,7,9
+	.half	.L1111-.L894
+	.byte	3,3,1,5,75,9
+	.half	.L1112-.L1111
+	.byte	1,5,33,9
+	.half	.L1113-.L1112
+	.byte	3,7,1,5,35,9
+	.half	.L896-.L1113
+	.byte	3,7,1,5,17,9
+	.half	.L1114-.L896
+	.byte	1,5,21,7,9
+	.half	.L1115-.L1114
+	.byte	3,2,1,5,17,9
+	.half	.L71-.L1115
+	.byte	3,126,1,5,33,9
+	.half	.L70-.L71
+	.byte	3,8,1,5,40,9
+	.half	.L898-.L70
+	.byte	3,1,1,5,13,9
+	.half	.L72-.L898
+	.byte	3,124,1,5,29,9
+	.half	.L69-.L72
+	.byte	3,10,1,5,36,9
+	.half	.L900-.L69
+	.byte	3,1,1,5,20,9
+	.half	.L1116-.L900
+	.byte	3,3,1,5,13,9
+	.half	.L1117-.L1116
+	.byte	1,5,12,9
+	.half	.L50-.L1117
+	.byte	3,199,126,1,9
+	.half	.L882-.L50
+	.byte	3,189,1,1,5,5,9
+	.half	.L1118-.L882
+	.byte	1,5,1,9
+	.half	.L62-.L1118
+	.byte	3,1,1,7,9
+	.half	.L379-.L62
+	.byte	0,1,1
+.L1083:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueGenericSend')
+	.sect	'.debug_ranges'
+.L378:
+	.word	-1,.L309,0,.L379-.L309,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueuePeek')
+	.sect	'.debug_info'
+.L380:
+	.word	498
+	.half	3
+	.word	.L381
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L383,.L382
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueuePeek',0,1,201,13,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L319,.L564,.L318
+	.byte	4
+	.byte	'xQueue',0,1,201,13,38
+	.word	.L550,.L565
+	.byte	4
+	.byte	'pvBuffer',0,1,202,13,37
+	.word	.L566,.L567
+	.byte	4
+	.byte	'xTicksToWait',0,1,203,13,35
+	.word	.L554,.L568
+	.byte	5
+	.word	.L319,.L564
+	.byte	6
+	.byte	'xEntryTimeSet',0,1,205,13,16
+	.word	.L548,.L569
+	.byte	6
+	.byte	'xTimeOut',0,1,206,13,15
+	.word	.L560,.L570
+	.byte	6
+	.byte	'pcOriginalReadPosition',0,1,207,13,14
+	.word	.L571,.L572
+	.byte	6
+	.byte	'pxQueue',0,1,208,13,21
+	.word	.L573,.L574
+	.byte	5
+	.word	.L575,.L191
+	.byte	6
+	.byte	'uxMessagesWaiting',0,1,231,13,31
+	.word	.L576,.L577
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueuePeek')
+	.sect	'.debug_abbrev'
+.L381:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueuePeek')
+	.sect	'.debug_line'
+.L382:
+	.word	.L1120-.L1119
+.L1119:
+	.half	3
+	.word	.L1122-.L1121
+.L1121:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1122:
+	.byte	5,12,7,0,5,2
+	.word	.L319
+	.byte	3,200,13,1,5,30,9
+	.half	.L1123-.L319
+	.byte	3,4,1,5,5,9
+	.half	.L970-.L1123
+	.byte	3,10,1,7,9
+	.half	.L1124-.L970
+	.byte	1,5,9,9
+	.half	.L174-.L1124
+	.byte	3,5,1,5,12,9
+	.half	.L176-.L174
+	.byte	3,7,1,5,9,9
+	.half	.L179-.L176
+	.byte	3,2,1,5,58,9
+	.half	.L575-.L179
+	.byte	3,2,1,5,13,9
+	.half	.L971-.L575
+	.byte	3,4,1,5,59,7,9
+	.half	.L1125-.L971
+	.byte	3,5,1,5,48,9
+	.half	.L973-.L1125
+	.byte	3,2,1,5,46,9
+	.half	.L975-.L973
+	.byte	3,4,1,5,21,9
+	.half	.L1126-.L975
+	.byte	3,4,1,5,17,9
+	.half	.L182-.L1126
+	.byte	1,5,61,7,9
+	.half	.L1127-.L182
+	.byte	3,2,1,5,21,9
+	.half	.L1128-.L1127
+	.byte	1,5,25,7,9
+	.half	.L1129-.L1128
+	.byte	3,3,1,5,57,9
+	.half	.L1130-.L1129
+	.byte	1,5,21,9
+	.half	.L185-.L1130
+	.byte	3,2,1,5,17,9
+	.half	.L186-.L185
+	.byte	3,10,1,5,24,9
+	.half	.L1131-.L186
+	.byte	3,1,1,5,17,9
+	.half	.L1132-.L1131
+	.byte	1,5,21,9
+	.half	.L180-.L1132
+	.byte	3,4,1,5,17,9
+	.half	.L977-.L180
+	.byte	1,5,21,7,9
+	.half	.L1133-.L977
+	.byte	3,4,1,5,28,9
+	.half	.L1134-.L1133
+	.byte	3,2,1,5,21,9
+	.half	.L1135-.L1134
+	.byte	1,5,22,9
+	.half	.L188-.L1135
+	.byte	3,2,1,5,52,7,9
+	.half	.L1136-.L188
+	.byte	3,5,1,5,35,9
+	.half	.L1137-.L1136
+	.byte	3,1,1,5,62,9
+	.half	.L1138-.L1137
+	.byte	3,127,1,5,9,9
+	.half	.L191-.L1138
+	.byte	3,10,1,5,24,9
+	.half	.L1139-.L191
+	.byte	3,5,1,5,9,9
+	.half	.L1140-.L1139
+	.byte	3,1,1,5,36,9
+	.half	.L1141-.L1140
+	.byte	3,3,1,5,47,9
+	.half	.L1142-.L1141
+	.byte	1,5,9,9
+	.half	.L1143-.L1142
+	.byte	1,5,34,7,9
+	.half	.L1144-.L1143
+	.byte	3,4,1,5,13,9
+	.half	.L979-.L1144
+	.byte	1,5,50,7,9
+	.half	.L1145-.L979
+	.byte	3,3,1,5,78,9
+	.half	.L1146-.L1145
+	.byte	1,5,33,9
+	.half	.L1147-.L1146
+	.byte	3,1,1,5,35,9
+	.half	.L981-.L1147
+	.byte	3,2,1,5,17,9
+	.half	.L1148-.L981
+	.byte	1,5,21,7,9
+	.half	.L1149-.L1148
+	.byte	3,2,1,5,43,9
+	.half	.L1150-.L1149
+	.byte	1,5,17,9
+	.half	.L197-.L1150
+	.byte	3,2,1,5,33,9
+	.half	.L195-.L197
+	.byte	3,9,1,5,40,9
+	.half	.L983-.L195
+	.byte	3,1,1,5,13,9
+	.half	.L198-.L983
+	.byte	3,123,1,5,29,9
+	.half	.L194-.L198
+	.byte	3,12,1,5,36,9
+	.half	.L985-.L194
+	.byte	3,1,1,5,34,9
+	.half	.L1151-.L985
+	.byte	3,2,1,5,13,9
+	.half	.L987-.L1151
+	.byte	1,5,24,7,9
+	.half	.L1152-.L987
+	.byte	3,3,1,5,17,9
+	.half	.L1153-.L1152
+	.byte	1,5,12,9
+	.half	.L178-.L1153
+	.byte	3,142,127,1,9
+	.half	.L967-.L178
+	.byte	3,251,0,1,5,5,9
+	.half	.L1154-.L967
+	.byte	1,5,1,9
+	.half	.L187-.L1154
+	.byte	3,1,1,7,9
+	.half	.L384-.L187
+	.byte	0,1,1
+.L1120:
+	.sdecl	'.debug_ranges',debug,cluster('xQueuePeek')
+	.sect	'.debug_ranges'
+.L383:
+	.word	-1,.L319,0,.L384-.L319,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueuePeekFromISR')
+	.sect	'.debug_info'
+.L385:
+	.word	528
+	.half	3
+	.word	.L386
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L388,.L387
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueuePeekFromISR',0,1,191,15,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L323,.L578,.L322
+	.byte	4
+	.byte	'xQueue',0,1,191,15,45
+	.word	.L550,.L579
+	.byte	4
+	.byte	'pvBuffer',0,1,192,15,44
+	.word	.L580,.L581
+	.byte	5
+	.word	.L323,.L578
+	.byte	6
+	.byte	'xReturn',0,1,194,15,16
+	.word	.L548,.L582
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,195,15,17
+	.word	.L583,.L584
+	.byte	6
+	.byte	'pcOriginalReadPosition',0,1,196,15,14
+	.word	.L571,.L585
+	.byte	6
+	.byte	'pxQueue',0,1,197,15,21
+	.word	.L586,.L587
+	.byte	7
+	.word	.L542,.L588,.L222
+	.byte	8
+	.word	.L544,.L589
+	.byte	9
+	.word	.L590,.L588,.L222
+	.byte	10
+	.word	.L546,.L591
+	.byte	0,0,7
+	.word	.L538,.L224,.L592
+	.byte	8
+	.word	.L540,.L593
+	.byte	11
+	.word	.L594,.L224,.L592
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueuePeekFromISR')
+	.sect	'.debug_abbrev'
+.L386:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueuePeekFromISR')
+	.sect	'.debug_line'
+.L387:
+	.word	.L1156-.L1155
+.L1155:
+	.half	3
+	.word	.L1158-.L1157
+.L1157:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L1158:
+	.byte	5,12,7,0,5,2
+	.word	.L323
+	.byte	3,190,15,1,5,5,9
+	.half	.L998-.L323
+	.byte	3,9,1,7,9
+	.half	.L1159-.L998
+	.byte	1,5,30,9
+	.half	.L220-.L1159
+	.byte	3,19,1,4,2,5,14,9
+	.half	.L588-.L220
+	.byte	3,215,113,1,5,18,9
+	.half	.L1160-.L588
+	.byte	3,1,1,5,33,9
+	.half	.L999-.L1160
+	.byte	3,1,1,5,70,9
+	.half	.L1161-.L999
+	.byte	1,5,59,9
+	.half	.L1162-.L1161
+	.byte	1,5,11,9
+	.half	.L1163-.L1162
+	.byte	1,5,13,9
+	.half	.L1164-.L1163
+	.byte	3,1,1,5,5,9
+	.half	.L1165-.L1164
+	.byte	3,1,1,4,1,5,20,9
+	.half	.L222-.L1165
+	.byte	3,168,14,1,5,9,9
+	.half	.L1166-.L222
+	.byte	1,5,55,7,9
+	.half	.L1167-.L1166
+	.byte	3,6,1,5,44,9
+	.half	.L1000-.L1167
+	.byte	3,1,1,5,42,9
+	.half	.L997-.L1000
+	.byte	3,1,1,5,21,9
+	.half	.L1168-.L997
+	.byte	3,2,1,5,66,9
+	.half	.L1001-.L1168
+	.byte	3,124,1,5,21,9
+	.half	.L223-.L1001
+	.byte	3,8,1,4,2,5,14,9
+	.half	.L224-.L223
+	.byte	3,189,113,1,5,11,9
+	.half	.L1169-.L224
+	.byte	3,1,1,5,13,9
+	.half	.L1170-.L1169
+	.byte	3,1,1,4,1,5,5,9
+	.half	.L592-.L1170
+	.byte	3,199,14,1,5,1,9
+	.half	.L225-.L592
+	.byte	3,1,1,7,9
+	.half	.L389-.L225
+	.byte	0,1,1
+.L1156:
+	.sdecl	'.debug_ranges',debug,cluster('xQueuePeekFromISR')
+	.sect	'.debug_ranges'
+.L388:
+	.word	-1,.L323,0,.L389-.L323,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueReceive')
+	.sect	'.debug_info'
+.L390:
+	.word	465
+	.half	3
+	.word	.L391
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L393,.L392
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueReceive',0,1,228,10,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L315,.L595,.L314
+	.byte	4
+	.byte	'xQueue',0,1,228,10,41
+	.word	.L550,.L596
+	.byte	4
+	.byte	'pvBuffer',0,1,229,10,40
+	.word	.L597,.L598
+	.byte	4
+	.byte	'xTicksToWait',0,1,230,10,38
+	.word	.L554,.L599
+	.byte	5
+	.word	.L315,.L595
+	.byte	6
+	.byte	'xEntryTimeSet',0,1,232,10,16
+	.word	.L548,.L600
+	.byte	6
+	.byte	'xTimeOut',0,1,233,10,15
+	.word	.L560,.L601
+	.byte	6
+	.byte	'pxQueue',0,1,234,10,21
+	.word	.L602,.L603
+	.byte	5
+	.word	.L604,.L130
+	.byte	6
+	.byte	'uxMessagesWaiting',0,1,129,11,31
+	.word	.L605,.L606
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueReceive')
+	.sect	'.debug_abbrev'
+.L391:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueReceive')
+	.sect	'.debug_line'
+.L392:
+	.word	.L1172-.L1171
+.L1171:
+	.half	3
+	.word	.L1174-.L1173
+.L1173:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1174:
+	.byte	5,12,7,0,5,2
+	.word	.L315
+	.byte	3,227,10,1,5,30,9
+	.half	.L1175-.L315
+	.byte	3,4,1,5,5,9
+	.half	.L923-.L1175
+	.byte	3,9,1,7,9
+	.half	.L1176-.L923
+	.byte	1,5,9,9
+	.half	.L113-.L1176
+	.byte	3,5,1,5,12,9
+	.half	.L115-.L113
+	.byte	3,7,1,5,9,9
+	.half	.L118-.L115
+	.byte	3,2,1,5,58,9
+	.half	.L604-.L118
+	.byte	3,2,1,5,13,9
+	.half	.L924-.L604
+	.byte	3,4,1,5,48,7,9
+	.half	.L1177-.L924
+	.byte	3,3,1,5,64,9
+	.half	.L927-.L1177
+	.byte	3,2,1,5,44,9
+	.half	.L925-.L927
+	.byte	1,5,21,9
+	.half	.L1178-.L925
+	.byte	3,5,1,5,17,9
+	.half	.L121-.L1178
+	.byte	1,5,61,7,9
+	.half	.L1179-.L121
+	.byte	3,2,1,5,21,9
+	.half	.L1180-.L1179
+	.byte	1,5,25,7,9
+	.half	.L1181-.L1180
+	.byte	3,2,1,5,57,9
+	.half	.L1182-.L1181
+	.byte	1,5,21,9
+	.half	.L124-.L1182
+	.byte	3,2,1,5,17,9
+	.half	.L125-.L124
+	.byte	3,10,1,5,24,9
+	.half	.L1183-.L125
+	.byte	3,1,1,5,17,9
+	.half	.L1184-.L1183
+	.byte	1,5,21,9
+	.half	.L119-.L1184
+	.byte	3,4,1,5,17,9
+	.half	.L929-.L119
+	.byte	1,5,21,7,9
+	.half	.L1185-.L929
+	.byte	3,4,1,5,28,9
+	.half	.L1186-.L1185
+	.byte	3,2,1,5,21,9
+	.half	.L1187-.L1186
+	.byte	1,5,22,9
+	.half	.L127-.L1187
+	.byte	3,2,1,5,52,7,9
+	.half	.L1188-.L127
+	.byte	3,4,1,5,35,9
+	.half	.L1189-.L1188
+	.byte	3,1,1,5,62,9
+	.half	.L1190-.L1189
+	.byte	3,127,1,5,9,9
+	.half	.L130-.L1190
+	.byte	3,10,1,5,24,9
+	.half	.L1191-.L130
+	.byte	3,5,1,5,9,9
+	.half	.L1192-.L1191
+	.byte	3,1,1,5,36,9
+	.half	.L1193-.L1192
+	.byte	3,3,1,5,47,9
+	.half	.L1194-.L1193
+	.byte	1,5,9,9
+	.half	.L1195-.L1194
+	.byte	1,5,34,7,9
+	.half	.L1196-.L1195
+	.byte	3,4,1,5,13,9
+	.half	.L931-.L1196
+	.byte	1,5,50,7,9
+	.half	.L1197-.L931
+	.byte	3,3,1,5,78,9
+	.half	.L1198-.L1197
+	.byte	1,5,33,9
+	.half	.L1199-.L1198
+	.byte	3,1,1,5,35,9
+	.half	.L933-.L1199
+	.byte	3,2,1,5,17,9
+	.half	.L1200-.L933
+	.byte	1,5,21,7,9
+	.half	.L1201-.L1200
+	.byte	3,2,1,5,43,9
+	.half	.L1202-.L1201
+	.byte	1,5,17,9
+	.half	.L136-.L1202
+	.byte	3,2,1,5,33,9
+	.half	.L134-.L136
+	.byte	3,9,1,5,40,9
+	.half	.L935-.L134
+	.byte	3,1,1,5,13,9
+	.half	.L137-.L935
+	.byte	3,123,1,5,29,9
+	.half	.L133-.L137
+	.byte	3,12,1,5,36,9
+	.half	.L937-.L133
+	.byte	3,1,1,5,34,9
+	.half	.L1203-.L937
+	.byte	3,2,1,5,13,9
+	.half	.L939-.L1203
+	.byte	1,5,24,7,9
+	.half	.L1204-.L939
+	.byte	3,3,1,5,17,9
+	.half	.L1205-.L1204
+	.byte	1,5,12,9
+	.half	.L117-.L1205
+	.byte	3,149,127,1,9
+	.half	.L920-.L117
+	.byte	3,244,0,1,5,5,9
+	.half	.L1206-.L920
+	.byte	1,5,1,9
+	.half	.L126-.L1206
+	.byte	3,1,1,7,9
+	.half	.L394-.L126
+	.byte	0,1,1
+.L1172:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueReceive')
+	.sect	'.debug_ranges'
+.L393:
+	.word	-1,.L315,0,.L394-.L315,0,0
+	.sdecl	'.debug_info',debug,cluster('uxQueueMessagesWaiting')
+	.sect	'.debug_info'
+.L395:
+	.word	337
+	.half	3
+	.word	.L396
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L398,.L397
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'uxQueueMessagesWaiting',0,1,246,15,13
+	.word	.L583
+	.byte	1,1,1
+	.word	.L325,.L607,.L324
+	.byte	4
+	.byte	'xQueue',0,1,246,15,57
+	.word	.L608,.L609
+	.byte	5
+	.word	.L325,.L607
+	.byte	6
+	.byte	'uxReturn',0,1,248,15,17
+	.word	.L583,.L610
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('uxQueueMessagesWaiting')
+	.sect	'.debug_abbrev'
+.L396:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('uxQueueMessagesWaiting')
+	.sect	'.debug_line'
+.L397:
+	.word	.L1208-.L1207
+.L1207:
+	.half	3
+	.word	.L1210-.L1209
+.L1209:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1210:
+	.byte	5,13,7,0,5,2
+	.word	.L325
+	.byte	3,245,15,1,5,5,9
+	.half	.L1003-.L325
+	.byte	3,6,1,5,44,9
+	.half	.L1002-.L1003
+	.byte	3,2,1,5,5,9
+	.half	.L1004-.L1002
+	.byte	3,2,1,9
+	.half	.L1211-.L1004
+	.byte	3,2,1,5,1,9
+	.half	.L226-.L1211
+	.byte	3,1,1,7,9
+	.half	.L399-.L226
+	.byte	0,1,1
+.L1208:
+	.sdecl	'.debug_ranges',debug,cluster('uxQueueMessagesWaiting')
+	.sect	'.debug_ranges'
+.L398:
+	.word	-1,.L325,0,.L399-.L325,0,0
+	.sdecl	'.debug_info',debug,cluster('uxQueueSpacesAvailable')
+	.sect	'.debug_info'
+.L400:
+	.word	358
+	.half	3
+	.word	.L401
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L403,.L402
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'uxQueueSpacesAvailable',0,1,134,16,13
+	.word	.L583
+	.byte	1,1,1
+	.word	.L327,.L611,.L326
+	.byte	4
+	.byte	'xQueue',0,1,134,16,57
+	.word	.L612,.L613
+	.byte	5
+	.word	.L327,.L611
+	.byte	6
+	.byte	'uxReturn',0,1,136,16,17
+	.word	.L583,.L614
+	.byte	6
+	.byte	'pxQueue',0,1,137,16,21
+	.word	.L615,.L616
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('uxQueueSpacesAvailable')
+	.sect	'.debug_abbrev'
+.L401:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('uxQueueSpacesAvailable')
+	.sect	'.debug_line'
+.L402:
+	.word	.L1213-.L1212
+.L1212:
+	.half	3
+	.word	.L1215-.L1214
+.L1214:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1215:
+	.byte	5,13,7,0,5,2
+	.word	.L327
+	.byte	3,133,16,1,5,5,9
+	.half	.L1007-.L327
+	.byte	3,7,1,5,27,9
+	.half	.L1006-.L1007
+	.byte	3,2,1,5,47,9
+	.half	.L1216-.L1006
+	.byte	1,5,38,9
+	.half	.L1008-.L1216
+	.byte	1,5,5,9
+	.half	.L1217-.L1008
+	.byte	3,2,1,9
+	.half	.L1218-.L1217
+	.byte	3,2,1,5,1,9
+	.half	.L227-.L1218
+	.byte	3,1,1,7,9
+	.half	.L404-.L227
+	.byte	0,1,1
+.L1213:
+	.sdecl	'.debug_ranges',debug,cluster('uxQueueSpacesAvailable')
+	.sect	'.debug_ranges'
+.L403:
+	.word	-1,.L327,0,.L404-.L327,0,0
+	.sdecl	'.debug_info',debug,cluster('vQueueDelete')
+	.sect	'.debug_info'
+.L405:
+	.word	322
+	.half	3
+	.word	.L406
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L408,.L407
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'vQueueDelete',0,1,163,16,6,1,1,1
+	.word	.L331,.L617,.L330
+	.byte	4
+	.byte	'xQueue',0,1,163,16,34
+	.word	.L550,.L618
+	.byte	5
+	.word	.L331,.L617
+	.byte	6
+	.byte	'pxQueue',0,1,165,16,21
+	.word	.L619,.L620
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vQueueDelete')
+	.sect	'.debug_abbrev'
+.L406:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vQueueDelete')
+	.sect	'.debug_line'
+.L407:
+	.word	.L1220-.L1219
+.L1219:
+	.half	3
+	.word	.L1222-.L1221
+.L1221:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1222:
+	.byte	5,20,7,0,5,2
+	.word	.L331
+	.byte	3,179,16,1,5,1,9
+	.half	.L1011-.L331
+	.byte	3,22,1,7,9
+	.half	.L409-.L1011
+	.byte	0,1,1
+.L1220:
+	.sdecl	'.debug_ranges',debug,cluster('vQueueDelete')
+	.sect	'.debug_ranges'
+.L408:
+	.word	-1,.L331,0,.L409-.L331,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueGenericSendFromISR')
+	.sect	'.debug_info'
+.L410:
+	.word	679
+	.half	3
+	.word	.L411
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L413,.L412
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueGenericSendFromISR',0,1,153,8,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L311,.L621,.L310
+	.byte	4
+	.byte	'xQueue',0,1,153,8,52
+	.word	.L550,.L622
+	.byte	4
+	.byte	'pvItemToQueue',0,1,154,8,57
+	.word	.L623,.L624
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,155,8,57
+	.word	.L625,.L626
+	.byte	4
+	.byte	'xCopyPosition',0,1,156,8,55
+	.word	.L627,.L628
+	.byte	5
+	.word	.L311,.L621
+	.byte	6
+	.byte	'xReturn',0,1,158,8,16
+	.word	.L548,.L629
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,159,8,17
+	.word	.L583,.L630
+	.byte	6
+	.byte	'pxQueue',0,1,160,8,21
+	.word	.L631,.L632
+	.byte	7
+	.word	.L542,.L633,.L80
+	.byte	8
+	.word	.L544,.L634
+	.byte	9
+	.word	.L590,.L633,.L80
+	.byte	10
+	.word	.L546,.L635
+	.byte	0,0,5
+	.word	.L81,.L636
+	.byte	6
+	.byte	'cTxLock',0,1,191,8,26
+	.word	.L637,.L638
+	.byte	6
+	.byte	'uxPreviousMessagesWaiting',0,1,192,8,31
+	.word	.L639,.L640
+	.byte	5
+	.word	.L83,.L92
+	.byte	6
+	.byte	'uxNumberOfTasks',0,1,173,9,17
+	.word	.L641,.L642
+	.byte	0,0,7
+	.word	.L538,.L94,.L643
+	.byte	8
+	.word	.L540,.L644
+	.byte	11
+	.word	.L594,.L94,.L643
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueGenericSendFromISR')
+	.sect	'.debug_abbrev'
+.L411:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueGenericSendFromISR')
+	.sect	'.debug_line'
+.L412:
+	.word	.L1224-.L1223
+.L1223:
+	.half	3
+	.word	.L1226-.L1225
+.L1225:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L1226:
+	.byte	5,12,7,0,5,2
+	.word	.L311
+	.byte	3,152,8,1,5,5,9
+	.half	.L903-.L311
+	.byte	3,10,1,7,9
+	.half	.L1227-.L903
+	.byte	1,9
+	.half	.L76-.L1227
+	.byte	3,1,1,7,9
+	.half	.L1228-.L76
+	.byte	1,5,30,9
+	.half	.L78-.L1228
+	.byte	3,23,1,4,2,5,14,9
+	.half	.L633-.L78
+	.byte	3,247,120,1,5,18,9
+	.half	.L1229-.L633
+	.byte	3,1,1,5,33,9
+	.half	.L904-.L1229
+	.byte	3,1,1,5,70,9
+	.half	.L1230-.L904
+	.byte	1,5,59,9
+	.half	.L1231-.L1230
+	.byte	1,5,11,9
+	.half	.L1232-.L1231
+	.byte	1,5,13,9
+	.half	.L1233-.L1232
+	.byte	3,1,1,5,5,9
+	.half	.L1234-.L1233
+	.byte	3,1,1,4,1,5,22,9
+	.half	.L80-.L1234
+	.byte	3,135,7,1,5,51,9
+	.half	.L1235-.L80
+	.byte	1,5,13,9
+	.half	.L1236-.L1235
+	.byte	1,5,83,7,9
+	.half	.L1237-.L1236
+	.byte	1,5,43,7,9
+	.half	.L81-.L1237
+	.byte	3,2,1,5,66,9
+	.half	.L905-.L81
+	.byte	3,1,1,9
+	.half	.L1238-.L905
+	.byte	3,9,1,5,13,9
+	.half	.L901-.L1238
+	.byte	3,4,1,5,25,7,9
+	.half	.L1239-.L901
+	.byte	3,62,1,5,21,9
+	.half	.L85-.L1239
+	.byte	1,5,65,7,9
+	.half	.L1240-.L85
+	.byte	3,2,1,5,25,9
+	.half	.L1241-.L1240
+	.byte	1,5,29,7,9
+	.half	.L1242-.L1241
+	.byte	3,4,1,5,62,7,9
+	.half	.L1243-.L1242
+	.byte	3,2,1,5,60,9
+	.half	.L1244-.L1243
+	.byte	1,5,68,9
+	.half	.L1245-.L1244
+	.byte	1,5,29,9
+	.half	.L89-.L1245
+	.byte	3,2,1,5,25,9
+	.half	.L90-.L89
+	.byte	3,5,1,5,55,9
+	.half	.L91-.L90
+	.byte	3,11,1,5,17,9
+	.half	.L83-.L91
+	.byte	3,8,1,5,21,9
+	.half	.L92-.L83
+	.byte	3,3,1,5,29,9
+	.half	.L636-.L92
+	.byte	1,5,21,9
+	.half	.L82-.L636
+	.byte	3,5,1,4,2,5,14,9
+	.half	.L94-.L82
+	.byte	3,244,119,1,5,11,9
+	.half	.L1246-.L94
+	.byte	3,1,1,5,13,9
+	.half	.L1247-.L1246
+	.byte	3,1,1,4,1,5,5,9
+	.half	.L643-.L1247
+	.byte	3,143,8,1,5,1,9
+	.half	.L95-.L643
+	.byte	3,1,1,7,9
+	.half	.L414-.L95
+	.byte	0,1,1
+.L1224:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueGenericSendFromISR')
+	.sect	'.debug_ranges'
+.L413:
+	.word	-1,.L311,0,.L414-.L311,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueGiveFromISR')
+	.sect	'.debug_info'
+.L415:
+	.word	620
+	.half	3
+	.word	.L416
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L418,.L417
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueGiveFromISR',0,1,190,9,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L313,.L645,.L312
+	.byte	4
+	.byte	'xQueue',0,1,190,9,45
+	.word	.L550,.L646
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,191,9,50
+	.word	.L647,.L648
+	.byte	5
+	.word	.L313,.L645
+	.byte	6
+	.byte	'xReturn',0,1,193,9,16
+	.word	.L548,.L649
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,194,9,17
+	.word	.L583,.L650
+	.byte	6
+	.byte	'pxQueue',0,1,195,9,21
+	.word	.L651,.L652
+	.byte	7
+	.word	.L542,.L653,.L98
+	.byte	8
+	.word	.L544,.L654
+	.byte	9
+	.word	.L590,.L653,.L98
+	.byte	10
+	.word	.L546,.L655
+	.byte	0,0,5
+	.word	.L98,.L111
+	.byte	6
+	.byte	'uxMessagesWaiting',0,1,232,9,27
+	.word	.L656,.L657
+	.byte	5
+	.word	.L658,.L659
+	.byte	6
+	.byte	'cTxLock',0,1,239,9,26
+	.word	.L660,.L661
+	.byte	5
+	.word	.L100,.L109
+	.byte	6
+	.byte	'uxNumberOfTasks',0,1,211,10,17
+	.word	.L662,.L663
+	.byte	0,0,0,7
+	.word	.L538,.L111,.L664
+	.byte	8
+	.word	.L540,.L665
+	.byte	11
+	.word	.L594,.L111,.L664
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueGiveFromISR')
+	.sect	'.debug_abbrev'
+.L416:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueGiveFromISR')
+	.sect	'.debug_line'
+.L417:
+	.word	.L1249-.L1248
+.L1248:
+	.half	3
+	.word	.L1251-.L1250
+.L1250:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L1251:
+	.byte	5,12,7,0,5,2
+	.word	.L313
+	.byte	3,189,9,1,5,5,9
+	.half	.L912-.L313
+	.byte	3,22,1,5,30,9
+	.half	.L96-.L912
+	.byte	3,18,1,4,2,5,14,9
+	.half	.L653-.L96
+	.byte	3,204,119,1,5,18,9
+	.half	.L1252-.L653
+	.byte	3,1,1,5,33,9
+	.half	.L913-.L1252
+	.byte	3,1,1,5,70,9
+	.half	.L1253-.L913
+	.byte	1,5,59,9
+	.half	.L1254-.L1253
+	.byte	1,5,11,9
+	.half	.L1255-.L1254
+	.byte	1,5,13,9
+	.half	.L1256-.L1255
+	.byte	3,1,1,5,5,9
+	.half	.L1257-.L1256
+	.byte	3,1,1,4,1,5,54,9
+	.half	.L98-.L1257
+	.byte	3,178,8,1,5,40,9
+	.half	.L914-.L98
+	.byte	3,5,1,5,9,9
+	.half	.L1258-.L914
+	.byte	1,5,43,7,9
+	.half	.L658-.L1258
+	.byte	3,2,1,5,60,9
+	.half	.L915-.L658
+	.byte	3,10,1,5,40,9
+	.half	.L1259-.L915
+	.byte	1,5,13,9
+	.half	.L1260-.L1259
+	.byte	3,4,1,5,25,7,9
+	.half	.L1261-.L1260
+	.byte	3,55,1,5,21,9
+	.half	.L102-.L1261
+	.byte	1,5,65,7,9
+	.half	.L1262-.L102
+	.byte	3,2,1,5,25,9
+	.half	.L909-.L1262
+	.byte	1,5,29,7,9
+	.half	.L1263-.L909
+	.byte	3,4,1,5,62,7,9
+	.half	.L1264-.L1263
+	.byte	3,2,1,5,60,9
+	.half	.L1265-.L1264
+	.byte	1,5,68,9
+	.half	.L1266-.L1265
+	.byte	1,5,29,9
+	.half	.L106-.L1266
+	.byte	3,2,1,5,25,9
+	.half	.L107-.L106
+	.byte	3,5,1,5,21,9
+	.half	.L108-.L107
+	.byte	3,5,1,5,17,9
+	.half	.L100-.L108
+	.byte	3,11,1,5,21,9
+	.half	.L109-.L100
+	.byte	3,3,1,5,29,9
+	.half	.L659-.L109
+	.byte	1,5,21,9
+	.half	.L99-.L659
+	.byte	3,5,1,4,2,5,14,9
+	.half	.L111-.L99
+	.byte	3,206,118,1,5,11,9
+	.half	.L1267-.L111
+	.byte	3,1,1,5,13,9
+	.half	.L1268-.L1267
+	.byte	3,1,1,4,1,5,5,9
+	.half	.L664-.L1268
+	.byte	3,181,9,1,5,1,9
+	.half	.L112-.L664
+	.byte	3,1,1,7,9
+	.half	.L419-.L112
+	.byte	0,1,1
+.L1249:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueGiveFromISR')
+	.sect	'.debug_ranges'
+.L418:
+	.word	-1,.L313,0,.L419-.L313,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueReceiveFromISR')
+	.sect	'.debug_info'
+.L420:
+	.word	645
+	.half	3
+	.word	.L421
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L423,.L422
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueReceiveFromISR',0,1,226,14,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L321,.L666,.L320
+	.byte	4
+	.byte	'xQueue',0,1,226,14,48
+	.word	.L550,.L667
+	.byte	4
+	.byte	'pvBuffer',0,1,227,14,47
+	.word	.L668,.L669
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,228,14,53
+	.word	.L670,.L671
+	.byte	5
+	.word	.L321,.L666
+	.byte	6
+	.byte	'xReturn',0,1,230,14,16
+	.word	.L548,.L672
+	.byte	6
+	.byte	'uxSavedInterruptStatus',0,1,231,14,17
+	.word	.L583,.L673
+	.byte	6
+	.byte	'pxQueue',0,1,232,14,21
+	.word	.L674,.L675
+	.byte	7
+	.word	.L542,.L676,.L205
+	.byte	8
+	.word	.L544,.L677
+	.byte	9
+	.word	.L590,.L676,.L205
+	.byte	10
+	.word	.L546,.L678
+	.byte	0,0,5
+	.word	.L205,.L218
+	.byte	6
+	.byte	'uxMessagesWaiting',0,1,255,14,27
+	.word	.L679,.L680
+	.byte	5
+	.word	.L681,.L682
+	.byte	6
+	.byte	'cRxLock',0,1,132,15,26
+	.word	.L683,.L684
+	.byte	5
+	.word	.L207,.L216
+	.byte	6
+	.byte	'uxNumberOfTasks',0,1,174,15,17
+	.word	.L685,.L686
+	.byte	0,0,0,7
+	.word	.L538,.L218,.L687
+	.byte	8
+	.word	.L540,.L688
+	.byte	11
+	.word	.L594,.L218,.L687
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueReceiveFromISR')
+	.sect	'.debug_abbrev'
+.L421:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
+	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueReceiveFromISR')
+	.sect	'.debug_line'
+.L422:
+	.word	.L1270-.L1269
+.L1269:
+	.half	3
+	.word	.L1272-.L1271
+.L1271:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0
+	.byte	'portmacro.h',0,1,0,0,0
+.L1272:
+	.byte	5,12,7,0,5,2
+	.word	.L321
+	.byte	3,225,14,1,5,5,9
+	.half	.L990-.L321
+	.byte	3,9,1,7,9
+	.half	.L1273-.L990
+	.byte	1,5,30,9
+	.half	.L203-.L1273
+	.byte	3,18,1,4,2,5,14,9
+	.half	.L676-.L203
+	.byte	3,181,114,1,5,18,9
+	.half	.L1274-.L676
+	.byte	3,1,1,5,33,9
+	.half	.L991-.L1274
+	.byte	3,1,1,5,70,9
+	.half	.L1275-.L991
+	.byte	1,5,59,9
+	.half	.L1276-.L1275
+	.byte	1,5,11,9
+	.half	.L1277-.L1276
+	.byte	1,5,13,9
+	.half	.L1278-.L1277
+	.byte	3,1,1,5,5,9
+	.half	.L1279-.L1278
+	.byte	3,1,1,4,1,5,54,9
+	.half	.L205-.L1279
+	.byte	3,201,13,1,5,9,9
+	.half	.L992-.L205
+	.byte	3,3,1,5,43,7,9
+	.half	.L681-.L992
+	.byte	3,2,1,5,44,9
+	.half	.L994-.L681
+	.byte	3,4,1,5,60,9
+	.half	.L988-.L994
+	.byte	3,1,1,5,40,9
+	.half	.L993-.L988
+	.byte	1,5,13,9
+	.half	.L1280-.L993
+	.byte	3,6,1,5,21,7,9
+	.half	.L1281-.L1280
+	.byte	3,2,1,5,17,9
+	.half	.L209-.L1281
+	.byte	1,5,61,7,9
+	.half	.L1282-.L209
+	.byte	3,2,1,5,21,9
+	.half	.L1283-.L1282
+	.byte	1,5,25,7,9
+	.half	.L1284-.L1283
+	.byte	3,4,1,5,58,7,9
+	.half	.L1285-.L1284
+	.byte	3,2,1,5,56,9
+	.half	.L1286-.L1285
+	.byte	1,5,64,9
+	.half	.L1287-.L1286
+	.byte	1,5,25,9
+	.half	.L213-.L1287
+	.byte	3,2,1,5,21,9
+	.half	.L214-.L213
+	.byte	3,5,1,5,17,9
+	.half	.L215-.L214
+	.byte	3,5,1,9
+	.half	.L207-.L215
+	.byte	3,9,1,5,21,9
+	.half	.L216-.L207
+	.byte	3,3,1,5,29,9
+	.half	.L682-.L216
+	.byte	1,5,21,9
+	.half	.L206-.L682
+	.byte	3,4,1,4,2,5,14,9
+	.half	.L218-.L206
+	.byte	3,244,113,1,5,11,9
+	.half	.L1288-.L218
+	.byte	3,1,1,5,13,9
+	.half	.L1289-.L1288
+	.byte	3,1,1,4,1,5,5,9
+	.half	.L687-.L1289
+	.byte	3,144,14,1,5,1,9
+	.half	.L219-.L687
+	.byte	3,1,1,7,9
+	.half	.L424-.L219
+	.byte	0,1,1
+.L1270:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueReceiveFromISR')
+	.sect	'.debug_ranges'
+.L423:
+	.word	-1,.L321,0,.L424-.L321,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueIsQueueEmptyFromISR')
+	.sect	'.debug_info'
+.L425:
+	.word	360
+	.half	3
+	.word	.L426
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L428,.L427
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueIsQueueEmptyFromISR',0,1,252,18,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L349,.L689,.L348
+	.byte	4
+	.byte	'xQueue',0,1,252,18,59
+	.word	.L690,.L691
+	.byte	5
+	.word	.L349,.L689
+	.byte	6
+	.byte	'xReturn',0,1,254,18,16
+	.word	.L548,.L692
+	.byte	6
+	.byte	'pxQueue',0,1,255,18,21
+	.word	.L693,.L694
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueIsQueueEmptyFromISR')
+	.sect	'.debug_abbrev'
+.L426:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueIsQueueEmptyFromISR')
+	.sect	'.debug_line'
+.L427:
+	.word	.L1291-.L1290
+.L1290:
+	.half	3
+	.word	.L1293-.L1292
+.L1292:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1293:
+	.byte	5,16,7,0,5,2
+	.word	.L349
+	.byte	3,130,19,1,5,5,9
+	.half	.L1294-.L349
+	.byte	1,5,17,7,9
+	.half	.L1295-.L1294
+	.byte	3,2,1,5,25,9
+	.half	.L1036-.L1295
+	.byte	1,5,17,9
+	.half	.L273-.L1036
+	.byte	3,4,1,5,5,9
+	.half	.L274-.L273
+	.byte	3,3,1,5,1,9
+	.half	.L275-.L274
+	.byte	3,1,1,7,9
+	.half	.L429-.L275
+	.byte	0,1,1
+.L1291:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueIsQueueEmptyFromISR')
+	.sect	'.debug_ranges'
+.L428:
+	.word	-1,.L349,0,.L429-.L349,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueIsQueueFullFromISR')
+	.sect	'.debug_info'
+.L430:
+	.word	359
+	.half	3
+	.word	.L431
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L433,.L432
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueIsQueueFullFromISR',0,1,165,19,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L353,.L695,.L352
+	.byte	4
+	.byte	'xQueue',0,1,165,19,58
+	.word	.L696,.L697
+	.byte	5
+	.word	.L353,.L695
+	.byte	6
+	.byte	'xReturn',0,1,167,19,16
+	.word	.L548,.L698
+	.byte	6
+	.byte	'pxQueue',0,1,168,19,21
+	.word	.L699,.L700
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueIsQueueFullFromISR')
+	.sect	'.debug_abbrev'
+.L431:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueIsQueueFullFromISR')
+	.sect	'.debug_line'
+.L432:
+	.word	.L1297-.L1296
+.L1296:
+	.half	3
+	.word	.L1299-.L1298
+.L1298:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1299:
+	.byte	5,16,7,0,5,2
+	.word	.L353
+	.byte	3,171,19,1,5,46,9
+	.half	.L1300-.L353
+	.byte	1,5,5,9
+	.half	.L1301-.L1300
+	.byte	1,5,17,7,9
+	.half	.L1302-.L1301
+	.byte	3,2,1,5,25,9
+	.half	.L1041-.L1302
+	.byte	1,5,17,9
+	.half	.L279-.L1041
+	.byte	3,4,1,5,5,9
+	.half	.L280-.L279
+	.byte	3,3,1,5,1,9
+	.half	.L281-.L280
+	.byte	3,1,1,7,9
+	.half	.L434-.L281
+	.byte	0,1,1
+.L1297:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueIsQueueFullFromISR')
+	.sect	'.debug_ranges'
+.L433:
+	.word	-1,.L353,0,.L434-.L353,0,0
+	.sdecl	'.debug_info',debug,cluster('uxQueueMessagesWaitingFromISR')
+	.sect	'.debug_info'
+.L435:
+	.word	365
+	.half	3
+	.word	.L436
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L438,.L437
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'uxQueueMessagesWaitingFromISR',0,1,151,16,13
+	.word	.L583
+	.byte	1,1,1
+	.word	.L329,.L701,.L328
+	.byte	4
+	.byte	'xQueue',0,1,151,16,64
+	.word	.L702,.L703
+	.byte	5
+	.word	.L329,.L701
+	.byte	6
+	.byte	'uxReturn',0,1,153,16,17
+	.word	.L583,.L704
+	.byte	6
+	.byte	'pxQueue',0,1,154,16,21
+	.word	.L705,.L706
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('uxQueueMessagesWaitingFromISR')
+	.sect	'.debug_abbrev'
+.L436:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('uxQueueMessagesWaitingFromISR')
+	.sect	'.debug_line'
+.L437:
+	.word	.L1304-.L1303
+.L1303:
+	.half	3
+	.word	.L1306-.L1305
+.L1305:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1306:
+	.byte	5,23,7,0,5,2
+	.word	.L329
+	.byte	3,156,16,1,5,5,9
+	.half	.L1010-.L329
+	.byte	3,2,1,5,1,9
+	.half	.L228-.L1010
+	.byte	3,1,1,7,9
+	.half	.L439-.L228
+	.byte	0,1,1
+.L1304:
+	.sdecl	'.debug_ranges',debug,cluster('uxQueueMessagesWaitingFromISR')
+	.sect	'.debug_ranges'
+.L438:
+	.word	-1,.L329,0,.L439-.L329,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueCreateMutex')
+	.sect	'.debug_info'
+.L440:
+	.word	390
+	.half	3
+	.word	.L441
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L443,.L442
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueCreateMutex',0,1,188,4,19
+	.word	.L550
+	.byte	1,1,1
+	.word	.L301,.L707,.L300
+	.byte	4
+	.byte	'ucQueueType',0,1,188,4,52
+	.word	.L708,.L709
+	.byte	5
+	.word	.L301,.L707
+	.byte	6
+	.byte	'xNewQueue',0,1,190,4,23
+	.word	.L550,.L710
+	.byte	6
+	.byte	'uxMutexLength',0,1,191,4,27
+	.word	.L711,.L712
+	.byte	6
+	.byte	'uxMutexSize',0,1,191,4,62
+	.word	.L713,.L714
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueCreateMutex')
+	.sect	'.debug_abbrev'
+.L441:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueCreateMutex')
+	.sect	'.debug_line'
+.L442:
+	.word	.L1308-.L1307
+.L1307:
+	.half	3
+	.word	.L1310-.L1309
+.L1309:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1310:
+	.byte	5,19,7,0,5,2
+	.word	.L301
+	.byte	3,187,4,1,5,41,9
+	.half	.L855-.L301
+	.byte	3,3,1,5,74,9
+	.half	.L854-.L855
+	.byte	1,5,70,9
+	.half	.L857-.L854
+	.byte	3,2,1,5,19,9
+	.half	.L856-.L857
+	.byte	1,5,43,9
+	.half	.L859-.L856
+	.byte	3,1,1,5,9,9
+	.half	.L860-.L859
+	.byte	3,2,1,5,5,9
+	.half	.L27-.L860
+	.byte	3,1,1,7,9
+	.half	.L444-.L27
+	.byte	0,1,1
+.L1308:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueCreateMutex')
+	.sect	'.debug_ranges'
+.L443:
+	.word	-1,.L301,0,.L444-.L301,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueCreateCountingSemaphore')
+	.sect	'.debug_info'
+.L445:
+	.word	375
+	.half	3
+	.word	.L446
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L448,.L447
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueCreateCountingSemaphore',0,1,162,6,19
+	.word	.L550
+	.byte	1,1,1
+	.word	.L307,.L715,.L306
+	.byte	4
+	.byte	'uxMaxCount',0,1,162,6,68
+	.word	.L716,.L717
+	.byte	4
+	.byte	'uxInitialCount',0,1,163,6,68
+	.word	.L718,.L719
+	.byte	5
+	.word	.L307,.L715
+	.byte	6
+	.byte	'xHandle',0,1,165,6,23
+	.word	.L550,.L720
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueCreateCountingSemaphore')
+	.sect	'.debug_abbrev'
+.L446:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueCreateCountingSemaphore')
+	.sect	'.debug_line'
+.L447:
+	.word	.L1312-.L1311
+.L1311:
+	.half	3
+	.word	.L1314-.L1313
+.L1313:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1314:
+	.byte	5,19,7,0,5,2
+	.word	.L307
+	.byte	3,161,6,1,5,31,9
+	.half	.L878-.L307
+	.byte	3,3,1,5,13,9
+	.half	.L879-.L878
+	.byte	3,2,1,5,30,7,9
+	.half	.L1315-.L879
+	.byte	3,1,1,5,56,7,9
+	.half	.L1316-.L1315
+	.byte	3,2,1,5,90,9
+	.half	.L876-.L1316
+	.byte	1,5,13,9
+	.half	.L877-.L876
+	.byte	3,2,1,5,62,7,9
+	.half	.L1317-.L877
+	.byte	3,2,1,5,78,9
+	.half	.L1318-.L1317
+	.byte	1,5,13,9
+	.half	.L41-.L1318
+	.byte	3,4,1,5,9,9
+	.half	.L42-.L41
+	.byte	3,11,1,5,5,9
+	.half	.L43-.L42
+	.byte	3,1,1,7,9
+	.half	.L449-.L43
+	.byte	0,1,1
+.L1312:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueCreateCountingSemaphore')
+	.sect	'.debug_ranges'
+.L448:
+	.word	-1,.L307,0,.L449-.L307,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueSemaphoreTake')
+	.sect	'.debug_info'
+.L450:
+	.word	530
+	.half	3
+	.word	.L451
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L453,.L452
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueSemaphoreTake',0,1,245,11,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L317,.L721,.L316
+	.byte	4
+	.byte	'xQueue',0,1,245,11,47
+	.word	.L550,.L722
+	.byte	4
+	.byte	'xTicksToWait',0,1,246,11,44
+	.word	.L554,.L723
+	.byte	5
+	.word	.L317,.L721
+	.byte	6
+	.byte	'xEntryTimeSet',0,1,248,11,16
+	.word	.L548,.L724
+	.byte	6
+	.byte	'xTimeOut',0,1,249,11,15
+	.word	.L560,.L725
+	.byte	6
+	.byte	'pxQueue',0,1,250,11,21
+	.word	.L726,.L727
+	.byte	6
+	.byte	'xInheritanceOccurred',0,1,253,11,20
+	.word	.L548,.L728
+	.byte	5
+	.word	.L729,.L159
+	.byte	6
+	.byte	'uxSemaphoreCount',0,1,151,12,31
+	.word	.L730,.L731
+	.byte	0,5
+	.word	.L732,.L733
+	.byte	6
+	.byte	'uxHighestWaitingPriority',0,1,172,13,41
+	.word	.L583,.L734
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueSemaphoreTake')
+	.sect	'.debug_abbrev'
+.L451:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueSemaphoreTake')
+	.sect	'.debug_line'
+.L452:
+	.word	.L1320-.L1319
+.L1319:
+	.half	3
+	.word	.L1322-.L1321
+.L1321:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1322:
+	.byte	5,12,7,0,5,2
+	.word	.L317
+	.byte	3,244,11,1,5,30,9
+	.half	.L1323-.L317
+	.byte	3,3,1,5,41,9
+	.half	.L944-.L1323
+	.byte	3,5,1,5,9,9
+	.half	.L945-.L944
+	.byte	3,13,1,5,12,9
+	.half	.L142-.L945
+	.byte	3,7,1,5,9,9
+	.half	.L145-.L142
+	.byte	3,2,1,5,57,9
+	.half	.L729-.L145
+	.byte	3,4,1,5,13,9
+	.half	.L947-.L729
+	.byte	3,4,1,5,63,7,9
+	.half	.L1324-.L947
+	.byte	3,6,1,5,44,9
+	.half	.L948-.L1324
+	.byte	1,5,32,9
+	.half	.L1325-.L948
+	.byte	3,4,1,5,21,9
+	.half	.L1326-.L1325
+	.byte	1,5,91,7,9
+	.half	.L1327-.L1326
+	.byte	3,4,1,5,60,9
+	.half	.L1328-.L1327
+	.byte	1,5,93,9
+	.half	.L1329-.L1328
+	.byte	1,5,21,9
+	.half	.L148-.L1329
+	.byte	3,11,1,5,17,9
+	.half	.L150-.L148
+	.byte	1,5,61,7,9
+	.half	.L1330-.L150
+	.byte	3,2,1,5,21,9
+	.half	.L1331-.L1330
+	.byte	1,5,25,7,9
+	.half	.L1332-.L1331
+	.byte	3,2,1,5,57,9
+	.half	.L1333-.L1332
+	.byte	1,5,21,9
+	.half	.L153-.L1333
+	.byte	3,2,1,5,17,9
+	.half	.L154-.L153
+	.byte	3,10,1,5,24,9
+	.half	.L1334-.L154
+	.byte	3,1,1,5,17,9
+	.half	.L1335-.L1334
+	.byte	1,5,21,9
+	.half	.L146-.L1335
+	.byte	3,4,1,5,17,9
+	.half	.L949-.L146
+	.byte	1,5,21,7,9
+	.half	.L1336-.L949
+	.byte	3,4,1,5,28,9
+	.half	.L1337-.L1336
+	.byte	3,2,1,5,21,9
+	.half	.L1338-.L1337
+	.byte	1,5,22,9
+	.half	.L156-.L1338
+	.byte	3,2,1,5,52,7,9
+	.half	.L1339-.L156
+	.byte	3,4,1,5,35,9
+	.half	.L1340-.L1339
+	.byte	3,1,1,5,62,9
+	.half	.L1341-.L1340
+	.byte	3,127,1,5,9,9
+	.half	.L159-.L1341
+	.byte	3,10,1,5,24,9
+	.half	.L1342-.L159
+	.byte	3,5,1,5,9,9
+	.half	.L1343-.L1342
+	.byte	3,1,1,5,36,9
+	.half	.L1344-.L1343
+	.byte	3,3,1,5,47,9
+	.half	.L1345-.L1344
+	.byte	1,5,9,9
+	.half	.L1346-.L1345
+	.byte	1,5,34,7,9
+	.half	.L1347-.L1346
+	.byte	3,6,1,5,13,9
+	.half	.L951-.L1347
+	.byte	1,5,32,7,9
+	.half	.L1348-.L951
+	.byte	3,6,1,5,21,9
+	.half	.L1349-.L1348
+	.byte	1,5,25,7,9
+	.half	.L1350-.L1349
+	.byte	3,2,1,5,95,9
+	.half	.L1351-.L1350
+	.byte	3,2,1,5,50,9
+	.half	.L946-.L1351
+	.byte	1,5,25,9
+	.half	.L953-.L946
+	.byte	3,2,1,5,45,9
+	.half	.L952-.L953
+	.byte	3,124,1,5,50,9
+	.half	.L165-.L952
+	.byte	3,13,1,5,78,9
+	.half	.L1352-.L165
+	.byte	1,5,33,9
+	.half	.L1353-.L1352
+	.byte	3,1,1,5,35,9
+	.half	.L955-.L1353
+	.byte	3,2,1,5,17,9
+	.half	.L1354-.L955
+	.byte	1,5,21,7,9
+	.half	.L1355-.L1354
+	.byte	3,2,1,5,43,9
+	.half	.L1356-.L1355
+	.byte	1,5,17,9
+	.half	.L167-.L1356
+	.byte	3,2,1,5,33,9
+	.half	.L163-.L167
+	.byte	3,9,1,5,40,9
+	.half	.L957-.L163
+	.byte	3,1,1,5,13,9
+	.half	.L168-.L957
+	.byte	3,123,1,5,29,9
+	.half	.L162-.L168
+	.byte	3,11,1,5,36,9
+	.half	.L959-.L162
+	.byte	3,1,1,5,34,9
+	.half	.L1357-.L959
+	.byte	3,6,1,5,13,9
+	.half	.L961-.L1357
+	.byte	1,5,21,7,9
+	.half	.L1358-.L961
+	.byte	3,7,1,5,25,7,9
+	.half	.L1359-.L1358
+	.byte	3,2,1,5,94,9
+	.half	.L732-.L1359
+	.byte	3,9,1,5,87,9
+	.half	.L963-.L732
+	.byte	3,1,1,5,102,9
+	.half	.L1360-.L963
+	.byte	1,5,25,9
+	.half	.L733-.L1360
+	.byte	3,2,1,5,24,9
+	.half	.L171-.L733
+	.byte	3,6,1,5,17,9
+	.half	.L1361-.L171
+	.byte	1,5,12,9
+	.half	.L144-.L1361
+	.byte	3,213,126,1,9
+	.half	.L942-.L144
+	.byte	3,180,1,1,5,5,9
+	.half	.L1362-.L942
+	.byte	1,5,1,9
+	.half	.L155-.L1362
+	.byte	3,1,1,7,9
+	.half	.L454-.L155
+	.byte	0,1,1
+.L1320:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueSemaphoreTake')
+	.sect	'.debug_ranges'
+.L453:
+	.word	-1,.L317,0,.L454-.L317,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueTakeMutexRecursive')
+	.sect	'.debug_info'
+.L455:
+	.word	385
+	.half	3
+	.word	.L456
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L458,.L457
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueTakeMutexRecursive',0,1,211,5,16
+	.word	.L548
+	.byte	1,1,1
+	.word	.L305,.L735,.L304
+	.byte	4
+	.byte	'xMutex',0,1,211,5,56
+	.word	.L550,.L736
+	.byte	4
+	.byte	'xTicksToWait',0,1,212,5,53
+	.word	.L554,.L737
+	.byte	5
+	.word	.L305,.L735
+	.byte	6
+	.byte	'xReturn',0,1,214,5,20
+	.word	.L548,.L738
+	.byte	6
+	.byte	'pxMutex',0,1,215,5,25
+	.word	.L739,.L740
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueTakeMutexRecursive')
+	.sect	'.debug_abbrev'
+.L456:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueTakeMutexRecursive')
+	.sect	'.debug_line'
+.L457:
+	.word	.L1364-.L1363
+.L1363:
+	.half	3
+	.word	.L1366-.L1365
+.L1365:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1366:
+	.byte	5,16,7,0,5,2
+	.word	.L305
+	.byte	3,210,5,1,5,34,9
+	.half	.L869-.L305
+	.byte	3,13,1,5,76,9
+	.half	.L1367-.L869
+	.byte	1,5,9,9
+	.half	.L867-.L1367
+	.byte	1,5,36,7,9
+	.half	.L1368-.L867
+	.byte	3,2,1,5,59,9
+	.half	.L870-.L1368
+	.byte	1,5,21,9
+	.half	.L1369-.L870
+	.byte	3,1,1,5,61,9
+	.half	.L871-.L1369
+	.byte	3,127,1,5,53,9
+	.half	.L33-.L871
+	.byte	3,5,1,5,13,9
+	.half	.L874-.L33
+	.byte	3,5,1,5,40,7,9
+	.half	.L1370-.L874
+	.byte	3,2,1,5,63,9
+	.half	.L872-.L1370
+	.byte	1,5,65,9
+	.half	.L1371-.L872
+	.byte	1,5,9,9
+	.half	.L34-.L1371
+	.byte	3,8,1,5,5,9
+	.half	.L37-.L34
+	.byte	3,1,1,7,9
+	.half	.L459-.L37
+	.byte	0,1,1
+.L1364:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueTakeMutexRecursive')
+	.sect	'.debug_ranges'
+.L458:
+	.word	-1,.L305,0,.L459-.L305,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueGiveMutexRecursive')
+	.sect	'.debug_info'
+.L460:
+	.word	359
+	.half	3
+	.word	.L461
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L463,.L462
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueGiveMutexRecursive',0,1,156,5,16
+	.word	.L548
+	.byte	1,1,1
+	.word	.L303,.L741,.L302
+	.byte	4
+	.byte	'xMutex',0,1,156,5,56
+	.word	.L550,.L742
+	.byte	5
+	.word	.L303,.L741
+	.byte	6
+	.byte	'xReturn',0,1,158,5,20
+	.word	.L548,.L743
+	.byte	6
+	.byte	'pxMutex',0,1,159,5,25
+	.word	.L744,.L745
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueGiveMutexRecursive')
+	.sect	'.debug_abbrev'
+.L461:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueGiveMutexRecursive')
+	.sect	'.debug_line'
+.L462:
+	.word	.L1373-.L1372
+.L1372:
+	.half	3
+	.word	.L1375-.L1374
+.L1374:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1375:
+	.byte	5,16,7,0,5,2
+	.word	.L303
+	.byte	3,155,5,1,5,34,9
+	.half	.L863-.L303
+	.byte	3,13,1,5,76,9
+	.half	.L1376-.L863
+	.byte	1,5,9,9
+	.half	.L862-.L1376
+	.byte	1,5,36,7,9
+	.half	.L1377-.L862
+	.byte	3,9,1,5,59,9
+	.half	.L1378-.L1377
+	.byte	1,5,38,9
+	.half	.L1379-.L1378
+	.byte	3,3,1,5,13,9
+	.half	.L1380-.L1379
+	.byte	1,5,54,7,9
+	.half	.L1381-.L1380
+	.byte	3,4,1,5,60,9
+	.half	.L1382-.L1381
+	.byte	1,5,88,9
+	.half	.L1383-.L1382
+	.byte	1,5,107,9
+	.half	.L865-.L1383
+	.byte	1,5,21,9
+	.half	.L30-.L865
+	.byte	3,7,1,5,29,9
+	.half	.L866-.L30
+	.byte	1,5,21,9
+	.half	.L28-.L866
+	.byte	3,6,1,5,9,9
+	.half	.L31-.L28
+	.byte	3,5,1,5,5,9
+	.half	.L32-.L31
+	.byte	3,1,1,7,9
+	.half	.L464-.L32
+	.byte	0,1,1
+.L1373:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueGiveMutexRecursive')
+	.sect	'.debug_ranges'
+.L463:
+	.word	-1,.L303,0,.L464-.L303,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueGenericCreate')
+	.sect	'.debug_info'
+.L465:
+	.word	452
+	.half	3
+	.word	.L466
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L468,.L467
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueGenericCreate',0,1,172,3,19
+	.word	.L550
+	.byte	1,1,1
+	.word	.L295,.L746,.L294
+	.byte	4
+	.byte	'uxQueueLength',0,1,172,3,58
+	.word	.L747,.L748
+	.byte	4
+	.byte	'uxItemSize',0,1,173,3,58
+	.word	.L749,.L750
+	.byte	4
+	.byte	'ucQueueType',0,1,174,3,54
+	.word	.L751,.L752
+	.byte	5
+	.word	.L295,.L746
+	.byte	6
+	.byte	'pxNewQueue',0,1,176,3,19
+	.word	.L753,.L754
+	.byte	6
+	.byte	'xQueueSizeInBytes',0,1,177,3,16
+	.word	.L554,.L755
+	.byte	6
+	.byte	'pucQueueStorage',0,1,178,3,19
+	.word	.L756,.L757
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueGenericCreate')
+	.sect	'.debug_abbrev'
+.L466:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueGenericCreate')
+	.sect	'.debug_line'
+.L467:
+	.word	.L1385-.L1384
+.L1384:
+	.half	3
+	.word	.L1387-.L1386
+.L1386:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1387:
+	.byte	5,19,7,0,5,2
+	.word	.L295
+	.byte	3,171,3,1,5,30,9
+	.half	.L832-.L295
+	.byte	3,4,1,5,13,9
+	.half	.L833-.L832
+	.byte	3,4,1,5,17,7,9
+	.half	.L834-.L833
+	.byte	3,2,1,5,26,9
+	.half	.L835-.L834
+	.byte	1,5,44,9
+	.half	.L836-.L835
+	.byte	1,5,67,7,9
+	.half	.L838-.L836
+	.byte	3,2,1,5,26,9
+	.half	.L837-.L838
+	.byte	1,5,48,9
+	.half	.L1388-.L837
+	.byte	1,5,60,7,9
+	.half	.L839-.L1388
+	.byte	3,5,1,5,72,9
+	.half	.L840-.L839
+	.byte	3,11,1,5,24,9
+	.half	.L830-.L840
+	.byte	1,5,13,9
+	.half	.L842-.L830
+	.byte	3,2,1,5,33,7,9
+	.half	.L1389-.L842
+	.byte	3,5,1,5,97,9
+	.half	.L843-.L1389
+	.byte	3,11,1,5,59,9
+	.half	.L844-.L843
+	.byte	3,116,1,5,13,9
+	.half	.L20-.L844
+	.byte	3,14,1,5,9,9
+	.half	.L21-.L20
+	.byte	3,12,1,5,5,9
+	.half	.L22-.L21
+	.byte	3,1,1,7,9
+	.half	.L469-.L22
+	.byte	0,1,1
+.L1385:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueGenericCreate')
+	.sect	'.debug_ranges'
+.L468:
+	.word	-1,.L295,0,.L469-.L295,0,0
+	.sdecl	'.debug_info',debug,cluster('vQueueWaitForMessageRestricted')
+	.sect	'.debug_info'
+.L470:
+	.word	397
+	.half	3
+	.word	.L471
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L473,.L472
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'vQueueWaitForMessageRestricted',0,1,201,22,10,1,1,1
+	.word	.L355,.L758,.L354
+	.byte	4
+	.byte	'xQueue',0,1,201,22,56
+	.word	.L550,.L759
+	.byte	4
+	.byte	'xTicksToWait',0,1,202,22,53
+	.word	.L554,.L760
+	.byte	4
+	.byte	'xWaitIndefinitely',0,1,203,22,59
+	.word	.L761,.L762
+	.byte	5
+	.word	.L355,.L758
+	.byte	6
+	.byte	'pxQueue',0,1,205,22,25
+	.word	.L763,.L764
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vQueueWaitForMessageRestricted')
+	.sect	'.debug_abbrev'
+.L471:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vQueueWaitForMessageRestricted')
+	.sect	'.debug_line'
+.L472:
+	.word	.L1391-.L1390
+.L1390:
+	.half	3
+	.word	.L1393-.L1392
+.L1392:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1393:
+	.byte	5,10,7,0,5,2
+	.word	.L355
+	.byte	3,200,22,1,5,9,9
+	.half	.L1394-.L355
+	.byte	3,20,1,5,20,9
+	.half	.L1395-.L1394
+	.byte	3,2,1,5,9,9
+	.half	.L1396-.L1395
+	.byte	1,5,56,7,9
+	.half	.L1397-.L1396
+	.byte	3,3,1,5,98,9
+	.half	.L1044-.L1397
+	.byte	1,5,117,9
+	.half	.L1398-.L1044
+	.byte	1,5,25,9
+	.half	.L285-.L1398
+	.byte	3,7,1,5,5,9
+	.half	.L1047-.L285
+	.byte	3,1,1,7,9
+	.half	.L474-.L1047
+	.byte	0,1,1
+.L1391:
+	.sdecl	'.debug_ranges',debug,cluster('vQueueWaitForMessageRestricted')
+	.sect	'.debug_ranges'
+.L473:
+	.word	-1,.L355,0,.L474-.L355,0,0
+	.sdecl	'.debug_info',debug,cluster('xQueueGenericReset')
+	.sect	'.debug_info'
+.L475:
+	.word	376
+	.half	3
+	.word	.L476
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L478,.L477
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'xQueueGenericReset',0,1,168,2,12
+	.word	.L548
+	.byte	1,1,1
+	.word	.L293,.L765,.L292
+	.byte	4
+	.byte	'xQueue',0,1,168,2,46
+	.word	.L550,.L766
+	.byte	4
+	.byte	'xNewQueue',0,1,169,2,43
+	.word	.L548,.L767
+	.byte	5
+	.word	.L293,.L765
+	.byte	6
+	.byte	'xReturn',0,1,171,2,16
+	.word	.L548,.L768
+	.byte	6
+	.byte	'pxQueue',0,1,172,2,21
+	.word	.L769,.L770
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xQueueGenericReset')
+	.sect	'.debug_abbrev'
+.L476:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xQueueGenericReset')
+	.sect	'.debug_line'
+.L477:
+	.word	.L1400-.L1399
+.L1399:
+	.half	3
+	.word	.L1402-.L1401
+.L1401:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1402:
+	.byte	5,12,7,0,5,2
+	.word	.L293
+	.byte	3,167,2,1,5,24,9
+	.half	.L827-.L293
+	.byte	3,3,1,5,9,9
+	.half	.L828-.L827
+	.byte	3,5,1,5,18,7,9
+	.half	.L1403-.L828
+	.byte	3,1,1,5,29,9
+	.half	.L1404-.L1403
+	.byte	1,5,13,7,9
+	.half	.L1405-.L1404
+	.byte	3,2,1,5,31,9
+	.half	.L1406-.L1405
+	.byte	1,5,22,9
+	.half	.L1407-.L1406
+	.byte	1,5,54,9
+	.half	.L1408-.L1407
+	.byte	1,5,44,9
+	.half	.L1409-.L1408
+	.byte	1,5,9,7,9
+	.half	.L1410-.L1409
+	.byte	3,2,1,5,47,9
+	.half	.L825-.L1410
+	.byte	3,2,1,5,67,9
+	.half	.L1411-.L825
+	.byte	1,5,87,9
+	.half	.L1412-.L1411
+	.byte	1,5,78,9
+	.half	.L1413-.L1412
+	.byte	1,5,56,9
+	.half	.L1414-.L1413
+	.byte	1,5,38,9
+	.half	.L1415-.L1414
+	.byte	1,5,42,9
+	.half	.L1416-.L1415
+	.byte	3,1,1,5,40,9
+	.half	.L1417-.L1416
+	.byte	1,5,41,9
+	.half	.L1418-.L1417
+	.byte	3,1,1,5,32,9
+	.half	.L1419-.L1418
+	.byte	1,5,51,9
+	.half	.L1420-.L1419
+	.byte	3,1,1,5,73,9
+	.half	.L1421-.L1420
+	.byte	1,5,84,9
+	.half	.L1422-.L1421
+	.byte	1,5,100,9
+	.half	.L1423-.L1422
+	.byte	1,5,91,9
+	.half	.L1424-.L1423
+	.byte	1,5,60,9
+	.half	.L1425-.L1424
+	.byte	1,5,42,9
+	.half	.L1426-.L1425
+	.byte	1,5,32,9
+	.half	.L1427-.L1426
+	.byte	3,1,1,5,30,9
+	.half	.L1428-.L1427
+	.byte	1,5,32,9
+	.half	.L1429-.L1428
+	.byte	3,1,1,5,30,9
+	.half	.L1430-.L1429
+	.byte	1,5,13,9
+	.half	.L1431-.L1430
+	.byte	3,2,1,5,21,7,9
+	.half	.L1432-.L1431
+	.byte	3,7,1,5,17,9
+	.half	.L8-.L1432
+	.byte	1,5,61,7,9
+	.half	.L1433-.L8
+	.byte	3,2,1,5,21,9
+	.half	.L1434-.L1433
+	.byte	1,5,25,7,9
+	.half	.L1435-.L1434
+	.byte	3,2,1,5,57,9
+	.half	.L1436-.L1435
+	.byte	1,5,21,9
+	.half	.L11-.L1436
+	.byte	3,2,1,5,17,9
+	.half	.L12-.L11
+	.byte	3,5,1,5,44,9
+	.half	.L6-.L12
+	.byte	3,8,1,9
+	.half	.L1437-.L6
+	.byte	3,1,1,5,9,9
+	.half	.L13-.L1437
+	.byte	3,3,1,5,28,9
+	.half	.L1438-.L13
+	.byte	1,5,17,9
+	.half	.L3-.L1438
+	.byte	3,4,1,5,5,9
+	.half	.L14-.L3
+	.byte	3,7,1,5,1,9
+	.half	.L15-.L14
+	.byte	3,1,1,7,9
+	.half	.L479-.L15
+	.byte	0,1,1
+.L1400:
+	.sdecl	'.debug_ranges',debug,cluster('xQueueGenericReset')
+	.sect	'.debug_ranges'
+.L478:
+	.word	-1,.L293,0,.L479-.L293,0,0
+	.sdecl	'.debug_info',debug,cluster('vQueueSetQueueNumber')
+	.sect	'.debug_info'
+.L480:
+	.word	335
+	.half	3
+	.word	.L481
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L483,.L482
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'vQueueSetQueueNumber',0,1,217,16,10,1,1,1
+	.word	.L335,.L771,.L334
+	.byte	4
+	.byte	'xQueue',0,1,217,16,46
+	.word	.L550,.L772
+	.byte	4
+	.byte	'uxQueueNumber',0,1,218,16,44
+	.word	.L583,.L773
+	.byte	5
+	.word	.L335,.L771
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vQueueSetQueueNumber')
+	.sect	'.debug_abbrev'
+.L481:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vQueueSetQueueNumber')
+	.sect	'.debug_line'
+.L482:
+	.word	.L1440-.L1439
+.L1439:
+	.half	3
+	.word	.L1442-.L1441
+.L1441:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1442:
+	.byte	5,49,7,0,5,2
+	.word	.L335
+	.byte	3,219,16,1,5,5,9
+	.half	.L1443-.L335
+	.byte	3,1,1,7,9
+	.half	.L484-.L1443
+	.byte	0,1,1
+.L1440:
+	.sdecl	'.debug_ranges',debug,cluster('vQueueSetQueueNumber')
+	.sect	'.debug_ranges'
+.L483:
+	.word	-1,.L335,0,.L484-.L335,0,0
+	.sdecl	'.debug_info',debug,cluster('uxQueueGetQueueNumber')
+	.sect	'.debug_info'
+.L485:
+	.word	313
+	.half	3
+	.word	.L486
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L488,.L487
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'uxQueueGetQueueNumber',0,1,207,16,17
+	.word	.L583
+	.byte	1,1,1
+	.word	.L333,.L774,.L332
+	.byte	4
+	.byte	'xQueue',0,1,207,16,54
+	.word	.L550,.L775
+	.byte	5
+	.word	.L333,.L774
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('uxQueueGetQueueNumber')
+	.sect	'.debug_abbrev'
+.L486:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('uxQueueGetQueueNumber')
+	.sect	'.debug_line'
+.L487:
+	.word	.L1445-.L1444
+.L1444:
+	.half	3
+	.word	.L1447-.L1446
+.L1446:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1447:
+	.byte	5,40,7,0,5,2
+	.word	.L333
+	.byte	3,208,16,1,5,9,9
+	.half	.L1448-.L333
+	.byte	1,5,5,9
+	.half	.L229-.L1448
+	.byte	3,1,1,7,9
+	.half	.L489-.L229
+	.byte	0,1,1
+.L1445:
+	.sdecl	'.debug_ranges',debug,cluster('uxQueueGetQueueNumber')
+	.sect	'.debug_ranges'
+.L488:
+	.word	-1,.L333,0,.L489-.L333,0,0
+	.sdecl	'.debug_info',debug,cluster('ucQueueGetQueueType')
+	.sect	'.debug_info'
+.L490:
+	.word	311
+	.half	3
+	.word	.L491
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L493,.L492
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'ucQueueGetQueueType',0,1,228,16,13
+	.word	.L536
+	.byte	1,1,1
+	.word	.L337,.L776,.L336
+	.byte	4
+	.byte	'xQueue',0,1,228,16,48
+	.word	.L550,.L777
+	.byte	5
+	.word	.L337,.L776
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('ucQueueGetQueueType')
+	.sect	'.debug_abbrev'
+.L491:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('ucQueueGetQueueType')
+	.sect	'.debug_line'
+.L492:
+	.word	.L1450-.L1449
+.L1449:
+	.half	3
+	.word	.L1452-.L1451
+.L1451:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1452:
+	.byte	5,40,7,0,5,2
+	.word	.L337
+	.byte	3,229,16,1,5,9,9
+	.half	.L1453-.L337
+	.byte	1,5,5,9
+	.half	.L230-.L1453
+	.byte	3,1,1,7,9
+	.half	.L494-.L230
+	.byte	0,1,1
+.L1450:
+	.sdecl	'.debug_ranges',debug,cluster('ucQueueGetQueueType')
+	.sect	'.debug_ranges'
+.L493:
+	.word	-1,.L337,0,.L494-.L337,0,0
+	.sdecl	'.debug_info',debug,cluster('prvUnlockQueue')
+	.sect	'.debug_info'
+.L495:
+	.word	365
+	.half	3
+	.word	.L496
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L498,.L497
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvUnlockQueue',0,1,239,17,13,1,1
+	.word	.L345,.L778,.L344
+	.byte	4
+	.byte	'pxQueue',0,1,239,17,45
+	.word	.L779,.L780
+	.byte	5
+	.word	.L345,.L778
+	.byte	5
+	.word	.L781,.L782
+	.byte	6
+	.byte	'cTxLock',0,1,249,17,16
+	.word	.L783,.L784
+	.byte	0,5
+	.word	.L785,.L786
+	.byte	6
+	.byte	'cRxLock',0,1,202,18,16
+	.word	.L783,.L787
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvUnlockQueue')
+	.sect	'.debug_abbrev'
+.L496:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8,58
+	.byte	15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvUnlockQueue')
+	.sect	'.debug_line'
+.L497:
+	.word	.L1455-.L1454
+.L1454:
+	.half	3
+	.word	.L1457-.L1456
+.L1456:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1457:
+	.byte	5,13,7,0,5,2
+	.word	.L345
+	.byte	3,238,17,1,5,5,9
+	.half	.L1029-.L345
+	.byte	3,8,1,5,33,9
+	.half	.L781-.L1029
+	.byte	3,2,1,5,49,9
+	.half	.L1030-.L781
+	.byte	3,3,1,5,21,9
+	.half	.L253-.L1030
+	.byte	3,48,1,5,17,9
+	.half	.L255-.L253
+	.byte	1,5,61,7,9
+	.half	.L1458-.L255
+	.byte	3,2,1,5,21,9
+	.half	.L1459-.L1458
+	.byte	1,5,41,7,9
+	.half	.L1460-.L1459
+	.byte	3,4,1,5,43,9
+	.half	.L1461-.L1460
+	.byte	1,5,21,9
+	.half	.L258-.L1461
+	.byte	3,2,1,9
+	.half	.L256-.L258
+	.byte	3,7,1,5,13,9
+	.half	.L259-.L256
+	.byte	3,5,1,5,49,9
+	.half	.L252-.L259
+	.byte	3,188,127,1,5,28,7,9
+	.half	.L260-.L252
+	.byte	3,199,0,1,5,26,9
+	.half	.L1462-.L260
+	.byte	1,5,5,9
+	.half	.L782-.L1462
+	.byte	3,2,1,9
+	.half	.L1463-.L782
+	.byte	3,3,1,5,33,9
+	.half	.L785-.L1463
+	.byte	3,2,1,5,49,9
+	.half	.L1031-.L785
+	.byte	3,2,1,5,17,9
+	.half	.L262-.L1031
+	.byte	3,2,1,5,13,9
+	.half	.L264-.L262
+	.byte	1,5,57,7,9
+	.half	.L1464-.L264
+	.byte	3,2,1,5,17,9
+	.half	.L1465-.L1464
+	.byte	1,5,37,7,9
+	.half	.L1466-.L1465
+	.byte	3,2,1,5,39,9
+	.half	.L1467-.L1466
+	.byte	1,5,17,9
+	.half	.L267-.L1467
+	.byte	3,7,1,5,26,9
+	.half	.L1468-.L267
+	.byte	1,5,17,9
+	.half	.L265-.L1468
+	.byte	3,4,1,5,49,9
+	.half	.L261-.L265
+	.byte	3,111,1,5,28,7,9
+	.half	.L269-.L261
+	.byte	3,21,1,5,26,9
+	.half	.L1469-.L269
+	.byte	1,5,5,9
+	.half	.L786-.L1469
+	.byte	3,2,1,5,1,9
+	.half	.L1470-.L786
+	.byte	3,1,1,7,9
+	.half	.L499-.L1470
+	.byte	0,1,1
+.L1455:
+	.sdecl	'.debug_ranges',debug,cluster('prvUnlockQueue')
+	.sect	'.debug_ranges'
+.L498:
+	.word	-1,.L345,0,.L499-.L345,0,0
+	.sdecl	'.debug_info',debug,cluster('prvIsQueueEmpty')
+	.sect	'.debug_info'
+.L500:
+	.word	329
+	.half	3
+	.word	.L501
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L503,.L502
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvIsQueueEmpty',0,1,231,18,19
+	.word	.L548
+	.byte	1,1
+	.word	.L347,.L788,.L346
+	.byte	4
+	.byte	'pxQueue',0,1,231,18,52
+	.word	.L789,.L790
+	.byte	5
+	.word	.L347,.L788
+	.byte	6
+	.byte	'xReturn',0,1,233,18,16
+	.word	.L548,.L791
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvIsQueueEmpty')
+	.sect	'.debug_abbrev'
+.L501:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvIsQueueEmpty')
+	.sect	'.debug_line'
+.L502:
+	.word	.L1472-.L1471
+.L1471:
+	.half	3
+	.word	.L1474-.L1473
+.L1473:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1474:
+	.byte	5,19,7,0,5,2
+	.word	.L347
+	.byte	3,230,18,1,5,5,9
+	.half	.L1033-.L347
+	.byte	3,4,1,5,20,9
+	.half	.L1032-.L1033
+	.byte	3,2,1,5,9,9
+	.half	.L1475-.L1032
+	.byte	1,5,21,7,9
+	.half	.L1476-.L1475
+	.byte	3,2,1,5,29,9
+	.half	.L1034-.L1476
+	.byte	1,5,21,9
+	.half	.L270-.L1034
+	.byte	3,4,1,5,5,9
+	.half	.L271-.L270
+	.byte	3,3,1,9
+	.half	.L1477-.L271
+	.byte	3,2,1,5,1,9
+	.half	.L272-.L1477
+	.byte	3,1,1,7,9
+	.half	.L504-.L272
+	.byte	0,1,1
+.L1472:
+	.sdecl	'.debug_ranges',debug,cluster('prvIsQueueEmpty')
+	.sect	'.debug_ranges'
+.L503:
+	.word	-1,.L347,0,.L504-.L347,0,0
+	.sdecl	'.debug_info',debug,cluster('prvIsQueueFull')
+	.sect	'.debug_info'
+.L505:
+	.word	328
+	.half	3
+	.word	.L506
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L508,.L507
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvIsQueueFull',0,1,144,19,19
+	.word	.L548
+	.byte	1,1
+	.word	.L351,.L792,.L350
+	.byte	4
+	.byte	'pxQueue',0,1,144,19,51
+	.word	.L789,.L793
+	.byte	5
+	.word	.L351,.L792
+	.byte	6
+	.byte	'xReturn',0,1,146,19,16
+	.word	.L548,.L794
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvIsQueueFull')
+	.sect	'.debug_abbrev'
+.L506:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvIsQueueFull')
+	.sect	'.debug_line'
+.L507:
+	.word	.L1479-.L1478
+.L1478:
+	.half	3
+	.word	.L1481-.L1480
+.L1480:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1481:
+	.byte	5,19,7,0,5,2
+	.word	.L351
+	.byte	3,143,19,1,5,5,9
+	.half	.L1038-.L351
+	.byte	3,4,1,5,20,9
+	.half	.L1037-.L1038
+	.byte	3,2,1,5,50,9
+	.half	.L1482-.L1037
+	.byte	1,5,9,9
+	.half	.L1483-.L1482
+	.byte	1,5,21,7,9
+	.half	.L1484-.L1483
+	.byte	3,2,1,5,29,9
+	.half	.L1039-.L1484
+	.byte	1,5,21,9
+	.half	.L276-.L1039
+	.byte	3,4,1,5,5,9
+	.half	.L277-.L276
+	.byte	3,3,1,9
+	.half	.L1485-.L277
+	.byte	3,2,1,5,1,9
+	.half	.L278-.L1485
+	.byte	3,1,1,7,9
+	.half	.L509-.L278
+	.byte	0,1,1
+.L1479:
+	.sdecl	'.debug_ranges',debug,cluster('prvIsQueueFull')
+	.sect	'.debug_ranges'
+.L508:
+	.word	-1,.L351,0,.L509-.L351,0,0
+	.sdecl	'.debug_info',debug,cluster('prvCopyDataToQueue')
+	.sect	'.debug_info'
+.L510:
+	.word	413
+	.half	3
+	.word	.L511
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L513,.L512
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvCopyDataToQueue',0,1,135,17,19
+	.word	.L548
+	.byte	1,1
+	.word	.L341,.L795,.L340
+	.byte	4
+	.byte	'pxQueue',0,1,135,17,55
+	.word	.L796,.L797
+	.byte	4
+	.byte	'pvItemToQueue',0,1,136,17,52
+	.word	.L798,.L799
+	.byte	4
+	.byte	'xPosition',0,1,137,17,56
+	.word	.L800,.L801
+	.byte	5
+	.word	.L341,.L795
+	.byte	6
+	.byte	'xReturn',0,1,139,17,16
+	.word	.L548,.L802
+	.byte	6
+	.byte	'uxMessagesWaiting',0,1,140,17,17
+	.word	.L583,.L803
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvCopyDataToQueue')
+	.sect	'.debug_abbrev'
+.L511:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvCopyDataToQueue')
+	.sect	'.debug_line'
+.L512:
+	.word	.L1487-.L1486
+.L1486:
+	.half	3
+	.word	.L1489-.L1488
+.L1488:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1489:
+	.byte	5,19,7,0,5,2
+	.word	.L341
+	.byte	3,134,17,1,5,24,9
+	.half	.L1016-.L341
+	.byte	3,4,1,5,32,9
+	.half	.L1017-.L1016
+	.byte	3,5,1,5,16,9
+	.half	.L1018-.L1017
+	.byte	3,2,1,5,5,9
+	.half	.L1490-.L1018
+	.byte	1,5,24,7,9
+	.half	.L1491-.L1490
+	.byte	3,4,1,5,13,9
+	.half	.L1492-.L1491
+	.byte	1,5,73,7,9
+	.half	.L1493-.L1492
+	.byte	3,3,1,5,25,9
+	.half	.L1013-.L1493
+	.byte	1,5,54,9
+	.half	.L1019-.L1013
+	.byte	3,1,1,5,52,9
+	.half	.L1494-.L1019
+	.byte	1,5,88,9
+	.half	.L1495-.L1494
+	.byte	3,127,1,5,13,9
+	.half	.L236-.L1495
+	.byte	3,3,1,5,10,9
+	.half	.L234-.L236
+	.byte	3,7,1,5,44,7,9
+	.half	.L1496-.L234
+	.byte	3,2,1,5,90,9
+	.half	.L1021-.L1496
+	.byte	1,5,72,9
+	.half	.L1022-.L1021
+	.byte	1,5,16,9
+	.half	.L1020-.L1022
+	.byte	3,1,1,5,38,9
+	.half	.L1497-.L1020
+	.byte	1,5,28,9
+	.half	.L1498-.L1497
+	.byte	1,5,20,9
+	.half	.L1499-.L1498
+	.byte	3,2,1,5,52,9
+	.half	.L1500-.L1499
+	.byte	1,5,9,9
+	.half	.L1501-.L1500
+	.byte	1,5,41,7,9
+	.half	.L1502-.L1501
+	.byte	3,2,1,5,32,9
+	.half	.L1503-.L1502
+	.byte	1,5,49,9
+	.half	.L1504-.L1503
+	.byte	1,5,9,9
+	.half	.L240-.L1504
+	.byte	3,2,1,5,54,9
+	.half	.L238-.L240
+	.byte	3,7,1,5,100,9
+	.half	.L1024-.L238
+	.byte	1,5,82,9
+	.half	.L1025-.L1024
+	.byte	1,5,26,9
+	.half	.L1023-.L1025
+	.byte	3,1,1,5,48,9
+	.half	.L1505-.L1023
+	.byte	1,5,38,9
+	.half	.L1506-.L1505
+	.byte	1,5,30,9
+	.half	.L1507-.L1506
+	.byte	3,2,1,5,51,9
+	.half	.L1508-.L1507
+	.byte	1,5,9,9
+	.half	.L1509-.L1508
+	.byte	1,5,63,7,9
+	.half	.L1510-.L1509
+	.byte	3,2,1,5,80,9
+	.half	.L1511-.L1510
+	.byte	1,5,71,9
+	.half	.L1512-.L1511
+	.byte	1,5,42,9
+	.half	.L1513-.L1512
+	.byte	1,5,94,9
+	.half	.L1514-.L1513
+	.byte	1,5,9,9
+	.half	.L243-.L1514
+	.byte	3,7,1,5,13,7,9
+	.half	.L1515-.L243
+	.byte	3,2,1,5,17,7,9
+	.half	.L1516-.L1515
+	.byte	3,6,1,5,36,9
+	.half	.L1517-.L1516
+	.byte	1,5,13,9
+	.half	.L246-.L1517
+	.byte	3,2,1,5,52,9
+	.half	.L237-.L246
+	.byte	3,11,1,5,32,9
+	.half	.L1518-.L237
+	.byte	1,5,5,9
+	.half	.L1519-.L1518
+	.byte	3,2,1,5,1,9
+	.half	.L248-.L1519
+	.byte	3,1,1,7,9
+	.half	.L514-.L248
+	.byte	0,1,1
+.L1487:
+	.sdecl	'.debug_ranges',debug,cluster('prvCopyDataToQueue')
+	.sect	'.debug_ranges'
+.L513:
+	.word	-1,.L341,0,.L514-.L341,0,0
+	.sdecl	'.debug_info',debug,cluster('prvCopyDataFromQueue')
+	.sect	'.debug_info'
+.L515:
+	.word	330
+	.half	3
+	.word	.L516
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L518,.L517
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvCopyDataFromQueue',0,1,218,17,13,1,1
+	.word	.L343,.L804,.L342
+	.byte	4
+	.byte	'pxQueue',0,1,218,17,51
+	.word	.L805,.L806
+	.byte	4
+	.byte	'pvBuffer',0,1,219,17,48
+	.word	.L807,.L808
+	.byte	5
+	.word	.L343,.L804
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvCopyDataFromQueue')
+	.sect	'.debug_abbrev'
+.L516:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvCopyDataFromQueue')
+	.sect	'.debug_line'
+.L517:
+	.word	.L1521-.L1520
+.L1520:
+	.half	3
+	.word	.L1523-.L1522
+.L1522:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1523:
+	.byte	5,16,7,0,5,2
+	.word	.L343
+	.byte	3,220,17,1,5,5,9
+	.half	.L1524-.L343
+	.byte	1,5,26,7,9
+	.half	.L1525-.L1524
+	.byte	3,2,1,5,48,9
+	.half	.L1526-.L1525
+	.byte	1,5,38,9
+	.half	.L1527-.L1526
+	.byte	1,5,30,9
+	.half	.L1528-.L1527
+	.byte	3,2,1,5,62,9
+	.half	.L1529-.L1528
+	.byte	1,5,9,9
+	.half	.L1530-.L1529
+	.byte	1,5,51,7,9
+	.half	.L1531-.L1530
+	.byte	3,2,1,5,42,9
+	.half	.L1532-.L1531
+	.byte	1,5,59,9
+	.half	.L1533-.L1532
+	.byte	1,5,75,9
+	.half	.L251-.L1533
+	.byte	3,7,1,5,106,9
+	.half	.L1534-.L251
+	.byte	1,5,88,9
+	.half	.L1535-.L1534
+	.byte	1,5,1,9
+	.half	.L249-.L1535
+	.byte	3,2,1,7,9
+	.half	.L519-.L249
+	.byte	0,1,1
+.L1521:
+	.sdecl	'.debug_ranges',debug,cluster('prvCopyDataFromQueue')
+	.sect	'.debug_ranges'
+.L518:
+	.word	-1,.L343,0,.L519-.L343,0,0
+	.sdecl	'.debug_info',debug,cluster('prvInitialiseNewQueue')
+	.sect	'.debug_info'
+.L520:
+	.word	417
+	.half	3
+	.word	.L521
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L523,.L522
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvInitialiseNewQueue',0,1,238,3,13,1,1
+	.word	.L297,.L809,.L296
+	.byte	4
+	.byte	'uxQueueLength',0,1,238,3,54
+	.word	.L810,.L811
+	.byte	4
+	.byte	'uxItemSize',0,1,239,3,54
+	.word	.L812,.L813
+	.byte	4
+	.byte	'pucQueueStorage',0,1,240,3,46
+	.word	.L756,.L814
+	.byte	4
+	.byte	'ucQueueType',0,1,241,3,50
+	.word	.L815,.L816
+	.byte	4
+	.byte	'pxNewQueue',0,1,242,3,46
+	.word	.L753,.L817
+	.byte	5
+	.word	.L297,.L809
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvInitialiseNewQueue')
+	.sect	'.debug_abbrev'
+.L521:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvInitialiseNewQueue')
+	.sect	'.debug_line'
+.L522:
+	.word	.L1537-.L1536
+.L1536:
+	.half	3
+	.word	.L1539-.L1538
+.L1538:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1539:
+	.byte	5,13,7,0,5,2
+	.word	.L297
+	.byte	3,237,3,1,5,5,9
+	.half	.L852-.L297
+	.byte	3,10,1,5,28,7,9
+	.half	.L1540-.L852
+	.byte	3,6,1,5,53,9
+	.half	.L1541-.L1540
+	.byte	1,5,28,9
+	.half	.L23-.L1541
+	.byte	3,5,1,5,26,9
+	.half	.L24-.L23
+	.byte	3,5,1,5,28,9
+	.half	.L1542-.L24
+	.byte	3,1,1,5,46,9
+	.half	.L1543-.L1542
+	.byte	3,1,1,5,33,9
+	.half	.L849-.L1543
+	.byte	3,4,1,5,1,9
+	.half	.L1544-.L849
+	.byte	3,11,1,7,9
+	.half	.L524-.L1544
+	.byte	0,1,1
+.L1537:
+	.sdecl	'.debug_ranges',debug,cluster('prvInitialiseNewQueue')
+	.sect	'.debug_ranges'
+.L523:
+	.word	-1,.L297,0,.L524-.L297,0,0
+	.sdecl	'.debug_info',debug,cluster('prvInitialiseMutex')
+	.sect	'.debug_info'
+.L525:
+	.word	309
+	.half	3
+	.word	.L526
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L528,.L527
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvInitialiseMutex',0,1,158,4,17,1,1
+	.word	.L299,.L818,.L298
+	.byte	4
+	.byte	'pxNewQueue',0,1,158,4,47
+	.word	.L753,.L819
+	.byte	5
+	.word	.L299,.L818
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvInitialiseMutex')
+	.sect	'.debug_abbrev'
+.L526:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvInitialiseMutex')
+	.sect	'.debug_line'
+.L527:
+	.word	.L1546-.L1545
+.L1545:
+	.half	3
+	.word	.L1548-.L1547
+.L1547:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1548:
+	.byte	5,9,7,0,5,2
+	.word	.L299
+	.byte	3,159,4,1,5,53,7,9
+	.half	.L1549-.L299
+	.byte	3,6,1,5,51,9
+	.half	.L1550-.L1549
+	.byte	1,5,39,9
+	.half	.L1551-.L1550
+	.byte	3,1,1,5,37,9
+	.half	.L1552-.L1551
+	.byte	1,5,61,9
+	.half	.L1553-.L1552
+	.byte	3,3,1,5,59,9
+	.half	.L1554-.L1553
+	.byte	1,5,53,9
+	.half	.L1555-.L1554
+	.byte	3,5,1,5,74,9
+	.half	.L1556-.L1555
+	.byte	1,5,78,9
+	.half	.L1557-.L1556
+	.byte	1,5,57,9
+	.half	.L853-.L1557
+	.byte	3,119,1,5,5,9
+	.half	.L26-.L853
+	.byte	3,15,1,7,9
+	.half	.L529-.L26
+	.byte	0,1,1
+.L1546:
+	.sdecl	'.debug_ranges',debug,cluster('prvInitialiseMutex')
+	.sect	'.debug_ranges'
+.L528:
+	.word	-1,.L299,0,.L529-.L299,0,0
+	.sdecl	'.debug_info',debug,cluster('prvGetDisinheritPriorityAfterTimeout')
+	.sect	'.debug_info'
+.L530:
+	.word	374
+	.half	3
+	.word	.L531
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L533,.L532
+	.byte	2
+	.word	.L356
+	.byte	3
+	.byte	'prvGetDisinheritPriorityAfterTimeout',0,1,238,16,24
+	.word	.L583
+	.byte	1,1
+	.word	.L339,.L820,.L338
+	.byte	4
+	.byte	'pxQueue',0,1,238,16,84
+	.word	.L821,.L822
+	.byte	5
+	.word	.L339,.L820
+	.byte	6
+	.byte	'uxHighestPriorityOfWaitingTasks',0,1,240,16,21
+	.word	.L583,.L823
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvGetDisinheritPriorityAfterTimeout')
+	.sect	'.debug_abbrev'
+.L531:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvGetDisinheritPriorityAfterTimeout')
+	.sect	'.debug_line'
+.L532:
+	.word	.L1559-.L1558
+.L1558:
+	.half	3
+	.word	.L1561-.L1560
+.L1560:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/queue.c',0,0,0,0,0
+.L1561:
+	.byte	5,13,7,0,5,2
+	.word	.L339
+	.byte	3,247,16,1,5,9,9
+	.half	.L1562-.L339
+	.byte	1,5,102,7,9
+	.half	.L1563-.L1562
+	.byte	3,2,1,5,84,9
+	.half	.L1564-.L1563
+	.byte	1,5,174,1,9
+	.half	.L1012-.L1564
+	.byte	1,5,45,9
+	.half	.L231-.L1012
+	.byte	3,4,1,5,9,9
+	.half	.L232-.L231
+	.byte	3,3,1,5,5,9
+	.half	.L233-.L232
+	.byte	3,1,1,7,9
+	.half	.L534-.L233
+	.byte	0,1,1
+.L1559:
+	.sdecl	'.debug_ranges',debug,cluster('prvGetDisinheritPriorityAfterTimeout')
+	.sect	'.debug_ranges'
+.L533:
+	.word	-1,.L339,0,.L534-.L339,0,0
+	.sdecl	'.debug_loc',debug,cluster('prvCopyDataFromQueue')
+	.sect	'.debug_loc'
+.L342:
+	.word	-1,.L343,0,.L804-.L343
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L808:
+	.word	-1,.L343,0,.L1027-.L343
+	.half	1
+	.byte	101
+	.word	.L1028-.L343,.L249-.L343
+	.half	1
+	.byte	100
+	.word	0,0
+.L806:
+	.word	-1,.L343,0,.L1028-.L343
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvCopyDataToQueue')
+	.sect	'.debug_loc'
+.L340:
+	.word	-1,.L341,0,.L795-.L341
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L799:
+	.word	-1,.L341,0,.L1013-.L341
+	.half	1
+	.byte	101
+	.word	.L234-.L341,.L1020-.L341
+	.half	1
+	.byte	101
+	.word	.L238-.L341,.L1023-.L341
+	.half	1
+	.byte	101
+	.word	0,0
+.L797:
+	.word	-1,.L341,0,.L1014-.L341
+	.half	1
+	.byte	100
+	.word	.L1015-.L341,.L795-.L341
+	.half	1
+	.byte	111
+	.word	.L234-.L341,.L1021-.L341
+	.half	1
+	.byte	100
+	.word	.L238-.L341,.L1024-.L341
+	.half	1
+	.byte	100
+	.word	0,0
+.L803:
+	.word	-1,.L341,.L1018-.L341,.L795-.L341
+	.half	1
+	.byte	89
+	.word	0,0
+.L801:
+	.word	-1,.L341,0,.L1013-.L341
+	.half	1
+	.byte	84
+	.word	.L1016-.L341,.L795-.L341
+	.half	1
+	.byte	90
+	.word	.L234-.L341,.L1022-.L341
+	.half	1
+	.byte	84
+	.word	.L238-.L341,.L1025-.L341
+	.half	1
+	.byte	84
+	.word	0,0
+.L802:
+	.word	-1,.L341,.L1017-.L341,.L1013-.L341
+	.half	1
+	.byte	88
+	.word	.L1013-.L341,.L236-.L341
+	.half	1
+	.byte	82
+	.word	.L1019-.L341,.L795-.L341
+	.half	1
+	.byte	88
+	.word	.L1026-.L341,.L795-.L341
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvGetDisinheritPriorityAfterTimeout')
+	.sect	'.debug_loc'
+.L338:
+	.word	-1,.L339,0,.L820-.L339
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L822:
+	.word	-1,.L339,0,.L820-.L339
+	.half	1
+	.byte	100
+	.word	0,0
+.L823:
+	.word	-1,.L339,.L1012-.L339,.L231-.L339
+	.half	1
+	.byte	82
+	.word	.L232-.L339,.L820-.L339
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvInitialiseMutex')
+	.sect	'.debug_loc'
+.L298:
+	.word	-1,.L299,0,.L818-.L299
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L819:
+	.word	-1,.L299,0,.L853-.L299
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvInitialiseNewQueue')
+	.sect	'.debug_loc'
+.L296:
+	.word	-1,.L297,0,.L809-.L297
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L814:
+	.word	-1,.L297,0,.L848-.L297
+	.half	1
+	.byte	100
+	.word	0,0
+.L817:
+	.word	-1,.L297,0,.L848-.L297
+	.half	1
+	.byte	101
+	.word	.L852-.L297,.L809-.L297
+	.half	1
+	.byte	111
+	.word	.L848-.L297,.L849-.L297
+	.half	1
+	.byte	100
+	.word	0,0
+.L816:
+	.word	-1,.L297,0,.L849-.L297
+	.half	1
+	.byte	86
+	.word	.L851-.L297,.L809-.L297
+	.half	1
+	.byte	95
+	.word	0,0
+.L813:
+	.word	-1,.L297,0,.L849-.L297
+	.half	1
+	.byte	85
+	.word	0,0
+.L811:
+	.word	-1,.L297,0,.L850-.L297
+	.half	1
+	.byte	84
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvIsQueueEmpty')
+	.sect	'.debug_loc'
+.L346:
+	.word	-1,.L347,0,.L788-.L347
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L790:
+	.word	-1,.L347,0,.L1032-.L347
+	.half	1
+	.byte	100
+	.word	.L1033-.L347,.L788-.L347
+	.half	1
+	.byte	111
+	.word	0,0
+.L791:
+	.word	-1,.L347,.L1034-.L347,.L270-.L347
+	.half	1
+	.byte	95
+	.word	.L271-.L347,.L788-.L347
+	.half	1
+	.byte	95
+	.word	.L1035-.L347,.L788-.L347
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvIsQueueFull')
+	.sect	'.debug_loc'
+.L350:
+	.word	-1,.L351,0,.L792-.L351
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L793:
+	.word	-1,.L351,0,.L1037-.L351
+	.half	1
+	.byte	100
+	.word	.L1038-.L351,.L792-.L351
+	.half	1
+	.byte	111
+	.word	0,0
+.L794:
+	.word	-1,.L351,.L1039-.L351,.L276-.L351
+	.half	1
+	.byte	95
+	.word	.L277-.L351,.L792-.L351
+	.half	1
+	.byte	95
+	.word	.L1040-.L351,.L792-.L351
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvUnlockQueue')
+	.sect	'.debug_loc'
+.L787:
+	.word	-1,.L345,.L1031-.L345,.L778-.L345
+	.half	1
+	.byte	88
+	.word	0,0
+.L784:
+	.word	-1,.L345,.L1030-.L345,.L1031-.L345
+	.half	1
+	.byte	88
+	.word	0,0
+.L344:
+	.word	-1,.L345,0,.L778-.L345
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L780:
+	.word	-1,.L345,0,.L781-.L345
+	.half	1
+	.byte	100
+	.word	.L1029-.L345,.L778-.L345
+	.half	1
+	.byte	111
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('ucQueueGetQueueType')
+	.sect	'.debug_loc'
+.L336:
+	.word	-1,.L337,0,.L776-.L337
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L777:
+	.word	-1,.L337,0,.L776-.L337
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('uxQueueGetQueueNumber')
+	.sect	'.debug_loc'
+.L332:
+	.word	-1,.L333,0,.L774-.L333
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L775:
+	.word	-1,.L333,0,.L774-.L333
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('uxQueueMessagesWaiting')
+	.sect	'.debug_loc'
+.L324:
+	.word	-1,.L325,0,.L607-.L325
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L610:
+	.word	-1,.L325,.L1004-.L325,.L607-.L325
+	.half	1
+	.byte	95
+	.word	.L1005-.L325,.L607-.L325
+	.half	1
+	.byte	82
+	.word	0,0
+.L609:
+	.word	-1,.L325,0,.L1002-.L325
+	.half	1
+	.byte	100
+	.word	.L1003-.L325,.L607-.L325
+	.half	1
+	.byte	111
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('uxQueueMessagesWaitingFromISR')
+	.sect	'.debug_loc'
+.L706:
+	.word	0,0
+.L328:
+	.word	-1,.L329,0,.L701-.L329
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L704:
+	.word	-1,.L329,.L1010-.L329,.L701-.L329
+	.half	1
+	.byte	82
+	.word	0,0
+.L703:
+	.word	-1,.L329,0,.L701-.L329
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('uxQueueSpacesAvailable')
+	.sect	'.debug_loc'
+.L616:
+	.word	0,0
+.L326:
+	.word	-1,.L327,0,.L611-.L327
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L614:
+	.word	-1,.L327,.L1008-.L327,.L611-.L327
+	.half	1
+	.byte	95
+	.word	.L1009-.L327,.L611-.L327
+	.half	1
+	.byte	82
+	.word	0,0
+.L613:
+	.word	-1,.L327,0,.L1006-.L327
+	.half	1
+	.byte	100
+	.word	.L1007-.L327,.L611-.L327
+	.half	1
+	.byte	111
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_loc'
+.L537:
+	.word	-1,.L287,0,.L535-.L287
+	.half	1
+	.byte	84
+	.word	0,0
+.L286:
+	.word	-1,.L287,0,.L535-.L287
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vPortSetICR')
+	.sect	'.debug_loc'
+.L541:
+	.word	-1,.L289,0,.L539-.L289
+	.half	1
+	.byte	84
+	.word	0,0
+.L288:
+	.word	-1,.L289,0,.L539-.L289
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vQueueDelete')
+	.sect	'.debug_loc'
+.L620:
+	.word	0,0
+.L330:
+	.word	-1,.L331,0,.L617-.L331
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L618:
+	.word	-1,.L331,0,.L1011-.L331
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vQueueSetQueueNumber')
+	.sect	'.debug_loc'
+.L773:
+	.word	-1,.L335,0,.L771-.L335
+	.half	1
+	.byte	84
+	.word	0,0
+.L334:
+	.word	-1,.L335,0,.L771-.L335
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L772:
+	.word	-1,.L335,0,.L771-.L335
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vQueueWaitForMessageRestricted')
+	.sect	'.debug_loc'
+.L764:
+	.word	0,0
+.L354:
+	.word	-1,.L355,0,.L758-.L355
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L759:
+	.word	-1,.L355,0,.L1042-.L355
+	.half	1
+	.byte	100
+	.word	.L1043-.L355,.L758-.L355
+	.half	1
+	.byte	111
+	.word	.L1046-.L355,.L1047-.L355
+	.half	1
+	.byte	100
+	.word	0,0
+.L760:
+	.word	-1,.L355,0,.L1042-.L355
+	.half	1
+	.byte	84
+	.word	.L1044-.L355,.L1045-.L355
+	.half	1
+	.byte	88
+	.word	0,0
+.L762:
+	.word	-1,.L355,0,.L1042-.L355
+	.half	1
+	.byte	85
+	.word	.L1044-.L355,.L1045-.L355
+	.half	1
+	.byte	89
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_loc'
+.L545:
+	.word	-1,.L291,0,.L543-.L291
+	.half	1
+	.byte	84
+	.word	0,0
+.L547:
+	.word	-1,.L291,.L824-.L291,.L543-.L291
+	.half	1
+	.byte	82
+	.word	0,0
+.L290:
+	.word	-1,.L291,0,.L543-.L291
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueCreateCountingSemaphore')
+	.sect	'.debug_loc'
+.L719:
+	.word	-1,.L307,0,.L876-.L307
+	.half	1
+	.byte	85
+	.word	.L878-.L307,.L715-.L307
+	.half	1
+	.byte	95
+	.word	0,0
+.L717:
+	.word	-1,.L307,0,.L877-.L307
+	.half	1
+	.byte	84
+	.word	0,0
+.L720:
+	.word	-1,.L307,.L879-.L307,.L715-.L307
+	.half	1
+	.byte	98
+	.word	0,0
+.L306:
+	.word	-1,.L307,0,.L715-.L307
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueCreateMutex')
+	.sect	'.debug_loc'
+.L709:
+	.word	-1,.L301,0,.L854-.L301
+	.half	1
+	.byte	84
+	.word	.L855-.L301,.L856-.L301
+	.half	1
+	.byte	86
+	.word	0,0
+.L712:
+	.word	-1,.L301,.L854-.L301,.L856-.L301
+	.half	1
+	.byte	84
+	.word	0,0
+.L714:
+	.word	-1,.L301,.L857-.L301,.L856-.L301
+	.half	1
+	.byte	85
+	.word	0,0
+.L710:
+	.word	-1,.L301,.L856-.L301,.L858-.L301
+	.half	1
+	.byte	98
+	.word	.L859-.L301,.L707-.L301
+	.half	1
+	.byte	111
+	.word	.L858-.L301,.L860-.L301
+	.half	1
+	.byte	100
+	.word	.L861-.L301,.L707-.L301
+	.half	1
+	.byte	98
+	.word	0,0
+.L300:
+	.word	-1,.L301,0,.L707-.L301
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueGenericCreate')
+	.sect	'.debug_loc'
+.L757:
+	.word	-1,.L295,.L843-.L295,.L844-.L295
+	.half	1
+	.byte	100
+	.word	0,0
+.L754:
+	.word	-1,.L295,.L833-.L295,.L830-.L295
+	.half	1
+	.byte	111
+	.word	.L830-.L295,.L841-.L295
+	.half	1
+	.byte	98
+	.word	.L842-.L295,.L746-.L295
+	.half	1
+	.byte	111
+	.word	.L841-.L295,.L844-.L295
+	.half	1
+	.byte	101
+	.word	.L847-.L295,.L746-.L295
+	.half	1
+	.byte	98
+	.word	0,0
+.L752:
+	.word	-1,.L295,0,.L830-.L295
+	.half	1
+	.byte	86
+	.word	.L832-.L295,.L746-.L295
+	.half	1
+	.byte	90
+	.word	.L846-.L295,.L844-.L295
+	.half	1
+	.byte	86
+	.word	0,0
+.L750:
+	.word	-1,.L295,0,.L830-.L295
+	.half	1
+	.byte	85
+	.word	.L836-.L295,.L837-.L295
+	.half	1
+	.byte	89
+	.word	.L839-.L295,.L840-.L295
+	.half	1
+	.byte	89
+	.word	.L843-.L295,.L845-.L295
+	.half	1
+	.byte	89
+	.word	0,0
+.L748:
+	.word	-1,.L295,0,.L831-.L295
+	.half	1
+	.byte	84
+	.word	.L833-.L295,.L834-.L295
+	.half	1
+	.byte	88
+	.word	.L835-.L295,.L836-.L295
+	.half	1
+	.byte	88
+	.word	.L838-.L295,.L837-.L295
+	.half	1
+	.byte	88
+	.word	.L839-.L295,.L840-.L295
+	.half	1
+	.byte	88
+	.word	.L843-.L295,.L845-.L295
+	.half	1
+	.byte	88
+	.word	0,0
+.L294:
+	.word	-1,.L295,0,.L746-.L295
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L755:
+	.word	-1,.L295,.L840-.L295,.L21-.L295
+	.half	1
+	.byte	95
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueGenericReset')
+	.sect	'.debug_loc'
+.L770:
+	.word	0,0
+.L767:
+	.word	-1,.L293,0,.L825-.L293
+	.half	1
+	.byte	84
+	.word	.L827-.L293,.L765-.L293
+	.half	1
+	.byte	88
+	.word	.L3-.L293,.L14-.L293
+	.half	1
+	.byte	84
+	.word	0,0
+.L766:
+	.word	-1,.L293,0,.L825-.L293
+	.half	1
+	.byte	100
+	.word	.L826-.L293,.L765-.L293
+	.half	1
+	.byte	111
+	.word	.L3-.L293,.L14-.L293
+	.half	1
+	.byte	100
+	.word	0,0
+.L292:
+	.word	-1,.L293,0,.L765-.L293
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L768:
+	.word	-1,.L293,.L828-.L293,.L765-.L293
+	.half	1
+	.byte	89
+	.word	.L829-.L293,.L765-.L293
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueGenericSend')
+	.sect	'.debug_loc'
+.L553:
+	.word	-1,.L309,0,.L881-.L309
+	.half	1
+	.byte	101
+	.word	.L884-.L309,.L882-.L309
+	.half	1
+	.byte	108
+	.word	.L889-.L309,.L888-.L309
+	.half	1
+	.byte	101
+	.word	.L62-.L309,.L549-.L309
+	.half	1
+	.byte	108
+	.word	0,0
+.L563:
+	.word	0,0
+.L557:
+	.word	-1,.L309,0,.L881-.L309
+	.half	1
+	.byte	85
+	.word	.L885-.L309,.L882-.L309
+	.half	1
+	.byte	88
+	.word	.L890-.L309,.L888-.L309
+	.half	1
+	.byte	84
+	.word	.L62-.L309,.L549-.L309
+	.half	1
+	.byte	88
+	.word	0,0
+.L558:
+	.word	-1,.L309,.L886-.L309,.L882-.L309
+	.half	1
+	.byte	89
+	.word	.L62-.L309,.L549-.L309
+	.half	1
+	.byte	89
+	.word	0,0
+.L551:
+	.word	-1,.L309,0,.L881-.L309
+	.half	1
+	.byte	100
+	.word	.L883-.L309,.L882-.L309
+	.half	1
+	.byte	111
+	.word	.L887-.L309,.L888-.L309
+	.half	1
+	.byte	100
+	.word	.L893-.L309,.L894-.L309
+	.half	1
+	.byte	100
+	.word	.L895-.L309,.L896-.L309
+	.half	1
+	.byte	100
+	.word	.L897-.L309,.L898-.L309
+	.half	1
+	.byte	100
+	.word	.L899-.L309,.L900-.L309
+	.half	1
+	.byte	100
+	.word	.L62-.L309,.L549-.L309
+	.half	1
+	.byte	111
+	.word	0,0
+.L308:
+	.word	-1,.L309,0,.L880-.L309
+	.half	2
+	.byte	138,0
+	.word	.L880-.L309,.L549-.L309
+	.half	2
+	.byte	138,16
+	.word	.L549-.L309,.L549-.L309
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L555:
+	.word	-1,.L309,0,.L882-.L309
+	.half	2
+	.byte	145,112
+	.word	0,.L881-.L309
+	.half	1
+	.byte	84
+	.word	.L62-.L309,.L549-.L309
+	.half	2
+	.byte	145,112
+	.word	0,0
+.L561:
+	.word	-1,.L309,0,.L882-.L309
+	.half	2
+	.byte	145,116
+	.word	.L62-.L309,.L549-.L309
+	.half	2
+	.byte	145,116
+	.word	0,0
+.L559:
+	.word	-1,.L309,.L888-.L309,.L891-.L309
+	.half	1
+	.byte	82
+	.word	.L56-.L309,.L892-.L309
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueGenericSendFromISR')
+	.sect	'.debug_loc'
+.L638:
+	.word	-1,.L311,.L905-.L311,.L906-.L311
+	.half	1
+	.byte	95
+	.word	.L83-.L311,.L907-.L311
+	.half	1
+	.byte	95
+	.word	0,0
+.L624:
+	.word	-1,.L311,0,.L901-.L311
+	.half	1
+	.byte	101
+	.word	.L82-.L311,.L94-.L311
+	.half	1
+	.byte	101
+	.word	0,0
+.L626:
+	.word	-1,.L311,0,.L901-.L311
+	.half	1
+	.byte	102
+	.word	.L903-.L311,.L621-.L311
+	.half	1
+	.byte	108
+	.word	.L82-.L311,.L94-.L311
+	.half	1
+	.byte	102
+	.word	0,0
+.L632:
+	.word	0,0
+.L634:
+	.word	0,0
+.L644:
+	.word	0,0
+.L642:
+	.word	-1,.L311,.L908-.L311,.L92-.L311
+	.half	1
+	.byte	82
+	.word	0,0
+.L640:
+	.word	0,0
+.L630:
+	.word	0,0
+.L628:
+	.word	-1,.L311,0,.L901-.L311
+	.half	1
+	.byte	84
+	.word	.L82-.L311,.L94-.L311
+	.half	1
+	.byte	84
+	.word	0,0
+.L635:
+	.word	-1,.L311,.L904-.L311,.L621-.L311
+	.half	1
+	.byte	88
+	.word	0,0
+.L622:
+	.word	-1,.L311,0,.L901-.L311
+	.half	1
+	.byte	100
+	.word	.L902-.L311,.L621-.L311
+	.half	1
+	.byte	111
+	.word	.L82-.L311,.L94-.L311
+	.half	1
+	.byte	100
+	.word	0,0
+.L310:
+	.word	-1,.L311,0,.L621-.L311
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L629:
+	.word	-1,.L311,.L636-.L311,.L82-.L311
+	.half	1
+	.byte	82
+	.word	.L94-.L311,.L621-.L311
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueGiveFromISR')
+	.sect	'.debug_loc'
+.L661:
+	.word	-1,.L313,.L915-.L313,.L916-.L313
+	.half	1
+	.byte	88
+	.word	0,0
+.L648:
+	.word	-1,.L313,0,.L909-.L313
+	.half	1
+	.byte	101
+	.word	.L912-.L313,.L645-.L313
+	.half	1
+	.byte	108
+	.word	.L100-.L313,.L917-.L313
+	.half	1
+	.byte	101
+	.word	.L99-.L313,.L111-.L313
+	.half	1
+	.byte	101
+	.word	0,0
+.L652:
+	.word	0,0
+.L654:
+	.word	0,0
+.L665:
+	.word	0,0
+.L657:
+	.word	-1,.L313,.L914-.L313,.L909-.L313
+	.half	5
+	.byte	144,32,157,32,0
+	.word	.L100-.L313,.L917-.L313
+	.half	5
+	.byte	144,32,157,32,0
+	.word	.L99-.L313,.L111-.L313
+	.half	5
+	.byte	144,32,157,32,0
+	.word	0,0
+.L663:
+	.word	-1,.L313,.L917-.L313,.L109-.L313
+	.half	1
+	.byte	82
+	.word	0,0
+.L650:
+	.word	0,0
+.L655:
+	.word	-1,.L313,.L913-.L313,.L645-.L313
+	.half	1
+	.byte	89
+	.word	0,0
+.L646:
+	.word	-1,.L313,0,.L910-.L313
+	.half	1
+	.byte	100
+	.word	.L911-.L313,.L645-.L313
+	.half	1
+	.byte	111
+	.word	.L100-.L313,.L917-.L313
+	.half	1
+	.byte	100
+	.word	.L99-.L313,.L111-.L313
+	.half	1
+	.byte	100
+	.word	0,0
+.L312:
+	.word	-1,.L313,0,.L645-.L313
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L649:
+	.word	-1,.L313,.L659-.L313,.L99-.L313
+	.half	1
+	.byte	82
+	.word	.L111-.L313,.L645-.L313
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueGiveMutexRecursive')
+	.sect	'.debug_loc'
+.L745:
+	.word	0,0
+.L742:
+	.word	-1,.L303,0,.L862-.L303
+	.half	1
+	.byte	100
+	.word	.L863-.L303,.L741-.L303
+	.half	1
+	.byte	111
+	.word	.L864-.L303,.L865-.L303
+	.half	1
+	.byte	100
+	.word	0,0
+.L302:
+	.word	-1,.L303,0,.L741-.L303
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L743:
+	.word	-1,.L303,.L866-.L303,.L28-.L303
+	.half	1
+	.byte	82
+	.word	.L31-.L303,.L741-.L303
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueIsQueueEmptyFromISR')
+	.sect	'.debug_loc'
+.L694:
+	.word	0,0
+.L691:
+	.word	-1,.L349,0,.L689-.L349
+	.half	1
+	.byte	100
+	.word	0,0
+.L348:
+	.word	-1,.L349,0,.L689-.L349
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L692:
+	.word	-1,.L349,.L1036-.L349,.L273-.L349
+	.half	1
+	.byte	82
+	.word	.L274-.L349,.L689-.L349
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueIsQueueFullFromISR')
+	.sect	'.debug_loc'
+.L700:
+	.word	0,0
+.L697:
+	.word	-1,.L353,0,.L695-.L353
+	.half	1
+	.byte	100
+	.word	0,0
+.L352:
+	.word	-1,.L353,0,.L695-.L353
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L698:
+	.word	-1,.L353,.L1041-.L353,.L279-.L353
+	.half	1
+	.byte	82
+	.word	.L280-.L353,.L695-.L353
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueuePeek')
+	.sect	'.debug_loc'
+.L572:
+	.word	-1,.L319,.L973-.L319,.L180-.L319
+	.half	1
+	.byte	109
+	.word	0,0
+.L567:
+	.word	-1,.L319,0,.L966-.L319
+	.half	1
+	.byte	101
+	.word	.L969-.L319,.L967-.L319
+	.half	1
+	.byte	108
+	.word	.L976-.L319,.L975-.L319
+	.half	1
+	.byte	101
+	.word	.L187-.L319,.L564-.L319
+	.half	1
+	.byte	108
+	.word	0,0
+.L574:
+	.word	0,0
+.L577:
+	.word	-1,.L319,.L971-.L319,.L972-.L319
+	.half	1
+	.byte	95
+	.word	.L180-.L319,.L977-.L319
+	.half	1
+	.byte	95
+	.word	0,0
+.L569:
+	.word	-1,.L319,.L970-.L319,.L967-.L319
+	.half	1
+	.byte	88
+	.word	.L187-.L319,.L564-.L319
+	.half	1
+	.byte	88
+	.word	0,0
+.L565:
+	.word	-1,.L319,0,.L966-.L319
+	.half	1
+	.byte	100
+	.word	.L968-.L319,.L967-.L319
+	.half	1
+	.byte	111
+	.word	.L974-.L319,.L975-.L319
+	.half	1
+	.byte	100
+	.word	.L978-.L319,.L979-.L319
+	.half	1
+	.byte	100
+	.word	.L980-.L319,.L981-.L319
+	.half	1
+	.byte	100
+	.word	.L982-.L319,.L983-.L319
+	.half	1
+	.byte	100
+	.word	.L984-.L319,.L985-.L319
+	.half	1
+	.byte	100
+	.word	.L986-.L319,.L987-.L319
+	.half	1
+	.byte	100
+	.word	.L187-.L319,.L564-.L319
+	.half	1
+	.byte	111
+	.word	0,0
+.L318:
+	.word	-1,.L319,0,.L965-.L319
+	.half	2
+	.byte	138,0
+	.word	.L965-.L319,.L564-.L319
+	.half	2
+	.byte	138,16
+	.word	.L564-.L319,.L564-.L319
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L568:
+	.word	-1,.L319,0,.L967-.L319
+	.half	2
+	.byte	145,112
+	.word	0,.L966-.L319
+	.half	1
+	.byte	84
+	.word	.L187-.L319,.L564-.L319
+	.half	2
+	.byte	145,112
+	.word	0,0
+.L570:
+	.word	-1,.L319,0,.L967-.L319
+	.half	2
+	.byte	145,116
+	.word	.L187-.L319,.L564-.L319
+	.half	2
+	.byte	145,116
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueuePeekFromISR')
+	.sect	'.debug_loc'
+.L585:
+	.word	-1,.L323,.L1000-.L323,.L223-.L323
+	.half	1
+	.byte	108
+	.word	0,0
+.L581:
+	.word	-1,.L323,0,.L997-.L323
+	.half	1
+	.byte	101
+	.word	.L223-.L323,.L224-.L323
+	.half	1
+	.byte	101
+	.word	0,0
+.L587:
+	.word	0,0
+.L589:
+	.word	0,0
+.L593:
+	.word	0,0
+.L584:
+	.word	0,0
+.L591:
+	.word	-1,.L323,.L999-.L323,.L578-.L323
+	.half	1
+	.byte	88
+	.word	0,0
+.L579:
+	.word	-1,.L323,0,.L997-.L323
+	.half	1
+	.byte	100
+	.word	.L998-.L323,.L578-.L323
+	.half	1
+	.byte	111
+	.word	.L223-.L323,.L224-.L323
+	.half	1
+	.byte	100
+	.word	0,0
+.L322:
+	.word	-1,.L323,0,.L578-.L323
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L582:
+	.word	-1,.L323,.L1001-.L323,.L223-.L323
+	.half	1
+	.byte	82
+	.word	.L224-.L323,.L578-.L323
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueReceive')
+	.sect	'.debug_loc'
+.L598:
+	.word	-1,.L315,0,.L919-.L315
+	.half	1
+	.byte	101
+	.word	.L922-.L315,.L920-.L315
+	.half	1
+	.byte	108
+	.word	.L928-.L315,.L927-.L315
+	.half	1
+	.byte	101
+	.word	.L126-.L315,.L595-.L315
+	.half	1
+	.byte	108
+	.word	0,0
+.L603:
+	.word	0,0
+.L606:
+	.word	-1,.L315,.L924-.L315,.L925-.L315
+	.half	1
+	.byte	95
+	.word	.L119-.L315,.L929-.L315
+	.half	1
+	.byte	95
+	.word	0,0
+.L600:
+	.word	-1,.L315,.L923-.L315,.L920-.L315
+	.half	1
+	.byte	88
+	.word	.L126-.L315,.L595-.L315
+	.half	1
+	.byte	88
+	.word	0,0
+.L596:
+	.word	-1,.L315,0,.L919-.L315
+	.half	1
+	.byte	100
+	.word	.L921-.L315,.L920-.L315
+	.half	1
+	.byte	111
+	.word	.L926-.L315,.L927-.L315
+	.half	1
+	.byte	100
+	.word	.L930-.L315,.L931-.L315
+	.half	1
+	.byte	100
+	.word	.L932-.L315,.L933-.L315
+	.half	1
+	.byte	100
+	.word	.L934-.L315,.L935-.L315
+	.half	1
+	.byte	100
+	.word	.L936-.L315,.L937-.L315
+	.half	1
+	.byte	100
+	.word	.L938-.L315,.L939-.L315
+	.half	1
+	.byte	100
+	.word	.L126-.L315,.L595-.L315
+	.half	1
+	.byte	111
+	.word	0,0
+.L314:
+	.word	-1,.L315,0,.L918-.L315
+	.half	2
+	.byte	138,0
+	.word	.L918-.L315,.L595-.L315
+	.half	2
+	.byte	138,16
+	.word	.L595-.L315,.L595-.L315
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L599:
+	.word	-1,.L315,0,.L920-.L315
+	.half	2
+	.byte	145,112
+	.word	0,.L919-.L315
+	.half	1
+	.byte	84
+	.word	.L126-.L315,.L595-.L315
+	.half	2
+	.byte	145,112
+	.word	0,0
+.L601:
+	.word	-1,.L315,0,.L920-.L315
+	.half	2
+	.byte	145,116
+	.word	.L126-.L315,.L595-.L315
+	.half	2
+	.byte	145,116
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueReceiveFromISR')
+	.sect	'.debug_loc'
+.L684:
+	.word	-1,.L321,.L994-.L321,.L995-.L321
+	.half	1
+	.byte	88
+	.word	0,0
+.L669:
+	.word	-1,.L321,0,.L988-.L321
+	.half	1
+	.byte	101
+	.word	.L206-.L321,.L218-.L321
+	.half	1
+	.byte	101
+	.word	0,0
+.L671:
+	.word	-1,.L321,0,.L988-.L321
+	.half	1
+	.byte	102
+	.word	.L990-.L321,.L666-.L321
+	.half	1
+	.byte	108
+	.word	.L206-.L321,.L218-.L321
+	.half	1
+	.byte	102
+	.word	0,0
+.L675:
+	.word	0,0
+.L677:
+	.word	0,0
+.L688:
+	.word	0,0
+.L680:
+	.word	-1,.L321,.L992-.L321,.L993-.L321
+	.half	1
+	.byte	95
+	.word	.L206-.L321,.L218-.L321
+	.half	1
+	.byte	95
+	.word	0,0
+.L686:
+	.word	-1,.L321,.L996-.L321,.L216-.L321
+	.half	1
+	.byte	82
+	.word	0,0
+.L673:
+	.word	0,0
+.L678:
+	.word	-1,.L321,.L991-.L321,.L666-.L321
+	.half	1
+	.byte	89
+	.word	0,0
+.L667:
+	.word	-1,.L321,0,.L988-.L321
+	.half	1
+	.byte	100
+	.word	.L989-.L321,.L666-.L321
+	.half	1
+	.byte	111
+	.word	.L206-.L321,.L218-.L321
+	.half	1
+	.byte	100
+	.word	0,0
+.L320:
+	.word	-1,.L321,0,.L666-.L321
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L672:
+	.word	-1,.L321,.L682-.L321,.L206-.L321
+	.half	1
+	.byte	82
+	.word	.L218-.L321,.L666-.L321
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueSemaphoreTake')
+	.sect	'.debug_loc'
+.L727:
+	.word	0,0
+.L734:
+	.word	-1,.L317,.L963-.L317,.L733-.L317
+	.half	1
+	.byte	82
+	.word	.L964-.L317,.L733-.L317
+	.half	1
+	.byte	84
+	.word	0,0
+.L731:
+	.word	-1,.L317,.L947-.L317,.L948-.L317
+	.half	1
+	.byte	95
+	.word	.L146-.L317,.L949-.L317
+	.half	1
+	.byte	95
+	.word	0,0
+.L724:
+	.word	-1,.L317,.L944-.L317,.L942-.L317
+	.half	1
+	.byte	88
+	.word	.L155-.L317,.L721-.L317
+	.half	1
+	.byte	88
+	.word	0,0
+.L728:
+	.word	-1,.L317,.L945-.L317,.L946-.L317
+	.half	1
+	.byte	89
+	.word	.L946-.L317,.L952-.L317
+	.half	1
+	.byte	82
+	.word	.L953-.L317,.L942-.L317
+	.half	1
+	.byte	89
+	.word	.L155-.L317,.L721-.L317
+	.half	1
+	.byte	89
+	.word	0,0
+.L722:
+	.word	-1,.L317,0,.L941-.L317
+	.half	1
+	.byte	100
+	.word	.L943-.L317,.L942-.L317
+	.half	1
+	.byte	111
+	.word	.L950-.L317,.L951-.L317
+	.half	1
+	.byte	100
+	.word	.L954-.L317,.L955-.L317
+	.half	1
+	.byte	100
+	.word	.L956-.L317,.L957-.L317
+	.half	1
+	.byte	100
+	.word	.L958-.L317,.L959-.L317
+	.half	1
+	.byte	100
+	.word	.L960-.L317,.L961-.L317
+	.half	1
+	.byte	100
+	.word	.L962-.L317,.L963-.L317
+	.half	1
+	.byte	100
+	.word	.L155-.L317,.L721-.L317
+	.half	1
+	.byte	111
+	.word	0,0
+.L316:
+	.word	-1,.L317,0,.L940-.L317
+	.half	2
+	.byte	138,0
+	.word	.L940-.L317,.L721-.L317
+	.half	2
+	.byte	138,16
+	.word	.L721-.L317,.L721-.L317
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L723:
+	.word	-1,.L317,0,.L942-.L317
+	.half	2
+	.byte	145,112
+	.word	0,.L941-.L317
+	.half	1
+	.byte	84
+	.word	.L155-.L317,.L721-.L317
+	.half	2
+	.byte	145,112
+	.word	0,0
+.L725:
+	.word	-1,.L317,0,.L942-.L317
+	.half	2
+	.byte	145,116
+	.word	.L155-.L317,.L721-.L317
+	.half	2
+	.byte	145,116
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xQueueTakeMutexRecursive')
+	.sect	'.debug_loc'
+.L740:
+	.word	0,0
+.L736:
+	.word	-1,.L305,0,.L867-.L305
+	.half	1
+	.byte	100
+	.word	.L868-.L305,.L735-.L305
+	.half	1
+	.byte	111
+	.word	.L873-.L305,.L874-.L305
+	.half	1
+	.byte	100
+	.word	0,0
+.L304:
+	.word	-1,.L305,0,.L735-.L305
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L738:
+	.word	-1,.L305,.L871-.L305,.L33-.L305
+	.half	1
+	.byte	82
+	.word	.L874-.L305,.L735-.L305
+	.half	1
+	.byte	82
+	.word	0,0
+.L737:
+	.word	-1,.L305,0,.L867-.L305
+	.half	1
+	.byte	84
+	.word	.L869-.L305,.L870-.L305
+	.half	1
+	.byte	95
+	.word	.L33-.L305,.L872-.L305
+	.half	1
+	.byte	95
+	.word	.L875-.L305,.L874-.L305
+	.half	1
+	.byte	84
+	.word	0,0
+	.sdecl	'.debug_frame',debug
+	.sect	'.debug_frame'
+.L1565:
+	.word	48
+	.word	-1
+	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
+	.byte	8,39
+	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L287,.L535-.L287
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('vPortSetICR')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L289,.L539-.L289
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L291,.L543-.L291
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('xQueueGenericReset')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L293,.L765-.L293
+	.sdecl	'.debug_frame',debug,cluster('xQueueGenericCreate')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L295,.L746-.L295
+	.sdecl	'.debug_frame',debug,cluster('prvInitialiseNewQueue')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L297,.L809-.L297
+	.sdecl	'.debug_frame',debug,cluster('prvInitialiseMutex')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L299,.L818-.L299
+	.sdecl	'.debug_frame',debug,cluster('xQueueCreateMutex')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L301,.L707-.L301
+	.sdecl	'.debug_frame',debug,cluster('xQueueGiveMutexRecursive')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L303,.L741-.L303
+	.sdecl	'.debug_frame',debug,cluster('xQueueTakeMutexRecursive')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L305,.L735-.L305
+	.sdecl	'.debug_frame',debug,cluster('xQueueCreateCountingSemaphore')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L307,.L715-.L307
+	.sdecl	'.debug_frame',debug,cluster('xQueueGenericSend')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1565,.L309,.L549-.L309
+	.byte	4
+	.word	(.L880-.L309)/2
+	.byte	19,16,22,26,3,19,138,16,4
+	.word	(.L549-.L880)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xQueueGenericSendFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L311,.L621-.L311
+	.sdecl	'.debug_frame',debug,cluster('xQueueGiveFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L313,.L645-.L313
+	.sdecl	'.debug_frame',debug,cluster('xQueueReceive')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1565,.L315,.L595-.L315
+	.byte	4
+	.word	(.L918-.L315)/2
+	.byte	19,16,22,26,3,19,138,16,4
+	.word	(.L595-.L918)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xQueueSemaphoreTake')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1565,.L317,.L721-.L317
+	.byte	4
+	.word	(.L940-.L317)/2
+	.byte	19,16,22,26,3,19,138,16,4
+	.word	(.L721-.L940)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xQueuePeek')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L1565,.L319,.L564-.L319
+	.byte	4
+	.word	(.L965-.L319)/2
+	.byte	19,16,22,26,3,19,138,16,4
+	.word	(.L564-.L965)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xQueueReceiveFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L321,.L666-.L321
+	.sdecl	'.debug_frame',debug,cluster('xQueuePeekFromISR')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L323,.L578-.L323
+	.sdecl	'.debug_frame',debug,cluster('uxQueueMessagesWaiting')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L325,.L607-.L325
+	.sdecl	'.debug_frame',debug,cluster('uxQueueSpacesAvailable')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L327,.L611-.L327
+	.sdecl	'.debug_frame',debug,cluster('uxQueueMessagesWaitingFromISR')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L329,.L701-.L329
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('vQueueDelete')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L331,.L617-.L331
+	.sdecl	'.debug_frame',debug,cluster('uxQueueGetQueueNumber')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L333,.L774-.L333
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('vQueueSetQueueNumber')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L335,.L771-.L335
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('ucQueueGetQueueType')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L337,.L776-.L337
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvGetDisinheritPriorityAfterTimeout')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L339,.L820-.L339
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvCopyDataToQueue')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L341,.L795-.L341
+	.sdecl	'.debug_frame',debug,cluster('prvCopyDataFromQueue')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L343,.L804-.L343
+	.sdecl	'.debug_frame',debug,cluster('prvUnlockQueue')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L345,.L778-.L345
+	.sdecl	'.debug_frame',debug,cluster('prvIsQueueEmpty')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L347,.L788-.L347
+	.sdecl	'.debug_frame',debug,cluster('xQueueIsQueueEmptyFromISR')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L349,.L689-.L349
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvIsQueueFull')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L351,.L792-.L351
+	.sdecl	'.debug_frame',debug,cluster('xQueueIsQueueFullFromISR')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L1565,.L353,.L695-.L353
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('vQueueWaitForMessageRestricted')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L1565,.L355,.L758-.L355
+	; Module end

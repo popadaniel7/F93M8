@@ -1,0 +1,117 @@
+#include "Ain.h"
+#include "Dma.h"
+#include <math.h>
+
+#define ADC_MAX_VALUE 4095.0f
+#define ADC_VREF_VALUE 50u
+
+static uint32 Ain_MainCounter = 0u;
+float IRSensorValue = 0u;
+float CurrentSenseEpsValue_Right = 0u;
+float CurrentSenseEpsValue_Left = 0u;
+float VoltageSenseEpsFanValue = 0u;
+float VoltageSenseEpsLine = 0u;
+uint8 Ain_CanRx_MeasuredVoltage = 0u;
+
+void Ain_MainFunction(void);
+float Ain_AdcToVoltage(float rawAdc, float refVoltage);
+float Ain_ConvertCurrentSense(float rawAdc);
+float Ain_ConvertVoltageSense(float rawAdc, float voltageReference);
+float Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(float voltage);
+void Ain_ProcessIRSensorValue(void);
+
+float Ain_ConvertVoltageSense(float rawAdc, float voltageReference)
+{
+    return ((rawAdc * 3.30f) / 4095.0f) * voltageReference;
+}
+
+float Ain_ConvertCurrentSense(float rawAdc)
+{
+    return ((float)rawAdc / 4095.0f) * 43.0f;
+}
+
+void Ain_ProcessIRSensorValue(void)
+{
+    static float actualVoltageReference = 0u;
+    static float localVoltageCalculated = 0u;
+    static uint32 localCounter = 0u;
+    static float localAverage = 0u;
+    static uint16 localRefValue = 0u;
+
+    localRefValue  = ADC_VREF_VALUE;
+    localCounter++;
+    actualVoltageReference = localRefValue | Ain_CanRx_MeasuredVoltage;
+    localVoltageCalculated = Ain_AdcToVoltage((float)Dma_DestinationAdcBuffer[0], actualVoltageReference);
+    localAverage += Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(localVoltageCalculated);
+
+    if(8u == localCounter)
+    {
+        IRSensorValue = (float)localAverage / (float)localCounter;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+/* Approximate GP2Y0A21YK0F distance calculation from sensor voltage */
+float Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(float voltage)
+{
+    float distanceCm = 0.0f;
+    /* Avoid division by zero for safety. If voltage is extremely small,
+       it means object is out of range or sensor is saturating low. */
+    if (voltage <= 0.20f)
+    {
+        /* Return some large number or special code to indicate "out of range" */
+        return 0xFFFF;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+    /* Empirical polynomial. You can refine or create a lookup table. */
+    distanceCm = 27.728f * powf(voltage, -1.2045f);
+    /* Clamp result within sensor’s effective range, say 10–80 cm */
+    if (distanceCm < 10.0f)
+    {
+        distanceCm = 10.0f;
+    }
+    else if (distanceCm > 80.0f)
+    {
+        distanceCm = 80.0f;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    return distanceCm;
+}
+
+float Ain_AdcToVoltage(float rawAdc, float refVoltage)
+{
+    return ((float)rawAdc / ADC_MAX_VALUE) * (float)(refVoltage / 10.0f);
+}
+
+void Ain_MainFunction(void)
+{
+    static uint8 localCnt = 0u;
+
+    if(5u == localCnt)
+    {
+        Ain_ProcessIRSensorValue();
+        CurrentSenseEpsValue_Right = Ain_ConvertCurrentSense((float)Dma_DestinationAdcBuffer[1u]);
+        CurrentSenseEpsValue_Left = Ain_ConvertCurrentSense((float)Dma_DestinationAdcBuffer[2u]);
+        VoltageSenseEpsFanValue = Ain_ConvertVoltageSense((float)Dma_DestinationAdcBuffer[3u], 5.0f);
+        VoltageSenseEpsLine = Ain_ConvertVoltageSense((float)Dma_DestinationAdcBuffer[4u], 12.0f);
+
+        localCnt = 0;
+    }
+    else
+    {
+
+    }
+
+
+    Ain_MainCounter++;
+}

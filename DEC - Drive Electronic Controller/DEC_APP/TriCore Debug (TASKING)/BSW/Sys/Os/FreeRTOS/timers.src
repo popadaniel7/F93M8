@@ -1,0 +1,5608 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
+	.compiler_invocation	"ctc -f cc13116a --dep-file=BSW/Sys/Os/FreeRTOS/timers.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EMotorCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EPSCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\E2e -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Eru -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\StdIf -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Pwm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Timer -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\SCR Debug (SDCC) -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Sys/Os/FreeRTOS/timers.src ../BSW/Sys/Os/FreeRTOS/timers.c"
+	.compiler_name		"ctc"
+	;source	'../BSW/Sys/Os/FreeRTOS/timers.c'
+
+	
+$TC162
+	
+	.sdecl	'.text.portmacro.vPortSetCCPN',code,cluster('vPortSetCCPN')
+	.sect	'.text.portmacro.vPortSetCCPN'
+	.align	2
+	
+; Function vPortSetCCPN
+.L98:
+vPortSetCCPN:	.type	func
+	disable
+.L638:
+	mfcr	d15,#65068
+.L639:
+	insert	d0,d15,#0,#0,#8
+.L640:
+	and	d15,d4,#255
+.L641:
+	or	d0,d15
+.L642:
+	mtcr	#65068,d0
+	isync
+.L643:
+	enable
+.L644:
+	ret
+.L316:
+	
+__vPortSetCCPN_function_end:
+	.size	vPortSetCCPN,__vPortSetCCPN_function_end-vPortSetCCPN
+.L163:
+	; End of function
+	
+	.sdecl	'.text.portmacro.vPortSetICR',code,cluster('vPortSetICR')
+	.sect	'.text.portmacro.vPortSetICR'
+	.align	2
+	
+; Function vPortSetICR
+.L100:
+vPortSetICR:	.type	func
+	disable
+.L649:
+	mtcr	#65068,d4
+	isync
+.L650:
+	enable
+.L651:
+	ret
+.L319:
+	
+__vPortSetICR_function_end:
+	.size	vPortSetICR,__vPortSetICR_function_end-vPortSetICR
+.L168:
+	; End of function
+	
+	.sdecl	'.text.portmacro.xPortSetCCPN',code,cluster('xPortSetCCPN')
+	.sect	'.text.portmacro.xPortSetCCPN'
+	.align	2
+	
+; Function xPortSetCCPN
+.L102:
+xPortSetCCPN:	.type	func
+	disable
+.L656:
+	mfcr	d2,#65068
+.L465:
+	insert	d0,d2,#0,#0,#8
+.L657:
+	and	d15,d4,#255
+.L658:
+	or	d0,d15
+.L659:
+	mtcr	#65068,d0
+	isync
+.L660:
+	enable
+.L661:
+	j	.L2
+.L2:
+	ret
+.L322:
+	
+__xPortSetCCPN_function_end:
+	.size	xPortSetCCPN,__xPortSetCCPN_function_end-xPortSetCCPN
+.L173:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerCreateTimerTask',code,cluster('xTimerCreateTimerTask')
+	.sect	'.text.timers.xTimerCreateTimerTask'
+	.align	2
+	
+	.global	xTimerCreateTimerTask
+; Function xTimerCreateTimerTask
+.L104:
+xTimerCreateTimerTask:	.type	func
+	mov	d8,#0
+.L466:
+	call	prvCheckForValidListAndQueue
+.L728:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.w	d15,[a15]
+.L729:
+	jeq	d15,#0,.L3
+.L730:
+	movh.a	a4,#@his(prvTimerTask)
+	lea	a4,[a4]@los(prvTimerTask)
+.L731:
+	movh.a	a5,#@his(.1.str)
+	lea	a5,[a5]@los(.1.str)
+.L732:
+	mov	d4,#256
+.L733:
+	mov.a	a6,#0
+.L734:
+	mov	d5,#9
+.L735:
+	movh.a	a7,#@his(xTimerTaskHandle)
+	lea	a7,[a7]@los(xTimerTaskHandle)
+	call	xTaskCreate
+.L467:
+	mov	d8,d2
+.L468:
+	j	.L4
+.L3:
+.L4:
+	mov	d2,d8
+.L469:
+	j	.L5
+.L5:
+	ret
+.L381:
+	
+__xTimerCreateTimerTask_function_end:
+	.size	xTimerCreateTimerTask,__xTimerCreateTimerTask_function_end-xTimerCreateTimerTask
+.L233:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerCreate',code,cluster('xTimerCreate')
+	.sect	'.text.timers.xTimerCreate'
+	.align	2
+	
+	.global	xTimerCreate
+; Function xTimerCreate
+.L106:
+xTimerCreate:	.type	func
+	mov.aa	a15,a4
+.L472:
+	mov	d15,d4
+.L473:
+	mov	d8,d5
+.L474:
+	mov.aa	a12,a5
+.L475:
+	mov.aa	a13,a6
+.L476:
+	mov	d4,#44
+.L471:
+	call	pvPortMalloc
+.L470:
+	mov.aa	a14,a2
+.L478:
+	jz.a	a14,.L6
+.L666:
+	mov	d0,#0
+.L667:
+	st.b	[a14]40,d0
+.L668:
+	mov.aa	a4,a15
+.L479:
+	mov	e4,d8,d15
+	mov.aa	a5,a12
+.L480:
+	mov.aa	a6,a13
+.L481:
+	mov.aa	a7,a14
+.L477:
+	call	prvInitialiseNewTimer
+.L6:
+	mov.aa	a2,a14
+.L482:
+	j	.L7
+.L7:
+	ret
+.L327:
+	
+__xTimerCreate_function_end:
+	.size	xTimerCreate,__xTimerCreate_function_end-xTimerCreate
+.L178:
+	; End of function
+	
+	.sdecl	'.text.timers.prvInitialiseNewTimer',code,cluster('prvInitialiseNewTimer')
+	.sect	'.text.timers.prvInitialiseNewTimer'
+	.align	2
+	
+; Function prvInitialiseNewTimer
+.L108:
+prvInitialiseNewTimer:	.type	func
+	mov.aa	a12,a4
+.L484:
+	mov	d15,d4
+.L485:
+	mov	d8,d5
+.L487:
+	mov.aa	a13,a5
+.L488:
+	mov.aa	a14,a6
+.L489:
+	mov.aa	a15,a7
+.L490:
+	call	prvCheckForValidListAndQueue
+.L483:
+	st.a	[a15],a12
+.L879:
+	st.w	[a15]24,d15
+.L880:
+	st.a	[a15]28,a13
+.L881:
+	st.a	[a15]32,a14
+.L882:
+	mov.aa	a4,a15
+.L492:
+	add.a	a4,#4
+.L491:
+	call	vListInitialiseItem
+.L493:
+	jeq	d8,#0,.L8
+.L494:
+	ld.bu	d15,[a15]40
+.L486:
+	or	d15,#4
+.L495:
+	st.b	[a15]40,d15
+.L8:
+	ret
+.L452:
+	
+__prvInitialiseNewTimer_function_end:
+	.size	prvInitialiseNewTimer,__prvInitialiseNewTimer_function_end-prvInitialiseNewTimer
+.L303:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerGenericCommand',code,cluster('xTimerGenericCommand')
+	.sect	'.text.timers.xTimerGenericCommand'
+	.align	2
+	
+	.global	xTimerGenericCommand
+; Function xTimerGenericCommand
+.L110:
+xTimerGenericCommand:	.type	func
+	sub.a	a10,#16
+.L496:
+	mov.aa	a6,a5
+.L498:
+	mov	d8,d6
+.L499:
+	mov	d2,#0
+.L500:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.w	d15,[a15]
+.L740:
+	jeq	d15,#0,.L9
+.L741:
+	st.w	[a10],d4
+.L742:
+	st.w	[a10]4,d5
+.L743:
+	st.a	[a10]8,a4
+.L744:
+	jge	d4,#6,.L10
+.L745:
+	call	xTaskGetSchedulerState
+.L497:
+	jne	d2,#2,.L11
+.L746:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.a	a4,[a15]
+	lea	a5,[a10]0
+	mov	d5,#0
+	mov	d4,d8
+.L501:
+	call	xQueueGenericSend
+.L502:
+	j	.L12
+.L11:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.a	a4,[a15]
+	lea	a5,[a10]0
+	mov	d4,#0
+	mov	d5,#0
+	call	xQueueGenericSend
+.L12:
+	j	.L13
+.L10:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.a	a4,[a15]
+.L505:
+	lea	a5,[a10]0
+.L503:
+	mov	d4,#0
+.L504:
+	call	xQueueGenericSendFromISR
+.L13:
+	j	.L14
+.L9:
+.L14:
+	j	.L15
+.L15:
+	ret
+.L383:
+	
+__xTimerGenericCommand_function_end:
+	.size	xTimerGenericCommand,__xTimerGenericCommand_function_end-xTimerGenericCommand
+.L238:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerGetTimerDaemonTaskHandle',code,cluster('xTimerGetTimerDaemonTaskHandle')
+	.sect	'.text.timers.xTimerGetTimerDaemonTaskHandle'
+	.align	2
+	
+	.global	xTimerGetTimerDaemonTaskHandle
+; Function xTimerGetTimerDaemonTaskHandle
+.L112:
+xTimerGetTimerDaemonTaskHandle:	.type	func
+	movh.a	a15,#@his(xTimerTaskHandle)
+	lea	a15,[a15]@los(xTimerTaskHandle)
+	ld.a	a2,[a15]
+.L691:
+	j	.L16
+.L16:
+	ret
+.L357:
+	
+__xTimerGetTimerDaemonTaskHandle_function_end:
+	.size	xTimerGetTimerDaemonTaskHandle,__xTimerGetTimerDaemonTaskHandle_function_end-xTimerGetTimerDaemonTaskHandle
+.L198:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerGetPeriod',code,cluster('xTimerGetPeriod')
+	.sect	'.text.timers.xTimerGetPeriod'
+	.align	2
+	
+	.global	xTimerGetPeriod
+; Function xTimerGetPeriod
+.L114:
+xTimerGetPeriod:	.type	func
+	ld.w	d2,[a4]24
+.L719:
+	j	.L17
+.L17:
+	ret
+.L374:
+	
+__xTimerGetPeriod_function_end:
+	.size	xTimerGetPeriod,__xTimerGetPeriod_function_end-xTimerGetPeriod
+.L223:
+	; End of function
+	
+	.sdecl	'.text.timers.vTimerSetReloadMode',code,cluster('vTimerSetReloadMode')
+	.sect	'.text.timers.vTimerSetReloadMode'
+	.align	2
+	
+	.global	vTimerSetReloadMode
+; Function vTimerSetReloadMode
+.L116:
+vTimerSetReloadMode:	.type	func
+	mov.aa	a15,a4
+.L507:
+	mov	d15,d4
+.L508:
+	call	vPortEnterCritical
+.L506:
+	jeq	d15,#0,.L18
+.L701:
+	ld.bu	d15,[a15]40
+.L509:
+	or	d15,#4
+	st.b	[a15]40,d15
+.L702:
+	j	.L19
+.L18:
+	ld.bu	d15,[a15]40
+.L510:
+	and	d15,#251
+	st.b	[a15]40,d15
+.L19:
+	call	vPortExitCritical
+.L703:
+	ret
+.L362:
+	
+__vTimerSetReloadMode_function_end:
+	.size	vTimerSetReloadMode,__vTimerSetReloadMode_function_end-vTimerSetReloadMode
+.L208:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerGetReloadMode',code,cluster('xTimerGetReloadMode')
+	.sect	'.text.timers.xTimerGetReloadMode'
+	.align	2
+	
+	.global	xTimerGetReloadMode
+; Function xTimerGetReloadMode
+.L118:
+xTimerGetReloadMode:	.type	func
+	mov.aa	a15,a4
+.L512:
+	call	vPortEnterCritical
+.L511:
+	ld.bu	d15,[a15]40
+.L708:
+	jnz.t	d15:2,.L20
+.L709:
+	mov	d15,#0
+.L513:
+	j	.L21
+.L20:
+	mov	d15,#1
+.L21:
+	call	vPortExitCritical
+.L710:
+	mov	d2,d15
+.L514:
+	j	.L22
+.L22:
+	ret
+.L367:
+	
+__xTimerGetReloadMode_function_end:
+	.size	xTimerGetReloadMode,__xTimerGetReloadMode_function_end-xTimerGetReloadMode
+.L213:
+	; End of function
+	
+	.sdecl	'.text.timers.uxTimerGetReloadMode',code,cluster('uxTimerGetReloadMode')
+	.sect	'.text.timers.uxTimerGetReloadMode'
+	.align	2
+	
+	.global	uxTimerGetReloadMode
+; Function uxTimerGetReloadMode
+.L120:
+uxTimerGetReloadMode:	.type	func
+	call	xTimerGetReloadMode
+.L515:
+	j	.L23
+.L23:
+	ret
+.L372:
+	
+__uxTimerGetReloadMode_function_end:
+	.size	uxTimerGetReloadMode,__uxTimerGetReloadMode_function_end-uxTimerGetReloadMode
+.L218:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerGetExpiryTime',code,cluster('xTimerGetExpiryTime')
+	.sect	'.text.timers.xTimerGetExpiryTime'
+	.align	2
+	
+	.global	xTimerGetExpiryTime
+; Function xTimerGetExpiryTime
+.L122:
+xTimerGetExpiryTime:	.type	func
+	ld.w	d2,[a4]4
+.L516:
+	j	.L24
+.L24:
+	ret
+.L377:
+	
+__xTimerGetExpiryTime_function_end:
+	.size	xTimerGetExpiryTime,__xTimerGetExpiryTime_function_end-xTimerGetExpiryTime
+.L228:
+	; End of function
+	
+	.sdecl	'.text.timers.pcTimerGetName',code,cluster('pcTimerGetName')
+	.sect	'.text.timers.pcTimerGetName'
+	.align	2
+	
+	.global	pcTimerGetName
+; Function pcTimerGetName
+.L124:
+pcTimerGetName:	.type	func
+	ld.a	a2,[a4]
+.L696:
+	j	.L25
+.L25:
+	ret
+.L359:
+	
+__pcTimerGetName_function_end:
+	.size	pcTimerGetName,__pcTimerGetName_function_end-pcTimerGetName
+.L203:
+	; End of function
+	
+	.sdecl	'.text.timers.prvReloadTimer',code,cluster('prvReloadTimer')
+	.sect	'.text.timers.prvReloadTimer'
+	.align	2
+	
+; Function prvReloadTimer
+.L126:
+prvReloadTimer:	.type	func
+	mov.aa	a15,a4
+.L517:
+	mov	e8,d5,d4
+.L823:
+	j	.L26
+.L27:
+	ld.w	d15,[a15]24
+.L518:
+	add	d8,d15
+.L824:
+	ld.a	a2,[a15]32
+.L825:
+	mov.aa	a4,a15
+.L519:
+	calli	a2
+.L26:
+	ld.w	d15,[a15]24
+.L520:
+	add	d4,d15,d8
+.L521:
+	mov.aa	a4,a15
+.L522:
+	mov	d5,d9
+.L524:
+	mov	d6,d8
+.L525:
+	call	prvInsertTimerInActiveList
+.L523:
+	jne	d2,#0,.L27
+.L826:
+	ret
+.L421:
+	
+__prvReloadTimer_function_end:
+	.size	prvReloadTimer,__prvReloadTimer_function_end-prvReloadTimer
+.L273:
+	; End of function
+	
+	.sdecl	'.text.timers.prvProcessExpiredTimer',code,cluster('prvProcessExpiredTimer')
+	.sect	'.text.timers.prvProcessExpiredTimer'
+	.align	2
+	
+; Function prvProcessExpiredTimer
+.L128:
+prvProcessExpiredTimer:	.type	func
+	mov	e8,d5,d4
+.L831:
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+	ld.a	a15,[a15]
+	ld.a	a15,[a15]12
+	ld.a	a15,[a15]12
+.L527:
+	mov.aa	a4,a15
+.L529:
+	add.a	a4,#4
+.L528:
+	call	uxListRemove
+.L526:
+	ld.bu	d15,[a15]40
+.L530:
+	jz.t	d15:2,.L28
+.L531:
+	mov.aa	a4,a15
+.L532:
+	mov	e4,d9,d8
+.L534:
+	call	prvReloadTimer
+.L533:
+	j	.L29
+.L28:
+	ld.bu	d15,[a15]40
+.L535:
+	and	d15,#254
+.L536:
+	st.b	[a15]40,d15
+.L29:
+	ld.a	a2,[a15]32
+.L832:
+	mov.aa	a4,a15
+.L537:
+	calli	a2
+.L538:
+	ret
+.L427:
+	
+__prvProcessExpiredTimer_function_end:
+	.size	prvProcessExpiredTimer,__prvProcessExpiredTimer_function_end-prvProcessExpiredTimer
+.L278:
+	; End of function
+	
+	.sdecl	'.text.timers.prvTimerTask',code,cluster('prvTimerTask')
+	.sect	'.text.timers.prvTimerTask'
+	.align	2
+	
+; Function prvTimerTask
+.L130:
+prvTimerTask:	.type	func
+	sub.a	a10,#8
+.L539:
+	j	.L30
+.L31:
+	lea	a4,[a10]0
+	call	prvGetNextExpireTime
+.L541:
+	ld.w	d5,[a10]
+	mov	d4,d2
+.L543:
+	call	prvProcessTimerOrBlockTask
+.L542:
+	call	prvProcessReceivedCommands
+.L30:
+	j	.L31
+.L540:
+	ret
+.L402:
+	
+__prvTimerTask_function_end:
+	.size	prvTimerTask,__prvTimerTask_function_end-prvTimerTask
+.L258:
+	; End of function
+	
+	.sdecl	'.text.timers.prvProcessTimerOrBlockTask',code,cluster('prvProcessTimerOrBlockTask')
+	.sect	'.text.timers.prvProcessTimerOrBlockTask'
+	.align	2
+	
+; Function prvProcessTimerOrBlockTask
+.L132:
+prvProcessTimerOrBlockTask:	.type	func
+	sub.a	a10,#8
+.L544:
+	mov	d8,d4
+.L546:
+	mov	d15,d5
+.L547:
+	call	vTaskSuspendAll
+.L545:
+	lea	a4,[a10]0
+	call	prvSampleTimeNow
+.L549:
+	mov	d9,d2
+.L551:
+	ld.w	d0,[a10]
+.L864:
+	jne	d0,#0,.L32
+.L865:
+	jne	d15,#0,.L33
+.L866:
+	jlt.u	d9,d8,.L34
+.L867:
+	call	xTaskResumeAll
+.L550:
+	mov	e4,d9,d8
+	call	prvProcessExpiredTimer
+.L868:
+	j	.L35
+.L34:
+.L33:
+	jeq	d15,#0,.L36
+.L869:
+	movh.a	a15,#@his(pxOverflowTimerList)
+	lea	a15,[a15]@los(pxOverflowTimerList)
+	ld.a	a15,[a15]
+	ld.w	d15,[a15]
+.L548:
+	jne	d15,#0,.L37
+	mov	d15,#1
+.L553:
+	j	.L38
+.L37:
+	mov	d15,#0
+.L38:
+.L36:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.a	a4,[a15]
+.L870:
+	sub	d4,d8,d9
+.L871:
+	mov	d5,d15
+	call	vQueueWaitForMessageRestricted
+.L552:
+	call	xTaskResumeAll
+.L872:
+	jne	d2,#0,.L39
+.L873:
+	syscall	#0
+.L874:
+	j	.L40
+.L39:
+.L40:
+.L35:
+	j	.L41
+.L32:
+	call	xTaskResumeAll
+.L41:
+	ret
+.L446:
+	
+__prvProcessTimerOrBlockTask_function_end:
+	.size	prvProcessTimerOrBlockTask,__prvProcessTimerOrBlockTask_function_end-prvProcessTimerOrBlockTask
+.L298:
+	; End of function
+	
+	.sdecl	'.text.timers.prvGetNextExpireTime',code,cluster('prvGetNextExpireTime')
+	.sect	'.text.timers.prvGetNextExpireTime'
+	.align	2
+	
+; Function prvGetNextExpireTime
+.L134:
+prvGetNextExpireTime:	.type	func
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+	ld.a	a15,[a15]
+	ld.w	d15,[a15]
+	jne	d15,#0,.L42
+	mov	d15,#1
+	j	.L43
+.L42:
+	mov	d15,#0
+.L43:
+	st.w	[a4],d15
+.L858:
+	jne	d15,#0,.L44
+.L859:
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+	ld.a	a15,[a15]
+	ld.a	a15,[a15]12
+	ld.w	d2,[a15]
+.L554:
+	j	.L45
+.L44:
+	mov	d2,#0
+.L45:
+	j	.L46
+.L46:
+	ret
+.L442:
+	
+__prvGetNextExpireTime_function_end:
+	.size	prvGetNextExpireTime,__prvGetNextExpireTime_function_end-prvGetNextExpireTime
+.L293:
+	; End of function
+	
+	.sdecl	'.text.timers.prvSampleTimeNow',code,cluster('prvSampleTimeNow')
+	.sect	'.text.timers.prvSampleTimeNow'
+	.align	2
+	
+; Function prvSampleTimeNow
+.L136:
+prvSampleTimeNow:	.type	func
+	mov.aa	a15,a4
+.L556:
+	call	xTaskGetTickCount
+.L555:
+	mov	d15,d2
+.L559:
+	movh.a	a2,#@his(_999001_xLastTime)
+	lea	a2,[a2]@los(_999001_xLastTime)
+	ld.w	d0,[a2]
+.L847:
+	jge.u	d15,d0,.L47
+.L848:
+	call	prvSwitchTimerLists
+.L558:
+	mov	d0,#1
+.L849:
+	st.w	[a15],d0
+.L850:
+	j	.L48
+.L47:
+	mov	d0,#0
+.L851:
+	st.w	[a15],d0
+.L48:
+	movh.a	a15,#@his(_999001_xLastTime)
+.L557:
+	lea	a15,[a15]@los(_999001_xLastTime)
+.L852:
+	st.w	[a15],d15
+.L853:
+	mov	d2,d15
+.L560:
+	j	.L49
+.L49:
+	ret
+.L438:
+	
+__prvSampleTimeNow_function_end:
+	.size	prvSampleTimeNow,__prvSampleTimeNow_function_end-prvSampleTimeNow
+.L288:
+	; End of function
+	
+	.sdecl	'.text.timers.prvInsertTimerInActiveList',code,cluster('prvInsertTimerInActiveList')
+	.sect	'.text.timers.prvInsertTimerInActiveList'
+	.align	2
+	
+; Function prvInsertTimerInActiveList
+.L138:
+prvInsertTimerInActiveList:	.type	func
+	mov	d8,#0
+.L563:
+	st.w	[a4]4,d4
+.L808:
+	st.a	[a4]16,a4
+.L809:
+	jlt.u	d5,d4,.L50
+.L810:
+	sub	d5,d6
+.L562:
+	ld.w	d15,[a4]24
+.L811:
+	jlt.u	d5,d15,.L51
+.L812:
+	mov	d8,#1
+.L813:
+	j	.L52
+.L51:
+	movh.a	a15,#@his(pxOverflowTimerList)
+	lea	a15,[a15]@los(pxOverflowTimerList)
+	ld.a	a15,[a15]
+.L814:
+	mov.aa	a5,a4
+.L564:
+	add.a	a5,#4
+.L561:
+	mov.aa	a4,a15
+	call	vListInsert
+.L52:
+	j	.L53
+.L50:
+	jge.u	d5,d6,.L54
+.L815:
+	jlt.u	d4,d6,.L55
+.L816:
+	mov	d8,#1
+.L817:
+	j	.L56
+.L55:
+.L54:
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+	ld.a	a15,[a15]
+.L818:
+	mov.aa	a5,a4
+.L566:
+	add.a	a5,#4
+.L565:
+	mov.aa	a4,a15
+	call	vListInsert
+.L56:
+.L53:
+	mov	d2,d8
+.L567:
+	j	.L57
+.L57:
+	ret
+.L411:
+	
+__prvInsertTimerInActiveList_function_end:
+	.size	prvInsertTimerInActiveList,__prvInsertTimerInActiveList_function_end-prvInsertTimerInActiveList
+.L268:
+	; End of function
+	
+	.sdecl	'.text.timers.prvProcessReceivedCommands',code,cluster('prvProcessReceivedCommands')
+	.sect	'.text.timers.prvProcessReceivedCommands'
+	.align	2
+	
+; Function prvProcessReceivedCommands
+.L140:
+prvProcessReceivedCommands:	.type	func
+	sub.a	a10,#16
+.L568:
+	j	.L58
+.L59:
+	ld.w	d15,[a10]
+.L784:
+	jlt	d15,#0,.L60
+.L785:
+	ld.a	a15,[a10]8
+.L569:
+	ld.w	d15,[a15]20
+	jne	d15,#0,.L61
+	mov	d15,#1
+	j	.L62
+.L61:
+	mov	d15,#0
+.L62:
+	jne	d15,#0,.L63
+.L786:
+	mov.aa	a4,a15
+.L571:
+	add.a	a4,#4
+.L570:
+	call	uxListRemove
+.L572:
+	j	.L64
+.L63:
+.L64:
+	lea	a4,[a10]12
+	call	prvSampleTimeNow
+.L573:
+	mov	d8,d2
+.L575:
+	ld.w	d0,[a10]
+.L787:
+	mov	d15,#1
+	jeq	d15,d0,.L65
+.L788:
+	mov	d15,#2
+	jeq	d15,d0,.L66
+.L789:
+	mov	d1,#3
+	jeq	d1,d0,.L67
+.L790:
+	mov	d1,#4
+	jeq	d1,d0,.L68
+.L791:
+	mov	d1,#5
+	jeq	d1,d0,.L69
+.L792:
+	mov	d15,#6
+	jeq	d15,d0,.L70
+.L793:
+	mov	d15,#7
+	jeq	d15,d0,.L71
+.L794:
+	mov	d15,#8
+	jeq	d15,d0,.L72
+.L795:
+	mov	d15,#9
+	jeq	d15,d0,.L73
+	j	.L74
+.L65:
+.L70:
+.L66:
+.L71:
+	ld.bu	d15,[a15]40
+.L576:
+	or	d15,#1
+.L577:
+	st.b	[a15]40,d15
+.L578:
+	ld.w	d4,[a10]4
+.L579:
+	ld.w	d15,[a15]24
+.L580:
+	add	d4,d15
+.L796:
+	ld.w	d6,[a10]4
+.L581:
+	mov.aa	a4,a15
+.L582:
+	mov	d5,d8
+.L574:
+	call	prvInsertTimerInActiveList
+.L583:
+	jeq	d2,#0,.L75
+.L584:
+	ld.bu	d15,[a15]40
+.L585:
+	jz.t	d15:2,.L76
+.L797:
+	ld.w	d4,[a10]4
+.L586:
+	ld.w	d15,[a15]24
+.L587:
+	add	d4,d15
+.L588:
+	mov.aa	a4,a15
+.L589:
+	mov	d5,d8
+.L591:
+	call	prvReloadTimer
+.L590:
+	j	.L77
+.L76:
+	ld.bu	d15,[a15]40
+.L592:
+	and	d15,#254
+.L593:
+	st.b	[a15]40,d15
+.L77:
+	ld.a	a2,[a15]32
+.L798:
+	mov.aa	a4,a15
+.L594:
+	calli	a2
+.L595:
+	j	.L78
+.L75:
+.L78:
+	j	.L79
+.L67:
+.L72:
+	ld.bu	d15,[a15]40
+.L596:
+	and	d15,#254
+.L598:
+	st.b	[a15]40,d15
+.L599:
+	j	.L80
+.L68:
+.L73:
+	ld.bu	d15,[a15]40
+.L600:
+	or	d15,#1
+.L601:
+	st.b	[a15]40,d15
+.L602:
+	ld.w	d15,[a10]4
+.L603:
+	st.w	[a15]24,d15
+.L799:
+	ld.w	d15,[a15]24
+.L604:
+	add	d4,d15,d8
+.L605:
+	mov.aa	a4,a15
+.L606:
+	mov	d5,d8
+.L597:
+	mov	d6,d8
+.L608:
+	call	prvInsertTimerInActiveList
+.L607:
+	j	.L81
+.L69:
+	ld.bu	d15,[a15]40
+.L609:
+	jnz.t	d15:1,.L82
+.L611:
+	mov.aa	a4,a15
+.L612:
+	call	vPortFree
+.L610:
+	j	.L83
+.L82:
+	ld.bu	d15,[a15]40
+.L613:
+	and	d15,#254
+.L614:
+	st.b	[a15]40,d15
+.L83:
+	j	.L84
+.L74:
+	j	.L85
+.L85:
+.L84:
+.L81:
+.L80:
+.L79:
+.L60:
+.L58:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.a	a4,[a15]
+.L800:
+	lea	a5,[a10]0
+.L801:
+	mov	d4,#0
+	call	xQueueReceive
+.L802:
+	jne	d2,#0,.L59
+.L803:
+	ret
+.L406:
+	
+__prvProcessReceivedCommands_function_end:
+	.size	prvProcessReceivedCommands,__prvProcessReceivedCommands_function_end-prvProcessReceivedCommands
+.L263:
+	; End of function
+	
+	.sdecl	'.text.timers.prvSwitchTimerLists',code,cluster('prvSwitchTimerLists')
+	.sect	'.text.timers.prvSwitchTimerLists'
+	.align	2
+	
+; Function prvSwitchTimerLists
+.L142:
+prvSwitchTimerLists:	.type	func
+	j	.L86
+.L87:
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+	ld.a	a15,[a15]
+	ld.a	a15,[a15]12
+	ld.w	d4,[a15]
+.L615:
+	mov	d5,#-1
+	call	prvProcessExpiredTimer
+.L86:
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+	ld.a	a15,[a15]
+	ld.w	d15,[a15]
+	jne	d15,#0,.L88
+	mov	d15,#1
+	j	.L89
+.L88:
+	mov	d15,#0
+.L89:
+	jeq	d15,#0,.L87
+.L837:
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+	ld.a	a15,[a15]
+.L616:
+	movh.a	a2,#@his(pxCurrentTimerList)
+	lea	a2,[a2]@los(pxCurrentTimerList)
+.L838:
+	movh.a	a4,#@his(pxOverflowTimerList)
+	lea	a4,[a4]@los(pxOverflowTimerList)
+	ld.a	a4,[a4]
+.L839:
+	st.a	[a2],a4
+.L840:
+	movh.a	a2,#@his(pxOverflowTimerList)
+	lea	a2,[a2]@los(pxOverflowTimerList)
+.L841:
+	st.a	[a2],a15
+.L842:
+	ret
+.L434:
+	
+__prvSwitchTimerLists_function_end:
+	.size	prvSwitchTimerLists,__prvSwitchTimerLists_function_end-prvSwitchTimerLists
+.L283:
+	; End of function
+	
+	.sdecl	'.text.timers.prvCheckForValidListAndQueue',code,cluster('prvCheckForValidListAndQueue')
+	.sect	'.text.timers.prvCheckForValidListAndQueue'
+	.align	2
+	
+; Function prvCheckForValidListAndQueue
+.L144:
+prvCheckForValidListAndQueue:	.type	func
+	call	vPortEnterCritical
+.L761:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+	ld.w	d15,[a15]
+.L762:
+	jne	d15,#0,.L90
+.L763:
+	movh.a	a4,#@his(xActiveTimerList1)
+	lea	a4,[a4]@los(xActiveTimerList1)
+	call	vListInitialise
+.L764:
+	movh.a	a4,#@his(xActiveTimerList2)
+	lea	a4,[a4]@los(xActiveTimerList2)
+	call	vListInitialise
+.L765:
+	movh.a	a15,#@his(pxCurrentTimerList)
+	lea	a15,[a15]@los(pxCurrentTimerList)
+.L766:
+	movh.a	a2,#@his(xActiveTimerList1)
+	lea	a2,[a2]@los(xActiveTimerList1)
+.L767:
+	st.a	[a15],a2
+.L768:
+	movh.a	a15,#@his(pxOverflowTimerList)
+	lea	a15,[a15]@los(pxOverflowTimerList)
+.L769:
+	movh.a	a2,#@his(xActiveTimerList2)
+	lea	a2,[a2]@los(xActiveTimerList2)
+.L770:
+	st.a	[a15],a2
+.L771:
+	movh.a	a15,#@his(xTimerQueue)
+	lea	a15,[a15]@los(xTimerQueue)
+.L772:
+	mov	d4,#5
+	mov	d5,#12
+	mov	d6,#0
+	call	xQueueGenericCreate
+.L773:
+	st.a	[a15],a2
+.L774:
+	j	.L91
+.L90:
+.L91:
+	call	vPortExitCritical
+.L775:
+	ret
+.L401:
+	
+__prvCheckForValidListAndQueue_function_end:
+	.size	prvCheckForValidListAndQueue,__prvCheckForValidListAndQueue_function_end-prvCheckForValidListAndQueue
+.L253:
+	; End of function
+	
+	.sdecl	'.text.timers.xTimerIsTimerActive',code,cluster('xTimerIsTimerActive')
+	.sect	'.text.timers.xTimerIsTimerActive'
+	.align	2
+	
+	.global	xTimerIsTimerActive
+; Function xTimerIsTimerActive
+.L146:
+xTimerIsTimerActive:	.type	func
+	mov.aa	a15,a4
+.L618:
+	call	vPortEnterCritical
+.L617:
+	ld.bu	d15,[a15]40
+.L684:
+	jnz.t	d15:0,.L92
+.L685:
+	mov	d15,#0
+.L619:
+	j	.L93
+.L92:
+	mov	d15,#1
+.L93:
+	call	vPortExitCritical
+.L686:
+	mov	d2,d15
+.L620:
+	j	.L94
+.L94:
+	ret
+.L352:
+	
+__xTimerIsTimerActive_function_end:
+	.size	xTimerIsTimerActive,__xTimerIsTimerActive_function_end-xTimerIsTimerActive
+.L193:
+	; End of function
+	
+	.sdecl	'.text.timers.pvTimerGetTimerID',code,cluster('pvTimerGetTimerID')
+	.sect	'.text.timers.pvTimerGetTimerID'
+	.align	2
+	
+	.global	pvTimerGetTimerID
+; Function pvTimerGetTimerID
+.L148:
+pvTimerGetTimerID:	.type	func
+	mov.aa	a15,a4
+.L622:
+	call	vPortEnterCritical
+.L621:
+	ld.a	a15,[a15]28
+.L623:
+	call	vPortExitCritical
+.L673:
+	mov.aa	a2,a15
+.L624:
+	j	.L95
+.L95:
+	ret
+.L341:
+	
+__pvTimerGetTimerID_function_end:
+	.size	pvTimerGetTimerID,__pvTimerGetTimerID_function_end-pvTimerGetTimerID
+.L183:
+	; End of function
+	
+	.sdecl	'.text.timers.vTimerSetTimerID',code,cluster('vTimerSetTimerID')
+	.sect	'.text.timers.vTimerSetTimerID'
+	.align	2
+	
+	.global	vTimerSetTimerID
+; Function vTimerSetTimerID
+.L150:
+vTimerSetTimerID:	.type	func
+	mov.aa	a15,a4
+.L626:
+	mov.aa	a12,a5
+.L627:
+	call	vPortEnterCritical
+.L625:
+	st.a	[a15]28,a12
+.L678:
+	call	vPortExitCritical
+.L679:
+	ret
+.L347:
+	
+__vTimerSetTimerID_function_end:
+	.size	vTimerSetTimerID,__vTimerSetTimerID_function_end-vTimerSetTimerID
+.L188:
+	; End of function
+	
+	.sdecl	'.text.timers.uxTimerGetTimerNumber',code,cluster('uxTimerGetTimerNumber')
+	.sect	'.text.timers.uxTimerGetTimerNumber'
+	.align	2
+	
+	.global	uxTimerGetTimerNumber
+; Function uxTimerGetTimerNumber
+.L152:
+uxTimerGetTimerNumber:	.type	func
+	ld.w	d2,[a4]36
+.L756:
+	j	.L96
+.L96:
+	ret
+.L399:
+	
+__uxTimerGetTimerNumber_function_end:
+	.size	uxTimerGetTimerNumber,__uxTimerGetTimerNumber_function_end-uxTimerGetTimerNumber
+.L248:
+	; End of function
+	
+	.sdecl	'.text.timers.vTimerSetTimerNumber',code,cluster('vTimerSetTimerNumber')
+	.sect	'.text.timers.vTimerSetTimerNumber'
+	.align	2
+	
+	.global	vTimerSetTimerNumber
+; Function vTimerSetTimerNumber
+.L154:
+vTimerSetTimerNumber:	.type	func
+	st.w	[a4]36,d4
+.L751:
+	ret
+.L396:
+	
+__vTimerSetTimerNumber_function_end:
+	.size	vTimerSetTimerNumber,__vTimerSetTimerNumber_function_end-vTimerSetTimerNumber
+.L243:
+	; End of function
+	
+	.sdecl	'.bss.timers.xActiveTimerList1',data,cluster('xActiveTimerList1')
+	.sect	'.bss.timers.xActiveTimerList1'
+	.align	4
+xActiveTimerList1:	.type	object
+	.size	xActiveTimerList1,20
+	.space	20
+	.sdecl	'.bss.timers.xActiveTimerList2',data,cluster('xActiveTimerList2')
+	.sect	'.bss.timers.xActiveTimerList2'
+	.align	4
+xActiveTimerList2:	.type	object
+	.size	xActiveTimerList2,20
+	.space	20
+	.sdecl	'.bss.timers.pxCurrentTimerList',data,cluster('pxCurrentTimerList')
+	.sect	'.bss.timers.pxCurrentTimerList'
+	.align	4
+pxCurrentTimerList:	.type	object
+	.size	pxCurrentTimerList,4
+	.space	4
+	.sdecl	'.bss.timers.pxOverflowTimerList',data,cluster('pxOverflowTimerList')
+	.sect	'.bss.timers.pxOverflowTimerList'
+	.align	4
+pxOverflowTimerList:	.type	object
+	.size	pxOverflowTimerList,4
+	.space	4
+	.sdecl	'.data.timers.xTimerQueue',data,cluster('xTimerQueue')
+	.sect	'.data.timers.xTimerQueue'
+	.align	4
+xTimerQueue:	.type	object
+	.size	xTimerQueue,4
+	.space	4
+	.sdecl	'.data.timers.xTimerTaskHandle',data,cluster('xTimerTaskHandle')
+	.sect	'.data.timers.xTimerTaskHandle'
+	.align	4
+xTimerTaskHandle:	.type	object
+	.size	xTimerTaskHandle,4
+	.space	4
+	.sdecl	'.rodata.timers..1.str',data,rom
+	.sect	'.rodata.timers..1.str'
+.1.str:	.type	object
+	.size	.1.str,8
+	.byte	84,109,114,32
+	.byte	83,118,99
+	.space	1
+	.sdecl	'.data.timers._999001_xLastTime',data,cluster('_999001_xLastTime')
+	.sect	'.data.timers._999001_xLastTime'
+	.align	2
+_999001_xLastTime:	.type	object
+	.size	_999001_xLastTime,4
+	.space	4
+	.calls	'__INDIRECT__','prvTimerTask'
+	.calls	'xTimerCreateTimerTask','prvCheckForValidListAndQueue'
+	.calls	'xTimerCreateTimerTask','xTaskCreate'
+	.calls	'xTimerCreate','pvPortMalloc'
+	.calls	'xTimerCreate','prvInitialiseNewTimer'
+	.calls	'prvInitialiseNewTimer','prvCheckForValidListAndQueue'
+	.calls	'prvInitialiseNewTimer','vListInitialiseItem'
+	.calls	'xTimerGenericCommand','xTaskGetSchedulerState'
+	.calls	'xTimerGenericCommand','xQueueGenericSend'
+	.calls	'xTimerGenericCommand','xQueueGenericSendFromISR'
+	.calls	'vTimerSetReloadMode','vPortEnterCritical'
+	.calls	'vTimerSetReloadMode','vPortExitCritical'
+	.calls	'xTimerGetReloadMode','vPortEnterCritical'
+	.calls	'xTimerGetReloadMode','vPortExitCritical'
+	.calls	'uxTimerGetReloadMode','xTimerGetReloadMode'
+	.calls	'prvReloadTimer','__INDIRECT__'
+	.calls	'prvReloadTimer','prvInsertTimerInActiveList'
+	.calls	'prvProcessExpiredTimer','uxListRemove'
+	.calls	'prvProcessExpiredTimer','prvReloadTimer'
+	.calls	'prvProcessExpiredTimer','__INDIRECT__'
+	.calls	'prvTimerTask','prvGetNextExpireTime'
+	.calls	'prvTimerTask','prvProcessTimerOrBlockTask'
+	.calls	'prvTimerTask','prvProcessReceivedCommands'
+	.calls	'prvProcessTimerOrBlockTask','vTaskSuspendAll'
+	.calls	'prvProcessTimerOrBlockTask','prvSampleTimeNow'
+	.calls	'prvProcessTimerOrBlockTask','xTaskResumeAll'
+	.calls	'prvProcessTimerOrBlockTask','prvProcessExpiredTimer'
+	.calls	'prvProcessTimerOrBlockTask','vQueueWaitForMessageRestricted'
+	.calls	'prvSampleTimeNow','xTaskGetTickCount'
+	.calls	'prvSampleTimeNow','prvSwitchTimerLists'
+	.calls	'prvInsertTimerInActiveList','vListInsert'
+	.calls	'prvProcessReceivedCommands','uxListRemove'
+	.calls	'prvProcessReceivedCommands','prvSampleTimeNow'
+	.calls	'prvProcessReceivedCommands','prvInsertTimerInActiveList'
+	.calls	'prvProcessReceivedCommands','prvReloadTimer'
+	.calls	'prvProcessReceivedCommands','__INDIRECT__'
+	.calls	'prvProcessReceivedCommands','vPortFree'
+	.calls	'prvProcessReceivedCommands','xQueueReceive'
+	.calls	'prvSwitchTimerLists','prvProcessExpiredTimer'
+	.calls	'prvCheckForValidListAndQueue','vPortEnterCritical'
+	.calls	'prvCheckForValidListAndQueue','vListInitialise'
+	.calls	'prvCheckForValidListAndQueue','xQueueGenericCreate'
+	.calls	'prvCheckForValidListAndQueue','vPortExitCritical'
+	.calls	'xTimerIsTimerActive','vPortEnterCritical'
+	.calls	'xTimerIsTimerActive','vPortExitCritical'
+	.calls	'pvTimerGetTimerID','vPortEnterCritical'
+	.calls	'pvTimerGetTimerID','vPortExitCritical'
+	.calls	'vTimerSetTimerID','vPortEnterCritical'
+	.calls	'vTimerSetTimerID','vPortExitCritical'
+	.calls	'vPortSetCCPN','',0
+	.calls	'vPortSetICR','',0
+	.calls	'xPortSetCCPN','',0
+	.calls	'xTimerCreateTimerTask','',0
+	.calls	'xTimerCreate','',0
+	.calls	'prvInitialiseNewTimer','',0
+	.calls	'xTimerGenericCommand','',16
+	.calls	'xTimerGetTimerDaemonTaskHandle','',0
+	.calls	'xTimerGetPeriod','',0
+	.calls	'vTimerSetReloadMode','',0
+	.calls	'xTimerGetReloadMode','',0
+	.calls	'uxTimerGetReloadMode','',0
+	.calls	'xTimerGetExpiryTime','',0
+	.calls	'pcTimerGetName','',0
+	.calls	'prvReloadTimer','',0
+	.calls	'prvProcessExpiredTimer','',0
+	.calls	'prvTimerTask','',8
+	.calls	'prvProcessTimerOrBlockTask','',8
+	.calls	'prvGetNextExpireTime','',0
+	.calls	'prvSampleTimeNow','',0
+	.calls	'prvInsertTimerInActiveList','',0
+	.calls	'prvProcessReceivedCommands','',16
+	.calls	'prvSwitchTimerLists','',0
+	.calls	'prvCheckForValidListAndQueue','',0
+	.calls	'xTimerIsTimerActive','',0
+	.calls	'pvTimerGetTimerID','',0
+	.calls	'vTimerSetTimerID','',0
+	.calls	'uxTimerGetTimerNumber','',0
+	.extern	vPortEnterCritical
+	.extern	vPortExitCritical
+	.extern	pvPortMalloc
+	.extern	vPortFree
+	.extern	vListInitialise
+	.extern	vListInitialiseItem
+	.extern	vListInsert
+	.extern	uxListRemove
+	.extern	xTaskCreate
+	.extern	vTaskSuspendAll
+	.extern	xTaskResumeAll
+	.extern	xTaskGetTickCount
+	.extern	xTaskGetSchedulerState
+	.extern	xQueueGenericSend
+	.extern	xQueueReceive
+	.extern	xQueueGenericSendFromISR
+	.extern	xQueueGenericCreate
+	.extern	vQueueWaitForMessageRestricted
+	.extern	__INDIRECT__
+	.calls	'vTimerSetTimerNumber','',0
+	.sdecl	'.debug_info',debug
+	.sect	'.debug_info'
+.L156:
+	.word	4051
+	.half	3
+	.word	.L157
+	.byte	4
+.L155:
+	.byte	1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L158
+	.byte	2
+	.byte	'int',0,4,5,3
+	.byte	'__mtcr',0,1,1,1,1,4
+	.word	232
+	.byte	4
+	.word	232
+	.byte	0,5
+	.word	232
+	.byte	6
+	.byte	'__mfcr',0
+	.word	262
+	.byte	1,1,1,1,4
+	.word	232
+	.byte	0,3
+	.byte	'__syscall',0,1,1,1,1,4
+	.word	232
+	.byte	0,7
+	.byte	'__disable',0,1,1,1,1,7
+	.byte	'__enable',0,1,1,1,1,8
+	.byte	'vPortEnterCritical',0,1,102,13,1,1,1,1,8
+	.byte	'vPortExitCritical',0,1,103,13,1,1,1,1
+.L317:
+	.byte	2
+	.byte	'unsigned char',0,1,8
+.L320:
+	.byte	2
+	.byte	'long int',0,4,5
+.L324:
+	.byte	2
+	.byte	'unsigned int',0,4,7,9
+	.byte	'void',0
+.L340:
+	.byte	10
+	.word	437
+	.byte	11
+	.byte	'pvPortMalloc',0,2,175,1,8
+	.word	443
+	.byte	1,1,1,1,12
+	.byte	'xSize',0,2,175,1,29
+	.word	421
+	.byte	0,13
+	.byte	'vPortFree',0,2,178,1,6,1,1,1,1,12
+	.byte	'pv',0,2,178,1,24
+	.word	443
+	.byte	0
+.L371:
+	.byte	2
+	.byte	'unsigned long int',0,4,7,5
+	.word	522
+	.byte	10
+	.word	.L628-.L156
+	.byte	10
+	.word	.L463-.L156
+.L628:
+	.byte	14
+	.byte	'xLIST_ITEM',0,3,144,1,8,20,15
+	.byte	'xItemValue',0
+	.word	421
+	.byte	4,2,35,0,15
+	.byte	'pxNext',0
+	.word	548
+	.byte	4,2,35,4,15
+	.byte	'pxPrevious',0
+	.word	548
+	.byte	4,2,35,8,15
+	.byte	'pvOwner',0
+	.word	443
+	.byte	4,2,35,12,15
+	.byte	'pvContainer',0
+	.word	553
+	.byte	4,2,35,16,0,10
+	.word	558
+	.byte	14
+	.byte	'xMINI_LIST_ITEM',0,3,157,1,12,12,15
+	.byte	'xItemValue',0
+	.word	421
+	.byte	4,2,35,0,15
+	.byte	'pxNext',0
+	.word	548
+	.byte	4,2,35,4,15
+	.byte	'pxPrevious',0
+	.word	548
+	.byte	4,2,35,8,0
+.L463:
+	.byte	14
+	.byte	'xLIST',0,3,172,1,16,20,15
+	.byte	'uxNumberOfItems',0
+	.word	543
+	.byte	4,2,35,0,15
+	.byte	'pxIndex',0
+	.word	670
+	.byte	4,2,35,4,15
+	.byte	'xListEnd',0
+	.word	675
+	.byte	12,2,35,8,0
+.L436:
+	.byte	10
+	.word	754
+	.byte	16
+	.word	827
+	.byte	13
+	.byte	'vListInitialise',0,3,177,3,6,1,1,1,1,12
+	.byte	'pxList',0,3,177,3,38
+	.word	832
+	.byte	0,16
+	.word	670
+	.byte	13
+	.byte	'vListInitialiseItem',0,3,188,3,6,1,1,1,1,12
+	.byte	'pxItem',0,3,188,3,46
+	.word	879
+	.byte	0,16
+	.word	827
+	.byte	16
+	.word	670
+	.byte	13
+	.byte	'vListInsert',0,3,201,3,6,1,1,1,1,12
+	.byte	'pxList',0,3,201,3,34
+	.word	930
+	.byte	12
+	.byte	'pxNewListItem',0,3,202,3,38
+	.word	935
+	.byte	0,16
+	.word	670
+	.byte	11
+	.byte	'uxListRemove',0,3,239,3,13
+	.word	522
+	.byte	1,1,1,1,12
+	.byte	'pxItemToRemove',0,3,239,3,46
+	.word	1001
+	.byte	0,17,1,1,4
+	.word	443
+	.byte	0,10
+	.word	1057
+	.byte	18
+	.byte	'TaskFunction_t',0,5,36,17
+	.word	1066
+	.byte	2
+	.byte	'char',0,1,6,16
+	.word	1094
+.L358:
+	.byte	10
+	.word	1102
+	.byte	16
+	.word	1107
+	.byte	2
+	.byte	'unsigned short int',0,2,7,16
+	.word	1117
+	.byte	16
+	.word	443
+	.byte	19
+	.byte	'tskTaskControlBlock',0,4,86,8,1,10
+	.word	1149
+.L356:
+	.byte	18
+	.byte	'TaskHandle_t',0,4,87,38
+	.word	1174
+	.byte	10
+	.word	1179
+	.byte	16
+	.word	1200
+	.byte	11
+	.byte	'xTaskCreate',0,4,227,2,16
+	.word	409
+	.byte	1,1,1,1,12
+	.byte	'pxTaskCode',0,4,227,2,44
+	.word	1071
+	.byte	12
+	.byte	'pcName',0,4,228,2,48
+	.word	1112
+	.byte	12
+	.byte	'usStackDepth',0,4,229,2,58
+	.word	1139
+	.byte	12
+	.byte	'pvParameters',0,4,230,2,42
+	.word	1144
+	.byte	12
+	.byte	'uxPriority',0,4,231,2,41
+	.word	522
+	.byte	12
+	.byte	'pxCreatedTask',0,4,232,2,50
+	.word	1205
+	.byte	0,10
+	.word	1057
+	.byte	10
+	.word	1149
+	.byte	8
+	.byte	'vTaskSuspendAll',0,4,218,10,6,1,1,1,1,20
+	.byte	'xTaskResumeAll',0,4,146,11,12
+	.word	409
+	.byte	1,1,1,1,20
+	.byte	'xTaskGetTickCount',0,4,163,11,12
+	.word	421
+	.byte	1,1,1,1,20
+	.byte	'xTaskGetSchedulerState',0,4,221,23,12
+	.word	409
+	.byte	1,1,1,1,19
+	.byte	'QueueDefinition',0,6,50,8,1,10
+	.word	1489
+.L464:
+	.byte	18
+	.byte	'QueueHandle_t',0,6,51,36
+	.word	1510
+	.byte	16
+	.word	437
+	.byte	10
+	.word	1537
+	.byte	16
+	.word	1542
+	.byte	16
+	.word	409
+	.byte	11
+	.byte	'xQueueGenericSend',0,6,145,5,12
+	.word	409
+	.byte	1,1,1,1,12
+	.byte	'xQueue',0,6,145,5,45
+	.word	1515
+	.byte	12
+	.byte	'pvItemToQueue',0,6,146,5,50
+	.word	1547
+	.byte	12
+	.byte	'xTicksToWait',0,6,147,5,42
+	.word	421
+	.byte	12
+	.byte	'xCopyPosition',0,6,148,5,48
+	.word	1552
+	.byte	0,10
+	.word	1489
+	.byte	16
+	.word	443
+	.byte	11
+	.byte	'xQueueReceive',0,6,244,6,12
+	.word	409
+	.byte	1,1,1,1,12
+	.byte	'xQueue',0,6,244,6,41
+	.word	1515
+	.byte	12
+	.byte	'pvBuffer',0,6,245,6,40
+	.word	1678
+	.byte	12
+	.byte	'xTicksToWait',0,6,246,6,38
+	.word	421
+	.byte	0,16
+	.word	1542
+	.byte	10
+	.word	409
+	.byte	16
+	.word	1772
+	.byte	16
+	.word	409
+	.byte	11
+	.byte	'xQueueGenericSendFromISR',0,6,171,10,12
+	.word	409
+	.byte	1,1,1,1,12
+	.byte	'xQueue',0,6,171,10,52
+	.word	1515
+	.byte	12
+	.byte	'pvItemToQueue',0,6,172,10,57
+	.word	1767
+	.byte	12
+	.byte	'pxHigherPriorityTaskWoken',0,6,173,10,57
+	.word	1777
+	.byte	12
+	.byte	'xCopyPosition',0,6,174,10,55
+	.word	1782
+	.byte	0,16
+	.word	522
+	.byte	16
+	.word	522
+	.byte	16
+	.word	392
+	.byte	11
+	.byte	'xQueueGenericCreate',0,6,141,12,19
+	.word	1515
+	.byte	1,1,1,1,12
+	.byte	'uxQueueLength',0,6,141,12,58
+	.word	1923
+	.byte	12
+	.byte	'uxItemSize',0,6,142,12,58
+	.word	1928
+	.byte	12
+	.byte	'ucQueueType',0,6,143,12,54
+	.word	1933
+	.byte	0,16
+	.word	409
+	.byte	13
+	.byte	'vQueueWaitForMessageRestricted',0,6,169,13,6,1,1,1,1,12
+	.byte	'xQueue',0,6,169,13,52
+	.word	1515
+	.byte	12
+	.byte	'xTicksToWait',0,6,170,13,49
+	.word	421
+	.byte	12
+	.byte	'xWaitIndefinitely',0,6,171,13,55
+	.word	2036
+	.byte	0,10
+	.word	.L629-.L156
+	.byte	17,1,1,4
+	.word	2147
+	.byte	0,10
+	.word	2152
+.L336:
+	.byte	18
+	.byte	'TimerCallbackFunction_t',0,8,85,17
+	.word	2161
+.L629:
+	.byte	14
+	.byte	'tmrTimerControl',0,7,75,20,44,15
+	.byte	'pcTimerName',0
+	.word	1107
+	.byte	4,2,35,0,15
+	.byte	'xTimerListItem',0
+	.word	558
+	.byte	20,2,35,4,15
+	.byte	'xTimerPeriodInTicks',0
+	.word	421
+	.byte	4,2,35,24,15
+	.byte	'pvTimerID',0
+	.word	443
+	.byte	4,2,35,28,15
+	.byte	'pxCallbackFunction',0
+	.word	2166
+	.byte	4,2,35,32,15
+	.byte	'uxTimerNumber',0
+	.word	522
+	.byte	4,2,35,36,15
+	.byte	'ucStatus',0
+	.word	392
+	.byte	1,2,35,40,0,10
+	.word	2198
+	.byte	10
+	.word	2152
+.L326:
+	.byte	18
+	.byte	'TimerHandle_t',0,8,80,34
+	.word	2147
+.L328:
+	.byte	16
+	.word	1107
+.L330:
+	.byte	16
+	.word	421
+.L332:
+	.byte	16
+	.word	409
+.L334:
+	.byte	16
+	.word	443
+.L338:
+	.byte	10
+	.word	2198
+.L342:
+	.byte	16
+	.word	2392
+.L344:
+	.byte	16
+	.word	2434
+.L350:
+	.byte	16
+	.word	2434
+.L364:
+	.byte	16
+	.word	409
+.L385:
+	.byte	16
+	.word	409
+.L387:
+	.byte	16
+	.word	421
+.L389:
+	.byte	16
+	.word	1772
+.L391:
+	.byte	16
+	.word	421
+	.byte	14
+	.byte	'tmrTimerParameters',0,7,97,20,8,15
+	.byte	'xMessageValue',0
+	.word	421
+	.byte	4,2,35,0,15
+	.byte	'pxTimer',0
+	.word	2434
+	.byte	4,2,35,4,0,21,7,116,9,8,15
+	.byte	'xTimerParameters',0
+	.word	2479
+	.byte	8,2,35,0,0
+.L394:
+	.byte	14
+	.byte	'tmrTimerQueueMessage',0,7,113,20,12,15
+	.byte	'xMessageID',0
+	.word	409
+	.byte	4,2,35,0,15
+	.byte	'u',0
+	.word	2544
+	.byte	8,2,35,4,0
+.L412:
+	.byte	16
+	.word	2434
+.L414:
+	.byte	16
+	.word	421
+.L416:
+	.byte	16
+	.word	421
+.L418:
+	.byte	16
+	.word	421
+.L422:
+	.byte	16
+	.word	2434
+.L425:
+	.byte	16
+	.word	421
+.L428:
+	.byte	16
+	.word	421
+.L430:
+	.byte	16
+	.word	421
+.L432:
+	.byte	16
+	.word	2434
+.L439:
+	.byte	16
+	.word	1772
+.L443:
+	.byte	16
+	.word	1772
+.L447:
+	.byte	16
+	.word	421
+.L453:
+	.byte	16
+	.word	1107
+.L455:
+	.byte	16
+	.word	421
+.L457:
+	.byte	16
+	.word	409
+.L459:
+	.byte	16
+	.word	443
+	.byte	22
+	.byte	'__INDIRECT__',0,7,1,1,1,1,1,2
+	.byte	'short int',0,2,5,18
+	.byte	'__wchar_t',0,7,1,1
+	.word	2734
+	.byte	18
+	.byte	'__size_t',0,7,1,1
+	.word	421
+	.byte	18
+	.byte	'__ptrdiff_t',0,7,1,1
+	.word	232
+	.byte	23,1,10
+	.word	2802
+	.byte	18
+	.byte	'__codeptr',0,7,1,1
+	.word	2804
+	.byte	18
+	.byte	'__intptr_t',0,7,1,1
+	.word	232
+	.byte	18
+	.byte	'__uintptr_t',0,7,1,1
+	.word	421
+	.byte	18
+	.byte	'size_t',0,9,29,25
+	.word	421
+	.byte	18
+	.byte	'uint8_t',0,10,242,1,41
+	.word	392
+	.byte	18
+	.byte	'uint16_t',0,10,246,1,41
+	.word	1117
+	.byte	18
+	.byte	'uint32_t',0,10,254,1,41
+	.word	421
+	.byte	18
+	.byte	'StackType_t',0,1,74,30
+	.word	421
+	.byte	18
+	.byte	'BaseType_t',0,1,75,30
+	.word	409
+	.byte	18
+	.byte	'UBaseType_t',0,1,76,30
+	.word	522
+	.byte	18
+	.byte	'TickType_t',0,1,82,30
+	.word	421
+	.byte	24,16
+	.word	443
+	.byte	25,3,0,14
+	.byte	'xSTATIC_LIST_ITEM',0,11,177,9,8,20,15
+	.byte	'xDummy2',0
+	.word	421
+	.byte	4,2,35,0,15
+	.byte	'pvDummy3',0
+	.word	3012
+	.byte	16,2,35,4,0,18
+	.byte	'StaticListItem_t',0,11,188,9,34
+	.word	3021
+	.byte	24,8
+	.word	443
+	.byte	25,1,0,14
+	.byte	'xSTATIC_MINI_LIST_ITEM',0,11,192,9,12,12,15
+	.byte	'xDummy2',0
+	.word	421
+	.byte	4,2,35,0,15
+	.byte	'pvDummy3',0
+	.word	3107
+	.byte	8,2,35,4,0,18
+	.byte	'StaticMiniListItem_t',0,11,200,9,43
+	.word	3116
+	.byte	14
+	.byte	'xSTATIC_LIST',0,11,206,9,16,20,15
+	.byte	'uxDummy2',0
+	.word	522
+	.byte	4,2,35,0,15
+	.byte	'pvDummy3',0
+	.word	443
+	.byte	4,2,35,4,15
+	.byte	'xDummy4',0
+	.word	3116
+	.byte	12,2,35,8,0,18
+	.byte	'StaticList_t',0,11,217,9,3
+	.word	3211
+	.byte	24,12
+	.word	443
+	.byte	25,2,0,21,11,172,10,5,4,15
+	.byte	'pvDummy2',0
+	.word	443
+	.byte	4,2,35,0,15
+	.byte	'uxDummy2',0
+	.word	522
+	.byte	4,2,35,0,0,24,40
+	.word	3211
+	.byte	25,1,0,24,12
+	.word	522
+	.byte	25,2,0,24,2
+	.word	392
+	.byte	25,1,0,14
+	.byte	'xSTATIC_QUEUE',0,11,168,10,16,76,15
+	.byte	'pvDummy1',0
+	.word	3306
+	.byte	12,2,35,0,15
+	.byte	'u',0
+	.word	3315
+	.byte	4,2,35,12,15
+	.byte	'xDummy3',0
+	.word	3358
+	.byte	40,2,35,16,15
+	.byte	'uxDummy4',0
+	.word	3367
+	.byte	12,2,35,56,15
+	.byte	'ucDummy5',0
+	.word	3376
+	.byte	2,2,35,68,15
+	.byte	'uxDummy8',0
+	.word	522
+	.byte	4,2,35,70,15
+	.byte	'ucDummy9',0
+	.word	392
+	.byte	1,2,35,74,0,18
+	.byte	'StaticQueue_t',0,11,194,10,3
+	.word	3385
+	.byte	24,16
+	.word	421
+	.byte	25,3,0,14
+	.byte	'xSTATIC_STREAM_BUFFER',0,11,138,11,16,36,15
+	.byte	'uxDummy1',0
+	.word	3547
+	.byte	16,2,35,0,15
+	.byte	'pvDummy2',0
+	.word	3306
+	.byte	12,2,35,16,15
+	.byte	'ucDummy3',0
+	.word	392
+	.byte	1,2,35,28,15
+	.byte	'uxDummy4',0
+	.word	522
+	.byte	4,2,35,30,0,18
+	.byte	'StaticStreamBuffer_t',0,11,149,11,3
+	.word	3556
+	.byte	18
+	.byte	'ListItem_t',0,3,154,1,27
+	.word	558
+	.byte	18
+	.byte	'MiniListItem_t',0,3,164,1,36
+	.word	675
+	.byte	18
+	.byte	'List_t',0,3,179,1,3
+	.word	754
+	.byte	26,4,96,9,1,27
+	.byte	'eRunning',0,0,27
+	.byte	'eReady',0,1,27
+	.byte	'eBlocked',0,2,27
+	.byte	'eSuspended',0,3,27
+	.byte	'eDeleted',0,4,27
+	.byte	'eInvalid',0,5,0,18
+	.byte	'eTaskState',0,4,104,3
+	.word	3747
+	.byte	14
+	.byte	'xMEMORY_REGION',0,4,128,1,16,12,15
+	.byte	'pvBaseAddress',0
+	.word	443
+	.byte	4,2,35,0,15
+	.byte	'ulLengthInBytes',0
+	.word	421
+	.byte	4,2,35,4,15
+	.byte	'ulParameters',0
+	.word	421
+	.byte	4,2,35,8,0,18
+	.byte	'MemoryRegion_t',0,4,133,1,3
+	.word	3838
+	.byte	17,1,1,4
+	.word	443
+	.byte	4
+	.word	421
+	.byte	0,10
+	.word	3954
+	.byte	18
+	.byte	'PendedFunction_t',0,8,91,17
+	.word	3968
+	.byte	18
+	.byte	'xTIMER',0,7,86,7
+	.word	2198
+	.byte	18
+	.byte	'Timer_t',0,7,90,20
+	.word	2198
+	.byte	18
+	.byte	'TimerParameter_t',0,7,101,7
+	.word	2479
+	.byte	0
+	.sdecl	'.debug_abbrev',debug
+	.sect	'.debug_abbrev'
+.L157:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,46,1,3,8,54,15,39,12,63,12
+	.byte	60,12,0,0,4,5,0,73,19,0,0,5,53,0,73,19,0,0,6,46,1,3,8,73,19,54,15,39,12,63,12,60,12,0,0,7,46,0,3,8,54
+	.byte	15,39,12,63,12,60,12,0,0,8,46,0,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,9,59,0,3,8,0,0,10,15
+	.byte	0,73,19,0,0,11,46,1,3,8,58,15,59,15,57,15,73,19,54,15,39,12,63,12,60,12,0,0,12,5,0,3,8,58,15,59,15,57
+	.byte	15,73,19,0,0,13,46,1,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,14,19,1,3,8,58,15,59,15,57,15,11
+	.byte	15,0,0,15,13,0,3,8,73,19,11,15,56,9,0,0,16,38,0,73,19,0,0,17,21,1,54,15,39,12,0,0,18,22,0,3,8,58,15,59
+	.byte	15,57,15,73,19,0,0,19,19,0,3,8,58,15,59,15,57,15,60,12,0,0,20,46,0,3,8,58,15,59,15,57,15,73,19,54,15,39
+	.byte	12,63,12,60,12,0,0,21,23,1,58,15,59,15,57,15,11,15,0,0,22,46,0,3,8,58,15,59,15,57,15,54,15,63,12,60,12
+	.byte	0,0,23,21,0,54,15,0,0,24,1,1,11,15,73,19,0,0,25,33,0,47,15,0,0,26,4,1,58,15,59,15,57,15,11,15,0,0,27,40
+	.byte	0,3,8,28,13,0,0,0
+	.sdecl	'.debug_line',debug
+	.sect	'.debug_line'
+.L158:
+	.word	.L631-.L630
+.L630:
+	.half	3
+	.word	.L633-.L632
+.L632:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include',0
+	.byte	'C:\\Infineon\\AURIX-Studio-1.10.6\\tools\\Compilers\\Tasking_1.1r8\\ctc\\include\\',0,0
+	.byte	'portmacro.h',0,1,0,0
+	.byte	'portable.h',0,2,0,0
+	.byte	'list.h',0,2,0,0
+	.byte	'task.h',0,2,0,0
+	.byte	'projdefs.h',0,2,0,0
+	.byte	'queue.h',0,2,0,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0
+	.byte	'timers.h',0,2,0,0
+	.byte	'stdlib.h',0,3,0,0
+	.byte	'stdint.h',0,3,0,0
+	.byte	'FreeRTOS.h',0,2,0,0,0
+.L633:
+.L631:
+	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_info'
+.L159:
+	.word	414
+	.half	3
+	.word	.L160
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L162,.L161
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'vPortSetCCPN',0,1,160,1,54,1,1
+	.word	.L98,.L316,.L97
+	.byte	4
+	.byte	'ucCCPN',0,1,160,1,82
+	.word	.L317,.L318
+	.byte	5
+	.word	.L98,.L316
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_abbrev'
+.L160:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_line'
+.L161:
+	.word	.L635-.L634
+.L634:
+	.half	3
+	.word	.L637-.L636
+.L636:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L637:
+	.byte	5,14,7,0,5,2
+	.word	.L98
+	.byte	3,161,1,1,5,34,9
+	.half	.L638-.L98
+	.byte	3,1,1,5,50,9
+	.half	.L639-.L638
+	.byte	1,5,87,9
+	.half	.L640-.L639
+	.byte	1,5,76,9
+	.half	.L641-.L640
+	.byte	1,5,11,9
+	.half	.L642-.L641
+	.byte	1,5,13,9
+	.half	.L643-.L642
+	.byte	3,1,1,5,1,9
+	.half	.L644-.L643
+	.byte	3,1,1,7,9
+	.half	.L163-.L644
+	.byte	0,1,1
+.L635:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_ranges'
+.L162:
+	.word	-1,.L98,0,.L163-.L98,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetICR')
+	.sect	'.debug_info'
+.L164:
+	.word	412
+	.half	3
+	.word	.L165
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L167,.L166
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'vPortSetICR',0,1,167,1,54,1,1
+	.word	.L100,.L319,.L99
+	.byte	4
+	.byte	'ulICR',0,1,167,1,81
+	.word	.L320,.L321
+	.byte	5
+	.word	.L100,.L319
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR')
+	.sect	'.debug_abbrev'
+.L165:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetICR')
+	.sect	'.debug_line'
+.L166:
+	.word	.L646-.L645
+.L645:
+	.half	3
+	.word	.L648-.L647
+.L647:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L648:
+	.byte	5,14,7,0,5,2
+	.word	.L100
+	.byte	3,168,1,1,5,11,9
+	.half	.L649-.L100
+	.byte	3,1,1,5,13,9
+	.half	.L650-.L649
+	.byte	3,1,1,5,1,9
+	.half	.L651-.L650
+	.byte	3,1,1,7,9
+	.half	.L168-.L651
+	.byte	0,1,1
+.L646:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR')
+	.sect	'.debug_ranges'
+.L167:
+	.word	-1,.L100,0,.L168-.L100,0,0
+	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_info'
+.L169:
+	.word	437
+	.half	3
+	.word	.L170
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L172,.L171
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xPortSetCCPN',0,1,174,1,63
+	.word	.L320
+	.byte	1,1
+	.word	.L102,.L322,.L101
+	.byte	4
+	.byte	'ucCCPN',0,1,174,1,91
+	.word	.L317,.L323
+	.byte	5
+	.word	.L102,.L322
+	.byte	6
+	.byte	'xICR',0,1,176,1,14
+	.word	.L324,.L325
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_abbrev'
+.L170:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_line'
+.L171:
+	.word	.L653-.L652
+.L652:
+	.half	3
+	.word	.L655-.L654
+.L654:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
+	.byte	0
+	.byte	'portmacro.h',0,1,0,0,0
+.L655:
+	.byte	5,14,7,0,5,2
+	.word	.L102
+	.byte	3,177,1,1,5,18,9
+	.half	.L656-.L102
+	.byte	3,1,1,5,33,9
+	.half	.L465-.L656
+	.byte	3,1,1,5,70,9
+	.half	.L657-.L465
+	.byte	1,5,59,9
+	.half	.L658-.L657
+	.byte	1,5,11,9
+	.half	.L659-.L658
+	.byte	1,5,13,9
+	.half	.L660-.L659
+	.byte	3,1,1,5,5,9
+	.half	.L661-.L660
+	.byte	3,1,1,5,1,9
+	.half	.L2-.L661
+	.byte	3,1,1,7,9
+	.half	.L173-.L2
+	.byte	0,1,1
+.L653:
+	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_ranges'
+.L172:
+	.word	-1,.L102,0,.L173-.L102,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerCreate')
+	.sect	'.debug_info'
+.L174:
+	.word	448
+	.half	3
+	.word	.L175
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L177,.L176
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerCreate',0,1,160,2,23
+	.word	.L326
+	.byte	1,1,1
+	.word	.L106,.L327,.L105
+	.byte	4
+	.byte	'pcTimerName',0,1,160,2,56
+	.word	.L328,.L329
+	.byte	4
+	.byte	'xTimerPeriodInTicks',0,1,161,2,54
+	.word	.L330,.L331
+	.byte	4
+	.byte	'xAutoReload',0,1,162,2,54
+	.word	.L332,.L333
+	.byte	4
+	.byte	'pvTimerID',0,1,163,2,50
+	.word	.L334,.L335
+	.byte	4
+	.byte	'pxCallbackFunction',0,1,164,2,61
+	.word	.L336,.L337
+	.byte	5
+	.word	.L106,.L327
+	.byte	6
+	.byte	'pxNewTimer',0,1,166,2,23
+	.word	.L338,.L339
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerCreate')
+	.sect	'.debug_abbrev'
+.L175:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerCreate')
+	.sect	'.debug_line'
+.L176:
+	.word	.L663-.L662
+.L662:
+	.half	3
+	.word	.L665-.L664
+.L664:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L665:
+	.byte	5,23,7,0,5,2
+	.word	.L106
+	.byte	3,159,2,1,5,54,9
+	.half	.L476-.L106
+	.byte	3,8,1,5,24,9
+	.half	.L470-.L476
+	.byte	1,5,13,9
+	.half	.L478-.L470
+	.byte	3,2,1,5,40,7,9
+	.half	.L666-.L478
+	.byte	3,5,1,5,38,9
+	.half	.L667-.L666
+	.byte	1,5,118,9
+	.half	.L668-.L667
+	.byte	3,1,1,5,13,9
+	.half	.L6-.L668
+	.byte	3,3,1,5,9,9
+	.half	.L7-.L6
+	.byte	3,1,1,7,9
+	.half	.L178-.L7
+	.byte	0,1,1
+.L663:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerCreate')
+	.sect	'.debug_ranges'
+.L177:
+	.word	-1,.L106,0,.L178-.L106,0,0
+	.sdecl	'.debug_info',debug,cluster('pvTimerGetTimerID')
+	.sect	'.debug_info'
+.L179:
+	.word	354
+	.half	3
+	.word	.L180
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L182,.L181
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'pvTimerGetTimerID',0,1,241,7,12
+	.word	.L340
+	.byte	1,1,1
+	.word	.L148,.L341,.L147
+	.byte	4
+	.byte	'xTimer',0,1,241,7,51
+	.word	.L342,.L343
+	.byte	5
+	.word	.L148,.L341
+	.byte	6
+	.byte	'pxTimer',0,1,243,7,25
+	.word	.L344,.L345
+	.byte	6
+	.byte	'pvReturn',0,1,244,7,16
+	.word	.L340,.L346
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('pvTimerGetTimerID')
+	.sect	'.debug_abbrev'
+.L180:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('pvTimerGetTimerID')
+	.sect	'.debug_line'
+.L181:
+	.word	.L670-.L669
+.L669:
+	.half	3
+	.word	.L672-.L671
+.L671:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L672:
+	.byte	5,12,7,0,5,2
+	.word	.L148
+	.byte	3,240,7,1,5,9,9
+	.half	.L622-.L148
+	.byte	3,7,1,5,31,9
+	.half	.L621-.L622
+	.byte	3,2,1,5,9,9
+	.half	.L623-.L621
+	.byte	3,2,1,9
+	.half	.L673-.L623
+	.byte	3,2,1,5,5,9
+	.half	.L95-.L673
+	.byte	3,1,1,7,9
+	.half	.L183-.L95
+	.byte	0,1,1
+.L670:
+	.sdecl	'.debug_ranges',debug,cluster('pvTimerGetTimerID')
+	.sect	'.debug_ranges'
+.L182:
+	.word	-1,.L148,0,.L183-.L148,0,0
+	.sdecl	'.debug_info',debug,cluster('vTimerSetTimerID')
+	.sect	'.debug_info'
+.L184:
+	.word	348
+	.half	3
+	.word	.L185
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L187,.L186
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'vTimerSetTimerID',0,1,130,8,10,1,1,1
+	.word	.L150,.L347,.L149
+	.byte	4
+	.byte	'xTimer',0,1,130,8,42
+	.word	.L326,.L348
+	.byte	4
+	.byte	'pvNewID',0,1,131,8,35
+	.word	.L340,.L349
+	.byte	5
+	.word	.L150,.L347
+	.byte	6
+	.byte	'pxTimer',0,1,133,8,25
+	.word	.L350,.L351
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vTimerSetTimerID')
+	.sect	'.debug_abbrev'
+.L185:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vTimerSetTimerID')
+	.sect	'.debug_line'
+.L186:
+	.word	.L675-.L674
+.L674:
+	.half	3
+	.word	.L677-.L676
+.L676:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L677:
+	.byte	5,10,7,0,5,2
+	.word	.L150
+	.byte	3,129,8,1,5,9,9
+	.half	.L627-.L150
+	.byte	3,7,1,5,32,9
+	.half	.L625-.L627
+	.byte	3,2,1,5,9,9
+	.half	.L678-.L625
+	.byte	3,2,1,5,5,9
+	.half	.L679-.L678
+	.byte	3,1,1,7,9
+	.half	.L188-.L679
+	.byte	0,1,1
+.L675:
+	.sdecl	'.debug_ranges',debug,cluster('vTimerSetTimerID')
+	.sect	'.debug_ranges'
+.L187:
+	.word	-1,.L150,0,.L188-.L150,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerIsTimerActive')
+	.sect	'.debug_info'
+.L189:
+	.word	355
+	.half	3
+	.word	.L190
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L192,.L191
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerIsTimerActive',0,1,216,7,16
+	.word	.L320
+	.byte	1,1,1
+	.word	.L146,.L352,.L145
+	.byte	4
+	.byte	'xTimer',0,1,216,7,51
+	.word	.L326,.L353
+	.byte	5
+	.word	.L146,.L352
+	.byte	6
+	.byte	'xReturn',0,1,218,7,20
+	.word	.L320,.L354
+	.byte	6
+	.byte	'pxTimer',0,1,219,7,19
+	.word	.L338,.L355
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerIsTimerActive')
+	.sect	'.debug_abbrev'
+.L190:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerIsTimerActive')
+	.sect	'.debug_line'
+.L191:
+	.word	.L681-.L680
+.L680:
+	.half	3
+	.word	.L683-.L682
+.L682:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L683:
+	.byte	5,16,7,0,5,2
+	.word	.L146
+	.byte	3,215,7,1,5,9,9
+	.half	.L618-.L146
+	.byte	3,8,1,5,26,9
+	.half	.L617-.L618
+	.byte	3,2,1,5,13,9
+	.half	.L684-.L617
+	.byte	1,5,25,7,9
+	.half	.L685-.L684
+	.byte	3,2,1,5,34,9
+	.half	.L619-.L685
+	.byte	1,5,25,9
+	.half	.L92-.L619
+	.byte	3,4,1,5,9,9
+	.half	.L93-.L92
+	.byte	3,3,1,9
+	.half	.L686-.L93
+	.byte	3,2,1,5,5,9
+	.half	.L94-.L686
+	.byte	3,1,1,7,9
+	.half	.L193-.L94
+	.byte	0,1,1
+.L681:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerIsTimerActive')
+	.sect	'.debug_ranges'
+.L192:
+	.word	-1,.L146,0,.L193-.L146,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerGetTimerDaemonTaskHandle')
+	.sect	'.debug_info'
+.L194:
+	.word	303
+	.half	3
+	.word	.L195
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L197,.L196
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerGetTimerDaemonTaskHandle',0,1,177,3,18
+	.word	.L356
+	.byte	1,1,1
+	.word	.L112,.L357,.L111
+	.byte	4
+	.word	.L112,.L357
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerGetTimerDaemonTaskHandle')
+	.sect	'.debug_abbrev'
+.L195:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerGetTimerDaemonTaskHandle')
+	.sect	'.debug_line'
+.L196:
+	.word	.L688-.L687
+.L687:
+	.half	3
+	.word	.L690-.L689
+.L689:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L690:
+	.byte	5,16,7,0,5,2
+	.word	.L112
+	.byte	3,181,3,1,5,9,9
+	.half	.L691-.L112
+	.byte	1,5,5,9
+	.half	.L16-.L691
+	.byte	3,1,1,7,9
+	.half	.L198-.L16
+	.byte	0,1,1
+.L688:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerGetTimerDaemonTaskHandle')
+	.sect	'.debug_ranges'
+.L197:
+	.word	-1,.L112,0,.L198-.L112,0,0
+	.sdecl	'.debug_info',debug,cluster('pcTimerGetName')
+	.sect	'.debug_info'
+.L199:
+	.word	329
+	.half	3
+	.word	.L200
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L202,.L201
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'pcTimerGetName',0,1,129,4,18
+	.word	.L358
+	.byte	1,1,1
+	.word	.L124,.L359,.L123
+	.byte	4
+	.byte	'xTimer',0,1,129,4,48
+	.word	.L326,.L360
+	.byte	5
+	.word	.L124,.L359
+	.byte	6
+	.byte	'pxTimer',0,1,131,4,19
+	.word	.L338,.L361
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('pcTimerGetName')
+	.sect	'.debug_abbrev'
+.L200:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('pcTimerGetName')
+	.sect	'.debug_line'
+.L201:
+	.word	.L693-.L692
+.L692:
+	.half	3
+	.word	.L695-.L694
+.L694:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L695:
+	.byte	5,23,7,0,5,2
+	.word	.L124
+	.byte	3,133,4,1,5,9,9
+	.half	.L696-.L124
+	.byte	1,5,5,9
+	.half	.L25-.L696
+	.byte	3,1,1,7,9
+	.half	.L203-.L25
+	.byte	0,1,1
+.L693:
+	.sdecl	'.debug_ranges',debug,cluster('pcTimerGetName')
+	.sect	'.debug_ranges'
+.L202:
+	.word	-1,.L124,0,.L203-.L124,0,0
+	.sdecl	'.debug_info',debug,cluster('vTimerSetReloadMode')
+	.sect	'.debug_info'
+.L204:
+	.word	355
+	.half	3
+	.word	.L205
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L207,.L206
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'vTimerSetReloadMode',0,1,195,3,10,1,1,1
+	.word	.L116,.L362,.L115
+	.byte	4
+	.byte	'xTimer',0,1,195,3,45
+	.word	.L326,.L363
+	.byte	4
+	.byte	'xAutoReload',0,1,196,3,48
+	.word	.L364,.L365
+	.byte	5
+	.word	.L116,.L362
+	.byte	6
+	.byte	'pxTimer',0,1,198,3,19
+	.word	.L338,.L366
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vTimerSetReloadMode')
+	.sect	'.debug_abbrev'
+.L205:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vTimerSetReloadMode')
+	.sect	'.debug_line'
+.L206:
+	.word	.L698-.L697
+.L697:
+	.half	3
+	.word	.L700-.L699
+.L699:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L700:
+	.byte	5,10,7,0,5,2
+	.word	.L116
+	.byte	3,194,3,1,5,9,9
+	.half	.L508-.L116
+	.byte	3,6,1,5,13,9
+	.half	.L506-.L508
+	.byte	3,2,1,5,24,7,9
+	.half	.L701-.L506
+	.byte	3,2,1,5,35,9
+	.half	.L509-.L701
+	.byte	1,5,61,9
+	.half	.L702-.L509
+	.byte	1,5,24,9
+	.half	.L18-.L702
+	.byte	3,4,1,5,35,9
+	.half	.L510-.L18
+	.byte	1,5,9,9
+	.half	.L19-.L510
+	.byte	3,3,1,5,5,9
+	.half	.L703-.L19
+	.byte	3,1,1,7,9
+	.half	.L208-.L703
+	.byte	0,1,1
+.L698:
+	.sdecl	'.debug_ranges',debug,cluster('vTimerSetReloadMode')
+	.sect	'.debug_ranges'
+.L207:
+	.word	-1,.L116,0,.L208-.L116,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerGetReloadMode')
+	.sect	'.debug_info'
+.L209:
+	.word	355
+	.half	3
+	.word	.L210
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L212,.L211
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerGetReloadMode',0,1,216,3,16
+	.word	.L320
+	.byte	1,1,1
+	.word	.L118,.L367,.L117
+	.byte	4
+	.byte	'xTimer',0,1,216,3,51
+	.word	.L326,.L368
+	.byte	5
+	.word	.L118,.L367
+	.byte	6
+	.byte	'pxTimer',0,1,218,3,19
+	.word	.L338,.L369
+	.byte	6
+	.byte	'xReturn',0,1,219,3,20
+	.word	.L320,.L370
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerGetReloadMode')
+	.sect	'.debug_abbrev'
+.L210:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerGetReloadMode')
+	.sect	'.debug_line'
+.L211:
+	.word	.L705-.L704
+.L704:
+	.half	3
+	.word	.L707-.L706
+.L706:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L707:
+	.byte	5,16,7,0,5,2
+	.word	.L118
+	.byte	3,215,3,1,5,9,9
+	.half	.L512-.L118
+	.byte	3,6,1,5,26,9
+	.half	.L511-.L512
+	.byte	3,2,1,5,13,9
+	.half	.L708-.L511
+	.byte	1,5,25,7,9
+	.half	.L709-.L708
+	.byte	3,3,1,5,34,9
+	.half	.L513-.L709
+	.byte	1,5,25,9
+	.half	.L20-.L513
+	.byte	3,5,1,5,9,9
+	.half	.L21-.L20
+	.byte	3,3,1,9
+	.half	.L710-.L21
+	.byte	3,2,1,5,5,9
+	.half	.L22-.L710
+	.byte	3,1,1,7,9
+	.half	.L213-.L22
+	.byte	0,1,1
+.L705:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerGetReloadMode')
+	.sect	'.debug_ranges'
+.L212:
+	.word	-1,.L118,0,.L213-.L118,0,0
+	.sdecl	'.debug_info',debug,cluster('uxTimerGetReloadMode')
+	.sect	'.debug_info'
+.L214:
+	.word	313
+	.half	3
+	.word	.L215
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L217,.L216
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'uxTimerGetReloadMode',0,1,240,3,17
+	.word	.L371
+	.byte	1,1,1
+	.word	.L120,.L372,.L119
+	.byte	4
+	.byte	'xTimer',0,1,240,3,53
+	.word	.L326,.L373
+	.byte	5
+	.word	.L120,.L372
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('uxTimerGetReloadMode')
+	.sect	'.debug_abbrev'
+.L215:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('uxTimerGetReloadMode')
+	.sect	'.debug_line'
+.L216:
+	.word	.L712-.L711
+.L711:
+	.half	3
+	.word	.L714-.L713
+.L713:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L714:
+	.byte	5,53,7,0,5,2
+	.word	.L120
+	.byte	3,241,3,1,5,9,9
+	.half	.L515-.L120
+	.byte	1,5,5,9
+	.half	.L23-.L515
+	.byte	3,1,1,7,9
+	.half	.L218-.L23
+	.byte	0,1,1
+.L712:
+	.sdecl	'.debug_ranges',debug,cluster('uxTimerGetReloadMode')
+	.sect	'.debug_ranges'
+.L217:
+	.word	-1,.L120,0,.L218-.L120,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerGetPeriod')
+	.sect	'.debug_info'
+.L219:
+	.word	330
+	.half	3
+	.word	.L220
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L222,.L221
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerGetPeriod',0,1,186,3,16
+	.word	.L324
+	.byte	1,1,1
+	.word	.L114,.L374,.L113
+	.byte	4
+	.byte	'xTimer',0,1,186,3,47
+	.word	.L326,.L375
+	.byte	5
+	.word	.L114,.L374
+	.byte	6
+	.byte	'pxTimer',0,1,188,3,19
+	.word	.L338,.L376
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerGetPeriod')
+	.sect	'.debug_abbrev'
+.L220:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerGetPeriod')
+	.sect	'.debug_line'
+.L221:
+	.word	.L716-.L715
+.L715:
+	.half	3
+	.word	.L718-.L717
+.L717:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L718:
+	.byte	5,23,7,0,5,2
+	.word	.L114
+	.byte	3,190,3,1,5,9,9
+	.half	.L719-.L114
+	.byte	1,5,5,9
+	.half	.L17-.L719
+	.byte	3,1,1,7,9
+	.half	.L223-.L17
+	.byte	0,1,1
+.L716:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerGetPeriod')
+	.sect	'.debug_ranges'
+.L222:
+	.word	-1,.L114,0,.L223-.L114,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerGetExpiryTime')
+	.sect	'.debug_info'
+.L224:
+	.word	355
+	.half	3
+	.word	.L225
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L227,.L226
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerGetExpiryTime',0,1,246,3,16
+	.word	.L324
+	.byte	1,1,1
+	.word	.L122,.L377,.L121
+	.byte	4
+	.byte	'xTimer',0,1,246,3,51
+	.word	.L326,.L378
+	.byte	5
+	.word	.L122,.L377
+	.byte	6
+	.byte	'pxTimer',0,1,248,3,19
+	.word	.L338,.L379
+	.byte	6
+	.byte	'xReturn',0,1,249,3,20
+	.word	.L324,.L380
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerGetExpiryTime')
+	.sect	'.debug_abbrev'
+.L225:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerGetExpiryTime')
+	.sect	'.debug_line'
+.L226:
+	.word	.L721-.L720
+.L720:
+	.half	3
+	.word	.L723-.L722
+.L722:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L723:
+	.byte	5,19,7,0,5,2
+	.word	.L122
+	.byte	3,251,3,1,5,9,9
+	.half	.L516-.L122
+	.byte	3,1,1,5,5,9
+	.half	.L24-.L516
+	.byte	3,1,1,7,9
+	.half	.L228-.L24
+	.byte	0,1,1
+.L721:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerGetExpiryTime')
+	.sect	'.debug_ranges'
+.L227:
+	.word	-1,.L122,0,.L228-.L122,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerCreateTimerTask')
+	.sect	'.debug_info'
+.L229:
+	.word	316
+	.half	3
+	.word	.L230
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L232,.L231
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerCreateTimerTask',0,1,233,1,16
+	.word	.L320
+	.byte	1,1,1
+	.word	.L104,.L381,.L103
+	.byte	4
+	.word	.L104,.L381
+	.byte	5
+	.byte	'xReturn',0,1,235,1,20
+	.word	.L320,.L382
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerCreateTimerTask')
+	.sect	'.debug_abbrev'
+.L230:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerCreateTimerTask')
+	.sect	'.debug_line'
+.L231:
+	.word	.L725-.L724
+.L724:
+	.half	3
+	.word	.L727-.L726
+.L726:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L727:
+	.byte	5,28,7,0,5,2
+	.word	.L104
+	.byte	3,234,1,1,5,37,9
+	.half	.L466-.L104
+	.byte	3,6,1,5,13,9
+	.half	.L728-.L466
+	.byte	3,2,1,5,9,9
+	.half	.L729-.L728
+	.byte	1,5,40,7,9
+	.half	.L730-.L729
+	.byte	3,24,1,9
+	.half	.L731-.L730
+	.byte	3,1,1,9
+	.half	.L732-.L731
+	.byte	3,1,1,9
+	.half	.L733-.L732
+	.byte	3,1,1,5,86,9
+	.half	.L734-.L733
+	.byte	3,1,1,5,41,9
+	.half	.L735-.L734
+	.byte	3,1,1,5,25,9
+	.half	.L467-.L735
+	.byte	3,123,1,5,59,9
+	.half	.L468-.L467
+	.byte	3,5,1,5,9,9
+	.half	.L4-.L468
+	.byte	3,10,1,5,5,9
+	.half	.L5-.L4
+	.byte	3,1,1,7,9
+	.half	.L233-.L5
+	.byte	0,1,1
+.L725:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerCreateTimerTask')
+	.sect	'.debug_ranges'
+.L232:
+	.word	-1,.L104,0,.L233-.L104,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerGenericCommand')
+	.sect	'.debug_info'
+.L234:
+	.word	474
+	.half	3
+	.word	.L235
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L237,.L236
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerGenericCommand',0,1,130,3,16
+	.word	.L320
+	.byte	1,1,1
+	.word	.L110,.L383,.L109
+	.byte	4
+	.byte	'xTimer',0,1,130,3,52
+	.word	.L326,.L384
+	.byte	4
+	.byte	'xCommandID',0,1,131,3,55
+	.word	.L385,.L386
+	.byte	4
+	.byte	'xOptionalValue',0,1,132,3,55
+	.word	.L387,.L388
+	.byte	4
+	.byte	'pxHigherPriorityTaskWoken',0,1,133,3,57
+	.word	.L389,.L390
+	.byte	4
+	.byte	'xTicksToWait',0,1,134,3,55
+	.word	.L391,.L392
+	.byte	5
+	.word	.L110,.L383
+	.byte	6
+	.byte	'xReturn',0,1,136,3,20
+	.word	.L320,.L393
+	.byte	6
+	.byte	'xMessage',0,1,137,3,29
+	.word	.L394,.L395
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerGenericCommand')
+	.sect	'.debug_abbrev'
+.L235:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
+	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xTimerGenericCommand')
+	.sect	'.debug_line'
+.L236:
+	.word	.L737-.L736
+.L736:
+	.half	3
+	.word	.L739-.L738
+.L738:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L739:
+	.byte	5,16,7,0,5,2
+	.word	.L110
+	.byte	3,129,3,1,5,28,9
+	.half	.L499-.L110
+	.byte	3,6,1,5,13,9
+	.half	.L500-.L499
+	.byte	3,7,1,5,9,9
+	.half	.L740-.L500
+	.byte	1,5,33,7,9
+	.half	.L741-.L740
+	.byte	3,3,1,5,55,9
+	.half	.L742-.L741
+	.byte	3,1,1,5,49,9
+	.half	.L743-.L742
+	.byte	3,1,1,5,13,9
+	.half	.L744-.L743
+	.byte	3,2,1,5,43,7,9
+	.half	.L745-.L744
+	.byte	3,2,1,5,17,9
+	.half	.L497-.L745
+	.byte	1,5,31,7,9
+	.half	.L746-.L497
+	.byte	3,2,1,5,87,9
+	.half	.L502-.L746
+	.byte	1,5,31,9
+	.half	.L11-.L502
+	.byte	3,4,1,5,17,9
+	.half	.L12-.L11
+	.byte	3,126,1,5,27,9
+	.half	.L10-.L12
+	.byte	3,7,1,5,13,9
+	.half	.L13-.L10
+	.byte	3,126,1,5,9,9
+	.half	.L14-.L13
+	.byte	3,12,1,5,5,9
+	.half	.L15-.L14
+	.byte	3,1,1,7,9
+	.half	.L238-.L15
+	.byte	0,1,1
+.L737:
+	.sdecl	'.debug_ranges',debug,cluster('xTimerGenericCommand')
+	.sect	'.debug_ranges'
+.L237:
+	.word	-1,.L110,0,.L238-.L110,0,0
+	.sdecl	'.debug_info',debug,cluster('vTimerSetTimerNumber')
+	.sect	'.debug_info'
+.L239:
+	.word	336
+	.half	3
+	.word	.L240
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L242,.L241
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'vTimerSetTimerNumber',0,1,216,8,14,1,1,1
+	.word	.L154,.L396,.L153
+	.byte	4
+	.byte	'xTimer',0,1,216,8,50
+	.word	.L326,.L397
+	.byte	4
+	.byte	'uxTimerNumber',0,1,217,8,48
+	.word	.L371,.L398
+	.byte	5
+	.word	.L154,.L396
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vTimerSetTimerNumber')
+	.sect	'.debug_abbrev'
+.L240:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vTimerSetTimerNumber')
+	.sect	'.debug_line'
+.L241:
+	.word	.L748-.L747
+.L747:
+	.half	3
+	.word	.L750-.L749
+.L749:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L750:
+	.byte	5,53,7,0,5,2
+	.word	.L154
+	.byte	3,218,8,1,5,9,9
+	.half	.L751-.L154
+	.byte	3,1,1,7,9
+	.half	.L243-.L751
+	.byte	0,1,1
+.L748:
+	.sdecl	'.debug_ranges',debug,cluster('vTimerSetTimerNumber')
+	.sect	'.debug_ranges'
+.L242:
+	.word	-1,.L154,0,.L243-.L154,0,0
+	.sdecl	'.debug_info',debug,cluster('uxTimerGetTimerNumber')
+	.sect	'.debug_info'
+.L244:
+	.word	314
+	.half	3
+	.word	.L245
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L247,.L246
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'uxTimerGetTimerNumber',0,1,206,8,21
+	.word	.L371
+	.byte	1,1,1
+	.word	.L152,.L399,.L151
+	.byte	4
+	.byte	'xTimer',0,1,206,8,58
+	.word	.L326,.L400
+	.byte	5
+	.word	.L152,.L399
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('uxTimerGetTimerNumber')
+	.sect	'.debug_abbrev'
+.L245:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('uxTimerGetTimerNumber')
+	.sect	'.debug_line'
+.L246:
+	.word	.L753-.L752
+.L752:
+	.half	3
+	.word	.L755-.L754
+.L754:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L755:
+	.byte	5,44,7,0,5,2
+	.word	.L152
+	.byte	3,207,8,1,5,13,9
+	.half	.L756-.L152
+	.byte	1,5,9,9
+	.half	.L96-.L756
+	.byte	3,1,1,7,9
+	.half	.L248-.L96
+	.byte	0,1,1
+.L753:
+	.sdecl	'.debug_ranges',debug,cluster('uxTimerGetTimerNumber')
+	.sect	'.debug_ranges'
+.L247:
+	.word	-1,.L152,0,.L248-.L152,0,0
+	.sdecl	'.debug_info',debug,cluster('prvCheckForValidListAndQueue')
+	.sect	'.debug_info'
+.L249:
+	.word	296
+	.half	3
+	.word	.L250
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L252,.L251
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvCheckForValidListAndQueue',0,1,165,7,17,1,1
+	.word	.L144,.L401,.L143
+	.byte	4
+	.word	.L144,.L401
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvCheckForValidListAndQueue')
+	.sect	'.debug_abbrev'
+.L250:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvCheckForValidListAndQueue')
+	.sect	'.debug_line'
+.L251:
+	.word	.L758-.L757
+.L757:
+	.half	3
+	.word	.L760-.L759
+.L759:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L760:
+	.byte	5,9,7,0,5,2
+	.word	.L144
+	.byte	3,169,7,1,5,17,9
+	.half	.L761-.L144
+	.byte	3,2,1,5,13,9
+	.half	.L762-.L761
+	.byte	1,5,35,7,9
+	.half	.L763-.L762
+	.byte	3,2,1,9
+	.half	.L764-.L763
+	.byte	3,1,1,5,17,9
+	.half	.L765-.L764
+	.byte	3,1,1,5,39,9
+	.half	.L766-.L765
+	.byte	1,5,36,9
+	.half	.L767-.L766
+	.byte	1,5,17,9
+	.half	.L768-.L767
+	.byte	3,1,1,5,40,9
+	.half	.L769-.L768
+	.byte	1,5,37,9
+	.half	.L770-.L769
+	.byte	1,5,21,9
+	.half	.L771-.L770
+	.byte	3,13,1,5,35,9
+	.half	.L772-.L771
+	.byte	1,5,33,9
+	.half	.L773-.L772
+	.byte	1,5,54,9
+	.half	.L774-.L773
+	.byte	3,112,1,5,9,9
+	.half	.L91-.L774
+	.byte	3,38,1,5,5,9
+	.half	.L775-.L91
+	.byte	3,1,1,7,9
+	.half	.L253-.L775
+	.byte	0,1,1
+.L758:
+	.sdecl	'.debug_ranges',debug,cluster('prvCheckForValidListAndQueue')
+	.sect	'.debug_ranges'
+.L252:
+	.word	-1,.L144,0,.L253-.L144,0,0
+	.sdecl	'.debug_info',debug,cluster('prvTimerTask')
+	.sect	'.debug_info'
+.L254:
+	.word	363
+	.half	3
+	.word	.L255
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L257,.L256
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvTimerTask',0,1,184,4,12,1,1
+	.word	.L130,.L402,.L129
+	.byte	4
+	.byte	'pvParameters',0,1,184,4,12
+	.word	.L340,.L403
+	.byte	5
+	.word	.L130,.L402
+	.byte	6
+	.byte	'xNextExpireTime',0,1,186,4,20
+	.word	.L324,.L404
+	.byte	6
+	.byte	'xListWasEmpty',0,1,187,4,20
+	.word	.L320,.L405
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvTimerTask')
+	.sect	'.debug_abbrev'
+.L255:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8,58
+	.byte	15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvTimerTask')
+	.sect	'.debug_line'
+.L256:
+	.word	.L777-.L776
+.L776:
+	.half	3
+	.word	.L779-.L778
+.L778:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L779:
+	.byte	5,12,7,0,5,2
+	.word	.L130
+	.byte	3,183,4,1,5,16,9
+	.half	.L539-.L130
+	.byte	3,20,1,5,54,9
+	.half	.L31-.L539
+	.byte	3,4,1,5,58,9
+	.half	.L541-.L31
+	.byte	3,4,1,5,39,9
+	.half	.L542-.L541
+	.byte	3,3,1,5,16,9
+	.half	.L30-.L542
+	.byte	3,117,1,5,5,9
+	.half	.L540-.L30
+	.byte	3,13,1,7,9
+	.half	.L258-.L540
+	.byte	0,1,1
+.L777:
+	.sdecl	'.debug_ranges',debug,cluster('prvTimerTask')
+	.sect	'.debug_ranges'
+.L257:
+	.word	-1,.L130,0,.L258-.L130,0,0
+	.sdecl	'.debug_info',debug,cluster('prvProcessReceivedCommands')
+	.sect	'.debug_info'
+.L259:
+	.word	397
+	.half	3
+	.word	.L260
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L262,.L261
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvProcessReceivedCommands',0,1,248,5,17,1,1
+	.word	.L140,.L406,.L139
+	.byte	4
+	.word	.L140,.L406
+	.byte	5
+	.byte	'xMessage',0,1,250,5,29
+	.word	.L394,.L407
+	.byte	5
+	.byte	'pxTimer',0,1,251,5,19
+	.word	.L338,.L408
+	.byte	5
+	.byte	'xTimerListsWereSwitched',0,1,252,5,20
+	.word	.L320,.L409
+	.byte	5
+	.byte	'xTimeNow',0,1,253,5,20
+	.word	.L324,.L410
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvProcessReceivedCommands')
+	.sect	'.debug_abbrev'
+.L260:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvProcessReceivedCommands')
+	.sect	'.debug_line'
+.L261:
+	.word	.L781-.L780
+.L780:
+	.half	3
+	.word	.L783-.L782
+.L782:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L783:
+	.byte	5,17,7,0,5,2
+	.word	.L140
+	.byte	3,247,5,1,5,79,9
+	.half	.L568-.L140
+	.byte	3,7,1,5,25,9
+	.half	.L59-.L568
+	.byte	3,26,1,5,13,9
+	.half	.L784-.L59
+	.byte	1,5,54,7,9
+	.half	.L785-.L784
+	.byte	3,4,1,5,21,9
+	.half	.L569-.L785
+	.byte	3,2,1,5,17,9
+	.half	.L62-.L569
+	.byte	1,5,54,7,9
+	.half	.L786-.L62
+	.byte	3,3,1,5,74,9
+	.half	.L572-.L786
+	.byte	1,5,47,9
+	.half	.L64-.L572
+	.byte	3,15,1,5,26,9
+	.half	.L573-.L64
+	.byte	1,5,33,9
+	.half	.L575-.L573
+	.byte	3,2,1,5,26,9
+	.half	.L787-.L575
+	.byte	3,2,1,9
+	.half	.L788-.L787
+	.byte	3,2,1,9
+	.half	.L789-.L788
+	.byte	3,29,1,9
+	.half	.L790-.L789
+	.byte	3,6,1,9
+	.half	.L791-.L790
+	.byte	3,15,1,9
+	.half	.L792-.L791
+	.byte	3,77,1,9
+	.half	.L793-.L792
+	.byte	3,2,1,9
+	.half	.L794-.L793
+	.byte	3,29,1,9
+	.half	.L795-.L794
+	.byte	3,6,1,5,32,9
+	.half	.L71-.L795
+	.byte	3,95,1,5,43,9
+	.half	.L576-.L71
+	.byte	1,5,93,9
+	.half	.L578-.L576
+	.byte	3,2,1,5,117,9
+	.half	.L579-.L578
+	.byte	1,5,108,9
+	.half	.L580-.L579
+	.byte	1,5,177,1,9
+	.half	.L796-.L580
+	.byte	1,5,25,9
+	.half	.L583-.L796
+	.byte	1,5,42,7,9
+	.half	.L584-.L583
+	.byte	3,4,1,5,29,9
+	.half	.L585-.L584
+	.byte	1,5,85,7,9
+	.half	.L797-.L585
+	.byte	3,2,1,5,109,9
+	.half	.L586-.L797
+	.byte	1,5,100,9
+	.half	.L587-.L586
+	.byte	1,5,132,1,9
+	.half	.L588-.L587
+	.byte	1,5,142,1,9
+	.half	.L590-.L588
+	.byte	1,5,40,9
+	.half	.L76-.L590
+	.byte	3,4,1,5,51,9
+	.half	.L592-.L76
+	.byte	1,5,36,9
+	.half	.L77-.L592
+	.byte	3,5,1,5,76,9
+	.half	.L798-.L77
+	.byte	1,5,85,9
+	.half	.L595-.L798
+	.byte	1,5,25,9
+	.half	.L78-.L595
+	.byte	3,7,1,5,32,9
+	.half	.L72-.L78
+	.byte	3,5,1,5,43,9
+	.half	.L596-.L72
+	.byte	1,5,25,9
+	.half	.L599-.L596
+	.byte	3,1,1,5,32,9
+	.half	.L73-.L599
+	.byte	3,4,1,5,43,9
+	.half	.L600-.L73
+	.byte	1,5,83,9
+	.half	.L602-.L600
+	.byte	3,1,1,5,54,9
+	.half	.L603-.L602
+	.byte	1,5,91,9
+	.half	.L799-.L603
+	.byte	3,9,1,5,82,9
+	.half	.L604-.L799
+	.byte	1,5,126,9
+	.half	.L605-.L604
+	.byte	1,5,25,9
+	.half	.L607-.L605
+	.byte	3,1,1,5,42,9
+	.half	.L69-.L607
+	.byte	3,8,1,5,29,9
+	.half	.L609-.L69
+	.byte	1,5,44,7,9
+	.half	.L611-.L609
+	.byte	3,2,1,5,53,9
+	.half	.L610-.L611
+	.byte	1,5,40,9
+	.half	.L82-.L610
+	.byte	3,4,1,5,51,9
+	.half	.L613-.L82
+	.byte	1,5,25,9
+	.half	.L83-.L613
+	.byte	3,12,1,9
+	.half	.L74-.L83
+	.byte	3,4,1,5,31,9
+	.half	.L58-.L74
+	.byte	3,250,126,1,5,45,9
+	.half	.L800-.L58
+	.byte	1,5,55,9
+	.half	.L801-.L800
+	.byte	1,5,79,9
+	.half	.L802-.L801
+	.byte	1,5,5,7,9
+	.half	.L803-.L802
+	.byte	3,138,1,1,7,9
+	.half	.L263-.L803
+	.byte	0,1,1
+.L781:
+	.sdecl	'.debug_ranges',debug,cluster('prvProcessReceivedCommands')
+	.sect	'.debug_ranges'
+.L262:
+	.word	-1,.L140,0,.L263-.L140,0,0
+	.sdecl	'.debug_info',debug,cluster('prvInsertTimerInActiveList')
+	.sect	'.debug_info'
+.L264:
+	.word	427
+	.half	3
+	.word	.L265
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L267,.L266
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvInsertTimerInActiveList',0,1,204,5,23
+	.word	.L320
+	.byte	1,1
+	.word	.L138,.L411,.L137
+	.byte	4
+	.byte	'pxTimer',0,1,204,5,67
+	.word	.L412,.L413
+	.byte	4
+	.byte	'xNextExpiryTime',0,1,205,5,68
+	.word	.L414,.L415
+	.byte	4
+	.byte	'xTimeNow',0,1,206,5,68
+	.word	.L416,.L417
+	.byte	4
+	.byte	'xCommandTime',0,1,207,5,68
+	.word	.L418,.L419
+	.byte	5
+	.word	.L138,.L411
+	.byte	6
+	.byte	'xProcessTimerNow',0,1,209,5,20
+	.word	.L320,.L420
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvInsertTimerInActiveList')
+	.sect	'.debug_abbrev'
+.L265:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvInsertTimerInActiveList')
+	.sect	'.debug_line'
+.L266:
+	.word	.L805-.L804
+.L804:
+	.half	3
+	.word	.L807-.L806
+.L806:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L807:
+	.byte	5,37,7,0,5,2
+	.word	.L138
+	.byte	3,208,5,1,5,9,9
+	.half	.L563-.L138
+	.byte	3,2,1,9
+	.half	.L808-.L563
+	.byte	3,1,1,9
+	.half	.L809-.L808
+	.byte	3,2,1,5,45,7,9
+	.half	.L810-.L809
+	.byte	3,4,1,5,74,9
+	.half	.L562-.L810
+	.byte	1,5,13,9
+	.half	.L811-.L562
+	.byte	1,5,34,7,9
+	.half	.L812-.L811
+	.byte	3,4,1,5,42,9
+	.half	.L813-.L812
+	.byte	1,5,30,9
+	.half	.L51-.L813
+	.byte	3,4,1,5,61,9
+	.half	.L814-.L51
+	.byte	1,5,13,9
+	.half	.L52-.L814
+	.byte	3,126,1,5,17,9
+	.half	.L50-.L52
+	.byte	3,7,1,5,66,7,9
+	.half	.L815-.L50
+	.byte	1,5,34,7,9
+	.half	.L816-.L815
+	.byte	3,5,1,5,42,9
+	.half	.L817-.L816
+	.byte	1,5,30,9
+	.half	.L54-.L817
+	.byte	3,4,1,5,60,9
+	.half	.L818-.L54
+	.byte	1,5,9,9
+	.half	.L53-.L818
+	.byte	3,4,1,5,5,9
+	.half	.L57-.L53
+	.byte	3,1,1,7,9
+	.half	.L268-.L57
+	.byte	0,1,1
+.L805:
+	.sdecl	'.debug_ranges',debug,cluster('prvInsertTimerInActiveList')
+	.sect	'.debug_ranges'
+.L267:
+	.word	-1,.L138,0,.L268-.L138,0,0
+	.sdecl	'.debug_info',debug,cluster('prvReloadTimer')
+	.sect	'.debug_info'
+.L269:
+	.word	351
+	.half	3
+	.word	.L270
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L272,.L271
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvReloadTimer',0,1,138,4,17,1,1
+	.word	.L126,.L421,.L125
+	.byte	4
+	.byte	'pxTimer',0,1,138,4,49
+	.word	.L422,.L423
+	.byte	4
+	.byte	'xExpiredTime',0,1,139,4,44
+	.word	.L324,.L424
+	.byte	4
+	.byte	'xTimeNow',0,1,140,4,50
+	.word	.L425,.L426
+	.byte	5
+	.word	.L126,.L421
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvReloadTimer')
+	.sect	'.debug_abbrev'
+.L270:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvReloadTimer')
+	.sect	'.debug_line'
+.L271:
+	.word	.L820-.L819
+.L819:
+	.half	3
+	.word	.L822-.L821
+.L821:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L822:
+	.byte	5,17,7,0,5,2
+	.word	.L126
+	.byte	3,137,4,1,5,138,1,9
+	.half	.L823-.L126
+	.byte	3,7,1,5,36,9
+	.half	.L27-.L823
+	.byte	3,3,1,5,26,9
+	.half	.L518-.L27
+	.byte	1,5,20,9
+	.half	.L824-.L518
+	.byte	3,4,1,5,60,9
+	.half	.L825-.L824
+	.byte	1,5,77,9
+	.half	.L26-.L825
+	.byte	3,121,1,5,68,9
+	.half	.L520-.L26
+	.byte	1,5,112,9
+	.half	.L521-.L520
+	.byte	1,5,138,1,9
+	.half	.L523-.L521
+	.byte	1,5,5,7,9
+	.half	.L826-.L523
+	.byte	3,9,1,7,9
+	.half	.L273-.L826
+	.byte	0,1,1
+.L820:
+	.sdecl	'.debug_ranges',debug,cluster('prvReloadTimer')
+	.sect	'.debug_ranges'
+.L272:
+	.word	-1,.L126,0,.L273-.L126,0,0
+	.sdecl	'.debug_info',debug,cluster('prvProcessExpiredTimer')
+	.sect	'.debug_info'
+.L274:
+	.word	363
+	.half	3
+	.word	.L275
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L277,.L276
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvProcessExpiredTimer',0,1,157,4,17,1,1
+	.word	.L128,.L427,.L127
+	.byte	4
+	.byte	'xNextExpireTime',0,1,157,4,58
+	.word	.L428,.L429
+	.byte	4
+	.byte	'xTimeNow',0,1,158,4,58
+	.word	.L430,.L431
+	.byte	5
+	.word	.L128,.L427
+	.byte	6
+	.byte	'pxTimer',0,1,160,4,25
+	.word	.L432,.L433
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvProcessExpiredTimer')
+	.sect	'.debug_abbrev'
+.L275:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8,58
+	.byte	15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvProcessExpiredTimer')
+	.sect	'.debug_line'
+.L276:
+	.word	.L828-.L827
+.L827:
+	.half	3
+	.word	.L830-.L829
+.L829:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L830:
+	.byte	5,17,7,0,5,2
+	.word	.L128
+	.byte	3,156,4,1,5,49,9
+	.half	.L831-.L128
+	.byte	3,3,1,5,42,9
+	.half	.L527-.L831
+	.byte	3,5,1,5,22,9
+	.half	.L526-.L527
+	.byte	3,4,1,5,9,9
+	.half	.L530-.L526
+	.byte	1,5,55,7,9
+	.half	.L531-.L530
+	.byte	3,2,1,5,65,9
+	.half	.L533-.L531
+	.byte	1,5,20,9
+	.half	.L28-.L533
+	.byte	3,4,1,5,31,9
+	.half	.L535-.L28
+	.byte	1,5,16,9
+	.half	.L29-.L535
+	.byte	3,5,1,5,56,9
+	.half	.L832-.L29
+	.byte	1,5,5,9
+	.half	.L538-.L832
+	.byte	3,1,1,7,9
+	.half	.L278-.L538
+	.byte	0,1,1
+.L828:
+	.sdecl	'.debug_ranges',debug,cluster('prvProcessExpiredTimer')
+	.sect	'.debug_ranges'
+.L277:
+	.word	-1,.L128,0,.L278-.L128,0,0
+	.sdecl	'.debug_info',debug,cluster('prvSwitchTimerLists')
+	.sect	'.debug_info'
+.L279:
+	.word	337
+	.half	3
+	.word	.L280
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L282,.L281
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvSwitchTimerLists',0,1,140,7,17,1,1
+	.word	.L142,.L434,.L141
+	.byte	4
+	.word	.L142,.L434
+	.byte	5
+	.byte	'xNextExpireTime',0,1,142,7,20
+	.word	.L324,.L435
+	.byte	5
+	.byte	'pxTemp',0,1,143,7,18
+	.word	.L436,.L437
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvSwitchTimerLists')
+	.sect	'.debug_abbrev'
+.L280:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvSwitchTimerLists')
+	.sect	'.debug_line'
+.L281:
+	.word	.L834-.L833
+.L833:
+	.half	3
+	.word	.L836-.L835
+.L835:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L836:
+	.byte	5,67,7,0,5,2
+	.word	.L142
+	.byte	3,148,7,1,5,31,9
+	.half	.L87-.L142
+	.byte	3,2,1,5,54,9
+	.half	.L615-.L87
+	.byte	3,5,1,5,16,9
+	.half	.L86-.L615
+	.byte	3,121,1,5,67,9
+	.half	.L89-.L86
+	.byte	1,5,18,7,9
+	.half	.L837-.L89
+	.byte	3,10,1,5,9,9
+	.half	.L616-.L837
+	.byte	3,1,1,5,30,9
+	.half	.L838-.L616
+	.byte	1,5,28,9
+	.half	.L839-.L838
+	.byte	1,5,9,9
+	.half	.L840-.L839
+	.byte	3,1,1,5,29,9
+	.half	.L841-.L840
+	.byte	1,5,5,9
+	.half	.L842-.L841
+	.byte	3,1,1,7,9
+	.half	.L283-.L842
+	.byte	0,1,1
+.L834:
+	.sdecl	'.debug_ranges',debug,cluster('prvSwitchTimerLists')
+	.sect	'.debug_ranges'
+.L282:
+	.word	-1,.L142,0,.L283-.L142,0,0
+	.sdecl	'.debug_info',debug,cluster('prvSampleTimeNow')
+	.sect	'.debug_info'
+.L284:
+	.word	374
+	.half	3
+	.word	.L285
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L287,.L286
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvSampleTimeNow',0,1,181,5,23
+	.word	.L324
+	.byte	1,1
+	.word	.L136,.L438,.L135
+	.byte	4
+	.byte	'pxTimerListsWereSwitched',0,1,181,5,60
+	.word	.L439,.L440
+	.byte	5
+	.word	.L136,.L438
+	.byte	6
+	.byte	'xTimeNow',0,1,183,5,20
+	.word	.L324,.L441
+	.byte	7
+	.byte	'xLastTime',0,1,184,5,43
+	.word	.L324
+	.byte	5,3
+	.word	_999001_xLastTime
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvSampleTimeNow')
+	.sect	'.debug_abbrev'
+.L285:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,7,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvSampleTimeNow')
+	.sect	'.debug_line'
+.L286:
+	.word	.L844-.L843
+.L843:
+	.half	3
+	.word	.L846-.L845
+.L845:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L846:
+	.byte	5,23,7,0,5,2
+	.word	.L136
+	.byte	3,180,5,1,5,37,9
+	.half	.L556-.L136
+	.byte	3,5,1,5,18,9
+	.half	.L555-.L556
+	.byte	1,5,24,9
+	.half	.L559-.L555
+	.byte	3,2,1,5,9,9
+	.half	.L847-.L559
+	.byte	1,5,32,7,9
+	.half	.L848-.L847
+	.byte	3,2,1,5,41,9
+	.half	.L558-.L848
+	.byte	3,1,1,5,39,9
+	.half	.L849-.L558
+	.byte	1,5,34,9
+	.half	.L850-.L849
+	.byte	3,127,1,5,41,9
+	.half	.L47-.L850
+	.byte	3,5,1,5,39,9
+	.half	.L851-.L47
+	.byte	1,5,9,9
+	.half	.L48-.L851
+	.byte	3,3,1,5,19,9
+	.half	.L852-.L48
+	.byte	1,5,9,9
+	.half	.L853-.L852
+	.byte	3,2,1,5,5,9
+	.half	.L49-.L853
+	.byte	3,1,1,7,9
+	.half	.L288-.L49
+	.byte	0,1,1
+.L844:
+	.sdecl	'.debug_ranges',debug,cluster('prvSampleTimeNow')
+	.sect	'.debug_ranges'
+.L287:
+	.word	-1,.L136,0,.L288-.L136,0,0
+	.sdecl	'.debug_info',debug,cluster('prvGetNextExpireTime')
+	.sect	'.debug_info'
+.L289:
+	.word	350
+	.half	3
+	.word	.L290
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L292,.L291
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvGetNextExpireTime',0,1,154,5,23
+	.word	.L324
+	.byte	1,1
+	.word	.L134,.L442,.L133
+	.byte	4
+	.byte	'pxListWasEmpty',0,1,154,5,64
+	.word	.L443,.L444
+	.byte	5
+	.word	.L134,.L442
+	.byte	6
+	.byte	'xNextExpireTime',0,1,156,5,20
+	.word	.L324,.L445
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvGetNextExpireTime')
+	.sect	'.debug_abbrev'
+.L290:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvGetNextExpireTime')
+	.sect	'.debug_line'
+.L291:
+	.word	.L855-.L854
+.L854:
+	.half	3
+	.word	.L857-.L856
+.L856:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L857:
+	.byte	5,27,7,0,5,2
+	.word	.L134
+	.byte	3,164,5,1,5,25,9
+	.half	.L43-.L134
+	.byte	1,5,9,9
+	.half	.L858-.L43
+	.byte	3,2,1,5,31,7,9
+	.half	.L859-.L858
+	.byte	3,2,1,5,85,9
+	.half	.L554-.L859
+	.byte	1,5,29,9
+	.half	.L44-.L554
+	.byte	3,5,1,5,9,9
+	.half	.L45-.L44
+	.byte	3,3,1,5,5,9
+	.half	.L46-.L45
+	.byte	3,1,1,7,9
+	.half	.L293-.L46
+	.byte	0,1,1
+.L855:
+	.sdecl	'.debug_ranges',debug,cluster('prvGetNextExpireTime')
+	.sect	'.debug_ranges'
+.L292:
+	.word	-1,.L134,0,.L293-.L134,0,0
+	.sdecl	'.debug_info',debug,cluster('prvProcessTimerOrBlockTask')
+	.sect	'.debug_info'
+.L294:
+	.word	410
+	.half	3
+	.word	.L295
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L297,.L296
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvProcessTimerOrBlockTask',0,1,220,4,17,1,1
+	.word	.L132,.L446,.L131
+	.byte	4
+	.byte	'xNextExpireTime',0,1,220,4,62
+	.word	.L447,.L448
+	.byte	4
+	.byte	'xListWasEmpty',0,1,221,4,56
+	.word	.L320,.L449
+	.byte	5
+	.word	.L132,.L446
+	.byte	6
+	.byte	'xTimeNow',0,1,223,4,20
+	.word	.L324,.L450
+	.byte	6
+	.byte	'xTimerListsWereSwitched',0,1,224,4,20
+	.word	.L320,.L451
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvProcessTimerOrBlockTask')
+	.sect	'.debug_abbrev'
+.L295:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8,58
+	.byte	15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvProcessTimerOrBlockTask')
+	.sect	'.debug_line'
+.L296:
+	.word	.L861-.L860
+.L860:
+	.half	3
+	.word	.L863-.L862
+.L862:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L863:
+	.byte	5,17,7,0,5,2
+	.word	.L132
+	.byte	3,219,4,1,5,24,9
+	.half	.L547-.L132
+	.byte	3,6,1,5,43,9
+	.half	.L545-.L547
+	.byte	3,7,1,5,22,9
+	.half	.L549-.L545
+	.byte	1,5,17,9
+	.half	.L551-.L549
+	.byte	3,2,1,5,13,9
+	.half	.L864-.L551
+	.byte	1,5,21,7,9
+	.half	.L865-.L864
+	.byte	3,3,1,5,71,7,9
+	.half	.L866-.L865
+	.byte	1,5,44,7,9
+	.half	.L867-.L866
+	.byte	3,2,1,5,62,9
+	.half	.L550-.L867
+	.byte	3,1,1,5,46,9
+	.half	.L868-.L550
+	.byte	3,127,1,5,21,9
+	.half	.L33-.L868
+	.byte	3,11,1,5,41,7,9
+	.half	.L869-.L33
+	.byte	3,4,1,5,53,9
+	.half	.L36-.L869
+	.byte	3,3,1,5,84,9
+	.half	.L870-.L36
+	.byte	1,5,98,9
+	.half	.L871-.L870
+	.byte	1,5,39,9
+	.half	.L552-.L871
+	.byte	3,2,1,5,21,9
+	.half	.L872-.L552
+	.byte	1,5,25,7,9
+	.half	.L873-.L872
+	.byte	3,6,1,5,47,9
+	.half	.L874-.L873
+	.byte	1,5,17,9
+	.half	.L35-.L874
+	.byte	3,105,1,5,40,9
+	.half	.L32-.L35
+	.byte	3,33,1,5,5,9
+	.half	.L41-.L32
+	.byte	3,3,1,7,9
+	.half	.L298-.L41
+	.byte	0,1,1
+.L861:
+	.sdecl	'.debug_ranges',debug,cluster('prvProcessTimerOrBlockTask')
+	.sect	'.debug_ranges'
+.L297:
+	.word	-1,.L132,0,.L298-.L132,0,0
+	.sdecl	'.debug_info',debug,cluster('prvInitialiseNewTimer')
+	.sect	'.debug_info'
+.L299:
+	.word	451
+	.half	3
+	.word	.L300
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L302,.L301
+	.byte	2
+	.word	.L155
+	.byte	3
+	.byte	'prvInitialiseNewTimer',0,1,227,2,17,1,1
+	.word	.L108,.L452,.L107
+	.byte	4
+	.byte	'pcTimerName',0,1,227,2,59
+	.word	.L453,.L454
+	.byte	4
+	.byte	'xTimerPeriodInTicks',0,1,228,2,57
+	.word	.L455,.L456
+	.byte	4
+	.byte	'xAutoReload',0,1,229,2,57
+	.word	.L457,.L458
+	.byte	4
+	.byte	'pvTimerID',0,1,230,2,53
+	.word	.L459,.L460
+	.byte	4
+	.byte	'pxCallbackFunction',0,1,231,2,64
+	.word	.L336,.L461
+	.byte	4
+	.byte	'pxNewTimer',0,1,232,2,50
+	.word	.L338,.L462
+	.byte	5
+	.word	.L108,.L452
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('prvInitialiseNewTimer')
+	.sect	'.debug_abbrev'
+.L300:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('prvInitialiseNewTimer')
+	.sect	'.debug_line'
+.L301:
+	.word	.L876-.L875
+.L875:
+	.half	3
+	.word	.L878-.L877
+.L877:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0,0,0,0,0
+.L878:
+	.byte	5,17,7,0,5,2
+	.word	.L108
+	.byte	3,226,2,1,5,37,9
+	.half	.L490-.L108
+	.byte	3,12,1,5,33,9
+	.half	.L483-.L490
+	.byte	3,4,1,5,41,9
+	.half	.L879-.L483
+	.byte	3,1,1,5,31,9
+	.half	.L880-.L879
+	.byte	3,1,1,5,40,9
+	.half	.L881-.L880
+	.byte	3,1,1,5,43,9
+	.half	.L882-.L881
+	.byte	3,1,1,5,9,9
+	.half	.L493-.L882
+	.byte	3,2,1,5,23,7,9
+	.half	.L494-.L493
+	.byte	3,2,1,5,34,9
+	.half	.L486-.L494
+	.byte	1,5,5,9
+	.half	.L8-.L486
+	.byte	3,4,1,7,9
+	.half	.L303-.L8
+	.byte	0,1,1
+.L876:
+	.sdecl	'.debug_ranges',debug,cluster('prvInitialiseNewTimer')
+	.sect	'.debug_ranges'
+.L302:
+	.word	-1,.L108,0,.L303-.L108,0,0
+	.sdecl	'.debug_info',debug,cluster('xActiveTimerList1')
+	.sect	'.debug_info'
+.L304:
+	.word	263
+	.half	3
+	.word	.L305
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L155
+	.byte	3
+	.byte	'xActiveTimerList1',0,7,137,1,35
+	.word	.L463
+	.byte	5,3
+	.word	xActiveTimerList1
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('xActiveTimerList1')
+	.sect	'.debug_abbrev'
+.L305:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('xActiveTimerList2')
+	.sect	'.debug_info'
+.L306:
+	.word	263
+	.half	3
+	.word	.L307
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L155
+	.byte	3
+	.byte	'xActiveTimerList2',0,7,138,1,35
+	.word	.L463
+	.byte	5,3
+	.word	xActiveTimerList2
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('xActiveTimerList2')
+	.sect	'.debug_abbrev'
+.L307:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('pxCurrentTimerList')
+	.sect	'.debug_info'
+.L308:
+	.word	264
+	.half	3
+	.word	.L309
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L155
+	.byte	3
+	.byte	'pxCurrentTimerList',0,7,139,1,37
+	.word	.L436
+	.byte	5,3
+	.word	pxCurrentTimerList
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('pxCurrentTimerList')
+	.sect	'.debug_abbrev'
+.L309:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('pxOverflowTimerList')
+	.sect	'.debug_info'
+.L310:
+	.word	265
+	.half	3
+	.word	.L311
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L155
+	.byte	3
+	.byte	'pxOverflowTimerList',0,7,140,1,37
+	.word	.L436
+	.byte	5,3
+	.word	pxOverflowTimerList
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('pxOverflowTimerList')
+	.sect	'.debug_abbrev'
+.L311:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerQueue')
+	.sect	'.debug_info'
+.L312:
+	.word	257
+	.half	3
+	.word	.L313
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerQueue',0,7,143,1,42
+	.word	.L464
+	.byte	5,3
+	.word	xTimerQueue
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerQueue')
+	.sect	'.debug_abbrev'
+.L313:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('xTimerTaskHandle')
+	.sect	'.debug_info'
+.L314:
+	.word	262
+	.half	3
+	.word	.L315
+	.byte	4,1
+	.byte	'../BSW/Sys/Os/FreeRTOS/timers.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L155
+	.byte	3
+	.byte	'xTimerTaskHandle',0,7,144,1,41
+	.word	.L356
+	.byte	5,3
+	.word	xTimerTaskHandle
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('xTimerTaskHandle')
+	.sect	'.debug_abbrev'
+.L315:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_loc',debug,cluster('pcTimerGetName')
+	.sect	'.debug_loc'
+.L123:
+	.word	-1,.L124,0,.L359-.L124
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L361:
+	.word	0,0
+.L360:
+	.word	-1,.L124,0,.L359-.L124
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvCheckForValidListAndQueue')
+	.sect	'.debug_loc'
+.L143:
+	.word	-1,.L144,0,.L401-.L144
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvGetNextExpireTime')
+	.sect	'.debug_loc'
+.L133:
+	.word	-1,.L134,0,.L442-.L134
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L444:
+	.word	-1,.L134,0,.L442-.L134
+	.half	1
+	.byte	100
+	.word	0,0
+.L445:
+	.word	-1,.L134,.L554-.L134,.L44-.L134
+	.half	1
+	.byte	82
+	.word	.L45-.L134,.L442-.L134
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvInitialiseNewTimer')
+	.sect	'.debug_loc'
+.L454:
+	.word	-1,.L108,0,.L483-.L108
+	.half	1
+	.byte	100
+	.word	.L484-.L108,.L452-.L108
+	.half	1
+	.byte	108
+	.word	0,0
+.L107:
+	.word	-1,.L108,0,.L452-.L108
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L460:
+	.word	-1,.L108,0,.L483-.L108
+	.half	1
+	.byte	101
+	.word	.L488-.L108,.L452-.L108
+	.half	1
+	.byte	109
+	.word	0,0
+.L461:
+	.word	-1,.L108,0,.L483-.L108
+	.half	1
+	.byte	102
+	.word	.L489-.L108,.L452-.L108
+	.half	1
+	.byte	110
+	.word	0,0
+.L462:
+	.word	-1,.L108,0,.L483-.L108
+	.half	1
+	.byte	103
+	.word	.L490-.L108,.L491-.L108
+	.half	1
+	.byte	111
+	.word	.L492-.L108,.L493-.L108
+	.half	1
+	.byte	100
+	.word	.L494-.L108,.L486-.L108
+	.half	1
+	.byte	111
+	.word	.L495-.L108,.L8-.L108
+	.half	1
+	.byte	111
+	.word	0,0
+.L458:
+	.word	-1,.L108,0,.L483-.L108
+	.half	1
+	.byte	85
+	.word	.L487-.L108,.L452-.L108
+	.half	1
+	.byte	88
+	.word	0,0
+.L456:
+	.word	-1,.L108,0,.L483-.L108
+	.half	1
+	.byte	84
+	.word	.L485-.L108,.L486-.L108
+	.half	1
+	.byte	95
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvInsertTimerInActiveList')
+	.sect	'.debug_loc'
+.L137:
+	.word	-1,.L138,0,.L411-.L138
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L413:
+	.word	-1,.L138,0,.L561-.L138
+	.half	1
+	.byte	100
+	.word	.L564-.L138,.L52-.L138
+	.half	1
+	.byte	101
+	.word	.L50-.L138,.L565-.L138
+	.half	1
+	.byte	100
+	.word	.L566-.L138,.L53-.L138
+	.half	1
+	.byte	101
+	.word	0,0
+.L419:
+	.word	-1,.L138,0,.L52-.L138
+	.half	1
+	.byte	86
+	.word	.L50-.L138,.L53-.L138
+	.half	1
+	.byte	86
+	.word	0,0
+.L415:
+	.word	-1,.L138,0,.L52-.L138
+	.half	1
+	.byte	84
+	.word	.L50-.L138,.L53-.L138
+	.half	1
+	.byte	84
+	.word	0,0
+.L420:
+	.word	-1,.L138,.L563-.L138,.L411-.L138
+	.half	1
+	.byte	88
+	.word	.L567-.L138,.L411-.L138
+	.half	1
+	.byte	82
+	.word	0,0
+.L417:
+	.word	-1,.L138,0,.L562-.L138
+	.half	1
+	.byte	85
+	.word	.L50-.L138,.L53-.L138
+	.half	1
+	.byte	85
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvProcessExpiredTimer')
+	.sect	'.debug_loc'
+.L127:
+	.word	-1,.L128,0,.L427-.L128
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L433:
+	.word	-1,.L128,.L527-.L128,.L528-.L128
+	.half	1
+	.byte	111
+	.word	.L529-.L128,.L526-.L128
+	.half	1
+	.byte	100
+	.word	.L526-.L128,.L530-.L128
+	.half	1
+	.byte	111
+	.word	.L531-.L128,.L532-.L128
+	.half	1
+	.byte	111
+	.word	.L532-.L128,.L533-.L128
+	.half	1
+	.byte	100
+	.word	.L28-.L128,.L535-.L128
+	.half	1
+	.byte	111
+	.word	.L536-.L128,.L537-.L128
+	.half	1
+	.byte	111
+	.word	.L537-.L128,.L538-.L128
+	.half	1
+	.byte	100
+	.word	0,0
+.L429:
+	.word	-1,.L128,0,.L526-.L128
+	.half	1
+	.byte	84
+	.word	.L532-.L128,.L534-.L128
+	.half	1
+	.byte	88
+	.word	0,0
+.L431:
+	.word	-1,.L128,0,.L526-.L128
+	.half	1
+	.byte	85
+	.word	.L532-.L128,.L534-.L128
+	.half	1
+	.byte	89
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvProcessReceivedCommands')
+	.sect	'.debug_loc'
+.L139:
+	.word	-1,.L140,0,.L568-.L140
+	.half	2
+	.byte	138,0
+	.word	.L568-.L140,.L406-.L140
+	.half	2
+	.byte	138,16
+	.word	.L406-.L140,.L406-.L140
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L408:
+	.word	-1,.L140,.L569-.L140,.L570-.L140
+	.half	1
+	.byte	111
+	.word	.L571-.L140,.L572-.L140
+	.half	1
+	.byte	100
+	.word	.L71-.L140,.L576-.L140
+	.half	1
+	.byte	111
+	.word	.L577-.L140,.L578-.L140
+	.half	1
+	.byte	111
+	.word	.L579-.L140,.L580-.L140
+	.half	1
+	.byte	111
+	.word	.L581-.L140,.L582-.L140
+	.half	1
+	.byte	111
+	.word	.L582-.L140,.L583-.L140
+	.half	1
+	.byte	100
+	.word	.L584-.L140,.L585-.L140
+	.half	1
+	.byte	111
+	.word	.L586-.L140,.L587-.L140
+	.half	1
+	.byte	111
+	.word	.L588-.L140,.L589-.L140
+	.half	1
+	.byte	111
+	.word	.L589-.L140,.L590-.L140
+	.half	1
+	.byte	100
+	.word	.L76-.L140,.L592-.L140
+	.half	1
+	.byte	111
+	.word	.L593-.L140,.L594-.L140
+	.half	1
+	.byte	111
+	.word	.L594-.L140,.L595-.L140
+	.half	1
+	.byte	100
+	.word	.L72-.L140,.L596-.L140
+	.half	1
+	.byte	111
+	.word	.L598-.L140,.L599-.L140
+	.half	1
+	.byte	111
+	.word	.L73-.L140,.L600-.L140
+	.half	1
+	.byte	111
+	.word	.L601-.L140,.L602-.L140
+	.half	1
+	.byte	111
+	.word	.L603-.L140,.L604-.L140
+	.half	1
+	.byte	111
+	.word	.L605-.L140,.L606-.L140
+	.half	1
+	.byte	111
+	.word	.L606-.L140,.L607-.L140
+	.half	1
+	.byte	100
+	.word	.L69-.L140,.L609-.L140
+	.half	1
+	.byte	111
+	.word	.L611-.L140,.L612-.L140
+	.half	1
+	.byte	111
+	.word	.L612-.L140,.L610-.L140
+	.half	1
+	.byte	100
+	.word	.L82-.L140,.L613-.L140
+	.half	1
+	.byte	111
+	.word	.L614-.L140,.L83-.L140
+	.half	1
+	.byte	111
+	.word	0,0
+.L407:
+	.word	-1,.L140,0,.L406-.L140
+	.half	2
+	.byte	145,112
+	.word	0,0
+.L410:
+	.word	-1,.L140,.L573-.L140,.L574-.L140
+	.half	1
+	.byte	82
+	.word	.L575-.L140,.L58-.L140
+	.half	1
+	.byte	88
+	.word	.L574-.L140,.L583-.L140
+	.half	1
+	.byte	85
+	.word	.L591-.L140,.L590-.L140
+	.half	1
+	.byte	85
+	.word	.L72-.L140,.L597-.L140
+	.half	1
+	.byte	82
+	.word	.L597-.L140,.L607-.L140
+	.half	1
+	.byte	85
+	.word	.L608-.L140,.L607-.L140
+	.half	1
+	.byte	86
+	.word	.L69-.L140,.L610-.L140
+	.half	1
+	.byte	82
+	.word	.L82-.L140,.L83-.L140
+	.half	1
+	.byte	82
+	.word	.L74-.L140,.L58-.L140
+	.half	1
+	.byte	82
+	.word	0,0
+.L409:
+	.word	-1,.L140,0,.L406-.L140
+	.half	2
+	.byte	145,124
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvProcessTimerOrBlockTask')
+	.sect	'.debug_loc'
+.L131:
+	.word	-1,.L132,0,.L544-.L132
+	.half	2
+	.byte	138,0
+	.word	.L544-.L132,.L446-.L132
+	.half	2
+	.byte	138,8
+	.word	.L446-.L132,.L446-.L132
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L449:
+	.word	-1,.L132,0,.L545-.L132
+	.half	1
+	.byte	85
+	.word	.L547-.L132,.L548-.L132
+	.half	1
+	.byte	95
+	.word	.L553-.L132,.L37-.L132
+	.half	1
+	.byte	95
+	.word	.L36-.L132,.L446-.L132
+	.half	1
+	.byte	95
+	.word	0,0
+.L448:
+	.word	-1,.L132,0,.L545-.L132
+	.half	1
+	.byte	84
+	.word	.L546-.L132,.L446-.L132
+	.half	1
+	.byte	88
+	.word	0,0
+.L450:
+	.word	-1,.L132,.L549-.L132,.L550-.L132
+	.half	1
+	.byte	82
+	.word	.L551-.L132,.L446-.L132
+	.half	1
+	.byte	89
+	.word	.L33-.L132,.L552-.L132
+	.half	1
+	.byte	82
+	.word	.L32-.L132,.L41-.L132
+	.half	1
+	.byte	82
+	.word	0,0
+.L451:
+	.word	-1,.L132,0,.L446-.L132
+	.half	2
+	.byte	145,120
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvReloadTimer')
+	.sect	'.debug_loc'
+.L125:
+	.word	-1,.L126,0,.L421-.L126
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L423:
+	.word	-1,.L126,0,.L27-.L126
+	.half	1
+	.byte	100
+	.word	.L517-.L126,.L421-.L126
+	.half	1
+	.byte	111
+	.word	.L519-.L126,.L26-.L126
+	.half	1
+	.byte	100
+	.word	.L522-.L126,.L523-.L126
+	.half	1
+	.byte	100
+	.word	0,0
+.L424:
+	.word	-1,.L126,0,.L27-.L126
+	.half	1
+	.byte	84
+	.word	.L518-.L126,.L26-.L126
+	.half	1
+	.byte	88
+	.word	.L520-.L126,.L521-.L126
+	.half	1
+	.byte	88
+	.word	.L524-.L126,.L525-.L126
+	.half	1
+	.byte	88
+	.word	.L525-.L126,.L523-.L126
+	.half	1
+	.byte	86
+	.word	0,0
+.L426:
+	.word	-1,.L126,0,.L27-.L126
+	.half	1
+	.byte	85
+	.word	.L522-.L126,.L524-.L126
+	.half	1
+	.byte	89
+	.word	.L524-.L126,.L523-.L126
+	.half	1
+	.byte	85
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvSampleTimeNow')
+	.sect	'.debug_loc'
+.L135:
+	.word	-1,.L136,0,.L438-.L136
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L440:
+	.word	-1,.L136,0,.L555-.L136
+	.half	1
+	.byte	100
+	.word	.L556-.L136,.L557-.L136
+	.half	1
+	.byte	111
+	.word	0,0
+.L441:
+	.word	-1,.L136,.L555-.L136,.L558-.L136
+	.half	1
+	.byte	82
+	.word	.L559-.L136,.L438-.L136
+	.half	1
+	.byte	95
+	.word	.L47-.L136,.L48-.L136
+	.half	1
+	.byte	82
+	.word	.L560-.L136,.L438-.L136
+	.half	1
+	.byte	82
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvSwitchTimerLists')
+	.sect	'.debug_loc'
+.L141:
+	.word	-1,.L142,0,.L434-.L142
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L437:
+	.word	-1,.L142,.L616-.L142,.L434-.L142
+	.half	1
+	.byte	111
+	.word	0,0
+.L435:
+	.word	-1,.L142,.L615-.L142,.L86-.L142
+	.half	1
+	.byte	84
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('prvTimerTask')
+	.sect	'.debug_loc'
+.L129:
+	.word	-1,.L130,0,.L539-.L130
+	.half	2
+	.byte	138,0
+	.word	.L539-.L130,.L402-.L130
+	.half	2
+	.byte	138,8
+	.word	0,0
+.L403:
+	.word	-1,.L130,0,.L31-.L130
+	.half	1
+	.byte	100
+	.word	0,0
+.L405:
+	.word	-1,.L130,0,.L540-.L130
+	.half	2
+	.byte	145,120
+	.word	0,0
+.L404:
+	.word	-1,.L130,.L541-.L130,.L542-.L130
+	.half	1
+	.byte	82
+	.word	.L543-.L130,.L542-.L130
+	.half	1
+	.byte	84
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('pvTimerGetTimerID')
+	.sect	'.debug_loc'
+.L346:
+	.word	-1,.L148,.L623-.L148,.L341-.L148
+	.half	1
+	.byte	111
+	.word	.L624-.L148,.L341-.L148
+	.half	1
+	.byte	98
+	.word	0,0
+.L147:
+	.word	-1,.L148,0,.L341-.L148
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L345:
+	.word	0,0
+.L343:
+	.word	-1,.L148,0,.L621-.L148
+	.half	1
+	.byte	100
+	.word	.L622-.L148,.L623-.L148
+	.half	1
+	.byte	111
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('uxTimerGetReloadMode')
+	.sect	'.debug_loc'
+.L119:
+	.word	-1,.L120,0,.L372-.L120
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L373:
+	.word	-1,.L120,0,.L515-.L120
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('uxTimerGetTimerNumber')
+	.sect	'.debug_loc'
+.L151:
+	.word	-1,.L152,0,.L399-.L152
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L400:
+	.word	-1,.L152,0,.L399-.L152
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_loc'
+.L318:
+	.word	-1,.L98,0,.L316-.L98
+	.half	1
+	.byte	84
+	.word	0,0
+.L97:
+	.word	-1,.L98,0,.L316-.L98
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vPortSetICR')
+	.sect	'.debug_loc'
+.L321:
+	.word	-1,.L100,0,.L319-.L100
+	.half	1
+	.byte	84
+	.word	0,0
+.L99:
+	.word	-1,.L100,0,.L319-.L100
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vTimerSetReloadMode')
+	.sect	'.debug_loc'
+.L366:
+	.word	0,0
+.L115:
+	.word	-1,.L116,0,.L362-.L116
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L365:
+	.word	-1,.L116,0,.L506-.L116
+	.half	1
+	.byte	84
+	.word	.L508-.L116,.L509-.L116
+	.half	1
+	.byte	95
+	.word	.L18-.L116,.L510-.L116
+	.half	1
+	.byte	95
+	.word	0,0
+.L363:
+	.word	-1,.L116,0,.L506-.L116
+	.half	1
+	.byte	100
+	.word	.L507-.L116,.L362-.L116
+	.half	1
+	.byte	111
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vTimerSetTimerID')
+	.sect	'.debug_loc'
+.L349:
+	.word	-1,.L150,0,.L625-.L150
+	.half	1
+	.byte	101
+	.word	.L627-.L150,.L347-.L150
+	.half	1
+	.byte	108
+	.word	0,0
+.L351:
+	.word	0,0
+.L149:
+	.word	-1,.L150,0,.L347-.L150
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L348:
+	.word	-1,.L150,0,.L625-.L150
+	.half	1
+	.byte	100
+	.word	.L626-.L150,.L347-.L150
+	.half	1
+	.byte	111
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('vTimerSetTimerNumber')
+	.sect	'.debug_loc'
+.L398:
+	.word	-1,.L154,0,.L396-.L154
+	.half	1
+	.byte	84
+	.word	0,0
+.L153:
+	.word	-1,.L154,0,.L396-.L154
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L397:
+	.word	-1,.L154,0,.L396-.L154
+	.half	1
+	.byte	100
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_loc'
+.L323:
+	.word	-1,.L102,0,.L322-.L102
+	.half	1
+	.byte	84
+	.word	0,0
+.L325:
+	.word	-1,.L102,.L465-.L102,.L322-.L102
+	.half	1
+	.byte	82
+	.word	0,0
+.L101:
+	.word	-1,.L102,0,.L322-.L102
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerCreate')
+	.sect	'.debug_loc'
+.L329:
+	.word	-1,.L106,0,.L470-.L106
+	.half	1
+	.byte	100
+	.word	.L472-.L106,.L327-.L106
+	.half	1
+	.byte	111
+	.word	.L479-.L106,.L6-.L106
+	.half	1
+	.byte	100
+	.word	0,0
+.L335:
+	.word	-1,.L106,0,.L470-.L106
+	.half	1
+	.byte	101
+	.word	.L475-.L106,.L327-.L106
+	.half	1
+	.byte	108
+	.word	.L480-.L106,.L6-.L106
+	.half	1
+	.byte	101
+	.word	0,0
+.L337:
+	.word	-1,.L106,0,.L470-.L106
+	.half	1
+	.byte	102
+	.word	.L476-.L106,.L327-.L106
+	.half	1
+	.byte	109
+	.word	.L481-.L106,.L6-.L106
+	.half	1
+	.byte	102
+	.word	0,0
+.L339:
+	.word	-1,.L106,.L470-.L106,.L477-.L106
+	.half	1
+	.byte	98
+	.word	.L478-.L106,.L327-.L106
+	.half	1
+	.byte	110
+	.word	.L477-.L106,.L6-.L106
+	.half	1
+	.byte	103
+	.word	.L482-.L106,.L327-.L106
+	.half	1
+	.byte	98
+	.word	0,0
+.L333:
+	.word	-1,.L106,0,.L470-.L106
+	.half	1
+	.byte	85
+	.word	.L474-.L106,.L327-.L106
+	.half	1
+	.byte	88
+	.word	0,0
+.L105:
+	.word	-1,.L106,0,.L327-.L106
+	.half	2
+	.byte	138,0
+	.word	0,0
+.L331:
+	.word	-1,.L106,0,.L471-.L106
+	.half	1
+	.byte	84
+	.word	.L473-.L106,.L327-.L106
+	.half	1
+	.byte	95
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerCreateTimerTask')
+	.sect	'.debug_loc'
+.L382:
+	.word	-1,.L104,.L466-.L104,.L467-.L104
+	.half	1
+	.byte	88
+	.word	.L467-.L104,.L4-.L104
+	.half	1
+	.byte	82
+	.word	.L468-.L104,.L381-.L104
+	.half	1
+	.byte	88
+	.word	.L469-.L104,.L381-.L104
+	.half	1
+	.byte	82
+	.word	0,0
+.L103:
+	.word	-1,.L104,0,.L381-.L104
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerGenericCommand')
+	.sect	'.debug_loc'
+.L390:
+	.word	-1,.L110,0,.L497-.L110
+	.half	1
+	.byte	101
+	.word	.L498-.L110,.L497-.L110
+	.half	1
+	.byte	102
+	.word	.L10-.L110,.L503-.L110
+	.half	1
+	.byte	101
+	.word	.L10-.L110,.L13-.L110
+	.half	1
+	.byte	102
+	.word	0,0
+.L386:
+	.word	-1,.L110,0,.L497-.L110
+	.half	1
+	.byte	84
+	.word	.L10-.L110,.L504-.L110
+	.half	1
+	.byte	84
+	.word	0,0
+.L395:
+	.word	-1,.L110,0,.L383-.L110
+	.half	2
+	.byte	145,112
+	.word	0,0
+.L388:
+	.word	-1,.L110,0,.L497-.L110
+	.half	1
+	.byte	85
+	.word	.L10-.L110,.L13-.L110
+	.half	1
+	.byte	85
+	.word	0,0
+.L393:
+	.word	-1,.L110,.L500-.L110,.L497-.L110
+	.half	1
+	.byte	82
+	.word	.L502-.L110,.L11-.L110
+	.half	1
+	.byte	82
+	.word	.L12-.L110,.L383-.L110
+	.half	1
+	.byte	82
+	.word	0,0
+.L392:
+	.word	-1,.L110,0,.L497-.L110
+	.half	1
+	.byte	86
+	.word	.L499-.L110,.L383-.L110
+	.half	1
+	.byte	88
+	.word	.L501-.L110,.L502-.L110
+	.half	1
+	.byte	84
+	.word	.L10-.L110,.L13-.L110
+	.half	1
+	.byte	86
+	.word	0,0
+.L384:
+	.word	-1,.L110,0,.L497-.L110
+	.half	1
+	.byte	100
+	.word	.L10-.L110,.L505-.L110
+	.half	1
+	.byte	100
+	.word	0,0
+.L109:
+	.word	-1,.L110,0,.L496-.L110
+	.half	2
+	.byte	138,0
+	.word	.L496-.L110,.L383-.L110
+	.half	2
+	.byte	138,16
+	.word	.L383-.L110,.L383-.L110
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerGetExpiryTime')
+	.sect	'.debug_loc'
+.L379:
+	.word	0,0
+.L380:
+	.word	-1,.L122,.L516-.L122,.L377-.L122
+	.half	1
+	.byte	82
+	.word	0,0
+.L378:
+	.word	-1,.L122,0,.L377-.L122
+	.half	1
+	.byte	100
+	.word	0,0
+.L121:
+	.word	-1,.L122,0,.L377-.L122
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerGetPeriod')
+	.sect	'.debug_loc'
+.L376:
+	.word	0,0
+.L375:
+	.word	-1,.L114,0,.L374-.L114
+	.half	1
+	.byte	100
+	.word	0,0
+.L113:
+	.word	-1,.L114,0,.L374-.L114
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerGetReloadMode')
+	.sect	'.debug_loc'
+.L369:
+	.word	0,0
+.L370:
+	.word	-1,.L118,.L513-.L118,.L20-.L118
+	.half	1
+	.byte	95
+	.word	.L21-.L118,.L367-.L118
+	.half	1
+	.byte	95
+	.word	.L514-.L118,.L367-.L118
+	.half	1
+	.byte	82
+	.word	0,0
+.L368:
+	.word	-1,.L118,0,.L511-.L118
+	.half	1
+	.byte	100
+	.word	.L512-.L118,.L367-.L118
+	.half	1
+	.byte	111
+	.word	0,0
+.L117:
+	.word	-1,.L118,0,.L367-.L118
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerGetTimerDaemonTaskHandle')
+	.sect	'.debug_loc'
+.L111:
+	.word	-1,.L112,0,.L357-.L112
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_loc',debug,cluster('xTimerIsTimerActive')
+	.sect	'.debug_loc'
+.L355:
+	.word	0,0
+.L354:
+	.word	-1,.L146,.L619-.L146,.L92-.L146
+	.half	1
+	.byte	95
+	.word	.L93-.L146,.L352-.L146
+	.half	1
+	.byte	95
+	.word	.L620-.L146,.L352-.L146
+	.half	1
+	.byte	82
+	.word	0,0
+.L353:
+	.word	-1,.L146,0,.L617-.L146
+	.half	1
+	.byte	100
+	.word	.L618-.L146,.L352-.L146
+	.half	1
+	.byte	111
+	.word	0,0
+.L145:
+	.word	-1,.L146,0,.L352-.L146
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_frame',debug
+	.sect	'.debug_frame'
+.L883:
+	.word	48
+	.word	-1
+	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
+	.byte	8,39
+	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L98,.L316-.L98
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('vPortSetICR')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L100,.L319-.L100
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L102,.L322-.L102
+	.byte	8,18,8,19,8,20,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('xTimerCreateTimerTask')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L104,.L381-.L104
+	.sdecl	'.debug_frame',debug,cluster('xTimerCreate')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L106,.L327-.L106
+	.sdecl	'.debug_frame',debug,cluster('prvInitialiseNewTimer')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L108,.L452-.L108
+	.sdecl	'.debug_frame',debug,cluster('xTimerGenericCommand')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L883,.L110,.L383-.L110
+	.byte	4
+	.word	(.L496-.L110)/2
+	.byte	19,16,22,26,3,19,138,16,4
+	.word	(.L383-.L496)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('xTimerGetTimerDaemonTaskHandle')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L112,.L357-.L112
+	.byte	8,19,8,20,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('xTimerGetPeriod')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L114,.L374-.L114
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('vTimerSetReloadMode')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L116,.L362-.L116
+	.sdecl	'.debug_frame',debug,cluster('xTimerGetReloadMode')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L118,.L367-.L118
+	.sdecl	'.debug_frame',debug,cluster('uxTimerGetReloadMode')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L120,.L372-.L120
+	.sdecl	'.debug_frame',debug,cluster('xTimerGetExpiryTime')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L122,.L377-.L122
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('pcTimerGetName')
+	.sect	'.debug_frame'
+	.word	20
+	.word	.L883,.L124,.L359-.L124
+	.byte	8,19,8,21,8,22,8,23
+	.sdecl	'.debug_frame',debug,cluster('prvReloadTimer')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L126,.L421-.L126
+	.sdecl	'.debug_frame',debug,cluster('prvProcessExpiredTimer')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L128,.L427-.L128
+	.sdecl	'.debug_frame',debug,cluster('prvTimerTask')
+	.sect	'.debug_frame'
+	.word	28
+	.word	.L883,.L130,.L402-.L130
+	.byte	4
+	.word	(.L539-.L130)/2
+	.byte	19,8,22,26,3,19,138,8,0,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvProcessTimerOrBlockTask')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L883,.L132,.L446-.L132
+	.byte	4
+	.word	(.L544-.L132)/2
+	.byte	19,8,22,26,3,19,138,8,4
+	.word	(.L446-.L544)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvGetNextExpireTime')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L134,.L442-.L134
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvSampleTimeNow')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L136,.L438-.L136
+	.sdecl	'.debug_frame',debug,cluster('prvInsertTimerInActiveList')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L138,.L411-.L138
+	.sdecl	'.debug_frame',debug,cluster('prvProcessReceivedCommands')
+	.sect	'.debug_frame'
+	.word	36
+	.word	.L883,.L140,.L406-.L140
+	.byte	4
+	.word	(.L568-.L140)/2
+	.byte	19,16,22,26,3,19,138,16,4
+	.word	(.L406-.L568)/2
+	.byte	19,0,8,26,0,0
+	.sdecl	'.debug_frame',debug,cluster('prvSwitchTimerLists')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L142,.L434-.L142
+	.sdecl	'.debug_frame',debug,cluster('prvCheckForValidListAndQueue')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L144,.L401-.L144
+	.sdecl	'.debug_frame',debug,cluster('xTimerIsTimerActive')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L146,.L352-.L146
+	.sdecl	'.debug_frame',debug,cluster('pvTimerGetTimerID')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L148,.L341-.L148
+	.sdecl	'.debug_frame',debug,cluster('vTimerSetTimerID')
+	.sect	'.debug_frame'
+	.word	12
+	.word	.L883,.L150,.L347-.L150
+	.sdecl	'.debug_frame',debug,cluster('uxTimerGetTimerNumber')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L152,.L399-.L152
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	.sdecl	'.debug_frame',debug,cluster('vTimerSetTimerNumber')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L883,.L154,.L396-.L154
+	.byte	8,18,8,19,8,21,8,22,8,23,0,0
+	; Module end

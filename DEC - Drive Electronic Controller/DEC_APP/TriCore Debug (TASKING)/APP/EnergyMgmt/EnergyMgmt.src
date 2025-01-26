@@ -1,0 +1,2364 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
+	.compiler_invocation	"ctc -f cc13264a --dep-file=APP/EnergyMgmt/EnergyMgmt.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EMotorCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EPSCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\E2e -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Eru -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\StdIf -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Pwm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Timer -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\SCR Debug (SDCC) -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o APP/EnergyMgmt/EnergyMgmt.src ../APP/EnergyMgmt/EnergyMgmt.c"
+	.compiler_name		"ctc"
+	;source	'../APP/EnergyMgmt/EnergyMgmt.c'
+
+	
+$TC162
+	
+	.sdecl	'.text.EnergyMgmt.EnergyMgmt_MainFunction',code,cluster('EnergyMgmt_MainFunction')
+	.sect	'.text.EnergyMgmt.EnergyMgmt_MainFunction'
+	.align	2
+	
+	.global	EnergyMgmt_MainFunction
+; Function EnergyMgmt_MainFunction
+.L67:
+EnergyMgmt_MainFunction:	.type	func
+	movh.a	a15,#@his(_999007_totCurrTimer)
+	lea	a15,[a15]@los(_999007_totCurrTimer)
+.L124:
+	movh.a	a2,#@his(EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer)
+	lea	a2,[a2]@los(EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer)
+	ld.w	d15,[a2]
+.L125:
+	mul	d15,d15,#60
+.L126:
+	mov	d0,#1000
+.L127:
+	mul	d15,d0
+.L128:
+	mov	d0,#5
+.L129:
+	div.u	e0,d15,d0
+.L130:
+	st.w	[a15],d0
+.L131:
+	movh.a	a15,#@his(_999005_cutoffTime)
+	lea	a15,[a15]@los(_999005_cutoffTime)
+.L132:
+	movh.a	a2,#@his(EncCal_Coding_ConsumerCutoffTime)
+	lea	a2,[a2]@los(EncCal_Coding_ConsumerCutoffTime)
+	ld.bu	d15,[a2]
+.L133:
+	mul	d15,d15,#60
+.L134:
+	mov	d0,#1000
+.L135:
+	mul	d15,d0
+.L136:
+	mov	d0,#5
+.L137:
+	div.u	e0,d15,d0
+.L138:
+	st.w	[a15],d0
+.L139:
+	movh.a	a15,#@his(_999006_totalCurrent)
+	lea	a15,[a15]@los(_999006_totalCurrent)
+.L140:
+	movh.a	a2,#@his(EnergyMgmt_CanRx_CurrentMeasured)
+	lea	a2,[a2]@los(EnergyMgmt_CanRx_CurrentMeasured)
+	ld.bu	d15,[a2]
+.L141:
+	mov	d0,#1000
+.L142:
+	movh.a	a2,#@his(EnergyMgmt_CanRx_CurrentMeasured2)
+	lea	a2,[a2]@los(EnergyMgmt_CanRx_CurrentMeasured2)
+	ld.bu	d1,[a2]
+.L143:
+	mul	d1,d1,#10
+.L144:
+	madd	d15,d1,d15,d0
+.L145:
+	st.w	[a15],d15
+.L146:
+	movh.a	a15,#@his(EncCal_Calibration_EnergyMgmt_UnderVoltageTh)
+	lea	a15,[a15]@los(EncCal_Calibration_EnergyMgmt_UnderVoltageTh)
+	ld.w	d15,[a15]
+.L147:
+	movh.a	a15,#@his(EnergyMgmt_CanRx_VoltageMeasured)
+	lea	a15,[a15]@los(EnergyMgmt_CanRx_VoltageMeasured)
+	ld.bu	d0,[a15]
+.L148:
+	jge.u	d0,d15,.L2
+.L149:
+	movh.a	a15,#@his(EnergyMgmt_CanRx_VoltageMeasured)
+	lea	a15,[a15]@los(EnergyMgmt_CanRx_VoltageMeasured)
+	ld.bu	d15,[a15]
+.L150:
+	jeq	d15,#0,.L3
+.L151:
+	movh.a	a15,#@his(_999009_switchOffFlag2)
+	lea	a15,[a15]@los(_999009_switchOffFlag2)
+.L152:
+	mov	d15,#1
+.L153:
+	st.w	[a15],d15
+.L154:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+.L155:
+	mov	d15,#2
+.L156:
+	st.b	[a15],d15
+.L157:
+	j	.L4
+.L3:
+.L2:
+	movh.a	a15,#@his(_999009_switchOffFlag2)
+	lea	a15,[a15]@los(_999009_switchOffFlag2)
+.L158:
+	mov	d15,#0
+.L159:
+	st.w	[a15],d15
+.L4:
+	movh.a	a15,#@his(_999006_totalCurrent)
+	lea	a15,[a15]@los(_999006_totalCurrent)
+	ld.w	d15,[a15]
+.L160:
+	movh.a	a15,#@his(EncCal_Calibration_EnergyMgmt_MaxOutputCurrent)
+	lea	a15,[a15]@los(EncCal_Calibration_EnergyMgmt_MaxOutputCurrent)
+	ld.w	d0,[a15]
+.L161:
+	mov	d1,#2
+.L162:
+	div.u	e0,d0,d1
+.L163:
+	jge.u	d0,d15,.L5
+.L164:
+	movh.a	a15,#@his(_999002_timestamp2)
+	lea	a15,[a15]@los(_999002_timestamp2)
+	ld.w	d15,[a15]
+.L165:
+	jne	d15,#0,.L6
+.L166:
+	movh.a	a15,#@his(_999002_timestamp2)
+	lea	a15,[a15]@los(_999002_timestamp2)
+.L167:
+	movh.a	a2,#@his(EnergyMgmt_MainCounter)
+	lea	a2,[a2]@los(EnergyMgmt_MainCounter)
+	ld.w	d15,[a2]
+.L168:
+	st.w	[a15],d15
+.L169:
+	j	.L7
+.L6:
+.L7:
+	movh.a	a15,#@his(_999007_totCurrTimer)
+	lea	a15,[a15]@los(_999007_totCurrTimer)
+	ld.w	d0,[a15]
+.L170:
+	movh.a	a15,#@his(EnergyMgmt_MainCounter)
+	lea	a15,[a15]@los(EnergyMgmt_MainCounter)
+	ld.w	d15,[a15]
+.L171:
+	movh.a	a15,#@his(_999002_timestamp2)
+	lea	a15,[a15]@los(_999002_timestamp2)
+	ld.w	d1,[a15]
+.L172:
+	sub	d15,d1
+.L173:
+	jge.u	d0,d15,.L8
+.L174:
+	movh.a	a15,#@his(_999008_switchOffFlag1)
+	lea	a15,[a15]@los(_999008_switchOffFlag1)
+.L175:
+	mov	d15,#1
+.L176:
+	st.w	[a15],d15
+.L177:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+.L178:
+	mov	d15,#1
+.L179:
+	st.b	[a15],d15
+.L180:
+	j	.L9
+.L8:
+	movh.a	a15,#@his(_999008_switchOffFlag1)
+	lea	a15,[a15]@los(_999008_switchOffFlag1)
+.L181:
+	mov	d15,#0
+.L182:
+	st.w	[a15],d15
+.L9:
+	j	.L10
+.L5:
+	movh.a	a15,#@his(_999006_totalCurrent)
+	lea	a15,[a15]@los(_999006_totalCurrent)
+	ld.w	d15,[a15]
+.L183:
+	movh.a	a15,#@his(EncCal_Calibration_EnergyMgmt_MaxOutputCurrent)
+	lea	a15,[a15]@los(EncCal_Calibration_EnergyMgmt_MaxOutputCurrent)
+	ld.w	d0,[a15]
+.L184:
+	mov	d1,#2
+.L185:
+	div.u	e0,d0,d1
+.L186:
+	add	d0,d0,#-250
+.L187:
+	jge.u	d15,d0,.L11
+.L188:
+	movh.a	a15,#@his(_999002_timestamp2)
+	lea	a15,[a15]@los(_999002_timestamp2)
+.L189:
+	mov	d15,#0
+.L190:
+	st.w	[a15],d15
+.L191:
+	movh.a	a15,#@his(_999008_switchOffFlag1)
+	lea	a15,[a15]@los(_999008_switchOffFlag1)
+.L192:
+	mov	d15,#0
+.L193:
+	st.w	[a15],d15
+.L194:
+	j	.L12
+.L11:
+	movh.a	a15,#@his(_999008_switchOffFlag1)
+	lea	a15,[a15]@los(_999008_switchOffFlag1)
+.L195:
+	mov	d15,#0
+.L196:
+	st.w	[a15],d15
+.L12:
+.L10:
+	movh.a	a15,#@his(EncCal_Coding_CbmL)
+	lea	a15,[a15]@los(EncCal_Coding_CbmL)
+	ld.bu	d15,[a15]
+.L197:
+	jne	d15,#2,.L13
+.L198:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad1)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad1)
+.L199:
+	mov	d15,#0
+.L200:
+	st.b	[a15],d15
+.L201:
+	j	.L14
+.L13:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad1)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad1)
+.L202:
+	mov	d15,#1
+.L203:
+	st.b	[a15],d15
+.L14:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad3)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad3)
+.L204:
+	mov	d15,#1
+.L205:
+	st.b	[a15],d15
+.L206:
+	movh.a	a15,#@his(EnergyMgmt_CanRx_IgnitionStatus)
+	lea	a15,[a15]@los(EnergyMgmt_CanRx_IgnitionStatus)
+	ld.bu	d0,[a15]
+.L207:
+	mov	d15,#0
+	jeq	d15,d0,.L15
+.L208:
+	mov	d15,#1
+	jeq	d15,d0,.L16
+.L209:
+	mov	d15,#2
+	jeq	d15,d0,.L17
+.L210:
+	mov	d15,#3
+	jeq	d15,d0,.L18
+.L211:
+	mov	d15,#253
+	jeq	d15,d0,.L19
+.L212:
+	mov	d15,#254
+	jeq	d15,d0,.L20
+.L213:
+	mov	d15,#255
+	jeq	d15,d0,.L21
+	j	.L22
+.L21:
+.L20:
+.L19:
+.L18:
+	movh.a	a15,#@his(_999001_timestamp)
+	lea	a15,[a15]@los(_999001_timestamp)
+	ld.w	d15,[a15]
+.L214:
+	jne	d15,#0,.L23
+.L215:
+	movh.a	a15,#@his(_999001_timestamp)
+	lea	a15,[a15]@los(_999001_timestamp)
+.L216:
+	movh.a	a2,#@his(EnergyMgmt_MainCounter)
+	lea	a2,[a2]@los(EnergyMgmt_MainCounter)
+	ld.w	d15,[a2]
+.L217:
+	st.w	[a15],d15
+.L218:
+	j	.L24
+.L23:
+.L24:
+	movh.a	a15,#@his(_999005_cutoffTime)
+	lea	a15,[a15]@los(_999005_cutoffTime)
+	ld.w	d0,[a15]
+.L219:
+	movh.a	a15,#@his(EnergyMgmt_MainCounter)
+	lea	a15,[a15]@los(EnergyMgmt_MainCounter)
+	ld.w	d15,[a15]
+.L220:
+	movh.a	a15,#@his(_999001_timestamp)
+	lea	a15,[a15]@los(_999001_timestamp)
+	ld.w	d1,[a15]
+.L221:
+	sub	d15,d1
+.L222:
+	jge.u	d0,d15,.L25
+.L223:
+	movh.a	a15,#@his(_999003_flag)
+	lea	a15,[a15]@los(_999003_flag)
+.L224:
+	mov	d15,#1
+.L225:
+	st.b	[a15],d15
+.L226:
+	j	.L26
+.L25:
+.L26:
+	movh.a	a15,#@his(EnergyMgmt_CanRx_StatusDoorLeft)
+	lea	a15,[a15]@los(EnergyMgmt_CanRx_StatusDoorLeft)
+	ld.bu	d15,[a15]
+.L227:
+	jne	d15,#0,.L27
+.L228:
+	movh.a	a15,#@his(EnergyMgmt_CanRx_StatusDoorRight)
+	lea	a15,[a15]@los(EnergyMgmt_CanRx_StatusDoorRight)
+	ld.bu	d15,[a15]
+.L229:
+	jne	d15,#0,.L28
+.L230:
+	movh.a	a15,#@his(EnergyMgmt_CanRx_StatusHc05)
+	lea	a15,[a15]@los(EnergyMgmt_CanRx_StatusHc05)
+	ld.bu	d15,[a15]
+.L231:
+	jne	d15,#0,.L29
+.L232:
+	movh.a	a15,#@his(_999004_evaluateCarLockState)
+	lea	a15,[a15]@los(_999004_evaluateCarLockState)
+.L233:
+	mov	d15,#1
+.L234:
+	st.b	[a15],d15
+.L235:
+	j	.L30
+.L29:
+.L28:
+.L27:
+.L30:
+	movh.a	a15,#@his(_999003_flag)
+	lea	a15,[a15]@los(_999003_flag)
+	ld.bu	d15,[a15]
+.L236:
+	jeq	d15,#1,.L31
+.L237:
+	movh.a	a15,#@his(_999004_evaluateCarLockState)
+	lea	a15,[a15]@los(_999004_evaluateCarLockState)
+	ld.bu	d15,[a15]
+.L238:
+	jne	d15,#1,.L32
+.L31:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L239:
+	mov	d15,#0
+.L240:
+	st.b	[a15],d15
+.L241:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad4)
+.L242:
+	mov	d15,#0
+.L243:
+	st.b	[a15],d15
+.L244:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L245:
+	mov	d15,#0
+.L246:
+	st.b	[a15],d15
+.L247:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L248:
+	mov	d15,#0
+.L249:
+	st.b	[a15],d15
+.L250:
+	j	.L33
+.L32:
+	movh.a	a15,#@his(EncCal_Coding_DmuL)
+	lea	a15,[a15]@los(EncCal_Coding_DmuL)
+	ld.bu	d15,[a15]
+.L251:
+	jne	d15,#2,.L34
+.L252:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L253:
+	mov	d15,#0
+.L254:
+	st.b	[a15],d15
+.L255:
+	j	.L35
+.L34:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L256:
+	mov	d15,#1
+.L257:
+	st.b	[a15],d15
+.L35:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad4)
+.L258:
+	mov	d15,#0
+.L259:
+	st.b	[a15],d15
+.L260:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L261:
+	mov	d15,#0
+.L262:
+	st.b	[a15],d15
+.L263:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L264:
+	mov	d15,#0
+.L265:
+	st.b	[a15],d15
+.L33:
+	j	.L36
+.L15:
+	movh.a	a15,#@his(_999001_timestamp)
+	lea	a15,[a15]@los(_999001_timestamp)
+.L266:
+	mov	d15,#0
+.L267:
+	st.w	[a15],d15
+.L268:
+	movh.a	a15,#@his(_999003_flag)
+	lea	a15,[a15]@los(_999003_flag)
+.L269:
+	mov	d15,#0
+.L270:
+	st.b	[a15],d15
+.L271:
+	movh.a	a15,#@his(_999004_evaluateCarLockState)
+	lea	a15,[a15]@los(_999004_evaluateCarLockState)
+.L272:
+	mov	d15,#0
+.L273:
+	st.b	[a15],d15
+.L274:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L275:
+	mov	d15,#0
+.L276:
+	st.b	[a15],d15
+.L277:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad4)
+.L278:
+	mov	d15,#0
+.L279:
+	st.b	[a15],d15
+.L280:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L281:
+	mov	d15,#0
+.L282:
+	st.b	[a15],d15
+.L283:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L284:
+	mov	d15,#0
+.L285:
+	st.b	[a15],d15
+.L286:
+	j	.L37
+.L16:
+	movh.a	a15,#@his(_999001_timestamp)
+	lea	a15,[a15]@los(_999001_timestamp)
+.L287:
+	mov	d15,#0
+.L288:
+	st.w	[a15],d15
+.L289:
+	movh.a	a15,#@his(_999003_flag)
+	lea	a15,[a15]@los(_999003_flag)
+.L290:
+	mov	d15,#0
+.L291:
+	st.b	[a15],d15
+.L292:
+	movh.a	a15,#@his(_999004_evaluateCarLockState)
+	lea	a15,[a15]@los(_999004_evaluateCarLockState)
+.L293:
+	mov	d15,#0
+.L294:
+	st.b	[a15],d15
+.L295:
+	movh.a	a15,#@his(EncCal_Coding_DmuL)
+	lea	a15,[a15]@los(EncCal_Coding_DmuL)
+	ld.bu	d15,[a15]
+.L296:
+	jne	d15,#2,.L38
+.L297:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L298:
+	mov	d15,#0
+.L299:
+	st.b	[a15],d15
+.L300:
+	j	.L39
+.L38:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L301:
+	mov	d15,#1
+.L302:
+	st.b	[a15],d15
+.L39:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad4)
+.L303:
+	mov	d15,#0
+.L304:
+	st.b	[a15],d15
+.L305:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L306:
+	mov	d15,#0
+.L307:
+	st.b	[a15],d15
+.L308:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L309:
+	mov	d15,#0
+.L310:
+	st.b	[a15],d15
+.L311:
+	j	.L40
+.L17:
+	movh.a	a15,#@his(_999001_timestamp)
+	lea	a15,[a15]@los(_999001_timestamp)
+.L312:
+	mov	d15,#0
+.L313:
+	st.w	[a15],d15
+.L314:
+	movh.a	a15,#@his(_999003_flag)
+	lea	a15,[a15]@los(_999003_flag)
+.L315:
+	mov	d15,#0
+.L316:
+	st.b	[a15],d15
+.L317:
+	movh.a	a15,#@his(_999004_evaluateCarLockState)
+	lea	a15,[a15]@los(_999004_evaluateCarLockState)
+.L318:
+	mov	d15,#0
+.L319:
+	st.b	[a15],d15
+.L320:
+	movh.a	a15,#@his(EncCal_Coding_DmuL)
+	lea	a15,[a15]@los(EncCal_Coding_DmuL)
+	ld.bu	d15,[a15]
+.L321:
+	jne	d15,#2,.L41
+.L322:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L323:
+	mov	d15,#0
+.L324:
+	st.b	[a15],d15
+.L325:
+	j	.L42
+.L41:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L326:
+	mov	d15,#1
+.L327:
+	st.b	[a15],d15
+.L42:
+	movh.a	a15,#@his(EncCal_Coding_L4)
+	lea	a15,[a15]@los(EncCal_Coding_L4)
+	ld.bu	d15,[a15]
+.L328:
+	jne	d15,#2,.L43
+.L329:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad4)
+.L330:
+	mov	d15,#0
+.L331:
+	st.b	[a15],d15
+.L332:
+	j	.L44
+.L43:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad4)
+.L333:
+	mov	d15,#1
+.L334:
+	st.b	[a15],d15
+.L44:
+	movh.a	a15,#@his(EncCal_Coding_L5)
+	lea	a15,[a15]@los(EncCal_Coding_L5)
+	ld.bu	d15,[a15]
+.L335:
+	jne	d15,#2,.L45
+.L336:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L337:
+	mov	d15,#0
+.L338:
+	st.b	[a15],d15
+.L339:
+	j	.L46
+.L45:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L340:
+	mov	d15,#1
+.L341:
+	st.b	[a15],d15
+.L46:
+	movh.a	a15,#@his(EncCal_Coding_L6)
+	lea	a15,[a15]@los(EncCal_Coding_L6)
+	ld.bu	d15,[a15]
+.L342:
+	jne	d15,#2,.L47
+.L343:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L344:
+	mov	d15,#0
+.L345:
+	st.b	[a15],d15
+.L346:
+	j	.L48
+.L47:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L347:
+	mov	d15,#1
+.L348:
+	st.b	[a15],d15
+.L48:
+	j	.L49
+.L22:
+	j	.L50
+.L50:
+.L49:
+.L40:
+.L37:
+.L36:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_VehicleState)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_VehicleState)
+	ld.bu	d0,[a15]
+.L349:
+	mov	d15,#8
+.L350:
+	jne	d15,d0,.L51
+.L351:
+	movh.a	a15,#@his(EncCal_Coding_DmuL)
+	lea	a15,[a15]@los(EncCal_Coding_DmuL)
+	ld.bu	d15,[a15]
+.L352:
+	jne	d15,#2,.L52
+.L353:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L354:
+	mov	d15,#0
+.L355:
+	st.b	[a15],d15
+.L356:
+	j	.L53
+.L52:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L357:
+	mov	d15,#1
+.L358:
+	st.b	[a15],d15
+.L53:
+	movh.a	a15,#@his(EncCal_Coding_L5)
+	lea	a15,[a15]@los(EncCal_Coding_L5)
+	ld.bu	d15,[a15]
+.L359:
+	jne	d15,#2,.L54
+.L360:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L361:
+	mov	d15,#0
+.L362:
+	st.b	[a15],d15
+.L363:
+	j	.L55
+.L54:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L364:
+	mov	d15,#1
+.L365:
+	st.b	[a15],d15
+.L55:
+	movh.a	a15,#@his(EncCal_Coding_L6)
+	lea	a15,[a15]@los(EncCal_Coding_L6)
+	ld.bu	d15,[a15]
+.L366:
+	jne	d15,#2,.L56
+.L367:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L368:
+	mov	d15,#0
+.L369:
+	st.b	[a15],d15
+.L370:
+	j	.L57
+.L56:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L371:
+	mov	d15,#1
+.L372:
+	st.b	[a15],d15
+.L57:
+	movh.a	a15,#@his(EncCal_Coding_L7)
+	lea	a15,[a15]@los(EncCal_Coding_L7)
+	ld.bu	d15,[a15]
+.L373:
+	jne	d15,#2,.L58
+.L374:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad7)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad7)
+.L375:
+	mov	d15,#0
+.L376:
+	st.b	[a15],d15
+.L377:
+	j	.L59
+.L58:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad7)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad7)
+.L378:
+	mov	d15,#1
+.L379:
+	st.b	[a15],d15
+.L59:
+	movh.a	a15,#@his(EncCal_Coding_L8)
+	lea	a15,[a15]@los(EncCal_Coding_L8)
+	ld.bu	d15,[a15]
+.L380:
+	jne	d15,#2,.L60
+.L381:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad8)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad8)
+.L382:
+	mov	d15,#0
+.L383:
+	st.b	[a15],d15
+.L384:
+	j	.L61
+.L60:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad8)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad8)
+.L385:
+	mov	d15,#1
+.L386:
+	st.b	[a15],d15
+.L61:
+	j	.L62
+.L51:
+.L62:
+	movh.a	a15,#@his(_999008_switchOffFlag1)
+	lea	a15,[a15]@los(_999008_switchOffFlag1)
+	ld.w	d15,[a15]
+.L387:
+	jeq	d15,#1,.L63
+.L388:
+	movh.a	a15,#@his(_999009_switchOffFlag2)
+	lea	a15,[a15]@los(_999009_switchOffFlag2)
+	ld.w	d15,[a15]
+.L389:
+	jne	d15,#1,.L64
+.L63:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad4)
+.L390:
+	mov	d15,#0
+.L391:
+	st.b	[a15],d15
+.L392:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad5)
+.L393:
+	mov	d15,#0
+.L394:
+	st.b	[a15],d15
+.L395:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad6)
+.L396:
+	mov	d15,#0
+.L397:
+	st.b	[a15],d15
+.L398:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad7)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad7)
+.L399:
+	mov	d15,#0
+.L400:
+	st.b	[a15],d15
+.L401:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad8)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad8)
+.L402:
+	mov	d15,#0
+.L403:
+	st.b	[a15],d15
+.L404:
+	j	.L65
+.L64:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+.L405:
+	mov	d15,#0
+.L406:
+	st.b	[a15],d15
+.L65:
+	movh.a	a15,#@his(EnergyMgmt_MainCounter)
+	lea	a15,[a15]@los(EnergyMgmt_MainCounter)
+	movh.a	a2,#@his(EnergyMgmt_MainCounter)
+	lea	a2,[a2]@los(EnergyMgmt_MainCounter)
+	ld.w	d15,[a2]
+.L407:
+	add	d15,#1
+	st.w	[a15],d15
+.L408:
+	ret
+.L113:
+	
+__EnergyMgmt_MainFunction_function_end:
+	.size	EnergyMgmt_MainFunction,__EnergyMgmt_MainFunction_function_end-EnergyMgmt_MainFunction
+.L76:
+	; End of function
+	
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_MainCounter',data,cluster('EnergyMgmt_MainCounter')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_MainCounter'
+	.align	2
+EnergyMgmt_MainCounter:	.type	object
+	.size	EnergyMgmt_MainCounter,4
+	.space	4
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad1',data,cluster('EnergyMgmt_CanTx_CommandLoad1')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad1'
+	.global	EnergyMgmt_CanTx_CommandLoad1
+EnergyMgmt_CanTx_CommandLoad1:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad1,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad2',data,cluster('EnergyMgmt_CanTx_CommandLoad2')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad2'
+	.global	EnergyMgmt_CanTx_CommandLoad2
+EnergyMgmt_CanTx_CommandLoad2:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad2,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad3',data,cluster('EnergyMgmt_CanTx_CommandLoad3')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad3'
+	.global	EnergyMgmt_CanTx_CommandLoad3
+EnergyMgmt_CanTx_CommandLoad3:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad3,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad4',data,cluster('EnergyMgmt_CanTx_CommandLoad4')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad4'
+	.global	EnergyMgmt_CanTx_CommandLoad4
+EnergyMgmt_CanTx_CommandLoad4:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad4,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad5',data,cluster('EnergyMgmt_CanTx_CommandLoad5')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad5'
+	.global	EnergyMgmt_CanTx_CommandLoad5
+EnergyMgmt_CanTx_CommandLoad5:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad5,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad6',data,cluster('EnergyMgmt_CanTx_CommandLoad6')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad6'
+	.global	EnergyMgmt_CanTx_CommandLoad6
+EnergyMgmt_CanTx_CommandLoad6:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad6,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad7',data,cluster('EnergyMgmt_CanTx_CommandLoad7')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad7'
+	.global	EnergyMgmt_CanTx_CommandLoad7
+EnergyMgmt_CanTx_CommandLoad7:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad7,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad8',data,cluster('EnergyMgmt_CanTx_CommandLoad8')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_CommandLoad8'
+	.global	EnergyMgmt_CanTx_CommandLoad8
+EnergyMgmt_CanTx_CommandLoad8:	.type	object
+	.size	EnergyMgmt_CanTx_CommandLoad8,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanRx_IgnitionStatus',data,cluster('EnergyMgmt_CanRx_IgnitionStatus')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanRx_IgnitionStatus'
+	.global	EnergyMgmt_CanRx_IgnitionStatus
+EnergyMgmt_CanRx_IgnitionStatus:	.type	object
+	.size	EnergyMgmt_CanRx_IgnitionStatus,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_VehicleState',data,cluster('EnergyMgmt_CanTx_VehicleState')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_VehicleState'
+	.global	EnergyMgmt_CanTx_VehicleState
+EnergyMgmt_CanTx_VehicleState:	.type	object
+	.size	EnergyMgmt_CanTx_VehicleState,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanRx_StatusDoorLeft',data,cluster('EnergyMgmt_CanRx_StatusDoorLeft')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanRx_StatusDoorLeft'
+	.global	EnergyMgmt_CanRx_StatusDoorLeft
+EnergyMgmt_CanRx_StatusDoorLeft:	.type	object
+	.size	EnergyMgmt_CanRx_StatusDoorLeft,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanRx_StatusDoorRight',data,cluster('EnergyMgmt_CanRx_StatusDoorRight')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanRx_StatusDoorRight'
+	.global	EnergyMgmt_CanRx_StatusDoorRight
+EnergyMgmt_CanRx_StatusDoorRight:	.type	object
+	.size	EnergyMgmt_CanRx_StatusDoorRight,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanRx_StatusHc05',data,cluster('EnergyMgmt_CanRx_StatusHc05')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanRx_StatusHc05'
+	.global	EnergyMgmt_CanRx_StatusHc05
+EnergyMgmt_CanRx_StatusHc05:	.type	object
+	.size	EnergyMgmt_CanRx_StatusHc05,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanRx_VoltageMeasured',data,cluster('EnergyMgmt_CanRx_VoltageMeasured')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanRx_VoltageMeasured'
+	.global	EnergyMgmt_CanRx_VoltageMeasured
+EnergyMgmt_CanRx_VoltageMeasured:	.type	object
+	.size	EnergyMgmt_CanRx_VoltageMeasured,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanRx_CurrentMeasured',data,cluster('EnergyMgmt_CanRx_CurrentMeasured')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanRx_CurrentMeasured'
+	.global	EnergyMgmt_CanRx_CurrentMeasured
+EnergyMgmt_CanRx_CurrentMeasured:	.type	object
+	.size	EnergyMgmt_CanRx_CurrentMeasured,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanRx_CurrentMeasured2',data,cluster('EnergyMgmt_CanRx_CurrentMeasured2')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanRx_CurrentMeasured2'
+	.global	EnergyMgmt_CanRx_CurrentMeasured2
+EnergyMgmt_CanRx_CurrentMeasured2:	.type	object
+	.size	EnergyMgmt_CanRx_CurrentMeasured2,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt.EnergyMgmt_CanTx_PowerSupplyReducedPerformance',data,cluster('EnergyMgmt_CanTx_PowerSupplyReducedPerformance')
+	.sect	'.data.EnergyMgmt.EnergyMgmt_CanTx_PowerSupplyReducedPerformance'
+	.global	EnergyMgmt_CanTx_PowerSupplyReducedPerformance
+EnergyMgmt_CanTx_PowerSupplyReducedPerformance:	.type	object
+	.size	EnergyMgmt_CanTx_PowerSupplyReducedPerformance,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt._999001_timestamp',data,cluster('_999001_timestamp')
+	.sect	'.data.EnergyMgmt._999001_timestamp'
+	.align	2
+_999001_timestamp:	.type	object
+	.size	_999001_timestamp,4
+	.space	4
+	.sdecl	'.data.EnergyMgmt._999002_timestamp2',data,cluster('_999002_timestamp2')
+	.sect	'.data.EnergyMgmt._999002_timestamp2'
+	.align	2
+_999002_timestamp2:	.type	object
+	.size	_999002_timestamp2,4
+	.space	4
+	.sdecl	'.data.EnergyMgmt._999003_flag',data,cluster('_999003_flag')
+	.sect	'.data.EnergyMgmt._999003_flag'
+_999003_flag:	.type	object
+	.size	_999003_flag,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt._999004_evaluateCarLockState',data,cluster('_999004_evaluateCarLockState')
+	.sect	'.data.EnergyMgmt._999004_evaluateCarLockState'
+_999004_evaluateCarLockState:	.type	object
+	.size	_999004_evaluateCarLockState,1
+	.space	1
+	.sdecl	'.data.EnergyMgmt._999005_cutoffTime',data,cluster('_999005_cutoffTime')
+	.sect	'.data.EnergyMgmt._999005_cutoffTime'
+	.align	2
+_999005_cutoffTime:	.type	object
+	.size	_999005_cutoffTime,4
+	.space	4
+	.sdecl	'.data.EnergyMgmt._999006_totalCurrent',data,cluster('_999006_totalCurrent')
+	.sect	'.data.EnergyMgmt._999006_totalCurrent'
+	.align	2
+_999006_totalCurrent:	.type	object
+	.size	_999006_totalCurrent,4
+	.space	4
+	.sdecl	'.data.EnergyMgmt._999007_totCurrTimer',data,cluster('_999007_totCurrTimer')
+	.sect	'.data.EnergyMgmt._999007_totCurrTimer'
+	.align	2
+_999007_totCurrTimer:	.type	object
+	.size	_999007_totCurrTimer,4
+	.space	4
+	.sdecl	'.data.EnergyMgmt._999008_switchOffFlag1',data,cluster('_999008_switchOffFlag1')
+	.sect	'.data.EnergyMgmt._999008_switchOffFlag1'
+	.align	2
+_999008_switchOffFlag1:	.type	object
+	.size	_999008_switchOffFlag1,4
+	.space	4
+	.sdecl	'.data.EnergyMgmt._999009_switchOffFlag2',data,cluster('_999009_switchOffFlag2')
+	.sect	'.data.EnergyMgmt._999009_switchOffFlag2'
+	.align	2
+_999009_switchOffFlag2:	.type	object
+	.size	_999009_switchOffFlag2,4
+	.space	4
+	.extern	EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer
+	.extern	EncCal_Calibration_EnergyMgmt_MaxOutputCurrent
+	.extern	EncCal_Calibration_EnergyMgmt_UnderVoltageTh
+	.extern	EncCal_Coding_CbmL
+	.extern	EncCal_Coding_DmuL
+	.extern	EncCal_Coding_L4
+	.extern	EncCal_Coding_L5
+	.extern	EncCal_Coding_L6
+	.extern	EncCal_Coding_L7
+	.extern	EncCal_Coding_L8
+	.extern	EncCal_Coding_ConsumerCutoffTime
+	.calls	'EnergyMgmt_MainFunction','',0
+	.sdecl	'.debug_info',debug
+	.sect	'.debug_info'
+.L69:
+	.word	1009
+	.half	3
+	.word	.L70
+	.byte	4
+.L68:
+	.byte	1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L71
+.L114:
+	.byte	2
+	.byte	'unsigned long int',0,4,7
+.L115:
+	.byte	2
+	.byte	'unsigned char',0,1,8,2
+	.byte	'short int',0,2,5,3
+	.byte	'__wchar_t',0,1,1,1
+	.word	269
+	.byte	2
+	.byte	'unsigned int',0,4,7,3
+	.byte	'__size_t',0,1,1,1
+	.word	300
+	.byte	2
+	.byte	'int',0,4,5,3
+	.byte	'__ptrdiff_t',0,1,1,1
+	.word	333
+	.byte	4,1,5
+	.word	360
+	.byte	3
+	.byte	'__codeptr',0,1,1,1
+	.word	362
+	.byte	3
+	.byte	'uint8',0,2,108,29
+	.word	252
+	.byte	2
+	.byte	'unsigned short int',0,2,7,3
+	.byte	'uint16',0,2,112,29
+	.word	399
+	.byte	3
+	.byte	'uint32',0,2,116,29
+	.word	231
+	.byte	3
+	.byte	'sint16',0,2,129,1,29
+	.word	269
+	.byte	2
+	.byte	'long int',0,4,5,3
+	.byte	'sint32',0,2,134,1,29
+	.word	467
+	.byte	2
+	.byte	'long long int',0,8,5,3
+	.byte	'sint64',0,2,141,1,29
+	.word	495
+	.byte	2
+	.byte	'float',0,4,4,3
+	.byte	'float32',0,2,170,1,29
+	.word	528
+	.byte	6
+	.byte	'void',0,5
+	.word	554
+	.byte	3
+	.byte	'pvoid',0,3,54,28
+	.word	560
+	.byte	3
+	.byte	'Ifx_TickTime',0,3,76,28
+	.word	495
+	.byte	7
+	.byte	'EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer',0,4,57,15
+	.word	231
+	.byte	1,1,7
+	.byte	'EncCal_Calibration_EnergyMgmt_MaxOutputCurrent',0,4,58,15
+	.word	231
+	.byte	1,1,7
+	.byte	'EncCal_Calibration_EnergyMgmt_UnderVoltageTh',0,4,59,15
+	.word	231
+	.byte	1,1,7
+	.byte	'EncCal_Coding_CbmL',0,4,70,14
+	.word	252
+	.byte	1,1,7
+	.byte	'EncCal_Coding_DmuL',0,4,71,14
+	.word	252
+	.byte	1,1,7
+	.byte	'EncCal_Coding_L4',0,4,72,14
+	.word	252
+	.byte	1,1,7
+	.byte	'EncCal_Coding_L5',0,4,73,14
+	.word	252
+	.byte	1,1,7
+	.byte	'EncCal_Coding_L6',0,4,74,14
+	.word	252
+	.byte	1,1,7
+	.byte	'EncCal_Coding_L7',0,4,75,14
+	.word	252
+	.byte	1,1,7
+	.byte	'EncCal_Coding_L8',0,4,76,14
+	.word	252
+	.byte	1,1,7
+	.byte	'EncCal_Coding_ConsumerCutoffTime',0,4,82,14
+	.word	252
+	.byte	1,1,0
+	.sdecl	'.debug_abbrev',debug
+	.sect	'.debug_abbrev'
+.L70:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,22,0,3,8,58,15,59,15,57,15
+	.byte	73,19,0,0,4,21,0,54,15,0,0,5,15,0,73,19,0,0,6,59,0,3,8,0,0,7,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60
+	.byte	12,0,0,0
+	.sdecl	'.debug_line',debug
+	.sect	'.debug_line'
+.L71:
+	.word	.L117-.L116
+.L116:
+	.half	3
+	.word	.L119-.L118
+.L118:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal',0
+	.byte	0
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0,0,0,0
+	.byte	'Platform_Types.h',0,1,0,0
+	.byte	'Ifx_Types.h',0,1,0,0
+	.byte	'EncCal.h',0,2,0,0,0
+.L119:
+.L117:
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_MainFunction')
+	.sect	'.debug_info'
+.L72:
+	.word	531
+	.half	3
+	.word	.L73
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L75,.L74
+	.byte	2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_MainFunction',0,1,25,6,1,1,1
+	.word	.L67,.L113,.L66
+	.byte	4
+	.word	.L67,.L113
+	.byte	5
+	.byte	'timestamp',0,1,27,19
+	.word	.L114
+	.byte	5,3
+	.word	_999001_timestamp
+	.byte	5
+	.byte	'timestamp2',0,1,28,19
+	.word	.L114
+	.byte	5,3
+	.word	_999002_timestamp2
+	.byte	5
+	.byte	'flag',0,1,29,18
+	.word	.L115
+	.byte	5,3
+	.word	_999003_flag
+	.byte	5
+	.byte	'evaluateCarLockState',0,1,30,18
+	.word	.L115
+	.byte	5,3
+	.word	_999004_evaluateCarLockState
+	.byte	5
+	.byte	'cutoffTime',0,1,31,19
+	.word	.L114
+	.byte	5,3
+	.word	_999005_cutoffTime
+	.byte	5
+	.byte	'totalCurrent',0,1,32,19
+	.word	.L114
+	.byte	5,3
+	.word	_999006_totalCurrent
+	.byte	5
+	.byte	'totCurrTimer',0,1,33,19
+	.word	.L114
+	.byte	5,3
+	.word	_999007_totCurrTimer
+	.byte	5
+	.byte	'switchOffFlag1',0,1,34,19
+	.word	.L114
+	.byte	5,3
+	.word	_999008_switchOffFlag1
+	.byte	5
+	.byte	'switchOffFlag2',0,1,35,19
+	.word	.L114
+	.byte	5,3
+	.word	_999009_switchOffFlag2
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_MainFunction')
+	.sect	'.debug_abbrev'
+.L73:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_line',debug,cluster('EnergyMgmt_MainFunction')
+	.sect	'.debug_line'
+.L74:
+	.word	.L121-.L120
+.L120:
+	.half	3
+	.word	.L123-.L122
+.L122:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0,0,0,0,0
+.L123:
+	.byte	5,5,7,0,5,2
+	.word	.L67
+	.byte	3,36,1,5,20,9
+	.half	.L124-.L67
+	.byte	1,5,74,9
+	.half	.L125-.L124
+	.byte	1,5,82,9
+	.half	.L126-.L125
+	.byte	1,5,80,9
+	.half	.L127-.L126
+	.byte	1,5,90,9
+	.half	.L128-.L127
+	.byte	1,5,88,9
+	.half	.L129-.L128
+	.byte	1,5,18,9
+	.half	.L130-.L129
+	.byte	1,5,5,9
+	.half	.L131-.L130
+	.byte	3,1,1,5,18,9
+	.half	.L132-.L131
+	.byte	1,5,51,9
+	.half	.L133-.L132
+	.byte	1,5,59,9
+	.half	.L134-.L133
+	.byte	1,5,57,9
+	.half	.L135-.L134
+	.byte	1,5,67,9
+	.half	.L136-.L135
+	.byte	1,5,65,9
+	.half	.L137-.L136
+	.byte	1,5,16,9
+	.half	.L138-.L137
+	.byte	1,5,5,9
+	.half	.L139-.L138
+	.byte	3,1,1,5,20,9
+	.half	.L140-.L139
+	.byte	1,5,55,9
+	.half	.L141-.L140
+	.byte	1,5,63,9
+	.half	.L142-.L141
+	.byte	1,5,97,9
+	.half	.L143-.L142
+	.byte	1,5,61,9
+	.half	.L144-.L143
+	.byte	1,5,18,9
+	.half	.L145-.L144
+	.byte	1,5,9,9
+	.half	.L146-.L145
+	.byte	3,2,1,5,56,9
+	.half	.L147-.L146
+	.byte	1,5,8,9
+	.half	.L148-.L147
+	.byte	1,5,100,7,9
+	.half	.L149-.L148
+	.byte	1,5,97,9
+	.half	.L150-.L149
+	.byte	1,5,9,7,9
+	.half	.L151-.L150
+	.byte	3,2,1,5,26,9
+	.half	.L152-.L151
+	.byte	1,5,24,9
+	.half	.L153-.L152
+	.byte	1,5,9,9
+	.half	.L154-.L153
+	.byte	3,1,1,5,58,9
+	.half	.L155-.L154
+	.byte	1,5,56,9
+	.half	.L156-.L155
+	.byte	1,5,28,9
+	.half	.L157-.L156
+	.byte	3,127,1,5,9,9
+	.half	.L2-.L157
+	.byte	3,5,1,5,26,9
+	.half	.L158-.L2
+	.byte	1,5,24,9
+	.half	.L159-.L158
+	.byte	1,5,8,9
+	.half	.L4-.L159
+	.byte	3,3,1,5,24,9
+	.half	.L160-.L4
+	.byte	1,5,73,9
+	.half	.L161-.L160
+	.byte	1,5,71,9
+	.half	.L162-.L161
+	.byte	1,5,5,9
+	.half	.L163-.L162
+	.byte	1,5,18,7,9
+	.half	.L164-.L163
+	.byte	3,2,1,5,9,9
+	.half	.L165-.L164
+	.byte	1,5,13,7,9
+	.half	.L166-.L165
+	.byte	3,2,1,5,26,9
+	.half	.L167-.L166
+	.byte	1,5,24,9
+	.half	.L168-.L167
+	.byte	1,5,48,9
+	.half	.L169-.L168
+	.byte	1,5,12,9
+	.half	.L7-.L169
+	.byte	3,7,1,5,28,9
+	.half	.L170-.L7
+	.byte	1,5,53,9
+	.half	.L171-.L170
+	.byte	1,5,51,9
+	.half	.L172-.L171
+	.byte	1,5,9,9
+	.half	.L173-.L172
+	.byte	1,5,13,7,9
+	.half	.L174-.L173
+	.byte	3,2,1,5,30,9
+	.half	.L175-.L174
+	.byte	1,5,28,9
+	.half	.L176-.L175
+	.byte	1,5,13,9
+	.half	.L177-.L176
+	.byte	3,1,1,5,62,9
+	.half	.L178-.L177
+	.byte	1,5,60,9
+	.half	.L179-.L178
+	.byte	1,5,32,9
+	.half	.L180-.L179
+	.byte	3,127,1,5,13,9
+	.half	.L8-.L180
+	.byte	3,5,1,5,30,9
+	.half	.L181-.L8
+	.byte	1,5,28,9
+	.half	.L182-.L181
+	.byte	1,5,9,9
+	.half	.L9-.L182
+	.byte	3,126,1,5,13,9
+	.half	.L5-.L9
+	.byte	3,5,1,5,30,9
+	.half	.L183-.L5
+	.byte	1,5,79,9
+	.half	.L184-.L183
+	.byte	1,5,77,9
+	.half	.L185-.L184
+	.byte	1,5,83,9
+	.half	.L186-.L185
+	.byte	1,5,10,9
+	.half	.L187-.L186
+	.byte	1,5,9,7,9
+	.half	.L188-.L187
+	.byte	3,2,1,5,22,9
+	.half	.L189-.L188
+	.byte	1,5,20,9
+	.half	.L190-.L189
+	.byte	1,5,9,9
+	.half	.L191-.L190
+	.byte	3,1,1,5,26,9
+	.half	.L192-.L191
+	.byte	1,5,24,9
+	.half	.L193-.L192
+	.byte	1,9
+	.half	.L194-.L193
+	.byte	3,127,1,5,9,9
+	.half	.L11-.L194
+	.byte	3,5,1,5,26,9
+	.half	.L195-.L11
+	.byte	1,5,24,9
+	.half	.L196-.L195
+	.byte	1,5,14,9
+	.half	.L10-.L196
+	.byte	3,3,1,5,5,9
+	.half	.L197-.L10
+	.byte	1,5,9,7,9
+	.half	.L198-.L197
+	.byte	3,2,1,5,41,9
+	.half	.L199-.L198
+	.byte	1,5,39,9
+	.half	.L200-.L199
+	.byte	1,5,43,9
+	.half	.L201-.L200
+	.byte	1,5,9,9
+	.half	.L13-.L201
+	.byte	3,4,1,5,41,9
+	.half	.L202-.L13
+	.byte	1,5,39,9
+	.half	.L203-.L202
+	.byte	1,5,5,9
+	.half	.L14-.L203
+	.byte	3,3,1,5,37,9
+	.half	.L204-.L14
+	.byte	1,5,35,9
+	.half	.L205-.L204
+	.byte	1,5,12,9
+	.half	.L206-.L205
+	.byte	3,2,1,5,14,9
+	.half	.L207-.L206
+	.byte	3,58,1,9
+	.half	.L208-.L207
+	.byte	3,9,1,9
+	.half	.L209-.L208
+	.byte	3,18,1,9
+	.half	.L210-.L209
+	.byte	3,176,127,1,9
+	.half	.L211-.L210
+	.byte	3,127,1,9
+	.half	.L212-.L211
+	.byte	3,127,1,9
+	.half	.L213-.L212
+	.byte	3,127,1,5,22,9
+	.half	.L18-.L213
+	.byte	3,4,1,5,13,9
+	.half	.L214-.L18
+	.byte	1,5,17,7,9
+	.half	.L215-.L214
+	.byte	3,2,1,5,29,9
+	.half	.L216-.L215
+	.byte	1,5,27,9
+	.half	.L217-.L216
+	.byte	1,5,51,9
+	.half	.L218-.L217
+	.byte	1,5,16,9
+	.half	.L24-.L218
+	.byte	3,7,1,5,30,9
+	.half	.L219-.L24
+	.byte	1,5,55,9
+	.half	.L220-.L219
+	.byte	1,5,53,9
+	.half	.L221-.L220
+	.byte	1,5,13,9
+	.half	.L222-.L221
+	.byte	1,5,17,7,9
+	.half	.L223-.L222
+	.byte	3,2,1,5,24,9
+	.half	.L224-.L223
+	.byte	1,5,22,9
+	.half	.L225-.L224
+	.byte	1,5,26,9
+	.half	.L226-.L225
+	.byte	1,5,23,9
+	.half	.L26-.L226
+	.byte	3,7,1,5,17,9
+	.half	.L227-.L26
+	.byte	1,5,64,7,9
+	.half	.L228-.L227
+	.byte	1,5,61,9
+	.half	.L229-.L228
+	.byte	1,5,31,7,9
+	.half	.L230-.L229
+	.byte	3,1,1,5,28,9
+	.half	.L231-.L230
+	.byte	1,5,17,7,9
+	.half	.L232-.L231
+	.byte	3,2,1,5,40,9
+	.half	.L233-.L232
+	.byte	1,5,38,9
+	.half	.L234-.L233
+	.byte	1,5,42,9
+	.half	.L235-.L234
+	.byte	1,5,23,9
+	.half	.L30-.L235
+	.byte	3,7,1,5,16,9
+	.half	.L236-.L30
+	.byte	1,5,31,7,9
+	.half	.L237-.L236
+	.byte	3,1,1,5,28,9
+	.half	.L238-.L237
+	.byte	1,5,17,7,9
+	.half	.L31-.L238
+	.byte	3,2,1,5,49,9
+	.half	.L239-.L31
+	.byte	1,5,47,9
+	.half	.L240-.L239
+	.byte	1,5,17,9
+	.half	.L241-.L240
+	.byte	3,1,1,5,49,9
+	.half	.L242-.L241
+	.byte	1,5,47,9
+	.half	.L243-.L242
+	.byte	1,5,17,9
+	.half	.L244-.L243
+	.byte	3,1,1,5,49,9
+	.half	.L245-.L244
+	.byte	1,5,47,9
+	.half	.L246-.L245
+	.byte	1,5,17,9
+	.half	.L247-.L246
+	.byte	3,1,1,5,49,9
+	.half	.L248-.L247
+	.byte	1,5,47,9
+	.half	.L249-.L248
+	.byte	1,5,51,9
+	.half	.L250-.L249
+	.byte	3,125,1,5,26,9
+	.half	.L32-.L250
+	.byte	3,7,1,5,17,9
+	.half	.L251-.L32
+	.byte	1,5,21,7,9
+	.half	.L252-.L251
+	.byte	3,2,1,5,53,9
+	.half	.L253-.L252
+	.byte	1,5,51,9
+	.half	.L254-.L253
+	.byte	1,5,55,9
+	.half	.L255-.L254
+	.byte	1,5,21,9
+	.half	.L34-.L255
+	.byte	3,4,1,5,53,9
+	.half	.L256-.L34
+	.byte	1,5,51,9
+	.half	.L257-.L256
+	.byte	1,5,17,9
+	.half	.L35-.L257
+	.byte	3,3,1,5,49,9
+	.half	.L258-.L35
+	.byte	1,5,47,9
+	.half	.L259-.L258
+	.byte	1,5,17,9
+	.half	.L260-.L259
+	.byte	3,1,1,5,49,9
+	.half	.L261-.L260
+	.byte	1,5,47,9
+	.half	.L262-.L261
+	.byte	1,5,17,9
+	.half	.L263-.L262
+	.byte	3,1,1,5,49,9
+	.half	.L264-.L263
+	.byte	1,5,47,9
+	.half	.L265-.L264
+	.byte	1,5,13,9
+	.half	.L33-.L265
+	.byte	3,2,1,9
+	.half	.L15-.L33
+	.byte	3,2,1,5,25,9
+	.half	.L266-.L15
+	.byte	1,5,23,9
+	.half	.L267-.L266
+	.byte	1,5,13,9
+	.half	.L268-.L267
+	.byte	3,1,1,5,20,9
+	.half	.L269-.L268
+	.byte	1,5,18,9
+	.half	.L270-.L269
+	.byte	1,5,13,9
+	.half	.L271-.L270
+	.byte	3,1,1,5,36,9
+	.half	.L272-.L271
+	.byte	1,5,34,9
+	.half	.L273-.L272
+	.byte	1,5,13,9
+	.half	.L274-.L273
+	.byte	3,1,1,5,45,9
+	.half	.L275-.L274
+	.byte	1,5,43,9
+	.half	.L276-.L275
+	.byte	1,5,13,9
+	.half	.L277-.L276
+	.byte	3,1,1,5,45,9
+	.half	.L278-.L277
+	.byte	1,5,43,9
+	.half	.L279-.L278
+	.byte	1,5,13,9
+	.half	.L280-.L279
+	.byte	3,1,1,5,45,9
+	.half	.L281-.L280
+	.byte	1,5,43,9
+	.half	.L282-.L281
+	.byte	1,5,13,9
+	.half	.L283-.L282
+	.byte	3,1,1,5,45,9
+	.half	.L284-.L283
+	.byte	1,5,43,9
+	.half	.L285-.L284
+	.byte	1,5,13,9
+	.half	.L286-.L285
+	.byte	3,1,1,9
+	.half	.L16-.L286
+	.byte	3,2,1,5,25,9
+	.half	.L287-.L16
+	.byte	1,5,23,9
+	.half	.L288-.L287
+	.byte	1,5,13,9
+	.half	.L289-.L288
+	.byte	3,1,1,5,20,9
+	.half	.L290-.L289
+	.byte	1,5,18,9
+	.half	.L291-.L290
+	.byte	1,5,13,9
+	.half	.L292-.L291
+	.byte	3,1,1,5,36,9
+	.half	.L293-.L292
+	.byte	1,5,34,9
+	.half	.L294-.L293
+	.byte	1,5,22,9
+	.half	.L295-.L294
+	.byte	3,2,1,5,13,9
+	.half	.L296-.L295
+	.byte	1,5,17,7,9
+	.half	.L297-.L296
+	.byte	3,2,1,5,49,9
+	.half	.L298-.L297
+	.byte	1,5,47,9
+	.half	.L299-.L298
+	.byte	1,5,51,9
+	.half	.L300-.L299
+	.byte	1,5,17,9
+	.half	.L38-.L300
+	.byte	3,4,1,5,49,9
+	.half	.L301-.L38
+	.byte	1,5,47,9
+	.half	.L302-.L301
+	.byte	1,5,13,9
+	.half	.L39-.L302
+	.byte	3,3,1,5,45,9
+	.half	.L303-.L39
+	.byte	1,5,43,9
+	.half	.L304-.L303
+	.byte	1,5,13,9
+	.half	.L305-.L304
+	.byte	3,1,1,5,45,9
+	.half	.L306-.L305
+	.byte	1,5,43,9
+	.half	.L307-.L306
+	.byte	1,5,13,9
+	.half	.L308-.L307
+	.byte	3,1,1,5,45,9
+	.half	.L309-.L308
+	.byte	1,5,43,9
+	.half	.L310-.L309
+	.byte	1,5,13,9
+	.half	.L311-.L310
+	.byte	3,1,1,9
+	.half	.L17-.L311
+	.byte	3,2,1,5,25,9
+	.half	.L312-.L17
+	.byte	1,5,23,9
+	.half	.L313-.L312
+	.byte	1,5,13,9
+	.half	.L314-.L313
+	.byte	3,1,1,5,20,9
+	.half	.L315-.L314
+	.byte	1,5,18,9
+	.half	.L316-.L315
+	.byte	1,5,13,9
+	.half	.L317-.L316
+	.byte	3,1,1,5,36,9
+	.half	.L318-.L317
+	.byte	1,5,34,9
+	.half	.L319-.L318
+	.byte	1,5,22,9
+	.half	.L320-.L319
+	.byte	3,2,1,5,13,9
+	.half	.L321-.L320
+	.byte	1,5,17,7,9
+	.half	.L322-.L321
+	.byte	3,2,1,5,49,9
+	.half	.L323-.L322
+	.byte	1,5,47,9
+	.half	.L324-.L323
+	.byte	1,5,51,9
+	.half	.L325-.L324
+	.byte	1,5,17,9
+	.half	.L41-.L325
+	.byte	3,4,1,5,49,9
+	.half	.L326-.L41
+	.byte	1,5,47,9
+	.half	.L327-.L326
+	.byte	1,5,22,9
+	.half	.L42-.L327
+	.byte	3,3,1,5,13,9
+	.half	.L328-.L42
+	.byte	1,5,17,7,9
+	.half	.L329-.L328
+	.byte	3,2,1,5,49,9
+	.half	.L330-.L329
+	.byte	1,5,47,9
+	.half	.L331-.L330
+	.byte	1,5,51,9
+	.half	.L332-.L331
+	.byte	1,5,17,9
+	.half	.L43-.L332
+	.byte	3,4,1,5,49,9
+	.half	.L333-.L43
+	.byte	1,5,47,9
+	.half	.L334-.L333
+	.byte	1,5,22,9
+	.half	.L44-.L334
+	.byte	3,3,1,5,13,9
+	.half	.L335-.L44
+	.byte	1,5,17,7,9
+	.half	.L336-.L335
+	.byte	3,2,1,5,49,9
+	.half	.L337-.L336
+	.byte	1,5,47,9
+	.half	.L338-.L337
+	.byte	1,5,51,9
+	.half	.L339-.L338
+	.byte	1,5,17,9
+	.half	.L45-.L339
+	.byte	3,4,1,5,49,9
+	.half	.L340-.L45
+	.byte	1,5,47,9
+	.half	.L341-.L340
+	.byte	1,5,22,9
+	.half	.L46-.L341
+	.byte	3,3,1,5,13,9
+	.half	.L342-.L46
+	.byte	1,5,17,7,9
+	.half	.L343-.L342
+	.byte	3,2,1,5,49,9
+	.half	.L344-.L343
+	.byte	1,5,47,9
+	.half	.L345-.L344
+	.byte	1,5,51,9
+	.half	.L346-.L345
+	.byte	1,5,17,9
+	.half	.L47-.L346
+	.byte	3,4,1,5,49,9
+	.half	.L347-.L47
+	.byte	1,5,47,9
+	.half	.L348-.L347
+	.byte	1,5,13,9
+	.half	.L48-.L348
+	.byte	3,2,1,9
+	.half	.L22-.L48
+	.byte	3,2,1,5,14,9
+	.half	.L36-.L22
+	.byte	3,3,1,5,8,9
+	.half	.L349-.L36
+	.byte	1,5,5,9
+	.half	.L350-.L349
+	.byte	1,5,18,7,9
+	.half	.L351-.L350
+	.byte	3,2,1,5,9,9
+	.half	.L352-.L351
+	.byte	1,5,13,7,9
+	.half	.L353-.L352
+	.byte	3,2,1,5,45,9
+	.half	.L354-.L353
+	.byte	1,5,43,9
+	.half	.L355-.L354
+	.byte	1,5,47,9
+	.half	.L356-.L355
+	.byte	1,5,13,9
+	.half	.L52-.L356
+	.byte	3,4,1,5,45,9
+	.half	.L357-.L52
+	.byte	1,5,43,9
+	.half	.L358-.L357
+	.byte	1,5,18,9
+	.half	.L53-.L358
+	.byte	3,3,1,5,9,9
+	.half	.L359-.L53
+	.byte	1,5,13,7,9
+	.half	.L360-.L359
+	.byte	3,2,1,5,45,9
+	.half	.L361-.L360
+	.byte	1,5,43,9
+	.half	.L362-.L361
+	.byte	1,5,47,9
+	.half	.L363-.L362
+	.byte	1,5,13,9
+	.half	.L54-.L363
+	.byte	3,4,1,5,45,9
+	.half	.L364-.L54
+	.byte	1,5,43,9
+	.half	.L365-.L364
+	.byte	1,5,18,9
+	.half	.L55-.L365
+	.byte	3,3,1,5,9,9
+	.half	.L366-.L55
+	.byte	1,5,13,7,9
+	.half	.L367-.L366
+	.byte	3,2,1,5,45,9
+	.half	.L368-.L367
+	.byte	1,5,43,9
+	.half	.L369-.L368
+	.byte	1,5,47,9
+	.half	.L370-.L369
+	.byte	1,5,13,9
+	.half	.L56-.L370
+	.byte	3,4,1,5,45,9
+	.half	.L371-.L56
+	.byte	1,5,43,9
+	.half	.L372-.L371
+	.byte	1,5,18,9
+	.half	.L57-.L372
+	.byte	3,3,1,5,9,9
+	.half	.L373-.L57
+	.byte	1,5,13,7,9
+	.half	.L374-.L373
+	.byte	3,2,1,5,45,9
+	.half	.L375-.L374
+	.byte	1,5,43,9
+	.half	.L376-.L375
+	.byte	1,5,47,9
+	.half	.L377-.L376
+	.byte	1,5,13,9
+	.half	.L58-.L377
+	.byte	3,4,1,5,45,9
+	.half	.L378-.L58
+	.byte	1,5,43,9
+	.half	.L379-.L378
+	.byte	1,5,18,9
+	.half	.L59-.L379
+	.byte	3,3,1,5,9,9
+	.half	.L380-.L59
+	.byte	1,5,13,7,9
+	.half	.L381-.L380
+	.byte	3,2,1,5,45,9
+	.half	.L382-.L381
+	.byte	1,5,43,9
+	.half	.L383-.L382
+	.byte	1,5,47,9
+	.half	.L384-.L383
+	.byte	1,5,13,9
+	.half	.L60-.L384
+	.byte	3,4,1,5,45,9
+	.half	.L385-.L60
+	.byte	1,5,43,9
+	.half	.L386-.L385
+	.byte	1,5,9,9
+	.half	.L61-.L386
+	.byte	3,126,1,5,15,9
+	.half	.L62-.L61
+	.byte	3,10,1,5,8,9
+	.half	.L387-.L62
+	.byte	1,5,23,7,9
+	.half	.L388-.L387
+	.byte	3,1,1,5,20,9
+	.half	.L389-.L388
+	.byte	1,5,9,7,9
+	.half	.L63-.L389
+	.byte	3,2,1,5,41,9
+	.half	.L390-.L63
+	.byte	1,5,39,9
+	.half	.L391-.L390
+	.byte	1,5,9,9
+	.half	.L392-.L391
+	.byte	3,1,1,5,41,9
+	.half	.L393-.L392
+	.byte	1,5,39,9
+	.half	.L394-.L393
+	.byte	1,5,9,9
+	.half	.L395-.L394
+	.byte	3,1,1,5,41,9
+	.half	.L396-.L395
+	.byte	1,5,39,9
+	.half	.L397-.L396
+	.byte	1,5,9,9
+	.half	.L398-.L397
+	.byte	3,1,1,5,41,9
+	.half	.L399-.L398
+	.byte	1,5,39,9
+	.half	.L400-.L399
+	.byte	1,5,9,9
+	.half	.L401-.L400
+	.byte	3,1,1,5,41,9
+	.half	.L402-.L401
+	.byte	1,5,39,9
+	.half	.L403-.L402
+	.byte	1,5,43,9
+	.half	.L404-.L403
+	.byte	3,124,1,5,9,9
+	.half	.L64-.L404
+	.byte	3,8,1,5,58,9
+	.half	.L405-.L64
+	.byte	1,5,56,9
+	.half	.L406-.L405
+	.byte	1,5,5,9
+	.half	.L65-.L406
+	.byte	3,3,1,5,27,9
+	.half	.L407-.L65
+	.byte	1,5,1,9
+	.half	.L408-.L407
+	.byte	3,1,1,7,9
+	.half	.L76-.L408
+	.byte	0,1,1
+.L121:
+	.sdecl	'.debug_ranges',debug,cluster('EnergyMgmt_MainFunction')
+	.sect	'.debug_ranges'
+.L75:
+	.word	-1,.L67,0,.L76-.L67,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_MainCounter')
+	.sect	'.debug_info'
+.L77:
+	.word	266
+	.half	3
+	.word	.L78
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_MainCounter',0,1,4,15
+	.word	.L114
+	.byte	5,3
+	.word	EnergyMgmt_MainCounter
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_MainCounter')
+	.sect	'.debug_abbrev'
+.L78:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad1')
+	.sect	'.debug_info'
+.L79:
+	.word	274
+	.half	3
+	.word	.L80
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad1',0,1,5,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad1
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad1')
+	.sect	'.debug_abbrev'
+.L80:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad2')
+	.sect	'.debug_info'
+.L81:
+	.word	274
+	.half	3
+	.word	.L82
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad2',0,1,6,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad2
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad2')
+	.sect	'.debug_abbrev'
+.L82:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad3')
+	.sect	'.debug_info'
+.L83:
+	.word	274
+	.half	3
+	.word	.L84
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad3',0,1,7,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad3
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad3')
+	.sect	'.debug_abbrev'
+.L84:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad4')
+	.sect	'.debug_info'
+.L85:
+	.word	274
+	.half	3
+	.word	.L86
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad4',0,1,8,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad4
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad4')
+	.sect	'.debug_abbrev'
+.L86:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad5')
+	.sect	'.debug_info'
+.L87:
+	.word	274
+	.half	3
+	.word	.L88
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad5',0,1,9,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad5
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad5')
+	.sect	'.debug_abbrev'
+.L88:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad6')
+	.sect	'.debug_info'
+.L89:
+	.word	274
+	.half	3
+	.word	.L90
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad6',0,1,10,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad6
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad6')
+	.sect	'.debug_abbrev'
+.L90:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad7')
+	.sect	'.debug_info'
+.L91:
+	.word	274
+	.half	3
+	.word	.L92
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad7',0,1,11,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad7
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad7')
+	.sect	'.debug_abbrev'
+.L92:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_CommandLoad8')
+	.sect	'.debug_info'
+.L93:
+	.word	274
+	.half	3
+	.word	.L94
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_CommandLoad8',0,1,12,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_CommandLoad8
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_CommandLoad8')
+	.sect	'.debug_abbrev'
+.L94:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanRx_IgnitionStatus')
+	.sect	'.debug_info'
+.L95:
+	.word	276
+	.half	3
+	.word	.L96
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanRx_IgnitionStatus',0,1,13,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanRx_IgnitionStatus
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanRx_IgnitionStatus')
+	.sect	'.debug_abbrev'
+.L96:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_VehicleState')
+	.sect	'.debug_info'
+.L97:
+	.word	274
+	.half	3
+	.word	.L98
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_VehicleState',0,1,14,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_VehicleState
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_VehicleState')
+	.sect	'.debug_abbrev'
+.L98:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanRx_StatusDoorLeft')
+	.sect	'.debug_info'
+.L99:
+	.word	276
+	.half	3
+	.word	.L100
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanRx_StatusDoorLeft',0,1,15,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanRx_StatusDoorLeft
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanRx_StatusDoorLeft')
+	.sect	'.debug_abbrev'
+.L100:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanRx_StatusDoorRight')
+	.sect	'.debug_info'
+.L101:
+	.word	277
+	.half	3
+	.word	.L102
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanRx_StatusDoorRight',0,1,16,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanRx_StatusDoorRight
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanRx_StatusDoorRight')
+	.sect	'.debug_abbrev'
+.L102:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanRx_StatusHc05')
+	.sect	'.debug_info'
+.L103:
+	.word	272
+	.half	3
+	.word	.L104
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanRx_StatusHc05',0,1,17,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanRx_StatusHc05
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanRx_StatusHc05')
+	.sect	'.debug_abbrev'
+.L104:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanRx_VoltageMeasured')
+	.sect	'.debug_info'
+.L105:
+	.word	277
+	.half	3
+	.word	.L106
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanRx_VoltageMeasured',0,1,18,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanRx_VoltageMeasured
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanRx_VoltageMeasured')
+	.sect	'.debug_abbrev'
+.L106:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanRx_CurrentMeasured')
+	.sect	'.debug_info'
+.L107:
+	.word	277
+	.half	3
+	.word	.L108
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanRx_CurrentMeasured',0,1,19,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanRx_CurrentMeasured
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanRx_CurrentMeasured')
+	.sect	'.debug_abbrev'
+.L108:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanRx_CurrentMeasured2')
+	.sect	'.debug_info'
+.L109:
+	.word	278
+	.half	3
+	.word	.L110
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanRx_CurrentMeasured2',0,1,20,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanRx_CurrentMeasured2
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanRx_CurrentMeasured2')
+	.sect	'.debug_abbrev'
+.L110:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('EnergyMgmt_CanTx_PowerSupplyReducedPerformance')
+	.sect	'.debug_info'
+.L111:
+	.word	291
+	.half	3
+	.word	.L112
+	.byte	4,1
+	.byte	'../APP/EnergyMgmt/EnergyMgmt.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L68
+	.byte	3
+	.byte	'EnergyMgmt_CanTx_PowerSupplyReducedPerformance',0,1,21,7
+	.word	.L115
+	.byte	1,5,3
+	.word	EnergyMgmt_CanTx_PowerSupplyReducedPerformance
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('EnergyMgmt_CanTx_PowerSupplyReducedPerformance')
+	.sect	'.debug_abbrev'
+.L112:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_loc',debug,cluster('EnergyMgmt_MainFunction')
+	.sect	'.debug_loc'
+.L66:
+	.word	-1,.L67,0,.L113-.L67
+	.half	2
+	.byte	138,0
+	.word	0,0
+	.sdecl	'.debug_frame',debug
+	.sect	'.debug_frame'
+.L409:
+	.word	48
+	.word	-1
+	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
+	.byte	8,39
+	.sdecl	'.debug_frame',debug,cluster('EnergyMgmt_MainFunction')
+	.sect	'.debug_frame'
+	.word	24
+	.word	.L409,.L67,.L113-.L67
+	.byte	8,19,8,20,8,21,8,22,8,23,0,0
+	; Module end
