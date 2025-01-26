@@ -26,12 +26,12 @@ SECONDARY_SIZE :=
 SUBDIRS := \
 APP/ColDet \
 APP/ComMaster \
-APP/ConfigMgr \
 APP/DcyHandler \
 APP/DiagMaster \
 APP/EMotorCtrl \
 APP/EPSCtrl \
 APP/EncCal \
+APP/EnergyMgmt \
 APP/Iven \
 BSW/Com/Can \
 BSW/Com/E2e \
@@ -39,12 +39,13 @@ BSW/Diag/Dcm \
 BSW/Diag/Dem \
 BSW/Io/Ain \
 BSW/Io/Dma \
+BSW/Io/Eru \
 BSW/Io/Gtm \
 BSW/Io/Irq \
 BSW/Mem/Fls \
 BSW/Mem/Nvm \
+BSW/Sys/Bsw_Wrapper \
 BSW/Sys/Crc \
-BSW/Sys/EcuM \
 BSW/Sys/McuSm \
 BSW/Sys/Os/FreeRTOS \
 BSW/Sys/Os/FreeRTOS/portable/MemMang \

@@ -64,7 +64,7 @@
 /*******************************************************************************
 **                      Imported Function Declarations                        **
 *******************************************************************************/
-IFX_SSW_COMMON_LINKER_SYMBOLS();
+IFX_SSW_COMMON_LINKER_SYMBOLS(); // @suppress("Unused variable declaration in file scope")
 IFX_SSW_CORE_LINKER_SYMBOLS(2);
 
 #if defined(__TASKING__)

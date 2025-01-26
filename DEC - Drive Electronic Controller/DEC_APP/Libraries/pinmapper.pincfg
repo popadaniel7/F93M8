@@ -51,9 +51,6 @@
   <v1:configSetting configurationId="pms.hwcfg6.bind" altId="pms.hwcfg6.bind.hwcfg6">
     <v1:connectionSetting altId="p14_4.in.bind.in"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="tout0.out.bind" altId="tout0.out.bind.out">
-    <v1:connectionSetting altId="p02_0.out.bind.alt1"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="evrc.sync.bind" altId="evrc.sync.bind.none"/>
   <v1:configSetting configurationId="p00_2.dir" altId="p00_2.dir.out"/>
   <v1:configSetting configurationId="pms.wupb.bind" altId="pms.wupb.bind.none"/>
@@ -64,9 +61,7 @@
   <v1:configSetting configurationId="tout15.out.bind" altId="tout15.out.bind.out">
     <v1:connectionSetting altId="p00_6.out.bind.alt1"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="smu.fsp0.bind" altId="smu.fsp0.bind.out0">
-    <v1:connectionSetting altId="p33_8.out.bind.hwout1"/>
-  </v1:configSetting>
+  <v1:configSetting configurationId="smu.fsp0.bind" altId="smu.fsp0.bind.none"/>
   <v1:configSetting configurationId="gtm0_tom0_ch9.out.bind" altId="gtm0_tom0_ch9.out.bind.none"/>
   <v1:configSetting configurationId="auxinatom1.out.bind" altId="auxinatom1.out.bind.none"/>
   <v1:configSetting configurationId="p00_0.in.mode" altId="p00_0.in.mode.pu"/>
@@ -127,15 +122,11 @@
   </v1:configSetting>
   <v1:configSetting configurationId="pms.esr0.bind" altId="pms.esr0.bind.none"/>
   <v1:configSetting configurationId="p20_8.dir" altId="p20_8.dir.out"/>
-  <v1:configSetting configurationId="p33_8.dir" altId="p33_8.dir.out"/>
   <v1:configSetting configurationId="gtm0_tom0_ch1.out.bind" altId="gtm0_tom0_ch1.out.bind.none"/>
   <v1:configSetting configurationId="an3.an.bind" altId="an3.an.bind.anares">
     <v1:connectionSetting altId="g0_qreq0.ch3.bind.ch3"/>
   </v1:configSetting>
   <v1:configSetting configurationId="pms.esr1.bind" altId="pms.esr1.bind.none"/>
-  <v1:configSetting configurationId="p33_8.out.bind" altId="p33_8.out.bind.hwout1">
-    <v1:connectionSetting altId="smu.fsp0.bind.out0"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="an5.an.bind" altId="an5.an.bind.anares">
     <v1:connectionSetting altId="g0_qreq0.ch5.bind.ch5"/>
   </v1:configSetting>
@@ -154,9 +145,7 @@
     <v1:connectionSetting altId="can0_node0.rxd.bind.rxd1"/>
   </v1:configSetting>
   <v1:configSetting configurationId="gtm0_cdtm0_dtm0_0.out_n.bind" altId="gtm0_cdtm0_dtm0_0.out_n.bind.none"/>
-  <v1:configSetting configurationId="p02_0.out.bind" altId="p02_0.out.bind.alt1">
-    <v1:connectionSetting altId="tout0.out.bind.out"/>
-  </v1:configSetting>
+  <v1:configSetting configurationId="p02_0.out.bind" altId="p02_0.out.bind.none"/>
   <v1:configSetting configurationId="p00_1.dir" altId="p00_1.dir.out"/>
   <v1:configSetting configurationId="an1.an.bind" altId="an1.an.bind.anares">
     <v1:connectionSetting altId="g0_qreq0.ch1.bind.ch1"/>
@@ -165,22 +154,20 @@
   <v1:configSetting configurationId="g0_qreq0.ch4.bind" altId="g0_qreq0.ch4.bind.ch4">
     <v1:connectionSetting altId="an4.an.bind.anares"/>
   </v1:configSetting>
-  <v1:propertySetting propertyId="p02_0.symbolicname" value="TOUT0_OUT"/>
   <v1:propertySetting propertyId="p20_7.symbolicname" value="CAN0_NODE0_RXD"/>
   <v1:propertySetting propertyId="an0.symbolicname" value="G0_QREQ0_CH0"/>
-  <v1:propertySetting propertyId="p33_8.symbolicname" value="SMU_FSP0"/>
   <v1:propertySetting propertyId="p00_2.symbolicname" value="WUP_CBM"/>
   <v1:propertySetting propertyId="p00_1.symbolicname" value="WUP_DMU"/>
   <v1:propertySetting propertyId="p20_8.symbolicname" value="CAN0_NODE0_TXD"/>
   <v1:propertySetting propertyId="p00_0.symbolicname" value="WUP_PDM"/>
   <v1:propertySetting propertyId="an5.symbolicname" value="G0_QREQ0_CH5"/>
   <v1:propertySetting propertyId="an1.symbolicname" value="G0_QREQ0_CH1"/>
-  <v1:propertySetting propertyId="p00_5.symbolicname" value="EPS_PWM"/>
+  <v1:propertySetting propertyId="p00_5.symbolicname" value="EPS_PWM_LEFT"/>
   <v1:propertySetting propertyId="an2.symbolicname" value="G0_QREQ0_CH2"/>
   <v1:propertySetting propertyId="an4.symbolicname" value="G0_QREQ0_CH4"/>
   <v1:propertySetting propertyId="scr_p01_2.symbolicname" value="SCRWCAN0_RXD"/>
   <v1:propertySetting propertyId="an3.symbolicname" value="G0_QREQ0_CH3"/>
-  <v1:propertySetting propertyId="p00_6.symbolicname" value="EMOT_PWM"/>
+  <v1:propertySetting propertyId="p00_6.symbolicname" value="EPS_PWM_RIGHT"/>
   <v1:configSetting configurationId="g0_qreq0.ch6.bind" altId="g0_qreq0.ch6.bind.ch6">
     <v1:connectionSetting altId="an6.an.bind.anares"/>
   </v1:configSetting>
@@ -188,20 +175,67 @@
     <v1:connectionSetting altId="g0_qreq0.ch6.bind.ch6"/>
   </v1:configSetting>
   <v1:propertySetting propertyId="an6.symbolicname" value="G0_QREQ0_CH6"/>
-  <v1:configSetting configurationId="tout1.out.bind" altId="tout1.out.bind.out">
-    <v1:connectionSetting altId="p02_1.out.bind.alt1"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="tout2.out.bind" altId="tout2.out.bind.out">
-    <v1:connectionSetting altId="p02_2.out.bind.alt1"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="p02_1.dir" altId="p02_1.dir.out"/>
-  <v1:configSetting configurationId="p02_2.out.bind" altId="p02_2.out.bind.alt1">
-    <v1:connectionSetting altId="tout2.out.bind.out"/>
-  </v1:configSetting>
+  <v1:configSetting configurationId="p02_2.out.bind" altId="p02_2.out.bind.none"/>
   <v1:configSetting configurationId="p02_2.dir" altId="p02_2.dir.out"/>
-  <v1:configSetting configurationId="p02_1.out.bind" altId="p02_1.out.bind.alt1">
-    <v1:connectionSetting altId="tout1.out.bind.out"/>
+  <v1:configSetting configurationId="p02_1.out.bind" altId="p02_1.out.bind.none"/>
+  <v1:configSetting configurationId="p00_8.out.bind" altId="p00_8.out.bind.alt1">
+    <v1:connectionSetting altId="tout17.out.bind.out"/>
   </v1:configSetting>
-  <v1:propertySetting propertyId="p02_2.symbolicname" value="TOUT2_OUT"/>
-  <v1:propertySetting propertyId="p02_1.symbolicname" value="TOUT1_OUT"/>
+  <v1:configSetting configurationId="smu.fsp1.bind" altId="smu.fsp1.bind.none"/>
+  <v1:configSetting configurationId="p00_7.out.bind" altId="p00_7.out.bind.alt1">
+    <v1:connectionSetting altId="tout16.out.bind.out"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p00_7.dir" altId="p00_7.dir.out"/>
+  <v1:configSetting configurationId="p00_8.dir" altId="p00_8.dir.out"/>
+  <v1:configSetting configurationId="p33_0.in.bind" altId="p33_0.in.bind.none"/>
+  <v1:configSetting configurationId="tout17.out.bind" altId="tout17.out.bind.out">
+    <v1:connectionSetting altId="p00_8.out.bind.alt1"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="tout16.out.bind" altId="tout16.out.bind.out">
+    <v1:connectionSetting altId="p00_7.out.bind.alt1"/>
+  </v1:configSetting>
+  <v1:propertySetting propertyId="p00_8.symbolicname" value="SG90"/>
+  <v1:propertySetting propertyId="p00_7.symbolicname" value="EMOT"/>
+  <v1:configSetting configurationId="eruin4.in.bind" altId="eruin4.in.bind.in0">
+    <v1:connectionSetting altId="p33_7.in.bind.in"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p00_3.in.bind" altId="p00_3.in.bind.gpio"/>
+  <v1:configSetting configurationId="p00_10.in.bind" altId="p00_10.in.bind.none"/>
+  <v1:configSetting configurationId="p00_12.in.bind" altId="p00_12.in.bind.none"/>
+  <v1:configSetting configurationId="p00_9.dir" altId="p00_9.dir.out"/>
+  <v1:configSetting configurationId="p00_11.in.mode" altId="p00_11.in.mode.ts"/>
+  <v1:configSetting configurationId="p33_7.in.bind" altId="p33_7.in.bind.in">
+    <v1:connectionSetting altId="eruin4.in.bind.in0"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p00_3.level" altId="p00_3.level.cmos"/>
+  <v1:configSetting configurationId="tout18.out.bind" altId="tout18.out.bind.out">
+    <v1:connectionSetting altId="p00_9.out.bind.alt1"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p00_9.out.bind" altId="p00_9.out.bind.alt1">
+    <v1:connectionSetting altId="tout18.out.bind.out"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p00_9.in.bind" altId="p00_9.in.bind.none"/>
+  <v1:configSetting configurationId="p00_11.in.bind" altId="p00_11.in.bind.none"/>
+  <v1:propertySetting propertyId="p00_9.symbolicname" value="TOUT18_OUT"/>
+  <v1:propertySetting propertyId="p33_7.symbolicname" value="ENCODERA"/>
+  <v1:configSetting configurationId="eruin0.in.bind" altId="eruin0.in.bind.in0">
+    <v1:connectionSetting altId="p15_4.in.bind.in"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p11_10.in.bind" altId="p11_10.in.bind.in">
+    <v1:connectionSetting altId="eruin6.in.bind.in3"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="eruin2.in.bind" altId="eruin2.in.bind.none"/>
+  <v1:configSetting configurationId="p15_4.in.bind" altId="p15_4.in.bind.in">
+    <v1:connectionSetting altId="eruin0.in.bind.in0"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="eruin6.in.bind" altId="eruin6.in.bind.in3">
+    <v1:connectionSetting altId="p11_10.in.bind.in"/>
+  </v1:configSetting>
+  <v1:propertySetting propertyId="p15_4.symbolicname" value="SPEEDSENSOR"/>
+  <v1:propertySetting propertyId="p11_10.symbolicname" value="ENCODERB"/>
+  <v1:propertySetting propertyId="p00_3.symbolicname" value="TEMPERATURESENSOR"/>
+  <v1:configSetting configurationId="p20_6.dir" altId="p20_6.dir.out"/>
+  <v1:configSetting configurationId="p20_6.out.bind" altId="p20_6.out.bind.gpio"/>
+  <v1:propertySetting propertyId="p20_6.symbolicname" value="GPIO1"/>
 </v1:pinSettings>

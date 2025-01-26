@@ -41,6 +41,7 @@
 #include "Ifx_Cfg.h"
 #include "Ifx_Ssw_Infra.h"
 
+extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
 /******************************************************************************/
 /*-------------------------Infrastructure Functions---------------------------*/
 /******************************************************************************/
@@ -301,6 +302,11 @@ void Ifx_Ssw_MonbistCheck(void)
     if ((PMS_MONBISTSTAT.B.TSTOK == 0U) || (PMS_MONBISTSTAT.B.SMUERR == 1U) || (PMS_MONBISTSTAT.B.PMSERR == 1U))
     {
         __debug();
+        McuSm_PerformResetHook(378u, 1u);
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     Ifx_Ssw_jumpBackToLink();

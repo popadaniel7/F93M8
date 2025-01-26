@@ -45,11 +45,11 @@
 /*********************************************************************************************************************/
 /*-----------------------------------Configuration for Software managed interrupt------------------------------------*/
 /*********************************************************************************************************************/
-/* #define IFX_USE_SW_MANAGED_INT */ /* Decomment this line if the project needs to use Software managed interrupts */
+#define IFX_USE_SW_MANAGED_INT /* Decomment this line if the project needs to use Software managed interrupts */
 
 /*********************************************************************************************************************/
 /*---------------------------------Configuration for Trap Hook Functions' Extensions---------------------------------*/
 /*********************************************************************************************************************/
-/* #define IFX_CFG_EXTEND_TRAP_HOOKS */ /* Decomment this line if the project needs to extend trap hook functions */
+#define IFX_CFG_EXTEND_TRAP_HOOKS  /* Decomment this line if the project needs to extend trap hook functions */
 
 #endif /* IFX_CFG_H */

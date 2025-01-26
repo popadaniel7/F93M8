@@ -49,11 +49,13 @@ Discarded input sections
  .text          0x00000000        0x0 ./SCR/main.o
  .data          0x00000000        0x0 ./SCR/main.o
  .bss           0x00000000        0x0 ./SCR/main.o
+ .bdata.i51     0x00000000        0x0 ./SCR/main.o
+ .xdata.i51     0x00000000        0x0 ./SCR/main.o
 
 Memory Configuration
 
 Name             Origin             Length             Used               Free               Attributes
-text             0x00000000         0x00001c00         0x00000180         0x00001a80         xr
+text             0x00000000         0x00001c00         0x00000205         0x000019fb         xr
 bit              0x00000000         0x00000080         0x00000000         0x00000080         rw !x
 data             0x00000000         0x00000100         0x00000008         0x000000f8         rw !x
 pdata            0x00000000         0x00000100         0x00000000         0x00000100         rw !x
@@ -166,11 +168,15 @@ Linker script and memory map
 .isr00
  *(.isr00)
 
-.isr01
+.isr01          memory region -> text
+                0x0000000b        0x3
  *(.isr01)
+ .isr01         0x0000000b        0x3 ./SCR/main.o
 
-.isr02
+.isr02          memory region -> text
+                0x00000013        0x3
  *(.isr02)
+ .isr02         0x00000013        0x3 ./SCR/main.o
 
 .isr03
  *(.isr03)
@@ -216,7 +222,7 @@ Linker script and memory map
                 0x00000101        0x2 SHORT 0x100 ADDR (.gsinit)
 
 .text           memory region -> text
-                0x00000103       0x7d
+                0x00000103      0x102
  *(.init)
  *(.text.gsinit0)
  .text.gsinit0  0x00000103        0x6 C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\sdcc_421/share/sdcc/lib/large\libmcs51.a(crtstart.rel)
@@ -247,20 +253,26 @@ Linker script and memory map
                 0x00000179        0x4 C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\sdcc_421/share/sdcc/lib/large\libsdcc.a(_startup.rel)
                 0x00000179                __sdcc_external_startup
  .text.code.main
-                0x0000017d        0x3 ./SCR/main.o
+                0x0000017d       0x4b ./SCR/main.o
                 0x0000017d                _main
+ .text.code.Scr_WCAN_Interrupt
+                0x000001c8       0x1e ./SCR/main.o
+                0x000001c8                _Scr_WCAN_Interrupt
+ .text.code.Scr_NMIECC_Interrupt
+                0x000001e6       0x1f ./SCR/main.o
+                0x000001e6                _Scr_NMIECC_Interrupt
  *(.fini)
-                0x00000180                _etext = .
+                0x00000205                _etext = .
 
 .roxdata        memory region -> text
-                0x00000180        0x0
-                0x00000180                __roxdata_start = .
+                0x00000205        0x0
+                0x00000205                __roxdata_start = .
  *(.roxdata.*)
-                0x00000180                __roxdata_end = .
+                0x00000205                __roxdata_end = .
                 0x00000008                regsize = DEFINED (__RB3__)?0x20:DEFINED (__RB2__)?0x18:DEFINED (__RB1__)?0x10:0x8
 
 .reg            memory region -> data
-                0x00000000        0x8 load address 0x00000180
+                0x00000000        0x8 load address 0x00000205
                 0x00000000                PROVIDE (__reg_start, .)
  *(.regbank)
                 0x00000008                . = regsize
@@ -344,7 +356,7 @@ Linker script and memory map
                 0x00000000                l_XSEG = (__xdatac_end - __xdatac_start)
                 0x00001d00                s_XISEG = __xdatai_start
                 0x00000000                l_XISEG = (__xdatai_end - __xdatai_start)
-                0x00000180                s_XINIT = __roxdata_start
+                0x00000205                s_XINIT = __roxdata_start
                 0x00000000                l_XINIT = (__roxdata_end - __roxdata_start)
                 0x00000001                _. = ASSERT ((__stack_start < 0xf0), Stack Iram above limit 0xF0)
                 0x00000001                _. = ASSERT ((__ddata_end < 0x80), Direct Iram Data above Limit 0x80)

@@ -111,7 +111,7 @@ static void __StartUpSoftware_Phase4(void);
 static void __StartUpSoftware_Phase5(void);
 static void __StartUpSoftware_Phase6(void);
 static void __Core0_start(void);
-IFX_SSW_COMMON_LINKER_SYMBOLS();
+IFX_SSW_COMMON_LINKER_SYMBOLS(); // @suppress("Unused variable declaration in file scope")
 IFX_SSW_CORE_LINKER_SYMBOLS(0);
 
 /*******************************************************************************

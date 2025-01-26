@@ -58,11 +58,7 @@
     __asm("\t .extern _SMALL_DATA_, _LITERAL_DATA_, _A8_DATA_, _A9_DATA_"); \
     extern unsigned int __START0[];     /**< Pointer to the startup code */ \
     extern unsigned int __START1[];     /**< Pointer to the startup code */ \
-    extern unsigned int __START2[];     /**< Pointer to the startup code */ \
-    extern unsigned int __START3[];     /**< Pointer to the startup code */ \
-    extern unsigned int __START4[];     /**< Pointer to the startup code */ \
-    extern unsigned int __START5[];     /**< Pointer to the startup code */
-
+    extern unsigned int __START2[];     /**< Pointer to the startup code */
 /*End: Common definitions ************************************************ */
 
 /*Start: Core 0 definitions ********************************************** */

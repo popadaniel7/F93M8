@@ -32,6 +32,8 @@
 #include "Ifx_Cfg_Ssw.h"
 #include "Ifx_Ssw_Infra.h"
 
+
+
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -49,6 +51,7 @@ void Ifx_Ssw_Pms_Init(void)
     if (IfxPmsEvr_runInitSequence(&IfxPmsEvr_cfgSequenceDefault) == 0)
     {
         __debug();
+        McuSm_PerformResetHook(374u, 1u);
         /* Application may have call to error handling here */
     }
 
@@ -62,6 +65,7 @@ void Ifx_Ssw_Pms_InitCheck(void)
     if (IfxPmsEvr_areInitValuesRight(&IfxPmsEvr_checkRegCfgDefault) == 0)
     {
         __debug();
+        McuSm_PerformResetHook(375u, 1u);
         /* Application may have call to error handling here */
     }
     Ifx_Ssw_jumpBackToLink();
@@ -83,7 +87,7 @@ void Ifx_Ssw_Lbist(void)
     {
          __debug();
          /* Application may have call to error handling here */
-         
+         McuSm_PerformResetHook(376u, 1u);
          /* Infinite loop to ensure that the error is notified as 'debugger is not connected at this point of time' */
          while(1);
     }

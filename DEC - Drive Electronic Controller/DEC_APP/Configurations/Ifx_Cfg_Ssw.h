@@ -161,12 +161,13 @@ extern void Ifx_Ssw_Monbist(void);
  */
 #if IFX_CFG_SSW_ENABLE_PLL_INIT == 1U
 #include "IfxScuCcu.h"
-
+extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
 #define IFX_CFG_SSW_CALLOUT_PLL_INIT()                          \
     {                                                           \
         if (IfxScuCcu_init(&IfxScuCcu_defaultClockConfig) == 1) \
         {                                                       \
             __debug();                                          \
+            McuSm_PerformResetHook(377u, 1u);                   \
         }                                                       \
     }
 

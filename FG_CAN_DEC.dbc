@@ -85,12 +85,12 @@ BO_ 266 ClimateWiperControl: 7 CBS
 BO_ 269 StatusErrorSetting_705: 1 PDM
  SG_ Err705_ID : 0|8@1+ (1,0) [0|255] ""  DEC
 
-BO_ 263 StatusVoltageCurrent: 2 PDM
+BO_ 263 StatusVoltageCurrent: 3 PDM
+ SG_ TotalCurrentConsumption2 : 16|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ TotalCurrentConsumption : 8|8@1+ (1,0) [0|255] ""  DEC
  SG_ MeasuredVoltageSupply : 0|8@1+ (1,0) [0|255] ""  DEC
 
-BO_ 260 StatusPowerSupplyNetwork: 2 PDM
- SG_ TotalCurrentConsumption2 : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+BO_ 260 StatusPowerSupplyNetwork: 1 PDM
  SG_ PSNWarn : 0|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 259 StatusLoadList: 8 PDM
