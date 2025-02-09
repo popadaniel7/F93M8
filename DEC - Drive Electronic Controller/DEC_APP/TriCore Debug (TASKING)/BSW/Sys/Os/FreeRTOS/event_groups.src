@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f cc14704a --dep-file=BSW/Sys/Os/FreeRTOS/event_groups.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EMotorCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EPSCtrl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\E2e -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Eru -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\StdIf -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Pwm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Timer -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\SCR Debug (SDCC) -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Sys/Os/FreeRTOS/event_groups.src ../BSW/Sys/Os/FreeRTOS/event_groups.c"
+	.compiler_invocation	"ctc -f cc12968a --dep-file=BSW/Sys/Os/FreeRTOS/event_groups.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Eru -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\StdIf -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Pwm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Atom\\\\Timer -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\SCR Debug (SDCC) -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Sys/Os/FreeRTOS/event_groups.src ../BSW/Sys/Os/FreeRTOS/event_groups.c"
 	.compiler_name		"ctc"
 	;source	'../BSW/Sys/Os/FreeRTOS/event_groups.c'
 
@@ -12,29 +12,29 @@ $TC162
 	.align	2
 	
 ; Function vPortSetCCPN
-.L70:
+.L67:
 vPortSetCCPN:	.type	func
 	disable
-.L407:
+.L381:
 	mfcr	d15,#65068
-.L408:
+.L382:
 	insert	d0,d15,#0,#0,#8
-.L409:
+.L383:
 	and	d15,d4,#255
-.L410:
+.L384:
 	or	d0,d15
-.L411:
+.L385:
 	mtcr	#65068,d0
 	isync
-.L412:
+.L386:
 	enable
-.L413:
+.L387:
 	ret
-.L178:
+.L161:
 	
 __vPortSetCCPN_function_end:
 	.size	vPortSetCCPN,__vPortSetCCPN_function_end-vPortSetCCPN
-.L107:
+.L100:
 	; End of function
 	
 	.sdecl	'.text.portmacro.vPortSetICR',code,cluster('vPortSetICR')
@@ -42,21 +42,21 @@ __vPortSetCCPN_function_end:
 	.align	2
 	
 ; Function vPortSetICR
-.L72:
+.L69:
 vPortSetICR:	.type	func
 	disable
-.L418:
+.L392:
 	mtcr	#65068,d4
 	isync
-.L419:
+.L393:
 	enable
-.L420:
+.L394:
 	ret
-.L182:
+.L165:
 	
 __vPortSetICR_function_end:
 	.size	vPortSetICR,__vPortSetICR_function_end-vPortSetICR
-.L112:
+.L105:
 	; End of function
 	
 	.sdecl	'.text.portmacro.xPortSetCCPN',code,cluster('xPortSetCCPN')
@@ -64,31 +64,31 @@ __vPortSetICR_function_end:
 	.align	2
 	
 ; Function xPortSetCCPN
-.L74:
+.L71:
 xPortSetCCPN:	.type	func
 	disable
-.L425:
+.L399:
 	mfcr	d2,#65068
-.L295:
+.L270:
 	insert	d0,d2,#0,#0,#8
-.L426:
+.L400:
 	and	d15,d4,#255
-.L427:
+.L401:
 	or	d0,d15
-.L428:
+.L402:
 	mtcr	#65068,d0
 	isync
-.L429:
+.L403:
 	enable
-.L430:
+.L404:
 	j	.L2
 .L2:
 	ret
-.L186:
+.L169:
 	
 __xPortSetCCPN_function_end:
 	.size	xPortSetCCPN,__xPortSetCCPN_function_end-xPortSetCCPN
-.L117:
+.L110:
 	; End of function
 	
 	.sdecl	'.text.event_groups.xEventGroupCreate',code,cluster('xEventGroupCreate')
@@ -97,38 +97,38 @@ __xPortSetCCPN_function_end:
 	
 	.global	xEventGroupCreate
 ; Function xEventGroupCreate
-.L76:
+.L73:
 xEventGroupCreate:	.type	func
-	mov	d4,#28
+	mov	d4,#24
 	call	pvPortMalloc
-.L296:
+.L271:
 	mov.aa	a15,a2
-.L298:
+.L273:
 	jz.a	a15,.L3
-.L435:
+.L409:
 	mov	d15,#0
-.L436:
+.L410:
 	st.w	[a15],d15
-.L437:
+.L411:
 	mov.aa	a4,a15
-.L297:
+.L272:
 	add.a	a4,#4
-.L299:
+.L274:
 	call	vListInitialise
-.L300:
+.L275:
 	j	.L4
 .L3:
 .L4:
 	mov.aa	a2,a15
-.L301:
+.L276:
 	j	.L5
 .L5:
 	ret
-.L192:
+.L175:
 	
 __xEventGroupCreate_function_end:
 	.size	xEventGroupCreate,__xEventGroupCreate_function_end-xEventGroupCreate
-.L122:
+.L115:
 	; End of function
 	
 	.sdecl	'.text.event_groups.xEventGroupSync',code,cluster('xEventGroupSync')
@@ -137,128 +137,128 @@ __xEventGroupCreate_function_end:
 	
 	.global	xEventGroupSync
 ; Function xEventGroupSync
-.L78:
+.L75:
 xEventGroupSync:	.type	func
 	mov.aa	a15,a4
-.L303:
+.L278:
 	mov	d8,d4
-.L305:
+.L280:
 	mov	d10,d5
-.L307:
+.L282:
 	mov	d15,d6
-.L309:
+.L284:
 	call	xTaskGetSchedulerState
-.L302:
+.L277:
 	jne	d2,#0,.L6
 	jeq	d15,#0,.L7
 .L7:
 .L6:
 	call	vTaskSuspendAll
-.L487:
+.L461:
 	ld.w	d9,[a15]
-.L311:
+.L286:
 	mov.aa	a4,a15
-.L312:
+.L287:
 	mov	d4,d8
-.L314:
+.L289:
 	call	xEventGroupSetBits
-.L313:
+.L288:
 	or	d0,d9,d8
-.L488:
+.L462:
 	and	d0,d10
-.L489:
+.L463:
 	jne	d0,d10,.L8
-.L315:
+.L290:
 	or	d8,d9
-.L306:
+.L281:
 	ld.w	d0,[a15]
-.L490:
+.L464:
 	mov	d15,#-1
-.L310:
+.L285:
 	xor	d15,d10
-.L491:
+.L465:
 	and	d0,d15
 	st.w	[a15],d0
-.L492:
+.L466:
 	mov	d15,#0
-.L316:
+.L291:
 	j	.L9
 .L8:
 	jeq	d15,#0,.L10
-.L493:
+.L467:
 	mov.aa	a4,a15
-.L319:
+.L294:
 	add.a	a4,#4
-.L304:
+.L279:
 	insert	d0,d10,#1,#24,#1
-.L494:
+.L468:
 	insert	d4,d0,#1,#26,#1
-.L495:
+.L469:
 	mov	d5,d15
-.L321:
+.L296:
 	call	vTaskPlaceOnUnorderedEventList
-.L320:
+.L295:
 	mov	d8,#0
-.L318:
+.L293:
 	j	.L11
 .L10:
 	ld.w	d8,[a15]
 .L11:
 .L9:
 	call	xTaskResumeAll
-.L323:
+.L298:
 	jeq	d15,#0,.L12
-.L496:
+.L470:
 	jne	d2,#0,.L13
-.L497:
+.L471:
 	syscall	#0
-.L324:
+.L299:
 	j	.L14
 .L13:
 .L14:
 	call	uxTaskResetEventItemValue
-.L322:
+.L297:
 	mov	d8,d2
-.L326:
+.L301:
 	jnz.t	d8:25,.L15
-.L498:
+.L472:
 	call	vPortEnterCritical
-.L325:
+.L300:
 	ld.w	d8,[a15]
-.L327:
+.L302:
 	and	d15,d8,d10
-.L317:
+.L292:
 	jne	d15,d10,.L16
-.L328:
+.L303:
 	ld.w	d15,[a15]
-.L329:
+.L304:
 	mov	d0,#-1
 	xor	d10,d0
-.L308:
+.L283:
 	and	d15,d10
-.L330:
+.L305:
 	st.w	[a15],d15
-.L331:
+.L306:
 	j	.L17
 .L16:
 .L17:
 	call	vPortExitCritical
-.L499:
+.L473:
 	j	.L18
 .L15:
 .L18:
 	insert	d8,d8,#0,#24,#8
 .L12:
 	mov	d2,d8
-.L332:
+.L307:
 	j	.L19
 .L19:
 	ret
-.L239:
+.L222:
 	
 __xEventGroupSync_function_end:
 	.size	xEventGroupSync,__xEventGroupSync_function_end-xEventGroupSync
-.L142:
+.L135:
 	; End of function
 	
 	.sdecl	'.text.event_groups.xEventGroupWaitBits',code,cluster('xEventGroupWaitBits')
@@ -267,123 +267,123 @@ __xEventGroupSync_function_end:
 	
 	.global	xEventGroupWaitBits
 ; Function xEventGroupWaitBits
-.L80:
+.L77:
 xEventGroupWaitBits:	.type	func
 	mov.aa	a15,a4
-.L334:
+.L309:
 	mov	d9,d4
-.L336:
+.L311:
 	mov	e10,d6,d5
 	mov	d15,d7
-.L338:
+.L313:
 	mov	d8,#0
-.L340:
+.L315:
 	call	xTaskGetSchedulerState
-.L333:
+.L308:
 	jne	d2,#0,.L20
 	jeq	d15,#0,.L21
 .L21:
 .L20:
 	call	vTaskSuspendAll
-.L213:
+.L196:
 	ld.w	d12,[a15]
-.L342:
+.L317:
 	mov	e4,d9,d12
-.L343:
+.L318:
 	mov	d6,d11
-.L344:
+.L319:
 	call	prvTestWaitCondition
-.L345:
+.L320:
 	jeq	d2,#0,.L22
-.L442:
+.L416:
 	mov	d15,#0
-.L347:
+.L322:
 	jeq	d10,#0,.L23
-.L348:
+.L323:
 	ld.w	d0,[a15]
-.L443:
+.L417:
 	mov	d1,#-1
 	xor	d1,d9
-.L444:
+.L418:
 	and	d0,d1
 	st.w	[a15],d0
-.L445:
+.L419:
 	j	.L24
 .L23:
 .L24:
 	j	.L25
 .L22:
 	jne	d15,#0,.L26
-.L446:
+.L420:
 	j	.L27
 .L26:
 	jeq	d10,#0,.L28
-.L349:
+.L324:
 	insert	d8,d8,#1,#24,#1
-.L447:
+.L421:
 	j	.L29
 .L28:
 .L29:
 	jeq	d11,#0,.L30
-.L350:
+.L325:
 	insert	d8,d8,#1,#26,#1
-.L448:
+.L422:
 	j	.L31
 .L30:
 .L31:
 	mov.aa	a4,a15
-.L351:
+.L326:
 	add.a	a4,#4
-.L335:
+.L310:
 	or	d4,d9,d8
-.L449:
+.L423:
 	mov	d5,d15
-.L352:
+.L327:
 	call	vTaskPlaceOnUnorderedEventList
-.L346:
+.L321:
 	mov	d12,#0
 .L27:
 .L25:
 	call	xTaskResumeAll
-.L353:
+.L328:
 	jeq	d15,#0,.L32
-.L450:
+.L424:
 	jne	d2,#0,.L33
-.L451:
+.L425:
 	syscall	#0
-.L354:
+.L329:
 	j	.L34
 .L33:
 .L34:
 	call	uxTaskResetEventItemValue
-.L355:
+.L330:
 	mov	d8,d2
-.L341:
+.L316:
 	jnz.t	d8:25,.L35
-.L452:
+.L426:
 	call	vPortEnterCritical
-.L356:
+.L331:
 	ld.w	d8,[a15]
-.L357:
+.L332:
 	mov	e4,d9,d8
-.L358:
+.L333:
 	mov	d6,d11
-.L359:
+.L334:
 	call	prvTestWaitCondition
-.L360:
+.L335:
 	jeq	d2,#0,.L36
-.L361:
+.L336:
 	jeq	d10,#0,.L37
-.L362:
+.L337:
 	ld.w	d15,[a15]
-.L339:
+.L314:
 	mov	d0,#-1
 	xor	d9,d0
-.L337:
+.L312:
 	and	d15,d9
-.L363:
+.L338:
 	st.w	[a15],d15
-.L364:
+.L339:
 	j	.L38
 .L37:
 .L38:
@@ -391,22 +391,22 @@ xEventGroupWaitBits:	.type	func
 .L36:
 .L39:
 	call	vPortExitCritical
-.L453:
+.L427:
 	j	.L40
 .L35:
 .L40:
 	insert	d12,d8,#0,#24,#8
 .L32:
 	mov	d2,d12
-.L214:
+.L197:
 	j	.L41
 .L41:
 	ret
-.L196:
+.L179:
 	
 __xEventGroupWaitBits_function_end:
 	.size	xEventGroupWaitBits,__xEventGroupWaitBits_function_end-xEventGroupWaitBits
-.L127:
+.L120:
 	; End of function
 	
 	.sdecl	'.text.event_groups.xEventGroupClearBits',code,cluster('xEventGroupClearBits')
@@ -415,36 +415,36 @@ __xEventGroupWaitBits_function_end:
 	
 	.global	xEventGroupClearBits
 ; Function xEventGroupClearBits
-.L82:
+.L79:
 xEventGroupClearBits:	.type	func
 	mov.aa	a15,a4
-.L366:
+.L341:
 	mov	d15,d4
-.L367:
+.L342:
 	call	vPortEnterCritical
-.L365:
+.L340:
 	ld.w	d8,[a15]
-.L369:
+.L344:
 	ld.w	d0,[a15]
-.L458:
+.L432:
 	mov	d1,#-1
 	xor	d15,d1
-.L368:
+.L343:
 	and	d0,d15
 	st.w	[a15],d0
-.L459:
+.L433:
 	call	vPortExitCritical
-.L460:
+.L434:
 	mov	d2,d8
-.L370:
+.L345:
 	j	.L42
 .L42:
 	ret
-.L217:
+.L200:
 	
 __xEventGroupClearBits_function_end:
 	.size	xEventGroupClearBits,__xEventGroupClearBits_function_end-xEventGroupClearBits
-.L132:
+.L125:
 	; End of function
 	
 	.sdecl	'.text.event_groups.xEventGroupGetBitsFromISR',code,cluster('xEventGroupGetBitsFromISR')
@@ -453,44 +453,44 @@ __xEventGroupClearBits_function_end:
 	
 	.global	xEventGroupGetBitsFromISR
 ; Function xEventGroupGetBitsFromISR
-.L84:
+.L81:
 xEventGroupGetBitsFromISR:	.type	func
 	mov	d15,#31
-.L258:
+.L241:
 	disable
-.L504:
+.L478:
 	mfcr	d1,#65068
-.L371:
+.L346:
 	insert	d0,d1,#0,#0,#8
-.L505:
+.L479:
 	and	d15,#255
-.L506:
+.L480:
 	or	d0,d15
-.L507:
+.L481:
 	mtcr	#65068,d0
 	isync
-.L508:
+.L482:
 	enable
-.L509:
+.L483:
 	j	.L43
 .L43:
 	ld.w	d2,[a4]
-.L262:
+.L245:
 	disable
-.L510:
+.L484:
 	mtcr	#65068,d1
 	isync
-.L511:
+.L485:
 	enable
-.L263:
+.L246:
 	j	.L44
 .L44:
 	ret
-.L251:
+.L234:
 	
 __xEventGroupGetBitsFromISR_function_end:
 	.size	xEventGroupGetBitsFromISR,__xEventGroupGetBitsFromISR_function_end-xEventGroupGetBitsFromISR
-.L147:
+.L140:
 	; End of function
 	
 	.sdecl	'.text.event_groups.xEventGroupSetBits',code,cluster('xEventGroupSetBits')
@@ -499,102 +499,102 @@ __xEventGroupGetBitsFromISR_function_end:
 	
 	.global	xEventGroupSetBits
 ; Function xEventGroupSetBits
-.L86:
+.L83:
 xEventGroupSetBits:	.type	func
 	mov.aa	a15,a4
-.L373:
+.L348:
 	mov	d15,d4
-.L374:
+.L349:
 	mov	d8,#0
-.L375:
+.L350:
 	lea	a12,[a15]12
-.L377:
+.L352:
 	call	vTaskSuspendAll
-.L372:
+.L347:
 	ld.a	a4,[a15]16
-.L378:
+.L353:
 	ld.w	d0,[a15]
-.L465:
+.L439:
 	or	d0,d15
 	st.w	[a15],d0
-.L466:
+.L440:
 	j	.L45
 .L46:
 	ld.a	a13,[a4]4
-.L379:
+.L354:
 	ld.w	d0,[a4]
-.L380:
+.L355:
 	mov	d1,#0
-.L382:
+.L357:
 	insert	d2,d0,#0,#0,#24
-.L383:
+.L358:
 	insert	d15,d0,#0,#24,#8
-.L381:
+.L356:
 	jnz.t	d2:26,.L47
-.L467:
+.L441:
 	ld.w	d0,[a15]
-.L468:
+.L442:
 	and	d0,d15
-.L469:
+.L443:
 	jeq	d0,#0,.L48
-.L470:
+.L444:
 	mov	d1,#1
-.L471:
+.L445:
 	j	.L49
 .L48:
 .L49:
 	j	.L50
 .L47:
 	ld.w	d0,[a15]
-.L472:
+.L446:
 	and	d0,d15
-.L473:
+.L447:
 	jne	d15,d0,.L51
-.L474:
+.L448:
 	mov	d1,#1
-.L475:
+.L449:
 	j	.L52
 .L51:
 .L52:
 .L50:
 	jeq	d1,#0,.L53
-.L476:
+.L450:
 	jz.t	d2:24,.L54
-.L477:
+.L451:
 	or	d8,d15
-.L478:
+.L452:
 	j	.L55
 .L54:
 .L55:
 	ld.w	d15,[a15]
-.L384:
+.L359:
 	insert	d4,d15,#1,#25,#1
 	call	vTaskRemoveFromUnorderedEventList
 .L53:
 	mov.aa	a4,a13
 .L45:
 	jne.a	a4,a12,.L46
-.L479:
+.L453:
 	ld.w	d15,[a15]
-.L480:
+.L454:
 	mov	d0,#-1
 	xor	d8,d0
-.L376:
+.L351:
 	and	d15,d8
 	st.w	[a15],d15
-.L481:
+.L455:
 	call	xTaskResumeAll
-.L385:
+.L360:
 	ld.w	d2,[a15]
-.L482:
+.L456:
 	j	.L56
 .L56:
 	ret
-.L223:
+.L206:
 	
 __xEventGroupSetBits_function_end:
 	.size	xEventGroupSetBits,__xEventGroupSetBits_function_end-xEventGroupSetBits
-.L137:
+.L130:
 	; End of function
 	
 	.sdecl	'.text.event_groups.vEventGroupDelete',code,cluster('vEventGroupDelete')
@@ -603,39 +603,39 @@ __xEventGroupSetBits_function_end:
 	
 	.global	vEventGroupDelete
 ; Function vEventGroupDelete
-.L88:
+.L85:
 vEventGroupDelete:	.type	func
 	mov.aa	a15,a4
-.L387:
+.L362:
 	mov.aa	a12,a15
-.L388:
+.L363:
 	add.a	a12,#4
-.L516:
+.L490:
 	call	vTaskSuspendAll
-.L386:
+.L361:
 	j	.L57
 .L58:
 	ld.a	a4,[a15]16
-.L517:
+.L491:
 	movh	d4,#512
 	call	vTaskRemoveFromUnorderedEventList
 .L57:
 	ld.w	d15,[a12]
-.L518:
+.L492:
 	jge.u	d15,#1,.L58
-.L519:
+.L493:
 	call	xTaskResumeAll
-.L520:
+.L494:
 	mov.aa	a4,a15
-.L389:
+.L364:
 	call	vPortFree
-.L390:
+.L365:
 	ret
-.L266:
+.L249:
 	
 __vEventGroupDelete_function_end:
 	.size	vEventGroupDelete,__vEventGroupDelete_function_end-vEventGroupDelete
-.L152:
+.L145:
 	; End of function
 	
 	.sdecl	'.text.event_groups.vEventGroupSetBitsCallback',code,cluster('vEventGroupSetBitsCallback')
@@ -644,16 +644,16 @@ __vEventGroupDelete_function_end:
 	
 	.global	vEventGroupSetBitsCallback
 ; Function vEventGroupSetBitsCallback
-.L90:
+.L87:
 vEventGroupSetBitsCallback:	.type	func
 	call	xEventGroupSetBits
-.L391:
+.L366:
 	ret
-.L270:
+.L253:
 	
 __vEventGroupSetBitsCallback_function_end:
 	.size	vEventGroupSetBitsCallback,__vEventGroupSetBitsCallback_function_end-vEventGroupSetBitsCallback
-.L157:
+.L150:
 	; End of function
 	
 	.sdecl	'.text.event_groups.vEventGroupClearBitsCallback',code,cluster('vEventGroupClearBitsCallback')
@@ -662,16 +662,16 @@ __vEventGroupSetBitsCallback_function_end:
 	
 	.global	vEventGroupClearBitsCallback
 ; Function vEventGroupClearBitsCallback
-.L92:
+.L89:
 vEventGroupClearBitsCallback:	.type	func
 	call	xEventGroupClearBits
-.L392:
+.L367:
 	ret
-.L275:
+.L258:
 	
 __vEventGroupClearBitsCallback_function_end:
 	.size	vEventGroupClearBitsCallback,__vEventGroupClearBitsCallback_function_end-vEventGroupClearBitsCallback
-.L162:
+.L155:
 	; End of function
 	
 	.sdecl	'.text.event_groups.prvTestWaitCondition',code,cluster('prvTestWaitCondition')
@@ -679,29 +679,29 @@ __vEventGroupClearBitsCallback_function_end:
 	.align	2
 	
 ; Function prvTestWaitCondition
-.L94:
+.L91:
 prvTestWaitCondition:	.type	func
 	mov	d2,#0
-.L394:
+.L369:
 	jne	d6,#0,.L59
-.L543:
+.L507:
 	and	d4,d5
-.L393:
+.L368:
 	jeq	d4,#0,.L60
-.L544:
+.L508:
 	mov	d2,#1
-.L545:
+.L509:
 	j	.L61
 .L60:
 .L61:
 	j	.L62
 .L59:
 	and	d4,d5
-.L395:
+.L370:
 	jne	d4,d5,.L63
-.L546:
+.L510:
 	mov	d2,#1
-.L547:
+.L511:
 	j	.L64
 .L63:
 .L64:
@@ -709,55 +709,11 @@ prvTestWaitCondition:	.type	func
 	j	.L65
 .L65:
 	ret
-.L287:
+.L262:
 	
 __prvTestWaitCondition_function_end:
 	.size	prvTestWaitCondition,__prvTestWaitCondition_function_end-prvTestWaitCondition
-.L177:
-	; End of function
-	
-	.sdecl	'.text.event_groups.uxEventGroupGetNumber',code,cluster('uxEventGroupGetNumber')
-	.sect	'.text.event_groups.uxEventGroupGetNumber'
-	.align	2
-	
-	.global	uxEventGroupGetNumber
-; Function uxEventGroupGetNumber
-.L96:
-uxEventGroupGetNumber:	.type	func
-	jnz.a	a4,.L66
-.L533:
-	mov	d2,#0
-.L396:
-	j	.L67
-.L66:
-	ld.w	d2,[a4]24
-.L67:
-	j	.L68
-.L68:
-	ret
-.L279:
-	
-__uxEventGroupGetNumber_function_end:
-	.size	uxEventGroupGetNumber,__uxEventGroupGetNumber_function_end-uxEventGroupGetNumber
-.L167:
-	; End of function
-	
-	.sdecl	'.text.event_groups.vEventGroupSetNumber',code,cluster('vEventGroupSetNumber')
-	.sect	'.text.event_groups.vEventGroupSetNumber'
-	.align	2
-	
-	.global	vEventGroupSetNumber
-; Function vEventGroupSetNumber
-.L98:
-vEventGroupSetNumber:	.type	func
-	st.w	[a4]24,d4
-.L538:
-	ret
-.L284:
-	
-__vEventGroupSetNumber_function_end:
-	.size	vEventGroupSetNumber,__vEventGroupSetNumber_function_end-vEventGroupSetNumber
-.L172:
+.L160:
 	; End of function
 	
 	.calls	'xEventGroupCreate','pvPortMalloc'
@@ -801,8 +757,6 @@ __vEventGroupSetNumber_function_end:
 	.calls	'vEventGroupDelete','',0
 	.calls	'vEventGroupSetBitsCallback','',0
 	.calls	'vEventGroupClearBitsCallback','',0
-	.calls	'prvTestWaitCondition','',0
-	.calls	'uxEventGroupGetNumber','',0
 	.extern	vPortEnterCritical
 	.extern	vPortExitCritical
 	.extern	pvPortMalloc
@@ -814,53 +768,53 @@ __vEventGroupSetNumber_function_end:
 	.extern	vTaskRemoveFromUnorderedEventList
 	.extern	uxTaskResetEventItemValue
 	.extern	xTaskGetSchedulerState
-	.calls	'vEventGroupSetNumber','',0
+	.calls	'prvTestWaitCondition','',0
 	.sdecl	'.debug_info',debug
 	.sect	'.debug_info'
-.L100:
-	.word	2906
+.L93:
+	.word	2824
 	.half	3
-	.word	.L101
+	.word	.L94
 	.byte	4
-.L99:
+.L92:
 	.byte	1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L102
-.L208:
+	.word	.L95
+.L191:
 	.byte	2
 	.byte	'long int',0,4,5
-.L181:
+.L164:
 	.byte	3
-	.byte	'vPortSetICR',0,1,1,167,1,54,1,1
-.L183:
+	.byte	'vPortSetICR',0,1,1,169,1,54,1,1
+.L166:
 	.byte	4
-	.byte	'ulICR',0,1,167,1,81
+	.byte	'ulICR',0,1,169,1,81
 	.word	238
-.L265:
+.L248:
 	.byte	5,0
-.L179:
+.L162:
 	.byte	2
 	.byte	'unsigned char',0,1,8
-.L195:
+.L178:
 	.byte	2
 	.byte	'unsigned int',0,4,7
-.L185:
+.L168:
 	.byte	6
-	.byte	'xPortSetCCPN',0,1,1,174,1,63
+	.byte	'xPortSetCCPN',0,1,1,176,1,63
 	.word	238
 	.byte	1,1
-.L187:
+.L170:
 	.byte	4
-	.byte	'ucCCPN',0,1,174,1,91
+	.byte	'ucCCPN',0,1,176,1,91
 	.word	287
-.L260:
+.L243:
 	.byte	7
-.L189:
+.L172:
 	.byte	8
-	.byte	'xICR',0,1,176,1,14
+	.byte	'xICR',0,1,178,1,14
 	.word	304
 	.byte	0,0,2
 	.byte	'int',0,4,5,9
@@ -881,10 +835,10 @@ __vEventGroupSetNumber_function_end:
 	.byte	0,13
 	.byte	'__disable',0,1,1,1,1,13
 	.byte	'__enable',0,1,1,1,1,14
-	.byte	'vPortEnterCritical',0,1,102,13,1,1,1,1,14
-	.byte	'vPortExitCritical',0,1,103,13,1,1,1,1,15
+	.byte	'vPortEnterCritical',0,1,104,13,1,1,1,1,14
+	.byte	'vPortExitCritical',0,1,105,13,1,1,1,1,15
 	.byte	'void',0
-.L271:
+.L254:
 	.byte	16
 	.word	538
 	.byte	17
@@ -898,15 +852,15 @@ __vEventGroupSetNumber_function_end:
 	.byte	'pv',0,2,178,1,24
 	.word	544
 	.byte	0
-.L253:
+.L236:
 	.byte	2
 	.byte	'unsigned long int',0,4,7,11
 	.word	623
 	.byte	16
-	.word	.L397-.L100
+	.word	.L371-.L93
 	.byte	16
-	.word	.L398-.L100
-.L397:
+	.word	.L372-.L93
+.L371:
 	.byte	19
 	.byte	'xLIST_ITEM',0,3,144,1,8,20,20
 	.byte	'xItemValue',0
@@ -921,10 +875,10 @@ __vEventGroupSetNumber_function_end:
 	.byte	'pvOwner',0
 	.word	544
 	.byte	4,2,35,12,20
-	.byte	'pvContainer',0
+	.byte	'pxContainer',0
 	.word	654
 	.byte	4,2,35,16,0
-.L227:
+.L210:
 	.byte	16
 	.word	659
 	.byte	19
@@ -938,7 +892,7 @@ __vEventGroupSetNumber_function_end:
 	.byte	'pxPrevious',0
 	.word	649
 	.byte	4,2,35,8,0
-.L398:
+.L372:
 	.byte	19
 	.byte	'xLIST',0,3,172,1,16,20,20
 	.byte	'uxNumberOfItems',0
@@ -991,87 +945,83 @@ __vEventGroupSetNumber_function_end:
 	.byte	'xTaskGetSchedulerState',0,4,221,23,12
 	.word	238
 	.byte	1,1,1,1,19
-	.byte	'EventGroupDef_t',0,5,64,16,28,20
+	.byte	'EventGroupDef_t',0,5,64,16,24,20
 	.byte	'uxEventBits',0
 	.word	304
 	.byte	4,2,35,0,20
 	.byte	'xTasksWaitingForBits',0
 	.word	855
-	.byte	20,2,35,4,20
-	.byte	'uxEventGroupNumber',0
-	.word	623
-	.byte	4,2,35,24,0,16
+	.byte	20,2,35,4,0,16
 	.word	1316
 	.byte	16
 	.word	1316
-.L191:
+.L174:
 	.byte	23
 	.byte	'EventGroupHandle_t',0,6,83,36
-	.word	1422
-.L193:
+	.word	1394
+.L176:
 	.byte	16
 	.word	1316
+.L181:
+	.byte	21
+	.word	304
+.L183:
+	.byte	21
+	.word	238
+.L185:
+	.byte	21
+	.word	238
 .L198:
 	.byte	21
 	.word	304
-.L200:
-	.byte	21
-	.word	238
 .L202:
 	.byte	21
-	.word	238
-.L215:
-	.byte	21
 	.word	304
-.L219:
-	.byte	21
-	.word	304
-.L225:
+.L208:
 	.byte	21
 	.word	304
 	.byte	21
 	.word	659
-.L230:
+.L213:
 	.byte	16
-	.word	1489
+	.word	1461
 	.byte	21
 	.word	855
-.L232:
+.L215:
 	.byte	16
-	.word	1499
-.L241:
+	.word	1471
+.L224:
 	.byte	21
 	.word	304
-.L243:
+.L226:
 	.byte	21
 	.word	304
 	.byte	21
 	.word	1316
-.L282:
 	.byte	16
-	.word	1519
-.L255:
+	.word	1491
+.L238:
 	.byte	21
-	.word	1524
-.L273:
-	.byte	21
-	.word	304
-.L277:
+	.word	1496
+.L256:
 	.byte	21
 	.word	304
-.L288:
+.L260:
 	.byte	21
 	.word	304
-.L290:
+.L263:
 	.byte	21
 	.word	304
-.L292:
+.L265:
+	.byte	21
+	.word	304
+.L267:
 	.byte	21
 	.word	238
 	.byte	2
 	.byte	'short int',0,2,5,23
 	.byte	'__wchar_t',0,5,1,1
-	.word	1559
+	.word	1531
 	.byte	23
 	.byte	'__size_t',0,5,1,1
 	.word	304
@@ -1079,10 +1029,10 @@ __vEventGroupSetNumber_function_end:
 	.byte	'__ptrdiff_t',0,5,1,1
 	.word	378
 	.byte	24,1,16
-	.word	1627
+	.word	1599
 	.byte	23
 	.byte	'__codeptr',0,5,1,1
-	.word	1629
+	.word	1601
 	.byte	23
 	.byte	'__intptr_t',0,5,1,1
 	.word	378
@@ -1098,28 +1048,28 @@ __vEventGroupSetNumber_function_end:
 	.byte	2
 	.byte	'unsigned short int',0,2,7,23
 	.byte	'uint16_t',0,8,246,1,41
-	.word	1723
+	.word	1695
 	.byte	23
 	.byte	'uint32_t',0,8,254,1,41
 	.word	304
 	.byte	25,1,1,10
 	.word	544
 	.byte	0,16
-	.word	1781
+	.word	1753
 	.byte	23
 	.byte	'TaskFunction_t',0,9,36,17
-	.word	1790
+	.word	1762
 	.byte	23
-	.byte	'StackType_t',0,1,74,30
+	.byte	'StackType_t',0,1,76,30
 	.word	304
 	.byte	23
-	.byte	'BaseType_t',0,1,75,30
+	.byte	'BaseType_t',0,1,77,30
 	.word	238
 	.byte	23
-	.byte	'UBaseType_t',0,1,76,30
+	.byte	'UBaseType_t',0,1,78,30
 	.word	623
 	.byte	23
-	.byte	'TickType_t',0,1,82,30
+	.byte	'TickType_t',0,1,84,30
 	.word	304
 	.byte	26,16
 	.word	544
@@ -1129,10 +1079,10 @@ __vEventGroupSetNumber_function_end:
 	.word	304
 	.byte	4,2,35,0,20
 	.byte	'pvDummy3',0
-	.word	1896
+	.word	1868
 	.byte	16,2,35,4,0,23
 	.byte	'StaticListItem_t',0,10,188,9,34
-	.word	1905
+	.word	1877
 	.byte	26,8
 	.word	544
 	.byte	27,1,0,19
@@ -1141,10 +1091,10 @@ __vEventGroupSetNumber_function_end:
 	.word	304
 	.byte	4,2,35,0,20
 	.byte	'pvDummy3',0
-	.word	1991
+	.word	1963
 	.byte	8,2,35,4,0,23
 	.byte	'StaticMiniListItem_t',0,10,200,9,43
-	.word	2000
+	.word	1972
 	.byte	19
 	.byte	'xSTATIC_LIST',0,10,206,9,16,20,20
 	.byte	'uxDummy2',0
@@ -1154,10 +1104,10 @@ __vEventGroupSetNumber_function_end:
 	.word	544
 	.byte	4,2,35,4,20
 	.byte	'xDummy4',0
-	.word	2000
+	.word	1972
 	.byte	12,2,35,8,0,23
 	.byte	'StaticList_t',0,10,217,9,3
-	.word	2095
+	.word	2067
 	.byte	26,12
 	.word	544
 	.byte	27,2,0,28,10,172,10,5,4,20
@@ -1167,54 +1117,45 @@ __vEventGroupSetNumber_function_end:
 	.byte	'uxDummy2',0
 	.word	623
 	.byte	4,2,35,0,0,26,40
-	.word	2095
+	.word	2067
 	.byte	27,1,0,26,12
 	.word	623
 	.byte	27,2,0,26,2
 	.word	287
 	.byte	27,1,0,19
-	.byte	'xSTATIC_QUEUE',0,10,168,10,16,76,20
+	.byte	'xSTATIC_QUEUE',0,10,168,10,16,72,20
 	.byte	'pvDummy1',0
-	.word	2190
+	.word	2162
 	.byte	12,2,35,0,20
 	.byte	'u',0
-	.word	2199
+	.word	2171
 	.byte	4,2,35,12,20
 	.byte	'xDummy3',0
-	.word	2242
+	.word	2214
 	.byte	40,2,35,16,20
 	.byte	'uxDummy4',0
-	.word	2251
+	.word	2223
 	.byte	12,2,35,56,20
 	.byte	'ucDummy5',0
-	.word	2260
-	.byte	2,2,35,68,20
-	.byte	'uxDummy8',0
-	.word	623
-	.byte	4,2,35,70,20
-	.byte	'ucDummy9',0
-	.word	287
-	.byte	1,2,35,74,0,23
+	.word	2232
+	.byte	2,2,35,68,0,23
 	.byte	'StaticQueue_t',0,10,194,10,3
-	.word	2269
+	.word	2241
 	.byte	26,16
 	.word	304
 	.byte	27,3,0,19
-	.byte	'xSTATIC_STREAM_BUFFER',0,10,138,11,16,36,20
+	.byte	'xSTATIC_STREAM_BUFFER',0,10,138,11,16,32,20
 	.byte	'uxDummy1',0
-	.word	2431
+	.word	2367
 	.byte	16,2,35,0,20
 	.byte	'pvDummy2',0
-	.word	2190
+	.word	2162
 	.byte	12,2,35,16,20
 	.byte	'ucDummy3',0
 	.word	287
-	.byte	1,2,35,28,20
-	.byte	'uxDummy4',0
-	.word	623
-	.byte	4,2,35,30,0,23
+	.byte	1,2,35,28,0,23
 	.byte	'StaticStreamBuffer_t',0,10,149,11,3
-	.word	2440
+	.word	2376
 	.byte	23
 	.byte	'ListItem_t',0,3,154,1,27
 	.word	659
@@ -1226,10 +1167,10 @@ __vEventGroupSetNumber_function_end:
 	.word	855
 	.byte	29
 	.byte	'tskTaskControlBlock',0,4,86,8,1,16
-	.word	2631
+	.word	2549
 	.byte	23
 	.byte	'TaskHandle_t',0,4,87,38
-	.word	2656
+	.word	2574
 	.byte	30,4,96,9,1,31
 	.byte	'eRunning',0,0,31
 	.byte	'eReady',0,1,31
@@ -1238,7 +1179,7 @@ __vEventGroupSetNumber_function_end:
 	.byte	'eDeleted',0,4,31
 	.byte	'eInvalid',0,5,0,23
 	.byte	'eTaskState',0,4,104,3
-	.word	2682
+	.word	2600
 	.byte	19
 	.byte	'xMEMORY_REGION',0,4,128,1,16,12,20
 	.byte	'pvBaseAddress',0
@@ -1251,14 +1192,14 @@ __vEventGroupSetNumber_function_end:
 	.word	304
 	.byte	4,2,35,8,0,23
 	.byte	'MemoryRegion_t',0,4,133,1,3
-	.word	2773
+	.word	2691
 	.byte	23
 	.byte	'EventBits_t',0,6,93,34
 	.word	304
 	.byte	0
 	.sdecl	'.debug_abbrev',debug
 	.sect	'.debug_abbrev'
-.L101:
+.L94:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,46,1,3,8,32,13,58,15,59,15
 	.byte	57,15,54,15,39,12,0,0,4,5,0,3,8,58,15,59,15,57,15,73,19,0,0,5,11,0,0,0,6,46,1,3,8,32,13,58,15,59,15,57
 	.byte	15,73,19,54,15,39,12,0,0,7,11,1,0,0,8,52,0,3,8,58,15,59,15,57,15,73,19,0,0,9,46,1,3,8,54,15,39,12,63,12
@@ -1272,12 +1213,12 @@ __vEventGroupSetNumber_function_end:
 	.byte	15,11,15,0,0,31,40,0,3,8,28,13,0,0,0
 	.sdecl	'.debug_line',debug
 	.sect	'.debug_line'
-.L102:
-	.word	.L400-.L399
-.L399:
+.L95:
+	.word	.L374-.L373
+.L373:
 	.half	3
-	.word	.L402-.L401
-.L401:
+	.word	.L376-.L375
+.L375:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\include',0
@@ -1292,1890 +1233,1729 @@ __vEventGroupSetNumber_function_end:
 	.byte	'stdint.h',0,3,0,0
 	.byte	'projdefs.h',0,2,0,0
 	.byte	'FreeRTOS.h',0,2,0,0,0
-.L402:
-.L400:
+.L376:
+.L374:
 	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_info'
-.L103:
+.L96:
 	.word	414
 	.half	3
-	.word	.L104
+	.word	.L97
 	.byte	4,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L106,.L105
+	.word	.L99,.L98
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
-	.byte	'vPortSetCCPN',0,1,160,1,54,1,1
-	.word	.L70,.L178,.L69
+	.byte	'vPortSetCCPN',0,1,162,1,54,1,1
+	.word	.L67,.L161,.L66
 	.byte	4
-	.byte	'ucCCPN',0,1,160,1,82
-	.word	.L179,.L180
+	.byte	'ucCCPN',0,1,162,1,82
+	.word	.L162,.L163
 	.byte	5
-	.word	.L70,.L178
+	.word	.L67,.L161
 	.byte	0,0
 	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_abbrev'
-.L104:
+.L97:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
 	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_line'
-.L105:
-	.word	.L404-.L403
-.L403:
+.L98:
+	.word	.L378-.L377
+.L377:
 	.half	3
-	.word	.L406-.L405
-.L405:
+	.word	.L380-.L379
+.L379:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	0
 	.byte	'portmacro.h',0,1,0,0,0
-.L406:
+.L380:
 	.byte	5,14,7,0,5,2
-	.word	.L70
-	.byte	3,161,1,1,5,34,9
-	.half	.L407-.L70
+	.word	.L67
+	.byte	3,163,1,1,5,34,9
+	.half	.L381-.L67
 	.byte	3,1,1,5,50,9
-	.half	.L408-.L407
+	.half	.L382-.L381
 	.byte	1,5,87,9
-	.half	.L409-.L408
+	.half	.L383-.L382
 	.byte	1,5,76,9
-	.half	.L410-.L409
+	.half	.L384-.L383
 	.byte	1,5,11,9
-	.half	.L411-.L410
+	.half	.L385-.L384
 	.byte	1,5,13,9
-	.half	.L412-.L411
+	.half	.L386-.L385
 	.byte	3,1,1,5,1,9
-	.half	.L413-.L412
+	.half	.L387-.L386
 	.byte	3,1,1,7,9
-	.half	.L107-.L413
+	.half	.L100-.L387
 	.byte	0,1,1
-.L404:
+.L378:
 	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_ranges'
-.L106:
-	.word	-1,.L70,0,.L107-.L70,0,0
+.L99:
+	.word	-1,.L67,0,.L100-.L67,0,0
 	.sdecl	'.debug_info',debug,cluster('vPortSetICR')
 	.sect	'.debug_info'
-.L108:
+.L101:
 	.word	388
 	.half	3
-	.word	.L109
+	.word	.L102
 	.byte	4,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L111,.L110
+	.word	.L104,.L103
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
-	.word	.L181,.L72,.L182,.L71
+	.word	.L164,.L69,.L165,.L68
 	.byte	4
-	.word	.L183,.L184
+	.word	.L166,.L167
 	.byte	5
-	.word	.L72,.L182
+	.word	.L69,.L165
 	.byte	0,0
 	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR')
 	.sect	'.debug_abbrev'
-.L109:
+.L102:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,49,16,17,1,18,1,64,6,0,0,4
 	.byte	5,0,49,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
 	.sdecl	'.debug_line',debug,cluster('vPortSetICR')
 	.sect	'.debug_line'
-.L110:
-	.word	.L415-.L414
-.L414:
+.L103:
+	.word	.L389-.L388
+.L388:
 	.half	3
-	.word	.L417-.L416
-.L416:
+	.word	.L391-.L390
+.L390:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	0
 	.byte	'portmacro.h',0,1,0,0,0
-.L417:
+.L391:
 	.byte	5,14,7,0,5,2
-	.word	.L72
-	.byte	3,168,1,1,5,11,9
-	.half	.L418-.L72
+	.word	.L69
+	.byte	3,170,1,1,5,11,9
+	.half	.L392-.L69
 	.byte	3,1,1,5,13,9
-	.half	.L419-.L418
+	.half	.L393-.L392
 	.byte	3,1,1,5,1,9
-	.half	.L420-.L419
+	.half	.L394-.L393
 	.byte	3,1,1,7,9
-	.half	.L112-.L420
+	.half	.L105-.L394
 	.byte	0,1,1
-.L415:
+.L389:
 	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR')
 	.sect	'.debug_ranges'
-.L111:
-	.word	-1,.L72,0,.L112-.L72,0,0
+.L104:
+	.word	-1,.L69,0,.L105-.L69,0,0
 	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_info'
-.L113:
+.L106:
 	.word	398
 	.half	3
-	.word	.L114
+	.word	.L107
 	.byte	4,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3\\portmacro.h',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L116,.L115
+	.word	.L109,.L108
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
-	.word	.L185,.L74,.L186,.L73
+	.word	.L168,.L71,.L169,.L70
 	.byte	4
-	.word	.L187,.L188
+	.word	.L170,.L171
 	.byte	5
-	.word	.L74,.L186
+	.word	.L71,.L169
 	.byte	6
-	.word	.L189,.L190
+	.word	.L172,.L173
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_abbrev'
-.L114:
+.L107:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,49,16,17,1,18,1,64,6,0,0,4
 	.byte	5,0,49,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,49,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_line'
-.L115:
-	.word	.L422-.L421
-.L421:
+.L108:
+	.word	.L396-.L395
+.L395:
 	.half	3
-	.word	.L424-.L423
-.L423:
+	.word	.L398-.L397
+.L397:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	0
 	.byte	'portmacro.h',0,1,0,0,0
-.L424:
+.L398:
 	.byte	5,14,7,0,5,2
-	.word	.L74
-	.byte	3,177,1,1,5,18,9
-	.half	.L425-.L74
+	.word	.L71
+	.byte	3,179,1,1,5,18,9
+	.half	.L399-.L71
 	.byte	3,1,1,5,33,9
-	.half	.L295-.L425
+	.half	.L270-.L399
 	.byte	3,1,1,5,70,9
-	.half	.L426-.L295
+	.half	.L400-.L270
 	.byte	1,5,59,9
-	.half	.L427-.L426
+	.half	.L401-.L400
 	.byte	1,5,11,9
-	.half	.L428-.L427
+	.half	.L402-.L401
 	.byte	1,5,13,9
-	.half	.L429-.L428
+	.half	.L403-.L402
 	.byte	3,1,1,5,5,9
-	.half	.L430-.L429
+	.half	.L404-.L403
 	.byte	3,1,1,5,1,9
-	.half	.L2-.L430
+	.half	.L2-.L404
 	.byte	3,1,1,7,9
-	.half	.L117-.L2
+	.half	.L110-.L2
 	.byte	0,1,1
-.L422:
+.L396:
 	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_ranges'
-.L116:
-	.word	-1,.L74,0,.L117-.L74,0,0
+.L109:
+	.word	-1,.L71,0,.L110-.L71,0,0
 	.sdecl	'.debug_info',debug,cluster('xEventGroupCreate')
 	.sect	'.debug_info'
-.L118:
+.L111:
 	.word	322
 	.half	3
-	.word	.L119
+	.word	.L112
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L121,.L120
+	.word	.L114,.L113
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'xEventGroupCreate',0,1,148,1,24
-	.word	.L191
+	.word	.L174
 	.byte	1,1,1
-	.word	.L76,.L192,.L75
+	.word	.L73,.L175,.L72
 	.byte	4
-	.word	.L76,.L192
+	.word	.L73,.L175
 	.byte	5
 	.byte	'pxEventBits',0,1,150,1,24
-	.word	.L193,.L194
+	.word	.L176,.L177
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xEventGroupCreate')
 	.sect	'.debug_abbrev'
-.L119:
+.L112:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xEventGroupCreate')
 	.sect	'.debug_line'
-.L120:
-	.word	.L432-.L431
-.L431:
+.L113:
+	.word	.L406-.L405
+.L405:
 	.half	3
-	.word	.L434-.L433
-.L433:
+	.word	.L408-.L407
+.L407:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L434:
+.L408:
 	.byte	5,56,7,0,5,2
-	.word	.L76
+	.word	.L73
 	.byte	3,164,1,1,5,21,9
-	.half	.L296-.L76
+	.half	.L271-.L73
 	.byte	1,5,9,9
-	.half	.L298-.L296
+	.half	.L273-.L271
 	.byte	3,2,1,5,40,7,9
-	.half	.L435-.L298
+	.half	.L409-.L273
 	.byte	3,2,1,5,38,9
-	.half	.L436-.L435
+	.half	.L410-.L409
 	.byte	1,5,44,9
-	.half	.L437-.L436
+	.half	.L411-.L410
 	.byte	3,1,1,5,41,9
-	.half	.L300-.L437
+	.half	.L275-.L411
 	.byte	3,127,1,5,9,9
-	.half	.L4-.L300
+	.half	.L4-.L275
 	.byte	3,19,1,5,5,9
 	.half	.L5-.L4
 	.byte	3,1,1,7,9
-	.half	.L122-.L5
+	.half	.L115-.L5
 	.byte	0,1,1
-.L432:
+.L406:
 	.sdecl	'.debug_ranges',debug,cluster('xEventGroupCreate')
 	.sect	'.debug_ranges'
-.L121:
-	.word	-1,.L76,0,.L122-.L76,0,0
+.L114:
+	.word	-1,.L73,0,.L115-.L73,0,0
 	.sdecl	'.debug_info',debug,cluster('xEventGroupWaitBits')
 	.sect	'.debug_info'
-.L123:
+.L116:
 	.word	636
 	.half	3
-	.word	.L124
+	.word	.L117
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L126,.L125
+	.word	.L119,.L118
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'xEventGroupWaitBits',0,1,189,2,13
-	.word	.L195
+	.word	.L178
 	.byte	1,1,1
-	.word	.L80,.L196,.L79
+	.word	.L77,.L179,.L76
 	.byte	4
 	.byte	'xEventGroup',0,1,189,2,53
-	.word	.L191,.L197
+	.word	.L174,.L180
 	.byte	4
 	.byte	'uxBitsToWaitFor',0,1,190,2,52
-	.word	.L198,.L199
+	.word	.L181,.L182
 	.byte	4
 	.byte	'xClearOnExit',0,1,191,2,51
-	.word	.L200,.L201
+	.word	.L183,.L184
 	.byte	4
 	.byte	'xWaitForAllBits',0,1,192,2,51
-	.word	.L202,.L203
+	.word	.L185,.L186
 	.byte	4
 	.byte	'xTicksToWait',0,1,193,2,45
-	.word	.L195,.L204
+	.word	.L178,.L187
 	.byte	5
-	.word	.L80,.L196
+	.word	.L77,.L179
 	.byte	6
 	.byte	'pxEventBits',0,1,195,2,20
-	.word	.L193,.L205
+	.word	.L176,.L188
 	.byte	6
 	.byte	'uxReturn',0,1,196,2,17
-	.word	.L195,.L206
+	.word	.L178,.L189
 	.byte	6
 	.byte	'uxControlBits',0,1,196,2,27
-	.word	.L195,.L207
+	.word	.L178,.L190
 	.byte	6
 	.byte	'xWaitConditionMet',0,1,197,2,16
-	.word	.L208,.L209
+	.word	.L191,.L192
 	.byte	6
 	.byte	'xAlreadyYielded',0,1,197,2,35
-	.word	.L208,.L210
+	.word	.L191,.L193
 	.byte	6
 	.byte	'xTimeoutOccurred',0,1,198,2,16
-	.word	.L208,.L211
+	.word	.L191,.L194
 	.byte	7
-	.word	.L212
+	.word	.L195
 	.byte	6
 	.byte	'uxCurrentEventBits',0,1,213,2,27
-	.word	.L215,.L216
+	.word	.L198,.L199
 	.byte	0,0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xEventGroupWaitBits')
 	.sect	'.debug_abbrev'
-.L124:
+.L117:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
 	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,11,1,85,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xEventGroupWaitBits')
 	.sect	'.debug_line'
-.L125:
-	.word	.L439-.L438
-.L438:
+.L118:
+	.word	.L413-.L412
+.L412:
 	.half	3
-	.word	.L441-.L440
-.L440:
+	.word	.L415-.L414
+.L414:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L441:
+.L415:
 	.byte	5,13,7,0,5,2
-	.word	.L80
+	.word	.L77
 	.byte	3,188,2,1,5,41,9
-	.half	.L338-.L80
+	.half	.L313-.L77
 	.byte	3,7,1,5,9,9
-	.half	.L340-.L338
+	.half	.L315-.L313
 	.byte	3,11,1,5,20,9
-	.half	.L20-.L340
+	.half	.L20-.L315
 	.byte	3,4,1,5,59,9
-	.half	.L213-.L20
+	.half	.L196-.L20
 	.byte	3,2,1,5,88,9
-	.half	.L342-.L213
+	.half	.L317-.L196
 	.byte	3,3,1,5,9,9
-	.half	.L345-.L342
+	.half	.L320-.L317
 	.byte	3,2,1,5,26,7,9
-	.half	.L442-.L345
+	.half	.L416-.L320
 	.byte	3,5,1,5,13,9
-	.half	.L347-.L442
+	.half	.L322-.L416
 	.byte	3,3,1,5,28,7,9
-	.half	.L348-.L347
+	.half	.L323-.L322
 	.byte	3,2,1,5,45,9
-	.half	.L443-.L348
+	.half	.L417-.L323
 	.byte	1,5,42,9
-	.half	.L444-.L443
+	.half	.L418-.L417
 	.byte	1,5,61,9
-	.half	.L445-.L444
+	.half	.L419-.L418
 	.byte	1,5,13,9
-	.half	.L24-.L445
+	.half	.L24-.L419
 	.byte	3,2,1,5,14,9
 	.half	.L22-.L24
 	.byte	3,5,1,5,42,7,9
-	.half	.L446-.L22
+	.half	.L420-.L22
 	.byte	3,4,1,5,13,9
-	.half	.L26-.L446
+	.half	.L26-.L420
 	.byte	3,9,1,5,31,7,9
-	.half	.L349-.L26
+	.half	.L324-.L26
 	.byte	3,2,1,5,63,9
-	.half	.L447-.L349
+	.half	.L421-.L324
 	.byte	1,5,13,9
-	.half	.L29-.L447
+	.half	.L29-.L421
 	.byte	3,7,1,5,31,7,9
-	.half	.L350-.L29
+	.half	.L325-.L29
 	.byte	3,2,1,5,56,9
-	.half	.L448-.L350
+	.half	.L422-.L325
 	.byte	1,5,59,9
-	.half	.L31-.L448
+	.half	.L31-.L422
 	.byte	3,10,1,5,103,9
-	.half	.L335-.L31
+	.half	.L310-.L31
 	.byte	1,5,122,9
-	.half	.L449-.L335
+	.half	.L423-.L310
 	.byte	1,5,22,9
-	.half	.L346-.L449
+	.half	.L321-.L423
 	.byte	3,5,1,5,37,9
-	.half	.L25-.L346
+	.half	.L25-.L321
 	.byte	3,5,1,5,5,9
-	.half	.L353-.L25
+	.half	.L328-.L25
 	.byte	3,2,1,5,9,7,9
-	.half	.L450-.L353
+	.half	.L424-.L328
 	.byte	3,2,1,5,13,7,9
-	.half	.L451-.L450
+	.half	.L425-.L424
 	.byte	3,2,1,5,35,9
-	.half	.L354-.L451
+	.half	.L329-.L425
 	.byte	1,5,45,9
-	.half	.L34-.L354
+	.half	.L34-.L329
 	.byte	3,11,1,5,18,9
-	.half	.L355-.L34
+	.half	.L330-.L34
 	.byte	1,5,9,9
-	.half	.L341-.L355
+	.half	.L316-.L330
 	.byte	3,2,1,5,13,7,9
-	.half	.L452-.L341
+	.half	.L426-.L316
 	.byte	3,2,1,5,39,9
-	.half	.L356-.L452
+	.half	.L331-.L426
 	.byte	3,3,1,5,70,9
-	.half	.L357-.L356
+	.half	.L332-.L331
 	.byte	3,4,1,5,17,9
-	.half	.L360-.L357
+	.half	.L335-.L332
 	.byte	1,5,21,7,9
-	.half	.L361-.L360
+	.half	.L336-.L335
 	.byte	3,2,1,5,36,7,9
-	.half	.L362-.L361
+	.half	.L337-.L336
 	.byte	3,2,1,5,53,9
-	.half	.L339-.L362
+	.half	.L314-.L337
 	.byte	1,5,50,9
-	.half	.L337-.L339
+	.half	.L312-.L314
 	.byte	1,5,69,9
-	.half	.L364-.L337
+	.half	.L339-.L312
 	.byte	1,5,21,9
-	.half	.L38-.L364
+	.half	.L38-.L339
 	.byte	3,2,1,5,13,9
 	.half	.L39-.L38
 	.byte	3,12,1,5,42,9
-	.half	.L453-.L39
+	.half	.L427-.L39
 	.byte	3,126,1,5,18,9
-	.half	.L40-.L453
+	.half	.L40-.L427
 	.byte	3,10,1,5,5,9
 	.half	.L32-.L40
 	.byte	3,8,1,5,1,9
 	.half	.L41-.L32
 	.byte	3,1,1,7,9
-	.half	.L127-.L41
+	.half	.L120-.L41
 	.byte	0,1,1
-.L439:
+.L413:
 	.sdecl	'.debug_ranges',debug,cluster('xEventGroupWaitBits')
 	.sect	'.debug_ranges'
-.L126:
-	.word	-1,.L80,0,.L127-.L80,0,0
-.L212:
-	.word	-1,.L80,.L213-.L80,.L25-.L80,.L40-.L80,.L214-.L80,0,0
+.L119:
+	.word	-1,.L77,0,.L120-.L77,0,0
+.L195:
+	.word	-1,.L77,.L196-.L77,.L25-.L77,.L40-.L77,.L197-.L77,0,0
 	.sdecl	'.debug_info',debug,cluster('xEventGroupClearBits')
 	.sect	'.debug_info'
-.L128:
+.L121:
 	.word	399
 	.half	3
-	.word	.L129
+	.word	.L122
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L131,.L130
+	.word	.L124,.L123
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'xEventGroupClearBits',0,1,217,3,13
-	.word	.L195
+	.word	.L178
 	.byte	1,1,1
-	.word	.L82,.L217,.L81
+	.word	.L79,.L200,.L78
 	.byte	4
 	.byte	'xEventGroup',0,1,217,3,54
-	.word	.L191,.L218
+	.word	.L174,.L201
 	.byte	4
 	.byte	'uxBitsToClear',0,1,218,3,53
-	.word	.L219,.L220
+	.word	.L202,.L203
 	.byte	5
-	.word	.L82,.L217
+	.word	.L79,.L200
 	.byte	6
 	.byte	'pxEventBits',0,1,220,3,20
-	.word	.L193,.L221
+	.word	.L176,.L204
 	.byte	6
 	.byte	'uxReturn',0,1,221,3,17
-	.word	.L195,.L222
+	.word	.L178,.L205
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xEventGroupClearBits')
 	.sect	'.debug_abbrev'
-.L129:
+.L122:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
 	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xEventGroupClearBits')
 	.sect	'.debug_line'
-.L130:
-	.word	.L455-.L454
-.L454:
+.L123:
+	.word	.L429-.L428
+.L428:
 	.half	3
-	.word	.L457-.L456
-.L456:
+	.word	.L431-.L430
+.L430:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L457:
+.L431:
 	.byte	5,13,7,0,5,2
-	.word	.L82
+	.word	.L79
 	.byte	3,216,3,1,5,5,9
-	.half	.L367-.L82
+	.half	.L342-.L79
 	.byte	3,11,1,5,31,9
-	.half	.L365-.L367
+	.half	.L340-.L342
 	.byte	3,6,1,5,20,9
-	.half	.L369-.L365
+	.half	.L344-.L340
 	.byte	3,3,1,5,37,9
-	.half	.L458-.L369
+	.half	.L432-.L344
 	.byte	1,5,34,9
-	.half	.L368-.L458
+	.half	.L343-.L432
 	.byte	1,5,5,9
-	.half	.L459-.L368
+	.half	.L433-.L343
 	.byte	3,2,1,9
-	.half	.L460-.L459
+	.half	.L434-.L433
 	.byte	3,2,1,5,1,9
-	.half	.L42-.L460
+	.half	.L42-.L434
 	.byte	3,1,1,7,9
-	.half	.L132-.L42
+	.half	.L125-.L42
 	.byte	0,1,1
-.L455:
+.L429:
 	.sdecl	'.debug_ranges',debug,cluster('xEventGroupClearBits')
 	.sect	'.debug_ranges'
-.L131:
-	.word	-1,.L82,0,.L132-.L82,0,0
+.L124:
+	.word	-1,.L79,0,.L125-.L79,0,0
 	.sdecl	'.debug_info',debug,cluster('xEventGroupSetBits')
 	.sect	'.debug_info'
-.L133:
+.L126:
 	.word	568
 	.half	3
-	.word	.L134
+	.word	.L127
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L136,.L135
+	.word	.L129,.L128
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'xEventGroupSetBits',0,1,149,4,13
-	.word	.L195
+	.word	.L178
 	.byte	1,1,1
-	.word	.L86,.L223,.L85
+	.word	.L83,.L206,.L82
 	.byte	4
 	.byte	'xEventGroup',0,1,149,4,52
-	.word	.L191,.L224
+	.word	.L174,.L207
 	.byte	4
 	.byte	'uxBitsToSet',0,1,150,4,51
-	.word	.L225,.L226
+	.word	.L208,.L209
 	.byte	5
-	.word	.L86,.L223
+	.word	.L83,.L206
 	.byte	6
 	.byte	'pxListItem',0,1,152,4,18
-	.word	.L227,.L228
+	.word	.L210,.L211
 	.byte	6
 	.byte	'pxNext',0,1,153,4,18
-	.word	.L227,.L229
+	.word	.L210,.L212
 	.byte	6
 	.byte	'pxListEnd',0,1,154,4,24
-	.word	.L230,.L231
+	.word	.L213,.L214
 	.byte	6
 	.byte	'pxList',0,1,155,4,20
-	.word	.L232,.L233
+	.word	.L215,.L216
 	.byte	6
 	.byte	'uxBitsToClear',0,1,156,4,17
-	.word	.L195,.L234
+	.word	.L178,.L217
 	.byte	6
 	.byte	'uxBitsWaitedFor',0,1,156,4,36
-	.word	.L195,.L235
+	.word	.L178,.L218
 	.byte	6
 	.byte	'uxControlBits',0,1,156,4,53
-	.word	.L195,.L236
+	.word	.L178,.L219
 	.byte	6
 	.byte	'pxEventBits',0,1,157,4,20
-	.word	.L193,.L237
+	.word	.L176,.L220
 	.byte	6
 	.byte	'xMatchFound',0,1,158,4,16
-	.word	.L208,.L238
+	.word	.L191,.L221
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xEventGroupSetBits')
 	.sect	'.debug_abbrev'
-.L134:
+.L127:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
 	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xEventGroupSetBits')
 	.sect	'.debug_line'
-.L135:
-	.word	.L462-.L461
-.L461:
+.L128:
+	.word	.L436-.L435
+.L435:
 	.half	3
-	.word	.L464-.L463
-.L463:
+	.word	.L438-.L437
+.L437:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L464:
+.L438:
 	.byte	5,13,7,0,5,2
-	.word	.L86
+	.word	.L83
 	.byte	3,148,4,1,5,31,9
-	.half	.L374-.L86
+	.half	.L349-.L83
 	.byte	3,7,1,5,17,9
-	.half	.L375-.L374
+	.half	.L350-.L349
 	.byte	3,10,1,5,20,9
-	.half	.L377-.L375
+	.half	.L352-.L350
 	.byte	3,1,1,5,22,9
-	.half	.L372-.L377
+	.half	.L347-.L352
 	.byte	3,4,1,5,20,9
-	.half	.L378-.L372
+	.half	.L353-.L347
 	.byte	3,3,1,5,34,9
-	.half	.L465-.L378
+	.half	.L439-.L353
 	.byte	1,5,40,9
-	.half	.L466-.L465
+	.half	.L440-.L439
 	.byte	3,3,1,5,22,9
-	.half	.L46-.L466
+	.half	.L46-.L440
 	.byte	3,2,1,5,31,9
-	.half	.L379-.L46
+	.half	.L354-.L46
 	.byte	3,1,1,5,25,9
-	.half	.L380-.L379
+	.half	.L355-.L354
 	.byte	3,1,1,5,45,9
-	.half	.L382-.L380
+	.half	.L357-.L355
 	.byte	3,3,1,5,29,9
-	.half	.L383-.L382
+	.half	.L358-.L357
 	.byte	3,1,1,5,13,9
-	.half	.L381-.L383
+	.half	.L356-.L358
 	.byte	3,2,1,5,52,7,9
-	.half	.L467-.L381
+	.half	.L441-.L356
 	.byte	3,3,1,5,39,9
-	.half	.L468-.L467
+	.half	.L442-.L441
 	.byte	1,5,17,9
-	.half	.L469-.L468
+	.half	.L443-.L442
 	.byte	1,5,33,7,9
-	.half	.L470-.L469
+	.half	.L444-.L443
 	.byte	3,2,1,5,41,9
-	.half	.L471-.L470
+	.half	.L445-.L444
 	.byte	1,5,17,9
-	.half	.L49-.L471
+	.half	.L49-.L445
 	.byte	3,2,1,5,53,9
 	.half	.L47-.L49
 	.byte	3,5,1,5,40,9
-	.half	.L472-.L47
+	.half	.L446-.L47
 	.byte	1,5,18,9
-	.half	.L473-.L472
+	.half	.L447-.L446
 	.byte	1,5,29,7,9
-	.half	.L474-.L473
+	.half	.L448-.L447
 	.byte	3,3,1,5,37,9
-	.half	.L475-.L474
+	.half	.L449-.L448
 	.byte	1,5,13,9
-	.half	.L50-.L475
+	.half	.L50-.L449
 	.byte	3,7,1,5,17,7,9
-	.half	.L476-.L50
+	.half	.L450-.L50
 	.byte	3,3,1,5,35,7,9
-	.half	.L477-.L476
+	.half	.L451-.L450
 	.byte	3,2,1,5,53,9
-	.half	.L478-.L477
+	.half	.L452-.L451
 	.byte	1,5,75,9
-	.half	.L55-.L478
+	.half	.L55-.L452
 	.byte	3,12,1,5,89,9
-	.half	.L384-.L55
+	.half	.L359-.L55
 	.byte	1,5,24,9
-	.half	.L53-.L384
+	.half	.L53-.L359
 	.byte	3,6,1,5,40,9
 	.half	.L45-.L53
 	.byte	3,73,1,5,20,7,9
-	.half	.L479-.L45
+	.half	.L453-.L45
 	.byte	3,60,1,5,37,9
-	.half	.L480-.L479
+	.half	.L454-.L453
 	.byte	1,5,34,9
-	.half	.L376-.L480
+	.half	.L351-.L454
 	.byte	1,5,28,9
-	.half	.L481-.L376
+	.half	.L455-.L351
 	.byte	3,2,1,5,23,9
-	.half	.L385-.L481
+	.half	.L360-.L455
 	.byte	3,2,1,5,5,9
-	.half	.L482-.L385
+	.half	.L456-.L360
 	.byte	1,5,1,9
-	.half	.L56-.L482
+	.half	.L56-.L456
 	.byte	3,1,1,7,9
-	.half	.L137-.L56
+	.half	.L130-.L56
 	.byte	0,1,1
-.L462:
+.L436:
 	.sdecl	'.debug_ranges',debug,cluster('xEventGroupSetBits')
 	.sect	'.debug_ranges'
-.L136:
-	.word	-1,.L86,0,.L137-.L86,0,0
+.L129:
+	.word	-1,.L83,0,.L130-.L83,0,0
 	.sdecl	'.debug_info',debug,cluster('xEventGroupSync')
 	.sect	'.debug_info'
-.L138:
+.L131:
 	.word	538
 	.half	3
-	.word	.L139
+	.word	.L132
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L141,.L140
+	.word	.L134,.L133
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'xEventGroupSync',0,1,194,1,13
-	.word	.L195
+	.word	.L178
 	.byte	1,1,1
-	.word	.L78,.L239,.L77
+	.word	.L75,.L222,.L74
 	.byte	4
 	.byte	'xEventGroup',0,1,194,1,49
-	.word	.L191,.L240
+	.word	.L174,.L223
 	.byte	4
 	.byte	'uxBitsToSet',0,1,195,1,48
-	.word	.L241,.L242
+	.word	.L224,.L225
 	.byte	4
 	.byte	'uxBitsToWaitFor',0,1,196,1,48
-	.word	.L243,.L244
+	.word	.L226,.L227
 	.byte	4
 	.byte	'xTicksToWait',0,1,197,1,41
-	.word	.L195,.L245
+	.word	.L178,.L228
 	.byte	5
-	.word	.L78,.L239
+	.word	.L75,.L222
 	.byte	6
 	.byte	'uxOriginalBitValue',0,1,199,1,17
-	.word	.L195,.L246
+	.word	.L178,.L229
 	.byte	6
 	.byte	'uxReturn',0,1,199,1,37
-	.word	.L195,.L247
+	.word	.L178,.L230
 	.byte	6
 	.byte	'pxEventBits',0,1,200,1,20
-	.word	.L193,.L248
+	.word	.L176,.L231
 	.byte	6
 	.byte	'xAlreadyYielded',0,1,201,1,16
-	.word	.L208,.L249
+	.word	.L191,.L232
 	.byte	6
 	.byte	'xTimeoutOccurred',0,1,202,1,16
-	.word	.L208,.L250
+	.word	.L191,.L233
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xEventGroupSync')
 	.sect	'.debug_abbrev'
-.L139:
+.L132:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
 	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xEventGroupSync')
 	.sect	'.debug_line'
-.L140:
-	.word	.L484-.L483
-.L483:
+.L133:
+	.word	.L458-.L457
+.L457:
 	.half	3
-	.word	.L486-.L485
-.L485:
+	.word	.L460-.L459
+.L459:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L486:
+.L460:
 	.byte	5,13,7,0,5,2
-	.word	.L78
+	.word	.L75
 	.byte	3,193,1,1,5,9,9
-	.half	.L309-.L78
+	.half	.L284-.L75
 	.byte	3,14,1,5,20,9
-	.half	.L6-.L309
+	.half	.L6-.L284
 	.byte	3,4,1,5,41,9
-	.half	.L487-.L6
+	.half	.L461-.L6
 	.byte	3,2,1,5,51,9
-	.half	.L311-.L487
+	.half	.L286-.L461
 	.byte	3,2,1,5,36,9
-	.half	.L313-.L311
+	.half	.L288-.L286
 	.byte	3,2,1,5,52,9
-	.half	.L488-.L313
+	.half	.L462-.L288
 	.byte	1,5,9,9
-	.half	.L489-.L488
+	.half	.L463-.L462
 	.byte	1,5,45,7,9
-	.half	.L315-.L489
+	.half	.L290-.L463
 	.byte	3,3,1,5,24,9
-	.half	.L306-.L315
+	.half	.L281-.L290
 	.byte	3,4,1,5,41,9
-	.half	.L490-.L306
+	.half	.L464-.L281
 	.byte	1,5,38,9
-	.half	.L491-.L490
+	.half	.L465-.L464
 	.byte	1,5,26,9
-	.half	.L492-.L491
+	.half	.L466-.L465
 	.byte	3,2,1,5,60,9
-	.half	.L316-.L492
+	.half	.L291-.L466
 	.byte	3,122,1,5,13,9
-	.half	.L8-.L316
+	.half	.L8-.L291
 	.byte	3,10,1,5,63,7,9
-	.half	.L493-.L8
+	.half	.L467-.L8
 	.byte	3,7,1,5,107,9
-	.half	.L304-.L493
+	.half	.L279-.L467
 	.byte	1,5,139,1,9
-	.half	.L494-.L304
+	.half	.L468-.L279
 	.byte	1,5,167,1,9
-	.half	.L495-.L494
+	.half	.L469-.L468
 	.byte	1,5,26,9
-	.half	.L320-.L495
+	.half	.L295-.L469
 	.byte	3,6,1,5,181,1,9
-	.half	.L318-.L320
+	.half	.L293-.L295
 	.byte	3,122,1,5,39,9
-	.half	.L10-.L318
+	.half	.L10-.L293
 	.byte	3,12,1,5,37,9
 	.half	.L9-.L10
 	.byte	3,5,1,5,5,9
-	.half	.L323-.L9
+	.half	.L298-.L9
 	.byte	3,2,1,5,9,7,9
-	.half	.L496-.L323
+	.half	.L470-.L298
 	.byte	3,2,1,5,13,7,9
-	.half	.L497-.L496
+	.half	.L471-.L470
 	.byte	3,2,1,5,35,9
-	.half	.L324-.L497
+	.half	.L299-.L471
 	.byte	1,5,45,9
-	.half	.L14-.L324
+	.half	.L14-.L299
 	.byte	3,11,1,5,18,9
-	.half	.L322-.L14
+	.half	.L297-.L14
 	.byte	1,5,9,9
-	.half	.L326-.L322
+	.half	.L301-.L297
 	.byte	3,2,1,5,13,7,9
-	.half	.L498-.L326
+	.half	.L472-.L301
 	.byte	3,3,1,5,39,9
-	.half	.L325-.L498
+	.half	.L300-.L472
 	.byte	3,2,1,5,32,9
-	.half	.L327-.L325
+	.half	.L302-.L300
 	.byte	3,6,1,5,17,9
-	.half	.L317-.L327
+	.half	.L292-.L302
 	.byte	1,5,32,7,9
-	.half	.L328-.L317
+	.half	.L303-.L292
 	.byte	3,2,1,5,49,9
-	.half	.L329-.L328
+	.half	.L304-.L303
 	.byte	1,5,46,9
-	.half	.L308-.L329
+	.half	.L283-.L304
 	.byte	1,5,65,9
-	.half	.L331-.L308
+	.half	.L306-.L283
 	.byte	1,5,13,9
-	.half	.L17-.L331
+	.half	.L17-.L306
 	.byte	3,7,1,5,32,9
-	.half	.L499-.L17
+	.half	.L473-.L17
 	.byte	1,5,18,9
-	.half	.L18-.L499
+	.half	.L18-.L473
 	.byte	3,11,1,5,5,9
 	.half	.L12-.L18
 	.byte	3,8,1,5,1,9
 	.half	.L19-.L12
 	.byte	3,1,1,7,9
-	.half	.L142-.L19
+	.half	.L135-.L19
 	.byte	0,1,1
-.L484:
+.L458:
 	.sdecl	'.debug_ranges',debug,cluster('xEventGroupSync')
 	.sect	'.debug_ranges'
-.L141:
-	.word	-1,.L78,0,.L142-.L78,0,0
+.L134:
+	.word	-1,.L75,0,.L135-.L75,0,0
 	.sdecl	'.debug_info',debug,cluster('xEventGroupGetBitsFromISR')
 	.sect	'.debug_info'
-.L143:
+.L136:
 	.word	495
 	.half	3
-	.word	.L144
+	.word	.L137
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L146,.L145
+	.word	.L139,.L138
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'xEventGroupGetBitsFromISR',0,1,133,4,13
-	.word	.L195
+	.word	.L178
 	.byte	1,1,1
-	.word	.L84,.L251,.L83
+	.word	.L81,.L234,.L80
 	.byte	4
 	.byte	'xEventGroup',0,1,133,4,59
-	.word	.L191,.L252
+	.word	.L174,.L235
 	.byte	5
-	.word	.L84,.L251
+	.word	.L81,.L234
 	.byte	6
 	.byte	'uxSavedInterruptStatus',0,1,135,4,17
-	.word	.L253,.L254
+	.word	.L236,.L237
 	.byte	6
 	.byte	'pxEventBits',0,1,136,4,32
-	.word	.L255,.L256
+	.word	.L238,.L239
 	.byte	6
 	.byte	'uxReturn',0,1,137,4,17
-	.word	.L195,.L257
+	.word	.L178,.L240
 	.byte	7
-	.word	.L185,.L258,.L43
+	.word	.L168,.L241,.L43
 	.byte	8
-	.word	.L187,.L259
+	.word	.L170,.L242
 	.byte	9
-	.word	.L260,.L258,.L43
+	.word	.L243,.L241,.L43
 	.byte	10
-	.word	.L189,.L261
+	.word	.L172,.L244
 	.byte	0,0,7
-	.word	.L181,.L262,.L263
+	.word	.L164,.L245,.L246
 	.byte	8
-	.word	.L183,.L264
+	.word	.L166,.L247
 	.byte	11
-	.word	.L265,.L262,.L263
+	.word	.L248,.L245,.L246
 	.byte	0,0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xEventGroupGetBitsFromISR')
 	.sect	'.debug_abbrev'
-.L144:
+.L137:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
 	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,29,1,49,16,17,1,18,1,0,0,8,5,0,49,16,2,6,0,0,9,11,1,49,16,17
 	.byte	1,18,1,0,0,10,52,0,49,16,2,6,0,0,11,11,0,49,16,17,1,18,1,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xEventGroupGetBitsFromISR')
 	.sect	'.debug_line'
-.L145:
-	.word	.L501-.L500
-.L500:
+.L138:
+	.word	.L475-.L474
+.L474:
 	.half	3
-	.word	.L503-.L502
-.L502:
+	.word	.L477-.L476
+.L476:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0
 	.byte	'portmacro.h',0,1,0,0,0
-.L503:
+.L477:
 	.byte	5,30,7,0,5,2
-	.word	.L84
+	.word	.L81
 	.byte	3,138,4,1,4,2,5,14,9
-	.half	.L258-.L84
-	.byte	3,167,125,1,5,18,9
-	.half	.L504-.L258
+	.half	.L241-.L81
+	.byte	3,169,125,1,5,18,9
+	.half	.L478-.L241
 	.byte	3,1,1,5,33,9
-	.half	.L371-.L504
+	.half	.L346-.L478
 	.byte	3,1,1,5,70,9
-	.half	.L505-.L371
+	.half	.L479-.L346
 	.byte	1,5,59,9
-	.half	.L506-.L505
+	.half	.L480-.L479
 	.byte	1,5,11,9
-	.half	.L507-.L506
+	.half	.L481-.L480
 	.byte	1,5,13,9
-	.half	.L508-.L507
+	.half	.L482-.L481
 	.byte	3,1,1,5,5,9
-	.half	.L509-.L508
+	.half	.L483-.L482
 	.byte	3,1,1,4,1,5,31,9
-	.half	.L43-.L509
-	.byte	3,215,2,1,4,2,5,14,9
-	.half	.L262-.L43
-	.byte	3,156,125,1,5,11,9
-	.half	.L510-.L262
+	.half	.L43-.L483
+	.byte	3,213,2,1,4,2,5,14,9
+	.half	.L245-.L43
+	.byte	3,158,125,1,5,11,9
+	.half	.L484-.L245
 	.byte	3,1,1,5,13,9
-	.half	.L511-.L510
+	.half	.L485-.L484
 	.byte	3,1,1,4,1,5,5,9
-	.half	.L263-.L511
-	.byte	3,230,2,1,5,1,9
-	.half	.L44-.L263
+	.half	.L246-.L485
+	.byte	3,228,2,1,5,1,9
+	.half	.L44-.L246
 	.byte	3,1,1,7,9
-	.half	.L147-.L44
+	.half	.L140-.L44
 	.byte	0,1,1
-.L501:
+.L475:
 	.sdecl	'.debug_ranges',debug,cluster('xEventGroupGetBitsFromISR')
 	.sect	'.debug_ranges'
-.L146:
-	.word	-1,.L84,0,.L147-.L84,0,0
+.L139:
+	.word	-1,.L81,0,.L140-.L81,0,0
 	.sdecl	'.debug_info',debug,cluster('vEventGroupDelete')
 	.sect	'.debug_info'
-.L148:
+.L141:
 	.word	378
 	.half	3
-	.word	.L149
+	.word	.L142
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L151,.L150
+	.word	.L144,.L143
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'vEventGroupDelete',0,1,245,4,6,1,1,1
-	.word	.L88,.L266,.L87
+	.word	.L85,.L249,.L84
 	.byte	4
 	.byte	'xEventGroup',0,1,245,4,44
-	.word	.L191,.L267
+	.word	.L174,.L250
 	.byte	5
-	.word	.L88,.L266
+	.word	.L85,.L249
 	.byte	6
 	.byte	'pxEventBits',0,1,247,4,20
-	.word	.L193,.L268
+	.word	.L176,.L251
 	.byte	6
 	.byte	'pxTasksWaitingForBits',0,1,248,4,20
-	.word	.L232,.L269
+	.word	.L215,.L252
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('vEventGroupDelete')
 	.sect	'.debug_abbrev'
-.L149:
+.L142:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
 	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('vEventGroupDelete')
 	.sect	'.debug_line'
-.L150:
-	.word	.L513-.L512
-.L512:
+.L143:
+	.word	.L487-.L486
+.L486:
 	.half	3
-	.word	.L515-.L514
-.L514:
+	.word	.L489-.L488
+.L488:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L515:
+.L489:
 	.byte	5,6,7,0,5,2
-	.word	.L88
+	.word	.L85
 	.byte	3,244,4,1,5,43,9
-	.half	.L387-.L88
+	.half	.L362-.L85
 	.byte	3,7,1,5,20,9
-	.half	.L516-.L387
+	.half	.L490-.L362
 	.byte	3,2,1,5,85,9
-	.half	.L386-.L516
+	.half	.L361-.L490
 	.byte	3,4,1,5,79,9
-	.half	.L58-.L386
+	.half	.L58-.L361
 	.byte	3,5,1,5,88,9
-	.half	.L517-.L58
+	.half	.L491-.L58
 	.byte	1,5,16,9
-	.half	.L57-.L517
+	.half	.L57-.L491
 	.byte	3,123,1,5,85,9
-	.half	.L518-.L57
+	.half	.L492-.L57
 	.byte	1,5,28,7,9
-	.half	.L519-.L518
+	.half	.L493-.L492
 	.byte	3,8,1,5,20,9
-	.half	.L520-.L519
+	.half	.L494-.L493
 	.byte	3,6,1,5,1,9
-	.half	.L390-.L520
+	.half	.L365-.L494
 	.byte	3,16,1,7,9
-	.half	.L152-.L390
+	.half	.L145-.L365
 	.byte	0,1,1
-.L513:
+.L487:
 	.sdecl	'.debug_ranges',debug,cluster('vEventGroupDelete')
 	.sect	'.debug_ranges'
-.L151:
-	.word	-1,.L88,0,.L152-.L88,0,0
+.L144:
+	.word	-1,.L85,0,.L145-.L85,0,0
 	.sdecl	'.debug_info',debug,cluster('vEventGroupSetBitsCallback')
 	.sect	'.debug_info'
-.L153:
+.L146:
 	.word	352
 	.half	3
-	.word	.L154
+	.word	.L147
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L156,.L155
+	.word	.L149,.L148
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'vEventGroupSetBitsCallback',0,1,165,5,6,1,1,1
-	.word	.L90,.L270,.L89
+	.word	.L87,.L253,.L86
 	.byte	4
 	.byte	'pvEventGroup',0,1,165,5,41
-	.word	.L271,.L272
+	.word	.L254,.L255
 	.byte	4
 	.byte	'ulBitsToSet',0,1,166,5,49
-	.word	.L273,.L274
+	.word	.L256,.L257
 	.byte	5
-	.word	.L90,.L270
+	.word	.L87,.L253
 	.byte	0,0
 	.sdecl	'.debug_abbrev',debug,cluster('vEventGroupSetBitsCallback')
 	.sect	'.debug_abbrev'
-.L154:
+.L147:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
 	.sdecl	'.debug_line',debug,cluster('vEventGroupSetBitsCallback')
 	.sect	'.debug_line'
-.L155:
-	.word	.L522-.L521
-.L521:
+.L148:
+	.word	.L496-.L495
+.L495:
 	.half	3
-	.word	.L524-.L523
-.L523:
+	.word	.L498-.L497
+.L497:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L524:
+.L498:
 	.byte	5,64,7,0,5,2
-	.word	.L90
+	.word	.L87
 	.byte	3,167,5,1,5,1,9
-	.half	.L391-.L90
+	.half	.L366-.L87
 	.byte	3,1,1,7,9
-	.half	.L157-.L391
+	.half	.L150-.L366
 	.byte	0,1,1
-.L522:
+.L496:
 	.sdecl	'.debug_ranges',debug,cluster('vEventGroupSetBitsCallback')
 	.sect	'.debug_ranges'
-.L156:
-	.word	-1,.L90,0,.L157-.L90,0,0
+.L149:
+	.word	-1,.L87,0,.L150-.L87,0,0
 	.sdecl	'.debug_info',debug,cluster('vEventGroupClearBitsCallback')
 	.sect	'.debug_info'
-.L158:
+.L151:
 	.word	356
 	.half	3
-	.word	.L159
+	.word	.L152
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L161,.L160
+	.word	.L154,.L153
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'vEventGroupClearBitsCallback',0,1,174,5,6,1,1,1
-	.word	.L92,.L275,.L91
+	.word	.L89,.L258,.L88
 	.byte	4
 	.byte	'pvEventGroup',0,1,174,5,43
-	.word	.L271,.L276
+	.word	.L254,.L259
 	.byte	4
 	.byte	'ulBitsToClear',0,1,175,5,51
-	.word	.L277,.L278
+	.word	.L260,.L261
 	.byte	5
-	.word	.L92,.L275
+	.word	.L89,.L258
 	.byte	0,0
 	.sdecl	'.debug_abbrev',debug,cluster('vEventGroupClearBitsCallback')
 	.sect	'.debug_abbrev'
-.L159:
+.L152:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
 	.sdecl	'.debug_line',debug,cluster('vEventGroupClearBitsCallback')
 	.sect	'.debug_line'
-.L160:
-	.word	.L526-.L525
-.L525:
+.L153:
+	.word	.L500-.L499
+.L499:
 	.half	3
-	.word	.L528-.L527
-.L527:
+	.word	.L502-.L501
+.L501:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L528:
+.L502:
 	.byte	5,66,7,0,5,2
-	.word	.L92
+	.word	.L89
 	.byte	3,176,5,1,5,1,9
-	.half	.L392-.L92
+	.half	.L367-.L89
 	.byte	3,1,1,7,9
-	.half	.L162-.L392
+	.half	.L155-.L367
 	.byte	0,1,1
-.L526:
+.L500:
 	.sdecl	'.debug_ranges',debug,cluster('vEventGroupClearBitsCallback')
 	.sect	'.debug_ranges'
-.L161:
-	.word	-1,.L92,0,.L162-.L92,0,0
-	.sdecl	'.debug_info',debug,cluster('uxEventGroupGetNumber')
-	.sect	'.debug_info'
-.L163:
-	.word	372
-	.half	3
-	.word	.L164
-	.byte	4,1
-	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L166,.L165
-	.byte	2
-	.word	.L99
-	.byte	3
-	.byte	'uxEventGroupGetNumber',0,1,237,5,17
-	.word	.L253
-	.byte	1,1,1
-	.word	.L96,.L279,.L95
-	.byte	4
-	.byte	'xEventGroup',0,1,237,5,47
-	.word	.L271,.L280
-	.byte	5
-	.word	.L96,.L279
-	.byte	6
-	.byte	'xReturn',0,1,239,5,21
-	.word	.L253,.L281
-	.byte	6
-	.byte	'pxEventBits',0,1,240,5,30
-	.word	.L282,.L283
-	.byte	0,0,0
-	.sdecl	'.debug_abbrev',debug,cluster('uxEventGroupGetNumber')
-	.sect	'.debug_abbrev'
-.L164:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
-	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
-	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
-	.sdecl	'.debug_line',debug,cluster('uxEventGroupGetNumber')
-	.sect	'.debug_line'
-.L165:
-	.word	.L530-.L529
-.L529:
-	.half	3
-	.word	.L532-.L531
-.L531:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L532:
-	.byte	5,9,7,0,5,2
-	.word	.L96
-	.byte	3,241,5,1,5,21,7,9
-	.half	.L533-.L96
-	.byte	3,2,1,5,24,9
-	.half	.L396-.L533
-	.byte	1,5,34,9
-	.half	.L66-.L396
-	.byte	3,4,1,5,9,9
-	.half	.L67-.L66
-	.byte	3,3,1,5,5,9
-	.half	.L68-.L67
-	.byte	3,1,1,7,9
-	.half	.L167-.L68
-	.byte	0,1,1
-.L530:
-	.sdecl	'.debug_ranges',debug,cluster('uxEventGroupGetNumber')
-	.sect	'.debug_ranges'
-.L166:
-	.word	-1,.L96,0,.L167-.L96,0,0
-	.sdecl	'.debug_info',debug,cluster('vEventGroupSetNumber')
-	.sect	'.debug_info'
-.L168:
-	.word	352
-	.half	3
-	.word	.L169
-	.byte	4,1
-	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L171,.L170
-	.byte	2
-	.word	.L99
-	.byte	3
-	.byte	'vEventGroupSetNumber',0,1,131,6,10,1,1,1
-	.word	.L98,.L284,.L97
-	.byte	4
-	.byte	'xEventGroup',0,1,131,6,39
-	.word	.L271,.L285
-	.byte	4
-	.byte	'uxEventGroupNumber',0,1,132,6,44
-	.word	.L253,.L286
-	.byte	5
-	.word	.L98,.L284
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('vEventGroupSetNumber')
-	.sect	'.debug_abbrev'
-.L169:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('vEventGroupSetNumber')
-	.sect	'.debug_line'
-.L170:
-	.word	.L535-.L534
-.L534:
-	.half	3
-	.word	.L537-.L536
-.L536:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L537:
-	.byte	5,64,7,0,5,2
-	.word	.L98
-	.byte	3,133,6,1,5,5,9
-	.half	.L538-.L98
-	.byte	3,1,1,7,9
-	.half	.L172-.L538
-	.byte	0,1,1
-.L535:
-	.sdecl	'.debug_ranges',debug,cluster('vEventGroupSetNumber')
-	.sect	'.debug_ranges'
-.L171:
-	.word	-1,.L98,0,.L172-.L98,0,0
+.L154:
+	.word	-1,.L89,0,.L155-.L89,0,0
 	.sdecl	'.debug_info',debug,cluster('prvTestWaitCondition')
 	.sect	'.debug_info'
-.L173:
+.L156:
 	.word	420
 	.half	3
-	.word	.L174
+	.word	.L157
 	.byte	4,1
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L176,.L175
+	.word	.L159,.L158
 	.byte	2
-	.word	.L99
+	.word	.L92
 	.byte	3
 	.byte	'prvTestWaitCondition',0,1,181,5,19
-	.word	.L208
+	.word	.L191
 	.byte	1,1
-	.word	.L94,.L287,.L93
+	.word	.L91,.L262,.L90
 	.byte	4
 	.byte	'uxCurrentEventBits',0,1,181,5,59
-	.word	.L288,.L289
+	.word	.L263,.L264
 	.byte	4
 	.byte	'uxBitsToWaitFor',0,1,182,5,59
-	.word	.L290,.L291
+	.word	.L265,.L266
 	.byte	4
 	.byte	'xWaitForAllBits',0,1,183,5,58
-	.word	.L292,.L293
+	.word	.L267,.L268
 	.byte	5
-	.word	.L94,.L287
+	.word	.L91,.L262
 	.byte	6
 	.byte	'xWaitConditionMet',0,1,185,5,16
-	.word	.L208,.L294
+	.word	.L191,.L269
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('prvTestWaitCondition')
 	.sect	'.debug_abbrev'
-.L174:
+.L157:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
 	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('prvTestWaitCondition')
 	.sect	'.debug_line'
-.L175:
-	.word	.L540-.L539
-.L539:
+.L158:
+	.word	.L504-.L503
+.L503:
 	.half	3
-	.word	.L542-.L541
-.L541:
+	.word	.L506-.L505
+.L505:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Os/FreeRTOS/event_groups.c',0,0,0,0,0
-.L542:
+.L506:
 	.byte	5,34,7,0,5,2
-	.word	.L94
+	.word	.L91
 	.byte	3,184,5,1,5,5,9
-	.half	.L394-.L94
+	.half	.L369-.L91
 	.byte	3,2,1,5,34,7,9
-	.half	.L543-.L394
+	.half	.L507-.L369
 	.byte	3,4,1,5,9,9
-	.half	.L393-.L543
+	.half	.L368-.L507
 	.byte	1,5,31,7,9
-	.half	.L544-.L393
+	.half	.L508-.L368
 	.byte	3,2,1,5,39,9
-	.half	.L545-.L544
+	.half	.L509-.L508
 	.byte	1,5,9,9
-	.half	.L61-.L545
+	.half	.L61-.L509
 	.byte	3,2,1,5,34,9
 	.half	.L59-.L61
 	.byte	3,9,1,5,9,9
-	.half	.L395-.L59
+	.half	.L370-.L59
 	.byte	1,5,31,7,9
-	.half	.L546-.L395
+	.half	.L510-.L370
 	.byte	3,2,1,5,39,9
-	.half	.L547-.L546
+	.half	.L511-.L510
 	.byte	1,5,5,9
-	.half	.L62-.L547
+	.half	.L62-.L511
 	.byte	3,8,1,5,1,9
 	.half	.L65-.L62
 	.byte	3,1,1,7,9
-	.half	.L177-.L65
+	.half	.L160-.L65
 	.byte	0,1,1
-.L540:
+.L504:
 	.sdecl	'.debug_ranges',debug,cluster('prvTestWaitCondition')
 	.sect	'.debug_ranges'
-.L176:
-	.word	-1,.L94,0,.L177-.L94,0,0
+.L159:
+	.word	-1,.L91,0,.L160-.L91,0,0
 	.sdecl	'.debug_loc',debug,cluster('prvTestWaitCondition')
 	.sect	'.debug_loc'
-.L93:
-	.word	-1,.L94,0,.L287-.L94
+.L90:
+	.word	-1,.L91,0,.L262-.L91
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L291:
-	.word	-1,.L94,0,.L287-.L94
+.L266:
+	.word	-1,.L91,0,.L262-.L91
 	.half	1
 	.byte	85
 	.word	0,0
-.L289:
-	.word	-1,.L94,0,.L393-.L94
+.L264:
+	.word	-1,.L91,0,.L368-.L91
 	.half	1
 	.byte	84
-	.word	.L59-.L94,.L395-.L94
+	.word	.L59-.L91,.L370-.L91
 	.half	1
 	.byte	84
 	.word	0,0
-.L294:
-	.word	-1,.L94,.L394-.L94,.L287-.L94
+.L269:
+	.word	-1,.L91,.L369-.L91,.L262-.L91
 	.half	1
 	.byte	82
 	.word	0,0
-.L293:
-	.word	-1,.L94,0,.L287-.L94
+.L268:
+	.word	-1,.L91,0,.L262-.L91
 	.half	1
 	.byte	86
 	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('uxEventGroupGetNumber')
-	.sect	'.debug_loc'
-.L283:
-	.word	0,0
-.L95:
-	.word	-1,.L96,0,.L279-.L96
-	.half	2
-	.byte	138,0
-	.word	0,0
-.L280:
-	.word	-1,.L96,0,.L279-.L96
-	.half	1
-	.byte	100
-	.word	0,0
-.L281:
-	.word	-1,.L96,.L396-.L96,.L66-.L96
-	.half	1
-	.byte	82
-	.word	.L67-.L96,.L279-.L96
-	.half	1
-	.byte	82
-	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vEventGroupClearBitsCallback')
 	.sect	'.debug_loc'
-.L276:
-	.word	-1,.L92,0,.L392-.L92
+.L259:
+	.word	-1,.L89,0,.L367-.L89
 	.half	1
 	.byte	100
 	.word	0,0
-.L278:
-	.word	-1,.L92,0,.L392-.L92
+.L261:
+	.word	-1,.L89,0,.L367-.L89
 	.half	1
 	.byte	84
 	.word	0,0
-.L91:
-	.word	-1,.L92,0,.L275-.L92
+.L88:
+	.word	-1,.L89,0,.L258-.L89
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vEventGroupDelete')
 	.sect	'.debug_loc'
-.L268:
+.L251:
 	.word	0,0
-.L269:
-	.word	-1,.L88,.L388-.L88,.L266-.L88
+.L252:
+	.word	-1,.L85,.L363-.L85,.L249-.L85
 	.half	1
 	.byte	108
 	.word	0,0
-.L87:
-	.word	-1,.L88,0,.L266-.L88
+.L84:
+	.word	-1,.L85,0,.L249-.L85
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L267:
-	.word	-1,.L88,0,.L386-.L88
+.L250:
+	.word	-1,.L85,0,.L361-.L85
 	.half	1
 	.byte	100
-	.word	.L387-.L88,.L266-.L88
+	.word	.L362-.L85,.L249-.L85
 	.half	1
 	.byte	111
-	.word	.L389-.L88,.L390-.L88
+	.word	.L364-.L85,.L365-.L85
 	.half	1
 	.byte	100
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vEventGroupSetBitsCallback')
 	.sect	'.debug_loc'
-.L272:
-	.word	-1,.L90,0,.L391-.L90
+.L255:
+	.word	-1,.L87,0,.L366-.L87
 	.half	1
 	.byte	100
 	.word	0,0
-.L274:
-	.word	-1,.L90,0,.L391-.L90
+.L257:
+	.word	-1,.L87,0,.L366-.L87
 	.half	1
 	.byte	84
 	.word	0,0
-.L89:
-	.word	-1,.L90,0,.L270-.L90
+.L86:
+	.word	-1,.L87,0,.L253-.L87
 	.half	2
 	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('vEventGroupSetNumber')
-	.sect	'.debug_loc'
-.L286:
-	.word	-1,.L98,0,.L284-.L98
-	.half	1
-	.byte	84
-	.word	0,0
-.L97:
-	.word	-1,.L98,0,.L284-.L98
-	.half	2
-	.byte	138,0
-	.word	0,0
-.L285:
-	.word	-1,.L98,0,.L284-.L98
-	.half	1
-	.byte	100
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_loc'
-.L180:
-	.word	-1,.L70,0,.L178-.L70
+.L163:
+	.word	-1,.L67,0,.L161-.L67
 	.half	1
 	.byte	84
 	.word	0,0
-.L69:
-	.word	-1,.L70,0,.L178-.L70
+.L66:
+	.word	-1,.L67,0,.L161-.L67
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetICR')
 	.sect	'.debug_loc'
-.L184:
-	.word	-1,.L72,0,.L182-.L72
+.L167:
+	.word	-1,.L69,0,.L165-.L69
 	.half	1
 	.byte	84
 	.word	0,0
-.L71:
-	.word	-1,.L72,0,.L182-.L72
+.L68:
+	.word	-1,.L69,0,.L165-.L69
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xEventGroupClearBits')
 	.sect	'.debug_loc'
-.L221:
+.L204:
 	.word	0,0
-.L220:
-	.word	-1,.L82,0,.L365-.L82
+.L203:
+	.word	-1,.L79,0,.L340-.L79
 	.half	1
 	.byte	84
-	.word	.L367-.L82,.L368-.L82
+	.word	.L342-.L79,.L343-.L79
 	.half	1
 	.byte	95
 	.word	0,0
-.L222:
-	.word	-1,.L82,.L369-.L82,.L217-.L82
+.L205:
+	.word	-1,.L79,.L344-.L79,.L200-.L79
 	.half	1
 	.byte	88
-	.word	.L370-.L82,.L217-.L82
+	.word	.L345-.L79,.L200-.L79
 	.half	1
 	.byte	82
 	.word	0,0
-.L218:
-	.word	-1,.L82,0,.L365-.L82
+.L201:
+	.word	-1,.L79,0,.L340-.L79
 	.half	1
 	.byte	100
-	.word	.L366-.L82,.L217-.L82
+	.word	.L341-.L79,.L200-.L79
 	.half	1
 	.byte	111
 	.word	0,0
-.L81:
-	.word	-1,.L82,0,.L217-.L82
+.L78:
+	.word	-1,.L79,0,.L200-.L79
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xEventGroupCreate')
 	.sect	'.debug_loc'
-.L194:
-	.word	-1,.L76,.L296-.L76,.L297-.L76
+.L177:
+	.word	-1,.L73,.L271-.L73,.L272-.L73
 	.half	1
 	.byte	98
-	.word	.L298-.L76,.L299-.L76
+	.word	.L273-.L73,.L274-.L73
 	.half	1
 	.byte	111
-	.word	.L297-.L76,.L300-.L76
+	.word	.L272-.L73,.L275-.L73
 	.half	1
 	.byte	100
-	.word	.L4-.L76,.L301-.L76
+	.word	.L4-.L73,.L276-.L73
 	.half	1
 	.byte	111
-	.word	.L301-.L76,.L192-.L76
+	.word	.L276-.L73,.L175-.L73
 	.half	1
 	.byte	98
 	.word	0,0
-.L75:
-	.word	-1,.L76,0,.L192-.L76
+.L72:
+	.word	-1,.L73,0,.L175-.L73
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xEventGroupGetBitsFromISR')
 	.sect	'.debug_loc'
-.L256:
+.L239:
 	.word	0,0
-.L259:
+.L242:
 	.word	0,0
-.L264:
+.L247:
 	.word	0,0
-.L257:
-	.word	-1,.L84,.L262-.L84,.L251-.L84
+.L240:
+	.word	-1,.L81,.L245-.L81,.L234-.L81
 	.half	1
 	.byte	82
 	.word	0,0
-.L254:
+.L237:
 	.word	0,0
-.L252:
-	.word	-1,.L84,0,.L251-.L84
+.L235:
+	.word	-1,.L81,0,.L234-.L81
 	.half	1
 	.byte	100
 	.word	0,0
-.L83:
-	.word	-1,.L84,0,.L251-.L84
+.L80:
+	.word	-1,.L81,0,.L234-.L81
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L261:
-	.word	-1,.L84,.L371-.L84,.L251-.L84
+.L244:
+	.word	-1,.L81,.L346-.L81,.L234-.L81
 	.half	1
 	.byte	81
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xEventGroupSetBits')
 	.sect	'.debug_loc'
-.L237:
+.L220:
 	.word	0,0
-.L233:
+.L216:
 	.word	0,0
-.L231:
-	.word	-1,.L86,.L377-.L86,.L223-.L86
+.L214:
+	.word	-1,.L83,.L352-.L83,.L206-.L83
 	.half	1
 	.byte	108
 	.word	0,0
-.L228:
-	.word	-1,.L86,.L378-.L86,.L53-.L86
+.L211:
+	.word	-1,.L83,.L353-.L83,.L53-.L83
 	.half	1
 	.byte	100
-	.word	.L45-.L86,.L385-.L86
+	.word	.L45-.L83,.L360-.L83
 	.half	1
 	.byte	100
 	.word	0,0
-.L229:
-	.word	-1,.L86,.L379-.L86,.L45-.L86
+.L212:
+	.word	-1,.L83,.L354-.L83,.L45-.L83
 	.half	1
 	.byte	109
 	.word	0,0
-.L234:
-	.word	-1,.L86,.L375-.L86,.L376-.L86
+.L217:
+	.word	-1,.L83,.L350-.L83,.L351-.L83
 	.half	1
 	.byte	88
 	.word	0,0
-.L226:
-	.word	-1,.L86,0,.L372-.L86
+.L209:
+	.word	-1,.L83,0,.L347-.L83
 	.half	1
 	.byte	84
-	.word	.L374-.L86,.L46-.L86
+	.word	.L349-.L83,.L46-.L83
 	.half	1
 	.byte	95
 	.word	0,0
-.L235:
-	.word	-1,.L86,.L380-.L86,.L381-.L86
+.L218:
+	.word	-1,.L83,.L355-.L83,.L356-.L83
 	.half	5
 	.byte	144,32,157,32,0
-	.word	.L381-.L86,.L384-.L86
+	.word	.L356-.L83,.L359-.L83
 	.half	1
 	.byte	95
 	.word	0,0
-.L236:
-	.word	-1,.L86,.L383-.L86,.L53-.L86
+.L219:
+	.word	-1,.L83,.L358-.L83,.L53-.L83
 	.half	1
 	.byte	82
 	.word	0,0
-.L224:
-	.word	-1,.L86,0,.L372-.L86
+.L207:
+	.word	-1,.L83,0,.L347-.L83
 	.half	1
 	.byte	100
-	.word	.L373-.L86,.L223-.L86
+	.word	.L348-.L83,.L206-.L83
 	.half	1
 	.byte	111
 	.word	0,0
-.L85:
-	.word	-1,.L86,0,.L223-.L86
+.L82:
+	.word	-1,.L83,0,.L206-.L83
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L238:
-	.word	-1,.L86,.L382-.L86,.L53-.L86
+.L221:
+	.word	-1,.L83,.L357-.L83,.L53-.L83
 	.half	1
 	.byte	81
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xEventGroupSync')
 	.sect	'.debug_loc'
-.L248:
+.L231:
 	.word	0,0
-.L242:
-	.word	-1,.L78,0,.L302-.L78
+.L225:
+	.word	-1,.L75,0,.L277-.L75
 	.half	1
 	.byte	84
-	.word	.L305-.L78,.L306-.L78
+	.word	.L280-.L75,.L281-.L75
 	.half	1
 	.byte	88
-	.word	.L314-.L78,.L313-.L78
+	.word	.L289-.L75,.L288-.L75
 	.half	1
 	.byte	84
-	.word	.L8-.L78,.L318-.L78
+	.word	.L8-.L75,.L293-.L75
 	.half	1
 	.byte	88
-	.word	.L10-.L78,.L9-.L78
+	.word	.L10-.L75,.L9-.L75
 	.half	1
 	.byte	88
 	.word	0,0
-.L244:
-	.word	-1,.L78,0,.L302-.L78
+.L227:
+	.word	-1,.L75,0,.L277-.L75
 	.half	1
 	.byte	85
-	.word	.L307-.L78,.L308-.L78
+	.word	.L282-.L75,.L283-.L75
 	.half	1
 	.byte	90
 	.word	0,0
-.L246:
-	.word	-1,.L78,.L311-.L78,.L239-.L78
+.L229:
+	.word	-1,.L75,.L286-.L75,.L222-.L75
 	.half	1
 	.byte	89
 	.word	0,0
-.L247:
-	.word	-1,.L78,.L315-.L78,.L8-.L78
+.L230:
+	.word	-1,.L75,.L290-.L75,.L8-.L75
 	.half	1
 	.byte	88
-	.word	.L318-.L78,.L10-.L78
+	.word	.L293-.L75,.L10-.L75
 	.half	1
 	.byte	88
-	.word	.L9-.L78,.L322-.L78
+	.word	.L9-.L75,.L297-.L75
 	.half	1
 	.byte	88
-	.word	.L322-.L78,.L325-.L78
+	.word	.L297-.L75,.L300-.L75
 	.half	1
 	.byte	82
-	.word	.L326-.L78,.L239-.L78
+	.word	.L301-.L75,.L222-.L75
 	.half	1
 	.byte	88
-	.word	.L332-.L78,.L239-.L78
-	.half	1
-	.byte	82
-	.word	0,0
-.L249:
-	.word	-1,.L78,.L323-.L78,.L324-.L78
+	.word	.L307-.L75,.L222-.L75
 	.half	1
 	.byte	82
 	.word	0,0
-.L240:
-	.word	-1,.L78,0,.L302-.L78
+.L232:
+	.word	-1,.L75,.L298-.L75,.L299-.L75
+	.half	1
+	.byte	82
+	.word	0,0
+.L223:
+	.word	-1,.L75,0,.L277-.L75
 	.half	1
 	.byte	100
-	.word	.L303-.L78,.L304-.L78
+	.word	.L278-.L75,.L279-.L75
 	.half	1
 	.byte	111
-	.word	.L312-.L78,.L313-.L78
+	.word	.L287-.L75,.L288-.L75
 	.half	1
 	.byte	100
-	.word	.L319-.L78,.L320-.L78
+	.word	.L294-.L75,.L295-.L75
 	.half	1
 	.byte	100
-	.word	.L10-.L78,.L9-.L78
+	.word	.L10-.L75,.L9-.L75
 	.half	1
 	.byte	111
-	.word	.L325-.L78,.L327-.L78
+	.word	.L300-.L75,.L302-.L75
 	.half	1
 	.byte	111
-	.word	.L328-.L78,.L329-.L78
+	.word	.L303-.L75,.L304-.L75
 	.half	1
 	.byte	111
-	.word	.L330-.L78,.L331-.L78
+	.word	.L305-.L75,.L306-.L75
 	.half	1
 	.byte	111
 	.word	0,0
-.L77:
-	.word	-1,.L78,0,.L239-.L78
+.L74:
+	.word	-1,.L75,0,.L222-.L75
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L245:
-	.word	-1,.L78,0,.L302-.L78
+.L228:
+	.word	-1,.L75,0,.L277-.L75
 	.half	1
 	.byte	86
-	.word	.L309-.L78,.L310-.L78
+	.word	.L284-.L75,.L285-.L75
 	.half	1
 	.byte	95
-	.word	.L316-.L78,.L317-.L78
+	.word	.L291-.L75,.L292-.L75
 	.half	1
 	.byte	95
-	.word	.L321-.L78,.L320-.L78
+	.word	.L296-.L75,.L295-.L75
 	.half	1
 	.byte	85
 	.word	0,0
-.L250:
+.L233:
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xEventGroupWaitBits')
 	.sect	'.debug_loc'
-.L205:
+.L188:
 	.word	0,0
-.L199:
-	.word	-1,.L80,0,.L333-.L80
+.L182:
+	.word	-1,.L77,0,.L308-.L77
 	.half	1
 	.byte	84
-	.word	.L336-.L80,.L337-.L80
+	.word	.L311-.L77,.L312-.L77
 	.half	1
 	.byte	89
 	.word	0,0
-.L207:
-	.word	-1,.L80,.L340-.L80,.L341-.L80
+.L190:
+	.word	-1,.L77,.L315-.L77,.L316-.L77
 	.half	1
 	.byte	88
 	.word	0,0
-.L216:
-	.word	-1,.L80,.L342-.L80,.L196-.L80
+.L199:
+	.word	-1,.L77,.L317-.L77,.L179-.L77
 	.half	1
 	.byte	92
-	.word	.L214-.L80,.L196-.L80
+	.word	.L197-.L77,.L179-.L77
 	.half	1
 	.byte	82
 	.word	0,0
-.L206:
-	.word	-1,.L80,.L355-.L80,.L356-.L80
+.L189:
+	.word	-1,.L77,.L330-.L77,.L331-.L77
 	.half	1
 	.byte	82
-	.word	.L341-.L80,.L32-.L80
+	.word	.L316-.L77,.L32-.L77
 	.half	1
 	.byte	88
 	.word	0,0
-.L210:
-	.word	-1,.L80,.L353-.L80,.L354-.L80
+.L193:
+	.word	-1,.L77,.L328-.L77,.L329-.L77
 	.half	1
 	.byte	82
 	.word	0,0
-.L201:
-	.word	-1,.L80,0,.L333-.L80
+.L184:
+	.word	-1,.L77,0,.L308-.L77
 	.half	1
 	.byte	85
-	.word	.L347-.L80,.L348-.L80
+	.word	.L322-.L77,.L323-.L77
 	.half	1
 	.byte	90
-	.word	.L26-.L80,.L349-.L80
+	.word	.L26-.L77,.L324-.L77
 	.half	1
 	.byte	90
-	.word	.L361-.L80,.L362-.L80
+	.word	.L336-.L77,.L337-.L77
 	.half	1
 	.byte	90
 	.word	0,0
-.L197:
-	.word	-1,.L80,0,.L333-.L80
+.L180:
+	.word	-1,.L77,0,.L308-.L77
 	.half	1
 	.byte	100
-	.word	.L334-.L80,.L335-.L80
+	.word	.L309-.L77,.L310-.L77
 	.half	1
 	.byte	111
-	.word	.L351-.L80,.L346-.L80
+	.word	.L326-.L77,.L321-.L77
 	.half	1
 	.byte	100
-	.word	.L356-.L80,.L357-.L80
+	.word	.L331-.L77,.L332-.L77
 	.half	1
 	.byte	111
-	.word	.L362-.L80,.L339-.L80
+	.word	.L337-.L77,.L314-.L77
 	.half	1
 	.byte	111
-	.word	.L363-.L80,.L364-.L80
+	.word	.L338-.L77,.L339-.L77
 	.half	1
 	.byte	111
 	.word	0,0
-.L79:
-	.word	-1,.L80,0,.L196-.L80
+.L76:
+	.word	-1,.L77,0,.L179-.L77
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L204:
-	.word	-1,.L80,0,.L333-.L80
+.L187:
+	.word	-1,.L77,0,.L308-.L77
 	.half	1
 	.byte	87
-	.word	.L338-.L80,.L339-.L80
+	.word	.L313-.L77,.L314-.L77
 	.half	1
 	.byte	95
-	.word	.L352-.L80,.L346-.L80
+	.word	.L327-.L77,.L321-.L77
 	.half	1
 	.byte	85
 	.word	0,0
-.L211:
+.L194:
 	.word	0,0
-.L209:
-	.word	-1,.L80,.L345-.L80,.L346-.L80
+.L192:
+	.word	-1,.L77,.L320-.L77,.L321-.L77
 	.half	1
 	.byte	82
 	.word	0,0
-.L203:
-	.word	-1,.L80,0,.L333-.L80
+.L186:
+	.word	-1,.L77,0,.L308-.L77
 	.half	1
 	.byte	86
-	.word	.L343-.L80,.L344-.L80
+	.word	.L318-.L77,.L319-.L77
 	.half	1
 	.byte	91
-	.word	.L344-.L80,.L345-.L80
+	.word	.L319-.L77,.L320-.L77
 	.half	1
 	.byte	86
-	.word	.L29-.L80,.L350-.L80
+	.word	.L29-.L77,.L325-.L77
 	.half	1
 	.byte	91
-	.word	.L358-.L80,.L359-.L80
+	.word	.L333-.L77,.L334-.L77
 	.half	1
 	.byte	91
-	.word	.L359-.L80,.L360-.L80
+	.word	.L334-.L77,.L335-.L77
 	.half	1
 	.byte	86
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_loc'
-.L188:
-	.word	-1,.L74,0,.L186-.L74
+.L171:
+	.word	-1,.L71,0,.L169-.L71
 	.half	1
 	.byte	84
 	.word	0,0
-.L190:
-	.word	-1,.L74,.L295-.L74,.L186-.L74
+.L173:
+	.word	-1,.L71,.L270-.L71,.L169-.L71
 	.half	1
 	.byte	82
 	.word	0,0
-.L73:
-	.word	-1,.L74,0,.L186-.L74
+.L70:
+	.word	-1,.L71,0,.L169-.L71
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L548:
+.L512:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
@@ -3183,68 +2963,58 @@ __vEventGroupSetNumber_function_end:
 	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L548,.L70,.L178-.L70
+	.word	.L512,.L67,.L161-.L67
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('vPortSetICR')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L548,.L72,.L182-.L72
+	.word	.L512,.L69,.L165-.L69
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L548,.L74,.L186-.L74
+	.word	.L512,.L71,.L169-.L71
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('xEventGroupCreate')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L76,.L192-.L76
+	.word	.L512,.L73,.L175-.L73
 	.sdecl	'.debug_frame',debug,cluster('xEventGroupSync')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L78,.L239-.L78
+	.word	.L512,.L75,.L222-.L75
 	.sdecl	'.debug_frame',debug,cluster('xEventGroupWaitBits')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L80,.L196-.L80
+	.word	.L512,.L77,.L179-.L77
 	.sdecl	'.debug_frame',debug,cluster('xEventGroupClearBits')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L82,.L217-.L82
+	.word	.L512,.L79,.L200-.L79
 	.sdecl	'.debug_frame',debug,cluster('xEventGroupGetBitsFromISR')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L548,.L84,.L251-.L84
+	.word	.L512,.L81,.L234-.L81
 	.byte	8,18,8,19,8,21,8,22,8,23,0,0
 	.sdecl	'.debug_frame',debug,cluster('xEventGroupSetBits')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L86,.L223-.L86
+	.word	.L512,.L83,.L206-.L83
 	.sdecl	'.debug_frame',debug,cluster('vEventGroupDelete')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L88,.L266-.L88
+	.word	.L512,.L85,.L249-.L85
 	.sdecl	'.debug_frame',debug,cluster('vEventGroupSetBitsCallback')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L90,.L270-.L90
+	.word	.L512,.L87,.L253-.L87
 	.sdecl	'.debug_frame',debug,cluster('vEventGroupClearBitsCallback')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L548,.L92,.L275-.L92
+	.word	.L512,.L89,.L258-.L89
 	.sdecl	'.debug_frame',debug,cluster('prvTestWaitCondition')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L548,.L94,.L287-.L94
+	.word	.L512,.L91,.L262-.L91
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
-	.sdecl	'.debug_frame',debug,cluster('uxEventGroupGetNumber')
-	.sect	'.debug_frame'
-	.word	24
-	.word	.L548,.L96,.L279-.L96
-	.byte	8,18,8,19,8,21,8,22,8,23,0,0
-	.sdecl	'.debug_frame',debug,cluster('vEventGroupSetNumber')
-	.sect	'.debug_frame'
-	.word	24
-	.word	.L548,.L98,.L284-.L98
-	.byte	8,18,8,19,8,21,8,22,8,23,0,0
 	; Module end

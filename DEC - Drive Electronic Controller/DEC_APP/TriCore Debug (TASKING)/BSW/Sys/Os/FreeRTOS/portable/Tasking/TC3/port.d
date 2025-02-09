@@ -8,12 +8,12 @@ port.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\incl
 "C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\typeinfo.h" :
 port.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\string.h"
 "C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\string.h" :
-port.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\FreeRTOSConfig.h"
-"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\FreeRTOSConfig.h" :
 port.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\FreeRTOS.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\FreeRTOS.h" :
 port.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stddef.h"
 "C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stddef.h" :
+port.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\FreeRTOSConfig.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\FreeRTOSConfig.h" :
 port.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\projdefs.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\projdefs.h" :
 port.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\portable.h"

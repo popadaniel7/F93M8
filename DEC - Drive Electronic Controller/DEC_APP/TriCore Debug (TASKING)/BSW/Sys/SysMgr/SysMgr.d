@@ -160,6 +160,12 @@ SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Co
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Cpu\\Irq\IfxCpu_Irq.h" :
 SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Port\\Std\IfxPort.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Port\\Std\IfxPort.h" :
+SysMgr.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stdint.h"
+"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stdint.h" :
+SysMgr.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\typeinfo.h"
+"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\typeinfo.h" :
+SysMgr.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stdbool.h"
+"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stdbool.h" :
 SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Io\\Dma\Dma.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Io\\Dma\Dma.h" :
 SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Dma\\Dma\IfxDma_Dma.h"
@@ -242,10 +248,6 @@ SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Co
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\task.h" :
 SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\FreeRTOS.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\FreeRTOS.h" :
-SysMgr.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stdint.h"
-"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\stdint.h" :
-SysMgr.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\typeinfo.h"
-"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\typeinfo.h" :
 SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\FreeRTOSConfig.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\FreeRTOSConfig.h" :
 SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Os\\FreeRTOS\\include\projdefs.h"
@@ -264,3 +266,17 @@ SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Co
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\SCR.h" :
 SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Wdg\Wdg.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\Wdg\Wdg.h" :
+SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Pms\\Std\IfxPmsPm.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Pms\\Std\IfxPmsPm.h" :
+SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxPms_cfg.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxPms_cfg.h" :
+SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\Pms\Std\IfxPmsEvr.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\Pms\Std\IfxPmsEvr.h" :
+SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\Infra\\Sfr\\TC37A\\_Reg\IfxCpu_bf.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\Infra\\Sfr\\TC37A\\_Reg\IfxCpu_bf.h" :
+SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Stm\\Std\IfxStm.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Stm\\Std\IfxStm.h" :
+SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxStm_cfg.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxStm_cfg.h" :
+SysMgr.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Diag\\Dem\Dem.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Diag\\Dem\Dem.h" :

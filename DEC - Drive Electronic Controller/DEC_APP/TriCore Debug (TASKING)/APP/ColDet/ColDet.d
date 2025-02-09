@@ -30,3 +30,5 @@ ColDet.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\in
 "C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\typeinfo.h" :
 ColDet.o :	"C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\time.h"
 "C:\Infineon\AURIX-Studio-1.10.6\tools\Compilers\Tasking_1.1r8\ctc\include\time.h" :
+ColDet.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Diag\\Dem\Dem.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Diag\\Dem\Dem.h" :

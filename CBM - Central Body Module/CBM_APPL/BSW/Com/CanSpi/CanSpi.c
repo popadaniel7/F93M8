@@ -214,7 +214,6 @@ void CanSpi_MainFunction(void)
 				if(CanSpi_RxFrame_Buffer0.frame.id == 0x097)
 				{
 					VehicleSpeed_VehicleState  = CanSpi_RxFrame_Buffer0.frame.data7;
-					VehicleState_Rpm = CanSpi_RxFrame_Buffer0.frame.data6;
 					CanSpi_VehicleState_MissCnt = 0;
 				}
 				else

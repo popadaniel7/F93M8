@@ -19,7 +19,7 @@ EncCal_VOData_t EncCal_VODataComplete_Default =
                 0x46, 0x39, 0x33
         },
 
-        /* upholstery */
+        /* up-holstery */
         {
                 0x62, 0x6C, 0x61, 0x63, 0x6B, 0x20, 0x2F, 0x20,
                 0x4D, 0x38, 0x47, 0x54, 0x45,
@@ -101,7 +101,6 @@ EncCal_VOData_t EncCal_VODataComplete_Default =
         {
                 0x30, 0x31, 0x2E, 0x30, 0x35, 0x2E, 0x32, 0x35
         },
-
         /* modulesList*/
         {
 

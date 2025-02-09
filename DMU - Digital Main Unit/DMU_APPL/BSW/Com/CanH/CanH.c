@@ -134,48 +134,6 @@ void CanH_MainFunction(void)
 		else Dem_SetDtc(DEM_DATARECORDER_MESSAGEMISSING_ID, 1, 0);
 		if(200 < CanH_BodyState2_MissCnt) Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 1, 1);
 		else Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 1, 0);
-		/* StatusMcuDMU */
-		if(0 == CanH_MainCounter % 200)
-		{
-			CanH_TxData[0] = Ain_Vbat * 10;
-			CanH_TxData[1] = Ain_McuTemp;
-			CanH_TxData[2] = Ain_VrefInt * 10;
-			CanH_TxHeader.DLC = 3;
-			CanH_TxHeader.StdId = 0x110;
-			HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-		/* StatusDigitalCluster */
-		if(0 == CanH_MainCounter % 10)
-		{
-			CanH_TxData[0] = DigitalCluster_ReadDisplayPowerMode_RegisterValue;
-			CanH_TxData[1] = DigitalCluster_LcdInit;
-			CanH_TxData[2] = DigitalCluster_ReadDisplayStatus_RegisterValue;
-			CanH_TxHeader.DLC = 3;
-			CanH_TxHeader.StdId = 0x105;
-			HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-		/* StatusReverseCamera */
-		if(0 == CanH_MainCounter % 20)
-		{
-			CanH_TxData[0] = (uint8)RevCam_DcmiStatus;
-			CanH_TxData[1] = (uint8)RevCam_I2cStatus;
-			CanH_TxData[2] = RevCam_InitStatus;
-			CanH_TxHeader.DLC = 3;
-			CanH_TxHeader.StdId = 0x106;
-			HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
-		}
-		else
-		{
-			/* Do nothing. */
-		}
 	}
 	else
 	{

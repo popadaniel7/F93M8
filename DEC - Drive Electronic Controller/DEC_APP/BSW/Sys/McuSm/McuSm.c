@@ -254,22 +254,22 @@ IfxMtu_MbistSel McuSm_MbistConfigSsh[] =
         255U
 };
 uint8 g_isMeasureAvailable =            FALSE;                             /* Variable to store availability of new measurements */;
-// #pragma section "MCUSM_NCR"
-volatile Ifx_CSA McuSm_CSA_capture[IFXCPU_NUM_MODULES][CSA_CAPTURE_LIMIT];
-volatile uint32 McuSm_STACK_capture[IFXCPU_NUM_MODULES][STACK_CAPTURE_LIMIT][STACK_CAPTURE_SIZE];
-volatile Ifx_CPU_PIETR McuSm_PIETR_capture[IFXCPU_NUM_MODULES];
-volatile Ifx_CPU_PIEAR McuSm_PIEAR_capture[IFXCPU_NUM_MODULES];
-volatile Ifx_CPU_DIETR McuSm_DIETR_capture[IFXCPU_NUM_MODULES];
-volatile Ifx_CPU_DIEAR McuSm_DIEAR_capture[IFXCPU_NUM_MODULES];
-volatile Ifx_CPU_DATR McuSm_DATR_capture[IFXCPU_NUM_MODULES];
-volatile Ifx_CPU_DEADD McuSm_DEADD_capture[IFXCPU_NUM_MODULES];
-volatile Ifx_SMU_AG McuSm_AG_capture[IFXCPU_NUM_MODULES][12];
-volatile uint32 McuSm_LastResetReason = 0u;
-volatile uint32 McuSm_LastResetInformation = 0u;
-volatile uint32 McuSm_IndexResetHistory = 0u;
-volatile McuSm_ResetHistory_t McuSm_ResetHistory[20u] = {{0u,0u}};
-volatile McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u] = {0u};
-// #pragma section restore all
+
+Ifx_CSA McuSm_CSA_capture[IFXCPU_NUM_MODULES][CSA_CAPTURE_LIMIT];
+uint32 McuSm_STACK_capture[IFXCPU_NUM_MODULES][STACK_CAPTURE_LIMIT][STACK_CAPTURE_SIZE];
+Ifx_CPU_PIETR McuSm_PIETR_capture[IFXCPU_NUM_MODULES];
+Ifx_CPU_PIEAR McuSm_PIEAR_capture[IFXCPU_NUM_MODULES];
+Ifx_CPU_DIETR McuSm_DIETR_capture[IFXCPU_NUM_MODULES];
+Ifx_CPU_DIEAR McuSm_DIEAR_capture[IFXCPU_NUM_MODULES];
+Ifx_CPU_DATR McuSm_DATR_capture[IFXCPU_NUM_MODULES];
+Ifx_CPU_DEADD McuSm_DEADD_capture[IFXCPU_NUM_MODULES];
+Ifx_SMU_AG McuSm_AG_capture[IFXCPU_NUM_MODULES][12];
+uint32 McuSm_LastResetReason;
+uint32 McuSm_LastResetInformation;
+uint32 McuSm_IndexResetHistory;
+McuSm_ResetHistory_t McuSm_ResetHistory[20u];
+McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
+
 void McuSm_InitializeDts(void);
 void McuSm_InitializeBusMpu(void);
 void McuSm_EnableBusMpu(void);
@@ -288,15 +288,9 @@ void McuSm_PIEAR_PIETR_Capture(void);
 void McuSm_DIEAR_DIETR_Capture(void);
 void McuSm_DATR_DEADD_Capture(void);
 void McuSm_AG_Capture(void);
-void McuSm_TRAP0(IfxCpu_Trap trapInfon);
-void McuSm_TRAP1(IfxCpu_Trap trapInfo);
 void McuSm_TRAP2(IfxCpu_Trap trapInfo);
 void McuSm_TRAP3(IfxCpu_Trap trapInfo);
 void McuSm_TRAP4(IfxCpu_Trap trapInfo);
-void McuSm_TRAP5(IfxCpu_Trap trapInfo);
-void McuSm_TRAP6_CPU0(IfxCpu_Trap trapInfo);
-void McuSm_TRAP6_CPU1(IfxCpu_Trap trapInfo);
-void McuSm_TRAP6_CPU2(IfxCpu_Trap trapInfo);
 void McuSm_TRAP7(IfxCpu_Trap trapInfo);
 
 /* This function will trace back as many as CSA_CAPTURE_LIMIT context save areas and dump each into CSA_capture
@@ -434,25 +428,6 @@ void McuSm_AG_Capture(void)
     }
 }
 
-void McuSm_TRAP1(IfxCpu_Trap trapInfo)
-{
-    /*execute the context save area capture*/
-    McuSm_CsaCapture();
-    switch (trapInfo.tId)
-    {
-        case IfxCpu_Trap_InternalProtection_Id_memoryProtectionRead:
-        case IfxCpu_Trap_InternalProtection_Id_memoryProtectionWrite:
-        case IfxCpu_Trap_InternalProtection_Id_memoryProtectionPeripheralAccess:
-        case IfxCpu_Trap_InternalProtection_Id_memoryProtectionNullAddress:
-            /*Capture CPUx_DATR and CPUx_DEADD*/
-            McuSm_DATR_DEADD_Capture();
-            break;
-        default:
-            break;
-    }
-    McuSm_PerformResetHook(TRAP1, trapInfo.tId);
-}
-
 void McuSm_TRAP2(IfxCpu_Trap trapInfo)
 {
     /*execute the context save area capture*/
@@ -499,42 +474,6 @@ void McuSm_TRAP7(IfxCpu_Trap trapInfo)
     McuSm_PerformResetHook(TRAP7, trapInfo.tId);
 }
 
-void McuSm_TRAP6_CPU0(IfxCpu_Trap trapInfo)
-{
-    /*execute the context save area capture*/
-    McuSm_CsaCapture();
-    /*capture SMU_AGx*/
-    McuSm_AG_Capture();
-    McuSm_PerformResetHook(TRAP6, 1U);
-}
-
-void McuSm_TRAP6_CPU1(IfxCpu_Trap trapInfo)
-{
-    /*execute the context save area capture*/
-    McuSm_CsaCapture();
-    /*capture SMU_AGx*/
-    McuSm_AG_Capture();
-    McuSm_PerformResetHook(TRAP6, 2U);
-}
-
-void McuSm_TRAP6_CPU2(IfxCpu_Trap trapInfo)
-{
-    /*execute the context save area capture*/
-    McuSm_CsaCapture();
-    /*capture SMU_AGx*/
-    McuSm_AG_Capture();
-    McuSm_PerformResetHook(TRAP6, 3);
-}
-
-void McuSm_TRAP0(IfxCpu_Trap trapInfo)
-{
-    /*execute the context save area capture*/
-    McuSm_CsaCapture();
-    /*capture SMU_AGx*/
-    McuSm_AG_Capture();
-    McuSm_PerformResetHook(TRAP0, trapInfo.tId);
-}
-
 void McuSm_TRAP3(IfxCpu_Trap trapInfo)
 {
     /*execute the context save area capture*/
@@ -542,24 +481,6 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo)
     /*capture SMU_AGx*/
     McuSm_AG_Capture();
     McuSm_PerformResetHook(TRAP3, trapInfo.tId);
-}
-
-void tsrHook(IfxCpu_Trap trapInfo)
-{
-    /*execute the context save area capture*/
-    McuSm_CsaCapture();
-    /*capture SMU_AGx*/
-    McuSm_AG_Capture();
-    McuSm_PerformResetHook(trapInfo.tClass, trapInfo.tId);
-}
-
-void McuSm_TRAP5(IfxCpu_Trap trapInfo)
-{
-    /*execute the context save area capture*/
-    McuSm_CsaCapture();
-    /*capture SMU_AGx*/
-    McuSm_AG_Capture();
-    McuSm_PerformResetHook(TRAP5, trapInfo.tId);
 }
 
 void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
@@ -572,12 +493,11 @@ void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
         }
         else
         {
-            resetReason = UNDEFINED;
+            /* Do nothing. */
         }
     }
 
-    if(resetReason != UNDEFINED ||
-            resetReason != NO_ERR)
+    if(resetReason != NO_ERR)
     {
         McuSm_LastResetReason = resetReason;
         McuSm_LastResetInformation = resetInformation;
@@ -604,6 +524,7 @@ void McuSm_InitializeDts(void)
     dtsConf.isrPriority = 8u;             /* Set the interrupt priority for new measurement events     */
     dtsConf.isrTypeOfService = IfxSrc_Tos_cpu0;         /* Set the service provider responsible for handling the interrupts */
     IfxDts_Dts_initModule(&dtsConf);                    /* Initialize the DTS with the given configuration           */
+    //IfxCpu_Irq_installInterruptHandler(ISR_DTS, ISR_PRIORITY_DTS);
 }
 void McuSm_MbistManager(void)
 {

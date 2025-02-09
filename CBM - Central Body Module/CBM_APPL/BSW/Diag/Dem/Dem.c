@@ -7,7 +7,6 @@
 CANSPI_uCAN_MSG Dem_DtcMessage;
 uint8 Dem_ControlDtcSettingStatus = 0;
 Dem_DTC_t Dem_DTCStoreArray[13];
-extern uint8 VehicleState_Rpm;
 extern uint32 Dcm_AliveCounter __attribute__((section(".ncr")));
 extern uint8 VehicleState_Voltage;
 extern uint8 StatusList_ComOutValue[10];
@@ -34,7 +33,6 @@ void Dem_SaveDtc(uint8 index, uint8 status)
 
 				Dem_DTCStoreArray[index].isActiveNow = status;
 				Dem_DTCStoreArray[index].IgnFF[Dem_DTCStoreArray[index].counter] = StatusList_ComOutValue[0];
-				Dem_DTCStoreArray[index].RpmFF[Dem_DTCStoreArray[index].counter] = VehicleState_Rpm;
 				Dem_DTCStoreArray[index].TimeFF[Dem_DTCStoreArray[index].counter] = Dcm_AliveCounter;
 				Dem_DTCStoreArray[index].VoltageFF[Dem_DTCStoreArray[index].counter] = VehicleState_Voltage;
 				Dem_DTCStoreArray[index].GearFF[Dem_DTCStoreArray[index].counter] = StatusList_ComOutValue[4];

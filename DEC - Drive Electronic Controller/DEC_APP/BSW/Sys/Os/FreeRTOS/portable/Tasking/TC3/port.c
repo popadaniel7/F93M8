@@ -33,14 +33,16 @@
  * FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * SPDX-License-Identifier: BSL-1.0
  */
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
-#include "FreeRTOSConfig.h"
+
 #include "FreeRTOS.h"
 #include "task.h"
-#include "portmacro.h"
+
 /* Prgoram status word macros */
 #define portINITIAL_SYSTEM_PSW \
     ( 0x000008FFUL ) /* Supervisor Mode, MPU Register Set 0 and Call Depth Counting disabled. */
@@ -50,6 +52,9 @@
 #define portINITIAL_LOWER_PCXI    ( 0x00300000UL ) /* Set UL to upper and PIE to 1 */
 #define portINITIAL_UPPER_PCXI    ( 0x00200000UL ) /* Set UL to lower and PIE to 1 */
 #define portNUM_WORDS_IN_CSA      ( 16 )
+
+//#define configTICK_STM_DEBUG 1
+//#define configCPU_STM_DEBUG 1
 
 extern volatile unsigned long * pxCurrentTCB;
 

@@ -1,8 +1,9 @@
 #include "Ifx_Types.h"
+#include "IfxCpu_Irq.h"
 
-#define IRQ_ISR_PRIORITY_DMA        6U           /* Priority for interrupt after DMA transfer done                               */
-#define IRQ_ISR_PRIORITY_ATOM       1U           /* Interrupt priority number                                                    */
-#define IRQ_DMA_CHANNEL             3U           /* DMA Channel used in this example (0 lowest priority - 127 highest priority)  */
+#define IRQ_ISR_PRIORITY_DMA        20U           /* Priority for interrupt after DMA transfer done                               */
+#define IRQ_ISR_PRIORITY_ATOM       18U          /* Interrupt priority number                                                    */
+#define IRQ_DMA_CHANNEL             0U           /* DMA Channel used in this example (0 lowest priority - 127 highest priority)  */
 #define IRQ_CANRX_CHANNEL           4U           /* Interrupt priority number                                                    */
 #define IRQ_CANTX_CHANNEL           5U           /* Interrupt priority number                                                    */
 #define IRQ_PRIO_FCE                7U           /* FCE Interrupt priority               */
@@ -10,7 +11,7 @@
 #define ISR_PRIORITY_SMU_INT0       9U           /* Define the SMU Service Request 0 interrupt priority  */
 #define ISR_PRIORITY_SCUERU_INT0    11u
 #define ISR_PRIORITY_SCUERU_INT1    12u
-#define ISR_PRIORITY_SCUERU_INT3    13u
+#define ISR_PRIORITY_SCUERU_INT2    13u
 #define ISR_PRIORITY_CAN_ALRT       14u
 #define ISR_PRIORITY_CAN_MOER       15u
 #define ISR_PRIORITY_CAN_BOFF       16u
@@ -24,7 +25,7 @@ IFX_INTERRUPT(ISR_FCE_CRC, 0, IRQ_PRIO_FCE);
 IFX_INTERRUPT(ISR_DTS, 0, ISR_PRIORITY_DTS);
 IFX_INTERRUPT(SCUERU_Int0_Handler, 0, ISR_PRIORITY_SCUERU_INT0);
 IFX_INTERRUPT(SCUERU_Int1_Handler, 0, ISR_PRIORITY_SCUERU_INT1);
-IFX_INTERRUPT(SCUERU_Int3_Handler, 0, ISR_PRIORITY_SCUERU_INT3);
+IFX_INTERRUPT(SCUERU_Int2_Handler, 0, ISR_PRIORITY_SCUERU_INT2);
 IFX_INTERRUPT(ISR_CanAlrt, 0, ISR_PRIORITY_SCUERU_INT0);
 IFX_INTERRUPT(ISR_CanMoer, 0, ISR_PRIORITY_CAN_ALRT);
 IFX_INTERRUPT(ISR_CanBoff, 0, ISR_PRIORITY_CAN_BOFF);

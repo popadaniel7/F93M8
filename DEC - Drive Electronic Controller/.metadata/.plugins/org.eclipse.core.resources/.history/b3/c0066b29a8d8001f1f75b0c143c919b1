@@ -1,7 +1,0 @@
-#include "Ifx_Types.h"
-
-extern void Nvm_SwitchActiveSector(void);
-extern uint32 Nvm_CalculateCrc(uint32 *data, uint32 length);
-extern uint32 Nvm_FindBlockAddress(uint32 blockId);
-extern uint32 Nvm_FindNextWriteAddress(void);
-extern void Nvm_RestorePersistentBlocks(uint32 newSectorAddress);

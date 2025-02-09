@@ -81,7 +81,7 @@
  *
  * See the third party link http://www.nadler.com/embedded/newlibAndFreeRTOS.html
  * for additional information. */
-    #include <reent.h>
+    //#include <reent.h>
 
     #define configUSE_C_RUNTIME_TLS_SUPPORT    1
 
@@ -164,19 +164,19 @@
 #endif
 
 #ifndef INCLUDE_vTaskPrioritySet
-    #define INCLUDE_vTaskPrioritySet    0
+    #define INCLUDE_vTaskPrioritySet    1
 #endif
 
 #ifndef INCLUDE_uxTaskPriorityGet
-    #define INCLUDE_uxTaskPriorityGet    0
+    #define INCLUDE_uxTaskPriorityGet    1
 #endif
 
 #ifndef INCLUDE_vTaskDelete
-    #define INCLUDE_vTaskDelete    0
+    #define INCLUDE_vTaskDelete    1
 #endif
 
 #ifndef INCLUDE_vTaskSuspend
-    #define INCLUDE_vTaskSuspend    0
+    #define INCLUDE_vTaskSuspend    1
 #endif
 
 #ifdef INCLUDE_xTaskDelayUntil
@@ -202,11 +202,11 @@
 #endif
 
 #ifndef INCLUDE_xTaskDelayUntil
-    #define INCLUDE_xTaskDelayUntil    0
+    #define INCLUDE_xTaskDelayUntil    1
 #endif
 
 #ifndef INCLUDE_vTaskDelay
-    #define INCLUDE_vTaskDelay    0
+    #define INCLUDE_vTaskDelay    1
 #endif
 
 #ifndef INCLUDE_xTaskGetIdleTaskHandle
@@ -214,11 +214,11 @@
 #endif
 
 #ifndef INCLUDE_xTaskAbortDelay
-    #define INCLUDE_xTaskAbortDelay    0
+    #define INCLUDE_xTaskAbortDelay    1
 #endif
 
 #ifndef INCLUDE_xQueueGetMutexHolder
-    #define INCLUDE_xQueueGetMutexHolder    0
+    #define INCLUDE_xQueueGetMutexHolder    1
 #endif
 
 #ifndef INCLUDE_xSemaphoreGetMutexHolder
@@ -226,19 +226,19 @@
 #endif
 
 #ifndef INCLUDE_xTaskGetHandle
-    #define INCLUDE_xTaskGetHandle    0
+    #define INCLUDE_xTaskGetHandle    1
 #endif
 
 #ifndef INCLUDE_uxTaskGetStackHighWaterMark
-    #define INCLUDE_uxTaskGetStackHighWaterMark    0
+    #define INCLUDE_uxTaskGetStackHighWaterMark    1
 #endif
 
 #ifndef INCLUDE_uxTaskGetStackHighWaterMark2
-    #define INCLUDE_uxTaskGetStackHighWaterMark2    0
+    #define INCLUDE_uxTaskGetStackHighWaterMark2    1
 #endif
 
 #ifndef INCLUDE_eTaskGetState
-    #define INCLUDE_eTaskGetState    0
+    #define INCLUDE_eTaskGetState    1
 #endif
 
 #ifndef INCLUDE_xTaskResumeFromISR
@@ -246,11 +246,11 @@
 #endif
 
 #ifndef INCLUDE_xTimerPendFunctionCall
-    #define INCLUDE_xTimerPendFunctionCall    0
+    #define INCLUDE_xTimerPendFunctionCall    1
 #endif
 
 #ifndef INCLUDE_xTaskGetSchedulerState
-    #define INCLUDE_xTaskGetSchedulerState    0
+    #define INCLUDE_xTaskGetSchedulerState    1
 #endif
 
 #ifndef INCLUDE_xTaskGetCurrentTaskHandle
@@ -268,7 +268,7 @@
 #endif
 
 #ifndef configUSE_APPLICATION_TASK_TAG
-    #define configUSE_APPLICATION_TASK_TAG    0
+    #define configUSE_APPLICATION_TASK_TAG    1
 #endif
 
 #ifndef configNUM_THREAD_LOCAL_STORAGE_POINTERS
@@ -975,7 +975,7 @@
 
 /* Defaults to uint16_t for backward compatibility, but can be overridden
  * in FreeRTOSConfig.h if uint16_t is too restrictive. */
-    #define configSTACK_DEPTH_TYPE    uint16_t
+    #define configSTACK_DEPTH_TYPE    uint32_t
 #endif
 
 #ifndef configRUN_TIME_COUNTER_TYPE
@@ -1104,7 +1104,7 @@
  * This constant is not supported by all FreeRTOS ports that include floating
  * point support. */
 #ifndef configUSE_TASK_FPU_SUPPORT
-    #define configUSE_TASK_FPU_SUPPORT    1
+    #define configUSE_TASK_FPU_SUPPORT    0
 #endif
 
 /* Set configENABLE_MPU to 1 to enable MPU support and 0 to disable it. This is
@@ -1116,7 +1116,7 @@
 /* Set configENABLE_FPU to 1 to enable FPU support and 0 to disable it. This is
  * currently used in ARMv8M ports. */
 #ifndef configENABLE_FPU
-    #define configENABLE_FPU    1
+    #define configENABLE_FPU    0
 #endif
 
 /* Set configENABLE_MVE to 1 to enable MVE support and 0 to disable it. This is

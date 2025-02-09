@@ -18,3 +18,5 @@ EnergyMgmt.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electroni
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Cpu\\Std\Ifx_TypesTasking.h" :
 EnergyMgmt.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\APP\\EncCal\EncCal.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\APP\\EncCal\EncCal.h" :
+EnergyMgmt.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Diag\\Dem\Dem.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Diag\\Dem\Dem.h" :

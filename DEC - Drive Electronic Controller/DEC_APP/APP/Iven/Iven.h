@@ -1,6 +1,6 @@
 #include "Ifx_Types.h"
 
-#define IVEN_ICM_NUMBER_OF_MESSAGES 16U
+#define IVEN_ICM_NUMBER_OF_MESSAGES 17U
 #define IVEN_ICMID1     0U
 #define IVEN_ICMID2     1U
 #define IVEN_ICMID13    2U
@@ -17,6 +17,7 @@
 #define IVEN_ICMID35    13U
 #define IVEN_ICMID37    14U
 #define IVEN_ICMID40    15U
+#define IVEN_ICMID41    16U
 
 typedef struct
 {
@@ -51,5 +52,6 @@ extern uint8 Iven_CanRx_ErrorDetectedCbm;
 extern uint8 Iven_CanRx_ErrorDetectedPdm;
 extern uint8 Iven_CanTx_InVehicleSafetyError;
 extern uint8 Iven_CanTx_DecMcuError;
+extern uint8 Iven_CanTx_DiagnosticMode;
 
 extern void Iven_MainFunction(void);

@@ -162,3 +162,9 @@ Gtm_Atom.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic 
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\Cpu\Std\Ifx_Types.h" :
 Gtm_Atom.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Io\\Irq\Irq.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Io\\Irq\Irq.h" :
+Gtm_Atom.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Cpu\\Irq\IfxCpu_Irq.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Cpu\\Irq\IfxCpu_Irq.h" :
+Gtm_Atom.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\Cpu\Std\Ifx_Types.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\Cpu\Std\Ifx_Types.h" :
+Gtm_Atom.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\Cpu\Std\IfxCpu.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\Cpu\Std\IfxCpu.h" :

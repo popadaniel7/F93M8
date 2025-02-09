@@ -162,8 +162,8 @@ static void __StartUpSoftware_Phase2(void)
     /* Power and EVRC configurations */
     IFX_CFG_SSW_CALLOUT_PMS_INIT();
 
-    /* LBIST Tests and evaluation */
-    IFX_CFG_SSW_CALLOUT_LBIST();
+//    /* LBIST Tests and evaluation */
+//    IFX_CFG_SSW_CALLOUT_LBIST();
 
     /* MONBIST Tests and evaluation */
     IFX_CFG_SSW_CALLOUT_MONBIST();
@@ -190,7 +190,7 @@ static void __StartUpSoftware_Phase3ApplicationResetPath(void)
 extern IfxMtu_MbistSel McuSm_MbistConfigSsh[];
 static void __StartUpSoftware_Phase4(void)
 {
-    uint8 i = 0;
+    //uint8 i = 0;
     /* This is for ADAS chip, where clock is provided by MMIC chip. This has to be
      * implemented according the board.
      */
@@ -209,11 +209,11 @@ static void __StartUpSoftware_Phase4(void)
     /* Initialize the clock system */
     IFX_CFG_SSW_CALLOUT_PLL_INIT();
 
-    while(McuSm_MbistConfigSsh[i] != 255U)
-    {
-        IfxMtu_clearSram(McuSm_MbistConfigSsh[i]);
-        i++;
-    }
+//    while(McuSm_MbistConfigSsh[i] != 255U)
+//    {
+//        IfxMtu_clearSram(McuSm_MbistConfigSsh[i]);
+//        i++;
+//    }
     /* MBIST Tests and evaluation */
     IFX_CFG_SSW_CALLOUT_MBIST();
 

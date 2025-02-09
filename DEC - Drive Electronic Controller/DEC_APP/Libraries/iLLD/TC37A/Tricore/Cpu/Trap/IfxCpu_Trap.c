@@ -188,7 +188,6 @@ void IfxCpu_Trap_assertion(uint32 tin)
     __asm("rfe");
 }
 
-
 void IfxCpu_Trap_systemCall_Cpu0(uint32 tin)
 {
     volatile IfxCpu_Trap trapWatch;

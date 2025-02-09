@@ -112,3 +112,5 @@ McuSm.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Con
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxSrc_cfg.h" :
 McuSm.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Io\\Irq\Irq.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Io\\Irq\Irq.h" :
+McuSm.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Cpu\\Irq\IfxCpu_Irq.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\Libraries\\iLLD\\TC37A\\Tricore\\Cpu\\Irq\IfxCpu_Irq.h" :

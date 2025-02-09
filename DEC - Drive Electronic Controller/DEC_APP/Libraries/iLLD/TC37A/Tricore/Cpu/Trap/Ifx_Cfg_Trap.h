@@ -40,24 +40,25 @@
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
+extern int vPortSyscallHandler( unsigned char id );
 #ifndef IFX_CFG_TRAP_H
 #define IFX_CFG_TRAP_H 1
 #endif
 /*define a hook for internal protection error traps*/
-#define IFX_CFG_CPU_TRAP_IPE_HOOK(trapWatch)    ((void)McuSm_TRAP1(trapWatch))
+#define IFX_CFG_CPU_TRAP_IPE_HOOK(trapWatch)    ((void)trapWatch)
 /*define a hook for instruction error traps*/
 #define IFX_CFG_CPU_TRAP_IE_HOOK(trapWatch)     ((void)McuSm_TRAP2(trapWatch))
 /*define a hook for bus error traps*/
 #define IFX_CFG_CPU_TRAP_BE_HOOK(trapWatch)     ((void)McuSm_TRAP4(trapWatch))
 /*define a hook for non-maskable interrupt traps*/
 #define IFX_CFG_CPU_TRAP_NMI_HOOK(trapWatch)    ((void)McuSm_TRAP7(trapWatch))
-#define IFX_CFG_CPU_TRAP_SYSCALL_CPU0_HOOK(trapWatch) ((void)McuSm_TRAP6_CPU0(trapWatch)) /**< By default macro is empty*/
-#define IFX_CFG_CPU_TRAP_SYSCALL_CPU1_HOOK(trapWatch) ((void)McuSm_TRAP6_CPU1(trapWatch)) /**< By default macro is empty*/
-#define IFX_CFG_CPU_TRAP_SYSCALL_CPU2_HOOK(trapWatch) ((void)McuSm_TRAP6_CPU2(trapWatch)) /**< By default macro is empty*/
-#define IFX_CFG_CPU_TRAP_MME_HOOK(trapWatch)    ((void)McuSm_TRAP0(trapWatch))      /**< By default memory Management Error macro is empty*/
+#define IFX_CFG_CPU_TRAP_SYSCALL_CPU0_HOOK(t) vPortSyscallHandler(t.tId)
+#define IFX_CFG_CPU_TRAP_SYSCALL_CPU1_HOOK(trapWatch) ((void)trapWatch) /**< By default macro is empty*/
+#define IFX_CFG_CPU_TRAP_SYSCALL_CPU2_HOOK(trapWatch) ((void)trapWatch) /**< By default macro is empty*/
+#define IFX_CFG_CPU_TRAP_MME_HOOK(trapWatch)    ((void)trapWatch)   /**< By default memory Management Error macro is empty*/
 #define IFX_CFG_CPU_TRAP_CME_HOOK(trapWatch)    ((void)McuSm_TRAP3(trapWatch))      /**< By default context Management Error macro is empty*/
-#define IFX_CFG_CPU_TRAP_TSR_HOOK(trapWatch)    ((void)tsrHook(trapWatch))       /**< By default macro is empty*/
-#define IFX_CFG_CPU_TRAP_ASSERT_HOOK(trapWatch) ((void)McuSm_TRAP5(trapWatch))     /**< By default assertion is empty*/
+#define IFX_CFG_CPU_TRAP_TSR_HOOK(trapWatch)    ((void)trapWatch)       /**< By default macro is empty*/
+#define IFX_CFG_CPU_TRAP_ASSERT_HOOK(trapWatch) ((void)trapWatch)     /**< By default assertion is empty*/
 /*define how many context save areas can be dumped*/
 #define CSA_CAPTURE_LIMIT   (20u)
 /*define how many stacks can be dumped for upper context dumps*/
@@ -122,14 +123,8 @@ extern void McuSm_PIEAR_PIETR_Capture(void);
 extern void McuSm_DIEAR_DIETR_Capture(void);
 extern void McuSm_DATR_DEADD_Capture(void);
 extern void McuSm_AG_Capture(void);
-extern void McuSm_TRAP0(IfxCpu_Trap trapInfon);
-extern void McuSm_TRAP1(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP2(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP3(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP4(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP5(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP6_CPU0(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP6_CPU1(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP6_CPU2(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP7(IfxCpu_Trap trapInfo);
 extern void tsrHook(IfxCpu_Trap trapInfo);

@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "time.h"
+#include "Dem.h"
 
 typedef enum
 {
@@ -18,8 +19,7 @@ static const float DISTANCE_STABLE_THRESHOLD_CM = 2.0f;         // If distance c
 static const float TIME_TO_COLLISION_WARN       = 2.0f;         // If TTC < 2s => go to WARNING
 static const float TIME_TO_COLLISION_BRAKE      = 1.0f;         // If TTC < 1s => go to BRAKE
 static ColDet_State_t g_collisionState = INIT;
-static float g_lastDistanceCm = 0xFFFFu;                         // Start with some large distance
-
+static float g_lastDistanceCm = 0xFFFFu;                        // Start with some large distance
 static uint32 ColDet_MainCounter = 0u;
 uint8 ColDet_CanTx_IrSenStat = 0u;
 float ColDet_CalculatedSpeed = 0u;
@@ -148,13 +148,14 @@ void ColDet_MainFunction(void)
             break;
     }
 
-    if(0xFFFFu == IRSensorValue)
+    if(0xFFFFu == IRSensorValue || 10u > IRSensorValue)
     {
         g_collisionState = ERROR;
+        Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 1u, 0u);
     }
     else
     {
-        /* Do nothing. */
+        Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 0u, 0u);
     }
 
     ColDet_CanTx_IrSenStat = g_collisionState;

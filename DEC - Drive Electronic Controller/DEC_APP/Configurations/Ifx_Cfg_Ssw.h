@@ -186,6 +186,7 @@ extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
         IFX_EXTERN const IfxMtu_MbistConfig *const mbistGangConfig[]; \
         if (IfxMtu_runMbistAll(mbistGangConfig) == 1U)                \
         {                                                             \
+            while(1); \
             McuSm_PerformResetHook(1u, 1u);                           \
         }                                                             \
     }

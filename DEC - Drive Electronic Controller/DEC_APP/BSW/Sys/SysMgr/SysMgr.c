@@ -13,6 +13,11 @@
 #include "FreeRTOSConfig.h"
 #include "SCR.h"
 #include "Wdg.h"
+#include "IfxPmsPm.h"
+#include "IfxStm.h"
+#include "IfxPort.h"
+#include "IfxPort_reg.h"
+#include "Dem.h"
 
 static uint32 SysMgr_MainCounter = 0u;
 SysMgr_EcuState_t SysMgr_EcuState = SYSMGR_INIT;
@@ -36,11 +41,11 @@ void SysMgr_ProcessResetDtc(void)
     {
         if(NO_ERR != McuSm_LastResetReason)
         {
-            //Dem_SetDtc(MCUSM_DTC_ID_SW_ERROR, 1u);
+            Dem_SetDtc(MCUSM_DTC_ID_SW_ERROR, 1u, 8u);
         }
         else
         {
-            //Dem_SetDtc(MCUSM_DTC_ID_SW_ERROR, 0u);
+            Dem_SetDtc(MCUSM_DTC_ID_SW_ERROR, 0u, 8u);
         }
     }
     else
@@ -80,12 +85,12 @@ void SysMgr_EcuStateMachine(void)
         case SYSMGR_POSTRUN:
             Nvm_WriteAll();
 
-            if(((0u != SysMgr_NoBusActivity) ||
-                    (0u != SysMgr_NoOvercurrentOnDcMotor) ||
-                    (0u != SysMgr_NoOverheatOnDcMotor)) &&
+            if(((0u == SysMgr_NoBusActivity) ||
+                    (0u == SysMgr_NoOvercurrentOnDcMotor) ||
+                    (0u == SysMgr_NoOverheatOnDcMotor)) &&
                     (2u == Nvm_WriteAllFinished))
             {
-                SysMgr_EcuState = SYSMGR_SLEEP;
+                //SysMgr_EcuState = SYSMGR_SLEEP;
             }
             else
             {
@@ -96,7 +101,6 @@ void SysMgr_EcuStateMachine(void)
             if(1u == SysMgr_Core1OnHalt &&
                     1u == SysMgr_Core2OnHalt)
             {
-                IfxCpu_setAllIdleExceptMasterCpu(0u);
                 IfxCpu_disableInterrupts();
                 SysMgr_LoadScr();
                 SysMgr_PreSleepInitScr();
@@ -114,6 +118,11 @@ void SysMgr_EcuStateMachine(void)
 
 void SysMgr_GoSleepSequence(void)
 {
+    IfxPmsPm_StandbyConfig standbyConfig;
+    IfxPmsPm_RequestPowerMode powerMode = IfxPmsPm_RequestPowerMode_standby;
+    IfxPmsPm_WakeupConfig wakeConfig;
+    IfxScuCcu_Config clockConfig;
+
     Wdg_ReloadCpu0Watchdog();
     Wdg_DeInitializeCpu0Watchdog();
     Wdg_DeInitializeSafetyWatchdog();
@@ -131,16 +140,114 @@ void SysMgr_GoSleepSequence(void)
     IfxFce_Crc_deInitModule(&g_fceCrc.fceCrc);
     vTaskSuspendAll();
     vTaskEndScheduler();
-    SCU_CCUCON0.B.CLKSEL = 0;
-    while(SCU_SYSPLLSTAT.B.LOCK == 0);
-    SCU_CCUCON0.B.CLKSEL = 1;
+    IfxStm_disableModule(&MODULE_STM0);
+
+    SRC_DMA_DMA0_CH0.B.SRE = 0u;
+    SRC_GTM_ATOM0_0.B.SRE = 0U;
+    SRC_GTM_ATOM0_1.B.SRE = 0U;
+    SRC_GTM_ATOM0_2.B.SRE = 0U;
+    SRC_GTM_ATOM0_3.B.SRE = 0U;
+    SRC_GTM_ATOM3_0.B.SRE = 0U;
+    SRC_GTM_ATOM3_1.B.SRE = 0U;
+    SRC_GTM_ATOM3_2.B.SRE = 0U;
+    SRC_GTM_ATOM3_3.B.SRE = 0U;
+    SRC_CAN_CAN0_INT0.B.SRE = 0u;
+    SRC_CAN_CAN0_INT1.B.SRE = 0u;
+    SRC_CAN_CAN0_INT2.B.SRE = 0u;
+    SRC_CAN_CAN0_INT3.B.SRE = 0u;
+    SRC_CAN_CAN0_INT4.B.SRE = 0u;
+    SRC_CAN_CAN0_INT5.B.SRE = 0u;
+    SRC_STM0SR0.B.SRE = 0u;
+    SRC_STM0SR1.B.SRE = 0u;
+    SRC_STM1SR0.B.SRE = 0u;
+    SRC_STM1SR1.B.SRE = 0u;
+    SRC_STM2SR0.B.SRE = 0u;
+    SRC_STM2SR1.B.SRE = 0u;
+
+    for (uint8 portIndex = 0; portIndex < IFXPORT_NUM_MODULES; portIndex++)
+    {
+        Ifx_P *portSfr = IfxPort_getAddress(portIndex);
+        if (portSfr == NULL_PTR)
+        {
+            continue;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        for (uint8 pinIndex = 0; pinIndex < 16; pinIndex++)
+        {
+            if ((portIndex == 33) && (pinIndex == 10))
+            {
+                continue;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            IfxPort_resetPinControllerSelection(portSfr, pinIndex);
+            IfxPort_setPinMode(portSfr, pinIndex, IfxPort_Mode_inputNoPullDevice);
+            IfxPort_setPinPadDriver(portSfr, pinIndex, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+        }
+    }
+    /* Configure go to standby. */
+    wakeConfig.filter = IfxPmsPm_DigitalFilter_used;
+    wakeConfig.mode = IfxPmsPm_WakeupTimerMode_autoStop;
+    wakeConfig.reloadCounter = 0u;
+    wakeConfig.standbyRam = IfxPmsPm_StandbyRamSupply_cpu0Cpu1;
+    wakeConfig.trigger = IfxPmsPm_EdgeDetectionControl_onRisingEdge;
+    wakeConfig.wakeup = IfxPmsPm_WakeupOn_scr;
+    standbyConfig.trigger                        = IfxPmsPm_StandbyTriggerMode_software;
+    standbyConfig.standbyRamBlock                = IfxPmsPm_StandbyRamSupply_cpu0Cpu1;
+    standbyConfig.enableScr                      = TRUE;
+    standbyConfig.minDelayBeforeWakeUp           = IfxPmsPm_BlankingFilterDelay_0ms;
+    standbyConfig.vextUnderVoltageThresholdLevel = 0;
+    standbyConfig.vddUnderVoltageThresholdLevel  = 0;
+    standbyConfig.enableStandbyOnVextRampDown    = FALSE;
+    standbyConfig.enableStandbyOnVddRampDown     = FALSE;
+    standbyConfig.scrClockSupply                 = IfxPmsPm_ScrClocking_100mhzOptional;
+    standbyConfig.esr0PinStateRequest            = IfxPmsPm_Esr0PinStateRequest_resetOutput;
+    standbyConfig.padStateRequest                = IfxPmsPm_PadStateRequest_tristate;
+    standbyConfig.enableWakeupOnEsr0             = FALSE;
+    standbyConfig.enableWakeupOnEsr1             = FALSE;
+    standbyConfig.enableWakeupOnPinA             = FALSE;
+    standbyConfig.enableWakeupOnPinB             = FALSE;
+    standbyConfig.enableWakeupOnPorst            = FALSE;
+    standbyConfig.enableWakeupOnScr              = TRUE;
+    standbyConfig.enableWakeupOnPower            = FALSE;
+    standbyConfig.enableWakeupOnTimer            = FALSE;
+    standbyConfig.wutClock                       = IfxPmsPm_WutClock_68Hz;
+    standbyConfig.useWutStandbyAutoStopMode      = FALSE;
+    standbyConfig.wutReloadValue                 = 0xFFFFFFFu;
+    standbyConfig.esr0DigitalFilterUsage         = IfxPmsPm_DigitalFilter_used;
+    standbyConfig.esr1DigitalFilterUsage         = IfxPmsPm_DigitalFilter_used;
+    standbyConfig.pinADigitalFilterUsage         = IfxPmsPm_DigitalFilter_used;
+    standbyConfig.pinBDigitalFilterUsage         = IfxPmsPm_DigitalFilter_used;
+    standbyConfig.esr0TriggerEvent               = IfxPmsPm_PinEdgeTriggerEvent_risingEdge;
+    standbyConfig.esr1TriggerEvent               = IfxPmsPm_PinEdgeTriggerEvent_risingEdge;
+    standbyConfig.pinATriggerEvent               = IfxPmsPm_PinEdgeTriggerEvent_risingEdge;
+    standbyConfig.pinBTriggerEvent               = IfxPmsPm_PinEdgeTriggerEvent_risingEdge;
+    /* Start standby sequence, set PLL to 100MHZ. */
+    IfxPmsPm_startStandbySequenceInFlash(&standbyConfig, &clockConfig);
+    IfxPmsPm_setStandbyMode(&MODULE_PMS, &wakeConfig, powerMode);
+    /* Leave only back-up clock (20MHZ) on. */
+    IfxScuCcu_switchToBackupClock(&clockConfig);
+    /* Maybe we go to sleep here. */
     IfxCpu_setCoreMode(&MODULE_CPU0, IfxCpu_CoreMode_idle);
+    /* All is lost, reset. */
+    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0xFE);
 }
 
 void SysMgr_WakeupInitScr(void)
 {
+    IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
     IfxScr_disableSCR();
     IfxScr_init(0u);
+    IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
 }
 
 void SysMgr_PreSleepInitScr(void)

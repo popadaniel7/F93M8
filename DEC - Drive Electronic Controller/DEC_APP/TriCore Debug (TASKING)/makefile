@@ -61,13 +61,10 @@ RM := rm -rf
 -include BSW/Io/Ain/subdir.mk
 -include BSW/Diag/Dem/subdir.mk
 -include BSW/Diag/Dcm/subdir.mk
--include BSW/Com/E2e/subdir.mk
 -include BSW/Com/Can/subdir.mk
 -include APP/Iven/subdir.mk
 -include APP/EnergyMgmt/subdir.mk
 -include APP/EncCal/subdir.mk
--include APP/EPSCtrl/subdir.mk
--include APP/EMotorCtrl/subdir.mk
 -include APP/DiagMaster/subdir.mk
 -include APP/DcyHandler/subdir.mk
 -include APP/ComMaster/subdir.mk
@@ -119,7 +116,7 @@ all: main-build
 main-build: DEC_APP.elf secondary-outputs
 
 dependents:
-	-cd "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)" && $(MAKE) all
+	-cd "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)" && $(MAKE) clean all
 
 # Tool invocations
 DEC_APP.elf: $(OBJS) "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)/SCR_AURIX_TC3x" makefile $(OPTIONAL_TOOL_DEPS)

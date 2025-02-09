@@ -1291,7 +1291,7 @@ void DigitalCluster_DisplayInfoLights(DigitalCluster_DisplayMode_t *displayType)
 	{
 		/* Do nothing. */
 	}
-	if(DigitalCluster_RxSig_PowerSteeringStatus == 1 && psPrevState == 0)
+	if(DigitalCluster_RxSig_PowerSteeringStatus == 255u && psPrevState != 255u)
 	{
 		psPrevState = DigitalCluster_RxSig_PowerSteeringStatus;
 		FsmcH_DrawString(displayType->DashboardLights.DL_PS.position_x,
@@ -1300,7 +1300,7 @@ void DigitalCluster_DisplayInfoLights(DigitalCluster_DisplayMode_t *displayType)
 				TFT_YELLOW,
 				TFT_BLACK);
 	}
-	else if(DigitalCluster_RxSig_PowerSteeringStatus == 0 && psPrevState == 1)
+	else if(DigitalCluster_RxSig_PowerSteeringStatus != 255u && psPrevState == 255u)
 	{
 		psPrevState = DigitalCluster_RxSig_PowerSteeringStatus;
 		psPrevState = DigitalCluster_RxSig_PowerSteeringStatus;

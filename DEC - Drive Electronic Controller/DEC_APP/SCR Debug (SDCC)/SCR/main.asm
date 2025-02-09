@@ -215,7 +215,7 @@ _Scr_NMIECC_Interrupt:
 ;	../SCR/main.c:54: SCR_SCU_STDBYWKP = 0x05u;       // request SCRWKP and WCANWKSEL
 	mov	_SCR_SCU_STDBYWKP,#0x05
 .00130:
-;	../SCR/main.c:56: }
+;	../SCR/main.c:55: }
 	pop	dph
 	pop	dpl
 	pop	acc

@@ -22,4 +22,5 @@ void Gtm_Atom_Init(void)
     IfxGtm_Cmu_enableClocks(&MODULE_GTM, IFXGTM_CMU_CLKEN_CLK0);                /* Enable the CMU clock 0           */
     IfxGtm_Atom_Timer_init(&g_timerDriver, &timerConfig);                       /* Initialize the ATOM              */
     IfxGtm_Atom_Timer_run(&g_timerDriver);                                      /* Start the ATOM                   */
+    //IfxCpu_Irq_installInterruptHandler(ISR_Gtm_Atom_InterruptHandler, IRQ_ISR_PRIORITY_ATOM);
 }

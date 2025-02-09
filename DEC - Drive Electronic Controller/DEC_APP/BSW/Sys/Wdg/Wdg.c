@@ -81,12 +81,10 @@ void Wdg_InitializeCpu2Watchdog(void)
 
 void Wdg_DeInitializeSafetyWatchdog(void)
 {
-    uint16 passwd;
-    passwd = IfxScuWdt_getSafetyWatchdogPassword();
-    /* Reconfigure the reload value (timeout) */
-    IfxScuWdt_changeSafetyWatchdogReload(passwd, 15000U);
-    /* Enable the safety watchdog if disabled (optional) */
-    IfxScuWdt_disableSafetyWatchdog(passwd);
+    uint16 safetyWdtPw = IfxScuWdt_getSafetyWatchdogPassword();
+    IfxScuWdt_clearSafetyEndinit(safetyWdtPw);
+    IfxScuWdt_disableSafetyWatchdog(safetyWdtPw);
+    IfxScuWdt_setSafetyEndinit(safetyWdtPw);
 }
 
 void Wdg_DeInitializeCpu0Watchdog(void)

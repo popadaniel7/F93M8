@@ -13,7 +13,6 @@ static const IfxPort_Io_ConfigPin gpio_pin_table[] =
 {
     IFXCFG_P00_0_IO_CONFIG,
     IFXCFG_P00_1_IO_CONFIG,
-    IFXCFG_P00_2_IO_CONFIG,
     IFXCFG_P00_3_IO_CONFIG,
     IFXCFG_P20_6_IO_CONFIG
 };

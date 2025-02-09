@@ -133,15 +133,15 @@ void IfxPmsPm_setStandbyMode(Ifx_PMS *pms, IfxPmsPm_WakeupConfig *config, IfxPms
 
     switch (index)
     {
-    case 0:
-        MODULE_SCU.PMCSR0.B.REQSLP = powerMode;
-        break;
-    case 1:
-        MODULE_SCU.PMCSR1.B.REQSLP = powerMode;
-        break;
-    case 2:
-        MODULE_SCU.PMCSR2.B.REQSLP = powerMode;
-        break;
+        case 0:
+            MODULE_SCU.PMCSR0.B.REQSLP = powerMode;
+            break;
+        case 1:
+            MODULE_SCU.PMCSR1.B.REQSLP = powerMode;
+            break;
+        case 2:
+            MODULE_SCU.PMCSR2.B.REQSLP = powerMode;
+            break;
     }
 
     IfxScuWdt_setCpuEndinit(cpuWdtPw);
@@ -161,17 +161,17 @@ boolean IfxPmsPm_setCoreMode(IfxCpu_ResourceCpu cpuIndex, IfxCpu_CoreMode mode)
 
     switch (mode)
     {
-    case IfxCpu_CoreMode_idle:
-        reqSleep = IfxScu_PMCSR_REQSLP_Idle;
-        break;
-    case IfxCpu_CoreMode_run:
-        reqSleep = IfxScu_PMCSR_REQSLP_Run;
-        break;
-    case IfxCpu_CoreMode_sleep:
-        reqSleep = IfxScu_PMCSR_REQSLP_Sleep;
-        break;
-    default:
-        return 0;
+        case IfxCpu_CoreMode_idle:
+            reqSleep = IfxScu_PMCSR_REQSLP_Idle;
+            break;
+        case IfxCpu_CoreMode_run:
+            reqSleep = IfxScu_PMCSR_REQSLP_Run;
+            break;
+        case IfxCpu_CoreMode_sleep:
+            reqSleep = IfxScu_PMCSR_REQSLP_Sleep;
+            break;
+        default:
+            return 0;
     }
 
     if (retValue == TRUE)
@@ -185,15 +185,15 @@ boolean IfxPmsPm_setCoreMode(IfxCpu_ResourceCpu cpuIndex, IfxCpu_CoreMode mode)
 
             switch (pmcIndex)
             {
-            case 0:
-                MODULE_SCU.PMCSR0.B.REQSLP = reqSleep;
-                break;
-            case 1:
-                MODULE_SCU.PMCSR1.B.REQSLP = reqSleep;
-                break;
-            case 2:
-                MODULE_SCU.PMCSR2.B.REQSLP = reqSleep;
-                break;
+                case 0:
+                    MODULE_SCU.PMCSR0.B.REQSLP = reqSleep;
+                    break;
+                case 1:
+                    MODULE_SCU.PMCSR1.B.REQSLP = reqSleep;
+                    break;
+                case 2:
+                    MODULE_SCU.PMCSR2.B.REQSLP = reqSleep;
+                    break;
             }
 
             IfxScuWdt_setSafetyEndinit(safetyWdtPw);
@@ -208,15 +208,15 @@ boolean IfxPmsPm_setCoreMode(IfxCpu_ResourceCpu cpuIndex, IfxCpu_CoreMode mode)
 
             switch (pmcIndex)
             {
-            case 0:
-                MODULE_SCU.PMCSR0.B.REQSLP = reqSleep;
-                break;
-            case 1:
-                MODULE_SCU.PMCSR1.B.REQSLP = reqSleep;
-                break;
-            case 2:
-                MODULE_SCU.PMCSR2.B.REQSLP = reqSleep;
-                break;
+                case 0:
+                    MODULE_SCU.PMCSR0.B.REQSLP = reqSleep;
+                    break;
+                case 1:
+                    MODULE_SCU.PMCSR1.B.REQSLP = reqSleep;
+                    break;
+                case 2:
+                    MODULE_SCU.PMCSR2.B.REQSLP = reqSleep;
+                    break;
             }
 
             IfxScuWdt_setCpuEndinit(cpuWdtPw);
@@ -233,65 +233,65 @@ void IfxPmsPm_enableWakeup(Ifx_PMS *pms, IfxPmsPm_WakeupConfig *wakeup)
 
     switch (wakeup->wakeup)
     {
-    case IfxPmsPm_WakeupOn_esr0:
-        tempPMSW.U           = pms->PMSWCR0.U;
-        tempPMSW.B.PORSTWKEN = 0;
-        tempPMSW.B.ESR0WKEN  = 1;
-        tempPMSW.B.ESR0DFEN  = wakeup->filter;
-        tempPMSW.B.ESR0EDCON = wakeup->trigger;
-        pms->PMSWCR0.U       = tempPMSW.U;
-        break;
-    case IfxPmsPm_WakeupOn_esr1:
-        tempPMSW.U           = pms->PMSWCR0.U;
-        tempPMSW.B.PORSTWKEN = 0;
-        tempPMSW.B.ESR1WKEN  = 1;
-        tempPMSW.B.ESR1DFEN  = wakeup->filter;
-        tempPMSW.B.ESR1EDCON = wakeup->trigger;
-        pms->PMSWCR0.U       = tempPMSW.U;
-        break;
-    case IfxPmsPm_WakeupOn_pinA:
-        tempPMSW.U           = pms->PMSWCR0.U;
-        tempPMSW.B.PORSTWKEN = 0;
-        tempPMSW.B.PINAWKEN  = 1;
-        tempPMSW.B.PINADFEN  = wakeup->filter;
-        tempPMSW.B.PINAEDCON = wakeup->trigger;
-        pms->PMSWCR0.U       = tempPMSW.U;
-        break;
-    case IfxPmsPm_WakeupOn_pinB:
-        tempPMSW.U           = pms->PMSWCR0.U;
-        tempPMSW.B.PORSTWKEN = 0;
-        tempPMSW.B.PINBWKEN  = 1;
-        tempPMSW.B.PINBDFEN  = wakeup->filter;
-        tempPMSW.B.PINBEDCON = wakeup->trigger;
-        pms->PMSWCR0.U       = tempPMSW.U;
-        break;
-    case IfxPmsPm_WakeupOn_timer:
-        tempPMSW.U         = pms->PMSWCR0.U;
-        tempPMSW.B.WUTWKEN = 1;
-        pms->PMSWCR0.U     = tempPMSW.U;
-        pms->PMSWCR3.U    |= ((wakeup->mode << 30) | (1 << 27) | (wakeup->reloadCounter));
-        break;
-    case IfxPmsPm_WakeupOn_porst:
-        tempPMSW.U           = pms->PMSWCR0.U;
-        tempPMSW.B.PORSTWKEN = 1;
-        pms->PMSWCR0.U       = tempPMSW.U;
-        break;
-    case IfxPmsPm_WakeupOn_scr:
-        tempPMSW.U           = pms->PMSWCR0.U;
-        tempPMSW.B.SCRWKEN   = 1;
-        tempPMSW.B.PORSTWKEN = 0;
-        pms->PMSWCR0.U       = tempPMSW.U;
-        break;
-    case IfxPmsPm_WakeupOn_power:
-        tempPMSW.U         = pms->PMSWCR0.U;
-        tempPMSW.B.PWRWKEN = 1;
-        pms->PMSWCR0.U     = tempPMSW.U;
-        break;
-    default:
-        tempPMSW.U           = pms->PMSWCR0.U;
-        tempPMSW.B.PORSTWKEN = 1;
-        pms->PMSWCR0.U       = tempPMSW.U;
-        break;
+        case IfxPmsPm_WakeupOn_esr0:
+            tempPMSW.U           = pms->PMSWCR0.U;
+            tempPMSW.B.PORSTWKEN = 0;
+            tempPMSW.B.ESR0WKEN  = 1;
+            tempPMSW.B.ESR0DFEN  = wakeup->filter;
+            tempPMSW.B.ESR0EDCON = wakeup->trigger;
+            pms->PMSWCR0.U       = tempPMSW.U;
+            break;
+        case IfxPmsPm_WakeupOn_esr1:
+            tempPMSW.U           = pms->PMSWCR0.U;
+            tempPMSW.B.PORSTWKEN = 0;
+            tempPMSW.B.ESR1WKEN  = 1;
+            tempPMSW.B.ESR1DFEN  = wakeup->filter;
+            tempPMSW.B.ESR1EDCON = wakeup->trigger;
+            pms->PMSWCR0.U       = tempPMSW.U;
+            break;
+        case IfxPmsPm_WakeupOn_pinA:
+            tempPMSW.U           = pms->PMSWCR0.U;
+            tempPMSW.B.PORSTWKEN = 0;
+            tempPMSW.B.PINAWKEN  = 1;
+            tempPMSW.B.PINADFEN  = wakeup->filter;
+            tempPMSW.B.PINAEDCON = wakeup->trigger;
+            pms->PMSWCR0.U       = tempPMSW.U;
+            break;
+        case IfxPmsPm_WakeupOn_pinB:
+            tempPMSW.U           = pms->PMSWCR0.U;
+            tempPMSW.B.PORSTWKEN = 0;
+            tempPMSW.B.PINBWKEN  = 1;
+            tempPMSW.B.PINBDFEN  = wakeup->filter;
+            tempPMSW.B.PINBEDCON = wakeup->trigger;
+            pms->PMSWCR0.U       = tempPMSW.U;
+            break;
+        case IfxPmsPm_WakeupOn_timer:
+            tempPMSW.U         = pms->PMSWCR0.U;
+            tempPMSW.B.WUTWKEN = 1;
+            pms->PMSWCR0.U     = tempPMSW.U;
+            pms->PMSWCR3.U    |= ((wakeup->mode << 30) | (1 << 27) | (wakeup->reloadCounter));
+            break;
+        case IfxPmsPm_WakeupOn_porst:
+            tempPMSW.U           = pms->PMSWCR0.U;
+            tempPMSW.B.PORSTWKEN = 1;
+            pms->PMSWCR0.U       = tempPMSW.U;
+            break;
+        case IfxPmsPm_WakeupOn_scr:
+            tempPMSW.U           = pms->PMSWCR0.U;
+            tempPMSW.B.SCRWKEN   = 1;
+            tempPMSW.B.PORSTWKEN = 0;
+            pms->PMSWCR0.U       = tempPMSW.U;
+            break;
+        case IfxPmsPm_WakeupOn_power:
+            tempPMSW.U         = pms->PMSWCR0.U;
+            tempPMSW.B.PWRWKEN = 1;
+            pms->PMSWCR0.U     = tempPMSW.U;
+            break;
+        default:
+            tempPMSW.U           = pms->PMSWCR0.U;
+            tempPMSW.B.PORSTWKEN = 1;
+            pms->PMSWCR0.U       = tempPMSW.U;
+            break;
     }
 }
 
@@ -325,7 +325,7 @@ void IfxPmsPm_initStandbyConfig(IfxPmsPm_StandbyConfig *standbyConfig)
     standbyConfig->enableWakeupOnPinA             = FALSE;
     standbyConfig->enableWakeupOnPinB             = FALSE;
     standbyConfig->enableWakeupOnPorst            = TRUE;
-    standbyConfig->enableWakeupOnScr              = FALSE;
+    standbyConfig->enableWakeupOnScr              = TRUE;
     standbyConfig->enableWakeupOnPower            = FALSE;
     standbyConfig->enableWakeupOnTimer            = FALSE;
     standbyConfig->wutClock                       = IfxPmsPm_WutClock_70kHz;
@@ -350,26 +350,26 @@ void IfxPmsPm_startStandbySequenceInFlash(IfxPmsPm_StandbyConfig *standbyConfig,
     Ifx_SCU_PMSWCR1 pmswcr1;
 
     IFXPMS_DISABLE_ALL_MODULES_STANDBY
-/*Setting the current CPU as the Master CPU.Care has to be taken while locating IfxPmsPm_runStandbySequenceInPSPR() and standbyConfig in RAM.*/
+    /*Setting the current CPU as the Master CPU.Care has to be taken while locating IfxPmsPm_runStandbySequenceInPSPR() and standbyConfig in RAM.*/
 
     IfxPmsPm_setMasterCpu(IfxCpu_getCoreIndex());
 
     standbyConfig->masterCpu = IfxPmsPm_getMasterCpu();
 
-/*Disabling interrupts for all CPUs except the Master CPU, a designation assigned to current CPU using IfxPmsPm_setMasterCpu(). This is to avoid wakeup
- * of the CPUs once they are put into IDLE state.*/
+    /*Disabling interrupts for all CPUs except the Master CPU, a designation assigned to current CPU using IfxPmsPm_setMasterCpu(). This is to avoid wakeup
+     * of the CPUs once they are put into IDLE state.*/
     IfxCpu_disableInterruptsAllExceptMaster(IfxCpu_getCoreIndex());
 
-/*Placing all CPUs to Idle state except the Master CPU, a designation assigned to current CPU using IfxPmsPm_setMasterCpu().*/
+    /*Placing all CPUs to Idle state except the Master CPU, a designation assigned to current CPU using IfxPmsPm_setMasterCpu().*/
     IfxCpu_setAllIdleExceptMasterCpu(IfxCpu_getCoreIndex());
 
     endinitSfty_pw = IfxScuWdt_getSafetyWatchdogPasswordInline();
     IfxScuWdt_clearSafetyEndinitInline(endinitSfty_pw);
 
-/*Clearing all overrun and wakeup status bits.*/
+    /*Clearing all overrun and wakeup status bits.*/
     PMS_PMSWSTATCLR.U = (PMS_PMSWSTATCLR.U | 0xEFFF);
 
-/*Choosing Standby entry mode in the case of both VEVRSB and VEXT remaining active in Standby Mode*/
+    /*Choosing Standby entry mode in the case of both VEVRSB and VEXT remaining active in Standby Mode*/
     if ((standbyConfig->trigger == IfxPmsPm_StandbyTriggerMode_software) || (standbyConfig->trigger == IfxPmsPm_StandbyTriggerMode_hardware_nmi))
     {
         pmswcr1.U          = SCU_PMSWCR1.U;
@@ -400,10 +400,10 @@ void IfxPmsPm_startStandbySequenceInFlash(IfxPmsPm_StandbyConfig *standbyConfig,
         IfxPmsEvr_setSecondaryUnderVoltageThresholdMv(&MODULE_PMS, standbyConfig->vddUnderVoltageThresholdLevel, IfxPmsEvr_SupplyMode_evrc);
     }
 
-/*Configuring Wakeup modes.*/
+    /*Configuring Wakeup modes.*/
     IfxPmsPm_configureWakeup(standbyConfig);
 
-/* Frequency Ramp-down and switching of clock source to 100MHz Backup clock */
+    /* Frequency Ramp-down and switching of clock source to 100MHz Backup clock */
     uint32                      pllStepsCount;
     IfxScuCcu_PllThrottleConfig pllThrottleConfig = clockConfig->sysPllThrottleConfig;
 
@@ -461,7 +461,7 @@ void IfxPmsPm_continueStandbySequenceInRAM(IfxPmsPm_StandbyConfig *standbyConfig
     /*Putting Flash to Sleep*/
     DMU_HF_PCONTROL.B.SLEEP = 0x3;
 
-/*Waiting for flash to enter sleep mode*/
+    /*Waiting for flash to enter sleep mode*/
     while (!DMU_HF_PSTATUS.B.SLEEP)
     {}
 
@@ -471,33 +471,33 @@ void IfxPmsPm_continueStandbySequenceInRAM(IfxPmsPm_StandbyConfig *standbyConfig
     /*Clock dividers for SPB, SRI, BBB, FSI, GETH, GTM, ADAS programmed to have lowest frequency*/
     SCU_CCUCON0.B.LPDIV = 0x4;
 
-/* Shutting down System PLL and Peripheral PLL */
+    /* Shutting down System PLL and Peripheral PLL */
 
     SCU_SYSPLLCON0.B.PLLPWD = 0U;
     SCU_PERPLLCON0.B.PLLPWD = 0U;
 
-/*Disabling SMU Standby module*/
+    /*Disabling SMU Standby module*/
     Ifx_PMS_CMD_STDBY cmdStdby;
     cmdStdby.U         = PMS_CMD_STDBY.U;
     cmdStdby.B.SMUEN   = 0;
     cmdStdby.B.BITPROT = 1;
     PMS_CMD_STDBY.U    = cmdStdby.U;
 
-/* Disabling Idle Request Acknowledge sequence activation for fast Standby Mode entry so that standby request is not blocked by a pending reset idle request acknowledge sequence */
+    /* Disabling Idle Request Acknowledge sequence activation for fast Standby Mode entry so that standby request is not blocked by a pending reset idle request acknowledge sequence */
     SCU_PMSWCR1.B.IRADIS = 1U;
 
-/*Disabling possibilities for Application Reset and System Reset*/
+    /*Disabling possibilities for Application Reset and System Reset*/
     MODULE_SCU.RSTCON.U = 0U;
 
     Ifx_PMS_PMSWCR0 pmswcr0;
     pmswcr0.U         = PMS_PMSWCR0.U;
-/* Setting the amount of blanking filter delay required */
+    /* Setting the amount of blanking filter delay required */
     pmswcr0.B.BLNKFIL = standbyConfig->minDelayBeforeWakeUp;
 
-/* Select standby RAM region to be powered on during standby */
+    /* Select standby RAM region to be powered on during standby */
     pmswcr0.B.STBYRAMSEL = standbyConfig->standbyRamBlock;
 
-/*Configuring the Pins for use in wakeup mode*/
+    /*Configuring the Pins for use in wakeup mode*/
 
     if ((standbyConfig->trigger == IfxPmsPm_StandbyTriggerMode_software) || (standbyConfig->trigger == IfxPmsPm_StandbyTriggerMode_hardware_nmi))
     {
@@ -514,7 +514,7 @@ void IfxPmsPm_continueStandbySequenceInRAM(IfxPmsPm_StandbyConfig *standbyConfig
 
     PMS_PMSWCR0.U = pmswcr0.U;
 
-/* Configuring state of port pins and ESR0 pins upon wakeup */
+    /* Configuring state of port pins and ESR0 pins upon wakeup */
     Ifx_PMS_PMSWCR5 pmswcr5;
     pmswcr5.U            = PMS_PMSWCR5.U;
     pmswcr5.B.BPTRISTREQ = 1;
@@ -523,25 +523,25 @@ void IfxPmsPm_continueStandbySequenceInRAM(IfxPmsPm_StandbyConfig *standbyConfig
     pmswcr5.B.ESR0TRIST  = 1;
     PMS_PMSWCR5.U        = pmswcr5.U;
 
-/* Configuring Standby Controller(SCR) if usage during standby mode is enabled */
+    /* Configuring Standby Controller(SCR) if usage during standby mode is enabled */
 
     Ifx_PMS_PMSWCR4 pmswcr4;
     pmswcr4.U           = PMS_PMSWCR4.U;
     pmswcr4.B.BPSCREN   = 1U;
     pmswcr4.B.SCREN     = standbyConfig->enableScr;
-/* SCR clock supply configuration */
+    /* SCR clock supply configuration */
     pmswcr4.B.SCRCLKSEL = standbyConfig->scrClockSupply;
 
     if (standbyConfig->trigger == IfxPmsPm_StandbyTriggerMode_hardware_undervoltage)
     {
-/* Disabling reset of SCR due to standby entry*/
+        /* Disabling reset of SCR due to standby entry*/
         pmswcr4.B.PORSTREQ = 0;
     }
 
     PMS_PMSWCR4.U = pmswcr4.U;
 
     IfxScuWdt_setSafetyEndinitInline(endinitSfty_pw);
-/* In case of manual standby entry using software, requesting Standby entry and waiting for Standby Reqested status */
+    /* In case of manual standby entry using software, requesting Standby entry and waiting for Standby Reqested status */
     cpuPassword = IfxScuWdt_getCpuWatchdogPasswordInline(&MODULE_SCU.WDTCPU[standbyConfig->masterCpu]);
 
     if (standbyConfig->trigger == IfxPmsPm_StandbyTriggerMode_software)
@@ -550,15 +550,15 @@ void IfxPmsPm_continueStandbySequenceInRAM(IfxPmsPm_StandbyConfig *standbyConfig
 
         switch (standbyConfig->masterCpu)
         {
-        case IfxCpu_ResourceCpu_0: SCU_PMCSR0.B.REQSLP = 0x3;
+            case IfxCpu_ResourceCpu_0: SCU_PMCSR0.B.REQSLP = 0x3;
             break;
-        case IfxCpu_ResourceCpu_1: SCU_PMCSR1.B.REQSLP = 0x3;
+            case IfxCpu_ResourceCpu_1: SCU_PMCSR1.B.REQSLP = 0x3;
             break;
-        case IfxCpu_ResourceCpu_2: SCU_PMCSR2.B.REQSLP = 0x3;
+            case IfxCpu_ResourceCpu_2: SCU_PMCSR2.B.REQSLP = 0x3;
             break;
-        default:
-            /* Invalid core selected */
-            break;
+            default:
+                /* Invalid core selected */
+                break;
         }
     }
 
@@ -625,18 +625,18 @@ void IfxPmsPm_startSleepSequenceinFlash(IfxPmsPm_SleepConfig *sleepConfig, IfxSc
 {
     uint16 endinitSfty_pw = 0;
 
-/*Set current CPU as the Master CPU*/
+    /*Set current CPU as the Master CPU*/
 
     IfxPmsPm_setMasterCpu(IfxCpu_getCoreIndex());
 
     sleepConfig->masterCpu = IfxPmsPm_getMasterCpu();
 
-/*Placing all CPUs to Idle state except the Master CPU, a designation assigned to current CPU using IfxPmsPm_setMasterCpu().*/
+    /*Placing all CPUs to Idle state except the Master CPU, a designation assigned to current CPU using IfxPmsPm_setMasterCpu().*/
     IfxCpu_setAllIdleExceptMasterCpu(IfxCpu_getCoreIndex());
 
     IFXPMS_DISABLE_MODULES_DURING_SLEEP
 
-/*Disable(or not) SYSPLL and PERPLL depending on which modules are required to be kept active*/
+    /*Disable(or not) SYSPLL and PERPLL depending on which modules are required to be kept active*/
 
     Ifx_SCU_SYSPLLCON0 syspllcon0;
     Ifx_SCU_PERPLLCON0 perpllcon0;
@@ -666,7 +666,7 @@ void IfxPmsPm_startSleepSequenceinFlash(IfxPmsPm_SleepConfig *sleepConfig, IfxSc
 
     SCU_SYSPLLCON0.U            = syspllcon0.U;
     SCU_PERPLLCON0.U            = perpllcon0.U;
-/*Clock dividers for SPB, SRI, BBB, FSI, GETH, GTM, ADAS programmed to operate at lowest frequency*/
+    /*Clock dividers for SPB, SRI, BBB, FSI, GETH, GTM, ADAS programmed to operate at lowest frequency*/
     SCU_CCUCON0.B.LPDIV         = 0x4;
     SCU_CCUCON0.B.UP            = 1;
     SCU_CCUCON1.B.CLKSELMCAN    = sleepConfig->mcanClockSource;
@@ -688,10 +688,10 @@ void IfxPmsPm_continueSleepSequenceInRAM(IfxPmsPm_SleepConfig *sleepConfig)
 {
     uint16 endinit_pw = 0;
 
-/*Putting Flash to Sleep*/
+    /*Putting Flash to Sleep*/
     DMU_HF_PCONTROL.B.SLEEP = 3;
 
-/*Waiting for flash to sleep*/
+    /*Waiting for flash to sleep*/
     while (!DMU_HF_PSTATUS.B.SLEEP)
     {}
 
@@ -701,29 +701,29 @@ void IfxPmsPm_continueSleepSequenceInRAM(IfxPmsPm_SleepConfig *sleepConfig)
 
     switch (sleepConfig->masterCpu)
     {
-    case IfxCpu_ResourceCpu_0: SCU_PMCSR0.B.REQSLP = 0x2;
+        case IfxCpu_ResourceCpu_0: SCU_PMCSR0.B.REQSLP = 0x2;
 
         while (SCU_PMCSR0.B.PMST == 0x4)
         {}
 
         break;
 
-    case IfxCpu_ResourceCpu_1: SCU_PMCSR1.B.REQSLP = 0x2;
+        case IfxCpu_ResourceCpu_1: SCU_PMCSR1.B.REQSLP = 0x2;
 
         while (SCU_PMCSR1.B.PMST == 0x4)
         {}
 
         break;
 
-    case IfxCpu_ResourceCpu_2: SCU_PMCSR2.B.REQSLP = 0x2;
+        case IfxCpu_ResourceCpu_2: SCU_PMCSR2.B.REQSLP = 0x2;
 
         while (SCU_PMCSR2.B.PMST == 0x4)
         {}
 
         break;
-    default:
-        /* Invalid core selected */
-        break;
+        default:
+            /* Invalid core selected */
+            break;
     }
 
     IfxScuWdt_setCpuEndinitInline(&MODULE_SCU.WDTCPU[sleepConfig->masterCpu], endinit_pw);
@@ -736,7 +736,7 @@ void IfxPmsPm_initiateWakeup(IfxScuCcu_Config *clockConfig)
 
     DMU_HF_PCONTROL.B.SLEEP = 0;
 
-/*Wait till Flash is active*/
+    /*Wait till Flash is active*/
 
     while (DMU_HF_PSTATUS.B.SLEEP)
     {}
@@ -745,7 +745,7 @@ void IfxPmsPm_initiateWakeup(IfxScuCcu_Config *clockConfig)
 
     IFXPMS_WAKEUP_MODULES
 
-        IFXPMS_RESTART_EXECUTION
+    IFXPMS_RESTART_EXECUTION
 }
 
 
@@ -779,9 +779,9 @@ void IfxPmsPm_initVoltageDroopConfig(IfxPmsPm_VoltageDroopConfig *voltageDroopCo
     voltageDroopConfig->enableVoltageDroopTimerOverflowFlag      = TRUE;
     /*Disabling Voltage Droop Timer interrupt*/
     voltageDroopConfig->enableVoltageDroopTimerOverflowInterrupt = FALSE;
-/* Requesting for a reduction voltage(negative voltage droop)*/
+    /* Requesting for a reduction voltage(negative voltage droop)*/
     voltageDroopConfig->droopRequestType                         = IfxPmsPm_VoltageDroopRequest_negative;
-/*The amount by which voltage change is required is 40mV*/
+    /*The amount by which voltage change is required is 40mV*/
     voltageDroopConfig->droopStep                                = IfxPmsPm_VoltageDroopStep_40mV;
 }
 

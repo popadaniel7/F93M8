@@ -1,6 +1,5 @@
 #include "Iven.h"
 
-
 static uint32 Iven_MainCounter = 0u;
 Iven_IcmTable_t Iven_IcmLookupTable[IVEN_ICM_NUMBER_OF_MESSAGES] = {{0u,0u}};
 uint8 Iven_CanTx_IcmId = 0u;
@@ -29,6 +28,7 @@ uint8 Iven_CanRx_ErrorDetectedCbm = 0u;
 uint8 Iven_CanRx_ErrorDetectedPdm = 0u;
 uint8 Iven_CanTx_InVehicleSafetyError = 0u;
 uint8 Iven_CanTx_DecMcuError = 0u;
+uint8 Iven_CanTx_DiagnosticMode = 0u;
 
 void Iven_MainFunction(void);
 
@@ -60,7 +60,18 @@ void Iven_MainFunction(void)
     static uint8 pIven_CanRx_ErrorDetectedCbm = 0u;
     static uint8 pIven_CanRx_ErrorDetectedPdm = 0u;
     static uint8 pIven_CanTx_DecMcuError = 0u;
+    static uint8 pIven_CanTx_DiagnosticMode = 0u;
     /* Process IVENs start. */
+    if((0u != Iven_CanTx_DiagnosticMode)
+            && (Iven_CanTx_DiagnosticMode != pIven_CanTx_DiagnosticMode))
+    {
+        Iven_IcmLookupTable[IVEN_ICMID41].messageStatus = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
     if((253u == Iven_StatusLoadListMessageState) &&
             (Iven_StatusLoadListMessageState != pIven_StatusLoadListMessageState))
     {
@@ -422,6 +433,7 @@ void Iven_MainFunction(void)
     pIven_CanTx_SpeedSensorStatus = Iven_CanTx_SpeedSensorStatus;
     pIven_CanTx_TempSenPSteering = Iven_CanTx_TempSenPSteering;
     pIven_CanTx_DecMcuError = Iven_CanTx_DecMcuError;
+    pIven_CanTx_DiagnosticMode = Iven_CanTx_DiagnosticMode;
 
     if((253u > Iven_CanRx_IgnitionControl) &&
             (1u == pIven_CanRx_IgnitionControl) &&
@@ -451,6 +463,7 @@ void Iven_MainFunction(void)
         pIven_CanRx_ErrorDetectedCbm = 0u;
         pIven_CanRx_ErrorDetectedPdm = 0u;
         pIven_CanTx_DecMcuError = 0u;
+        pIven_CanTx_DiagnosticMode = 0u;
     }
     else
     {

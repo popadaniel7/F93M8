@@ -205,17 +205,17 @@ typedef enum
 #endif
 
 
-typedef struct
-{
-    fract real;				/**< \brief Real part */
-    fract imag;				/**< \brief Imaginary part */
-} cfract;
-
-typedef struct
-{
-    sfract real;				/**< \brief Real part */
-    sfract imag;				/**< \brief Imaginary part */
-} csfract;
+//typedef struct
+//{
+//    fract real;				/**< \brief Real part */
+//    fract imag;				/**< \brief Imaginary part */
+//} cfract;
+//
+//typedef struct
+//{
+//    sfract real;				/**< \brief Real part */
+//    sfract imag;				/**< \brief Imaginary part */
+//} csfract;
 
 #define IFX_PI                  (3.1415926535897932384626433832795f)
 #define IFX_TWO_OVER_PI         (2.0 / IFX_PI)

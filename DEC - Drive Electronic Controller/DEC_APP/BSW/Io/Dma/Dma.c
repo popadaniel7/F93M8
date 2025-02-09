@@ -1,4 +1,5 @@
 #include "Dma.h"
+#include "Irq.h"
 /* DMA channel handle */
 IfxDma_Dma_Channel g_DMAchn;
 IfxDma_Dma_Config dmaConfig;
@@ -38,4 +39,5 @@ void Dma_Init(void)
     dmaChnsCfg.destinationAddressIncrementStep = sizeof(uint32);
     /* Initialize the DMA channel */
     IfxDma_Dma_initChannel(&g_DMAchn, &dmaChnsCfg);
+    //IfxCpu_Irq_installInterruptHandler(ISR_DMA1_Transfer, IRQ_ISR_PRIORITY_DMA);
 }

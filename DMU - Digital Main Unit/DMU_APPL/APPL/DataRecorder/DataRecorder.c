@@ -33,7 +33,7 @@ void DataRecorder_MainFunction(void)
 		/* Do nothing. */
 	}
 	/* Value END == 0x03 is not send so often... depends on the user!
-	 * It simulates a kilometer reset from the traditional infocluster button.
+	 * It simulates a kilometer reset from the traditional info-cluster button.
 	 * */
 	if(DATARECORDER_DCY_END == DataRecorder_RxSig_DriveCycleStatus) DataRecorder_KilometerPerDcy = 0;
 	else

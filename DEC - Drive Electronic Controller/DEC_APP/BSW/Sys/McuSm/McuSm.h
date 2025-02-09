@@ -275,20 +275,20 @@ typedef struct
 }McuSm_ResetHistory_t;
 
 extern uint8 g_isMeasureAvailable;  /* Variable to store availability of new measurements */
-extern volatile Ifx_CSA McuSm_CSA_capture[IFXCPU_NUM_MODULES][CSA_CAPTURE_LIMIT];
-extern volatile uint32 McuSm_STACK_capture[IFXCPU_NUM_MODULES][STACK_CAPTURE_LIMIT][STACK_CAPTURE_SIZE];
-extern volatile Ifx_CPU_PIETR McuSm_PIETR_capture[IFXCPU_NUM_MODULES];
-extern volatile Ifx_CPU_PIEAR McuSm_PIEAR_capture[IFXCPU_NUM_MODULES];
-extern volatile Ifx_CPU_DIETR McuSm_DIETR_capture[IFXCPU_NUM_MODULES];
-extern volatile Ifx_CPU_DIEAR McuSm_DIEAR_capture[IFXCPU_NUM_MODULES];
-extern volatile Ifx_CPU_DATR McuSm_DATR_capture[IFXCPU_NUM_MODULES];
-extern volatile Ifx_CPU_DEADD McuSm_DEADD_capture[IFXCPU_NUM_MODULES];
-extern volatile Ifx_SMU_AG McuSm_AG_capture[IFXCPU_NUM_MODULES][12];
-extern volatile uint32 McuSm_LastResetReason;
-extern volatile uint32 McuSm_LastResetInformation;
-extern volatile uint32 McuSm_IndexResetHistory;
-extern volatile McuSm_ResetHistory_t McuSm_ResetHistory[20u];
-extern volatile McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
+extern  Ifx_CSA McuSm_CSA_capture[IFXCPU_NUM_MODULES][CSA_CAPTURE_LIMIT];
+extern  uint32 McuSm_STACK_capture[IFXCPU_NUM_MODULES][STACK_CAPTURE_LIMIT][STACK_CAPTURE_SIZE];
+extern  Ifx_CPU_PIETR McuSm_PIETR_capture[IFXCPU_NUM_MODULES];
+extern  Ifx_CPU_PIEAR McuSm_PIEAR_capture[IFXCPU_NUM_MODULES];
+extern  Ifx_CPU_DIETR McuSm_DIETR_capture[IFXCPU_NUM_MODULES];
+extern  Ifx_CPU_DIEAR McuSm_DIEAR_capture[IFXCPU_NUM_MODULES];
+extern  Ifx_CPU_DATR McuSm_DATR_capture[IFXCPU_NUM_MODULES];
+extern  Ifx_CPU_DEADD McuSm_DEADD_capture[IFXCPU_NUM_MODULES];
+extern  Ifx_SMU_AG McuSm_AG_capture[IFXCPU_NUM_MODULES][12];
+extern  uint32 McuSm_LastResetReason;
+extern  uint32 McuSm_LastResetInformation;
+extern  uint32 McuSm_IndexResetHistory;
+extern  McuSm_ResetHistory_t McuSm_ResetHistory[20u];
+extern  McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
 
 IFX_INLINE void McuSm_SetActiveProtectionSet(uint8 protectionSet);
 extern void McuSm_InitializeDts(void);
@@ -309,15 +309,9 @@ extern void McuSm_PIEAR_PIETR_Capture(void);
 extern void McuSm_DIEAR_DIETR_Capture(void);
 extern void McuSm_DATR_DEADD_Capture(void);
 extern void McuSm_AG_Capture(void);
-extern void McuSm_TRAP0(IfxCpu_Trap trapInfon);
-extern void McuSm_TRAP1(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP2(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP3(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP4(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP5(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP6_CPU0(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP6_CPU1(IfxCpu_Trap trapInfo);
-extern void McuSm_TRAP6_CPU2(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP7(IfxCpu_Trap trapInfo);
 
 IFX_INLINE void McuSm_SetActiveProtectionSet(uint8 protectionSet)

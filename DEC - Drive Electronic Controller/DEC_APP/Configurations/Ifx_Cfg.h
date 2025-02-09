@@ -45,11 +45,12 @@
 /*********************************************************************************************************************/
 /*-----------------------------------Configuration for Software managed interrupt------------------------------------*/
 /*********************************************************************************************************************/
-#define IFX_USE_SW_MANAGED_INT /* Decomment this line if the project needs to use Software managed interrupts */
+//#define IFX_USE_SW_MANAGED_INT /* Decomment this line if the project needs to use Software managed interrupts */
 
 /*********************************************************************************************************************/
 /*---------------------------------Configuration for Trap Hook Functions' Extensions---------------------------------*/
 /*********************************************************************************************************************/
 #define IFX_CFG_EXTEND_TRAP_HOOKS  /* Decomment this line if the project needs to extend trap hook functions */
-
+//extern int vPortSyscallHandler( unsigned char id );
+//#define IFX_CFG_CPU_TRAP_SYSCALL_CPU0_HOOK(t) vPortSyscallHandler(t.tId)
 #endif /* IFX_CFG_H */

@@ -52,7 +52,7 @@
     <v1:connectionSetting altId="p14_4.in.bind.in"/>
   </v1:configSetting>
   <v1:configSetting configurationId="evrc.sync.bind" altId="evrc.sync.bind.none"/>
-  <v1:configSetting configurationId="p00_2.dir" altId="p00_2.dir.out"/>
+  <v1:configSetting configurationId="p00_2.dir" altId="p00_2.dir.in"/>
   <v1:configSetting configurationId="pms.wupb.bind" altId="pms.wupb.bind.none"/>
   <v1:configSetting configurationId="p00_1.out.bind" altId="p00_1.out.bind.gpio"/>
   <v1:configSetting configurationId="g0_qreq0.ch3.bind" altId="g0_qreq0.ch3.bind.ch3">
@@ -75,7 +75,7 @@
   <v1:configSetting configurationId="an2.an.bind" altId="an2.an.bind.anares">
     <v1:connectionSetting altId="g0_qreq0.ch2.bind.ch2"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="p00_2.out.bind" altId="p00_2.out.bind.gpio"/>
+  <v1:configSetting configurationId="p00_2.out.bind" altId="p00_2.out.bind.none"/>
   <v1:configSetting configurationId="g0_qreq0.ch5.bind" altId="g0_qreq0.ch5.bind.ch5">
     <v1:connectionSetting altId="an5.an.bind.anares"/>
   </v1:configSetting>
@@ -156,7 +156,6 @@
   </v1:configSetting>
   <v1:propertySetting propertyId="p20_7.symbolicname" value="CAN0_NODE0_RXD"/>
   <v1:propertySetting propertyId="an0.symbolicname" value="G0_QREQ0_CH0"/>
-  <v1:propertySetting propertyId="p00_2.symbolicname" value="WUP_CBM"/>
   <v1:propertySetting propertyId="p00_1.symbolicname" value="WUP_DMU"/>
   <v1:propertySetting propertyId="p20_8.symbolicname" value="CAN0_NODE0_TXD"/>
   <v1:propertySetting propertyId="p00_0.symbolicname" value="WUP_PDM"/>
@@ -238,4 +237,5 @@
   <v1:configSetting configurationId="p20_6.dir" altId="p20_6.dir.out"/>
   <v1:configSetting configurationId="p20_6.out.bind" altId="p20_6.out.bind.gpio"/>
   <v1:propertySetting propertyId="p20_6.symbolicname" value="GPIO1"/>
+  <v1:configSetting configurationId="p00_2.function" altId="p00_2.function.analog"/>
 </v1:pinSettings>

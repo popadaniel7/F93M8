@@ -6,32 +6,33 @@
 #include "McuSm.h"
 #include "Eru.h"
 #include "Ain.h"
+#include "IfxStm.h"
 
 void ISR_CanAlrt(void)
 {
-    IfxCan_Node_clearInterruptFlag(g_mcmcan.canDstNode.node, IfxCan_Interrupt_errorPassive);
+    IfxCan_Node_clearInterruptFlag(g_mcmcan.canSrcNode.node, IfxCan_Interrupt_errorPassive);
     Can_Error_Flag++;
 }
 
 void ISR_CanMoer(void)
 {
-    IfxCan_Node_clearInterruptFlag(g_mcmcan.canDstNode.node, IfxCan_Interrupt_errorPassive);
+    IfxCan_Node_clearInterruptFlag(g_mcmcan.canSrcNode.node, IfxCan_Interrupt_errorPassive);
     Can_Error_Flag++;
 }
 
 void ISR_CanBoff(void)
 {
-    IfxCan_Node_clearInterruptFlag(g_mcmcan.canDstNode.node, IfxCan_Interrupt_busOffStatus);
+    IfxCan_Node_clearInterruptFlag(g_mcmcan.canSrcNode.node, IfxCan_Interrupt_busOffStatus);
     Can_BusOff_Flag++;
 }
 
 void ISR_CanLoi(void)
 {
-    IfxCan_Node_clearInterruptFlag(g_mcmcan.canDstNode.node, IfxCan_Interrupt_errorLoggingOverflow);
+    IfxCan_Node_clearInterruptFlag(g_mcmcan.canSrcNode.node, IfxCan_Interrupt_errorLoggingOverflow);
     Can_Error_Flag++;
 }
 
-void SCUERU_Int3_Handler(void)
+void SCUERU_Int2_Handler(void)
 {
     Eru_SpeedSen();
 }

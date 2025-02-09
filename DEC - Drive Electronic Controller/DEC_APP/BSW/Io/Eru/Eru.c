@@ -82,8 +82,11 @@ void Eru_Init(void)
     IfxSrc_enable(g_ERUconfig.src);
     IfxSrc_init(g_ERUconfig2.src, IfxSrc_Tos_cpu1, ISR_PRIORITY_SCUERU_INT1);
     IfxSrc_enable(g_ERUconfig2.src);
-    IfxSrc_init(g_ERUconfig3.src, IfxSrc_Tos_cpu2, ISR_PRIORITY_SCUERU_INT3);
+    IfxSrc_init(g_ERUconfig3.src, IfxSrc_Tos_cpu2, ISR_PRIORITY_SCUERU_INT2);
     IfxSrc_enable(g_ERUconfig3.src);
+//    IfxCpu_Irq_installInterruptHandler(SCUERU_Int0_Handler, ISR_PRIORITY_SCUERU_INT0);
+//    IfxCpu_Irq_installInterruptHandler(SCUERU_Int1_Handler, ISR_PRIORITY_SCUERU_INT1);
+//    IfxCpu_Irq_installInterruptHandler(SCUERU_Int2_Handler, ISR_PRIORITY_SCUERU_INT2);
 }
 
 void Eru_EncoderA(void)
