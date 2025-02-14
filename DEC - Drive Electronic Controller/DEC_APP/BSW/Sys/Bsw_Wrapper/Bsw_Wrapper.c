@@ -3,8 +3,8 @@
 #include "Wdg.h"
 #include "IfxCpu.h"
 #include "IfxStm.h"
-#include "task.h"
-#include "FreeRTOSConfig.h"
+#include "task_core0.h"
+#include "FreeRTOSConfig_core0.h"
 #include "ComMaster.h"
 #include "Iven.h"
 #include "DcyHandler.h"
@@ -102,8 +102,8 @@ void Bsw_Wrapper_MainFunction_C1(void)
     if(SYSMGR_SLEEP == SysMgr_EcuState)
     {
         Wdg_DeInitializeCpu1Watchdog();
-        vTaskSuspendAll();
-        vTaskEndScheduler();
+        //vTaskSuspendAll();
+        //vTaskEndScheduler();
         IfxStm_disableModule(&MODULE_STM1);
         SysMgr_Core1OnHalt = 1u;
         IfxCpu_setCoreMode(&MODULE_CPU1, IfxCpu_CoreMode_idle);
@@ -120,8 +120,8 @@ void Bsw_Wrapper_MainFunction_C2(void)
     if(SYSMGR_SLEEP == SysMgr_EcuState)
     {
         Wdg_DeInitializeCpu1Watchdog();
-        vTaskSuspendAll();
-        vTaskEndScheduler();
+        //vTaskSuspendAll();
+        //vTaskEndScheduler();
         IfxStm_disableModule(&MODULE_STM2);
         SysMgr_Core2OnHalt = 1u;
         IfxCpu_setCoreMode(&MODULE_CPU2, IfxCpu_CoreMode_idle);

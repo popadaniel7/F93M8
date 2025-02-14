@@ -43,5 +43,5 @@ void core0_main(void)
     SysMgr_ProcessResetDtc();
     Os_Init_C0();
     OsInit_C0 = 1u;
-    vTaskStartScheduler();
+    vTaskStartScheduler_core0();
 }

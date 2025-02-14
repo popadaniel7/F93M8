@@ -23,5 +23,5 @@ void core1_main(void)
     Wdg_ReloadCpu1Watchdog();
     Wdg_ReloadCpu1Watchdog();
     /* Start the scheduler */
-    vTaskStartScheduler();
+    //vTaskStartScheduler();
 }

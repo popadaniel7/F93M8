@@ -9,8 +9,8 @@
 #include "Gtm_Atom.h"
 #include "Gtm_Pwm.h"
 #include "Crc.h"
-#include "task.h"
-#include "FreeRTOSConfig.h"
+#include "task_core0.h"
+#include "FreeRTOSConfig_core0.h"
 #include "SCR.h"
 #include "Wdg.h"
 #include "IfxPmsPm.h"
@@ -138,8 +138,8 @@ void SysMgr_GoSleepSequence(void)
     IfxGtm_Atom_Pwm_stop(&g_atomDriver4, 1u);
     IfxGtm_Atom_Pwm_stop(&g_atomDriver5, 1u);
     IfxFce_Crc_deInitModule(&g_fceCrc.fceCrc);
-    vTaskSuspendAll();
-    vTaskEndScheduler();
+    vTaskSuspendAll_core0();
+    vTaskEndScheduler_core0();
     IfxStm_disableModule(&MODULE_STM0);
 
     SRC_DMA_DMA0_CH0.B.SRE = 0u;

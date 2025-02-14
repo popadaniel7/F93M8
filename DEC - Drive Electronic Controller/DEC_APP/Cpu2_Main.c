@@ -21,5 +21,5 @@ void core2_main(void)
     OsInit_C2 = 1u;
     Wdg_ReloadCpu2Watchdog();
     /* Start the scheduler */
-    vTaskStartScheduler();
+    //vTaskStartScheduler();
 }
