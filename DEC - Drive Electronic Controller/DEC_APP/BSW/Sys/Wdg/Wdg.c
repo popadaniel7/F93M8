@@ -119,4 +119,3 @@ void Wdg_DeInitializeCpu2Watchdog(void)
     /* Enable the CPU watchdog if disabled (optional) */
     IfxScuWdt_disableCpuWatchdog(passwd);
 }
-

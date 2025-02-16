@@ -41,6 +41,8 @@
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
 extern int vPortSyscallHandler_core0( unsigned char id );
+extern int vPortSyscallHandler_core1( unsigned char id );
+extern int vPortSyscallHandler_core2( unsigned char id );
 #ifndef IFX_CFG_TRAP_H
 #define IFX_CFG_TRAP_H 1
 #endif
@@ -53,8 +55,8 @@ extern int vPortSyscallHandler_core0( unsigned char id );
 /*define a hook for non-maskable interrupt traps*/
 #define IFX_CFG_CPU_TRAP_NMI_HOOK(trapWatch)    ((void)McuSm_TRAP7(trapWatch))
 #define IFX_CFG_CPU_TRAP_SYSCALL_CPU0_HOOK(t) vPortSyscallHandler_core0(t.tId)
-#define IFX_CFG_CPU_TRAP_SYSCALL_CPU1_HOOK(trapWatch) ((void)trapWatch) /**< By default macro is empty*/
-#define IFX_CFG_CPU_TRAP_SYSCALL_CPU2_HOOK(trapWatch) ((void)trapWatch) /**< By default macro is empty*/
+#define IFX_CFG_CPU_TRAP_SYSCALL_CPU1_HOOK(t) vPortSyscallHandler_core1(t.tId)
+#define IFX_CFG_CPU_TRAP_SYSCALL_CPU2_HOOK(t) vPortSyscallHandler_core2(t.tId)
 #define IFX_CFG_CPU_TRAP_MME_HOOK(trapWatch)    ((void)trapWatch)   /**< By default memory Management Error macro is empty*/
 #define IFX_CFG_CPU_TRAP_CME_HOOK(trapWatch)    ((void)McuSm_TRAP3(trapWatch))      /**< By default context Management Error macro is empty*/
 #define IFX_CFG_CPU_TRAP_TSR_HOOK(trapWatch)    ((void)trapWatch)       /**< By default macro is empty*/

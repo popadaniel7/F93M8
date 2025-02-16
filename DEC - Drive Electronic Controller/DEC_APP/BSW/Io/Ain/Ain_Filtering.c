@@ -28,7 +28,6 @@
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
 #include "Ain_Filtering.h"
-#include "Dma.h"
 #include "Ain.h"
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
@@ -76,13 +75,6 @@ IfxEvadc_Adc_Channel g_evadcChannel[CHANNELS_NUM];        /* Global array for co
 channel g_chn[] =
 {
         {&IfxEvadc_G0CH0_AN0_IN,  IfxEvadc_ChannelResult_0},
-        {&IfxEvadc_G0CH1_AN1_IN,  IfxEvadc_ChannelResult_1},
-        {&IfxEvadc_G0CH2_AN2_IN,  IfxEvadc_ChannelResult_2},
-        {&IfxEvadc_G0CH3_AN3_IN,  IfxEvadc_ChannelResult_3},
-        {&IfxEvadc_G0CH4_AN4_IN,  IfxEvadc_ChannelResult_4},
-        {&IfxEvadc_G0CH5_AN5_IN,  IfxEvadc_ChannelResult_5},
-        {&IfxEvadc_G0CH6_AN6_IN,  IfxEvadc_ChannelResult_6},
-        {&IfxEvadc_G0CH7_AN7_IN,  IfxEvadc_ChannelResult_7}
 };
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
@@ -134,8 +126,6 @@ void Ain_Filtering_InitEvAdcChannels(void)
         /* Set the channel ID and the corresponding result register */
         adcChannelConf.channelId = g_chn[chnNum].analogInput->channelId;
         adcChannelConf.resultRegister = g_chn[chnNum].resultRegister;
-        adcChannelConf.resultPriority = DMA_CHANNEL;
-        adcChannelConf.resultServProvider = IfxSrc_Tos_dma;
         /* Apply the channel configuration */
         IfxEvadc_Adc_initChannel(&g_evadcChannel[chnNum], &adcChannelConf);
         /* Add channel to queue with refill option enabled */
@@ -148,18 +138,4 @@ void Ain_Filtering_ApplyFiltering(void)
     /* Apply a 1st-order Infinite Impulse Response Filter (IIR) to all six analog inputs (AN0 to AN5) */
     EVADC_G0_RCR0.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
     EVADC_G0_RCR0.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR0 for IIR filter (a=3, b=4) for AN0 */
-    EVADC_G0_RCR1.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
-    EVADC_G0_RCR1.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR1 for IIR filter (a=3, b=4) for AN1 */
-    EVADC_G0_RCR2.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
-    EVADC_G0_RCR2.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR2 for IIR filter (a=3, b=4) for AN2 */
-    EVADC_G0_RCR3.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
-    EVADC_G0_RCR3.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR3 for IIR filter (a=3, b=4) for AN3 */
-    EVADC_G0_RCR4.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
-    EVADC_G0_RCR4.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR4 for IIR filter (a=3, b=4) for AN4 */
-    EVADC_G0_RCR5.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
-    EVADC_G0_RCR5.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR5 for IIR filter (a=3, b=4) for AN5 */
-    EVADC_G0_RCR6.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
-    EVADC_G0_RCR6.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR5 for IIR filter (a=3, b=4) for AN5 */
-    EVADC_G0_RCR7.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
-    EVADC_G0_RCR7.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR5 for IIR filter (a=3, b=4) for AN5 */
 }

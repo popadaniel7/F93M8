@@ -1,0 +1,15 @@
+#include "Ifx_Types.h"
+#include "IfxDma_Dma.h"
+#include "Ain.h"
+/* DMA Macros */
+#define DMA_CHANNEL             0    /* DMA Channel used in this example (0 lowest priority - 127 highest priority) */
+#define ISR_PRIORITY_DMA        20          /* Priority for interrupt after DMA transfer done                       */
+/* Start address of the CPU0 Data Scratch-Pad SRAM: destination address for the DMA channel */
+#define SRC_ADDR                0xF0020700
+
+extern uint32 Dma_DestinationAdcBuffer[CHANNELS_NUM];
+extern IfxDma_Dma_Channel g_DMAchn;
+extern IfxDma_Dma_Config dmaConfig;
+extern IfxDma_Dma_ChannelConfig dmaChnsCfg;
+extern IfxDma_Dma dma;
+void Dma_Init(void);

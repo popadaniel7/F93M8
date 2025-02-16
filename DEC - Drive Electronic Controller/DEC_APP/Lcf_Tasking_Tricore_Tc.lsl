@@ -244,7 +244,7 @@ derivative tc37
         mau = 8;
         size = 64k;
         type = ram;
-        map     cached (dest=bus:sri, dest_offset=0x90000000,           size=64k);
+        //map     cached (dest=bus:sri, dest_offset=0x90000000,           size=64k);
         map not_cached (dest=bus:sri, dest_offset=0xb0000000, reserved, size=64k);
     }
     
@@ -253,7 +253,7 @@ derivative tc37
         mau = 8;
         size = 64k;
         type = ram;
-        map     cached (dest=bus:sri, dest_offset=0x90010000,           size=64k);
+        //map     cached (dest=bus:sri, dest_offset=0x90010000,           size=64k);
         map not_cached (dest=bus:sri, dest_offset=0xb0010000, reserved, size=64k);
     }
     
@@ -262,7 +262,7 @@ derivative tc37
         mau = 8;
         size = 64k;
         type = ram;
-        map     cached (dest=bus:sri, dest_offset=0x90020000,           size=64k);
+        //map     cached (dest=bus:sri, dest_offset=0x90020000,           size=64k);
         map not_cached (dest=bus:sri, dest_offset=0xb0020000, reserved, size=64k);
     }
 
@@ -729,20 +729,54 @@ derivative tc37
                 }
             }
 
-            /*LMU Data sections*/
+                       /*LMU Data sections*/
             group
             {
-                group (ordered, attributes=rw, run_addr = mem:cpu0_dlmu)
+                group NCR (ordered, attributes = rws, run_addr = mem:cpu0_dlmu, align = 4)
                 {
-                    select "(.data.lmudata_cpu0|.data.lmudata_cpu0.*)";
-                    select "(.bss.lmubss_cpu0|.bss.lmubss_cpu0.*)";
-                    select "(.data.lmudata|.data.lmudata.*)";
-                    select "(.bss.lmubss|.bss.lmubss.*)";
+                    select ".data.McuSm.McuSm_CSA_capture";
+                    select ".bss.McuSm.McuSm_CSA_capture";                  
+                    select ".data.McuSm.McuSm_STACK_capture";
+                    select ".bss.McuSm.McuSm_STACK_capture";
+                    select ".data.McuSm.McuSm_PIETR_capture";
+                    select ".bss.McuSm.McuSm_PIETR_capture";
+                    select ".data.McuSm.McuSm_PIEAR_capture";
+                    select ".bss.McuSm.McuSm_PIEAR_capture";
+                    select ".data.McuSm.McuSm_DIETR_capture";
+                    select ".bss.McuSm.McuSm_DIETR_capture";
+                    select ".data.McuSm.McuSm_DIEAR_capture";
+                    select ".bss.McuSm.McuSm_DIEAR_capture";
+                    select ".data.McuSm.McuSm_DATR_capture";
+                    select ".bss.McuSm.McuSm_DATR_capture";
+                    select ".data.McuSm.McuSm_DEADD_capture";
+                    select ".bss.McuSm.McuSm_DEADD_capture";
+                    select ".data.McuSm.McuSm_AG_capture";
+                    select ".bss.McuSm.McuSm_AG_capture";
+                    select ".data.McuSm.McuSm_LastResetReason";
+                    select ".bss.McuSm.McuSm_LastResetReason";
+                    select ".data.McuSm.McuSm_LastResetInformation";
+                    select ".bss.McuSm.McuSm_LastResetInformation";
+                    select ".data.McuSm.McuSm_ResetHistory";
+                    select ".bss.McuSm.McuSm_ResetHistory";
+                    select ".data.McuSm.McuSm_IndexResetHistory";
+                    select ".bss.McuSm.McuSm_IndexResetHistory";
+                    select ".data.McuSm.McuSm_ResetReasonListCounter";
+                    select ".bss.McuSm.McuSm_ResetReasonListCounter"; 
+                    select ".data.DiagMaster.DiagMaster_ActiveSessionState";
+                    select ".bss.DiagMaster.DiagMaster_ActiveSessionState";  
+                    select ".data.DiagMaster.DiagMaster_AliveTime";
+                    select ".bss.DiagMaster.DiagMaster_AliveTime";                      
                 }
+                "__NCR_START" := "_lc_gb_NCR";
+                "__NCR_END"   := "_lc_ge_NCR";
                 group (ordered, attributes=rw, run_addr = mem:cpu1_dlmu)
                 {
                     select "(.data.lmudata_cpu1|.data.lmudata_cpu1.*)";
                     select "(.bss.lmubss_cpu1|.bss.lmubss_cpu1.*)";
+                    select "(.data.lmudata_cpu0|.data.lmudata_cpu0.*)";
+                    select "(.bss.lmubss_cpu0|.bss.lmubss_cpu0.*)";
+                    select "(.data.lmudata|.data.lmudata.*)";
+                    select "(.bss.lmubss|.bss.lmubss.*)";
                 }
                 group (ordered, attributes=rw, run_addr = mem:cpu2_dlmu)
                 {

@@ -213,46 +213,6 @@ const McuSm_ResetReason_t McuSm_FullListCompare[] =
         0xFFFFU
 };
 
-IfxMtu_MbistSel McuSm_MbistConfigSsh[] =
-{
-        IfxMtu_MbistSel_cpu0Dspr     ,
-        IfxMtu_MbistSel_cpu0Dtag     ,
-        IfxMtu_MbistSel_cpu0Pspr     ,
-        IfxMtu_MbistSel_cpu0Ptag     ,
-        IfxMtu_MbistSel_cpu0Dlmu     ,
-        IfxMtu_MbistSel_cpu1Dspr     ,
-        IfxMtu_MbistSel_cpu1Dtag     ,
-        IfxMtu_MbistSel_cpu1Pspr     ,
-        IfxMtu_MbistSel_cpu1Ptag     ,
-        IfxMtu_MbistSel_cpu1Dlmu     ,
-        IfxMtu_MbistSel_cpu2Dspr     ,
-        IfxMtu_MbistSel_cpu2Dtag     ,
-        IfxMtu_MbistSel_cpu2Pspr     ,
-        IfxMtu_MbistSel_cpu2Ptag     ,
-        IfxMtu_MbistSel_cpu2Dlmu     ,
-        IfxMtu_MbistSel_cpu0Dspr1    ,
-        IfxMtu_MbistSel_cpu1Dspr1    ,
-        IfxMtu_MbistSel_dam0         ,
-        IfxMtu_MbistSel_dma          ,
-        IfxMtu_MbistSel_miniMcds     ,
-        IfxMtu_MbistSel_gtmFifo      ,
-        IfxMtu_MbistSel_gtmMcs0Fast  ,
-        IfxMtu_MbistSel_gtmMcs1Fast  ,
-        IfxMtu_MbistSel_gtmDpll1a    ,
-        IfxMtu_MbistSel_gtmDpll1b    ,
-        IfxMtu_MbistSel_gtmDpll2     ,
-        IfxMtu_MbistSel_mcan0        ,
-        IfxMtu_MbistSel_mcan1        ,
-        IfxMtu_MbistSel_psi5         ,
-        IfxMtu_MbistSel_eray0Obf     ,
-        IfxMtu_MbistSel_eray0IbfTbf  ,
-        IfxMtu_MbistSel_eray0Mbf     ,
-        IfxMtu_MbistSel_scrXram      ,
-        IfxMtu_MbistSel_scrIram      ,
-        IfxMtu_MbistSel_ethermacRx   ,
-        IfxMtu_MbistSel_ethermacTx   ,
-        255U
-};
 uint8 g_isMeasureAvailable =            FALSE;                             /* Variable to store availability of new measurements */;
 
 Ifx_CSA McuSm_CSA_capture[IFXCPU_NUM_MODULES][CSA_CAPTURE_LIMIT];
@@ -293,6 +253,36 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo);
 void McuSm_TRAP4(IfxCpu_Trap trapInfo);
 void McuSm_TRAP7(IfxCpu_Trap trapInfo);
 
+void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
+{
+    for(uint32 i = 0; i < sizeof(McuSm_FullListCompare); i++)
+    {
+        if(resetReason == McuSm_FullListCompare[i])
+        {
+            break;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+
+    if(resetReason != NO_ERR)
+    {
+        McuSm_LastResetReason = resetReason;
+        McuSm_LastResetInformation = resetInformation;
+        McuSm_ResetReasonListCounter[resetReason]++;
+        McuSm_ResetHistory[McuSm_IndexResetHistory].reason = resetReason;
+        McuSm_ResetHistory[McuSm_IndexResetHistory].information = resetInformation;
+        McuSm_IndexResetHistory++;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0);
+}
 /* This function will trace back as many as CSA_CAPTURE_LIMIT context save areas and dump each into CSA_capture
  * For upper context calls, this function will also dump STACK_CAPTURE_SIZE words from the stack of each context*/
 void McuSm_CsaCapture(void)
@@ -482,37 +472,6 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo)
     McuSm_AG_Capture();
     McuSm_PerformResetHook(TRAP3, trapInfo.tId);
 }
-
-void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
-{
-    for(uint32 i = 0; i < sizeof(McuSm_FullListCompare); i++)
-    {
-        if(resetReason == McuSm_FullListCompare[i])
-        {
-            break;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-    }
-
-    if(resetReason != NO_ERR)
-    {
-        McuSm_LastResetReason = resetReason;
-        McuSm_LastResetInformation = resetInformation;
-        McuSm_ResetReasonListCounter[resetReason]++;
-        McuSm_ResetHistory[McuSm_IndexResetHistory].reason = resetReason;
-        McuSm_ResetHistory[McuSm_IndexResetHistory].information = resetInformation;
-        McuSm_IndexResetHistory++;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0);
-}
 /* Function to initialize the Die Temperature Sensor */
 void McuSm_InitializeDts(void)
 {
@@ -524,16 +483,30 @@ void McuSm_InitializeDts(void)
     dtsConf.isrPriority = 8u;             /* Set the interrupt priority for new measurement events     */
     dtsConf.isrTypeOfService = IfxSrc_Tos_cpu0;         /* Set the service provider responsible for handling the interrupts */
     IfxDts_Dts_initModule(&dtsConf);                    /* Initialize the DTS with the given configuration           */
-    //IfxCpu_Irq_installInterruptHandler(ISR_DTS, ISR_PRIORITY_DTS);
 }
+
 void McuSm_MbistManager(void)
 {
-    uint8 i = 0;
-    while(McuSm_MbistConfigSsh[i] != 255U)
+    /* Initialize the selected SRAM */
+    IfxMtu_clearSram(IfxMtu_MbistSel_dma);
+    IfxMtu_clearSram(IfxMtu_MbistSel_mcan0);
+
+    if((SCU_RSTSTAT.U & POWERONRESET_MASK) > 0)
     {
-        McuSm_MbistTest(McuSm_MbistConfigSsh[i]);
-        i++;
+        //IfxMtu_clearSram(IfxMtu_MbistSel_cpu0Dlmu);
+        IfxMtu_clearSram(IfxMtu_MbistSel_cpu1Dlmu);
+        IfxMtu_clearSram(IfxMtu_MbistSel_cpu2Dlmu);
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    McuSm_MbistTest(IfxMtu_MbistSel_dma);
+    McuSm_MbistTest(IfxMtu_MbistSel_mcan0);
+    //McuSm_MbistTest(IfxMtu_MbistSel_cpu0Dlmu);
+    McuSm_MbistTest(IfxMtu_MbistSel_cpu1Dlmu);
+    McuSm_MbistTest(IfxMtu_MbistSel_cpu2Dlmu);
 }
 /* This function initializes and tests an SRAM memory using MBIST */
 void McuSm_MbistTest(IfxMtu_MbistSel mbistSel)
@@ -542,8 +515,6 @@ void McuSm_MbistTest(IfxMtu_MbistSel mbistSel)
     uint8 result = 0u;
     uint8 returnedError = 0u;
     uint32 resultedInformation = 0u;
-    /* Enable MTU clock */
-    IfxMtu_enableModule();
     /* Check if any error flag is set.
      * After any System Reset: For each and every SSH in the system, the UCE alarm status in the SMU, the ECCD.UCERR
      * (Consequently also SERR) and the FAULTSTS.OPERR[0] are set.
@@ -559,11 +530,10 @@ void McuSm_MbistTest(IfxMtu_MbistSel mbistSel)
     }
     /* Run the Non-Destructive Test (NDT) */
     result = IfxMtu_runNonDestructiveInversionTest((IfxMtu_MbistSel)mbistSel,
-            0u,
-            0u,
-            0u,
+            MBIST_TEST_RANGE_ENABLE,
+            MBIST_TEST_HIGHER_RANGE_LIMIT,
+            MBIST_TEST_LOWER_RANGE_LIMIT,
             &errAddr);
-
     if(0u != result)
     {
         returnedError = returnedError | (1u << 0u);
@@ -573,40 +543,6 @@ void McuSm_MbistTest(IfxMtu_MbistSel mbistSel)
     {
         /* Do nothing. */
     }
-
-    result = IfxMtu_runCheckerBoardTest((IfxMtu_MbistSel)mbistSel,
-            0u,
-            0u,
-            0u,
-            &errAddr,
-            2);
-
-    if(0u != result)
-    {
-        returnedError = returnedError | (1u << 1u);
-        result = 0u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    result = IfxMtu_runMarchUTest((IfxMtu_MbistSel)mbistSel,
-            0u,
-            0u,
-            0u,
-            &errAddr);
-
-    if(0u != result)
-    {
-        returnedError = returnedError | (1u << 2u);
-        result = 0u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
     resultedInformation = errAddr | (returnedError << 16u);
     /* Check the test result */
     /* No error has occurred */
@@ -625,7 +561,6 @@ uint32 McuSm_GetMbistErrors(IfxMtu_MbistSel mbistSel)
     Ifx_MTU_MC *mc = (Ifx_MTU_MC *)(IFXMTU_MC_ADDRESS_BASE + 0x100 * mbistSel);
     return (uint32)(mc->ECCD.U & (IFXMTU_ERROR_FLAGS_MASK));
 }
-
 /* Clear MCi_ECCD and MCi_FAULTSTS (i=0-95) error flags of a specific memory raised by a System Reset */
 void McuSm_ClearMbistErrors(IfxMtu_MbistSel mbistSel)
 {

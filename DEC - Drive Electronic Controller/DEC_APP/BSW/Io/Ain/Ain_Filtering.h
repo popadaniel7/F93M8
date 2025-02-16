@@ -35,13 +35,6 @@
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
 #define AN0                 0
-#define AN1                 1
-#define AN2                 2
-#define AN3                 3
-#define AN4                 4
-#define AN5                 5
-#define AN6                 6
-#define AN7                 7
 /* The results stored in the registers with data modification enabled must be divided by a factor, which depends on the
  * Data Modification Mode and its coefficients. */
 #define DIV_FACTOR_AVRG     4   /* Divider factor for AN39: 4 accumulated conversions lead to a gain of 4           */

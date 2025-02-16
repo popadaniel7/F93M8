@@ -5,6 +5,20 @@
 #include "Ifx_Cfg_Trap.h"
 #include "IfxDts_Dts.h"
 
+#define DEBUG_CODE 0
+#define POWERONRESET_MASK \
+        (((unsigned int)1u << 28u) | \
+                ((unsigned int)1u << 25u) | \
+                ((unsigned int)1u << 24u) | \
+                ((unsigned int)1u << 23u))
+#define APPLICATIONRESET_MASK                         \
+        (((unsigned int)1 << 4) |     \
+                ((unsigned int)1 << 7) | \
+                ((unsigned int)1 << 6) | \
+                ((unsigned int)1 << 5) | \
+                ((unsigned int)1 << 3) |   \
+                ((unsigned int)1 << 1) | \
+                ((unsigned int)1 << 0))
 #define DPR_GRANULARITY                 8                           /* Data Protection Range granularity in bytes   */
 #define CPR_GRANULARITY                 32                          /* Code Protection Range granularity in bytes   */
 /* Data Protection Ranges */

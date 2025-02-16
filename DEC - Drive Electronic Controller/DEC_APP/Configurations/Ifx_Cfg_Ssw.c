@@ -50,7 +50,6 @@ void Ifx_Ssw_Pms_Init(void)
 {
     if (IfxPmsEvr_runInitSequence(&IfxPmsEvr_cfgSequenceDefault) == 0)
     {
-        __debug();
         McuSm_PerformResetHook(374u, 1u);
         /* Application may have call to error handling here */
     }
@@ -61,10 +60,8 @@ void Ifx_Ssw_Pms_Init(void)
 #if (IFX_CFG_SSW_ENABLE_PMS_INIT_CHECK == 1U)
 void Ifx_Ssw_Pms_InitCheck(void)
 {
-
     if (IfxPmsEvr_areInitValuesRight(&IfxPmsEvr_checkRegCfgDefault) == 0)
     {
-        __debug();
         McuSm_PerformResetHook(375u, 1u);
         /* Application may have call to error handling here */
     }
@@ -84,12 +81,9 @@ void Ifx_Ssw_Lbist(void)
         }
     }
     if (!IfxScuLbist_evaluateResult(IfxScuLbist_defaultConfig.signature))
-    {
-         __debug();
+    {;
          /* Application may have call to error handling here */
          McuSm_PerformResetHook(376u, 1u);
-         /* Infinite loop to ensure that the error is notified as 'debugger is not connected at this point of time' */
-         while(1);
     }
 
     Ifx_Ssw_jumpBackToLink();

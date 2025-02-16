@@ -218,11 +218,6 @@ void Smu_Init(void)
     }
     /* Afterwards, lock the SMU configuration */
     IfxSmu_lockConfigRegisters();
-    /* Service request configuration */
-    /* Get source pointer of SMU Service Request 0 in order to initialize and enable it */
-    volatile Ifx_SRC_SRCR *src = &SRC_SMU0;
-    IfxSrc_init(src, IfxSrc_Tos_cpu0, ISR_PRIORITY_SMU_INT0);
-    IfxSrc_enable(src);
     /* Enter the fault free state "Run" (after the Power-on Reset (PORST) the FSP is in fault state) */
     IfxSmu_releaseFSP();
     IfxSmu_activateRunState();                                          /* Start the SMU state machine (SSM)        */

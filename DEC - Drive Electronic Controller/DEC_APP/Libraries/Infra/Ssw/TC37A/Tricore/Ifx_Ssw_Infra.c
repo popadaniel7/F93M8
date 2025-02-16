@@ -190,7 +190,7 @@ float Ifx_Ssw_getStmFrequency(void)
     if (SCU_CCUCON0.B.CLKSEL != 0U)
     {
         sourcefreq = (oscFreq * (SCU_SYSPLLCON0.B.NDIV + 1U)) /
-                     ((SCU_SYSPLLCON0.B.PDIV + 1U) * (SCU_SYSPLLCON1.B.K2DIV + 1U));
+                ((SCU_SYSPLLCON0.B.PDIV + 1U) * (SCU_SYSPLLCON1.B.K2DIV + 1U));
     }
 
     return sourcefreq / SCU_CCUCON0.B.STMDIV;
@@ -200,36 +200,36 @@ void Ifx_Ssw_doCppInit(void)
 {
     Ifx_Ssw_C_InitInline();
 
-	#ifdef __TASKING__
-		extern void _main(void); /* cpp initialization */
-		_main();
-	#elif defined(__HIGHTEC__) && !defined(__clang__)
-		extern void _init(void); /* cpp initialization */
-		_init();
-	#elif defined(__GNUC__) && !defined(__HIGHTEC__)
-		extern void _init(void); /* cpp initialization */
-		_init();
-	#elif defined(__ghs__)
-		extern void _main(void); /* cpp initialization */
-		_main();
-	#endif
+#ifdef __TASKING__
+    extern void _main(void); /* cpp initialization */
+    _main();
+#elif defined(__HIGHTEC__) && !defined(__clang__)
+    extern void _init(void); /* cpp initialization */
+    _init();
+#elif defined(__GNUC__) && !defined(__HIGHTEC__)
+    extern void _init(void); /* cpp initialization */
+    _init();
+#elif defined(__ghs__)
+    extern void _main(void); /* cpp initialization */
+    _main();
+#endif
 }
 
 void Ifx_Ssw_doCppExit(int status)
 {
-	#ifdef __TASKING__
-		extern void _doexit(void); /* cpp deinitialization */
-		_doexit();
-	#elif defined(__HIGHTEC__) && !defined(__clang__)
-		extern void exit(int); /* cpp deinitialization */
-		exit(status);
-	#elif defined(__GNUC__) && !defined(__HIGHTEC__)
-		extern void exit(int); /* cpp deinitialization */
-		exit(status);
-	#elif __ghs__
-		extern void exit(int); /* cpp deinitialization */
-		exit(0);
-	#endif
+#ifdef __TASKING__
+    extern void _doexit(void); /* cpp deinitialization */
+    _doexit();
+#elif defined(__HIGHTEC__) && !defined(__clang__)
+    extern void exit(int); /* cpp deinitialization */
+    exit(status);
+#elif defined(__GNUC__) && !defined(__HIGHTEC__)
+    extern void exit(int); /* cpp deinitialization */
+    exit(status);
+#elif __ghs__
+    extern void exit(int); /* cpp deinitialization */
+    exit(0);
+#endif
 
 }
 
@@ -248,9 +248,9 @@ static void Ifx_Ssw_MonbistCheck(void);
 
 void Ifx_Ssw_Monbist(void)
 {
-     uint32 timeout;
+    uint32 timeout;
 
-     /* Disable the write-protection for registers */
+    /* Disable the write-protection for registers */
     IFX_CFG_SSW_CLEAR_SAFETY_ENDINIT();
     /* Enable SMU Standby */
     PMS_CMD_STDBY.U    = 0x40000001U;
@@ -274,11 +274,11 @@ void Ifx_Ssw_Monbist(void)
     PMS_AGFSP_STDBY0.U = 0x40000000U;
     PMS_AGFSP_STDBY1.U = 0x40000000U;
     /* FSP0EN and FSP1EN configuration bits are cleared to avoid spurious Error pin activation */
-	/* ASCE bit is set and respective alarms are cleared */
+    /* ASCE bit is set and respective alarms are cleared */
     PMS_CMD_STDBY.U |= 0x40000008U;
-	PMS_AG_STDBY0.U = 0xFFF0U;
-	PMS_CMD_STDBY.U |= 0x40000008U;
-	PMS_AG_STDBY1.U = 0x1FFFFU;
+    PMS_AG_STDBY0.U = 0xFFF0U;
+    PMS_CMD_STDBY.U |= 0x40000008U;
+    PMS_AG_STDBY1.U = 0x1FFFFU;
     /* Reset the MONFILT register */
     PMS_MONFILT.U = 0x00000000U;
     /* Start MONBIST test */
@@ -301,7 +301,6 @@ void Ifx_Ssw_MonbistCheck(void)
     /* Check for MONBIST error state */
     if ((PMS_MONBISTSTAT.B.TSTOK == 0U) || (PMS_MONBISTSTAT.B.SMUERR == 1U) || (PMS_MONBISTSTAT.B.PMSERR == 1U))
     {
-        __debug();
         McuSm_PerformResetHook(378u, 1u);
     }
     else

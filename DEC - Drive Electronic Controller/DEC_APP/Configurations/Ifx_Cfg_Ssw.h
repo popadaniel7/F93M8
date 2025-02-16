@@ -162,14 +162,17 @@ extern void Ifx_Ssw_Monbist(void);
 #if IFX_CFG_SSW_ENABLE_PLL_INIT == 1U
 #include "IfxScuCcu.h"
 extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
-#define IFX_CFG_SSW_CALLOUT_PLL_INIT()                          \
-    {                                                           \
-        if (IfxScuCcu_init(&IfxScuCcu_defaultClockConfig) == 1) \
-        {                                                       \
-            __debug();                                          \
-            McuSm_PerformResetHook(377u, 1u);                   \
-        }                                                       \
-    }
+#define IFX_CFG_SSW_CALLOUT_PLL_INIT()                      \
+{                                                           \
+    if (IfxScuCcu_init(&IfxScuCcu_defaultClockConfig) == 1) \
+    {                                                       \
+        McuSm_PerformResetHook(377u, 1u);                   \
+    }                                                       \
+    else                                                    \
+    {                                                       \
+        /* Do nothing */                                    \
+    }                                                       \
+}                                                           \
 
 #endif /* End of IFX_CFG_SSW_ENABLE_PLL_INIT */
 
@@ -186,7 +189,6 @@ extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
         IFX_EXTERN const IfxMtu_MbistConfig *const mbistGangConfig[]; \
         if (IfxMtu_runMbistAll(mbistGangConfig) == 1U)                \
         {                                                             \
-            while(1); \
             McuSm_PerformResetHook(1u, 1u);                           \
         }                                                             \
     }

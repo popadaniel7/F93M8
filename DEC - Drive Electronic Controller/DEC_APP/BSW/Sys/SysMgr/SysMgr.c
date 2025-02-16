@@ -4,10 +4,6 @@
 #include "IfxCpu.h"
 #include "Ain_Filtering.h"
 #include "Can.h"
-#include "Dma.h"
-#include "Eru.h"
-#include "Gtm_Atom.h"
-#include "Gtm_Pwm.h"
 #include "Crc.h"
 #include "task_core0.h"
 #include "FreeRTOSConfig_core0.h"
@@ -39,7 +35,8 @@ void SysMgr_ProcessResetDtc(void)
 {
     if(0u == SysMgr_MainCounter)
     {
-        if(NO_ERR != McuSm_LastResetReason)
+        if(0xEFEFU != McuSm_LastResetReason &&
+                0u != McuSm_LastResetReason)
         {
             Dem_SetDtc(MCUSM_DTC_ID_SW_ERROR, 1u, 8u);
         }
@@ -128,29 +125,11 @@ void SysMgr_GoSleepSequence(void)
     Wdg_DeInitializeSafetyWatchdog();
     Can_Sleep();
     IfxEvadc_disableModule(g_evadc.evadc);
-    IfxDma_Dma_deInitChannel(&dma,g_DMAchn.channelId);
-    IfxScuEru_clearAllEventFlags();
-    IfxGtm_Atom_Timer_disableUpdate(&g_timerDriver);
-    IfxGtm_Atom_Timer_stop(&g_timerDriver);
-    IfxGtm_Atom_Pwm_stop(&g_atomDriver, 1u);
-    IfxGtm_Atom_Pwm_stop(&g_atomDriver2, 1u);
-    IfxGtm_Atom_Pwm_stop(&g_atomDriver3, 1u);
-    IfxGtm_Atom_Pwm_stop(&g_atomDriver4, 1u);
-    IfxGtm_Atom_Pwm_stop(&g_atomDriver5, 1u);
     IfxFce_Crc_deInitModule(&g_fceCrc.fceCrc);
     vTaskSuspendAll_core0();
     vTaskEndScheduler_core0();
     IfxStm_disableModule(&MODULE_STM0);
 
-    SRC_DMA_DMA0_CH0.B.SRE = 0u;
-    SRC_GTM_ATOM0_0.B.SRE = 0U;
-    SRC_GTM_ATOM0_1.B.SRE = 0U;
-    SRC_GTM_ATOM0_2.B.SRE = 0U;
-    SRC_GTM_ATOM0_3.B.SRE = 0U;
-    SRC_GTM_ATOM3_0.B.SRE = 0U;
-    SRC_GTM_ATOM3_1.B.SRE = 0U;
-    SRC_GTM_ATOM3_2.B.SRE = 0U;
-    SRC_GTM_ATOM3_3.B.SRE = 0U;
     SRC_CAN_CAN0_INT0.B.SRE = 0u;
     SRC_CAN_CAN0_INT1.B.SRE = 0u;
     SRC_CAN_CAN0_INT2.B.SRE = 0u;

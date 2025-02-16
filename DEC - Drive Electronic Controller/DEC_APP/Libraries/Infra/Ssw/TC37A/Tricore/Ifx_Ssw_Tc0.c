@@ -110,6 +110,7 @@ static void __StartUpSoftware_Phase3PowerOnResetPath(void);
 static void __StartUpSoftware_Phase4(void);
 static void __StartUpSoftware_Phase5(void);
 static void __StartUpSoftware_Phase6(void);
+void Ssw_StartCores(void);
 static void __Core0_start(void);
 IFX_SSW_COMMON_LINKER_SYMBOLS(); // @suppress("Unused variable declaration in file scope")
 IFX_SSW_CORE_LINKER_SYMBOLS(0);
@@ -137,6 +138,12 @@ IFX_SSW_WEAK void hardware_init_hook(void)
 IFX_SSW_WEAK void software_init_hook(void)
 {}
 
+void Ssw_StartCores(void)
+{
+    Ifx_Ssw_startCore(&MODULE_CPU1, (unsigned int)__START(1));
+    Ifx_Ssw_startCore(&MODULE_CPU2, (unsigned int)__START(2));
+}
+
 static void __StartUpSoftware(void)
 {
     /* Initialize A1 pointer to use the global constants with small data addressing */
@@ -161,13 +168,6 @@ static void __StartUpSoftware_Phase2(void)
 {
     /* Power and EVRC configurations */
     IFX_CFG_SSW_CALLOUT_PMS_INIT();
-
-//    /* LBIST Tests and evaluation */
-//    IFX_CFG_SSW_CALLOUT_LBIST();
-
-    /* MONBIST Tests and evaluation */
-    IFX_CFG_SSW_CALLOUT_MONBIST();
-
     Ifx_Ssw_jumpToFunction(__StartUpSoftware_Phase3PowerOnResetPath);
 }
 
@@ -175,7 +175,6 @@ static void __StartUpSoftware_Phase2(void)
 static void __StartUpSoftware_Phase3PowerOnResetPath(void)
 {
     IFX_SSW_INIT_CONTEXT();
-
     Ifx_Ssw_jumpToFunction(__StartUpSoftware_Phase4);
 }
 
@@ -183,71 +182,38 @@ static void __StartUpSoftware_Phase3PowerOnResetPath(void)
 static void __StartUpSoftware_Phase3ApplicationResetPath(void)
 {
     IFX_SSW_INIT_CONTEXT();
-
     Ifx_Ssw_jumpToFunction(__StartUpSoftware_Phase5);
 }
 
-extern IfxMtu_MbistSel McuSm_MbistConfigSsh[];
 static void __StartUpSoftware_Phase4(void)
 {
-    //uint8 i = 0;
-    /* This is for ADAS chip, where clock is provided by MMIC chip. This has to be
-     * implemented according the board.
-     */
-    IFX_CFG_SSW_CALLOUT_MMIC_CHECK();
-
-    {
-        /* Update safety and cpu watchdog reload value*/
-        unsigned short cpuWdtPassword    = Ifx_Ssw_getCpuWatchdogPasswordInline(&MODULE_SCU.WDTCPU[0]);
-        unsigned short safetyWdtPassword = Ifx_Ssw_getSafetyWatchdogPasswordInline();
-
-        /* servicing watchdog timers */
-        Ifx_Ssw_serviceCpuWatchdog(&MODULE_SCU.WDTCPU[0], cpuWdtPassword);
-        Ifx_Ssw_serviceSafetyWatchdog(safetyWdtPassword);
-    }
-
+    /* Update safety and cpu watchdog reload value*/
+    unsigned short cpuWdtPassword    = Ifx_Ssw_getCpuWatchdogPasswordInline(&MODULE_SCU.WDTCPU[0]);
+    unsigned short safetyWdtPassword = Ifx_Ssw_getSafetyWatchdogPasswordInline();
+    /* servicing watchdog timers */
+    Ifx_Ssw_serviceCpuWatchdog(&MODULE_SCU.WDTCPU[0], cpuWdtPassword);
+    Ifx_Ssw_serviceSafetyWatchdog(safetyWdtPassword);
     /* Initialize the clock system */
     IFX_CFG_SSW_CALLOUT_PLL_INIT();
-
-//    while(McuSm_MbistConfigSsh[i] != 255U)
-//    {
-//        IfxMtu_clearSram(McuSm_MbistConfigSsh[i]);
-//        i++;
-//    }
-    /* MBIST Tests and evaluation */
-    IFX_CFG_SSW_CALLOUT_MBIST();
-
     Ifx_Ssw_jumpToFunction(__StartUpSoftware_Phase5);
 }
 
 
 static void __StartUpSoftware_Phase5(void)
 {
-    /* SMU alarm handling */
-    IFX_CFG_SSW_CALLOUT_SMU();
-
     Ifx_Ssw_jumpToFunction(__StartUpSoftware_Phase6);
 }
 
 
 static void __StartUpSoftware_Phase6(void)
 {
-    /* Start remaining cores as a daisy-chain */
-#if (IFX_CFG_SSW_ENABLE_TRICORE1 != 0)
-    Ifx_Ssw_startCore(&MODULE_CPU1, (unsigned int)__START(1));           /*The status returned by function call is ignored */
-#endif /* #if (IFX_CFG_CPU_CSTART_ENABLE_TRICORE1 != 0)*/
-#if (IFX_CFG_SSW_ENABLE_TRICORE1 == 0)
-#if (IFX_CFG_SSW_ENABLE_TRICORE2 != 0)
-    Ifx_Ssw_startCore(&MODULE_CPU2, (unsigned int)__START(2));           /*The status returned by function call is ignored */
-#endif
-#endif /* #if (IFX_CFG_SSW_ENABLE_TRICORE1 == 0) */
-
     Ifx_Ssw_jumpToFunction(__Core0_start);
 }
 
-
 static void __Core0_start(void)
 {
+    /* Enable MTU clock */
+    IfxMtu_enableModule();
     /* Update safety and cpu/safety watchdog reload values */
     /* Password value is read again, because there is chance that local variables may be overridden. */
     unsigned short cpuWdtPassword    = Ifx_Ssw_getCpuWatchdogPasswordInline(&MODULE_SCU.WDTCPU[0]);

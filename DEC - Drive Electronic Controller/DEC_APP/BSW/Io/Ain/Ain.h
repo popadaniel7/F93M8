@@ -1,14 +1,10 @@
 #include "Ifx_Types.h"
 
-#define CHANNELS_NUM                    5u                                  /* Number of used channels                          */
+#define CHANNELS_NUM                    1u                                  /* Number of used channels                          */
 #define ADC_MAX_VALUE                   4095.0f
 #define ADC_VREF_VALUE                  50.0f
-#define AIN_VFB_12V                     12.0f
-#define AIN_VFB_5V                      5.0f
-#define AIN_MAXAVG_CNT                  5U
+#define AIN_MAXAVG_CNT                  8U
 #define AIN_ZERO                        0U
-#define AIN_EVADC_VFB                   3.30f
-#define AIN_BTS7960_MAXCURRENT          43.0f
 #define AIN_GP2Y0A21YK0F_BLINDVOLTAGE   0.20f
 #define AIN_INVALIDVALUE                0xFFFFU
 #define AIN_GP2Y0A21YK0F_MINDIST        10.0f
@@ -18,10 +14,6 @@
 
 
 extern float IRSensorValue;
-extern float CurrentSenseEpsValue_Right;
-extern float CurrentSenseEpsValue_Left;
-extern float VoltageSenseEpsFanValue;
-extern float VoltageSenseEpsLine;
 extern uint8 Ain_CanRx_MeasuredVoltage;
 
 extern void Ain_MainFunction(void);

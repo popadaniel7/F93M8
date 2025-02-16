@@ -5,6 +5,10 @@
 #include "IfxStm.h"
 #include "task_core0.h"
 #include "FreeRTOSConfig_core0.h"
+#include "task_core1.h"
+#include "FreeRTOSConfig_core1.h"
+#include "task_core2.h"
+#include "FreeRTOSConfig_core2.h"
 #include "ComMaster.h"
 #include "Iven.h"
 #include "DcyHandler.h"
@@ -13,6 +17,8 @@
 #include "DiagMaster.h"
 
 static uint32 Bsw_Wrapper_MainCounter_C0 = 0u;
+static uint32 Bsw_Wrapper_MainCounter_C1 = 0u;
+static uint32 Bsw_Wrapper_MainCounter_C2 = 0u;
 
 void Bsw_Wrapper_MainFunction_C0(void);
 void Bsw_Wrapper_MainFunction_C1(void);
@@ -102,8 +108,8 @@ void Bsw_Wrapper_MainFunction_C1(void)
     if(SYSMGR_SLEEP == SysMgr_EcuState)
     {
         Wdg_DeInitializeCpu1Watchdog();
-        //vTaskSuspendAll();
-        //vTaskEndScheduler();
+        vTaskSuspendAll_core1();
+        vTaskEndScheduler_core1();
         IfxStm_disableModule(&MODULE_STM1);
         SysMgr_Core1OnHalt = 1u;
         IfxCpu_setCoreMode(&MODULE_CPU1, IfxCpu_CoreMode_idle);
@@ -112,6 +118,8 @@ void Bsw_Wrapper_MainFunction_C1(void)
     {
         /* Do nothing. */
     }
+
+    Bsw_Wrapper_MainCounter_C1++;
 }
 void Bsw_Wrapper_MainFunction_C2(void)
 {
@@ -120,8 +128,8 @@ void Bsw_Wrapper_MainFunction_C2(void)
     if(SYSMGR_SLEEP == SysMgr_EcuState)
     {
         Wdg_DeInitializeCpu1Watchdog();
-        //vTaskSuspendAll();
-        //vTaskEndScheduler();
+        vTaskSuspendAll_core2();
+        vTaskEndScheduler_core2();
         IfxStm_disableModule(&MODULE_STM2);
         SysMgr_Core2OnHalt = 1u;
         IfxCpu_setCoreMode(&MODULE_CPU2, IfxCpu_CoreMode_idle);
@@ -130,4 +138,6 @@ void Bsw_Wrapper_MainFunction_C2(void)
     {
         /* Do nothing. */
     }
+
+    Bsw_Wrapper_MainCounter_C2++;
 }
