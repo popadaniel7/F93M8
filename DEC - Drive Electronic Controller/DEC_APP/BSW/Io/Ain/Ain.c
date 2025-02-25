@@ -7,6 +7,8 @@ uint32 Ain_AuxBufferDma[CHANNELS_NUM] = {AIN_ZERO};
 float IRSensorValue = AIN_ZERO;
 uint8 Ain_CanRx_MeasuredVoltage = AIN_ZERO;
 
+Ifx_EVADC_G_RES Ain_Results[CHANNELS_NUM];
+
 extern IfxEvadc_Adc_Channel g_evadcChannel[CHANNELS_NUM];
 
 void Ain_MainFunction(void);
@@ -64,7 +66,20 @@ float Ain_AdcToVoltage(float rawAdc, float refVoltage)
 
 void Ain_MainFunction(void)
 {
-    Ain_AuxBufferDma[0] = IfxEvadc_Adc_getResult(&g_evadcChannel[0]).U;
+    for(uint8 i = 0; i < CHANNELS_NUM; i++)
+    {
+        /* Wait for a valid result */
+        Ifx_EVADC_G_RES conversionResult;
+        do
+        {
+            conversionResult = IfxEvadc_Adc_getResult(&g_evadcChannel[i]); /* Read the result of the selected channel */
+        } while(!conversionResult.B.VF);
+
+        /* Store result */
+        Ain_Results[i] = conversionResult;
+    }
+
+    Ain_AuxBufferDma[0] = Ain_Results[0].B.RESULT;
     Ain_ProcessIRSensorValue();
     Ain_MainCounter++;
 }

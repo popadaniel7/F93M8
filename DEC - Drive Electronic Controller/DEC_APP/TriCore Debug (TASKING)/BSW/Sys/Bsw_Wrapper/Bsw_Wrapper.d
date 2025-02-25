@@ -188,3 +188,5 @@ Bsw_Wrapper.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electron
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\APP\\EnergyMgmt\EnergyMgmt.h" :
 Bsw_Wrapper.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\APP\\DiagMaster\DiagMaster.h"
 "C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\APP\\DiagMaster\DiagMaster.h" :
+Bsw_Wrapper.o :	"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\SmM\\02_Safety_Mechanisms\SafetyKit_InternalWatchdogs.h"
+"C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\BSW\\Sys\\SmM\\02_Safety_Mechanisms\SafetyKit_InternalWatchdogs.h" :

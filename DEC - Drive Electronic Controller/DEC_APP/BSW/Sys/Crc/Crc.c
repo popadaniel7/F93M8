@@ -1,7 +1,7 @@
 #include "Crc.h"
 #include "IfxCpu.h"
 
-fceCrc g_fceCrc; /* Structure to store information */
+fceCrc g_fceCrc2; /* Structure to store information */
 
 void Crc_Init(void);
 uint32 Crc_Calculate(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
@@ -15,22 +15,22 @@ void Crc_Init(void)
     IfxFce_Crc_Config fceConfig;
     IfxFce_Crc_initModuleConfig(&fceConfig, &MODULE_FCE);
     /* Initialize module */
-    IfxFce_Crc_initModule(&g_fceCrc.fce, &fceConfig);
+    IfxFce_Crc_initModule(&g_fceCrc2.fce, &fceConfig);
     /* Initialize CRC kernel with default configuration */
     IfxFce_Crc_CrcConfig crcConfig;
-    IfxFce_Crc_initCrcConfig(&crcConfig, &g_fceCrc.fce);
+    IfxFce_Crc_initCrcConfig(&crcConfig, &g_fceCrc2.fce);
     /* Initialize FCE CRC */
     crcConfig.crcKernel = IfxFce_CrcKernel_0;
     crcConfig.fceChannelId = IfxDma_ChannelId_1;
-    IfxFce_Crc_initCrc(&g_fceCrc.fceCrc, &crcConfig);
+    IfxFce_Crc_initCrc(&g_fceCrc2.fceCrc, &crcConfig);
 }
 /* Start the calculation
  * This function is called from main, background loop
  */
 uint32 Crc_CalculateFCECRC(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue)
 {
-    g_fceCrc.crc_result = Crc_Calculate(crcData, crcDataLength, crcStartValue);
-    return g_fceCrc.crc_result;
+    g_fceCrc2.crc_result = Crc_Calculate(crcData, crcDataLength, crcStartValue);
+    return g_fceCrc2.crc_result;
 }
 
 uint32 Crc_Calculate(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue)
@@ -40,7 +40,7 @@ uint32 Crc_Calculate(const uint32 *crcData, uint16 crcDataLength, uint32 crcStar
     IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
 
-    crcRet =  IfxFce_Crc_calculateCrc(&g_fceCrc.fceCrc, crcData, crcDataLength, crcStartValue);
+    crcRet =  IfxFce_Crc_calculateCrc(&g_fceCrc2.fceCrc, crcData, crcDataLength, crcStartValue);
 
     IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());

@@ -260,6 +260,7 @@ void ASILD_BSW_Task_C0(void *pvParameters)
         {
             Alarm5ms_Flag_ASILD_BSW_Task_C0 = 0u;
             Bsw_Wrapper_MainFunction_C0();
+            SysMgr_MainFunction();
         }
         else
         {
@@ -277,7 +278,6 @@ void ASILB_BSW_Task_C0(void *pvParameters)
         if(1u == Alarm5ms_Flag_ASILB_BSW_Task_C0)
         {
             Alarm5ms_Flag_ASILB_BSW_Task_C0 = 0u;
-            SysMgr_MainFunction();
             Ain_MainFunction();
         }
         else
@@ -351,6 +351,7 @@ void ASILD_APPL_MainCycle_Task_C2(void *pvParameters)
         if(1u == Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C2)
         {
             Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C2 = 0u;
+            ColDet_MainFunction();
             Iven_MainFunction();
         }
         else

@@ -11,8 +11,6 @@ typedef enum
 
 extern SysMgr_EcuState_t SysMgr_EcuState;
 extern uint8 SysMgr_NoBusActivity;
-extern uint8 SysMgr_NoOvercurrentOnDcMotor;
-extern uint8 SysMgr_NoOverheatOnDcMotor;
 extern uint8 SysMgr_Core1OnHalt;
 extern uint8 SysMgr_Core2OnHalt;
 

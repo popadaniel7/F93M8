@@ -45,6 +45,12 @@ BSW/Sys/FreeRTOS_core1 \
 BSW/Sys/FreeRTOS_core2 \
 BSW/Sys/McuSm \
 BSW/Sys/Os \
+BSW/Sys/SmM/00_Ssw \
+BSW/Sys/SmM/01_Smu/SMU \
+BSW/Sys/SmM/01_Smu/SMU_Test \
+BSW/Sys/SmM/02_Safety_Mechanisms \
+BSW/Sys/SmM/06_Safe_Computation \
+BSW/Sys/SmM \
 BSW/Sys/Smu \
 BSW/Sys/SysMgr \
 BSW/Sys/Wdg \

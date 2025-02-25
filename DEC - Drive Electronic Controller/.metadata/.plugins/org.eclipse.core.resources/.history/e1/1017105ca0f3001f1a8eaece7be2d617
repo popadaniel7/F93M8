@@ -1,0 +1,12 @@
+#include "Ifx_Types.h"
+
+#define NVM_NO_BLOCKS               3U//4U
+#define NVM_SIZE_HEADER_BYTES       8U// Data-flash write done in 8 bytes at a time
+
+typedef struct
+{
+        uint8 blockId;
+        uint16 blockSize;
+        uint8 padding1;
+        uint32 padding2;
+}Nvm_Header_t;

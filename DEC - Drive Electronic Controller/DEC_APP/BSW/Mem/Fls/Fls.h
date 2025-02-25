@@ -7,6 +7,7 @@
 #define DFLASH_PAGE_LENGTH          IFXFLASH_DFLASH_PAGE_LENGTH /* 8 Bytes */
 #define DFLASH_STARTING_ADDRESS     0xAF000000  /* Start Address of Data Flash */
 #define DFLASH_SECTOR_SIZE          (128 * 1024) /* 128 KB per sector */
+#define DFLASH_SECOND_SECTOR_ADDRESS 0xAF020000U
 #define DFLASH_NUM_SECTORS          2 /* Number of DFLASH sectors used for EEPROM emulation */
 #define BLOCK_HEADER_SIZE           8 /* Block metadata header size (ID + Status) */
 

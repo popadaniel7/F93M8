@@ -1,0 +1,840 @@
+#include "McuSm.h"
+#include "IfxScuLbist.h"
+#include "Irq.h"
+#include "IfxCpu_IntrinsicsTasking.h"
+
+const McuSm_ResetReason_t McuSm_FullListCompare[] =
+{
+        NO_ERR,
+        McuSm_IfxSmu_Alarm_CPU0_Lockstep_ComparatorError                             ,
+        McuSm_IfxSmu_Alarm_CPU0_Buslevel_MpuViolation                                ,
+        McuSm_IfxSmu_Alarm_CPU0_PFI0_PFLASH0_ReadPathError                           ,
+        McuSm_IfxSmu_Alarm_CPU0_PCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU0_PCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU0_PSPRPCACHE_SingleBitErrorCorrection                  ,
+        McuSm_IfxSmu_Alarm_CPU0_PSPRPCACHE_UncorrectableErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU0_PSPRPCACHE_MiscellaneousErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU0_DSPRDCACHEDLMU_SingleBitErrorCorrection              ,
+        McuSm_IfxSmu_Alarm_CPU0_DSPRDCACHEDLMU_UncorrectableErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU0_DSPRDCACHEDLMU_MiscelleniousErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU0_DCACHETAG_SingleBitErrorCorrection                   ,
+        McuSm_IfxSmu_Alarm_CPU0_DCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU0_DCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU0_CPU_InstructionFetchSriInterfaceEdcError             ,
+        McuSm_IfxSmu_Alarm_CPU0_CPU_DataSriInterfaceLoadStoreEdcError                ,
+        McuSm_IfxSmu_Alarm_CPU0_CPU_ExceptionInterruptTrap                           ,
+        McuSm_IfxSmu_Alarm_CPU1_Lockstep_ComparatorError                             ,
+        McuSm_IfxSmu_Alarm_CPU1_Buslevel_MpuViolation                                ,
+        McuSm_IfxSmu_Alarm_CPU1_PFI1_PFLASH1_ReadPathError                           ,
+        McuSm_IfxSmu_Alarm_CPU1_PCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU1_PCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU1_PSPRPCACHE_SingleBitErrorCorrection                  ,
+        McuSm_IfxSmu_Alarm_CPU1_PSPRPCACHE_UncorrectableErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU1_PSPRPCACHE_MiscellaneousErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU1_DSPRDCACHEDLMU_SingleBitErrorCorrection              ,
+        McuSm_IfxSmu_Alarm_CPU1_DSPRDCACHEDLMU_UncorrectableErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU1_DSPRDCACHEDLMU_MiscellaneousErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU1_DCACHETAG_SingleBitErrorCorrection                   ,
+        McuSm_IfxSmu_Alarm_CPU1_DCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU1_DCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU1_CPU_InstructionFetchSriInterfaceEdcError             ,
+        McuSm_IfxSmu_Alarm_CPU1_CPU_DataSriInterfaceLoadStoreEdcError                ,
+        McuSm_IfxSmu_Alarm_CPU1_CPU_ExceptionInterruptTrap                           ,
+        McuSm_IfxSmu_Alarm_CPU2_Lockstep_ComparatorError                             ,
+        McuSm_IfxSmu_Alarm_CPU2_Buslevel_MpuViolation                                ,
+        McuSm_IfxSmu_Alarm_CPU2_PFI2_PFLASH2_ReadPathError                           ,
+        McuSm_IfxSmu_Alarm_CPU2_PCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU2_PCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU2_PSPRPCACHE_SingleBitErrorCorrection                  ,
+        McuSm_IfxSmu_Alarm_CPU2_PSPRPCACHE_UncorrectableErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU2_PSPRPCACHE_MiscellaneousErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU2_DSPRDCACHEDLMU_SingleBitErrorCorrection              ,
+        McuSm_IfxSmu_Alarm_CPU2_DSPRDCACHEDLMU_UncorrectableErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU2_DSPRDCACHEDLMU_MiscellaneousErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU2_DCACHETAG_SingleBitErrorCorrection                   ,
+        McuSm_IfxSmu_Alarm_CPU2_DCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU2_DCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU2_CPU_InstructionFetchSriInterfaceEdcError             ,
+        McuSm_IfxSmu_Alarm_CPU2_CPU_DataSriInterfaceLoadStoreEdcError                ,
+        McuSm_IfxSmu_Alarm_CPU2_CPU_ExceptionInterruptTrap                           ,
+        McuSm_IfxSmu_Alarm_CPU3_Lockstep_ComparatorError                             ,
+        McuSm_IfxSmu_Alarm_CPU3_Buslevel_MpuViolation                                ,
+        McuSm_IfxSmu_Alarm_CPU3_PFI3_PFLASH3_ReadPathError                           ,
+        McuSm_IfxSmu_Alarm_CPU3_PCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU3_PCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU3_PSPRPCACHE_SingleBitErrorCorrection                  ,
+        McuSm_IfxSmu_Alarm_CPU3_PSPRPCACHE_UncorrectableErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU3_PSPRPCACHE_MiscellaneousErrorDetection               ,
+        McuSm_IfxSmu_Alarm_CPU3_DSPRDCACHEDLMU_SingleBitErrorCorrection              ,
+        McuSm_IfxSmu_Alarm_CPU3_DSPRDCACHEDLMU_UncorrectableErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU3_DSPRDCACHEDLMU_MiscellaneousErrorDetection           ,
+        McuSm_IfxSmu_Alarm_CPU3_DCACHETAG_SingleBitErrorCorrection                   ,
+        McuSm_IfxSmu_Alarm_CPU3_DCACHETAG_UncorrectableErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU3_DCACHETAG_MiscellaneousErrorDetection                ,
+        McuSm_IfxSmu_Alarm_CPU3_CPU_InstructionFetchSriInterfaceEdcError             ,
+        McuSm_IfxSmu_Alarm_CPU3_CPU_DataSriInterfaceLoadStoreEdcError                ,
+        McuSm_IfxSmu_Alarm_CPU3_CPU_ExceptionInterruptTrap                           ,
+        McuSm_IfxSmu_Alarm_MTU_Safety_FfUncorrectableErrorDetected                   ,
+        McuSm_IfxSmu_Alarm_IOM_Safety_FfUncorrectableErrorDetected                   ,
+        McuSm_IfxSmu_Alarm_IR_Safety_FfUncorrectableErrorDetected                    ,
+        McuSm_IfxSmu_Alarm_EMEM_Safety_FfUncorrectableErrorDetected                  ,
+        McuSm_IfxSmu_Alarm_SCU_Safety_FfUncorrectableErrorDetected                   ,
+        McuSm_IfxSmu_Alarm_PMS_Safety_FfUncorrectableErrorDetected                   ,
+        McuSm_IfxSmu_Alarm_DMA_Safety_FfUncorrectableErrorDetected                   ,
+        McuSm_IfxSmu_Alarm_SMU_core_Safety_FfUncorrectableErrorDetected              ,
+        McuSm_IfxSmu_Alarm_SYS_PLL_PER_PLL_Safety_FfUncorrectableErrorDetected       ,
+        McuSm_IfxSmu_Alarm_GTM_GTM_SingleBitErrorCorrection                          ,
+        McuSm_IfxSmu_Alarm_GTM_GTM_UncorrectableErrorDetection                       ,
+        McuSm_IfxSmu_Alarm_GTM_GTM_MiscellaneousErrorDetection                       ,
+        McuSm_IfxSmu_Alarm_ERAY_ERAY_SingleBitErrorCorrection                        ,
+        McuSm_IfxSmu_Alarm_ERAY_ERAY_UncorrectableErrorDetection                     ,
+        McuSm_IfxSmu_Alarm_ERAY_ERAY_MiscellaneousErrorDetection                     ,
+        McuSm_IfxSmu_Alarm_CAN_CAN_SingleBitErrorCorrection                          ,
+        McuSm_IfxSmu_Alarm_CAN_CAN_UncorrectableErrorDetection                       ,
+        McuSm_IfxSmu_Alarm_CAN_CAN_MiscellaneousErrorDetection                       ,
+        McuSm_IfxSmu_Alarm_Misc_MISC_SingleBitErrorCorrection                        ,
+        McuSm_IfxSmu_Alarm_Misc_MISC_UncorrectableErrorDetection                     ,
+        McuSm_IfxSmu_Alarm_Misc_MISC_MiscellaneousErrorDetection                     ,
+        McuSm_IfxSmu_Alarm_CERBERUS_Safety_FfUncorrectableErrorDetected              ,
+        McuSm_IfxSmu_Alarm_CCU_Safety_FfCorrectableErrorDetected                     ,
+        McuSm_IfxSmu_Alarm_CCU_Safety_FfUncorrectableErrorDetected                   ,
+        McuSm_IfxSmu_Alarm_LMU_FSI_RAM_LMUDMU_SingleBitErrorCorrection               ,
+        McuSm_IfxSmu_Alarm_LMU_FSI_RAM_LMUDMU_UncorrectableErrorDetection            ,
+        McuSm_IfxSmu_Alarm_LMU_FSI_RAM_LMUDMU_MiscellaneousErrorDetection            ,
+        McuSm_IfxSmu_Alarm_LMU_Lockstep_ComparatorError                              ,
+        McuSm_IfxSmu_Alarm_LMU_Lockstep_ControlError                                 ,
+        McuSm_IfxSmu_Alarm_LMU_ECC_Error                                             ,
+        McuSm_IfxSmu_Alarm_LMU_Buslevel_MpuError                                     ,
+        McuSm_IfxSmu_Alarm_LMU_EDC_ReadPhaseError                                    ,
+        McuSm_IfxSmu_Alarm_XBAR0_SRI_BusErrorEvent                                   ,
+        McuSm_IfxSmu_Alarm_XBAR1_SRI_BusErrorEvent                                   ,
+        McuSm_IfxSmu_Alarm_XBAR2_SRI_BusErrorEvent                                   ,
+        McuSm_IfxSmu_Alarm_SPB_BusErrorEvent                                         ,
+        McuSm_IfxSmu_Alarm_BBB_BusErrorEvent                                         ,
+        McuSm_IfxSmu_Alarm_FSI_PFlash_SingleBitError                                 ,
+        McuSm_IfxSmu_Alarm_FSI_PFlash_DoubleBitError                                 ,
+        McuSm_IfxSmu_Alarm_FSI_Single_BitCorrectionTrackingBufferFull                ,
+        McuSm_IfxSmu_Alarm_FSI_Double_BitCorrectionTrackingBufferFull                ,
+        McuSm_IfxSmu_Alarm_FSI_Multiple_BitErrorDetectionTrackingBufferFull          ,
+        McuSm_IfxSmu_Alarm_FSI_Zero_BitErrorTrackingBufferFull                       ,
+        McuSm_IfxSmu_Alarm_FSI_PFlash_EccError                                       ,
+        McuSm_IfxSmu_Alarm_FSI_PFlash_EdcError                                       ,
+        McuSm_IfxSmu_Alarm_FSI_CPUFLASHCON_ConfigurationError                        ,
+        McuSm_IfxSmu_Alarm_FSI_Flash_StoredConfigurationError                        ,
+        McuSm_IfxSmu_Alarm_SCU_OS_CClockFrequencyOutOfRange                          ,
+        McuSm_IfxSmu_Alarm_CCU_Backup_ClockOutOfRangeAlarm                           ,
+        McuSm_IfxSmu_Alarm_CCU_Backup_ClockAliveAlarm                                ,
+        McuSm_IfxSmu_Alarm_SCU_System_PllDcoLossOfLockEvent                          ,
+        McuSm_IfxSmu_Alarm_SCU_Peripheral_PllDcoLossOfLockEvent                      ,
+        McuSm_IfxSmu_Alarm_SCU_LBIST_Alarm                                           ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm0                            ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm1                            ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm2                            ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm3                            ,
+        McuSm_IfxSmu_Alarm_SCU_CPU0_WatchdogTimeOut                                  ,
+        McuSm_IfxSmu_Alarm_SCU_CPU1_WatchdogTimeOut                                  ,
+        McuSm_IfxSmu_Alarm_SCU_CPU2_WatchdogTimeOut                                  ,
+        McuSm_IfxSmu_Alarm_SCU_CPU3_WatchdogTimeOut                                  ,
+        McuSm_IfxSmu_Alarm_SCU_Safety_WatchdogTimeOut                                ,
+        McuSm_IfxSmu_Alarm_SCU_Watchdog_TimeOut                                      ,
+        McuSm_IfxSmu_Alarm_SCU_Lockstep_DualRailError                                ,
+        McuSm_IfxSmu_Alarm_SCU_External_EmergencyStopSignalEvent                     ,
+        McuSm_IfxSmu_Alarm_SCU_Pad_HeatingAlarm                                      ,
+        McuSm_IfxSmu_Alarm_SCU_LBIST_TestModeAlarm                                   ,
+        McuSm_IfxSmu_Alarm_IR_EDC_ConfigurationDataPathError                         ,
+        McuSm_IfxSmu_Alarm_DMA_DMASRI_EccError                                       ,
+        McuSm_IfxSmu_Alarm_IOM_Pin_MismatchIndication                                ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm4                            ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm5                            ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm6                            ,
+        McuSm_IfxSmu_Alarm_SCU_External_RequestUnitAlarm7                            ,
+        McuSm_IfxSmu_Alarm_DTS_core_Under_TemperatureAlarm                           ,
+        McuSm_IfxSmu_Alarm_DTS_core_Over_TemperatureAlarm                            ,
+        McuSm_IfxSmu_Alarm_DTS_Temperature_Overflow                                  ,
+        McuSm_IfxSmu_Alarm_DTS_Temperature_Underflow                                 ,
+        McuSm_IfxSmu_Alarm_EVR_Overvoltage_Alarm                                     ,
+        McuSm_IfxSmu_Alarm_EVR_Undervoltage_Alarm                                    ,
+        McuSm_IfxSmu_Alarm_EVR_Short_ToLowHightAlarm                                 ,
+        McuSm_IfxSmu_Alarm_HSM_Overvoltage_Alarm                                     ,
+        McuSm_IfxSmu_Alarm_HSM_Undervoltage_Alarm                                    ,
+        McuSm_IfxSmu_Alarm_EMEM_Unexpected_WriteToEmemAlarm                          ,
+        McuSm_IfxSmu_Alarm_EMEM_SEP_ControlLogicAlarm                                ,
+        McuSm_IfxSmu_Alarm_EMEM_Lockstep_ControlLogicInputAlarm                      ,
+        McuSm_IfxSmu_Alarm_Software_Alarm0                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm1                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm2                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm3                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm4                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm5                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm6                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm7                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm8                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm9                                           ,
+        McuSm_IfxSmu_Alarm_Software_Alarm10                                          ,
+        McuSm_IfxSmu_Alarm_Software_Alarm11                                          ,
+        McuSm_IfxSmu_Alarm_Software_Alarm12                                          ,
+        McuSm_IfxSmu_Alarm_Software_Alarm13                                          ,
+        McuSm_IfxSmu_Alarm_Software_Alarm14                                          ,
+        McuSm_IfxSmu_Alarm_Software_Alarm15                                          ,
+        McuSm_IfxSmu_Alarm_SMU_Timer0_TimeOut                                        ,
+        McuSm_IfxSmu_Alarm_SMU_Timer1_TimeOut                                        ,
+        McuSm_IfxSmu_Alarm_SMU_Error_PinFaultStateActivation                         ,
+        McuSm_IfxSmu_Alarm_SMU_Safety_FfCorrectableErrorDetected                     ,
+        McuSm_IfxSmu_Alarm_SMU_Safety_FfUncorrectableErrorDetected                   ,
+        McuSm_IfxSmu_Alarm_SMU_Access_EnableErrorDetected                            ,
+        McuSm_IfxSmu_Alarm_LMU_EDC_AddressPhaseError                                 ,
+        McuSm_IfxSmu_Alarm_LMU_EDC_WritePhaseError                                   ,
+        McuSm_IfxSmu_Alarm_XBAR_EDC_AddressPhaseError                                ,
+        McuSm_IfxSmu_Alarm_XBAR_EDC_WritePhaseError                                  ,
+        McuSm_IfxSmu_Alarm_DMU_EDC_AddressPhaseError                                 ,
+        McuSm_IfxSmu_Alarm_DMU_EDC_WritePhaseError                                   ,
+        McuSm_IfxSmu_Alarm_SFI_BBB_EDC_AddressPhaseError                             ,
+        McuSm_IfxSmu_Alarm_SFI_BBB_EDC_WritePhaseError                               ,
+        McuSm_IfxSmu_Alarm_SRI_EDC_ReadPhaseError                                    ,
+        McuSm_IfxSmu_Alarm_SFI_SPB_EDC_ReadPhaseError                                ,
+        McuSm_IfxSmu_Alarm_HSSL_HSSL0EDC_ReadPhaseError                              ,
+        McuSm_IfxSmu_Alarm_CONVERTER_Phase_SyncronizerError                          ,
+        McuSm_IfxSmu_Alarm_XBAR_SOTA_SwapError                                       ,
+        TRAP0 ,
+        TRAP1 ,
+        TRAP2 ,
+        TRAP3 ,
+        TRAP4 ,
+        TRAP5 ,
+        TRAP6 ,
+        TRAP7 ,
+        PMSEVER_INITFAIL ,
+        PMSEVER_INITCHECKFAIL ,
+        LBIST_FAIL ,
+        PLL_INITFAIL ,
+        MONBIST_FAIL ,
+        STACKOVERFLOW ,
+        MALLOCERROR ,
+        MBIST_FAIL ,
+        DIAG_RESET,
+        0xFFFFU
+};
+IfxMtu_MbistSel localMcuArr[21] =
+{
+        IfxMtu_MbistSel_cpu0Dtag   ,
+        IfxMtu_MbistSel_cpu1Dtag   ,
+        IfxMtu_MbistSel_cpu1Dlmu   ,
+        IfxMtu_MbistSel_cpu2Dtag   ,
+        IfxMtu_MbistSel_cpu2Dlmu   ,
+        IfxMtu_MbistSel_gtmFifo    ,
+        IfxMtu_MbistSel_gtmMcs0Fast,
+        IfxMtu_MbistSel_gtmMcs1Fast,
+        IfxMtu_MbistSel_gtmDpll1a  ,
+        IfxMtu_MbistSel_gtmDpll1b  ,
+        IfxMtu_MbistSel_gtmDpll2   ,
+        IfxMtu_MbistSel_mcan0      ,
+        IfxMtu_MbistSel_mcan1      ,
+        IfxMtu_MbistSel_psi5       ,
+        IfxMtu_MbistSel_eray0Obf   ,
+        IfxMtu_MbistSel_eray0IbfTbf,
+        IfxMtu_MbistSel_eray0Mbf   ,
+        IfxMtu_MbistSel_scrXram    ,
+        IfxMtu_MbistSel_scrIram    ,
+        IfxMtu_MbistSel_ethermacRx ,
+        IfxMtu_MbistSel_ethermacTx
+};
+
+uint32 McuSm_AGs[12];
+uint32 McuSm_LastResetReason;
+uint32 McuSm_LastResetInformation;
+uint32 McuSm_IndexResetHistory;
+McuSm_ResetHistory_t McuSm_ResetHistory[20u];
+McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
+uint32 DiagMaster_AliveTime;
+uint8 DiagMaster_ActiveSessionState;
+
+void McuSm_InitializeBusMpu(void);
+void McuSm_EnableBusMpu(void);
+void McuSm_InitializeDataProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range);
+void McuSm_InitializeCodeProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range);
+void McuSm_EnableDataRead(uint8 protectionSet, uint8 range);
+void McuSm_EnableDataWrite(uint8 protectionSet, uint8 range);
+void McuSm_EnableCodeExecution(uint8 protectionSet, uint8 range);
+void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
+void McuSm_TRAP2(IfxCpu_Trap trapInfo);
+void McuSm_TRAP3(IfxCpu_Trap trapInfo);
+void McuSm_TRAP4(IfxCpu_Trap trapInfo);
+void McuSm_TRAP7(IfxCpu_Trap trapInfo);
+
+void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
+{
+    if(resetReason != 0u)
+    {
+        McuSm_LastResetReason = resetReason;
+        McuSm_LastResetInformation = resetInformation;
+        McuSm_ResetReasonListCounter[resetReason]++;
+        McuSm_ResetHistory[McuSm_IndexResetHistory].reason = resetReason;
+        McuSm_ResetHistory[McuSm_IndexResetHistory].information = resetInformation;
+        McuSm_IndexResetHistory++;
+
+        if(McuSm_IndexResetHistory > 19)
+        {
+            McuSm_IndexResetHistory = 0;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+void McuSm_TRAP2(IfxCpu_Trap trapInfo)
+{
+    McuSm_PerformResetHook(TRAP2, trapInfo.tId);
+}
+
+void McuSm_TRAP4(IfxCpu_Trap trapInfo)
+{
+    McuSm_PerformResetHook(TRAP4, trapInfo.tId);
+}
+
+void McuSm_TRAP7(IfxCpu_Trap trapInfo)
+{
+    uint32 const volatile* ag;
+    uint32 agRstRsn = 0u;
+    uint32 agRstInfo = 0u;
+
+    McuSm_AGs[0] = SMU_AGCF0_0.U & SMU_AGCF0_2.U & ~(SMU_AGCF0_1.U);
+    McuSm_AGs[1] = SMU_AGCF1_0.U & SMU_AGCF1_2.U & ~(SMU_AGCF1_1.U);
+    McuSm_AGs[2] = SMU_AGCF2_0.U & SMU_AGCF2_2.U & ~(SMU_AGCF2_1.U);
+    McuSm_AGs[6] = SMU_AGCF6_0.U & SMU_AGCF6_2.U & ~(SMU_AGCF6_1.U);
+    McuSm_AGs[7] = SMU_AGCF7_0.U & SMU_AGCF7_2.U & ~(SMU_AGCF7_1.U);
+    McuSm_AGs[8] = SMU_AGCF8_0.U & SMU_AGCF8_2.U & ~(SMU_AGCF8_1.U);
+    McuSm_AGs[9] = SMU_AGCF9_0.U & SMU_AGCF9_2.U & ~(SMU_AGCF9_1.U);
+    McuSm_AGs[10] = SMU_AGCF10_0.U & SMU_AGCF10_2.U & ~(SMU_AGCF10_1.U);
+    McuSm_AGs[11] = SMU_AGCF11_0.U & SMU_AGCF11_2.U & ~(SMU_AGCF11_1.U);
+
+    ag = (uint32 const volatile*)(&SMU_AG0);
+
+    for(sint8 i = 0; i < 12; i++)
+    {
+        if(0u != (ag[i] & McuSm_AGs[i]))
+        {
+            agRstRsn = i;
+            agRstInfo = (sint8)(31u - (uint8)__clz(ag[i] & McuSm_AGs[i]));
+            break;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+
+    McuSm_PerformResetHook(agRstRsn, agRstInfo);
+}
+
+void McuSm_TRAP3(IfxCpu_Trap trapInfo)
+{
+    uint32 index;
+    uint16 password;
+    Ifx_SCU_WDTS *watchdog = &MODULE_SCU.WDTS;
+    Ifx_CPU_CORE_ID reg;
+    uint8 coreId;
+    reg.U = __mfcr(CPU_CORE_ID);
+    coreId =  (IfxCpu_ResourceCpu)reg.B.CORE_ID;
+    Ifx_SCU_WDTCPU *cpuwdg = &MODULE_SCU.WDTCPU[coreId];
+
+    McuSm_LastResetReason = TRAP3;
+    McuSm_LastResetInformation = trapInfo.tId;
+    McuSm_ResetReasonListCounter[TRAP3]++;
+    McuSm_ResetHistory[McuSm_IndexResetHistory].reason = TRAP3;
+    McuSm_ResetHistory[McuSm_IndexResetHistory].information = trapInfo.tId;
+    McuSm_IndexResetHistory++;
+
+    if(McuSm_IndexResetHistory > 19)
+    {
+        McuSm_IndexResetHistory = 0;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    /* Read Password from Safety WDT CON0 register
+     * !!! NOTE: !!! when read bottom six bit of password are inverted so we have
+     * to toggle them before returning password */
+    password  = watchdog->CON0.B.PW;
+    password ^= 0x003F;
+
+    if (SCU_WDTS_CON0.B.LCK)
+    {
+        /* see Table 1 (Password Access Bit Pattern Requirements) */
+        SCU_WDTS_CON0.U = (1 << IFX_SCU_WDTS_CON0_ENDINIT_OFF) |
+                (0 << IFX_SCU_WDTS_CON0_LCK_OFF) |
+                (password << IFX_SCU_WDTS_CON0_PW_OFF) |
+                (SCU_WDTS_CON0.B.REL << IFX_SCU_WDTS_CON0_REL_OFF);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    /* Clear ENDINT and set LCK bit in Config_0 register */
+    SCU_WDTS_CON0.U = (0 << IFX_SCU_WDTS_CON0_ENDINIT_OFF) |
+            (1 << IFX_SCU_WDTS_CON0_LCK_OFF) |
+            (password << IFX_SCU_WDTS_CON0_PW_OFF) |
+            (SCU_WDTS_CON0.B.REL << IFX_SCU_WDTS_CON0_REL_OFF);
+    /* read back ENDINIT and wait until it has been cleared */
+
+    while (SCU_WDTS_CON0.B.ENDINIT == 1)
+    {}
+
+    MODULE_SCU.RSTCON.B.SW = 2; /* Application Reset */
+
+    /* Read Password from CON0 register
+     * !!! NOTE: !!! when read bottom six bit of password are inverted so we have
+     * to toggle them before returning password */
+
+    password  = cpuwdg->CON0.B.PW;
+    password ^= 0x003F;
+
+    if (cpuwdg->CON0.B.LCK)
+    {
+        /* see Table 1 (Password Access Bit Pattern Requirements) */
+        cpuwdg->CON0.U = (1 << IFX_SCU_WDTCPU_CON0_ENDINIT_OFF) |
+                (0 << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
+                (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
+                (cpuwdg->CON0.B.REL << IFX_SCU_WDTCPU_CON0_REL_OFF);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    /* Clear ENDINT and set LCK bit in Config_0 register */
+    cpuwdg->CON0.U = (0 << IFX_SCU_WDTCPU_CON0_ENDINIT_OFF) |
+            (1 << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
+            (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
+            (cpuwdg->CON0.B.REL << IFX_SCU_WDTCPU_CON0_REL_OFF);
+    /* read back ENDINIT and wait until it has been cleared */
+    while (cpuwdg->CON0.B.ENDINIT == 1)
+    {}
+
+    IfxScuWdt_clearCpuEndinitInline(&MODULE_SCU.WDTCPU[IfxCpu_getCoreIndex()], password);
+    /* Write the user DATA to reset evaluation */
+    MODULE_SCU.RSTCON2.B.USRINFO = 34;
+    /* software Reset can be performed by writing to Reset Request register  SWRSTCON */
+    MODULE_SCU.SWRSTCON.B.SWRSTREQ = 1U;
+    /* Add some delay for HW to reset */
+    for (index = 0U; index < (uint32)90000U; index++)
+    {}
+}
+
+extern uint32 __ASILDRAM_C2_START;
+extern uint32 __ASILDRAM_C2_END;
+extern uint32 __ASILDRAM_C1_START;
+extern uint32 __ASILDRAM_C0_START;
+extern uint32 __QMRAM_C1_END;
+extern uint32 __QMRAM_C0_END;
+
+void McuSm_InitializeBusMpu(void)
+{
+    uint8 coreId = IfxCpu_getCoreId();
+
+    switch(coreId)
+    {
+        case 0u:
+            McuSm_InitializeDataProtectionRange(__ASILDRAM_C0_START, __QMRAM_C0_END, 0u);
+            McuSm_EnableDataRead(1u, 0u);
+            McuSm_EnableDataWrite(1u, 0u);
+            McuSm_InitializeCodeProtectionRange(0x80060000, 0x800E0000, 3u);
+                McuSm_EnableCodeExecution(1u, 3u);
+                McuSm_SetActiveProtectionSet(1u);
+            break;
+        case 1u:
+            McuSm_InitializeDataProtectionRange(__ASILDRAM_C1_START, __QMRAM_C1_END, 1u);
+            McuSm_EnableDataRead(2u, 1u);
+            McuSm_EnableDataWrite(2u, 1u);
+            McuSm_SetActiveProtectionSet(2u);
+            break;
+        case 2u:
+            McuSm_InitializeDataProtectionRange(__ASILDRAM_C2_START, __ASILDRAM_C2_END, 2u);
+            McuSm_EnableDataRead(3u, 0u);
+            McuSm_EnableDataWrite(3u, 0u);
+            McuSm_SetActiveProtectionSet3u);
+            McuSm_EnableBusMpu();
+            break;
+        default:
+            break;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //    /* Configure memory protection */
+    //    /* Rules for memory protection range configuration:
+    //     * The lower and upper boundary addresses must be 8 byte aligned.
+    //     * After enabling the Memory Protection, access to an address 'x' will be allowed only if:
+    //     * lowerBoundAddress <= x < upperBoundAddress
+    //     */
+    //    /* Define the Data Protection Range 0: from 0x00000000 up to the address of the 48th index of the dummyData array */
+    //    McuSm_InitializeDataProtectionRange(FIRST_ADDR, LAST_ADDR, DATA_PROTECTION_RANGE_0);
+    //    /* Enable read access to the Data Protection Range 0 in the Protection Set 1 */
+    //    McuSm_EnableDataRead(PROTECTION_SET_1, DATA_PROTECTION_RANGE_0);
+    //    /* Enable write access to the Data Protection Range 0 in the Protection Set 1 */
+    //    McuSm_EnableDataWrite(PROTECTION_SET_1, DATA_PROTECTION_RANGE_0);
+    //    /* Define the Data Protection Range 1: from the address of the last element of dummyData array to 0xFFFFFFFF*/
+    //    McuSm_InitializeDataProtectionRange(FIRST_ADDR, LAST_ADDR, DATA_PROTECTION_RANGE_1);
+    //    /* Enable read access to the Data Protection Range 1 in the Protection Set 1 */
+    //    McuSm_EnableDataRead(PROTECTION_SET_1, DATA_PROTECTION_RANGE_1);
+    //    /* Enable write access to the Data Protection Range 1 in the Protection Set 1 */
+    //    McuSm_EnableDataWrite(PROTECTION_SET_1, DATA_PROTECTION_RANGE_1);
+    //    /* Define the Code Protection Range 0: from 0x00000000 to 0xFFFFFFFF (every address of the microcontroller) */
+    //    McuSm_InitializeCodeProtectionRange(FIRST_ADDR, LAST_ADDR, CODE_PROTECTION_RANGE_0);
+    //    /* Enable code execution on every address for Protection Set 1 */
+    //    McuSm_EnableCodeExecution(PROTECTION_SET_1, CODE_PROTECTION_RANGE_0);
+    //    /* When a trap occurs (i.e. in case of an access violation) the active Protection Set is automatically switched to 0.
+    //     * The following code enables the write/read access and code execution to all the memory addresses on protection set 0.
+    //     * This ensures that the trap vector table is still executable and readable.
+    //     */
+    //    /* Define the Code Protection Range 9: from 0x00000000 to 0xFFFFFFFF (every address of the microcontroller) */
+    //    McuSm_InitializeCodeProtectionRange(FIRST_ADDR, LAST_ADDR, CODE_PROTECTION_RANGE_9);
+    //    /* Define the Data Protection Range 17: from 0x00000000 to 0xFFFFFFFF (every address of the microcontroller) */
+    //    McuSm_InitializeDataProtectionRange(FIRST_ADDR, LAST_ADDR, DATA_PROTECTION_RANGE_17);
+    //    /* Enable code execution for Protection Set 0 (the default Protection Set) */
+    //    McuSm_EnableCodeExecution(PROTECTION_SET_0, CODE_PROTECTION_RANGE_9);
+    //    /* Enable read access to the Data Protection Range 17 in the Protection Set 0 */
+    //    McuSm_EnableDataRead(PROTECTION_SET_0, DATA_PROTECTION_RANGE_17);
+    //    /* Enable write access to the Data Protection Range 17 in the Protection Set 0 */
+    //    McuSm_EnableDataWrite(PROTECTION_SET_0, DATA_PROTECTION_RANGE_17);
+    //    /* Activate Protection Set 1.
+    //     * The active protection set determines the read, write, and execute permissions of the CPU.
+    //     */
+    //    McuSm_SetActiveProtectionSet(PROTECTION_SET_1);
+    //    /* Enable the Memory Protection */
+    //    McuSm_EnableBusMpu();
+}
+/* Function that enables the memory protection
+ * Make sure to define code and data protection ranges before calling this function.
+ *
+ * In this function two intrinsic functions, __mfcr() and __mtcr() are called, to access control registers.
+ * The intrinsic function __mfcr(int cfsr) moves contents of the addressed Core Special Function Register (CSFR)
+ * into a data register.
+ * The intrinsic function __mtcr(int csfr, int val) moves contents of a data register (second int) to the addressed
+ * CSFR (first int).
+ * The ISYNC instruction ensures that the effects of the CSFR update are correctly seen by all following instructions.
+ *
+ * The Tasking intrinsic function for MTCR automatically includes an ISYNC instruction.
+ * ISYNC for other compiler vendors is ensured by use of a preprocessor macro.
+ */
+void McuSm_EnableBusMpu(void)
+{
+    Ifx_CPU_SYSCON sysconValue;
+    sysconValue.U = __mfcr(CPU_SYSCON);                 /* Get the System Configuration Register (SYSCON) value     */
+    sysconValue.B.PROTEN = 1;                           /* Set the PROTEN bitfield to enable the Memory Protection  */
+    __mtcr(CPU_SYSCON, sysconValue.U);                  /* Set the System Configuration Register (SYSCON)           */
+    __isync();
+}
+/* Function that defines a data protection range in the corresponding CPU Data Protection Range Register (DPR).
+ * Data protection ranges have 8-byte granularity.
+ * As a result, the lower 3 bits of any address passed to the define_data_protection_range function will be discarded.
+ * After enabling the Memory Protection, access to an address 'x' will be allowed only if:
+ * lowerBoundAddress <= x < upperBoundAddress
+ */
+void McuSm_InitializeDataProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range)
+{
+    switch(range)
+    {
+        case 0: /* Data Protection Range 0 */
+            __mtcr(CPU_DPR0_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 0       */
+            __mtcr(CPU_DPR0_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 0       */
+            break;
+        case 1: /* Data Protection Range 1 */
+            __mtcr(CPU_DPR1_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 1       */
+            __mtcr(CPU_DPR1_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 1       */
+            break;
+        case 2: /* Data Protection Range 2 */
+            __mtcr(CPU_DPR2_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 2       */
+            __mtcr(CPU_DPR2_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 2       */
+            break;
+        case 3: /* Data Protection Range 3 */
+            __mtcr(CPU_DPR3_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 3       */
+            __mtcr(CPU_DPR3_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 3       */
+            break;
+        case 4: /* Data Protection Range 4 */
+            __mtcr(CPU_DPR4_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 4       */
+            __mtcr(CPU_DPR4_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 4       */
+            break;
+        case 5: /* Data Protection Range 5 */
+            __mtcr(CPU_DPR5_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 5       */
+            __mtcr(CPU_DPR5_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 5       */
+            break;
+        case 6: /* Data Protection Range 6 */
+            __mtcr(CPU_DPR6_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 6       */
+            __mtcr(CPU_DPR6_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 6       */
+            break;
+        case 7: /* Data Protection Range 7 */
+            __mtcr(CPU_DPR7_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 7       */
+            __mtcr(CPU_DPR7_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 7       */
+            break;
+        case 8: /* Data Protection Range 8 */
+            __mtcr(CPU_DPR8_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 8       */
+            __mtcr(CPU_DPR8_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 8       */
+            break;
+        case 9: /* Data Protection Range 9 */
+            __mtcr(CPU_DPR9_L, lowerBoundAddress);      /* Set the lower bound of CPU Data Protection Range 9       */
+            __mtcr(CPU_DPR9_U, upperBoundAddress);      /* Set the upper bound of CPU Data Protection Range 9       */
+            break;
+        case 10: /* Data Protection Range 10 */
+            __mtcr(CPU_DPR10_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 10      */
+            __mtcr(CPU_DPR10_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 10      */
+            break;
+        case 11: /* Data Protection Range 11 */
+            __mtcr(CPU_DPR11_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 11      */
+            __mtcr(CPU_DPR11_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 11      */
+            break;
+        case 12: /* Data Protection Range 12 */
+            __mtcr(CPU_DPR12_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 12      */
+            __mtcr(CPU_DPR12_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 12      */
+            break;
+        case 13: /* Data Protection Range 13 */
+            __mtcr(CPU_DPR13_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 13      */
+            __mtcr(CPU_DPR13_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 13      */
+            break;
+        case 14: /* Data Protection Range 14 */
+            __mtcr(CPU_DPR14_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 14      */
+            __mtcr(CPU_DPR14_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 14      */
+            break;
+        case 15: /* Data Protection Range 15 */
+            __mtcr(CPU_DPR15_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 15      */
+            __mtcr(CPU_DPR15_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 15      */
+            break;
+        case 16: /* Data Protection Range 15 */
+            __mtcr(CPU_DPR16_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 16      */
+            __mtcr(CPU_DPR16_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 16      */
+            break;
+        case 17: /* Data Protection Range 15 */
+            __mtcr(CPU_DPR17_L, lowerBoundAddress);     /* Set the lower bound of CPU Data Protection Range 17      */
+            __mtcr(CPU_DPR17_U, upperBoundAddress);     /* Set the upper bound of CPU Data Protection Range 17      */
+            break;
+    }
+    __isync();
+}
+/* Function that defines a code protection range in the corresponding CPU Code Protection Range Register (CPR).
+ * Code protection ranges have 8-byte granularity.
+ * As a result, the lower 3 bits of any address passed to the define_code_protection_range function will be discarded.
+ * After enabling the Memory Protection, access to an address 'x' will be allowed only if:
+ * lowerBoundAddress <= x < upperBoundAddress
+ */
+void McuSm_InitializeCodeProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range)
+{
+    switch(range)
+    {
+        case 0: /* Code Protection Range 0 */
+            __mtcr(CPU_CPR0_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 0       */
+            __mtcr(CPU_CPR0_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 0       */
+            break;
+        case 1: /* Code Protection Range 1 */
+            __mtcr(CPU_CPR1_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 1       */
+            __mtcr(CPU_CPR1_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 1       */
+            break;
+        case 2: /* Code Protection Range 2 */
+            __mtcr(CPU_CPR2_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 2       */
+            __mtcr(CPU_CPR2_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 2       */
+            break;
+        case 3: /* Code Protection Range 3 */
+            __mtcr(CPU_CPR3_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 3       */
+            __mtcr(CPU_CPR3_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 3       */
+            break;
+        case 4: /* Code Protection Range 4 */
+            __mtcr(CPU_CPR4_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 4       */
+            __mtcr(CPU_CPR4_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 4       */
+            break;
+        case 5: /* Code Protection Range 5 */
+            __mtcr(CPU_CPR5_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 5       */
+            __mtcr(CPU_CPR5_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 5       */
+            break;
+        case 6: /* Code Protection Range 6 */
+            __mtcr(CPU_CPR6_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 6       */
+            __mtcr(CPU_CPR6_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 6       */
+            break;
+        case 7: /* Code Protection Range 7 */
+            __mtcr(CPU_CPR7_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 7       */
+            __mtcr(CPU_CPR7_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 7       */
+            break;
+        case 8: /* Code Protection Range 7 */
+            __mtcr(CPU_CPR8_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 8       */
+            __mtcr(CPU_CPR8_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 8       */
+            break;
+        case 9: /* Code Protection Range 7 */
+            __mtcr(CPU_CPR9_L, lowerBoundAddress);      /* Set the lower bound of CPU Code Protection Range 9       */
+            __mtcr(CPU_CPR9_U, upperBoundAddress);      /* Set the upper bound of CPU Code Protection Range 9       */
+            break;
+    }
+    __isync();
+}
+/* Function to enable the data read access to a predefined Range in a Protection Set */
+void McuSm_EnableDataRead(uint8 protectionSet, uint8 range)
+{
+    Ifx_CPU_DPRE DPRERegisterValue;
+    /* Get the CPU Data Protection Read Enable Register value */
+    switch(protectionSet)
+    {
+        case 0: /* Protection Set 0 */
+            DPRERegisterValue.U = __mfcr(CPU_DPRE_0);
+            break;
+        case 1: /* Protection Set 1 */
+            DPRERegisterValue.U = __mfcr(CPU_DPRE_1);
+            break;
+        case 2: /* Protection Set 2 */
+            DPRERegisterValue.U = __mfcr(CPU_DPRE_2);
+            break;
+        case 3: /* Protection Set 3 */
+            DPRERegisterValue.U = __mfcr(CPU_DPRE_3);
+            break;
+        case 4: /* Protection Set 4 */
+            DPRERegisterValue.U = __mfcr(CPU_DPRE_4);
+            break;
+        case 5: /* Protection Set 5 */
+            DPRERegisterValue.U = __mfcr(CPU_DPRE_5);
+            break;
+
+    }
+    DPRERegisterValue.B.RE_N |= (1 << range); /* Set the bit corresponding to the given Data Protection Range */
+    /* Set the CPU Data Protection Read Enable Register value to enable data read access */
+    switch(protectionSet)
+    {
+        case 0: /* Protection Set 0 */
+            __mtcr(CPU_DPRE_0, DPRERegisterValue.U);
+            break;
+        case 1: /* Protection Set 1 */
+            __mtcr(CPU_DPRE_1, DPRERegisterValue.U);
+            break;
+        case 2: /* Protection Set 2 */
+            __mtcr(CPU_DPRE_2, DPRERegisterValue.U);
+            break;
+        case 3: /* Protection Set 3 */
+            __mtcr(CPU_DPRE_3, DPRERegisterValue.U);
+            break;
+        case 4: /* Protection Set 4 */
+            __mtcr(CPU_DPRE_4, DPRERegisterValue.U);
+            break;
+        case 5: /* Protection Set 5 */
+            __mtcr(CPU_DPRE_5, DPRERegisterValue.U);
+            break;
+    }
+}
+/* Function to enable the data write access to a predefined Range in a Protection Set */
+void McuSm_EnableDataWrite(uint8 protectionSet, uint8 range)
+{
+    Ifx_CPU_DPWE DPWERegisterValue;
+    /* Get the CPU Data Protection Write Enable Register value */
+    switch(protectionSet)
+    {
+        case 0: /* Protection Set 0 */
+            DPWERegisterValue.U = __mfcr(CPU_DPWE_0);
+            break;
+        case 1: /* Protection Set 1 */
+            DPWERegisterValue.U = __mfcr(CPU_DPWE_1);
+            break;
+        case 2: /* Protection Set 2 */
+            DPWERegisterValue.U = __mfcr(CPU_DPWE_2);
+            break;
+        case 3: /* Protection Set 3 */
+            DPWERegisterValue.U = __mfcr(CPU_DPWE_3);
+            break;
+        case 4: /* Protection Set 4 */
+            DPWERegisterValue.U = __mfcr(CPU_DPWE_4);
+            break;
+        case 5: /* Protection Set 5 */
+            DPWERegisterValue.U = __mfcr(CPU_DPWE_5);
+            break;
+    }
+    /* Set the bit corresponding to the given Data Protection Range */
+    DPWERegisterValue.B.WE_N |= (0x1 << range);
+    /* Set the CPU Data Protection Write Enable Register value to enable data write access */
+    switch(protectionSet)
+    {
+        case 0: /* Protection Set 0 */
+            __mtcr(CPU_DPWE_0, DPWERegisterValue.U);
+            break;
+        case 1: /* Protection Set 1 */
+            __mtcr(CPU_DPWE_1, DPWERegisterValue.U);
+            break;
+        case 2: /* Protection Set 2 */
+            __mtcr(CPU_DPWE_2, DPWERegisterValue.U);
+            break;
+        case 3: /* Protection Set 3 */
+            __mtcr(CPU_DPWE_3, DPWERegisterValue.U);
+            break;
+        case 4: /* Protection Set 4 */
+            __mtcr(CPU_DPWE_4, DPWERegisterValue.U);
+            break;
+        case 5: /* Protection Set 5 */
+            __mtcr(CPU_DPWE_5, DPWERegisterValue.U);
+            break;
+    }
+    __isync();
+}
+/* Function to enable code execution access to a predefined Range in a Protection Set */
+void McuSm_EnableCodeExecution(uint8 protectionSet, uint8 range)
+{
+    Ifx_CPU_CPXE CPXERegisterValue;
+    /* Get the CPU Code Protection Execute Enable Register value */
+    switch(protectionSet)
+    {
+        case 0: /* Protection Set 0 */
+            CPXERegisterValue.U = __mfcr(CPU_CPXE_0);
+            break;
+        case 1: /* Protection Set 1 */
+            CPXERegisterValue.U = __mfcr(CPU_CPXE_1);
+            break;
+        case 2: /* Protection Set 2 */
+            CPXERegisterValue.U = __mfcr(CPU_CPXE_2);
+            break;
+        case 3: /* Protection Set 3 */
+            CPXERegisterValue.U = __mfcr(CPU_CPXE_3);
+            break;
+        case 4: /* Protection Set 4 */
+            CPXERegisterValue.U = __mfcr(CPU_CPXE_4);
+            break;
+        case 5: /* Protection Set 5 */
+            CPXERegisterValue.U = __mfcr(CPU_CPXE_5);
+            break;
+    }
+    /* Set the bit corresponding to the given Code Protection Range */
+    CPXERegisterValue.B.XE_N |= (0x1 << range);
+    /* Set the CPU Code Protection Execute Enable Register value to enable coded execution */
+    switch(protectionSet)
+    {
+        case 0: /* Protection Set 0 */
+            __mtcr(CPU_CPXE_0, CPXERegisterValue.U);
+            break;
+        case 1: /* Protection Set 1 */
+            __mtcr(CPU_CPXE_1, CPXERegisterValue.U);
+            break;
+        case 2: /* Protection Set 2 */
+            __mtcr(CPU_CPXE_2, CPXERegisterValue.U);
+            break;
+        case 3: /* Protection Set 3 */
+            __mtcr(CPU_CPXE_3, CPXERegisterValue.U);
+            break;
+        case 4: /* Protection Set 4 */
+            __mtcr(CPU_CPXE_4, CPXERegisterValue.U);
+            break;
+        case 5: /* Protection Set 5 */
+            __mtcr(CPU_CPXE_5, CPXERegisterValue.U);
+            break;
+    }
+    __isync();
+}

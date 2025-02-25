@@ -1,6 +1,6 @@
+#include "Nvm.h"
 #include "SysMgr.h"
 #include "McuSm.h"
-#include "Nvm.h"
 #include "IfxCpu.h"
 #include "Ain_Filtering.h"
 #include "Can.h"
@@ -18,10 +18,10 @@
 static uint32 SysMgr_MainCounter = 0u;
 SysMgr_EcuState_t SysMgr_EcuState = SYSMGR_INIT;
 uint8 SysMgr_NoBusActivity = 0u;
-uint8 SysMgr_NoOvercurrentOnDcMotor = 0u;
-uint8 SysMgr_NoOverheatOnDcMotor = 0u;
 uint8 SysMgr_Core1OnHalt = 0u;
 uint8 SysMgr_Core2OnHalt = 0u;
+float SysMgr_McuTemperature = 0u;
+
 
 void SysMgr_ProcessResetDtc(void);
 void SysMgr_EcuStateMachine(void);
@@ -67,9 +67,7 @@ void SysMgr_EcuStateMachine(void)
             }
             break;
         case SYSMGR_RUN:
-            if(0u == SysMgr_NoBusActivity &&
-                    0u == SysMgr_NoOvercurrentOnDcMotor &&
-                    0u == SysMgr_NoOverheatOnDcMotor)
+            if(0u == SysMgr_NoBusActivity)
             {
                 SysMgr_EcuState = SYSMGR_POSTRUN;
                 Nvm_WriteAllFinished = 0u;
@@ -82,10 +80,8 @@ void SysMgr_EcuStateMachine(void)
         case SYSMGR_POSTRUN:
             Nvm_WriteAll();
 
-            if(((0u == SysMgr_NoBusActivity) ||
-                    (0u == SysMgr_NoOvercurrentOnDcMotor) ||
-                    (0u == SysMgr_NoOverheatOnDcMotor)) &&
-                    (2u == Nvm_WriteAllFinished))
+            if(0u == SysMgr_NoBusActivity &&
+                    2u == Nvm_WriteAllFinished)
             {
                 //SysMgr_EcuState = SYSMGR_SLEEP;
             }
@@ -262,5 +258,8 @@ void SysMgr_LoadScr(void)
 void SysMgr_MainFunction(void)
 {
     SysMgr_EcuStateMachine();
+
+    SysMgr_McuTemperature = IfxDts_Dts_getTemperatureCelsius();
+
     SysMgr_MainCounter++;
 }

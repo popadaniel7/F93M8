@@ -1,278 +1,278 @@
+#include <Nvm.h>
 #include "Crc.h"
 #include "string.h"
 #include "Fls.h"
-#include "Nvm.h"
 #include "EncCal.h"
 
-uint32 ActiveSectorAddress = DFLASH_STARTING_ADDRESS; /* Active Sector */
-uint32 InactiveSectorAddress = ((DFLASH_STARTING_ADDRESS == 0u) ? (DFLASH_STARTING_ADDRESS + DFLASH_SECTOR_SIZE) : DFLASH_STARTING_ADDRESS);
-/* Flag indicating if the inactive sector is erased and ready */
-uint8 InactiveSectorReady = 0u;
-Nvm_BlockType Nvm_BlockList[NVM_MAX_BLOCKS] =
+extern EncCal_VOData_t EncCal_VODataComplete_Default;
+
+uint32 Nvm_CurrentAddress;
+uint32 Nvm_SectorSwitchActivated;
+uint32 Nvm_CurrentSector;
+Nvm_Header_t Nvm_HeaderArr[NVM_NO_BLOCKS]=
 {
-        {{0u, 1u, (uint16)ENCCAL_CALIBRATION_SIZE, 0u, 1u, 0u, 0u}, EncCal_Calibration_Buffer},
-        {{0u, 2u, (uint16)ENCCAL_CODING_SIZE, 0u, 1u, 0u, 0u}, (uint32*)EncCal_Coding_Buffer},
-        {{0u, 3u, (uint16)sizeof(EncCal_VODataComplete)/sizeof(uint32), 0u, 1u, 0u, 0u}, (uint32*)&EncCal_VODataComplete},
+        {0u, 0u, 0u, 0u}, // block 0 dummy not used
+        {1u, ENCCAL_CALIBRATION_SIZE, 0u, 0u}, // calibration block
+        {2u, ENCCAL_CODING_SIZE, 0u, 0u}, // coding block
+        {3u, sizeof(EncCal_VODataComplete)/sizeof(uint32), 0u, 0u}, // VO data block
+        //{4u, DEM_DTC_SIZE, 0u, 0u}, // dtc data block
 };
-uint8 Nvm_WriteAllFinished = 0u;
-uint8 Nvm_ReadAllFinished = 0u;
+Nvm_NvStat_t Nvm_NvStatArr[NVM_NO_BLOCKS] =
+{
+        {0u, 0u, 0u}, // block 0 dummy not used
+        {ENCCAL_CALIBRATION_SIZE, 0u, 0u,}, // calibration block
+        {ENCCAL_CODING_SIZE, 0u, 0u}, // coding block
+        {sizeof(EncCal_VODataComplete)/sizeof(uint32), 0u, 0u}, // VO data block
+        //{DEM_DTC_SIZE, 0u, 0u}, // dtc data block
+};
+Nvm_Block_t Nvm_BlockDataList[NVM_NO_BLOCKS] =
+{
+        {NULL_PTR, 0u}, // block 0 dummy not used
+        {(uint32*)&EncCal_Calibration_Buffer, 0u},
+        {(uint32*)&EncCal_Coding_Buffer, 0u},
+        {(uint32*)&EncCal_VODataComplete, 0u},
+        //{(uint32*)&Dem_DtcArray, 0u},
+};
+Nvm_Block_t Nvm_RomDefaults_BlockDataList[NVM_NO_BLOCKS] =
+{
+        {NULL_PTR, 0u}, // block 0 dummy not used
+        {(uint32*)&EncCal_Calibration_DefaultBuffer, 0u},
+        {(uint32*)&EncCal_Coding_DefaultBuffer, 0u},
+        {(uint32*)&EncCal_VODataComplete_Default, 0u},
+        //{(uint32*)&Dem_DtcArray_Default, 0u},
+};
+uint8 Nvm_BlockIdListForWriteAll[NVM_NO_BLOCKS] = {0u, 0u, 0u, 0u};//, 1u}
+uint8 Nvm_WriteAllFinished;
+uint8 Nvm_ReadAllFinished;
 
-void Nvm_SwitchActiveSector(void);
-uint32 Nvm_CalculateCrc(uint32 *data, uint32 length);
-uint32 Nvm_FindBlockAddress(uint32 blockId);
-uint32 Nvm_FindNextWriteAddress(void);
-void Nvm_RestorePersistentBlocks(uint32 newSectorAddress);
-void Nvm_SwitchActiveSector(void);
-void Nvm_WriteBlock(uint16 blockId, uint32 *data, uint16 length);
-void Nvm_ReadBlock(uint32 blockId, uint32 *data, uint32 length);
-void Nvm_WriteAll(void);
+void Nvm_SectorSwitch(void);
+void Nvm_WriteBlock(uint16 blockId, uint32 *data);
+void Nvm_ReadBlock(uint32 blockId, uint32 *data);
+void Nvm_FindCurrentAddress();
 void Nvm_ReadAll(void);
-void Nvm_LoadDefaults(void);
-uint8 Nvm_GetBlockStatus(uint32 blockId);
-uint32 Nvm_GetBlockCrc(uint32 blockId);
+void Nvm_WriteAll(void);
 
-void Nvm_LoadDefaults(void)
+void Nvm_SectorSwitch(void)
 {
+    IfxCpu_disableInterrupts();
 
-}
+    uint32 startPattern[2] = {0, 0};
 
-uint32 Nvm_CalculateCrc(uint32 *data, uint32 length)
-{
-    return Crc_Calculate(data, (uint16)length, 0);
-}
+    Fls_Erase(0xAF000000u);
+    Fls_Erase(0xAF040000u);
+    Nvm_CurrentAddress = 0xAF000000u;
+    /* Write sector pattern, assumption is that the data-flash is empty. */
+    startPattern[0] = 0xA5A5u;
+    startPattern[1] = 0xA5A5u;
+    Fls_WriteBlock(Nvm_CurrentAddress, (uint32*)&startPattern, 8u);
+    Nvm_CurrentAddress += 8u;
 
-uint32 Nvm_FindBlockAddress(uint32 blockId)
-{
-    uint32 address = ActiveSectorAddress;
-    /* Read header from flash memory */
-    Nvm_BlockHeaderType header;
-
-    while(address < (ActiveSectorAddress + DFLASH_SECTOR_SIZE))
+    for(uint8 i = 0u; i < NVM_NO_BLOCKS; i++)
     {
-        Fls_ReadBlock(address, (uint32*)&header, NVM_HEADER_SIZE_U32);
-        /* If the header is not programmed, we've reached free space */
-        if(header.blockId == 0xFFFFu || header.blockId == 0u)  /* Assuming un-programmed flash shows 0xFFFF... */
-        {
-            break;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(header.blockId == blockId)
-        {
-            return address;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-        /* Advance address: header + pay-load */
-        address += (NVM_HEADER_SIZE_U32 + header.blockSize) * sizeof(uint32);
+        Nvm_WriteBlock(i, (uint32*)&Nvm_BlockDataList[i].data);
     }
-    return DFLASH_EMPTY_WORD; /* Block not found */
+
+    IfxCpu_enableInterrupts();
 }
 
-uint32 Nvm_FindNextWriteAddress(void)
+void Nvm_WriteBlock(uint16 blockId, uint32 *data)
 {
-    uint32 address = ActiveSectorAddress;
+    IfxCpu_disableInterrupts();
 
-    while(address < (ActiveSectorAddress + DFLASH_SECTOR_SIZE))
+    uint32 address = 0u;
+    uint32 crc = 0u;
+    uint32 crcPadded[2] = {0u};
+    uint16 size = 0u;
+
+    address = Nvm_CurrentAddress;
+    size = Nvm_NvStatArr[blockId].blockSize;
+    crc = Crc_Calculate(data, size, 0u);
+
+
+    if((address + NVM_SIZE_HEADER_BYTES + Nvm_NvStatArr[blockId].blockSize + 8) < 0xAF040000)
     {
-        /* Check if this word is empty */
-        if(MEM(address) == DFLASH_EMPTY_WORD)
-        {
-            break;
-        }
-        else
-        {
-            /* Since blocks are stored consecutively, skip to next block using stored header info */
-            Nvm_BlockHeaderType header;
-            Fls_ReadBlock(address, (uint32*)&header, NVM_HEADER_SIZE_U32);
-            /* If header not programmed properly, treat the remaining as free. */
-            if((header.blockId == 0xFFFFu) || (header.blockId == 0u))
-            {
-                break;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-
-            address += (NVM_HEADER_SIZE_U32 + header.blockSize) * sizeof(uint32);
-        }
+        Fls_WriteBlock(address, (uint32*)&Nvm_HeaderArr[blockId], NVM_SIZE_HEADER_BYTES);
+        address += NVM_SIZE_HEADER_BYTES;
+        Nvm_NvStatArr[blockId].blockAddress = address;
+        Fls_WriteBlock(address, data, Nvm_NvStatArr[blockId].blockSize);
+        address += Nvm_NvStatArr[blockId].blockSize;
+        crcPadded[0] = crc;
+        Fls_WriteBlock(address, (uint32*)&crcPadded, 8u);
+        address += 8u;
+        Nvm_CurrentAddress = address;
     }
-    /* If no space in active sector, check if inactive sector is ready; if not, erase it and mark ready */
-    if(address >= (ActiveSectorAddress + DFLASH_SECTOR_SIZE))
+    else
     {
-        if(!InactiveSectorReady)
-        {
-            Fls_Erase(InactiveSectorAddress);
-            InactiveSectorReady = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-        /* Switch active sector only if both sectors are full; in our case, we switch if current is full */
-        Nvm_SwitchActiveSector();
-        address = ActiveSectorAddress;
+        /* Sector switch. */
+        __debug();
+        //        Nvm_SectorSwitch();
+        //        Fls_WriteBlock(address, (uint32*)&Nvm_HeaderArr[blockId], NVM_SIZE_HEADER_BYTES);
+        //        address += NVM_SIZE_HEADER_BYTES;
+        //        Fls_WriteBlock(address, data, Nvm_NvStatArr[blockId].blockSize);
+        //        address += Nvm_NvStatArr[blockId].blockSize;
+        //        Fls_WriteBlock(address, crc, 8u);
+        //        address += 8u;
+        //        Nvm_CurrentAddress = address;
+    }
+
+    IfxCpu_enableInterrupts();
+}
+void Nvm_ReadBlock(uint32 blockId, uint32 *data)
+{
+    IfxCpu_disableInterrupts();
+    data = Nvm_BlockDataList[blockId].data;
+    IfxCpu_enableInterrupts();
+}
+
+void Nvm_FindCurrentAddress()
+{
+    IfxCpu_disableInterrupts();
+
+    uint32 localAddress = Nvm_CurrentAddress;
+    uint32 startPattern[2] = {0, 0};
+    Nvm_Header_t localHeader;
+    uint8 localBlockId = 0u;
+
+    if(0u == localAddress)
+    {
+        localAddress = DFLASH_STARTING_ADDRESS;
+        Nvm_CurrentAddress = localAddress;
     }
     else
     {
         /* Do nothing. */
     }
 
-    return address;
-}
-
-void Nvm_RestorePersistentBlocks(uint32 newSectorAddress)
-{
-    for (uint32 i = 0; i < NVM_MAX_BLOCKS; i++)
+    if(DFLASH_STARTING_ADDRESS == localAddress ||
+            DFLASH_SECOND_SECTOR_ADDRESS == localAddress)
     {
-        if(Nvm_BlockList[i].header.markedForReadAll || Nvm_BlockList[i].header.markedForWriteAll)
-        {
-            uint32 oldAddress = Nvm_FindBlockAddress(Nvm_BlockList[i].header.blockId);
+        /* Read start pattern of the sector. */
+        Fls_ReadBlock(localAddress, (uint32*)&startPattern, 8u);
 
-            if(oldAddress != DFLASH_EMPTY_WORD)
+        if(0xA5A5 == startPattern[0] && 0xA5A5 == startPattern[1])
+        {
+            /* Sector pattern identified, proceed with header identification. */
+            localAddress += 8u;
+
+            while(localAddress + 8u < 0xAF040000)
             {
-                /* Read the pay-load from old sector */
-                uint32 tempData[Nvm_BlockList[i].header.blockSize];
-                /* Calculate offset for pay-load in flash = address + header size */
-                Fls_ReadBlock(oldAddress + (NVM_HEADER_SIZE_U32 * sizeof(uint32)), tempData, Nvm_BlockList[i].header.blockSize);
-                uint32 crc = Nvm_CalculateCrc(tempData, Nvm_BlockList[i].header.blockSize);
-                Nvm_BlockList[i].header.crc = crc;
-                /* Write the header and pay-load into new sector */
-                uint32 writeAddr = newSectorAddress;
-                /* Write header */
-                Fls_WriteBlock(writeAddr, (uint32 *)&Nvm_BlockList[i].header, NVM_HEADER_SIZE_U32);
-                writeAddr += NVM_HEADER_SIZE_U32 * sizeof(uint32);
-                /* Write pay-load */
-                Fls_WriteBlock(writeAddr, tempData, Nvm_BlockList[i].header.blockSize);
+                Fls_ReadBlock(localAddress, (uint32*)&localHeader, NVM_SIZE_HEADER_BYTES);
+
+                localBlockId = localHeader.blockId;
+
+                if(0u != localBlockId
+                        && NVM_NO_BLOCKS > localBlockId)
+                {
+                    if(localHeader.blockId == Nvm_HeaderArr[localBlockId].blockId
+                            && localHeader.blockSize == Nvm_HeaderArr[localBlockId].blockSize)
+                    {
+                        Nvm_HeaderArr[localBlockId].blockId = localHeader.blockId;
+                        Nvm_HeaderArr[localBlockId].blockSize = localHeader.blockSize;
+                        Nvm_NvStatArr[localBlockId].blockSize = localHeader.blockSize;
+                        Nvm_NvStatArr[localBlockId].blockAddress = localAddress + 8u;
+                        localAddress += localHeader.blockSize + 8u; // 8u crc size and padding
+                        Nvm_CurrentAddress = localAddress;
+                    }
+                    else
+                    {
+                        Nvm_HeaderArr[localBlockId].blockId = 0xFFu;
+                        Nvm_HeaderArr[localBlockId].blockSize = 0xFFu;
+                        localAddress += 8u;
+                        Nvm_CurrentAddress = localAddress;
+                    }
+                }
+                else
+                {
+                    localAddress += 8u;
+                    Nvm_CurrentAddress = localAddress;
+                }
             }
-            else
-            {
-                /* Block not found in old sector, nothing to restore */
-            }
+        }
+        else if(0u != startPattern[0] && 0u != startPattern[1])
+        {
+            __asm("nop");
+            __debug();
+            //            /* Corrupted pattern, erase the data-flash. */
+            //            Fls_Erase(localAddress);
+            //            /* Write sector pattern, assumption is that the data-flash is empty. */
+            //            startPattern[0] = 0xA5A5u;
+            //            startPattern[1] = 0xA5A5u;
+            //            Fls_WriteBlock(localAddress, (uint32*)&startPattern, 8u);
+            //            localAddress += 8u;
+            //            Nvm_CurrentAddress = localAddress;
         }
         else
         {
-            /* Do nothing. */
-        }
-    }
-}
-
-void Nvm_SwitchActiveSector(void)
-{
-    /* Use inactive sector as new active */
-    uint32 newSector = InactiveSectorAddress;
-    /* Restore persistent blocks from the current active sector to the new sector */
-    Nvm_RestorePersistentBlocks(newSector);
-    /* Erase the new active sector after restoration to clear any gaps.
-           Note: In some designs you might only erase the unused area. Here we re-erase for clarity. */
-    Fls_Erase(newSector);
-    /* Update addresses: swap sectors */
-    uint32 oldSector = ActiveSectorAddress;
-    ActiveSectorAddress = newSector;
-    InactiveSectorAddress = oldSector;
-    InactiveSectorReady = 0u;
-}
-
-void Nvm_WriteBlock(uint16 blockId, uint32 *data, uint16 length)
-{
-    uint32 address = Nvm_FindNextWriteAddress();
-    uint32 crc = Nvm_CalculateCrc(data, length);
-    Nvm_BlockHeaderType header = { crc, blockId, length, 0u, 0u, 0u, 0u };
-    /* Write header */
-    Fls_WriteBlock(address, (uint32 *)&header, NVM_HEADER_SIZE_U32);
-    /* Write pay-load data immediately after header */
-    Fls_WriteBlock(address + (NVM_HEADER_SIZE_U32 * sizeof(uint32)), data, length);
-}
-
-uint8 Nvm_GetBlockStatus(uint32 blockId)
-{
-    for(uint32 i = 0u; i < NVM_MAX_BLOCKS; i++)
-    {
-        if(Nvm_BlockList[i].header.blockId == blockId)
-        {
-            return Nvm_BlockList[i].header.blockStatus;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-    }
-    return 0xFEu; /* Invalid blockId */
-}
-
-uint32 Nvm_GetBlockCrc(uint32 blockId)
-{
-    for(uint32 i = 0u; i < NVM_MAX_BLOCKS; i++)
-    {
-        if(Nvm_BlockList[i].header.blockId == blockId)
-        {
-            return Nvm_BlockList[i].header.crc;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-    }
-    return 0xFFFFFFFFu; /* Invalid blockId */
-}
-
-void Nvm_ReadBlock(uint32 blockId, uint32 *data, uint32 length)
-{
-    uint32 address = Nvm_FindBlockAddress(blockId);
-    if (address != DFLASH_EMPTY_WORD)
-    {
-        Nvm_BlockHeaderType header;
-        /* Read header from flash */
-        Fls_ReadBlock(address, (uint32 *)&header, NVM_HEADER_SIZE_U32);
-        /* Read pay-load from flash */
-        uint32 tempData[header.blockSize];
-        Fls_ReadBlock(address + (NVM_HEADER_SIZE_U32 * sizeof(uint32)), tempData, header.blockSize);
-        uint32 calculatedCrc = Nvm_CalculateCrc(tempData, header.blockSize);
-        if (calculatedCrc == header.crc)
-        {
-            memcpy(data, tempData, length * sizeof(uint32));
-            header.blockStatus = 0x00u;
-        }
-        else
-        {
-            header.blockStatus = 0xFEu;
-        }
-        /* Optionally update the in-RAM block list status */
-        for(uint32 i = 0u; i < NVM_MAX_BLOCKS; i++)
-        {
-            if(Nvm_BlockList[i].header.blockId == blockId)
-            {
-                Nvm_BlockList[i].header.blockStatus = header.blockStatus;
-                break;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
+            /* Write sector pattern, assumption is that the data-flash is empty. */
+            startPattern[0] = 0xA5A5u;
+            startPattern[1] = 0xA5A5u;
+            Fls_WriteBlock(localAddress, (uint32*)&startPattern, 8u);
+            localAddress += 8u;
+            Nvm_CurrentAddress = localAddress;
         }
     }
     else
     {
-        /* Block not found. Optionally, set error status */
+        /* Do nothing. */
     }
+
+    IfxCpu_enableInterrupts();
 }
 
-/* Iterates through the persistent block list and writes blocks marked for write-all */
+void Nvm_ReadAll(void)
+{
+    IfxCpu_disableInterrupts();
+
+    uint32 localCrc[2] = {0u};
+    uint32 compareCrc[2] = {0u};
+    uint32 crcAddress = 0u;
+
+    Nvm_FindCurrentAddress();
+
+    for(uint8 i = 1u; i < NVM_NO_BLOCKS; i++)
+    {
+        if((Nvm_HeaderArr[i].blockId != 0u) && (Nvm_HeaderArr[i].blockId != 0xFF)
+                && (Nvm_HeaderArr[i].blockSize != 0u && Nvm_HeaderArr[i].blockSize != 0xFF))
+        {
+            Fls_ReadBlock(Nvm_NvStatArr[i].blockAddress, (uint32*)&Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize);
+            crcAddress = Nvm_NvStatArr[i].blockAddress + Nvm_NvStatArr[i].blockSize;
+            Fls_ReadBlock(crcAddress, (uint32*)&localCrc, 8u);
+            compareCrc[1] = Crc_Calculate(Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize, 0u);
+
+            if(compareCrc[1] == localCrc[1])
+            {
+                /* Do nothing. */
+            }
+            else
+            {
+                __debug();
+                //                memcpy(&Nvm_BlockDataList[i].data, &Nvm_RomDefaults_BlockDataList[i].data, sizeof(Nvm_RomDefaults_BlockDataList[i].data));
+                //                Nvm_WriteBlock(i, (uint32*)&Nvm_BlockDataList[i].data);
+            }
+
+        }
+        else
+        {
+            __debug();
+            memcpy(&Nvm_BlockDataList[i].data, &Nvm_RomDefaults_BlockDataList[i].data, sizeof(Nvm_RomDefaults_BlockDataList[i].data));
+            Nvm_WriteBlock(i, (uint32*)&Nvm_BlockDataList[i].data);
+        }
+    }
+
+    Nvm_ReadAllFinished = 2u;
+
+    IfxCpu_enableInterrupts();
+}
+
 void Nvm_WriteAll(void)
 {
-    Nvm_WriteAllFinished = 1u;
+    IfxCpu_disableInterrupts();
 
-    for (uint32 i = 0; i < NVM_MAX_BLOCKS; i++)
+    for(uint8 i = 0u; i < NVM_NO_BLOCKS; i++)
     {
-        if (Nvm_BlockList[i].header.markedForWriteAll)
+        if(1u == Nvm_BlockIdListForWriteAll[i])
         {
-            Nvm_WriteBlock(Nvm_BlockList[i].header.blockId, Nvm_BlockList[i].actualBlockValues, Nvm_BlockList[i].header.blockSize);
+            Nvm_WriteBlock(i, (uint32*)&Nvm_BlockDataList[i].data);
         }
         else
         {
@@ -281,24 +281,6 @@ void Nvm_WriteAll(void)
     }
 
     Nvm_WriteAllFinished = 2u;
-}
 
-/* Iterates through the persistent block list and reads blocks marked for read-all */
-void Nvm_ReadAll(void)
-{
-    Nvm_ReadAllFinished = 1u;
-
-    for (uint32 i = 0; i < NVM_MAX_BLOCKS; i++)
-    {
-        if (Nvm_BlockList[i].header.markedForReadAll)
-        {
-            Nvm_ReadBlock(Nvm_BlockList[i].header.blockId, Nvm_BlockList[i].actualBlockValues, Nvm_BlockList[i].header.blockSize);
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-    }
-
-    Nvm_ReadAllFinished = 2u;
+    IfxCpu_enableInterrupts();
 }

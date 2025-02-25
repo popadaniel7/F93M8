@@ -4,6 +4,8 @@
 #include "Os.h"
 #include "Wdg.h"
 #include "task_core1.h"
+#include "SafetyKit_InternalWatchdogs.h"
+#include "McuSm.h"
 
 extern uint8 OsInit_C0;
 uint8 OsInit_C1 = 0u;
@@ -11,17 +13,14 @@ uint8 OsInit_C1 = 0u;
 void core1_main(void)
 {
     IfxCpu_enableInterrupts();
-    /* Wait for CPU sync event */
-    Wdg_InitializeCpu1Watchdog();
-    Wdg_ReloadCpu1Watchdog();
+    initCpuWatchdog(1);
     while(OsInit_C0 == 0u)
     {
-        Wdg_ReloadCpu1Watchdog();
+        serviceCpuWatchdog();
     }
     Os_Init_C1();
     OsInit_C1 = 1u;
-    Wdg_ReloadCpu1Watchdog();
-    Wdg_ReloadCpu1Watchdog();
+    serviceCpuWatchdog();
     /* Start the scheduler */
     vTaskStartScheduler_core1();
 }

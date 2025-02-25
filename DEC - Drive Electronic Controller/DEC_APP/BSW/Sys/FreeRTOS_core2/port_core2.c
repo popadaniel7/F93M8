@@ -196,7 +196,7 @@ void __interrupt( configTIMER_INTERRUPT_PRIORITY_core2 ) __vector_table( configC
      * wrap around. The tick count isn't accruate any more. Increase the tick count
      * or adapt to execute xTaskIncrementTick_core2 multiple times depending on the
      * counts missed.   */
-    configASSERT_core2( ( pxStm_core2[ portSTM_CMP0_core2 >> 2 ] - pxStm_core2[ portSTM_TIM0_core2 >> 2 ] ) <= portTICK_COUNT_core2 );
+    //configASSERT_core2( ( pxStm_core2[ portSTM_CMP0_core2 >> 2 ] - pxStm_core2[ portSTM_TIM0_core2 >> 2 ] ) <= portTICK_COUNT_core2 );
 
     /* Kernel API calls require Critical Sections. */
     ulSavedInterruptMask = portSET_INTERRUPT_MASK_FROM_ISR_core2();
@@ -243,7 +243,7 @@ void vPortInitTickTimer_core2()
     pxStm_core2[ portSTM_ISCR_core2 >> 2 ] |= ( 1 << portSTM_ISCR_CMP0IRR_OFF_core2 );
     pxStm_core2[ portSTM_ICR_core2 >> 2 ] |= ( 1 << portSTM_ICR_CMP0EN_OFF_core2 );
     pxStm_core2[ portSTM_CMP0_core2 >> 2 ] = pxStm_core2[ portSTM_TIM0_core2 >> 2 ] + portTICK_COUNT_core2;
-    pxStm_core2[ portSTM_OCS_core2 >> 2 ] = 0x12000000;
+    //pxStm_core2[ portSTM_OCS_core2 >> 2 ] = 0x12000000;
 }
 
 void vPortInitContextSrc_core2()

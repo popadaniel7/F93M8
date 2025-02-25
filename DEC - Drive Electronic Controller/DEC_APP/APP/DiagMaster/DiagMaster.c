@@ -17,9 +17,9 @@ uint8 DiagMaster_RequestDiagnosticMode = 0u;
 uint8 DiagMaster_GearboxStatus = 0u;
 uint8 DiagMaster_VehicleSpeed = 0u;
 uint32 DiagMaster_Rx_DiagBufCnt = 0u;
-uint8 DiagMaster_ActiveSessionState;
 uint8 DiagMaster_ResetDcy = 0u;
-uint32 DiagMaster_AliveTime;
+extern uint32 DiagMaster_AliveTime;
+extern uint8 DiagMaster_ActiveSessionState;
 extern uint32 Dcm_Rx_DiagBufCnt;
 static uint32 DiagMaster_MainCounter = 0u;
 
@@ -40,7 +40,7 @@ void DiagMaster_MainFunction(void)
     Can_Rx_DiagBufCnt = 0u;
     IfxCpu_enableInterrupts();
 
-    if((0u == DiagMaster_ActiveSessionState) && (0u == DiagMaster_MainCounter))
+    if(0u == DiagMaster_MainCounter)
     {
         DiagMaster_ActiveSessionState = 1u;
     }

@@ -70,24 +70,24 @@ void Ifx_Ssw_Pms_InitCheck(void)
 #endif /* End of Ifx_Ssw_Pms_Init() */
 
 #if (IFX_CFG_SSW_ENABLE_LBIST == 1)
+long long cnt1=0;
 void Ifx_Ssw_Lbist(void)
 {
     if (!IfxScuLbist_isDone())
     {
-        if(Ifx_Ssw_isColdPoweronReset())
+        if(0x00010000u == SCU_RSTSTAT.U)//if(Ifx_Ssw_isColdPoweronReset())
         {
             IfxScuLbist_triggerInline(&IfxScuLbist_defaultConfig);
         }
+        else
+        {
+            /* Do nothing. */
+        }
     }
-    if (!IfxScuLbist_evaluateResult(IfxScuLbist_defaultConfig.signature))
+    else
     {
-         __debug();
-         /* Application may have call to error handling here */
-         
-         /* Infinite loop to ensure that the error is notified as 'debugger is not connected at this point of time' */
-         while(1);
+        /* Do nothing. */
     }
-
     Ifx_Ssw_jumpBackToLink();
 }
 #endif

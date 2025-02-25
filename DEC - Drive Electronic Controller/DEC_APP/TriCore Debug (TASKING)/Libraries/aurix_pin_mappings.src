@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f cc15656a --dep-file=Libraries/aurix_pin_mappings.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o Libraries/aurix_pin_mappings.src ../Libraries/aurix_pin_mappings.c"
+	.compiler_invocation	"ctc -f cc5976a --dep-file=Libraries/aurix_pin_mappings.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o Libraries/aurix_pin_mappings.src ../Libraries/aurix_pin_mappings.c"
 	.compiler_name		"ctc"
 	;source	'../Libraries/aurix_pin_mappings.c'
 
@@ -18,13 +18,13 @@ gpio_init_pins:	.type	func
 	movh.a	a4,#@his(gpio_io_config_table)
 	lea	a4,[a4]@los(gpio_io_config_table)
 	call	IfxPort_Io_initModule
-.L154:
+.L42:
 	ret
-.L116:
+.L28:
 	
 __gpio_init_pins_function_end:
 	.size	gpio_init_pins,__gpio_init_pins_function_end-gpio_init_pins
-.L30:
+.L14:
 	; End of function
 	
 	.sdecl	'.text.aurix_pin_mappings.can0_node0_init_pins',code,cluster('can0_node0_init_pins')
@@ -38,189 +38,26 @@ can0_node0_init_pins:	.type	func
 	movh.a	a4,#@his(can0_node0_io_config_table)
 	lea	a4,[a4]@los(can0_node0_io_config_table)
 	call	IfxPort_Io_initModule
-.L159:
+.L47:
 	ret
-.L117:
+.L29:
 	
 __can0_node0_init_pins_function_end:
 	.size	can0_node0_init_pins,__can0_node0_init_pins_function_end-can0_node0_init_pins
-.L35:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.eruin0_init_pins',code,cluster('eruin0_init_pins')
-	.sect	'.text.aurix_pin_mappings.eruin0_init_pins'
-	.align	2
-	
-	.global	eruin0_init_pins
-; Function eruin0_init_pins
-.L7:
-eruin0_init_pins:	.type	func
-	movh.a	a4,#@his(eruin0_io_config_table)
-	lea	a4,[a4]@los(eruin0_io_config_table)
-	call	IfxPort_Io_initModule
-.L164:
-	ret
-.L118:
-	
-__eruin0_init_pins_function_end:
-	.size	eruin0_init_pins,__eruin0_init_pins_function_end-eruin0_init_pins
-.L40:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.eruin4_init_pins',code,cluster('eruin4_init_pins')
-	.sect	'.text.aurix_pin_mappings.eruin4_init_pins'
-	.align	2
-	
-	.global	eruin4_init_pins
-; Function eruin4_init_pins
-.L9:
-eruin4_init_pins:	.type	func
-	movh.a	a4,#@his(eruin4_io_config_table)
-	lea	a4,[a4]@los(eruin4_io_config_table)
-	call	IfxPort_Io_initModule
-.L169:
-	ret
-.L119:
-	
-__eruin4_init_pins_function_end:
-	.size	eruin4_init_pins,__eruin4_init_pins_function_end-eruin4_init_pins
-.L45:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.eruin6_init_pins',code,cluster('eruin6_init_pins')
-	.sect	'.text.aurix_pin_mappings.eruin6_init_pins'
-	.align	2
-	
-	.global	eruin6_init_pins
-; Function eruin6_init_pins
-.L11:
-eruin6_init_pins:	.type	func
-	movh.a	a4,#@his(eruin6_io_config_table)
-	lea	a4,[a4]@los(eruin6_io_config_table)
-	call	IfxPort_Io_initModule
-.L174:
-	ret
-.L120:
-	
-__eruin6_init_pins_function_end:
-	.size	eruin6_init_pins,__eruin6_init_pins_function_end-eruin6_init_pins
-.L50:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.tout14_init_pins',code,cluster('tout14_init_pins')
-	.sect	'.text.aurix_pin_mappings.tout14_init_pins'
-	.align	2
-	
-	.global	tout14_init_pins
-; Function tout14_init_pins
-.L13:
-tout14_init_pins:	.type	func
-	movh.a	a4,#@his(tout14_io_config_table)
-	lea	a4,[a4]@los(tout14_io_config_table)
-	call	IfxPort_Io_initModule
-.L179:
-	ret
-.L121:
-	
-__tout14_init_pins_function_end:
-	.size	tout14_init_pins,__tout14_init_pins_function_end-tout14_init_pins
-.L55:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.tout15_init_pins',code,cluster('tout15_init_pins')
-	.sect	'.text.aurix_pin_mappings.tout15_init_pins'
-	.align	2
-	
-	.global	tout15_init_pins
-; Function tout15_init_pins
-.L15:
-tout15_init_pins:	.type	func
-	movh.a	a4,#@his(tout15_io_config_table)
-	lea	a4,[a4]@los(tout15_io_config_table)
-	call	IfxPort_Io_initModule
-.L184:
-	ret
-.L122:
-	
-__tout15_init_pins_function_end:
-	.size	tout15_init_pins,__tout15_init_pins_function_end-tout15_init_pins
-.L60:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.tout16_init_pins',code,cluster('tout16_init_pins')
-	.sect	'.text.aurix_pin_mappings.tout16_init_pins'
-	.align	2
-	
-	.global	tout16_init_pins
-; Function tout16_init_pins
-.L17:
-tout16_init_pins:	.type	func
-	movh.a	a4,#@his(tout16_io_config_table)
-	lea	a4,[a4]@los(tout16_io_config_table)
-	call	IfxPort_Io_initModule
-.L189:
-	ret
-.L123:
-	
-__tout16_init_pins_function_end:
-	.size	tout16_init_pins,__tout16_init_pins_function_end-tout16_init_pins
-.L65:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.tout17_init_pins',code,cluster('tout17_init_pins')
-	.sect	'.text.aurix_pin_mappings.tout17_init_pins'
-	.align	2
-	
-	.global	tout17_init_pins
-; Function tout17_init_pins
 .L19:
-tout17_init_pins:	.type	func
-	movh.a	a4,#@his(tout17_io_config_table)
-	lea	a4,[a4]@los(tout17_io_config_table)
-	call	IfxPort_Io_initModule
-.L194:
-	ret
-.L124:
-	
-__tout17_init_pins_function_end:
-	.size	tout17_init_pins,__tout17_init_pins_function_end-tout17_init_pins
-.L70:
-	; End of function
-	
-	.sdecl	'.text.aurix_pin_mappings.tout18_init_pins',code,cluster('tout18_init_pins')
-	.sect	'.text.aurix_pin_mappings.tout18_init_pins'
-	.align	2
-	
-	.global	tout18_init_pins
-; Function tout18_init_pins
-.L21:
-tout18_init_pins:	.type	func
-	movh.a	a4,#@his(tout18_io_config_table)
-	lea	a4,[a4]@los(tout18_io_config_table)
-	call	IfxPort_Io_initModule
-.L199:
-	ret
-.L125:
-	
-__tout18_init_pins_function_end:
-	.size	tout18_init_pins,__tout18_init_pins_function_end-tout18_init_pins
-.L75:
 	; End of function
 	
 	.sdecl	'.rodata.aurix_pin_mappings.gpio_pin_table',data,rom,cluster('gpio_pin_table')
 	.sect	'.rodata.aurix_pin_mappings.gpio_pin_table'
 	.align	4
 gpio_pin_table:	.type	object
-	.size	gpio_pin_table,32
+	.size	gpio_pin_table,24
 	.word	IfxPort_P00_0
 	.byte	128,3
 	.space	2
 	.word	IfxPort_P00_1
 	.byte	128,3
 	.space	2
-	.word	IfxPort_P00_3
-	.byte	16
-	.space	3
 	.word	IfxPort_P20_6
 	.byte	128,3
 	.space	2
@@ -229,7 +66,7 @@ gpio_pin_table:	.type	object
 	.align	4
 gpio_io_config_table:	.type	object
 	.size	gpio_io_config_table,8
-	.word	4,gpio_pin_table
+	.word	3,gpio_pin_table
 	.sdecl	'.rodata.aurix_pin_mappings.can0_node0_pin_table',data,rom,cluster('can0_node0_pin_table')
 	.sect	'.rodata.aurix_pin_mappings.can0_node0_pin_table'
 	.align	4
@@ -247,167 +84,30 @@ can0_node0_pin_table:	.type	object
 can0_node0_io_config_table:	.type	object
 	.size	can0_node0_io_config_table,8
 	.word	2,can0_node0_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.eruin0_pin_table',data,rom,cluster('eruin0_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.eruin0_pin_table'
-	.align	4
-eruin0_pin_table:	.type	object
-	.size	eruin0_pin_table,8
-	.word	IfxPort_P15_4
-	.byte	16
-	.space	3
-	.sdecl	'.rodata.aurix_pin_mappings.eruin0_io_config_table',data,rom,cluster('eruin0_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.eruin0_io_config_table'
-	.align	4
-eruin0_io_config_table:	.type	object
-	.size	eruin0_io_config_table,8
-	.word	1,eruin0_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.eruin4_pin_table',data,rom,cluster('eruin4_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.eruin4_pin_table'
-	.align	4
-eruin4_pin_table:	.type	object
-	.size	eruin4_pin_table,8
-	.word	IfxPort_P33_7
-	.byte	16
-	.space	3
-	.sdecl	'.rodata.aurix_pin_mappings.eruin4_io_config_table',data,rom,cluster('eruin4_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.eruin4_io_config_table'
-	.align	4
-eruin4_io_config_table:	.type	object
-	.size	eruin4_io_config_table,8
-	.word	1,eruin4_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.eruin6_pin_table',data,rom,cluster('eruin6_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.eruin6_pin_table'
-	.align	4
-eruin6_pin_table:	.type	object
-	.size	eruin6_pin_table,8
-	.word	IfxPort_P11_10
-	.byte	16
-	.space	3
-	.sdecl	'.rodata.aurix_pin_mappings.eruin6_io_config_table',data,rom,cluster('eruin6_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.eruin6_io_config_table'
-	.align	4
-eruin6_io_config_table:	.type	object
-	.size	eruin6_io_config_table,8
-	.word	1,eruin6_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.tout14_pin_table',data,rom,cluster('tout14_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.tout14_pin_table'
-	.align	4
-tout14_pin_table:	.type	object
-	.size	tout14_pin_table,8
-	.word	IfxPort_P00_5
-	.byte	136,3
-	.space	2
-	.sdecl	'.rodata.aurix_pin_mappings.tout14_io_config_table',data,rom,cluster('tout14_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.tout14_io_config_table'
-	.align	4
-tout14_io_config_table:	.type	object
-	.size	tout14_io_config_table,8
-	.word	1,tout14_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.tout15_pin_table',data,rom,cluster('tout15_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.tout15_pin_table'
-	.align	4
-tout15_pin_table:	.type	object
-	.size	tout15_pin_table,8
-	.word	IfxPort_P00_6
-	.byte	136,3
-	.space	2
-	.sdecl	'.rodata.aurix_pin_mappings.tout15_io_config_table',data,rom,cluster('tout15_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.tout15_io_config_table'
-	.align	4
-tout15_io_config_table:	.type	object
-	.size	tout15_io_config_table,8
-	.word	1,tout15_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.tout16_pin_table',data,rom,cluster('tout16_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.tout16_pin_table'
-	.align	4
-tout16_pin_table:	.type	object
-	.size	tout16_pin_table,8
-	.word	IfxPort_P00_7
-	.byte	136,3
-	.space	2
-	.sdecl	'.rodata.aurix_pin_mappings.tout16_io_config_table',data,rom,cluster('tout16_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.tout16_io_config_table'
-	.align	4
-tout16_io_config_table:	.type	object
-	.size	tout16_io_config_table,8
-	.word	1,tout16_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.tout17_pin_table',data,rom,cluster('tout17_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.tout17_pin_table'
-	.align	4
-tout17_pin_table:	.type	object
-	.size	tout17_pin_table,8
-	.word	IfxPort_P00_8
-	.byte	136,3
-	.space	2
-	.sdecl	'.rodata.aurix_pin_mappings.tout17_io_config_table',data,rom,cluster('tout17_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.tout17_io_config_table'
-	.align	4
-tout17_io_config_table:	.type	object
-	.size	tout17_io_config_table,8
-	.word	1,tout17_pin_table
-	.sdecl	'.rodata.aurix_pin_mappings.tout18_pin_table',data,rom,cluster('tout18_pin_table')
-	.sect	'.rodata.aurix_pin_mappings.tout18_pin_table'
-	.align	4
-tout18_pin_table:	.type	object
-	.size	tout18_pin_table,8
-	.word	IfxPort_P00_9
-	.byte	136,3
-	.space	2
-	.sdecl	'.rodata.aurix_pin_mappings.tout18_io_config_table',data,rom,cluster('tout18_io_config_table')
-	.sect	'.rodata.aurix_pin_mappings.tout18_io_config_table'
-	.align	4
-tout18_io_config_table:	.type	object
-	.size	tout18_io_config_table,8
-	.word	1,tout18_pin_table
 	.calls	'gpio_init_pins','IfxPort_Io_initModule'
 	.calls	'can0_node0_init_pins','IfxPort_Io_initModule'
-	.calls	'eruin0_init_pins','IfxPort_Io_initModule'
-	.calls	'eruin4_init_pins','IfxPort_Io_initModule'
-	.calls	'eruin6_init_pins','IfxPort_Io_initModule'
-	.calls	'tout14_init_pins','IfxPort_Io_initModule'
-	.calls	'tout15_init_pins','IfxPort_Io_initModule'
-	.calls	'tout16_init_pins','IfxPort_Io_initModule'
-	.calls	'tout17_init_pins','IfxPort_Io_initModule'
-	.calls	'tout18_init_pins','IfxPort_Io_initModule'
 	.calls	'gpio_init_pins','',0
-	.calls	'can0_node0_init_pins','',0
-	.calls	'eruin0_init_pins','',0
-	.calls	'eruin4_init_pins','',0
-	.calls	'eruin6_init_pins','',0
-	.calls	'tout14_init_pins','',0
-	.calls	'tout15_init_pins','',0
-	.calls	'tout16_init_pins','',0
-	.calls	'tout17_init_pins','',0
 	.extern	IfxPort_Io_initModule
 	.extern	IfxPort_P00_0
 	.extern	IfxPort_P00_1
-	.extern	IfxPort_P00_3
-	.extern	IfxPort_P00_5
-	.extern	IfxPort_P00_6
-	.extern	IfxPort_P00_7
-	.extern	IfxPort_P00_8
-	.extern	IfxPort_P00_9
-	.extern	IfxPort_P11_10
-	.extern	IfxPort_P15_4
 	.extern	IfxPort_P20_6
 	.extern	IfxPort_P20_7
 	.extern	IfxPort_P20_8
-	.extern	IfxPort_P33_7
-	.calls	'tout18_init_pins','',0
+	.calls	'can0_node0_init_pins','',0
 	.sdecl	'.debug_info',debug
 	.sect	'.debug_info'
-.L23:
-	.word	39148
+.L7:
+	.word	38840
 	.half	3
-	.word	.L24
+	.word	.L8
 	.byte	4
-.L22:
+.L6:
 	.byte	1
 	.byte	'../Libraries/aurix_pin_mappings.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L25
+	.word	.L9
 	.byte	2,1,1,3
 	.word	234
 	.byte	4
@@ -6036,30 +5736,6 @@ tout18_io_config_table:	.type	object
 	.byte	'IfxPort_P00_1',0,12,55,24
 	.word	8307
 	.byte	1,1,26
-	.byte	'IfxPort_P00_3',0,12,60,24
-	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P00_5',0,12,62,24
-	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P00_6',0,12,63,24
-	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P00_7',0,12,64,24
-	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P00_8',0,12,65,24
-	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P00_9',0,12,66,24
-	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P11_10',0,12,95,24
-	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P15_4',0,12,130,1,24
-	.word	8307
-	.byte	1,1,26
 	.byte	'IfxPort_P20_6',0,12,143,1,24
 	.word	8307
 	.byte	1,1,26
@@ -6068,82 +5744,28 @@ tout18_io_config_table:	.type	object
 	.byte	1,1,26
 	.byte	'IfxPort_P20_8',0,12,145,1,24
 	.word	8307
-	.byte	1,1,26
-	.byte	'IfxPort_P33_7',0,12,196,1,24
-	.word	8307
-	.byte	1,1,14,32
+	.byte	1,1,14,24
 	.word	9448
-	.byte	15,3,0
-.L126:
+	.byte	15,2,0
+.L30:
 	.byte	22
-	.word	39024
-.L127:
+	.word	38805
+.L31:
 	.byte	22
 	.word	9506
 	.byte	14,16
 	.word	9448
 	.byte	15,1,0
-.L128:
+.L32:
 	.byte	22
-	.word	39043
-.L129:
-	.byte	22
-	.word	9506
-	.byte	14,8
-	.word	9448
-	.byte	15,0,0
-.L130:
-	.byte	22
-	.word	39062
-.L131:
-	.byte	22
-	.word	9506
-.L132:
-	.byte	22
-	.word	39062
-.L133:
-	.byte	22
-	.word	9506
-.L134:
-	.byte	22
-	.word	39062
-.L135:
-	.byte	22
-	.word	9506
-.L136:
-	.byte	22
-	.word	39062
-.L137:
-	.byte	22
-	.word	9506
-.L138:
-	.byte	22
-	.word	39062
-.L139:
-	.byte	22
-	.word	9506
-.L140:
-	.byte	22
-	.word	39062
-.L141:
-	.byte	22
-	.word	9506
-.L142:
-	.byte	22
-	.word	39062
-.L143:
-	.byte	22
-	.word	9506
-.L144:
-	.byte	22
-	.word	39062
-.L145:
+	.word	38824
+.L33:
 	.byte	22
 	.word	9506
 	.byte	0
 	.sdecl	'.debug_abbrev',debug
 	.sect	'.debug_abbrev'
-.L24:
+.L8:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,21,0,54,15,39,12,0,0,3,15,0,73,19,0,0,4,46,1,3,8,32,13
 	.byte	58,15,59,15,57,15,54,15,39,12,0,0,5,5,0,3,8,58,15,59,15,57,15,73,19,0,0,6,11,0,0,0,7,36,0,3,8,11,15,62
 	.byte	15,0,0,8,46,1,3,8,32,13,58,15,59,15,57,15,73,19,54,15,39,12,0,0,9,59,0,3,8,0,0,10,19,1,3,8,58,15,59,15
@@ -6154,12 +5776,12 @@ tout18_io_config_table:	.type	object
 	.byte	59,15,57,15,73,19,0,0,25,21,0,54,15,0,0,26,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
 	.sdecl	'.debug_line',debug
 	.sect	'.debug_line'
-.L25:
-	.word	.L147-.L146
-.L146:
+.L9:
+	.word	.L35-.L34
+.L34:
 	.half	3
-	.word	.L149-.L148
-.L148:
+	.word	.L37-.L36
+.L36:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg',0
 	.byte	0
@@ -6183,1001 +5805,209 @@ tout18_io_config_table:	.type	object
 	.byte	'IfxScu_regdef.h',0,1,0,0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\_PinMap\\IfxPort_PinMap.h',0
 	.byte	0,0,0,0
-.L149:
-.L147:
+.L37:
+.L35:
 	.sdecl	'.debug_info',debug,cluster('gpio_init_pins')
 	.sect	'.debug_info'
-.L26:
+.L10:
 	.word	284
+	.half	3
+	.word	.L11
+	.byte	4,1
+	.byte	'../Libraries/aurix_pin_mappings.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L13,.L12
+	.byte	2
+	.word	.L6
+	.byte	3
+	.byte	'gpio_init_pins',0,1,25,13,1,1,1
+	.word	.L3,.L28,.L2
+	.byte	4
+	.word	.L3,.L28
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('gpio_init_pins')
+	.sect	'.debug_abbrev'
+.L11:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('gpio_init_pins')
+	.sect	'.debug_line'
+.L12:
+	.word	.L39-.L38
+.L38:
+	.half	3
+	.word	.L41-.L40
+.L40:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
+.L41:
+	.byte	5,28,7,0,5,2
+	.word	.L3
+	.byte	3,26,1,5,1,9
+	.half	.L42-.L3
+	.byte	3,1,1,7,9
+	.half	.L14-.L42
+	.byte	0,1,1
+.L39:
+	.sdecl	'.debug_ranges',debug,cluster('gpio_init_pins')
+	.sect	'.debug_ranges'
+.L13:
+	.word	-1,.L3,0,.L14-.L3,0,0
+	.sdecl	'.debug_info',debug,cluster('can0_node0_init_pins')
+	.sect	'.debug_info'
+.L15:
+	.word	290
+	.half	3
+	.word	.L16
+	.byte	4,1
+	.byte	'../Libraries/aurix_pin_mappings.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L18,.L17
+	.byte	2
+	.word	.L6
+	.byte	3
+	.byte	'can0_node0_init_pins',0,1,45,13,1,1,1
+	.word	.L5,.L29,.L4
+	.byte	4
+	.word	.L5,.L29
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('can0_node0_init_pins')
+	.sect	'.debug_abbrev'
+.L16:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('can0_node0_init_pins')
+	.sect	'.debug_line'
+.L17:
+	.word	.L44-.L43
+.L43:
+	.half	3
+	.word	.L46-.L45
+.L45:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
+.L46:
+	.byte	5,28,7,0,5,2
+	.word	.L5
+	.byte	3,46,1,5,1,9
+	.half	.L47-.L5
+	.byte	3,1,1,7,9
+	.half	.L19-.L47
+	.byte	0,1,1
+.L44:
+	.sdecl	'.debug_ranges',debug,cluster('can0_node0_init_pins')
+	.sect	'.debug_ranges'
+.L18:
+	.word	-1,.L5,0,.L19-.L5,0,0
+	.sdecl	'.debug_info',debug,cluster('gpio_pin_table')
+	.sect	'.debug_info'
+.L20:
+	.word	261
+	.half	3
+	.word	.L21
+	.byte	4,1
+	.byte	'../Libraries/aurix_pin_mappings.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L6
+	.byte	3
+	.byte	'gpio_pin_table',0,6,12,35
+	.word	.L30
+	.byte	5,3
+	.word	gpio_pin_table
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('gpio_pin_table')
+	.sect	'.debug_abbrev'
+.L21:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('gpio_io_config_table')
+	.sect	'.debug_info'
+.L22:
+	.word	267
+	.half	3
+	.word	.L23
+	.byte	4,1
+	.byte	'../Libraries/aurix_pin_mappings.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L6
+	.byte	3
+	.byte	'gpio_io_config_table',0,6,19,32
+	.word	.L31
+	.byte	5,3
+	.word	gpio_io_config_table
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('gpio_io_config_table')
+	.sect	'.debug_abbrev'
+.L23:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('can0_node0_pin_table')
+	.sect	'.debug_info'
+.L24:
+	.word	267
+	.half	3
+	.word	.L25
+	.byte	4,1
+	.byte	'../Libraries/aurix_pin_mappings.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L6
+	.byte	3
+	.byte	'can0_node0_pin_table',0,6,33,35
+	.word	.L32
+	.byte	5,3
+	.word	can0_node0_pin_table
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('can0_node0_pin_table')
+	.sect	'.debug_abbrev'
+.L25:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.sdecl	'.debug_info',debug,cluster('can0_node0_io_config_table')
+	.sect	'.debug_info'
+.L26:
+	.word	273
 	.half	3
 	.word	.L27
 	.byte	4,1
 	.byte	'../Libraries/aurix_pin_mappings.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L29,.L28
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'gpio_init_pins',0,1,26,13,1,1,1
-	.word	.L3,.L116,.L2
-	.byte	4
-	.word	.L3,.L116
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('gpio_init_pins')
-	.sect	'.debug_abbrev'
-.L27:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('gpio_init_pins')
-	.sect	'.debug_line'
-.L28:
-	.word	.L151-.L150
-.L150:
-	.half	3
-	.word	.L153-.L152
-.L152:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L153:
-	.byte	5,28,7,0,5,2
-	.word	.L3
-	.byte	3,27,1,5,1,9
-	.half	.L154-.L3
-	.byte	3,1,1,7,9
-	.half	.L30-.L154
-	.byte	0,1,1
-.L151:
-	.sdecl	'.debug_ranges',debug,cluster('gpio_init_pins')
-	.sect	'.debug_ranges'
-.L29:
-	.word	-1,.L3,0,.L30-.L3,0,0
-	.sdecl	'.debug_info',debug,cluster('can0_node0_init_pins')
-	.sect	'.debug_info'
-.L31:
-	.word	290
-	.half	3
-	.word	.L32
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L34,.L33
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'can0_node0_init_pins',0,1,46,13,1,1,1
-	.word	.L5,.L117,.L4
-	.byte	4
-	.word	.L5,.L117
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('can0_node0_init_pins')
-	.sect	'.debug_abbrev'
-.L32:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('can0_node0_init_pins')
-	.sect	'.debug_line'
-.L33:
-	.word	.L156-.L155
-.L155:
-	.half	3
-	.word	.L158-.L157
-.L157:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L158:
-	.byte	5,28,7,0,5,2
-	.word	.L5
-	.byte	3,47,1,5,1,9
-	.half	.L159-.L5
-	.byte	3,1,1,7,9
-	.half	.L35-.L159
-	.byte	0,1,1
-.L156:
-	.sdecl	'.debug_ranges',debug,cluster('can0_node0_init_pins')
-	.sect	'.debug_ranges'
-.L34:
-	.word	-1,.L5,0,.L35-.L5,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin0_init_pins')
-	.sect	'.debug_info'
-.L36:
-	.word	286
-	.half	3
-	.word	.L37
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L39,.L38
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'eruin0_init_pins',0,1,65,13,1,1,1
-	.word	.L7,.L118,.L6
-	.byte	4
-	.word	.L7,.L118
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin0_init_pins')
-	.sect	'.debug_abbrev'
-.L37:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('eruin0_init_pins')
-	.sect	'.debug_line'
-.L38:
-	.word	.L161-.L160
-.L160:
-	.half	3
-	.word	.L163-.L162
-.L162:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L163:
-	.byte	5,28,7,0,5,2
-	.word	.L7
-	.byte	3,194,0,1,5,1,9
-	.half	.L164-.L7
-	.byte	3,1,1,7,9
-	.half	.L40-.L164
-	.byte	0,1,1
-.L161:
-	.sdecl	'.debug_ranges',debug,cluster('eruin0_init_pins')
-	.sect	'.debug_ranges'
-.L39:
-	.word	-1,.L7,0,.L40-.L7,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin4_init_pins')
-	.sect	'.debug_info'
-.L41:
-	.word	286
-	.half	3
-	.word	.L42
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L44,.L43
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'eruin4_init_pins',0,1,84,13,1,1,1
-	.word	.L9,.L119,.L8
-	.byte	4
-	.word	.L9,.L119
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin4_init_pins')
-	.sect	'.debug_abbrev'
-.L42:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('eruin4_init_pins')
-	.sect	'.debug_line'
-.L43:
-	.word	.L166-.L165
-.L165:
-	.half	3
-	.word	.L168-.L167
-.L167:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L168:
-	.byte	5,28,7,0,5,2
-	.word	.L9
-	.byte	3,213,0,1,5,1,9
-	.half	.L169-.L9
-	.byte	3,1,1,7,9
-	.half	.L45-.L169
-	.byte	0,1,1
-.L166:
-	.sdecl	'.debug_ranges',debug,cluster('eruin4_init_pins')
-	.sect	'.debug_ranges'
-.L44:
-	.word	-1,.L9,0,.L45-.L9,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin6_init_pins')
-	.sect	'.debug_info'
-.L46:
-	.word	286
-	.half	3
-	.word	.L47
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L49,.L48
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'eruin6_init_pins',0,1,103,13,1,1,1
-	.word	.L11,.L120,.L10
-	.byte	4
-	.word	.L11,.L120
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin6_init_pins')
-	.sect	'.debug_abbrev'
-.L47:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('eruin6_init_pins')
-	.sect	'.debug_line'
-.L48:
-	.word	.L171-.L170
-.L170:
-	.half	3
-	.word	.L173-.L172
-.L172:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L173:
-	.byte	5,28,7,0,5,2
-	.word	.L11
-	.byte	3,232,0,1,5,1,9
-	.half	.L174-.L11
-	.byte	3,1,1,7,9
-	.half	.L50-.L174
-	.byte	0,1,1
-.L171:
-	.sdecl	'.debug_ranges',debug,cluster('eruin6_init_pins')
-	.sect	'.debug_ranges'
-.L49:
-	.word	-1,.L11,0,.L50-.L11,0,0
-	.sdecl	'.debug_info',debug,cluster('tout14_init_pins')
-	.sect	'.debug_info'
-.L51:
-	.word	286
-	.half	3
-	.word	.L52
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L54,.L53
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'tout14_init_pins',0,1,122,13,1,1,1
-	.word	.L13,.L121,.L12
-	.byte	4
-	.word	.L13,.L121
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('tout14_init_pins')
-	.sect	'.debug_abbrev'
-.L52:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('tout14_init_pins')
-	.sect	'.debug_line'
-.L53:
-	.word	.L176-.L175
-.L175:
-	.half	3
-	.word	.L178-.L177
-.L177:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L178:
-	.byte	5,28,7,0,5,2
-	.word	.L13
-	.byte	3,251,0,1,5,1,9
-	.half	.L179-.L13
-	.byte	3,1,1,7,9
-	.half	.L55-.L179
-	.byte	0,1,1
-.L176:
-	.sdecl	'.debug_ranges',debug,cluster('tout14_init_pins')
-	.sect	'.debug_ranges'
-.L54:
-	.word	-1,.L13,0,.L55-.L13,0,0
-	.sdecl	'.debug_info',debug,cluster('tout15_init_pins')
-	.sect	'.debug_info'
-.L56:
-	.word	287
-	.half	3
-	.word	.L57
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L59,.L58
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'tout15_init_pins',0,1,141,1,13,1,1,1
-	.word	.L15,.L122,.L14
-	.byte	4
-	.word	.L15,.L122
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('tout15_init_pins')
-	.sect	'.debug_abbrev'
-.L57:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('tout15_init_pins')
-	.sect	'.debug_line'
-.L58:
-	.word	.L181-.L180
-.L180:
-	.half	3
-	.word	.L183-.L182
-.L182:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L183:
-	.byte	5,28,7,0,5,2
-	.word	.L15
-	.byte	3,142,1,1,5,1,9
-	.half	.L184-.L15
-	.byte	3,1,1,7,9
-	.half	.L60-.L184
-	.byte	0,1,1
-.L181:
-	.sdecl	'.debug_ranges',debug,cluster('tout15_init_pins')
-	.sect	'.debug_ranges'
-.L59:
-	.word	-1,.L15,0,.L60-.L15,0,0
-	.sdecl	'.debug_info',debug,cluster('tout16_init_pins')
-	.sect	'.debug_info'
-.L61:
-	.word	287
-	.half	3
-	.word	.L62
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L64,.L63
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'tout16_init_pins',0,1,160,1,13,1,1,1
-	.word	.L17,.L123,.L16
-	.byte	4
-	.word	.L17,.L123
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('tout16_init_pins')
-	.sect	'.debug_abbrev'
-.L62:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('tout16_init_pins')
-	.sect	'.debug_line'
-.L63:
-	.word	.L186-.L185
-.L185:
-	.half	3
-	.word	.L188-.L187
-.L187:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L188:
-	.byte	5,28,7,0,5,2
-	.word	.L17
-	.byte	3,161,1,1,5,1,9
-	.half	.L189-.L17
-	.byte	3,1,1,7,9
-	.half	.L65-.L189
-	.byte	0,1,1
-.L186:
-	.sdecl	'.debug_ranges',debug,cluster('tout16_init_pins')
-	.sect	'.debug_ranges'
-.L64:
-	.word	-1,.L17,0,.L65-.L17,0,0
-	.sdecl	'.debug_info',debug,cluster('tout17_init_pins')
-	.sect	'.debug_info'
-.L66:
-	.word	287
-	.half	3
-	.word	.L67
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L69,.L68
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'tout17_init_pins',0,1,179,1,13,1,1,1
-	.word	.L19,.L124,.L18
-	.byte	4
-	.word	.L19,.L124
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('tout17_init_pins')
-	.sect	'.debug_abbrev'
-.L67:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('tout17_init_pins')
-	.sect	'.debug_line'
-.L68:
-	.word	.L191-.L190
-.L190:
-	.half	3
-	.word	.L193-.L192
-.L192:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L193:
-	.byte	5,28,7,0,5,2
-	.word	.L19
-	.byte	3,180,1,1,5,1,9
-	.half	.L194-.L19
-	.byte	3,1,1,7,9
-	.half	.L70-.L194
-	.byte	0,1,1
-.L191:
-	.sdecl	'.debug_ranges',debug,cluster('tout17_init_pins')
-	.sect	'.debug_ranges'
-.L69:
-	.word	-1,.L19,0,.L70-.L19,0,0
-	.sdecl	'.debug_info',debug,cluster('tout18_init_pins')
-	.sect	'.debug_info'
-.L71:
-	.word	287
-	.half	3
-	.word	.L72
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L74,.L73
-	.byte	2
-	.word	.L22
-	.byte	3
-	.byte	'tout18_init_pins',0,1,198,1,13,1,1,1
-	.word	.L21,.L125,.L20
-	.byte	4
-	.word	.L21,.L125
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('tout18_init_pins')
-	.sect	'.debug_abbrev'
-.L72:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('tout18_init_pins')
-	.sect	'.debug_line'
-.L73:
-	.word	.L196-.L195
-.L195:
-	.half	3
-	.word	.L198-.L197
-.L197:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../Libraries/aurix_pin_mappings.c',0,0,0,0,0
-.L198:
-	.byte	5,28,7,0,5,2
-	.word	.L21
-	.byte	3,199,1,1,5,1,9
-	.half	.L199-.L21
-	.byte	3,1,1,7,9
-	.half	.L75-.L199
-	.byte	0,1,1
-.L196:
-	.sdecl	'.debug_ranges',debug,cluster('tout18_init_pins')
-	.sect	'.debug_ranges'
-.L74:
-	.word	-1,.L21,0,.L75-.L21,0,0
-	.sdecl	'.debug_info',debug,cluster('gpio_pin_table')
-	.sect	'.debug_info'
-.L76:
-	.word	261
-	.half	3
-	.word	.L77
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L22
+	.word	.L6
 	.byte	3
-	.byte	'gpio_pin_table',0,6,12,35
-	.word	.L126
-	.byte	5,3
-	.word	gpio_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('gpio_pin_table')
-	.sect	'.debug_abbrev'
-.L77:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('gpio_io_config_table')
-	.sect	'.debug_info'
-.L78:
-	.word	267
-	.half	3
-	.word	.L79
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'gpio_io_config_table',0,6,20,32
-	.word	.L127
-	.byte	5,3
-	.word	gpio_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('gpio_io_config_table')
-	.sect	'.debug_abbrev'
-.L79:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('can0_node0_pin_table')
-	.sect	'.debug_info'
-.L80:
-	.word	267
-	.half	3
-	.word	.L81
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'can0_node0_pin_table',0,6,34,35
-	.word	.L128
-	.byte	5,3
-	.word	can0_node0_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('can0_node0_pin_table')
-	.sect	'.debug_abbrev'
-.L81:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('can0_node0_io_config_table')
-	.sect	'.debug_info'
-.L82:
-	.word	273
-	.half	3
-	.word	.L83
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'can0_node0_io_config_table',0,6,40,32
-	.word	.L129
+	.byte	'can0_node0_io_config_table',0,6,39,32
+	.word	.L33
 	.byte	5,3
 	.word	can0_node0_io_config_table
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('can0_node0_io_config_table')
 	.sect	'.debug_abbrev'
-.L83:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin0_pin_table')
-	.sect	'.debug_info'
-.L84:
-	.word	263
-	.half	3
-	.word	.L85
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'eruin0_pin_table',0,6,54,35
-	.word	.L130
-	.byte	5,3
-	.word	eruin0_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin0_pin_table')
-	.sect	'.debug_abbrev'
-.L85:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin0_io_config_table')
-	.sect	'.debug_info'
-.L86:
-	.word	269
-	.half	3
-	.word	.L87
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'eruin0_io_config_table',0,6,59,32
-	.word	.L131
-	.byte	5,3
-	.word	eruin0_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin0_io_config_table')
-	.sect	'.debug_abbrev'
-.L87:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin4_pin_table')
-	.sect	'.debug_info'
-.L88:
-	.word	263
-	.half	3
-	.word	.L89
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'eruin4_pin_table',0,6,73,35
-	.word	.L132
-	.byte	5,3
-	.word	eruin4_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin4_pin_table')
-	.sect	'.debug_abbrev'
-.L89:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin4_io_config_table')
-	.sect	'.debug_info'
-.L90:
-	.word	269
-	.half	3
-	.word	.L91
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'eruin4_io_config_table',0,6,78,32
-	.word	.L133
-	.byte	5,3
-	.word	eruin4_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin4_io_config_table')
-	.sect	'.debug_abbrev'
-.L91:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin6_pin_table')
-	.sect	'.debug_info'
-.L92:
-	.word	263
-	.half	3
-	.word	.L93
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'eruin6_pin_table',0,6,92,35
-	.word	.L134
-	.byte	5,3
-	.word	eruin6_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin6_pin_table')
-	.sect	'.debug_abbrev'
-.L93:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('eruin6_io_config_table')
-	.sect	'.debug_info'
-.L94:
-	.word	269
-	.half	3
-	.word	.L95
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'eruin6_io_config_table',0,6,97,32
-	.word	.L135
-	.byte	5,3
-	.word	eruin6_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('eruin6_io_config_table')
-	.sect	'.debug_abbrev'
-.L95:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout14_pin_table')
-	.sect	'.debug_info'
-.L96:
-	.word	263
-	.half	3
-	.word	.L97
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout14_pin_table',0,6,111,35
-	.word	.L136
-	.byte	5,3
-	.word	tout14_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout14_pin_table')
-	.sect	'.debug_abbrev'
-.L97:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout14_io_config_table')
-	.sect	'.debug_info'
-.L98:
-	.word	269
-	.half	3
-	.word	.L99
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout14_io_config_table',0,6,116,32
-	.word	.L137
-	.byte	5,3
-	.word	tout14_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout14_io_config_table')
-	.sect	'.debug_abbrev'
-.L99:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout15_pin_table')
-	.sect	'.debug_info'
-.L100:
-	.word	264
-	.half	3
-	.word	.L101
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout15_pin_table',0,6,130,1,35
-	.word	.L138
-	.byte	5,3
-	.word	tout15_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout15_pin_table')
-	.sect	'.debug_abbrev'
-.L101:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout15_io_config_table')
-	.sect	'.debug_info'
-.L102:
-	.word	270
-	.half	3
-	.word	.L103
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout15_io_config_table',0,6,135,1,32
-	.word	.L139
-	.byte	5,3
-	.word	tout15_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout15_io_config_table')
-	.sect	'.debug_abbrev'
-.L103:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout16_pin_table')
-	.sect	'.debug_info'
-.L104:
-	.word	264
-	.half	3
-	.word	.L105
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout16_pin_table',0,6,149,1,35
-	.word	.L140
-	.byte	5,3
-	.word	tout16_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout16_pin_table')
-	.sect	'.debug_abbrev'
-.L105:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout16_io_config_table')
-	.sect	'.debug_info'
-.L106:
-	.word	270
-	.half	3
-	.word	.L107
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout16_io_config_table',0,6,154,1,32
-	.word	.L141
-	.byte	5,3
-	.word	tout16_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout16_io_config_table')
-	.sect	'.debug_abbrev'
-.L107:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout17_pin_table')
-	.sect	'.debug_info'
-.L108:
-	.word	264
-	.half	3
-	.word	.L109
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout17_pin_table',0,6,168,1,35
-	.word	.L142
-	.byte	5,3
-	.word	tout17_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout17_pin_table')
-	.sect	'.debug_abbrev'
-.L109:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout17_io_config_table')
-	.sect	'.debug_info'
-.L110:
-	.word	270
-	.half	3
-	.word	.L111
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout17_io_config_table',0,6,173,1,32
-	.word	.L143
-	.byte	5,3
-	.word	tout17_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout17_io_config_table')
-	.sect	'.debug_abbrev'
-.L111:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout18_pin_table')
-	.sect	'.debug_info'
-.L112:
-	.word	264
-	.half	3
-	.word	.L113
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout18_pin_table',0,6,187,1,35
-	.word	.L144
-	.byte	5,3
-	.word	tout18_pin_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout18_pin_table')
-	.sect	'.debug_abbrev'
-.L113:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('tout18_io_config_table')
-	.sect	'.debug_info'
-.L114:
-	.word	270
-	.half	3
-	.word	.L115
-	.byte	4,1
-	.byte	'../Libraries/aurix_pin_mappings.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L22
-	.byte	3
-	.byte	'tout18_io_config_table',0,6,192,1,32
-	.word	.L145
-	.byte	5,3
-	.word	tout18_io_config_table
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('tout18_io_config_table')
-	.sect	'.debug_abbrev'
-.L115:
+.L27:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
 	.sdecl	'.debug_loc',debug,cluster('can0_node0_init_pins')
 	.sect	'.debug_loc'
 .L4:
-	.word	-1,.L5,0,.L117-.L5
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('eruin0_init_pins')
-	.sect	'.debug_loc'
-.L6:
-	.word	-1,.L7,0,.L118-.L7
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('eruin4_init_pins')
-	.sect	'.debug_loc'
-.L8:
-	.word	-1,.L9,0,.L119-.L9
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('eruin6_init_pins')
-	.sect	'.debug_loc'
-.L10:
-	.word	-1,.L11,0,.L120-.L11
+	.word	-1,.L5,0,.L29-.L5
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('gpio_init_pins')
 	.sect	'.debug_loc'
 .L2:
-	.word	-1,.L3,0,.L116-.L3
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('tout14_init_pins')
-	.sect	'.debug_loc'
-.L12:
-	.word	-1,.L13,0,.L121-.L13
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('tout15_init_pins')
-	.sect	'.debug_loc'
-.L14:
-	.word	-1,.L15,0,.L122-.L15
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('tout16_init_pins')
-	.sect	'.debug_loc'
-.L16:
-	.word	-1,.L17,0,.L123-.L17
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('tout17_init_pins')
-	.sect	'.debug_loc'
-.L18:
-	.word	-1,.L19,0,.L124-.L19
-	.half	2
-	.byte	138,0
-	.word	0,0
-	.sdecl	'.debug_loc',debug,cluster('tout18_init_pins')
-	.sect	'.debug_loc'
-.L20:
-	.word	-1,.L21,0,.L125-.L21
+	.word	-1,.L3,0,.L28-.L3
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L200:
+.L48:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
@@ -7185,41 +6015,9 @@ tout18_io_config_table:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('gpio_init_pins')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L200,.L3,.L116-.L3
+	.word	.L48,.L3,.L28-.L3
 	.sdecl	'.debug_frame',debug,cluster('can0_node0_init_pins')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L200,.L5,.L117-.L5
-	.sdecl	'.debug_frame',debug,cluster('eruin0_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L7,.L118-.L7
-	.sdecl	'.debug_frame',debug,cluster('eruin4_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L9,.L119-.L9
-	.sdecl	'.debug_frame',debug,cluster('eruin6_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L11,.L120-.L11
-	.sdecl	'.debug_frame',debug,cluster('tout14_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L13,.L121-.L13
-	.sdecl	'.debug_frame',debug,cluster('tout15_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L15,.L122-.L15
-	.sdecl	'.debug_frame',debug,cluster('tout16_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L17,.L123-.L17
-	.sdecl	'.debug_frame',debug,cluster('tout17_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L19,.L124-.L19
-	.sdecl	'.debug_frame',debug,cluster('tout18_init_pins')
-	.sect	'.debug_frame'
-	.word	12
-	.word	.L200,.L21,.L125-.L21
+	.word	.L48,.L5,.L29-.L5
 	; Module end

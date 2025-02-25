@@ -1,45 +1,42 @@
 #include "Ifx_Types.h"
 
-#define NVM_MAX_BLOCKS              3u
-#define DFLASH_EMPTY_WORD           0xFFFFFFFFu
-#define NVM_HEADER_SIZE_U32         (7u)/* Compute header size in uint32 units (header fields except data payload) */
-/* Header: crc, blockId, blockSize, blockStatus, markedForReadAll, markedForWriteAll, padding */
-typedef struct
-{
-        uint32 crc;
-        /* The data follows in flash, whose length is in blockSize */
-        /* Instead of storing a pointer (which is not valid in flash), we store blockSize and use Nvm_BlockList separately */
-        uint16 blockId;
-        uint16 blockSize; /* Number of uint32 words */
-        uint8 blockStatus;
-        uint8 markedForReadAll;
-        uint8 markedForWriteAll;
-        uint8 padding;
-}Nvm_BlockHeaderType;
-/* In RAM, we have a list of persistent blocks info. */
-typedef struct
-{
-        Nvm_BlockHeaderType header;
-        uint32* actualBlockValues;
-}Nvm_BlockType;
+#define NVM_NO_BLOCKS               4U//5U - +1, first is not used
+#define NVM_SIZE_HEADER_BYTES       8U// Data-flash write done in 8 bytes at a time
 
-extern uint32 ActiveSectorAddress;
-extern uint32 InactiveSectorAddress;
-extern uint8 InactiveSectorReady;
-extern Nvm_BlockType Nvm_BlockList[NVM_MAX_BLOCKS];
+typedef struct
+{
+        uint8 blockId;
+        uint16 blockSize;
+        uint8 padding1;
+        uint32 padding2;
+}Nvm_Header_t;
+
+typedef struct
+{
+        uint16 blockSize;
+        uint32 blockAddress;
+        uint16 padding1;
+}Nvm_NvStat_t;
+
+typedef struct
+{
+        uint32* data;
+        uint32 crc;
+}Nvm_Block_t;
+
+extern uint32 Nvm_CurrentAddress;
+extern uint32 Nvm_SectorSwitchActivated;
+extern uint32 Nvm_CurrentSector;
+extern Nvm_Header_t Nvm_HeaderArr[NVM_NO_BLOCKS];
+extern Nvm_NvStat_t Nvm_NvStatArr[NVM_NO_BLOCKS];
+extern Nvm_Block_t Nvm_BlockDataList[NVM_NO_BLOCKS];
+extern Nvm_Block_t Nvm_RomDefaults_BlockDataList[NVM_NO_BLOCKS];
 extern uint8 Nvm_WriteAllFinished;
 extern uint8 Nvm_ReadAllFinished;
 
-extern void Nvm_SwitchActiveSector(void);
-extern uint32 Nvm_CalculateCrc(uint32 *data, uint32 length);
-extern uint32 Nvm_FindBlockAddress(uint32 blockId);
-extern uint32 Nvm_FindNextWriteAddress(void);
-extern void Nvm_RestorePersistentBlocks(uint32 newSectorAddress);
-extern void Nvm_SwitchActiveSector(void);
-extern void Nvm_WriteBlock(uint16 blockId, uint32 *data, uint16 length);
-extern void Nvm_ReadBlock(uint32 blockId, uint32 *data, uint32 length);
-extern void Nvm_WriteAll(void);
+extern void Nvm_SectorSwitch(void);
+extern void Nvm_WriteBlock(uint16 blockId, uint32 *data);
+extern void Nvm_ReadBlock(uint32 blockId, uint32 *data);
+extern void Nvm_FindCurrentAddress();
 extern void Nvm_ReadAll(void);
-extern void Nvm_LoadDefaults(void);
-extern uint8 Nvm_GetBlockStatus(uint32 blockId);
-extern uint32 Nvm_GetBlockCrc(uint32 blockId);
+extern void Nvm_WriteAll(void);

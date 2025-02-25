@@ -4,6 +4,8 @@
 #include "Os.h"
 #include "Wdg.h"
 #include "task_core2.h"
+#include "SafetyKit_InternalWatchdogs.h"
+#include "McuSm.h"
 
 extern uint8 OsInit_C1;
 uint8 OsInit_C2 = 0u;
@@ -11,15 +13,14 @@ uint8 OsInit_C2 = 0u;
 void core2_main(void)
 {
     IfxCpu_enableInterrupts();
-    Wdg_InitializeCpu2Watchdog();
-    Wdg_ReloadCpu2Watchdog();
+    initCpuWatchdog(2);
     while(OsInit_C1 == 0u)
     {
-        Wdg_ReloadCpu2Watchdog();
+        serviceCpuWatchdog();
     }
     Os_Init_C2();
     OsInit_C2 = 1u;
-    Wdg_ReloadCpu2Watchdog();
+    serviceCpuWatchdog();
     /* Start the scheduler */
     vTaskStartScheduler_core2();
 }

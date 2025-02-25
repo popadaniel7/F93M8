@@ -37,7 +37,3 @@ void ISR_CanRx(void)
 {
     Can_Rx();
 }
-void ISR_DTS(void)
-{
-    g_isMeasureAvailable = TRUE; /* Notify the system that a new measurement is ready */
-}

@@ -5,7 +5,7 @@
 #include "Ifx_Cfg_Trap.h"
 #include "IfxDts_Dts.h"
 
-#define DEBUG_CODE 0
+#define DEBUG_CODE 1
 #define POWERONRESET_MASK \
         (((unsigned int)1u << 28u) | \
                 ((unsigned int)1u << 25u) | \
@@ -58,17 +58,6 @@
 #define PROTECTION_SET_3                3
 #define PROTECTION_SET_4                4
 #define PROTECTION_SET_5                5
-#define FIRST_ADDR                      0x00000000U
-#define LAST_ADDR                       0xFFFFFFFFU
-#define MBIST_TEST_RANGE_ENABLE         0x1U                                /* Enable range mode                        */
-#define MBIST_TEST_LOWER_RANGE_LIMIT    0x00U                               /* Lower address range limit                */
-#define MBIST_TEST_HIGHER_RANGE_LIMIT   0xFFU                               /* Higher address range limit               */
-#define MTU_CLEAR_FAULTSTS_OPERR0_MSK   0x3E                                /* Mask for clearing bit 0 of OPERR bit-field in MCi_FAULTSTS (i=0-95) register        */
-#define MIN_TEMP_LIMIT                  -40                                 /* Lower temperature limit              */
-#define MAX_TEMP_LIMIT                  140U                                /* Upper temperature limit              */
-#define RESET_SRC                       APPLICATION_RESET                   /* Macro used to set the type of software reset */
-#define APPLICATION_RESET               IfxScuRcu_ResetType_application
-#define SYSTEM_RESET                    IfxScuRcu_ResetType_system
 
 typedef enum
 {
@@ -305,7 +294,6 @@ extern  McuSm_ResetHistory_t McuSm_ResetHistory[20u];
 extern  McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
 
 IFX_INLINE void McuSm_SetActiveProtectionSet(uint8 protectionSet);
-extern void McuSm_InitializeDts(void);
 extern void McuSm_InitializeBusMpu(void);
 extern void McuSm_EnableBusMpu(void);
 extern void McuSm_InitializeDataProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range);
@@ -323,6 +311,7 @@ extern void McuSm_PIEAR_PIETR_Capture(void);
 extern void McuSm_DIEAR_DIETR_Capture(void);
 extern void McuSm_DATR_DEADD_Capture(void);
 extern void McuSm_AG_Capture(void);
+extern void McuSm_TRAP1(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP2(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP3(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP4(IfxCpu_Trap trapInfo);

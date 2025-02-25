@@ -25,89 +25,63 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
- 
-#define LCF_CSA0_SIZE 8k
-#define LCF_USTACK0_SIZE 2k
-#define LCF_ISTACK0_SIZE 1k
-
-#define LCF_CSA1_SIZE 8k
-#define LCF_USTACK1_SIZE 2k
-#define LCF_ISTACK1_SIZE 1k
-
-#define LCF_CSA2_SIZE 8k
-#define LCF_USTACK2_SIZE 2k
-#define LCF_ISTACK2_SIZE 1k
-
-#define LCF_HEAP_SIZE  4k
-
-#define LCF_CPU0 0
-#define LCF_CPU1 1
-#define LCF_CPU2 2
-
-/*Un comment one of the below statements to enable CpuX DMI RAM to hold global variables*/
-#define LCF_DEFAULT_HOST LCF_CPU0
-/*#define LCF_DEFAULT_HOST LCF_CPU1*/
-/*#define LCF_DEFAULT_HOST LCF_CPU2*/
-
-#define LCF_DSPR2_START 0x50000000
-#define LCF_DSPR2_SIZE  96k
-
-#define LCF_DSPR1_START 0x60000000
-#define LCF_DSPR1_SIZE  240k
-
-#define LCF_DSPR0_START 0x70000000
-#define LCF_DSPR0_SIZE  240k
-
-#define LCF_CSA2_OFFSET     (LCF_DSPR2_SIZE - 1k - LCF_CSA2_SIZE)
-#define LCF_ISTACK2_OFFSET  (LCF_CSA2_OFFSET - 256 - LCF_ISTACK2_SIZE)
-#define LCF_USTACK2_OFFSET  (LCF_ISTACK2_OFFSET - 256 - LCF_USTACK2_SIZE)
-
-#define LCF_CSA1_OFFSET     (LCF_DSPR1_SIZE - 1k - LCF_CSA1_SIZE)
-#define LCF_ISTACK1_OFFSET  (LCF_CSA1_OFFSET - 256 - LCF_ISTACK1_SIZE)
-#define LCF_USTACK1_OFFSET  (LCF_ISTACK1_OFFSET - 256 - LCF_USTACK1_SIZE)
-
-#define LCF_CSA0_OFFSET     (LCF_DSPR0_SIZE - 1k - LCF_CSA0_SIZE)
-#define LCF_ISTACK0_OFFSET  (LCF_CSA0_OFFSET - 256 - LCF_ISTACK0_SIZE)
-#define LCF_USTACK0_OFFSET  (LCF_ISTACK0_OFFSET - 256 - LCF_USTACK0_SIZE)
-
-#define LCF_HEAP0_OFFSET    (LCF_USTACK0_OFFSET - LCF_HEAP_SIZE)
-#define LCF_HEAP1_OFFSET    (LCF_USTACK1_OFFSET - LCF_HEAP_SIZE)
-#define LCF_HEAP2_OFFSET    (LCF_USTACK2_OFFSET - LCF_HEAP_SIZE)
-
-#define LCF_INTVEC0_START 0x802FE000
-#define LCF_INTVEC1_START 0x805FC000
-#define LCF_INTVEC2_START 0x805FE000
-
-#define LCF_TRAPVEC0_START 0x80000100
-#define LCF_TRAPVEC1_START 0x80300000
-#define LCF_TRAPVEC2_START 0x80300100
-
-#define LCF_STARTPTR_CPU0 0x80000000
-#define LCF_STARTPTR_CPU1 0x80300200
-#define LCF_STARTPTR_CPU2 0x80300220
-
-#define LCF_STARTPTR_NC_CPU0 0xA0000000
-#define LCF_STARTPTR_NC_CPU1 0xA0300200
-#define LCF_STARTPTR_NC_CPU2 0xA0300220
-
-#define INTTAB0             (LCF_INTVEC0_START)
-#define INTTAB1             (LCF_INTVEC1_START)
-#define INTTAB2             (LCF_INTVEC2_START)
-#define TRAPTAB0            (LCF_TRAPVEC0_START)
-#define TRAPTAB1            (LCF_TRAPVEC1_START)
-#define TRAPTAB2            (LCF_TRAPVEC2_START)
-
-#define RESET LCF_STARTPTR_NC_CPU0
+#define LCF_CSA0_SIZE               3k
+#define LCF_USTACK0_SIZE            1k
+#define LCF_ISTACK0_SIZE            1k
+#define LCF_CSA1_SIZE               3k
+#define LCF_USTACK1_SIZE            1k
+#define LCF_ISTACK1_SIZE            1k
+#define LCF_CSA2_SIZE               3k
+#define LCF_USTACK2_SIZE            1k
+#define LCF_ISTACK2_SIZE            1k
+#define LCF_HEAP_SIZE               1k
+#define LCF_CPU0                    0
+#define LCF_CPU1                    1
+#define LCF_CPU2                    2
+#define LCF_DEFAULT_HOST            LCF_CPU0
+#define LCF_DSPR2_START             0x50000000
+#define LCF_DSPR2_SIZE              96k
+#define LCF_DSPR1_START             0x60000000
+#define LCF_DSPR1_SIZE              240k
+#define LCF_DSPR0_START             0x70000000
+#define LCF_DSPR0_SIZE              240k
+#define LCF_CSA2_OFFSET             (LCF_DSPR2_SIZE - 1k - LCF_CSA2_SIZE)
+#define LCF_ISTACK2_OFFSET          (LCF_CSA2_OFFSET - 256 - LCF_ISTACK2_SIZE)
+#define LCF_USTACK2_OFFSET          (LCF_ISTACK2_OFFSET - 256 - LCF_USTACK2_SIZE)
+#define LCF_CSA1_OFFSET             (LCF_DSPR1_SIZE - 1k - LCF_CSA1_SIZE)
+#define LCF_ISTACK1_OFFSET          (LCF_CSA1_OFFSET - 256 - LCF_ISTACK1_SIZE)
+#define LCF_USTACK1_OFFSET          (LCF_ISTACK1_OFFSET - 256 - LCF_USTACK1_SIZE)
+#define LCF_CSA0_OFFSET             (LCF_DSPR0_SIZE - 1k - LCF_CSA0_SIZE)
+#define LCF_ISTACK0_OFFSET          (LCF_CSA0_OFFSET - 256 - LCF_ISTACK0_SIZE)
+#define LCF_USTACK0_OFFSET          (LCF_ISTACK0_OFFSET - 256 - LCF_USTACK0_SIZE)
+#define LCF_HEAP0_OFFSET            (LCF_USTACK0_OFFSET - LCF_HEAP_SIZE)
+#define LCF_HEAP1_OFFSET            (LCF_USTACK1_OFFSET - LCF_HEAP_SIZE)
+#define LCF_HEAP2_OFFSET            (LCF_USTACK2_OFFSET - LCF_HEAP_SIZE)
+#define APP_PFLASH_BASE             0x80060000 // Base of Application_PFLASH
+#define REGION_SIZE                 0x80000 // 512 Kbytes total/* Partition Application_PFLASH among the three cores. Here, we reserve 0x20000 (128K) for each core.(3 × 128K = 384K, which leaves room for other sections if needed.) */
+#define LCF_STARTPTR_CPU0           (APP_PFLASH_BASE) // 0x80060000
+#define LCF_STARTPTR_CPU1           (APP_PFLASH_BASE + 0x20000) // 0x80080000
+#define LCF_STARTPTR_CPU2           (APP_PFLASH_BASE + 0x40000) // 0x800A0000
+#define LCF_TRAPVEC0_START          (LCF_STARTPTR_CPU0 + 0x0100) // 0x80060100
+#define LCF_TRAPVEC1_START          (LCF_STARTPTR_CPU1 + 0x0100) // 0x80080100
+#define LCF_TRAPVEC2_START          (LCF_STARTPTR_CPU2 + 0x0100) // 0x800A0100
+#define LCF_INTVEC0_START           (LCF_STARTPTR_CPU0 + 0x2000) // 0x80062000
+#define LCF_INTVEC1_START           (LCF_STARTPTR_CPU1 + 0x2000) // 0x80082000
+#define LCF_INTVEC2_START           (LCF_STARTPTR_CPU2 + 0x2000) // 0x800A2000
+#define INTTAB0                     (LCF_INTVEC0_START)
+#define INTTAB1                     (LCF_INTVEC1_START)
+#define INTTAB2                     (LCF_INTVEC2_START)
+#define TRAPTAB0                    (LCF_TRAPVEC0_START)
+#define TRAPTAB1                    (LCF_TRAPVEC1_START)
+#define TRAPTAB2                    (LCF_TRAPVEC2_START)
+#define RESET                        LCF_STARTPTR_CPU0
 
 #include "tc1v1_6_2.lsl"
-
 // Specify a multi-core processor environment (mpe)
-
 processor mpe
 {
     derivative = tc37;
 }
-
 derivative tc37
 {
     core tc0
@@ -116,21 +90,18 @@ derivative tc37
         space_id_offset = 100;            // add 100 to all space IDs in the architecture definition
         copytable_space = vtc:linear;     // use the copy table in the virtual core for 'bss' and initialized data sections
     }
-    
     core tc1 // core 1 TC16E
     {
         architecture = TC1V1.6.2;
         space_id_offset = 200;            // add 200 to all space IDs in the architecture definition
         copytable_space = vtc:linear;     // use the copy table in the virtual core for 'bss' and initialized data sections
     }
-    
     core tc2 // core 2 TC16P
     {
         architecture = TC1V1.6.2;
         space_id_offset = 300;            // add 300 to all space IDs in the architecture definition
         copytable_space = vtc:linear;     // use the copy table in the virtual core for 'bss' and initialized data sections
     }
-    
     core vtc
     {
         architecture = TC1V1.6.2;
@@ -138,19 +109,16 @@ derivative tc37
         import tc1;                     //                                tc1
         import tc2;                     //                                tc2
     }
-    
     bus sri
     {
         mau = 8;
         width = 32;
-        
         // map shared addresses one-to-one to real cores and virtual cores
         map (dest=bus:tc0:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
         map (dest=bus:tc1:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
         map (dest=bus:tc2:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
         map (dest=bus:vtc:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
     }
-    
     memory dsram2 // Data Scratch Pad Ram
     {
         mau = 8;
@@ -159,7 +127,6 @@ derivative tc37
         map (dest=bus:tc2:fpi_bus, dest_offset=0xd0000000, size=96k, priority=8);
         map (dest=bus:sri, dest_offset=0x50000000, size=96k);
     }
-    
     memory psram2 // Program Scratch Pad Ram
     {
         mau = 8;
@@ -168,7 +135,6 @@ derivative tc37
         map (dest=bus:tc2:fpi_bus, dest_offset=0xc0000000, size=64k, priority=8);
         map (dest=bus:sri, dest_offset=0x50100000, size=64k);
     }
-    
     memory dsram1 // Data Scratch Pad Ram
     {
         mau = 8;
@@ -177,7 +143,6 @@ derivative tc37
         map (dest=bus:tc1:fpi_bus, dest_offset=0xd0000000, size=240k, priority=8);
         map (dest=bus:sri, dest_offset=0x60000000, size=240k);
     }
-    
     memory psram1 // Program Scratch Pad Ram
     {
         mau = 8;
@@ -186,7 +151,6 @@ derivative tc37
         map (dest=bus:tc1:fpi_bus, dest_offset=0xc0000000, size=64k, priority=8);
         map (dest=bus:sri, dest_offset=0x60100000, size=64k);
     }
-
     memory dsram0 // Data Scratch Pad Ram
     {
         mau = 8;
@@ -195,7 +159,6 @@ derivative tc37
         map (dest=bus:tc0:fpi_bus, dest_offset=0xd0000000, size=240k, priority=8);
         map (dest=bus:sri, dest_offset=0x70000000, size=240k);
     }
-    
     memory psram0 // Program Scratch Pad Ram
     {
         mau = 8;
@@ -204,25 +167,94 @@ derivative tc37
         map (dest=bus:tc0:fpi_bus, dest_offset=0xc0000000, size=64k, priority=8);
         map (dest=bus:sri, dest_offset=0x70100000, size=64k);
     }
-    
-    memory pfls0
+    //memory BootManager_PFLASH
+    //{
+    //    mau = 8;
+    //    size = 64K;    /* 0x10000 bytes */
+    //    type = rom;
+    //    map cached    (dest=bus:sri, dest_offset=0x80000000, size=64K);
+    //    //map not_cached (dest=bus:sri, dest_offset=0xa0000000, reserved, size=64K);
+    //} 
+    //memory Bootloader_PFLASH
+    //{
+    //    mau = 8;
+    //    size = 128K;   /* 0x20000 bytes */
+    //    type = rom;
+    //    map cached    (dest=bus:sri, dest_offset=0x80010000, size=128K);
+    //    //map not_cached (dest=bus:sri, dest_offset=0xa0010000, reserved, size=128K);
+    //}  
+    //memory BootManager_Backup_PFLASH
+    //{
+    //    mau = 8;
+    //    size = 64K;
+    //    type = rom;
+    //    map cached    (dest=bus:sri, dest_offset=0x80030000, size=64K);
+    //    //map not_cached (dest=bus:sri, dest_offset=0xa0030000, reserved, size=64K);
+    //}
+    //memory Application_Backup_PFLASH
+    //{
+    //    mau = 8;
+    //    size = 512K;
+    //    type = rom;
+    //    map cached    (dest=bus:sri, dest_offset=0x800E0000, size=512K);
+    //    //map not_cached (dest=bus:sri, dest_offset=0xa00E0000, reserved, size=512K);
+    //}
+    //memory SWAPP_CBM_PFLASH
+    //{
+    //    mau = 8;
+    //    size = 128K;
+    //    type = rom;
+    //    map cached    (dest=bus:sri, dest_offset=0x80160000, size=128K);
+    //    //map not_cached (dest=bus:sri, dest_offset=0xa0160000, reserved, size=128K);
+    //} 
+    //memory SWAPP_PDM_PFLASH
+    //{
+    //    mau = 8;
+    //    size = 64K;
+    //    type = rom;
+    //    map cached    (dest=bus:sri, dest_offset=0x80180000, size=64K);
+    //    //map not_cached (dest=bus:sri, dest_offset=0xa0180000, reserved, size=64K);
+    //}
+    //memory SWAPP_DMU_PFLASH
+    //{
+    //    mau = 8;
+    //    size = 256K;
+    //    type = rom;
+    //    map cached    (dest=bus:sri, dest_offset=0x80190000, size=256K);
+    //    //map not_cached (dest=bus:sri, dest_offset=0xa0190000, reserved, size=256K);
+    //}
+    memory Application_PFLASH
     {
         mau = 8;
-        size = 3M;
+        size = 512K;
         type = rom;
-        map     cached (dest=bus:sri, dest_offset=0x80000000,           size=3M);
-        map not_cached (dest=bus:sri, dest_offset=0xa0000000, reserved, size=3M);
+        map cached    (dest=bus:sri, dest_offset=LCF_STARTPTR_CPU0, size=512K);
+        //map not_cached (dest=bus:sri, dest_offset=0xa0060000, reserved, size=512K);
     }
-    
-    memory pfls1
+    memory Remaining_PFLASH
     {
         mau = 8;
-        size = 3M;
+        size = 1216K;  /* remaining part of the 3M region */
         type = rom;
-        map     cached (dest=bus:sri, dest_offset=0x80300000,           size=3M);
-        map not_cached (dest=bus:sri, dest_offset=0xa0300000, reserved, size=3M);
+        map cached    (dest=bus:sri, dest_offset=0x801D0000, size=0x130000);
+        map not_cached (dest=bus:sri, dest_offset=0xa01D0000, reserved, size=0x130000);
     }
-    
+    // memory pfls0
+    //{
+    //     mau = 8;
+    //     size = 3M;
+    //     type = rom;
+    //     map     cached (dest=bus:sri, dest_offset=0x80000000,           size=3M);
+    //     //map not_cached (dest=bus:sri, dest_offset=0xa0000000, reserved, size=3M);
+    // }
+    // memory pfls1
+    // {
+    //     mau = 8;
+    //     size = 3M;
+    //     type = rom;
+    //     map     cached (dest=bus:sri, dest_offset=0x80300000,           size=3M);
+    //     //map not_cached (dest=bus:sri, dest_offset=0xa0300000, reserved, size=3M);
+    // }
     memory dfls0
     {
         mau = 8;
@@ -230,7 +262,6 @@ derivative tc37
         type = reserved nvram;
         map (dest=bus:sri, dest_offset=0xaf000000, size=256K);
     }
-    
     memory ucb
     {
         mau = 8;
@@ -238,7 +269,6 @@ derivative tc37
         type = rom;
         map (dest=bus:sri, dest_offset=0xaf400000, reserved, size=24k);
     }
-    
     memory cpu0_dlmu
     {
         mau = 8;
@@ -247,7 +277,6 @@ derivative tc37
         //map     cached (dest=bus:sri, dest_offset=0x90000000,           size=64k);
         map not_cached (dest=bus:sri, dest_offset=0xb0000000, reserved, size=64k);
     }
-    
     memory cpu1_dlmu
     {
         mau = 8;
@@ -256,7 +285,6 @@ derivative tc37
         //map     cached (dest=bus:sri, dest_offset=0x90010000,           size=64k);
         map not_cached (dest=bus:sri, dest_offset=0xb0010000, reserved, size=64k);
     }
-    
     memory cpu2_dlmu
     {
         mau = 8;
@@ -265,14 +293,12 @@ derivative tc37
         //map     cached (dest=bus:sri, dest_offset=0x90020000,           size=64k);
         map not_cached (dest=bus:sri, dest_offset=0xb0020000, reserved, size=64k);
     }
-
 #if (__VERSION__ >= 6003)    
     section_setup :vtc:linear
     {
         heap "heap" (min_size = (1k), fixed, align = 8);
     }    
 #endif
-    
     section_setup :vtc:linear
     {
         start_address
@@ -280,7 +306,6 @@ derivative tc37
             symbol = "_START"
         );
     }
-    
     section_setup :vtc:linear
     {
         stack "ustack_tc0" (min_size = 1k, fixed, align = 8);
@@ -290,7 +315,6 @@ derivative tc37
         stack "ustack_tc2" (min_size = 1k, fixed, align = 8);
         stack "istack_tc2" (min_size = 1k, fixed, align = 8);
     }
-    
     /*Section setup for the copy table*/
     section_setup :vtc:linear
     {
@@ -315,9 +339,7 @@ derivative tc37
             }
         );
     }
-
     /*Sections located at absolute fixed address*/
-
     section_layout :vtc:linear
     {
         /*Fixed memory Allocations for stack memory and CSA*/
@@ -328,15 +350,13 @@ derivative tc37
                 stack "ustack_tc2" (size = LCF_USTACK2_SIZE);
             }
             "__USTACK2":= sizeof(group:ustack2) > 0  ? "_lc_ue_ustack_tc2" : 0;
-            "__USTACK2_END"="_lc_gb_ustack2";
-            
+            "__USTACK2_END"="_lc_gb_ustack2";           
             group istack2(align = 8, run_addr = mem:dsram2[LCF_ISTACK2_OFFSET])
             {
                 stack "istack_tc2" (size = LCF_ISTACK2_SIZE);
             }
             "__ISTACK2":= sizeof(group:istack2) > 0  ? "_lc_ue_istack_tc2" : 0;
-            "__ISTACK2_END"="_lc_gb_istack2";
-            
+            "__ISTACK2_END"="_lc_gb_istack2";           
             group (align = 64, attributes=rw, run_addr=mem:dsram2[LCF_CSA2_OFFSET]) 
                 reserved "csa_tc2" (size = LCF_CSA2_SIZE);
             "__CSA2":=        "_lc_ub_csa_tc2";
@@ -349,15 +369,13 @@ derivative tc37
                 stack "ustack_tc1" (size = LCF_USTACK1_SIZE);
             }
             "__USTACK1":= sizeof(group:ustack1) > 0  ? "_lc_ue_ustack_tc1" : 0;
-            "__USTACK1_END"="_lc_gb_ustack1";
-            
+            "__USTACK1_END"="_lc_gb_ustack1";           
             group istack1(align = 8, run_addr = mem:dsram1[LCF_ISTACK1_OFFSET])
             {
                 stack "istack_tc1" (size = LCF_ISTACK1_SIZE);
             }
             "__ISTACK1":= sizeof(group:istack1) > 0  ? "_lc_ue_istack_tc1" : 0;
-            "__ISTACK1_END"="_lc_gb_istack1";
-            
+            "__ISTACK1_END"="_lc_gb_istack1";           
             group (align = 64, attributes=rw, run_addr=mem:dsram1[LCF_CSA1_OFFSET]) 
                 reserved "csa_tc1" (size = LCF_CSA1_SIZE);
             "__CSA1":=        "_lc_ub_csa_tc1";
@@ -370,21 +388,18 @@ derivative tc37
                 stack "ustack_tc0" (size = LCF_USTACK0_SIZE);
             }
             "__USTACK0":= sizeof(group:ustack0) > 0  ? "_lc_ue_ustack_tc0" : 0;
-            "__USTACK0_END"="_lc_gb_ustack0";
-            
+            "__USTACK0_END"="_lc_gb_ustack0";            
             group istack0(align = 8, run_addr = mem:dsram0[LCF_ISTACK0_OFFSET])
             {
                 stack "istack_tc0" (size = LCF_ISTACK0_SIZE);
             }
             "__ISTACK0":= sizeof(group:istack0) > 0  ? "_lc_ue_istack_tc0" : 0;
-            "__ISTACK0_END"="_lc_gb_istack0";
-            
+            "__ISTACK0_END"="_lc_gb_istack0";           
             group (align = 64, attributes=rw, run_addr=mem:dsram0[LCF_CSA0_OFFSET]) 
                 reserved "csa_tc0" (size = LCF_CSA0_SIZE);
             "__CSA0":=        "_lc_ub_csa_tc0";
             "__CSA0_END":=    "_lc_ue_csa_tc0";
-        }
-        
+        }        
         /*Fixed memory Allocations for _START*/
         group (ordered)
         {
@@ -395,16 +410,15 @@ derivative tc37
                     select ".text.start";
                 }
             }
-            group  interface_const (run_addr=mem:pfls0[0x0020])
+            group  interface_const (run_addr=mem:Application_PFLASH[0x0020])
             {
                 select "*.interface_const";
             }
             "__IF_CONST" := addressof(group:interface_const);
-            "__START0" := LCF_STARTPTR_NC_CPU0;
-            "__START1" := LCF_STARTPTR_NC_CPU1;
-            "__START2" := LCF_STARTPTR_NC_CPU2;
-        }
-        
+            "__START0" := LCF_STARTPTR_CPU0;
+            "__START1" := LCF_STARTPTR_CPU1;
+            "__START2" := LCF_STARTPTR_CPU2;
+        }       
         /*Fixed memory Allocations for Trap Vector Table*/
         group (ordered)
         {
@@ -432,31 +446,29 @@ derivative tc37
             "__TRAPTAB_CPU0" := TRAPTAB0;
             "__TRAPTAB_CPU1" := TRAPTAB1;
             "__TRAPTAB_CPU2" := TRAPTAB2;
-        }
-        
+        }        
         /*Fixed memory Allocations for Start up code*/
         group (ordered)
         {
-            group start_tc0 (run_addr=LCF_STARTPTR_NC_CPU0)
+            group start_tc0 (run_addr=LCF_STARTPTR_CPU0)
             {
                 select "(.text.start_cpu0*)";
             }
-            group start_tc1 (run_addr=LCF_STARTPTR_NC_CPU1)
+            group start_tc1 (run_addr=LCF_STARTPTR_CPU1)
             {
                 section "start_tc1" (size=0x20, attributes=rx, fill=0)
                 {
                     select "(.text.start_cpu1*)";
                 }
             }
-            group start_tc2 (run_addr=LCF_STARTPTR_NC_CPU2)
+            group start_tc2 (run_addr=LCF_STARTPTR_CPU2)
             {
                 select "(.text.start_cpu2*)";
             }
             "__ENABLE_INDIVIDUAL_C_INIT_CPU0" := 0; /* Not used */
             "__ENABLE_INDIVIDUAL_C_INIT_CPU1" := 0;
             "__ENABLE_INDIVIDUAL_C_INIT_CPU2" := 0;
-        }
-        
+        }        
         /*Fixed memory Allocations for Interrupt Vector Table*/
         group (ordered)
         {
@@ -476,8 +488,7 @@ derivative tc37
             "__INTTAB_CPU0" = (LCF_INTVEC0_START);
             "__INTTAB_CPU1" = (LCF_INTVEC1_START);
             "__INTTAB_CPU2" = (LCF_INTVEC2_START);
-        }
-        
+        }        
         /*Fixed memory Allocations for BMHD*/
         group (ordered)
         {
@@ -517,8 +528,7 @@ derivative tc37
                 select ".rodata.bmhd_3_copy";
             }
         }
-    }
-        
+    }       
     /*Near Abbsolute Addressable Data Sections*/
     section_layout :vtc:abs18
     {
@@ -529,27 +539,23 @@ derivative tc37
             {
                 select "(.zdata.zdata_cpu2|.zdata.zdata_cpu2.*)";
                 select "(.zbss.zbss_cpu2|.zbss.zbss_cpu2.*)";
-            }
-            
+            }           
             group (ordered, contiguous, align = 4, attributes=rw, run_addr = mem:dsram1)
             {
                 select "(.zdata.zdata_cpu1|.zdata.zdata_cpu1.*)";
                 select "(.zbss.zbss_cpu1|.zbss.zbss_cpu1.*)";
-            }
-            
+            }           
             group (ordered, contiguous, align = 4, attributes=rw, run_addr = mem:dsram0)
             {
                 select "(.zdata.zdata_cpu0|.zdata.zdata_cpu0.*)";
                 select "(.zbss.zbss_cpu0|.zbss.zbss_cpu0.*)";
-            }
-            
+            }            
             group (ordered, attributes=rw, run_addr = mem:cpu0_dlmu)
             {
                 select "(.zdata.zlmudata|.zdata.zlmudata.*)";
                 select "(.zbss.zlmubss|.zbss.zlmubss.*)";
             } 
         }
-
         /*Near Absolute Data, selectable by toolchain*/
 #        if LCF_DEFAULT_HOST == LCF_CPU2
         group (ordered, contiguous, align = 4, attributes=rw, run_addr = mem:dsram2)
@@ -566,47 +572,41 @@ derivative tc37
                 select ".zdata.dsprInit.cpu0.32bit";
                 select ".zdata.dsprInit.cpu0.16bit";
                 select ".zdata.dsprInit.cpu0.8bit";
-            }
-            
+            }          
             group zdata_powerOn(attributes=rw)
             {
                 select ".zdata.dsprPowerOnInit.cpu0.32bit";
                 select ".zdata.dsprPowerOnInit.cpu0.16bit";
                 select ".zdata.dsprPowerOnInit.cpu0.8bit";
-            }
-            
+            }            
             group zbss_mcal(attributes=rw)
             {
                 select ".zbss.dsprClearOnInit.cpu0.32bit";
                 select ".zbss.dsprClearOnInit.cpu0.16bit";
                 select ".zbss.dsprClearOnInit.cpu0.8bit";
-            }
-            
+            }           
             group zbss_noClear(attributes=rw)
             {
                 select ".zbss.dsprNoInit.cpu0.32bit";
                 select ".zbss.dsprNoInit.cpu0.16bit";
                 select ".zbss.dsprNoInit.cpu0.8bit";
-            }
-            
+            }            
             group zbss_powerOn(attributes=rw)
             {
                 select ".zbss.dsprPowerOnClear.cpu0.32bit";
                 select ".zbss.dsprPowerOnClear.cpu0.16bit";
                 select ".zbss.dsprPowerOnClear.cpu0.8bit";
-            }
-            
+            }            
             group zdata(attributes=rw)
             {
                 select "(.zdata|.zdata.*)";
                 select "(.zbss|.zbss.*)";
             }
-        }
-        
+        }       
         /*Near Absolute Const, selectable with patterns and user defined sections*/
         group
         {
-            group (ordered, align = 4, contiguous, run_addr=mem:pfls0)
+            group (ordered, align = 4, contiguous, run_addr=mem:Application_PFLASH)
             {
                 select ".zrodata.Ifx_Ssw_Tc0.*";
                 select ".zrodata.Ifx_Ssw_Tc1.*";
@@ -625,8 +625,7 @@ derivative tc37
                 select "(.zrodata|.zrodata.*)";
             }
         }
-    }
-        
+    }       
     /*Relative A0/A1/A8/A9 Addressable Sections*/
     section_layout :vtc:linear
     {
@@ -645,26 +644,24 @@ derivative tc37
             select "(.bss_a0.sbss|.bss_a0.sbss.*)";
         }
         "_SMALL_DATA_" := sizeof(group:a0) > 0 ? addressof(group:a0) : addressof(group:a0) & 0xF0000000 + 32k;
-        "__A0_MEM" = "_SMALL_DATA_";
-        
+        "__A0_MEM" = "_SMALL_DATA_";        
         /*Relative A1 Addressable Const, selectable by toolchain*/
         /*Small constant sections, No option given for CPU specific user sections to make generated code portable across Cpus*/
 #        if LCF_DEFAULT_HOST == LCF_CPU2
-        group  a1 (ordered, align = 4, run_addr=mem:pfls1)
+        group  a1 (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU1
-        group  a1 (ordered, align = 4, run_addr=mem:pfls1)
+        group  a1 (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU0
-        group  a1 (ordered, align = 4, run_addr=mem:pfls0)
+        group  a1 (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
         {
             select "(.rodata_a1.srodata|.rodata_a1.srodata.*)";
             select "(.ldata|.ldata.*)";
         }
         "_LITERAL_DATA_" := sizeof(group:a1) > 0 ? addressof(group:a1) : addressof(group:a1) & 0xF0000000 + 32k;
-        "__A1_MEM" = "_LITERAL_DATA_";
-        
+        "__A1_MEM" = "_LITERAL_DATA_";        
         /*Relative A9 Addressable Data, selectable with patterns and user defined sections*/
         group a9 (ordered, align = 4, run_addr=mem:cpu0_dlmu)
         {
@@ -673,24 +670,22 @@ derivative tc37
         }
         "_A9_DATA_" := sizeof(group:a9) > 0 ? addressof(group:a9) : addressof(group:a9) & 0xF0000000 + 32k;
         "__A9_MEM" = "_A9_DATA_";
-
         /*Relative A8 Addressable Const, selectable with patterns and user defined sections*/
 #        if LCF_DEFAULT_HOST == LCF_CPU2
-        group  a8 (ordered, align = 4, run_addr=mem:pfls1)
+        group  a8 (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU1
-        group  a8 (ordered, align = 4, run_addr=mem:pfls1)
+        group  a8 (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU0
-        group  a8 (ordered, align = 4, run_addr=mem:pfls0)
+        group  a8 (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
         {
             select "(.rodata_a8.a8srodata|.rodata_a8.a8srodata.*)";
         }
         "_A8_DATA_" := sizeof(group:a8) > 0 ? addressof(group:a8) : addressof(group:a8) & 0xF0000000 + 32k;
         "__A8_MEM" = "_A8_DATA_";
-    }
-        
+    }       
     /*Far Data / Far Const Sections, selectable with patterns and user defined sections*/
     section_layout :vtc:linear
     {
@@ -700,36 +695,356 @@ derivative tc37
             /*DSRAM sections*/
             group
             {
-                group (ordered, attributes=rw, run_addr=mem:dsram2)
-                {
-                    select ".data.Ifx_Ssw_Tc2.*";
-                    select ".data.Cpu2_Main.*";
-                    select "(.data.data_cpu2|.data.data_cpu2.*)";
-                    select ".bss.Ifx_Ssw_Tc2.*";
-                    select ".bss.Cpu2_Main.*";
-                    select "(.bss.bss_cpu2|.bss.bss_cpu2.*)";
+                group (ordered, attributes = rw, run_addr = mem:dsram2)
+                {               
+                    group ASILD_RAM_C2 (ordered, attributes = rw, align = 4)
+                    {         
+                        group FREERTOS_CORE2 (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.croutine_core2.*";
+                            select ".bss.croutine_core2.*";
+                            select ".zdata.croutine_core2.*";
+                            select ".zbss.croutine_core2.*";
+                            select ".data.event_groups_core2.*";
+                            select ".bss.event_groups_core2.*";
+                            select ".zdata.event_groups_core2.*";
+                            select ".zbss.event_groups_core2.*";
+                            select ".data.heap_4_core2.*";
+                            select ".bss.heap_4_core2.*";
+                            select ".zdata.heap_4_core2.*";
+                            select ".zbss.heap_4_core2.*";
+                            select ".data.list_core2.*";
+                            select ".bss.list_core2.*";
+                            select ".zdata.list_core2.*";
+                            select ".zbss.list_core2.*";
+                            select ".data.port_core2.*";
+                            select ".bss.port_core2.*";
+                            select ".zdata.port_core2.*";
+                            select ".zbss.port_core2.*";
+                            select ".data.queue_core2.*";
+                            select ".bss.queue_core2.*";
+                            select ".zdata.queue_core2.*";
+                            select ".zbss.queue_core2.*";
+                            select ".data.stream_buffer_core2.*";
+                            select ".bss.stream_buffer_core2.*";
+                            select ".zdata.stream_buffer_core2.*";
+                            select ".zbss.stream_buffer_core2.*";
+                            select ".data.task_core2.*";
+                            select ".bss.task_core2.*";
+                            select ".zdata.task_core2.*";
+                            select ".zbss.task_core2.*";
+                            select ".data.timers_core2.*";
+                            select ".bss.timers_core2.*";
+                            select ".zdata.timers_core2.*";
+                            select ".zbss.timers_core2.*";
+                        }
+                        "__FREERTOS_CORE2_START" := "_lc_gb_FREERTOS_CORE2";
+                        "__FREERTOS_CORE2_END"   := "_lc_ge_FREERTOS_CORE2";
+                        group IVEN (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Iven.*";
+                            select ".bss.Iven.*";
+                            select ".zdata.Iven.*";
+                            select ".zbss.Iven.*";
+                        }
+                        "__IVEN_START" := "_lc_gb_IVEN";
+                        "__IVEN_END"   := "_lc_ge_IVEN";
+                        group COLDET (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.ColDet.*";
+                            select ".bss.ColDet.*";
+                            select ".zdata.ColDet.*";
+                            select ".zbss.ColDet.*";
+                        }
+                        "__COLDET_START" := "_lc_gb_COLDET";
+                        "__COLDET_END"   := "_lc_ge_COLDET";
+                              
+                        select ".data.Ifx_Ssw_Tc2.*";
+                        select ".data.Cpu2_Main.*";
+                        select "(.data.data_cpu2|.data.data_cpu2.*)";
+                        select ".bss.Ifx_Ssw_Tc2.*";
+                        select ".bss.Cpu2_Main.*";
+                        select "(.bss.bss_cpu2|.bss.bss_cpu2.*)";
+                    }   
+                    "__ASILDRAM_C2_START" := "_lc_gb_ASILD_RAM_C2";
+                    "__ASILDRAM_C2_END"  := "_lc_ge_ASILD_RAM_C2";
                 }
                 group (ordered, attributes=rw, run_addr=mem:dsram1)
                 {
-                    select ".data.Ifx_Ssw_Tc1.*";
-                    select ".data.Cpu1_Main.*";
-                    select "(.data.data_cpu1|.data.data_cpu1.*)";
-                    select ".bss.Ifx_Ssw_Tc1.*";
-                    select ".bss.Cpu1_Main.*";
-                    select "(.bss.bss_cpu1|.bss.bss_cpu1.*)";
+                    group ASILD_RAM_C1 (ordered, attributes = rw, align = 4)
+                    {
+                        group FREERTOS_CORE1 (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.croutine_core1.*";
+                            select ".bss.croutine_core1.*";
+                            select ".zdata.croutine_core1.*";
+                            select ".zbss.croutine_core1.*";
+                            select ".data.event_groups_core1.*";
+                            select ".bss.event_groups_core1.*";
+                            select ".zdata.event_groups_core1.*";
+                            select ".zbss.event_groups_core1.*";
+                            select ".data.heap_4_core1.*";
+                            select ".bss.heap_4_core1.*";
+                            select ".zdata.heap_4_core1.*";
+                            select ".zbss.heap_4_core1.*";
+                            select ".data.list_core1.*";
+                            select ".bss.list_core1.*";
+                            select ".zdata.list_core1.*";
+                            select ".zbss.list_core1.*";
+                            select ".data.port_core1.*";
+                            select ".bss.port_core1.*";
+                            select ".zdata.port_core1.*";
+                            select ".zbss.port_core1.*";
+                            select ".data.queue_core1.*";
+                            select ".bss.queue_core1.*";
+                            select ".zdata.queue_core1.*";
+                            select ".zbss.queue_core1.*";
+                            select ".data.stream_buffer_core1.*";
+                            select ".bss.stream_buffer_core1.*";
+                            select ".zdata.stream_buffer_core1.*";
+                            select ".zbss.stream_buffer_core1.*";
+                            select ".data.task_core1.*";
+                            select ".bss.task_core1.*";
+                            select ".zdata.task_core1.*";
+                            select ".zbss.task_core1.*";
+                            select ".data.timers_core1.*";
+                            select ".bss.timers_core1.*";
+                            select ".zdata.timers_core1.*";
+                            select ".zbss.timers_core1.*";
+                        }
+                        "__FREERTOS_CORE1_START" := "_lc_gb_FREERTOS_CORE1";
+                        "__FREERTOS_CORE1_END"   := "_lc_ge_FREERTOS_CORE1";
+                        select ".data.Ifx_Ssw_Tc1.*";
+                        select ".data.Cpu1_Main.*";
+                        select "(.data.data_cpu1|.data.data_cpu1.*)";
+                        select ".bss.Ifx_Ssw_Tc1.*";
+                        select ".bss.Cpu1_Main.*";
+                        select "(.bss.bss_cpu1|.bss.bss_cpu1.*)";
+                    }
+                    "__ASILDRAM_C1_START" := "_lc_gb_ASILD_RAM_C1";
+                    "__ASILDRAM_C1_END"  := "_lc_ge_ASILD_RAM_C1";               
+                    group QM_RAM_C1 (ordered, attributes = rw, align = 4)
+                    {
+                        select ".data.EnergyMgmt.*";
+                        select ".bss.EnergyMgmt.*";
+                        select ".zdata.EnergyMgmt.*";
+                        select ".zbss.EnergyMgmt.*";
+                    }
+                    "__QMRAM_C1_START" := "_lc_gb_QM_RAM_C1";
+                    "__QMRAM_C1_END"  := "_lc_ge_QM_RAM_C1";
                 }
                 group (ordered, attributes=rw, run_addr=mem:dsram0)
                 {
-                    select ".data.Ifx_Ssw_Tc0.*";
-                    select ".data.Cpu0_Main.*";
-                    select "(.data.data_cpu0|.data.data_cpu0.*)";
-                    select ".bss.Ifx_Ssw_Tc0.*";
-                    select ".bss.Cpu0_Main.*";
-                    select "(.bss.bss_cpu0|.bss.bss_cpu0.*)";
+                    group ASILD_RAM_C0 (ordered, attributes = rw, align = 4)
+                    {
+                        group FREERTOS_CORE0 (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.croutine_core0.*";
+                            select ".bss.croutine_core0.*";
+                            select ".zdata.croutine_core0.*";
+                            select ".zbss.croutine_core0.*";
+                            select ".data.event_groups_core0.*";
+                            select ".bss.event_groups_core0.*";
+                            select ".zdata.event_groups_core0.*";
+                            select ".zbss.event_groups_core0.*";
+                            select ".data.heap_4_core0.*";
+                            select ".bss.heap_4_core0.*";
+                            select ".zdata.heap_4_core0.*";
+                            select ".zbss.heap_4_core0.*";
+                            select ".data.list_core0.*";
+                            select ".bss.list_core0.*";
+                            select ".zdata.list_core0.*";
+                            select ".zbss.list_core0.*";
+                            select ".data.port_core0.*";
+                            select ".bss.port_core0.*";
+                            select ".zdata.port_core0.*";
+                            select ".zbss.port_core0.*";
+                            select ".data.queue_core0.*";
+                            select ".bss.queue_core0.*";
+                            select ".zdata.queue_core0.*";
+                            select ".zbss.queue_core0.*";
+                            select ".data.stream_buffer_core0.*";
+                            select ".bss.stream_buffer_core0.*";
+                            select ".zdata.stream_buffer_core0.*";
+                            select ".zbss.stream_buffer_core0.*";
+                            select ".data.task_core0.*";
+                            select ".bss.task_core0.*";
+                            select ".zdata.task_core0.*";
+                            select ".zbss.task_core0.*";
+                            select ".data.timers_core0.*";
+                            select ".bss.timers_core0.*";
+                            select ".zdata.timers_core0.*";
+                            select ".zbss.timers_core0.*";
+                        }
+                        "__FREERTOS_CORE0_START" := "_lc_gb_FREERTOS_CORE0";
+                        "__FREERTOS_CORE0_END"   := "_lc_ge_FREERTOS_CORE0";
+                        group BSWWRAPPER (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Bsw_Wrapper.*";
+                            select ".bss.Bsw_Wrapper.*";
+                            select ".zdata.Bsw_Wrapper.*";
+                            select ".zbss.Bsw_Wrapper.*";
+                        }
+                        "__BSWWRAPPER_START" := "_lc_gb_BSWWRAPPER";
+                        "__BSWWRAPPER_END"   := "_lc_ge_BSWWRAPPER";
+                        group COMMASTER (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.ComMaster.*";
+                            select ".bss.ComMaster.*";
+                            select ".zdata.ComMaster.*";
+                            select ".zbss.ComMaster.*";
+                        }
+                        "__COMMASTER_START" := "_lc_gb_COMMASTER";
+                        "__COMMASTER_END"   := "_lc_ge_COMMASTER";
+                        group SYSMGR (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.SysMgr.*";
+                            select ".bss.SysMgr.*";
+                            select ".zdata.SysMgr.*";
+                            select ".zbss.SysMgr.*";
+                        }
+                        "__SYSMGR_START" := "_lc_gb_SYSMGR";
+                        "__SYSMGR_END"   := "_lc_ge_SYSMGR";
+                        group OS (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Os.*";
+                            select ".bss.Os.*";
+                            select ".zdata.Os.*";
+                            select ".zbss.Os.*";
+                        }
+                        "__OS_START" := "_lc_gb_OS";
+                        "__OS_END"   := "_lc_ge_OS";
+                        group WDG (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Wdg.*";
+                            select ".bss.Wdg.*";
+                            select ".zdata.Wdg.*";
+                            select ".zbss.Wdg.*";
+                        }
+                        "__WDG_START" := "_lc_gb_WDG";
+                        "__WDG_END"   := "_lc_ge_WDG";
+                        group SMU (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Smu.*";
+                            select ".bss.Smu.*";
+                            select ".zdata.Smu.*";
+                            select ".zbss.Smu.*";
+                        }
+                        "__SMU_START" := "_lc_gb_SMU";
+                        "__SMU_END"   := "_lc_ge_SMU";
+                        group IRQ (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Irq.*";
+                            select ".bss.Irq.*";
+                            select ".zdata.Irq.*";
+                            select ".zbss.Irq.*";
+                        }
+                        "__IRQ_START" := "_lc_gb_IRQ";
+                        "__IRQ_END"   := "_lc_ge_IRQ";
+                        group CRC (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Crc.*";
+                            select ".bss.Crc.*";
+                            select ".zdata.Crc.*";
+                            select ".zbss.Crc.*";
+                        }
+                        "__CRC_START" := "_lc_gb_CRC";
+                        "__CRC_END"   := "_lc_ge_CRC";
+                    
+                        select ".data.Ifx_Ssw_Tc0.*";
+                        select ".data.Cpu0_Main.*";
+                        select "(.data.data_cpu0|.data.data_cpu0.*)";
+                        select ".bss.Ifx_Ssw_Tc0.*";
+                        select ".bss.Cpu0_Main.*";
+                        select "(.bss.bss_cpu0|.bss.bss_cpu0.*)";
+                    }
+                    "__ASILDRAM_C0_START" := "_lc_gb_ASILD_RAM_C0";
+                    "__ASILDRAM_C0_END"  := "_lc_ge_ASILD_RAM_C0";  
+                    group ASILB_RAM_C0 (ordered, attributes = rw, align = 4)
+                    {
+                        group AIN (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Ain.*";
+                            select ".bss.Ain.*";
+                            select ".zdata.Ain.*";
+                            select ".zbss.Ain.*";
+                        }
+                        "__AIN_START" := "_lc_gb_AIN";
+                        "__AIN_END"   := "_lc_ge_AIN";
+                        group FLS (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Fls.*";
+                            select ".bss.Fls.*";
+                            select ".zdata.Fls.*";
+                            select ".zbss.Fls.*";
+                        }
+                        "__FLS_START" := "_lc_gb_FLS";
+                        "__FLS_END"   := "_lc_ge_FLS";
+                        group NVM (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Nvm.*";
+                            select ".bss.Nvm.*";
+                            select ".zdata.Nvm.*";
+                            select ".zbss.Nvm.*";
+                        }
+                        "__NVM_START" := "_lc_gb_NVM";
+                        "__NVM_END"   := "_lc_ge_NVM";   
+                    }
+                    "__ASILBRAM_C0_START" := "_lc_gb_ASILB_RAM_C0";
+                    "__ASILBRAM_C0_END"  := "_lc_ge_ASILB_RAM_C0";
+                    group QM_RAM_C0 (ordered, attributes = rw, align = 4)
+                    {
+                        group DCYHANDLER (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.DcyHandler.*";
+                            select ".bss.DcyHandler.*";
+                            select ".zdata.DcyHandler.*";
+                            select ".zbss.DcyHandler.*";
+                        }
+                        "__DCYHANDLER_START" := "_lc_gb_DCYHANDLER";
+                        "__DCYHANDLER_END"   := "_lc_ge_DCYHANDLER";    
+                        group DIAGMASTER (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.DiagMaster.*";
+                            select ".bss.DiagMaster.*";
+                            select ".zdata.DiagMaster.*";
+                            select ".zbss.DiagMaster.*";
+                        }
+                        "__DIAGMASTER_START" := "_lc_gb_DIAGMASTER";
+                        "__DIAGMASTER_END"   := "_lc_ge_DIAGMASTER";
+                        group DCM (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Dcm.*";
+                            select ".bss.Dcm.*";
+                            select ".zdata.Dcm.*";
+                            select ".zbss.Dcm.*";
+                        }
+                        "__DCM_START" := "_lc_gb_DCM";
+                        "__DCM_END"   := "_lc_ge_DCM";
+                        group CAN (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.Can.*";
+                            select ".bss.Can.*";
+                            select ".zdata.Can.*";
+                            select ".zbss.Can.*";
+                        }
+                        "__CAN_START" := "_lc_gb_CAN";
+                        "__CAN_END"   := "_lc_ge_CAN";
+                        group ENCCAL (ordered, attributes = rw, align = 4)
+                        {
+                            select ".data.EncCal.*";
+                            select ".bss.EncCal.*";
+                            select ".zdata.EncCal.*";
+                            select ".zbss.EncCal.*";
+                        }
+                        "__ENCCAL_START" := "_lc_gb_ENCCAL";
+                        "__ENCCAL_END"   := "_lc_ge_ENCCAL";
+                    }
+                    "__QMRAM_C0_START" := "_lc_gb_QM_RAM_C0";
+                    "__QMRAM_C0_END"  := "_lc_ge_QM_RAM_C0";
                 }
             }
-
-                       /*LMU Data sections*/
+            /*LMU Data sections*/
             group
             {
                 group NCR (ordered, attributes = rws, run_addr = mem:cpu0_dlmu, align = 4)
@@ -762,10 +1077,10 @@ derivative tc37
                     select ".bss.McuSm.McuSm_IndexResetHistory";
                     select ".data.McuSm.McuSm_ResetReasonListCounter";
                     select ".bss.McuSm.McuSm_ResetReasonListCounter"; 
-                    select ".data.DiagMaster.DiagMaster_ActiveSessionState";
-                    select ".bss.DiagMaster.DiagMaster_ActiveSessionState";  
-                    select ".data.DiagMaster.DiagMaster_AliveTime";
-                    select ".bss.DiagMaster.DiagMaster_AliveTime";                      
+                    select ".data.McuSm.DiagMaster_ActiveSessionState";
+                    select ".bss.McuSm.DiagMaster_ActiveSessionState";  
+                    select ".data.McuSm.DiagMaster_AliveTime";
+                    select ".bss.McuSm.DiagMaster_AliveTime";                      
                 }
                 "__NCR_START" := "_lc_gb_NCR";
                 "__NCR_END"   := "_lc_ge_NCR";
@@ -784,8 +1099,7 @@ derivative tc37
                     select "(.bss.lmubss_cpu2|.bss.lmubss_cpu2.*)";
                 }
             }
-        }
-        
+        }       
         /*Far Data Sections, selectable by toolchain*/
 #        if LCF_DEFAULT_HOST == LCF_CPU2
         group (ordered, contiguous, align = 4, attributes=rw, run_addr = mem:dsram2)
@@ -809,22 +1123,19 @@ derivative tc37
                 select ".bss.farDsprClearOnInit.cpu0.32bit";
                 select ".bss.farDsprClearOnInit.cpu0.16bit";
                 select ".bss.farDsprClearOnInit.cpu0.8bit";
-            }
-            
+            }           
             group bss_noInit(attributes=rw)
             {
                 select ".bss.farDsprNoInit.cpu0.32bit";
                 select ".bss.farDsprNoInit.cpu0.16bit";
                 select ".bss.farDsprNoInit.cpu0.8bit";                
-            }
-            
+            }           
             group data(attributes=rw)
             {
                 select "(.data|.data.*)";
                 select "(.bss|.bss.*)";
             }
-        }
-        
+        }       
         /*Heap allocation*/
 #        if LCF_DEFAULT_HOST == LCF_CPU2
         group (ordered, align = 4, run_addr = mem:dsram2[LCF_HEAP2_OFFSET])
@@ -837,40 +1148,38 @@ derivative tc37
 #        endif
         {
             heap "heap" (size = LCF_HEAP_SIZE);
-        }
-        
+        }       
         /*Far Const Sections, selectable with patterns and user defined sections*/
         group
         {
-            group (ordered, align = 4, run_addr=mem:pfls0)
+            group (ordered, align = 4, run_addr=mem:Application_PFLASH)
             {
                 select ".rodata.Ifx_Ssw_Tc0.*";
                 select ".rodata.Cpu0_Main.*";
                 select "(.rodata.rodata_cpu0|.rodata.rodata_cpu0.*)";
             }
-            group (ordered, align = 4, run_addr=mem:pfls1)
+            group (ordered, align = 4, run_addr=mem:Application_PFLASH)
             {
                 select ".rodata.Cpu1_Main.*";
                 select ".rodata.Ifx_Ssw_Tc1.*";
                 select "(.rodata.rodata_cpu1|.rodata.rodata_cpu1.*)";
             }
-            group (ordered, align = 4, run_addr=mem:pfls1)
+            group (ordered, align = 4, run_addr=mem:Application_PFLASH)
             {
                 select ".rodata.Ifx_Ssw_Tc2.*";
                 select ".rodata.Cpu2_Main.*";
                 select "(.rodata.rodata_cpu2|.rodata.rodata_cpu2.*)";
             }
         }
-
         /*Far Const Sections, selectable by toolchain*/
 #        if LCF_DEFAULT_HOST == LCF_CPU2
-        group (ordered, align = 4, run_addr=mem:pfls1)
+        group (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU1
-        group (ordered, align = 4, run_addr=mem:pfls1)
+        group (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU0
-        group (ordered, align = 4, run_addr=mem:pfls0)
+        group (ordered, align = 4, run_addr=mem:Application_PFLASH)
 #        endif
         {
             select ".rodata.farConst.cpu0.32bit";
@@ -878,8 +1187,7 @@ derivative tc37
             select ".rodata.farConst.cpu0.8bit";
             select "(.rodata|.rodata.*)";
         }
-    }
-    
+    }   
     /* PSRAM Code selections*/
     section_layout :vtc:linear
     {
@@ -906,8 +1214,7 @@ derivative tc37
                 }
             }
         }
-    }
-    
+    }   
     /* FLS Code selections*/
     section_layout :vtc:linear
     {
@@ -917,37 +1224,36 @@ derivative tc37
             /*Cpu specific PFLASH Sections*/
             group
             {
-                group (ordered, align = 4, run_addr=mem:pfls0)
+                group (ordered, align = 4, run_addr=mem:Application_PFLASH)
                 {
                     select ".text.Ifx_Ssw_Tc0.*";
                     select ".text.Cpu0_Main.*";
                     select ".text.CompilerTasking.Ifx_C_Init";
                     select "(.text.text_cpu0|.text.text_cpu0.*)";
                 }
-                group (ordered, align = 4, run_addr=mem:pfls1)
+                group (ordered, align = 4, run_addr=mem:Application_PFLASH)
                 {
                     select ".text.Ifx_Ssw_Tc1.*";
                     select ".text.Cpu1_Main.*";
                     select "(.text.text_cpu1|.text.text_cpu1.*)";
                 }
-                group (ordered, align = 4, run_addr=mem:pfls1)
+                group (ordered, align = 4, run_addr=mem:Application_PFLASH)
                 {
                     select ".text.Ifx_Ssw_Tc2.*";
                     select ".text.Cpu2_Main.*";
                     select "(.text.text_cpu2|.text.text_cpu2.*)";
                 }
             }
-        }
-        
+        }       
         /*Code Sections, selectable by toolchain*/
 #        if LCF_DEFAULT_HOST == LCF_CPU2
-        group (ordered, run_addr=mem:pfls1)
+        group (ordered, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU1
-        group (ordered, run_addr=mem:pfls1)
+        group (ordered, run_addr=mem:Application_PFLASH)
 #        endif
 #        if LCF_DEFAULT_HOST == LCF_CPU0
-        group (ordered, run_addr=mem:pfls0)
+        group (ordered, run_addr=mem:Application_PFLASH)
 #        endif
         {
             select ".text.fast.pfls.cpu0";

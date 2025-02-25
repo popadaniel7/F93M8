@@ -1,0 +1,65 @@
+#include "Ifx_Types.h"
+#include "IfxCpu.h"
+#include "IfxScuWdt.h"
+#include "Os.h"
+#include "Ain_Filtering.h"
+#include "Can.h"
+#include "Nvm.h"
+#include "Dem.h"
+#include "Dcm.h"
+#include "McuSm.h"
+#include "EncCal.h"
+#include "SysMgr.h"
+#include "Wdg.h"
+#include "Smu.h"
+#include "Crc.h"
+#include "task_core0.h"
+
+uint8 OsInit_C0 = 0u;
+
+void Ssw_Tests(void);
+
+extern void McuSm_Lbist(void);
+extern void McuSm_ClearReg(void);
+extern void Ifx_Ssw_Monbist(void);
+extern void Ssw_StartCores(void);
+
+void core0_main(void)
+{
+    Ssw_Tests();
+    /* Start core 1 and core 2. */
+    Ssw_StartCores();
+    SysMgr_EcuState = SYSMGR_STARTUP;
+    IfxCpu_enableInterrupts();
+//    IfxScuWdt_enableCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
+//    IfxScuWdt_enableSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
+    McuSm_InitializeBusMpu();
+    McuSm_InitializeDts();
+    Ain_FilteringInit();
+    //Smu_Init();
+    Crc_Init();
+    Can_Init();
+    Nvm_ReadAll();
+    Dem_Init();
+    Dcm_Init();
+    EncCal_MainFunction();
+    SysMgr_WakeupInitScr();
+    SysMgr_ProcessResetDtc();
+    Os_Init_C0();
+    OsInit_C0 = 1u;
+    while(1){__debug();}
+    vTaskStartScheduler_core0();
+}
+
+void Ssw_Tests(void)
+{
+    while(1){__debug();}
+    /* LBIST Tests and evaluation */
+    McuSm_Lbist();
+    /* MONBIST Tests and evaluation */
+    //Ifx_Ssw_Monbist();
+    /* Clear registers to avoid false-positive resets. */
+    //McuSm_ClearReg();
+    /* MBIST Tests and evaluation */
+    //McuSm_MbistManager();
+}

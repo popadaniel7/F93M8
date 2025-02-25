@@ -140,9 +140,92 @@
          <Use>false</Use>
         </StackUsage>
         <SymbolFiles>
-         <DefaultFile>0</DefaultFile>
+         <DefaultFile>1</DefaultFile>
          <File>
           <__.0>
+           <Area></Area>
+           <Load>true</Load>
+           <OverrideMemArea>false</OverrideMemArea>
+           <Path>..\..\..\..\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.elf</Path>
+           <UseDefaultMSID>true</UseDefaultMSID>
+           <MSID>
+            <App>0x0</App>
+            <bAppID>false</bAppID>
+            <bVMID>false</bVMID>
+            <Level>Sys</Level>
+            <Secure>false</Secure>
+            <Use>false</Use>
+            <VM>0x0</VM>
+           </MSID>
+           <Options>
+            <AnalyzeBeyondCOFInFunc>false</AnalyzeBeyondCOFInFunc>
+            <AnalyzeCodeOutsideFunctions>true</AnalyzeCodeOutsideFunctions>
+            <CodeOffset>0x0</CodeOffset>
+            <InTargetDir>false</InTargetDir>
+            <LoadCode>false</LoadCode>
+            <LoadSymbols>false</LoadSymbols>
+            <MemPropOnLoadedCodeOnly>false</MemPropOnLoadedCodeOnly>
+            <MergeLines>true</MergeLines>
+            <Offset>0x0</Offset>
+            <OptimizeTypeName>true</OptimizeTypeName>
+            <SymbolOffset>0x0</SymbolOffset>
+            <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
+            <Type>ELF</Type>
+            <Elf>
+             <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
+             <CallStackGeneration>Automatic</CallStackGeneration>
+             <DumpELFHeaders>false</DumpELFHeaders>
+             <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
+             <InsertInlinedFunctions>false</InsertInlinedFunctions>
+             <LoadCodeFrom>Program Headers - Physical</LoadCodeFrom>
+             <LoadCodeFromExecutableSections>true</LoadCodeFromExecutableSections>
+             <LoadDebugSections>true</LoadDebugSections>
+             <LoadOnlyBeginningOfTheStatementLines>true</LoadOnlyBeginningOfTheStatementLines>
+             <LoadSymbolTableItems>None</LoadSymbolTableItems>
+             <LoadWeakFunctions>true</LoadWeakFunctions>
+             <LoadZeroSizedSegments>false</LoadZeroSizedSegments>
+             <MergeTypes>false</MergeTypes>
+             <OffsetFRAMEAdditionaly>0</OffsetFRAMEAdditionaly>
+             <Override64bitVariableLocation>true</Override64bitVariableLocation>
+             <RemoveOptimizedLines>true</RemoveOptimizedLines>
+             <RemoveOptimizedLinesForCU>true</RemoveOptimizedLinesForCU>
+             <ReverseBitFieldsOrder>false</ReverseBitFieldsOrder>
+             <UseSymbolTableForVariablesWithNoLocation>true</UseSymbolTableForVariablesWithNoLocation>
+             <Cosmic>
+              <nowidden>false</nowidden>
+              <sprec>false</sprec>
+             </Cosmic>
+             <IAR>
+              <LegacyLocationLists>false</LegacyLocationLists>
+             </IAR>
+             <Tasking>
+              <Demangle>false</Demangle>
+             </Tasking>
+            </Elf>
+            <Hex>
+             <IgnoreChecksum>false</IgnoreChecksum>
+            </Hex>
+            <IEEE>
+             <EnumSize>16-bit</EnumSize>
+             <Generator>Cosmic</Generator>
+             <ReadPublicSection>false</ReadPublicSection>
+            </IEEE>
+            <PE>
+             <AddSymbolsFromSymbolTable>false</AddSymbolsFromSymbolTable>
+            </PE>
+            <UBROF>
+             <ConvertBankAddresses>false</ConvertBankAddresses>
+             <Generator>IAR</Generator>
+            </UBROF>
+           </Options>
+           <PreProcessor>
+            <Analyze>none</Analyze>
+            <CommandLine></CommandLine>
+            <UseProjectDefines>false</UseProjectDefines>
+            <UseProjectIncludePaths>false</UseProjectIncludePaths>
+           </PreProcessor>
+          </__.0>
+          <__.1>
            <Area></Area>
            <Load>true</Load>
            <OverrideMemArea>false</OverrideMemArea>
@@ -224,7 +307,7 @@
             <UseProjectDefines>false</UseProjectDefines>
             <UseProjectIncludePaths>false</UseProjectIncludePaths>
            </PreProcessor>
-          </__.0>
+          </__.1>
          </File>
         </SymbolFiles>
        </__.0>
@@ -236,13 +319,13 @@
         <SFRName>TC375T</SFRName>
         <UserName>MCU</UserName>
         <DLFs_Program>
-         <DefaultFile>1</DefaultFile>
+         <DefaultFile>-1</DefaultFile>
          <File>
           <__.0>
            <Area></Area>
            <Load>true</Load>
            <OverrideMemArea>false</OverrideMemArea>
-           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.elf</Path>
+           <Path>..\..\..\..\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.hex</Path>
            <UseDefaultMSID>true</UseDefaultMSID>
            <MSID>
             <App>0x0</App>
@@ -266,7 +349,7 @@
             <OptimizeTypeName>true</OptimizeTypeName>
             <SymbolOffset>0x0</SymbolOffset>
             <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
-            <Type>ELF</Type>
+            <Type>HEX</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
              <CallStackGeneration>Automatic</CallStackGeneration>
@@ -321,6 +404,89 @@
             <UseProjectIncludePaths>false</UseProjectIncludePaths>
            </PreProcessor>
           </__.0>
+          <__.1>
+           <Area></Area>
+           <Load>true</Load>
+           <OverrideMemArea>false</OverrideMemArea>
+           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.hex</Path>
+           <UseDefaultMSID>true</UseDefaultMSID>
+           <MSID>
+            <App>0x0</App>
+            <bAppID>false</bAppID>
+            <bVMID>false</bVMID>
+            <Level>Sys</Level>
+            <Secure>false</Secure>
+            <Use>false</Use>
+            <VM>0x0</VM>
+           </MSID>
+           <Options>
+            <AnalyzeBeyondCOFInFunc>false</AnalyzeBeyondCOFInFunc>
+            <AnalyzeCodeOutsideFunctions>true</AnalyzeCodeOutsideFunctions>
+            <CodeOffset>0x0</CodeOffset>
+            <InTargetDir>false</InTargetDir>
+            <LoadCode>false</LoadCode>
+            <LoadSymbols>false</LoadSymbols>
+            <MemPropOnLoadedCodeOnly>false</MemPropOnLoadedCodeOnly>
+            <MergeLines>true</MergeLines>
+            <Offset>0x0</Offset>
+            <OptimizeTypeName>true</OptimizeTypeName>
+            <SymbolOffset>0x0</SymbolOffset>
+            <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
+            <Type>HEX</Type>
+            <Elf>
+             <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
+             <CallStackGeneration>Automatic</CallStackGeneration>
+             <DumpELFHeaders>false</DumpELFHeaders>
+             <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
+             <InsertInlinedFunctions>false</InsertInlinedFunctions>
+             <LoadCodeFrom>Program Headers - Physical</LoadCodeFrom>
+             <LoadCodeFromExecutableSections>true</LoadCodeFromExecutableSections>
+             <LoadDebugSections>true</LoadDebugSections>
+             <LoadOnlyBeginningOfTheStatementLines>true</LoadOnlyBeginningOfTheStatementLines>
+             <LoadSymbolTableItems>None</LoadSymbolTableItems>
+             <LoadWeakFunctions>true</LoadWeakFunctions>
+             <LoadZeroSizedSegments>false</LoadZeroSizedSegments>
+             <MergeTypes>false</MergeTypes>
+             <OffsetFRAMEAdditionaly>0</OffsetFRAMEAdditionaly>
+             <Override64bitVariableLocation>true</Override64bitVariableLocation>
+             <RemoveOptimizedLines>true</RemoveOptimizedLines>
+             <RemoveOptimizedLinesForCU>true</RemoveOptimizedLinesForCU>
+             <ReverseBitFieldsOrder>false</ReverseBitFieldsOrder>
+             <UseSymbolTableForVariablesWithNoLocation>true</UseSymbolTableForVariablesWithNoLocation>
+             <Cosmic>
+              <nowidden>false</nowidden>
+              <sprec>false</sprec>
+             </Cosmic>
+             <IAR>
+              <LegacyLocationLists>false</LegacyLocationLists>
+             </IAR>
+             <Tasking>
+              <Demangle>false</Demangle>
+             </Tasking>
+            </Elf>
+            <Hex>
+             <IgnoreChecksum>false</IgnoreChecksum>
+            </Hex>
+            <IEEE>
+             <EnumSize>16-bit</EnumSize>
+             <Generator>Cosmic</Generator>
+             <ReadPublicSection>false</ReadPublicSection>
+            </IEEE>
+            <PE>
+             <AddSymbolsFromSymbolTable>false</AddSymbolsFromSymbolTable>
+            </PE>
+            <UBROF>
+             <ConvertBankAddresses>false</ConvertBankAddresses>
+             <Generator>IAR</Generator>
+            </UBROF>
+           </Options>
+           <PreProcessor>
+            <Analyze>none</Analyze>
+            <CommandLine></CommandLine>
+            <UseProjectDefines>false</UseProjectDefines>
+            <UseProjectIncludePaths>false</UseProjectIncludePaths>
+           </PreProcessor>
+          </__.1>
          </File>
         </DLFs_Program>
         <DLFs_Target>
@@ -427,7 +593,7 @@
        <DisplayLoadMap>False</DisplayLoadMap>
        <PostDLActionAlsoAfterReset>0</PostDLActionAlsoAfterReset>
        <TargetDownload>0</TargetDownload>
-       <VerifyDownload>True</VerifyDownload>
+       <VerifyDownload>False</VerifyDownload>
        <Download>
         <DefaultFile>-1</DefaultFile>
        </Download>
@@ -481,7 +647,7 @@
         <DisplayCollapsedArrayStruct>true</DisplayCollapsedArrayStruct>
         <DisplayPointerMemArea>false</DisplayPointerMemArea>
         <EnumDisplay>Enum</EnumDisplay>
-        <Hex>false</Hex>
+        <Hex>true</Hex>
         <MaxParseUpload>256</MaxParseUpload>
         <QualifiedNames>Unique</QualifiedNames>
         <UseSpacers>false</UseSpacers>
@@ -597,6 +763,56 @@
     </Mode>
     <Op_System>
      <Debug>
+      <BPs>
+       <__.0>
+        <ActionEnabled>false</ActionEnabled>
+        <ActionParams></ActionParams>
+        <ActionScript></ActionScript>
+        <ActionShow>false</ActionShow>
+        <Condition>false</Condition>
+        <Count>0</Count>
+        <Enabled>true</Enabled>
+        <Expression></Expression>
+        <Location>&quot;..\..\..\Cpu0_Main.c&quot;::36</Location>
+        <ProcessFilter></ProcessFilter>
+       </__.0>
+       <__.1>
+        <ActionEnabled>false</ActionEnabled>
+        <ActionParams></ActionParams>
+        <ActionScript></ActionScript>
+        <ActionShow>false</ActionShow>
+        <Condition>false</Condition>
+        <Count>0</Count>
+        <Enabled>true</Enabled>
+        <Expression></Expression>
+        <Location>&quot;..\..\..\Cpu0_Main.c&quot;::39</Location>
+        <ProcessFilter></ProcessFilter>
+       </__.1>
+       <__.2>
+        <ActionEnabled>false</ActionEnabled>
+        <ActionParams></ActionParams>
+        <ActionScript></ActionScript>
+        <ActionShow>false</ActionShow>
+        <Condition>false</Condition>
+        <Count>0</Count>
+        <Enabled>true</Enabled>
+        <Expression></Expression>
+        <Location>&quot;..\..\..\Cpu0_Main.c&quot;::40</Location>
+        <ProcessFilter></ProcessFilter>
+       </__.2>
+       <__.3>
+        <ActionEnabled>false</ActionEnabled>
+        <ActionParams></ActionParams>
+        <ActionScript></ActionScript>
+        <ActionShow>false</ActionShow>
+        <Condition>false</Condition>
+        <Count>0</Count>
+        <Enabled>true</Enabled>
+        <Expression></Expression>
+        <Location>&quot;..\..\..\BSW\Mem\Nvm\Nvm.c&quot;::184</Location>
+        <ProcessFilter></ProcessFilter>
+       </__.3>
+      </BPs>
       <Processes>
        <__.0>
         <URL>App/SMP</URL>
@@ -788,7 +1004,7 @@
           <Enabled>0</Enabled>
           <BP.0>
            <Access>1</Access>
-           <Address>Iven_MainCounter</Address>
+           <Address>EncCal_Coding_Buffer,,DEC_APP.elf</Address>
            <Enabled>1</Enabled>
            <EntireObject>1</EntireObject>
            <Range>1</Range>
@@ -2891,7 +3107,7 @@
          </__.0>
          <__.1>
           <AllowDownloadOnly>false</AllowDownloadOnly>
-          <AllowErase>false</AllowErase>
+          <AllowErase>true</AllowErase>
           <CoreIndex>4294967295</CoreIndex>
           <Device>TC37x_DFLASH_384kB</Device>
           <DeviceAddress>0xAF000000</DeviceAddress>
@@ -3048,11 +3264,11 @@
       <V_MINOR>21</V_MINOR>
       <BDM>
        <CallPoint>
-        <Attach_ConnectToSoC_Same>false</Attach_ConnectToSoC_Same>
-        <Attach_InitSoC_Same>false</Attach_InitSoC_Same>
+        <Attach_ConnectToSoC_Same>true</Attach_ConnectToSoC_Same>
+        <Attach_InitSoC_Same>true</Attach_InitSoC_Same>
         <Attach_StopToExecute>false</Attach_StopToExecute>
-        <Debug_ConnectToSoC_Same>false</Debug_ConnectToSoC_Same>
-        <Debug_InitSoC_Same>false</Debug_InitSoC_Same>
+        <Debug_ConnectToSoC_Same>true</Debug_ConnectToSoC_Same>
+        <Debug_InitSoC_Same>true</Debug_InitSoC_Same>
         <Program_ResetAfterProgram>false</Program_ResetAfterProgram>
         <WDTDisable>false</WDTDisable>
         <Attach_ConnectToSoC>
@@ -3102,10 +3318,10 @@
         <POD>0</POD>
         <SubCPU>TC375T</SubCPU>
         <Aurix>
-         <AllowCacheMonExec>true</AllowCacheMonExec>
+         <AllowCacheMonExec>false</AllowCacheMonExec>
          <ApplicationLBIST>true</ApplicationLBIST>
          <BRKIN>HIGH</BRKIN>
-         <ClearICRIEWhenStopped>true</ClearICRIEWhenStopped>
+         <ClearICRIEWhenStopped>false</ClearICRIEWhenStopped>
          <DAPClock>30000</DAPClock>
          <DAPE>false</DAPE>
          <DAPE_Clock>10000</DAPE_Clock>
@@ -3274,10 +3490,10 @@
          </TriggerEvent1p8>
         </Aurix>
         <TriCore>
-         <AllowCacheMonitorExecution>1</AllowCacheMonitorExecution>
+         <AllowCacheMonitorExecution>0</AllowCacheMonitorExecution>
          <ApplicationLBIST>1</ApplicationLBIST>
          <BRKIN>1</BRKIN>
-         <ClearICRIEWhenStopped>1</ClearICRIEWhenStopped>
+         <ClearICRIEWhenStopped>0</ClearICRIEWhenStopped>
          <DAPClockkHz>30000</DAPClockkHz>
          <DAPE>0</DAPE>
          <DAPEClockkHz>10000</DAPEClockkHz>
@@ -3351,7 +3567,7 @@
         <AuroraBaudrate>2500M</AuroraBaudrate>
         <BootCore>0</BootCore>
         <Breakpoints>HW</Breakpoints>
-        <CacheSWBPs>true</CacheSWBPs>
+        <CacheSWBPs>false</CacheSWBPs>
         <CalibrateClockVref>32</CalibrateClockVref>
         <CalibratePhase>0</CalibratePhase>
         <CalibrateVref>64</CalibrateVref>
@@ -3359,13 +3575,13 @@
         <CycleDuration>1e-09</CycleDuration>
         <DebugChannel>DAP</DebugChannel>
         <DebugClockkHz>4000</DebugClockkHz>
-        <DetectWDT>true</DetectWDT>
+        <DetectWDT>false</DetectWDT>
         <DetectWDT_duration_ms>20</DetectWDT_duration_ms>
         <EndSession>Cleanup</EndSession>
         <ExtOscillatorClk>1000</ExtOscillatorClk>
         <GenerateAuroraClock>false</GenerateAuroraClock>
         <GenerateAuroraCRC>false</GenerateAuroraCRC>
-        <IgnoreAccessErrors>true</IgnoreAccessErrors>
+        <IgnoreAccessErrors>false</IgnoreAccessErrors>
         <InitRAM>Never</InitRAM>
         <LatchRESET>false</LatchRESET>
         <MemorySecurityND_Policy>Allow</MemorySecurityND_Policy>
@@ -3389,12 +3605,12 @@
         <RESETDriveWhenDetached>no</RESETDriveWhenDetached>
         <ResetDuration>20</ResetDuration>
         <ResetMethod>StopAndPreset</ResetMethod>
-        <RESETMode>PP</RESETMode>
-        <ResetPinConnected>true</ResetPinConnected>
+        <RESETMode>OD</RESETMode>
+        <ResetPinConnected>false</ResetPinConnected>
         <ReversedAuroraLanes>false</ReversedAuroraLanes>
         <SamplingEdge>Pos</SamplingEdge>
         <StopAfterReset>false</StopAfterReset>
-        <SuspendPeripheralsWhileStopped>true</SuspendPeripheralsWhileStopped>
+        <SuspendPeripheralsWhileStopped>false</SuspendPeripheralsWhileStopped>
         <TargetResetTimeout>100</TargetResetTimeout>
         <MemorySecurity_CheckParameters>
          <Entry>false</Entry>
@@ -3424,7 +3640,7 @@
         <BootCore>0</BootCore>
         <Breakpoints>0</Breakpoints>
         <CacheDL>0</CacheDL>
-        <CacheSWBPs>1</CacheSWBPs>
+        <CacheSWBPs>0</CacheSWBPs>
         <CalibrateClockVref>32</CalibrateClockVref>
         <CalibratePhase>0</CalibratePhase>
         <CalibrateVref>64</CalibrateVref>
@@ -3435,7 +3651,7 @@
         <ExtOscillatorClk>1000</ExtOscillatorClk>
         <GenerateAuroraClock>0</GenerateAuroraClock>
         <GenerateAuroraCRC>0</GenerateAuroraCRC>
-        <IgnoreAccessErrors>1</IgnoreAccessErrors>
+        <IgnoreAccessErrors>0</IgnoreAccessErrors>
         <InitRAM>0</InitRAM>
         <LatchRESET>0</LatchRESET>
         <MemorySecurityND_Policy>2</MemorySecurityND_Policy>
@@ -3458,7 +3674,7 @@
         <ResetDelay>20</ResetDelay>
         <RESETDriveWhenDetached>0</RESETDriveWhenDetached>
         <ResetMethod>1</ResetMethod>
-        <RESETMode>1</RESETMode>
+        <RESETMode>0</RESETMode>
         <ReversedAuroraLanes>0</ReversedAuroraLanes>
         <StopAfterReset>0</StopAfterReset>
         <TargetResetTimeout>100</TargetResetTimeout>
@@ -3595,12 +3811,12 @@
            <DCache_FlushWhenStopped>false</DCache_FlushWhenStopped>
            <Endian>LE</Endian>
            <MCSync>true</MCSync>
-           <StopCPUActivities>true</StopCPUActivities>
+           <StopCPUActivities>false</StopCPUActivities>
            <UseSWBPs>false</UseSWBPs>
            <DebugEntry>
             <PresetAddr></PresetAddr>
             <PresetPCAfterStoppedInInit>NoPreset</PresetPCAfterStoppedInInit>
-            <Type>Catch</Type>
+            <Type>NonIntrusive</Type>
            </DebugEntry>
           </Common>
           <Cortex>
@@ -3710,7 +3926,7 @@
            <Endian>LE</Endian>
            <MCSync>true</MCSync>
            <StopCPUActivities>false</StopCPUActivities>
-           <UseSWBPs>true</UseSWBPs>
+           <UseSWBPs>false</UseSWBPs>
            <DebugEntry>
             <PresetAddr></PresetAddr>
             <PresetPCAfterStoppedInInit>NoPreset</PresetPCAfterStoppedInInit>
@@ -3824,7 +4040,7 @@
            <Endian>LE</Endian>
            <MCSync>true</MCSync>
            <StopCPUActivities>false</StopCPUActivities>
-           <UseSWBPs>true</UseSWBPs>
+           <UseSWBPs>false</UseSWBPs>
            <DebugEntry>
             <PresetAddr></PresetAddr>
             <PresetPCAfterStoppedInInit>NoPreset</PresetPCAfterStoppedInInit>
@@ -3938,7 +4154,7 @@
            <Endian>BE</Endian>
            <MCSync>true</MCSync>
            <StopCPUActivities>false</StopCPUActivities>
-           <UseSWBPs>true</UseSWBPs>
+           <UseSWBPs>false</UseSWBPs>
            <DebugEntry>
             <PresetAddr></PresetAddr>
             <PresetPCAfterStoppedInInit>NoPreset</PresetPCAfterStoppedInInit>

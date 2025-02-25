@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f cc16756a --dep-file=BSW/Io/Ain/Ain.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Io/Ain/Ain.src ../BSW/Io/Ain/Ain.c"
+	.compiler_invocation	"ctc -f cc7720a --dep-file=BSW/Io/Ain/Ain.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Io/Ain/Ain.src ../BSW/Io/Ain/Ain.c"
 	.compiler_name		"ctc"
 	;source	'../BSW/Io/Ain/Ain.c'
 
@@ -13,62 +13,62 @@ $TC162
 	
 	.global	Ain_ProcessIRSensorValue
 ; Function Ain_ProcessIRSensorValue
-.L13:
+.L16:
 Ain_ProcessIRSensorValue:	.type	func
 	movh.a	a15,#@his(_999003_localRefValue)
 	lea	a15,[a15]@los(_999003_localRefValue)
-.L130:
+.L148:
 	mov	d15,#50
-.L131:
+.L149:
 	st.h	[a15],d15
-.L132:
+.L150:
 	movh.a	a15,#@his(_999001_actualVoltageReference)
 	lea	a15,[a15]@los(_999001_actualVoltageReference)
-.L133:
+.L151:
 	mov	d15,#50
-.L134:
+.L152:
 	movh.a	a2,#@his(Ain_CanRx_MeasuredVoltage)
 	lea	a2,[a2]@los(Ain_CanRx_MeasuredVoltage)
 	ld.bu	d0,[a2]
-.L135:
+.L153:
 	or	d15,d0
 	utof	d15,d15
-.L136:
+.L154:
 	st.w	[a15],d15
-.L137:
+.L155:
 	movh.a	a15,#@his(_999002_localVoltageCalculated)
 	lea	a15,[a15]@los(_999002_localVoltageCalculated)
-.L138:
+.L156:
 	movh.a	a2,#@his(Ain_AuxBufferDma)
 	lea	a2,[a2]@los(Ain_AuxBufferDma)
-.L139:
+.L157:
 	ld.w	d15,[a2]
-.L140:
+.L158:
 	utof	d4,d15
-.L141:
+.L159:
 	movh.a	a2,#@his(_999001_actualVoltageReference)
 	lea	a2,[a2]@los(_999001_actualVoltageReference)
 	ld.w	d5,[a2]
 	call	Ain_AdcToVoltage
-.L142:
+.L160:
 	st.w	[a15],d2
-.L143:
+.L161:
 	movh.a	a15,#@his(IRSensorValue)
 	lea	a15,[a15]@los(IRSensorValue)
-.L144:
+.L162:
 	movh.a	a2,#@his(_999002_localVoltageCalculated)
 	lea	a2,[a2]@los(_999002_localVoltageCalculated)
 	ld.w	d4,[a2]
 	call	Ain_ConvertVoltageToDistanceGP2Y0A21YK0F
-.L145:
+.L163:
 	st.w	[a15],d2
-.L146:
+.L164:
 	ret
-.L78:
+.L88:
 	
 __Ain_ProcessIRSensorValue_function_end:
 	.size	Ain_ProcessIRSensorValue,__Ain_ProcessIRSensorValue_function_end-Ain_ProcessIRSensorValue
-.L43:
+.L46:
 	; End of function
 	
 	.sdecl	'.text.Ain.Ain_ConvertVoltageToDistanceGP2Y0A21YK0F',code,cluster('Ain_ConvertVoltageToDistanceGP2Y0A21YK0F')
@@ -77,51 +77,51 @@ __Ain_ProcessIRSensorValue_function_end:
 	
 	.global	Ain_ConvertVoltageToDistanceGP2Y0A21YK0F
 ; Function Ain_ConvertVoltageToDistanceGP2Y0A21YK0F
-.L15:
+.L18:
 Ain_ConvertVoltageToDistanceGP2Y0A21YK0F:	.type	func
 	mov.u	d15,#52429
 	addih	d15,d15,#15948
-.L113:
+.L131:
 	cmp.f	d15,d4,d15
 	and	d15,#3
 	ne	d15,d15,#0
-.L114:
+.L132:
 	jeq	d15,#0,.L2
-.L115:
+.L133:
 	mov.u	d2,#65280
 	addih	d2,d2,#18303
-.L116:
+.L134:
 	j	.L3
 .L2:
 	mov	d5,#11534
 	addih	d5,d5,#49050
 	call	powf
-.L83:
+.L93:
 	mov.u	d15,#54002
 	addih	d15,d15,#16861
-.L117:
+.L135:
 	mul.f	d2,d2,d15
-.L84:
+.L94:
 	movh	d15,#16672
-.L118:
+.L136:
 	cmp.f	d15,d2,d15
 	extr.u	d15,d15,#0,#1
-.L119:
+.L137:
 	jeq	d15,#0,.L4
-.L120:
+.L138:
 	movh	d2,#16672
-.L121:
+.L139:
 	j	.L5
 .L4:
 	movh	d15,#17056
-.L122:
+.L140:
 	cmp.f	d15,d2,d15
 	extr.u	d15,d15,#2,#1
-.L123:
+.L141:
 	jeq	d15,#0,.L6
-.L124:
+.L142:
 	movh	d2,#17056
-.L125:
+.L143:
 	j	.L7
 .L6:
 .L7:
@@ -130,11 +130,11 @@ Ain_ConvertVoltageToDistanceGP2Y0A21YK0F:	.type	func
 .L8:
 .L3:
 	ret
-.L75:
+.L85:
 	
 __Ain_ConvertVoltageToDistanceGP2Y0A21YK0F_function_end:
 	.size	Ain_ConvertVoltageToDistanceGP2Y0A21YK0F,__Ain_ConvertVoltageToDistanceGP2Y0A21YK0F_function_end-Ain_ConvertVoltageToDistanceGP2Y0A21YK0F
-.L38:
+.L41:
 	; End of function
 	
 	.sdecl	'.text.Ain.Ain_AdcToVoltage',code,cluster('Ain_AdcToVoltage')
@@ -143,27 +143,27 @@ __Ain_ConvertVoltageToDistanceGP2Y0A21YK0F_function_end:
 	
 	.global	Ain_AdcToVoltage
 ; Function Ain_AdcToVoltage
-.L17:
+.L20:
 Ain_AdcToVoltage:	.type	func
 	mov.u	d15,#61440
 	addih	d15,d15,#17791
-.L104:
+.L122:
 	div.f	d15,d4,d15
-.L105:
+.L123:
 	movh	d0,#16672
-.L106:
+.L124:
 	div.f	d0,d5,d0
-.L107:
+.L125:
 	mul.f	d2,d15,d0
-.L108:
+.L126:
 	j	.L9
 .L9:
 	ret
-.L72:
+.L82:
 	
 __Ain_AdcToVoltage_function_end:
 	.size	Ain_AdcToVoltage,__Ain_AdcToVoltage_function_end-Ain_AdcToVoltage
-.L33:
+.L36:
 	; End of function
 	
 	.sdecl	'.text.Ain.Ain_MainFunction',code,cluster('Ain_MainFunction')
@@ -172,48 +172,78 @@ __Ain_AdcToVoltage_function_end:
 	
 	.global	Ain_MainFunction
 ; Function Ain_MainFunction
-.L19:
+.L22:
 Ain_MainFunction:	.type	func
+	mov	d0,#0
+.L95:
+	j	.L10
+.L11:
+.L12:
 	movh.a	a15,#@his(g_evadcChannel)
 	lea	a15,[a15]@los(g_evadcChannel)
-.L54:
+.L106:
+	mul	d15,d0,#8
+	addsc.a	a15,a15,d15,#0
+.L65:
 	ld.a	a2,[a15]4
-.L95:
+.L107:
 	ld.a	a2,[a2]4
-.L96:
+.L108:
 	ld.bu	d15,[a15]1
-.L62:
+.L73:
 	mul	d15,d15,#4
 	addsc.a	a15,a2,d15,#0
+.L109:
+	ld.w	d1,[a15]768
 .L97:
-	ld.w	d15,[a15]768
-.L85:
-	j	.L10
+	j	.L13
+.L13:
+	j	.L14
+.L14:
+	extr.u	d15,d1,#24,#8
+.L66:
+	jz.t	d15:7,.L12
+.L110:
+	movh.a	a15,#@his(Ain_Results)
+	lea	a15,[a15]@los(Ain_Results)
+.L111:
+	mul	d15,d0,#4
+	addsc.a	a15,a15,d15,#0
+.L71:
+	st.w	[a15],d1
+.L61:
+	add	d0,#1
 .L10:
-	j	.L11
-.L11:
+	jlt.u	d0,#1,.L11
+.L58:
 	movh.a	a15,#@his(Ain_AuxBufferDma)
 	lea	a15,[a15]@los(Ain_AuxBufferDma)
-.L59:
+.L112:
+	movh.a	a2,#@his(Ain_Results)
+	lea	a2,[a2]@los(Ain_Results)
+.L113:
+	ld.hu	d15,[a2]0
+	extr.u	d15,d15,#0,#16
+.L114:
 	st.w	[a15],d15
-.L60:
+.L115:
 	call	Ain_ProcessIRSensorValue
-.L98:
+.L96:
 	movh.a	a15,#@his(Ain_MainCounter)
 	lea	a15,[a15]@los(Ain_MainCounter)
 	movh.a	a2,#@his(Ain_MainCounter)
 	lea	a2,[a2]@los(Ain_MainCounter)
 	ld.w	d15,[a2]
-.L86:
+.L116:
 	add	d15,#1
 	st.w	[a15],d15
-.L99:
+.L117:
 	ret
-.L52:
+.L57:
 	
 __Ain_MainFunction_function_end:
 	.size	Ain_MainFunction,__Ain_MainFunction_function_end-Ain_MainFunction
-.L28:
+.L31:
 	; End of function
 	
 	.sdecl	'.data.Ain.Ain_MainCounter',data,cluster('Ain_MainCounter')
@@ -242,6 +272,13 @@ IRSensorValue:	.type	object
 Ain_CanRx_MeasuredVoltage:	.type	object
 	.size	Ain_CanRx_MeasuredVoltage,1
 	.space	1
+	.sdecl	'.bss.Ain.Ain_Results',data,cluster('Ain_Results')
+	.sect	'.bss.Ain.Ain_Results'
+	.global	Ain_Results
+	.align	2
+Ain_Results:	.type	object
+	.size	Ain_Results,4
+	.space	4
 	.sdecl	'.data.Ain._999001_actualVoltageReference',data,cluster('_999001_actualVoltageReference')
 	.sect	'.data.Ain._999001_actualVoltageReference'
 	.align	2
@@ -272,18 +309,18 @@ _999003_localRefValue:	.type	object
 	.calls	'Ain_MainFunction','',0
 	.sdecl	'.debug_info',debug
 	.sect	'.debug_info'
-.L21:
-	.word	177543
+.L24:
+	.word	177552
 	.half	3
-	.word	.L22
+	.word	.L25
 	.byte	4
-.L20:
+.L23:
 	.byte	1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L23
+	.word	.L26
 	.byte	2,1,1,3
 	.word	220
 	.byte	4
@@ -292,7 +329,7 @@ _999003_localRefValue:	.type	object
 	.word	223
 	.byte	6,0,7
 	.byte	'__fract',0,4,128,1
-.L71:
+.L81:
 	.byte	7
 	.byte	'float',0,4,4,8
 	.byte	'Ifx__float_to_fract',0,3,1,149,2,18
@@ -321,7 +358,7 @@ _999003_localRefValue:	.type	object
 	.byte	6,0,7
 	.byte	'unsigned int',0,4,7,7
 	.byte	'int',0,4,5
-.L80:
+.L59:
 	.byte	7
 	.byte	'unsigned char',0,1,8,10
 	.byte	'_Ifx_SRC_SRCR_Bits',0,4,68,16,4,11
@@ -410,7 +447,7 @@ _999003_localRefValue:	.type	object
 	.byte	'B',0
 	.word	922
 	.byte	4,2,35,0,0
-.L79:
+.L89:
 	.byte	7
 	.byte	'unsigned short int',0,2,7,10
 	.byte	'_Ifx_SCU_WDTCPU_CON1_Bits',0,6,217,9,16,4,11
@@ -1907,7 +1944,7 @@ _999003_localRefValue:	.type	object
 	.byte	'IfxCpu_areInterruptsEnabled',0,3,9,229,5,20
 	.word	507
 	.byte	1,1,6,0
-.L81:
+.L90:
 	.byte	7
 	.byte	'unsigned long int',0,4,7,8
 	.byte	'IfxCpu_getPerformanceCounter',0,3,9,251,6,19
@@ -3315,7 +3352,7 @@ _999003_localRefValue:	.type	object
 	.byte	'VF',0,1
 	.word	507
 	.byte	1,0,2,35,3,0
-.L69:
+.L62:
 	.byte	12,13,135,10,9,4,13
 	.byte	'U',0
 	.word	484
@@ -4579,20 +4616,20 @@ _999003_localRefValue:	.type	object
 	.byte	'evadc',0,12,129,20,67
 	.word	27021
 	.byte	6,0
-.L61:
+.L72:
 	.byte	8
 	.byte	'IfxEvadc_getResult',0,3,12,190,20,28
 	.word	19252
 	.byte	1,1
-.L63:
+.L74:
 	.byte	5
 	.byte	'group',0,12,190,20,60
 	.word	20402
-.L65:
+.L76:
 	.byte	5
 	.byte	'resultIdx',0,12,190,20,74
 	.word	10326
-.L67:
+.L78:
 	.byte	6,0,17,12,164,3,9,1,18
 	.byte	'IfxEvadc_RequestSource_queue0',0,0,18
 	.byte	'IfxEvadc_RequestSource_queue1',0,1,18
@@ -4711,16 +4748,16 @@ _999003_localRefValue:	.type	object
 	.word	29218
 	.byte	4,2,35,4,0,3
 	.word	29223
-.L53:
+.L64:
 	.byte	8
 	.byte	'IfxEvadc_Adc_getResult',0,3,14,183,8,28
 	.word	19252
 	.byte	1,1
-.L55:
+.L67:
 	.byte	5
 	.byte	'channel',0,14,183,8,73
 	.word	29281
-.L57:
+.L69:
 	.byte	19,6,0,0,22
 	.word	228
 	.byte	23
@@ -25079,18 +25116,22 @@ _999003_localRefValue:	.type	object
 	.byte	2,2,35,42,0,28
 	.byte	'IfxEvadc_Adc_Config',0,14,254,2,3
 	.word	177295
-.L82:
+.L91:
 	.byte	15,4
 	.word	10326
+	.byte	16,0,0
+.L92:
+	.byte	15,4
+	.word	19252
 	.byte	16,0,0,15,8
 	.word	29223
 	.byte	16,0,0,30
-	.byte	'g_evadcChannel',0,17,10,29
-	.word	177512
+	.byte	'g_evadcChannel',0,17,12,29
+	.word	177521
 	.byte	1,1,0
 	.sdecl	'.debug_abbrev',debug
 	.sect	'.debug_abbrev'
-.L22:
+.L25:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,21,0,54,15,39,12,0,0,3,15,0,73,19,0,0,4,46,1,3,8,32,13
 	.byte	58,15,59,15,57,15,54,15,39,12,0,0,5,5,0,3,8,58,15,59,15,57,15,73,19,0,0,6,11,0,0,0,7,36,0,3,8,11,15,62
 	.byte	15,0,0,8,46,1,3,8,32,13,58,15,59,15,57,15,73,19,54,15,39,12,0,0,9,59,0,3,8,0,0,10,19,1,3,8,58,15,59,15
@@ -25102,12 +25143,12 @@ _999003_localRefValue:	.type	object
 	.byte	73,19,0,0,29,21,0,54,15,0,0,30,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
 	.sdecl	'.debug_line',debug
 	.sect	'.debug_line'
-.L23:
-	.word	.L88-.L87
-.L87:
+.L26:
+	.word	.L99-.L98
+.L98:
 	.half	3
-	.word	.L90-.L89
-.L89:
+	.word	.L101-.L100
+.L100:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg',0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc',0
@@ -25155,69 +25196,85 @@ _999003_localRefValue:	.type	object
 	.byte	'IfxSmu_regdef.h',0,1,0,0
 	.byte	'IfxDmu_regdef.h',0,1,0,0
 	.byte	'IfxCbs_regdef.h',0,1,0,0,0
-.L90:
-.L88:
+.L101:
+.L99:
 	.sdecl	'.debug_info',debug,cluster('Ain_MainFunction')
 	.sect	'.debug_info'
-.L24:
-	.word	426
+.L27:
+	.word	521
 	.half	3
-	.word	.L25
+	.word	.L28
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L27,.L26
+	.word	.L30,.L29
 	.byte	2
-	.word	.L20
+	.word	.L23
 	.byte	3
-	.byte	'Ain_MainFunction',0,1,65,6,1,1,1
-	.word	.L19,.L52,.L18
+	.byte	'Ain_MainFunction',0,1,67,6,1,1,1
+	.word	.L22,.L57,.L21
 	.byte	4
-	.word	.L19,.L52
+	.word	.L22,.L57
+	.byte	4
+	.word	.L22,.L58
 	.byte	5
-	.word	.L53,.L54,.L11
-	.byte	6
-	.word	.L55,.L56
-	.byte	7
-	.word	.L57,.L58
+	.byte	'i',0,1,69,15
+	.word	.L59,.L60
+	.byte	4
+	.word	.L12,.L61
 	.byte	5
-	.word	.L61,.L62,.L10
+	.byte	'conversionResult',0,1,72,25
+	.word	.L62,.L63
 	.byte	6
-	.word	.L63,.L64
-	.byte	6
-	.word	.L65,.L66
+	.word	.L64,.L65,.L66
 	.byte	7
 	.word	.L67,.L68
 	.byte	8
-	.byte	'tmpResult',0,2,192,20,21
 	.word	.L69,.L70
-	.byte	0,0,5
-	.word	.L61,.L59,.L60
 	.byte	6
-	.word	.L63,.L64
-	.byte	6
-	.word	.L65,.L66
-	.byte	0,0,0,5
-	.word	.L53,.L59,.L60
-	.byte	6
-	.word	.L55,.L56
-	.byte	0,0,0,0
+	.word	.L72,.L73,.L13
+	.byte	7
+	.word	.L74,.L75
+	.byte	7
+	.word	.L76,.L77
+	.byte	8
+	.word	.L78,.L79
+	.byte	5
+	.byte	'tmpResult',0,2,192,20,21
+	.word	.L62,.L80
+	.byte	0,0,6
+	.word	.L72,.L14,.L66
+	.byte	7
+	.word	.L74,.L75
+	.byte	7
+	.word	.L76,.L77
+	.byte	0,6
+	.word	.L72,.L71,.L61
+	.byte	7
+	.word	.L74,.L75
+	.byte	7
+	.word	.L76,.L77
+	.byte	0,0,0,6
+	.word	.L64,.L71,.L61
+	.byte	7
+	.word	.L67,.L68
+	.byte	0,0,0,0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('Ain_MainFunction')
 	.sect	'.debug_abbrev'
-.L25:
+.L28:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,29,1,49,16,17,1,18,1,0,0,6,5,0,49,16,2,6,0,0,7,11
-	.byte	1,49,16,85,6,0,0,8,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,6,29,1
+	.byte	49,16,17,1,18,1,0,0,7,5,0,49,16,2,6,0,0,8,11,1,49,16,85,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('Ain_MainFunction')
 	.sect	'.debug_line'
-.L26:
-	.word	.L92-.L91
-.L91:
+.L29:
+	.word	.L103-.L102
+.L102:
 	.half	3
-	.word	.L94-.L93
-.L93:
+	.word	.L105-.L104
+.L104:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc',0
 	.byte	0
@@ -25225,454 +25282,508 @@ _999003_localRefValue:	.type	object
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\Evadc\\Std\\IfxEvadc.h',0
 	.byte	0,0,0
 	.byte	'IfxEvadc_Adc.h',0,1,0,0,0
-.L94:
-	.byte	5,51,7,0,5,2
-	.word	.L19
-	.byte	3,194,0,1,4,3,5,38,9
-	.half	.L54-.L19
-	.byte	3,246,7,1,5,45,9
-	.half	.L95-.L54
+.L105:
+	.byte	5,17,7,0,5,2
+	.word	.L22
+	.byte	3,196,0,1,5,38,9
+	.half	.L95-.L22
+	.byte	1,5,56,9
+	.half	.L12-.L95
+	.byte	3,6,1,5,70,9
+	.half	.L106-.L12
+	.byte	1,4,3,5,38,9
+	.half	.L65-.L106
+	.byte	3,238,7,1,5,45,9
+	.half	.L107-.L65
 	.byte	1,5,61,9
-	.half	.L96-.L95
+	.half	.L108-.L107
 	.byte	1,4,2,5,29,9
-	.half	.L62-.L96
+	.half	.L73-.L108
 	.byte	3,136,12,1,5,40,9
-	.half	.L97-.L62
+	.half	.L109-.L73
 	.byte	1,5,5,9
-	.half	.L85-.L97
+	.half	.L97-.L109
 	.byte	3,2,1,4,3,9
-	.half	.L10-.L85
-	.byte	3,246,115,1,4,1,9
-	.half	.L11-.L10
-	.byte	3,138,120,1,5,25,9
-	.half	.L59-.L11
+	.half	.L13-.L97
+	.byte	3,246,115,1,4,1,5,36,9
+	.half	.L14-.L13
+	.byte	3,147,120,1,5,18,9
+	.half	.L66-.L14
+	.byte	1,5,9,7,9
+	.half	.L110-.L66
+	.byte	3,3,1,5,20,9
+	.half	.L111-.L110
+	.byte	1,5,24,9
+	.half	.L71-.L111
+	.byte	1,5,41,9
+	.half	.L61-.L71
+	.byte	3,118,1,5,38,9
+	.half	.L10-.L61
+	.byte	1,5,5,7,9
+	.half	.L58-.L10
+	.byte	3,13,1,5,27,9
+	.half	.L112-.L58
+	.byte	1,5,43,9
+	.half	.L113-.L112
+	.byte	1,5,25,9
+	.half	.L114-.L113
 	.byte	1,5,29,9
-	.half	.L60-.L59
+	.half	.L115-.L114
 	.byte	3,1,1,5,5,9
-	.half	.L98-.L60
+	.half	.L96-.L115
 	.byte	3,1,1,5,20,9
-	.half	.L86-.L98
+	.half	.L116-.L96
 	.byte	1,5,1,9
-	.half	.L99-.L86
+	.half	.L117-.L116
 	.byte	3,1,1,7,9
-	.half	.L28-.L99
+	.half	.L31-.L117
 	.byte	0,1,1
-.L92:
+.L103:
 	.sdecl	'.debug_ranges',debug,cluster('Ain_MainFunction')
 	.sect	'.debug_ranges'
-.L27:
-	.word	-1,.L19,0,.L28-.L19,0,0
-.L58:
-	.word	-1,.L19,.L54-.L19,.L11-.L19,.L59-.L19,.L60-.L19,0,0
-.L68:
-	.word	-1,.L19,.L62-.L19,.L10-.L19,.L59-.L19,.L60-.L19,0,0
+.L30:
+	.word	-1,.L22,0,.L31-.L22,0,0
+.L70:
+	.word	-1,.L22,.L65-.L22,.L66-.L22,.L71-.L22,.L61-.L22,0,0
+.L79:
+	.word	-1,.L22,.L73-.L22,.L13-.L22,.L14-.L22,.L66-.L22,.L71-.L22,.L61-.L22,0,0
 	.sdecl	'.debug_info',debug,cluster('Ain_AdcToVoltage')
 	.sect	'.debug_info'
-.L29:
+.L32:
 	.word	318
 	.half	3
-	.word	.L30
+	.word	.L33
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L32,.L31
+	.word	.L35,.L34
 	.byte	2
-	.word	.L20
+	.word	.L23
 	.byte	3
-	.byte	'Ain_AdcToVoltage',0,1,60,7
-	.word	.L71
+	.byte	'Ain_AdcToVoltage',0,1,62,7
+	.word	.L81
 	.byte	1,1,1
-	.word	.L17,.L72,.L16
+	.word	.L20,.L82,.L19
 	.byte	4
-	.byte	'rawAdc',0,1,60,30
-	.word	.L71,.L73
+	.byte	'rawAdc',0,1,62,30
+	.word	.L81,.L83
 	.byte	4
-	.byte	'refVoltage',0,1,60,44
-	.word	.L71,.L74
+	.byte	'refVoltage',0,1,62,44
+	.word	.L81,.L84
 	.byte	5
-	.word	.L17,.L72
+	.word	.L20,.L82
 	.byte	0,0
 	.sdecl	'.debug_abbrev',debug,cluster('Ain_AdcToVoltage')
 	.sect	'.debug_abbrev'
-.L30:
+.L33:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
 	.sdecl	'.debug_line',debug,cluster('Ain_AdcToVoltage')
 	.sect	'.debug_line'
-.L31:
-	.word	.L101-.L100
-.L100:
+.L34:
+	.word	.L119-.L118
+.L118:
 	.half	3
-	.word	.L103-.L102
-.L102:
+	.word	.L121-.L120
+.L120:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Io/Ain/Ain.c',0,0,0,0,0
-.L103:
+.L121:
 	.byte	5,29,7,0,5,2
-	.word	.L17
-	.byte	3,61,1,5,27,9
-	.half	.L104-.L17
+	.word	.L20
+	.byte	3,63,1,5,27,9
+	.half	.L122-.L20
 	.byte	1,5,67,9
-	.half	.L105-.L104
+	.half	.L123-.L122
 	.byte	1,5,65,9
-	.half	.L106-.L105
+	.half	.L124-.L123
 	.byte	1,5,44,9
-	.half	.L107-.L106
+	.half	.L125-.L124
 	.byte	1,5,5,9
-	.half	.L108-.L107
+	.half	.L126-.L125
 	.byte	1,5,1,9
-	.half	.L9-.L108
+	.half	.L9-.L126
 	.byte	3,1,1,7,9
-	.half	.L33-.L9
+	.half	.L36-.L9
 	.byte	0,1,1
-.L101:
+.L119:
 	.sdecl	'.debug_ranges',debug,cluster('Ain_AdcToVoltage')
 	.sect	'.debug_ranges'
-.L32:
-	.word	-1,.L17,0,.L33-.L17,0,0
+.L35:
+	.word	-1,.L20,0,.L36-.L20,0,0
 	.sdecl	'.debug_info',debug,cluster('Ain_ConvertVoltageToDistanceGP2Y0A21YK0F')
 	.sect	'.debug_info'
-.L34:
+.L37:
 	.word	344
 	.half	3
-	.word	.L35
+	.word	.L38
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L37,.L36
+	.word	.L40,.L39
 	.byte	2
-	.word	.L20
+	.word	.L23
 	.byte	3
-	.byte	'Ain_ConvertVoltageToDistanceGP2Y0A21YK0F',0,1,30,7
-	.word	.L71
+	.byte	'Ain_ConvertVoltageToDistanceGP2Y0A21YK0F',0,1,32,7
+	.word	.L81
 	.byte	1,1,1
-	.word	.L15,.L75,.L14
+	.word	.L18,.L85,.L17
 	.byte	4
-	.byte	'voltage',0,1,30,54
-	.word	.L71,.L76
+	.byte	'voltage',0,1,32,54
+	.word	.L81,.L86
 	.byte	5
-	.word	.L15,.L75
+	.word	.L18,.L85
 	.byte	6
-	.byte	'distanceCm',0,1,32,11
-	.word	.L71,.L77
+	.byte	'distanceCm',0,1,34,11
+	.word	.L81,.L87
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('Ain_ConvertVoltageToDistanceGP2Y0A21YK0F')
 	.sect	'.debug_abbrev'
-.L35:
+.L38:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6
 	.byte	52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('Ain_ConvertVoltageToDistanceGP2Y0A21YK0F')
 	.sect	'.debug_line'
-.L36:
-	.word	.L110-.L109
-.L109:
+.L39:
+	.word	.L128-.L127
+.L127:
 	.half	3
-	.word	.L112-.L111
-.L111:
+	.word	.L130-.L129
+.L129:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Io/Ain/Ain.c',0,0,0,0,0
-.L112:
+.L130:
 	.byte	5,20,7,0,5,2
-	.word	.L15
-	.byte	3,32,1,5,17,9
-	.half	.L113-.L15
+	.word	.L18
+	.byte	3,34,1,5,17,9
+	.half	.L131-.L18
 	.byte	1,5,5,9
-	.half	.L114-.L113
+	.half	.L132-.L131
 	.byte	1,5,16,7,9
-	.half	.L115-.L114
+	.half	.L133-.L132
 	.byte	3,2,1,5,9,9
-	.half	.L116-.L115
+	.half	.L134-.L133
 	.byte	1,5,42,9
-	.half	.L2-.L116
+	.half	.L2-.L134
 	.byte	3,7,1,5,18,9
-	.half	.L83-.L2
+	.half	.L93-.L2
 	.byte	1,5,26,9
-	.half	.L117-.L83
+	.half	.L135-.L93
 	.byte	1,5,22,9
-	.half	.L84-.L117
+	.half	.L94-.L135
 	.byte	3,2,1,5,20,9
-	.half	.L118-.L84
+	.half	.L136-.L94
 	.byte	1,5,5,9
-	.half	.L119-.L118
+	.half	.L137-.L136
 	.byte	1,5,22,7,9
-	.half	.L120-.L119
+	.half	.L138-.L137
 	.byte	3,2,1,5,46,9
-	.half	.L121-.L120
+	.half	.L139-.L138
 	.byte	1,5,27,9
-	.half	.L4-.L121
+	.half	.L4-.L139
 	.byte	3,2,1,5,25,9
-	.half	.L122-.L4
+	.half	.L140-.L4
 	.byte	1,5,10,9
-	.half	.L123-.L122
+	.half	.L141-.L140
 	.byte	1,5,22,7,9
-	.half	.L124-.L123
+	.half	.L142-.L141
 	.byte	3,2,1,5,46,9
-	.half	.L125-.L124
+	.half	.L143-.L142
 	.byte	1,5,5,9
-	.half	.L5-.L125
+	.half	.L5-.L143
 	.byte	3,7,1,5,1,9
 	.half	.L3-.L5
 	.byte	3,1,1,7,9
-	.half	.L38-.L3
+	.half	.L41-.L3
 	.byte	0,1,1
-.L110:
+.L128:
 	.sdecl	'.debug_ranges',debug,cluster('Ain_ConvertVoltageToDistanceGP2Y0A21YK0F')
 	.sect	'.debug_ranges'
-.L37:
-	.word	-1,.L15,0,.L38-.L15,0,0
+.L40:
+	.word	-1,.L18,0,.L41-.L18,0,0
 	.sdecl	'.debug_info',debug,cluster('Ain_ProcessIRSensorValue')
 	.sect	'.debug_info'
-.L39:
+.L42:
 	.word	383
 	.half	3
-	.word	.L40
+	.word	.L43
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L42,.L41
+	.word	.L45,.L44
 	.byte	2
-	.word	.L20
+	.word	.L23
 	.byte	3
-	.byte	'Ain_ProcessIRSensorValue',0,1,17,6,1,1,1
-	.word	.L13,.L78,.L12
+	.byte	'Ain_ProcessIRSensorValue',0,1,19,6,1,1,1
+	.word	.L16,.L88,.L15
 	.byte	4
-	.word	.L13,.L78
+	.word	.L16,.L88
 	.byte	5
-	.byte	'actualVoltageReference',0,1,19,18
-	.word	.L71
+	.byte	'actualVoltageReference',0,1,21,18
+	.word	.L81
 	.byte	5,3
 	.word	_999001_actualVoltageReference
 	.byte	5
-	.byte	'localVoltageCalculated',0,1,20,18
-	.word	.L71
+	.byte	'localVoltageCalculated',0,1,22,18
+	.word	.L81
 	.byte	5,3
 	.word	_999002_localVoltageCalculated
 	.byte	5
-	.byte	'localRefValue',0,1,21,19
-	.word	.L79
+	.byte	'localRefValue',0,1,23,19
+	.word	.L89
 	.byte	5,3
 	.word	_999003_localRefValue
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('Ain_ProcessIRSensorValue')
 	.sect	'.debug_abbrev'
-.L40:
+.L43:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
 	.sdecl	'.debug_line',debug,cluster('Ain_ProcessIRSensorValue')
 	.sect	'.debug_line'
-.L41:
-	.word	.L127-.L126
-.L126:
+.L44:
+	.word	.L145-.L144
+.L144:
 	.half	3
-	.word	.L129-.L128
-.L128:
+	.word	.L147-.L146
+.L146:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Io/Ain/Ain.c',0,0,0,0,0
-.L129:
+.L147:
 	.byte	5,5,7,0,5,2
-	.word	.L13
-	.byte	3,22,1,5,22,9
-	.half	.L130-.L13
+	.word	.L16
+	.byte	3,24,1,5,22,9
+	.half	.L148-.L16
 	.byte	1,5,20,9
-	.half	.L131-.L130
+	.half	.L149-.L148
 	.byte	1,5,5,9
-	.half	.L132-.L131
+	.half	.L150-.L149
 	.byte	3,1,1,5,30,9
-	.half	.L133-.L132
+	.half	.L151-.L150
 	.byte	1,5,46,9
-	.half	.L134-.L133
+	.half	.L152-.L151
 	.byte	1,5,44,9
-	.half	.L135-.L134
+	.half	.L153-.L152
 	.byte	1,5,28,9
-	.half	.L136-.L135
+	.half	.L154-.L153
 	.byte	1,5,5,9
-	.half	.L137-.L136
+	.half	.L155-.L154
 	.byte	3,1,1,5,54,9
-	.half	.L138-.L137
+	.half	.L156-.L155
 	.byte	1,5,70,9
-	.half	.L139-.L138
+	.half	.L157-.L156
 	.byte	1,5,47,9
-	.half	.L140-.L139
+	.half	.L158-.L157
 	.byte	1,5,76,9
-	.half	.L141-.L140
+	.half	.L159-.L158
 	.byte	1,5,28,9
-	.half	.L142-.L141
+	.half	.L160-.L159
 	.byte	1,5,5,9
-	.half	.L143-.L142
+	.half	.L161-.L160
 	.byte	3,1,1,5,62,9
-	.half	.L144-.L143
+	.half	.L162-.L161
 	.byte	1,5,19,9
-	.half	.L145-.L144
+	.half	.L163-.L162
 	.byte	1,5,1,9
-	.half	.L146-.L145
+	.half	.L164-.L163
 	.byte	3,1,1,7,9
-	.half	.L43-.L146
+	.half	.L46-.L164
 	.byte	0,1,1
-.L127:
+.L145:
 	.sdecl	'.debug_ranges',debug,cluster('Ain_ProcessIRSensorValue')
 	.sect	'.debug_ranges'
-.L42:
-	.word	-1,.L13,0,.L43-.L13,0,0
+.L45:
+	.word	-1,.L16,0,.L46-.L16,0,0
 	.sdecl	'.debug_info',debug,cluster('IRSensorValue')
 	.sect	'.debug_info'
-.L44:
+.L47:
 	.word	247
 	.half	3
-	.word	.L45
+	.word	.L48
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L20
+	.word	.L23
 	.byte	3
 	.byte	'IRSensorValue',0,17,7,7
-	.word	.L71
+	.word	.L81
 	.byte	1,5,3
 	.word	IRSensorValue
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('IRSensorValue')
 	.sect	'.debug_abbrev'
-.L45:
+.L48:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
 	.byte	0,0,0
 	.sdecl	'.debug_info',debug,cluster('Ain_CanRx_MeasuredVoltage')
 	.sect	'.debug_info'
-.L46:
+.L49:
 	.word	259
 	.half	3
-	.word	.L47
+	.word	.L50
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L20
+	.word	.L23
 	.byte	3
 	.byte	'Ain_CanRx_MeasuredVoltage',0,17,8,7
-	.word	.L80
+	.word	.L59
 	.byte	1,5,3
 	.word	Ain_CanRx_MeasuredVoltage
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('Ain_CanRx_MeasuredVoltage')
 	.sect	'.debug_abbrev'
-.L47:
+.L50:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
 	.byte	0,0,0
 	.sdecl	'.debug_info',debug,cluster('Ain_MainCounter')
 	.sect	'.debug_info'
-.L48:
+.L51:
 	.word	248
 	.half	3
-	.word	.L49
+	.word	.L52
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L20
+	.word	.L23
 	.byte	3
 	.byte	'Ain_MainCounter',0,17,5,15
-	.word	.L81
+	.word	.L90
 	.byte	5,3
 	.word	Ain_MainCounter
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('Ain_MainCounter')
 	.sect	'.debug_abbrev'
-.L49:
+.L52:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
 	.sdecl	'.debug_info',debug,cluster('Ain_AuxBufferDma')
 	.sect	'.debug_info'
-.L50:
+.L53:
 	.word	250
 	.half	3
-	.word	.L51
+	.word	.L54
 	.byte	4,1
 	.byte	'../BSW/Io/Ain/Ain.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L20
+	.word	.L23
 	.byte	3
 	.byte	'Ain_AuxBufferDma',0,17,6,8
-	.word	.L82
+	.word	.L91
 	.byte	1,5,3
 	.word	Ain_AuxBufferDma
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('Ain_AuxBufferDma')
 	.sect	'.debug_abbrev'
-.L51:
+.L54:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('Ain_Results')
+	.sect	'.debug_info'
+.L55:
+	.word	245
+	.half	3
+	.word	.L56
+	.byte	4,1
+	.byte	'../BSW/Io/Ain/Ain.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1,2
+	.word	.L23
+	.byte	3
+	.byte	'Ain_Results',0,17,10,17
+	.word	.L92
+	.byte	1,5,3
+	.word	Ain_Results
+	.byte	0
+	.sdecl	'.debug_abbrev',debug,cluster('Ain_Results')
+	.sect	'.debug_abbrev'
+.L56:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
 	.byte	0,0,0
 	.sdecl	'.debug_loc',debug,cluster('Ain_AdcToVoltage')
 	.sect	'.debug_loc'
-.L16:
-	.word	-1,.L17,0,.L72-.L17
+.L19:
+	.word	-1,.L20,0,.L82-.L20
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L73:
-	.word	-1,.L17,0,.L72-.L17
+.L83:
+	.word	-1,.L20,0,.L82-.L20
 	.half	1
 	.byte	84
 	.word	0,0
-.L74:
-	.word	-1,.L17,0,.L72-.L17
+.L84:
+	.word	-1,.L20,0,.L82-.L20
 	.half	1
 	.byte	85
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('Ain_ConvertVoltageToDistanceGP2Y0A21YK0F')
 	.sect	'.debug_loc'
-.L14:
-	.word	-1,.L15,0,.L75-.L15
+.L17:
+	.word	-1,.L18,0,.L85-.L18
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L77:
-	.word	-1,.L15,.L84-.L15,.L3-.L15
+.L87:
+	.word	-1,.L18,.L94-.L18,.L3-.L18
 	.half	1
 	.byte	82
 	.word	0,0
-.L76:
-	.word	-1,.L15,0,.L83-.L15
+.L86:
+	.word	-1,.L18,0,.L93-.L18
 	.half	1
 	.byte	84
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('Ain_MainFunction')
 	.sect	'.debug_loc'
-.L18:
-	.word	-1,.L19,0,.L52-.L19
+.L21:
+	.word	-1,.L22,0,.L57-.L22
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L56:
+.L68:
 	.word	0,0
-.L64:
+.L63:
 	.word	0,0
-.L66:
+.L75:
 	.word	0,0
-.L70:
-	.word	-1,.L19,.L85-.L19,.L86-.L19
+.L60:
+	.word	-1,.L22,.L95-.L22,.L96-.L22
+	.half	5
+	.byte	144,32,157,32,0
+	.word	0,0
+.L77:
+	.word	0,0
+.L80:
+	.word	-1,.L22,.L97-.L22,.L10-.L22
 	.half	1
-	.byte	95
+	.byte	81
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('Ain_ProcessIRSensorValue')
 	.sect	'.debug_loc'
-.L12:
-	.word	-1,.L13,0,.L78-.L13
+.L15:
+	.word	-1,.L16,0,.L88-.L16
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L147:
+.L165:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
@@ -25680,18 +25791,18 @@ _999003_localRefValue:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('Ain_ProcessIRSensorValue')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L147,.L13,.L78-.L13
+	.word	.L165,.L16,.L88-.L16
 	.sdecl	'.debug_frame',debug,cluster('Ain_ConvertVoltageToDistanceGP2Y0A21YK0F')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L147,.L15,.L75-.L15
+	.word	.L165,.L18,.L85-.L18
 	.sdecl	'.debug_frame',debug,cluster('Ain_AdcToVoltage')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L147,.L17,.L72-.L17
+	.word	.L165,.L20,.L82-.L20
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('Ain_MainFunction')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L147,.L19,.L52-.L19
+	.word	.L165,.L22,.L57-.L22
 	; Module end

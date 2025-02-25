@@ -47,7 +47,7 @@ extern int vPortSyscallHandler_core2( unsigned char id );
 #define IFX_CFG_TRAP_H 1
 #endif
 /*define a hook for internal protection error traps*/
-#define IFX_CFG_CPU_TRAP_IPE_HOOK(trapWatch)    ((void)trapWatch)
+#define IFX_CFG_CPU_TRAP_IPE_HOOK(trapWatch)    ((void)McuSm_TRAP1(trapWatch))
 /*define a hook for instruction error traps*/
 #define IFX_CFG_CPU_TRAP_IE_HOOK(trapWatch)     ((void)McuSm_TRAP2(trapWatch))
 /*define a hook for bus error traps*/
@@ -125,6 +125,7 @@ extern void McuSm_PIEAR_PIETR_Capture(void);
 extern void McuSm_DIEAR_DIETR_Capture(void);
 extern void McuSm_DATR_DEADD_Capture(void);
 extern void McuSm_AG_Capture(void);
+extern void McuSm_TRAP1(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP2(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP3(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP4(IfxCpu_Trap trapInfo);

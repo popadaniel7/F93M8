@@ -15,6 +15,7 @@
 #include "ColDet.h"
 #include "EnergyMgmt.h"
 #include "DiagMaster.h"
+#include "SafetyKit_InternalWatchdogs.h"
 
 static uint32 Bsw_Wrapper_MainCounter_C0 = 0u;
 static uint32 Bsw_Wrapper_MainCounter_C1 = 0u;
@@ -97,13 +98,13 @@ void Bsw_Wrapper_MainFunction_C0(void)
     DcyHandler_CanRx_RequestDiagnosisMode = DiagMaster_DiagnosticModeActivated;
     DcyHandler_CanRx_ResetDcy = DiagMaster_ResetDcy;
 
-    Wdg_ReloadCpu0Watchdog();
+    serviceCpuWatchdog();
     Wdg_ReloadSafetyWatchdog();
     Bsw_Wrapper_MainCounter_C0++;
 }
 void Bsw_Wrapper_MainFunction_C1(void)
 {
-    Wdg_ReloadCpu1Watchdog();
+    serviceCpuWatchdog();
 
     if(SYSMGR_SLEEP == SysMgr_EcuState)
     {
@@ -123,7 +124,7 @@ void Bsw_Wrapper_MainFunction_C1(void)
 }
 void Bsw_Wrapper_MainFunction_C2(void)
 {
-    Wdg_ReloadCpu2Watchdog();
+    serviceCpuWatchdog();
 
     if(SYSMGR_SLEEP == SysMgr_EcuState)
     {

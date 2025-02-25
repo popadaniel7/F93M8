@@ -256,7 +256,8 @@ void IfxCpu_Trap_nonMaskableInterrupt(uint32 tin)
 {
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_nonMaskableInterrupt, tin);
-    IFX_CFG_CPU_TRAP_NMI_HOOK(trapWatch);    
+    IFX_CFG_CPU_TRAP_NMI_HOOK(trapWatch);
+    //IFX_CFG_CPU_TRAP_DEBUG;
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
 }
