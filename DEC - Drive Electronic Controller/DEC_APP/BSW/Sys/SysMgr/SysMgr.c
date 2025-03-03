@@ -14,14 +14,15 @@
 #include "IfxPort.h"
 #include "IfxPort_reg.h"
 #include "Dem.h"
+#include "SafetyKit_InternalWatchdogs.h"
 
 static uint32 SysMgr_MainCounter = 0u;
+uint32 SysMgr_RunCounter = 0u;
 SysMgr_EcuState_t SysMgr_EcuState = SYSMGR_INIT;
 uint8 SysMgr_NoBusActivity = 0u;
 uint8 SysMgr_Core1OnHalt = 0u;
 uint8 SysMgr_Core2OnHalt = 0u;
 float SysMgr_McuTemperature = 0u;
-
 
 void SysMgr_ProcessResetDtc(void);
 void SysMgr_EcuStateMachine(void);
@@ -30,6 +31,14 @@ void SysMgr_WakeupInitScr(void);
 void SysMgr_PreSleepInitScr(void);
 void SysMgr_LoadScr(void);
 void SysMgr_MainFunction(void);
+
+void SysMgr_GoSleep(void);
+
+void SysMgr_GoSleep(void)
+{
+
+}
+
 
 void SysMgr_ProcessResetDtc(void)
 {
@@ -60,6 +69,7 @@ void SysMgr_EcuStateMachine(void)
             if(0u == SysMgr_MainCounter)
             {
                 SysMgr_EcuState = SYSMGR_RUN;
+                SysMgr_RunCounter = 12000u;
             }
             else
             {
@@ -69,21 +79,27 @@ void SysMgr_EcuStateMachine(void)
         case SYSMGR_RUN:
             if(0u == SysMgr_NoBusActivity)
             {
-                SysMgr_EcuState = SYSMGR_POSTRUN;
-                Nvm_WriteAllFinished = 0u;
+                if(0u != SysMgr_RunCounter)
+                {
+                    SysMgr_RunCounter--;
+                }
+                else
+                {
+                    SysMgr_EcuState = SYSMGR_POSTRUN;
+                    Nvm_WriteAllFinished = 0u;
+                }
             }
             else
             {
-                /* Do nothing. */
+                SysMgr_RunCounter = 0u;
             }
             break;
         case SYSMGR_POSTRUN:
-            Nvm_WriteAll();
+            //Nvm_WriteAll();
 
-            if(0u == SysMgr_NoBusActivity &&
-                    2u == Nvm_WriteAllFinished)
+            if(0u == SysMgr_NoBusActivity)// &&2u == Nvm_WriteAllFinished)
             {
-                //SysMgr_EcuState = SYSMGR_SLEEP;
+                SysMgr_EcuState = SYSMGR_SLEEP;
             }
             else
             {
@@ -95,8 +111,8 @@ void SysMgr_EcuStateMachine(void)
                     1u == SysMgr_Core2OnHalt)
             {
                 IfxCpu_disableInterrupts();
-                SysMgr_LoadScr();
                 SysMgr_PreSleepInitScr();
+                SysMgr_LoadScr();
                 SysMgr_GoSleepSequence();
             }
             else
@@ -116,15 +132,16 @@ void SysMgr_GoSleepSequence(void)
     IfxPmsPm_WakeupConfig wakeConfig;
     IfxScuCcu_Config clockConfig;
 
-    Wdg_ReloadCpu0Watchdog();
-    Wdg_DeInitializeCpu0Watchdog();
-    Wdg_DeInitializeSafetyWatchdog();
-    Can_Sleep();
-    IfxEvadc_disableModule(g_evadc.evadc);
-    IfxFce_Crc_deInitModule(&g_fceCrc.fceCrc);
-    vTaskSuspendAll_core0();
-    vTaskEndScheduler_core0();
-    IfxStm_disableModule(&MODULE_STM0);
+//    serviceCpuWatchdog();
+//    serviceSafetyWatchdog();
+//    Wdg_DeInitializeCpu0Watchdog();
+//    Wdg_DeInitializeSafetyWatchdog();
+//    Can_Sleep();
+//    IfxEvadc_disableModule(g_evadc.evadc);
+//    IfxFce_Crc_deInitModule(&g_fceCrc.fceCrc);
+//    vTaskSuspendAll_core0();
+//    vTaskEndScheduler_core0();
+//    IfxStm_disableModule(&MODULE_STM0);
 
     SRC_CAN_CAN0_INT0.B.SRE = 0u;
     SRC_CAN_CAN0_INT1.B.SRE = 0u;
@@ -139,35 +156,27 @@ void SysMgr_GoSleepSequence(void)
     SRC_STM2SR0.B.SRE = 0u;
     SRC_STM2SR1.B.SRE = 0u;
 
-    for (uint8 portIndex = 0; portIndex < IFXPORT_NUM_MODULES; portIndex++)
-    {
-        Ifx_P *portSfr = IfxPort_getAddress(portIndex);
-        if (portSfr == NULL_PTR)
-        {
-            continue;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
+//    Ifx_P *portSfr0 = IfxPort_getAddress(0);
+//    Ifx_P *portSfr20 = IfxPort_getAddress(20);
+//
+//    IfxPort_resetPinControllerSelection(portSfr0, 0);
+//    IfxPort_setPinMode(portSfr0, 0, IfxPort_Mode_inputNoPullDevice);
+//    IfxPort_setPinPadDriver(portSfr0, 0, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+//    IfxPort_resetPinControllerSelection(portSfr0, 1);
+//    IfxPort_setPinMode(portSfr0, 1, IfxPort_Mode_inputNoPullDevice);
+//    IfxPort_setPinPadDriver(portSfr0, 1, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+//    IfxPort_resetPinControllerSelection(portSfr20, 6);
+//    IfxPort_setPinMode(portSfr20, 6, IfxPort_Mode_inputNoPullDevice);
+//    IfxPort_setPinPadDriver(portSfr20, 6, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+//    IfxPort_resetPinControllerSelection(portSfr20, 7);
+//    IfxPort_setPinMode(portSfr20, 7, IfxPort_Mode_inputNoPullDevice);
+//    IfxPort_setPinPadDriver(portSfr20, 7, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+//    IfxPort_resetPinControllerSelection(portSfr20, 8);
+//    IfxPort_setPinMode(portSfr20, 8, IfxPort_Mode_inputNoPullDevice);
+//    IfxPort_setPinPadDriver(portSfr20, 8, IfxPort_PadDriver_cmosAutomotiveSpeed1);
 
-        for (uint8 pinIndex = 0; pinIndex < 16; pinIndex++)
-        {
-            if ((portIndex == 33) && (pinIndex == 10))
-            {
-                continue;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-
-            IfxPort_resetPinControllerSelection(portSfr, pinIndex);
-            IfxPort_setPinMode(portSfr, pinIndex, IfxPort_Mode_inputNoPullDevice);
-            IfxPort_setPinPadDriver(portSfr, pinIndex, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-        }
-    }
     /* Configure go to standby. */
+
     wakeConfig.filter = IfxPmsPm_DigitalFilter_used;
     wakeConfig.mode = IfxPmsPm_WakeupTimerMode_autoStop;
     wakeConfig.reloadCounter = 0u;
@@ -193,7 +202,7 @@ void SysMgr_GoSleepSequence(void)
     standbyConfig.enableWakeupOnScr              = TRUE;
     standbyConfig.enableWakeupOnPower            = FALSE;
     standbyConfig.enableWakeupOnTimer            = FALSE;
-    standbyConfig.wutClock                       = IfxPmsPm_WutClock_68Hz;
+    standbyConfig.wutClock                       = IfxPmsPm_WutClock_70kHz;
     standbyConfig.useWutStandbyAutoStopMode      = FALSE;
     standbyConfig.wutReloadValue                 = 0xFFFFFFFu;
     standbyConfig.esr0DigitalFilterUsage         = IfxPmsPm_DigitalFilter_used;
@@ -204,11 +213,12 @@ void SysMgr_GoSleepSequence(void)
     standbyConfig.esr1TriggerEvent               = IfxPmsPm_PinEdgeTriggerEvent_risingEdge;
     standbyConfig.pinATriggerEvent               = IfxPmsPm_PinEdgeTriggerEvent_risingEdge;
     standbyConfig.pinBTriggerEvent               = IfxPmsPm_PinEdgeTriggerEvent_risingEdge;
-    /* Start standby sequence, set PLL to 100MHZ. */
-    IfxPmsPm_startStandbySequenceInFlash(&standbyConfig, &clockConfig);
-    IfxPmsPm_setStandbyMode(&MODULE_PMS, &wakeConfig, powerMode);
+    standbyConfig.masterCpu                      = IfxCpu_ResourceCpu_0;
+    IfxScuCcu_initConfig(&clockConfig);
     /* Leave only back-up clock (20MHZ) on. */
     IfxScuCcu_switchToBackupClock(&clockConfig);
+//    IfxPmsPm_startStandbySequenceInFlash(&standbyConfig, &clockConfig);
+    IfxPmsPm_setStandbyMode(&MODULE_PMS, &wakeConfig, powerMode);
     /* Maybe we go to sleep here. */
     IfxCpu_setCoreMode(&MODULE_CPU0, IfxCpu_CoreMode_idle);
     /* All is lost, reset. */

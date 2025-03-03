@@ -70,6 +70,8 @@ void initSafetyKit(void)
     /* Initialize the SMU to configure and map the alarms
      * SM:SMU:CONFIG and Enable the security Key test */
     initSMUModule();
+    serviceCpuWatchdog();
+    serviceSafetyWatchdog();
     /* Initialize die temperature sensors,
      * SM:DTS_CFG, SM:DTS:DTS_RESULT */
     initDieTemperatureSensors();

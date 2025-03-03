@@ -15,6 +15,7 @@
 #include "ColDet.h"
 #include "EnergyMgmt.h"
 #include "DiagMaster.h"
+#include "McuSm.h"
 #include "SafetyKit_InternalWatchdogs.h"
 
 static uint32 Bsw_Wrapper_MainCounter_C0 = 0u;
@@ -28,22 +29,31 @@ void Bsw_Wrapper_MainFunction_C2(void);
 void Bsw_Wrapper_MainFunction_C0(void)
 {
     static uint8 pEnergyMgmt_CanTx_PowerSupplyReducedPerformance = 0u;
+    static uint8 pIven_CanTx_DecMcuError = 0u;
 
-    memcpy(ComMaster_ReceiveTable, Can_ReceiveTable, 9u);
+    memcpy(ComMaster_ReceiveTable, Can_ReceiveTable, sizeof(ComMaster_ReceiveTable));
+
+    for(uint8 i = 0; i < COMMASTER_NO_RX_MSG; i ++)
+    {
+        Can_ReceiveTable[i].receiveMessage.rxMsg.messageId = 0u;
+    }
 
     ComMaster_TxSignal_ICM_ID = Iven_CanTx_IcmId;
     ComMaster_TxSignal_IrSenStat = ColDet_CanTx_IrSenStat;
-    ComMaster_TxSignal_Rpm = 0u;
-    ComMaster_TxSignal_Speed = 0u;
     ComMaster_TxSignal_VehicleStatus = DcyHandler_CanTx_VehicleState;
     DcyHandler_CanRx_IgnitionState = Iven_CanTx_InVehicleSafetyError;
     ComMaster_TxSignal_DcyStatus = DcyHandler_CanTx_DcyStatus;
-    DcyHandler_CanRx_VehicleSpeed = ComMaster_TxSignal_Speed;
+    DcyHandler_CanRx_VehicleSpeed = ComMaster_RxSignal_Speed;
     DcyHandler_CanRx_GearboxState = ComMaster_TxSignal_Gear;
     DcyHandler_CanRx_IgnitionState = ComMaster_TxSignal_Ignition;
+    DcyHandler_CanTx_InVehicleSafetyErrorFlag = Iven_CanTx_InVehicleSafetyError;
+    ComMaster_CanTx_InVehicleSafetyErrorFlag = Iven_CanTx_InVehicleSafetyError;
     DiagMaster_GearboxStatus = DcyHandler_CanRx_GearboxState;
-    DiagMaster_VehicleSpeed = ComMaster_TxSignal_Speed;
-    ColDet_CalculatedSpeed = ComMaster_TxSignal_Speed;
+    DiagMaster_VehicleSpeed = ComMaster_RxSignal_Speed;
+    ColDet_CanRx_CalculatedSpeed = ComMaster_RxSignal_Speed;
+    Iven_CanRx_SafeDriveTrainStatusMessageState = ComMaster_SafeDriveTrainStatusMessageState;
+    Iven_CanRx_SdtsDriveTrainStatus = ComMaster_RxSignal_SdtsDriveTrainStatus;
+    ComMaster_TxSignal_SbaBrakeLevel = ColDet_CanTx_BrakeLevel;
     EnergyMgmt_CanRx_LoadStatus1 = ComMaster_RxSignal_LoadStatus1;
     EnergyMgmt_CanRx_LoadStatus2 = ComMaster_RxSignal_LoadStatus2;
     EnergyMgmt_CanRx_LoadStatus3 = ComMaster_RxSignal_LoadStatus3;
@@ -60,6 +70,14 @@ void Bsw_Wrapper_MainFunction_C0(void)
     EnergyMgmt_CanRx_VoltageMeasured = ComMaster_TxSignal_VBat;
     EnergyMgmt_CanRx_CurrentMeasured = ComMaster_RxSignal_TotalCurrentConsumption;
     EnergyMgmt_CanRx_CurrentMeasured2 = ComMaster_RxSignal_TotalCurrentConsumption2;
+    ComMaster_TxSignal_CommandLoad1 = EnergyMgmt_CanTx_CommandLoad1;
+    ComMaster_TxSignal_CommandLoad2 = EnergyMgmt_CanTx_CommandLoad2;
+    ComMaster_TxSignal_CommandLoad3 = EnergyMgmt_CanTx_CommandLoad3;
+    ComMaster_TxSignal_CommandLoad4 = EnergyMgmt_CanTx_CommandLoad4;
+    ComMaster_TxSignal_CommandLoad5 = EnergyMgmt_CanTx_CommandLoad5;
+    ComMaster_TxSignal_CommandLoad6 = EnergyMgmt_CanTx_CommandLoad6;
+    ComMaster_TxSignal_CommandLoad7 = EnergyMgmt_CanTx_CommandLoad7;
+    ComMaster_TxSignal_CommandLoad8 = EnergyMgmt_CanTx_CommandLoad8;
 
     if((0u != EnergyMgmt_CanTx_PowerSupplyReducedPerformance) &&
             (pEnergyMgmt_CanTx_PowerSupplyReducedPerformance != EnergyMgmt_CanTx_PowerSupplyReducedPerformance))
@@ -73,33 +91,40 @@ void Bsw_Wrapper_MainFunction_C0(void)
 
     Iven_CanRx_ErrorDetectedCbm = ComMaster_RxSignal_Err701_ID;
     Iven_CanRx_ErrorDetectedPdm = ComMaster_RxSignal_Err705_ID;
+    ComMaster_RxSignal_Err701_ID = 0u;
+    ComMaster_RxSignal_Err705_ID = 0u;
     Iven_CanTx_IrSenStat = ColDet_CanTx_IrSenStat;
-    Iven_CanRx_PowerSteeringControl = ComMaster_TxSignal_PowerSteeringAngle;
     Iven_CanRx_GearboxControl = ComMaster_TxSignal_Gear;
-    Iven_CanRx_AccelerationControl = ComMaster_RxSignal_StatusAcc;
-    Iven_CanRx_BrakeControl = ComMaster_RxSignal_StatusBr;
     Iven_CanRx_IgnitionControl = ComMaster_TxSignal_Ignition;
     Iven_CanRx_StatusDoorLeft = ComMaster_RxSignal_StatusDoorLeft;
     Iven_CanRx_StatusDoorRight = ComMaster_RxSignal_StatusDoorRight;
     Iven_CanRx_PSNWarn = ComMaster_RxSignal_PSNWarn;
     Iven_CanRx_CurrentConsumption  = ComMaster_RxSignal_TotalCurrentConsumption;
-    Iven_CanRx_CurrentConsumption2 = ComMaster_RxSignal_TotalCurrentConsumption2;
-    Iven_StatusDriveControlMessageState = 0u;
-    Iven_StatusLoadListMessageState = 0u;
-    Iven_StatusPowerSupplyNetworkMessageState = 0u;
-    Iven_CanTx_DecMcuError = 0u;
-    Iven_CanTx_PowerSteeringFanStatus = 0u;
-    Iven_CanTx_EMotorStatus = 0u;
-    Iven_CanTx_SpeedSensorStatus = 0u;
-    Iven_CanTx_TempSenPSteering = 0u;
-    Iven_CanTx_PowerSteeringStatus = 0u;
-    Iven_StatusActuatorMessageState = 0u;
+    Iven_CanRx_MeasuredVoltageSupply = ComMaster_TxSignal_VBat;
+
+    if(0u != McuSm_LastResetReason && 0u == pIven_CanTx_DecMcuError)
+    {
+        Iven_CanTx_DecMcuError = 1u;
+        pIven_CanTx_DecMcuError = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    Iven_StatusDriveControlMessageState = ComMaster_StatusDriveControlMessageState;
+    Iven_StatusLoadListMessageState = ComMaster_StatusLoadListMessageState;
+    Iven_StatusPowerSupplyNetworkMessageState = ComMaster_StatusPowerSupplyNetworkMessageState;
+    Iven_StatusActuatorMessageState = ComMaster_StatusActuatorMessageState;
+    ComMaster_TxSignal_ReducedPowerSupply = EnergyMgmt_CanTx_PowerSupplyReducedPerformance;
+    Iven_CanTx_PowerSteeringStatus = ComMaster_TxSignal_PowerSteeringAngle;
     Iven_CanTx_DiagnosticMode = DiagMaster_DiagnosticModeActivated;
     DcyHandler_CanRx_RequestDiagnosisMode = DiagMaster_DiagnosticModeActivated;
     DcyHandler_CanRx_ResetDcy = DiagMaster_ResetDcy;
 
     serviceCpuWatchdog();
-    Wdg_ReloadSafetyWatchdog();
+    serviceSafetyWatchdog();
+
     Bsw_Wrapper_MainCounter_C0++;
 }
 void Bsw_Wrapper_MainFunction_C1(void)

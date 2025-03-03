@@ -4,7 +4,7 @@
 fceCrc g_fceCrc2; /* Structure to store information */
 
 void Crc_Init(void);
-uint32 Crc_Calculate(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
+uint32 Crc_Calculate(uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
 uint32 Crc_CalculateFCECRC(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
 /* Initialization of FCE
  * This function is called from main during initialization phase
@@ -29,11 +29,11 @@ void Crc_Init(void)
  */
 uint32 Crc_CalculateFCECRC(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue)
 {
-    g_fceCrc2.crc_result = Crc_Calculate(crcData, crcDataLength, crcStartValue);
+    //g_fceCrc2.crc_result = Crc_Calculate(crcData, crcDataLength, crcStartValue);
     return g_fceCrc2.crc_result;
 }
 
-uint32 Crc_Calculate(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue)
+uint32 Crc_Calculate(uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue)
 {
     uint32 crcRet = 0u;
 

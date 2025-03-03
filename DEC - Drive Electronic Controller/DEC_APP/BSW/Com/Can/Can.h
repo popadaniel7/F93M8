@@ -25,6 +25,8 @@
 #define ISOTP_DEFAULT_BLOCK_SIZE  8
 #define ISOTP_DEFAULT_ST_MIN_MS   5
 #define MAXIMUM_CAN_DATA_PAYLOAD 8u
+#define CAN_NO_RX_MSG 10u
+#define CAN_NO_TX_MSG 11u
 
 typedef enum
 {
@@ -47,20 +49,20 @@ typedef struct
         IfxCan_Filter canFilter;                                /* CAN filter configuration structure                   */
         IfxCan_Message txMsg;                                   /* Transmitted CAN message structure                    */
         IfxCan_Message rxMsg;                                   /* Received CAN message structure                       */
-        uint32 txData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
-        uint32 rxData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Received CAN data array                              */
+        uint8 txData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
+        uint8 rxData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Received CAN data array                              */
 } McmcanType;
 
 typedef struct
 {
         IfxCan_Message rxMsg;                                   /* Received CAN message structure                       */
-        uint32 rxData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
+        uint8 rxData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
 }Can_RxMsg_t;
 
 typedef struct
 {
         IfxCan_Message txMsg;                                   /* Transmitted CAN message structure                    */
-        uint32 txData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
+        uint8 txData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
 }Can_TxMsg_t;
 
 typedef struct
@@ -110,17 +112,20 @@ typedef struct
     uint8_t           stMin;         // separation time in ms
 } IsoTpChannel;
 
-extern Can_TransmitType_t Can_TransmitTable[7u];
-extern Can_ReceiveType_t Can_ReceiveTable[9u];
+extern Can_TransmitType_t Can_TransmitTable[CAN_NO_TX_MSG];
+extern Can_ReceiveType_t Can_ReceiveTable[CAN_NO_RX_MSG];
 extern McmcanType g_mcmcan;
 extern uint32 Can_Rx_DiagBufCnt;
 extern Can_RxMsg_t Can_RxMessageBuffer[50u];
 extern Can_RxMsg_t Can_Rx_DiagnosticBuffer[50u];
 extern uint32 Can_BufferIndex_ReceivedMessages;
 extern uint8 Can_BusOff_Flag;
-extern uint8 Can_Error_Flag;
+extern uint8 Can_Alrt_Flag;
+extern uint8 Can_Moer_Flag;
+extern uint8 Can_Loi_Flag;
 extern Can_Status_t Can_State;
 extern uint8 Can_ActivityOnTheBus;
+extern uint8 Can_DedBuff;
 
 extern void Can_Sleep(void);
 extern void Can_ProcessReceivedMessages(void);

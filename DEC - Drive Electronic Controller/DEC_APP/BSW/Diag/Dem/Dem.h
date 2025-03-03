@@ -32,8 +32,9 @@
 #define COMMASTER_DTC_ID_SIGNAL_STATUSTURNSIGNALS_INVALID               0x4du//29
 #define COMMASTER_DTC_ID_SIGNAL_STATUSHC05_INVALID                      0x4eu//30
 #define ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH                            0x4fu//31
+#define COMMASTER_DTC_ID_MESSAGE_0X001_MISSING                          0x50u//32
 
-#define DEM_NUMBER_OF_DTCS 64u
+#define DEM_NUMBER_OF_DTCS 66u
 
 extern uint8 Dem_DtcArray[DEM_NUMBER_OF_DTCS];
 

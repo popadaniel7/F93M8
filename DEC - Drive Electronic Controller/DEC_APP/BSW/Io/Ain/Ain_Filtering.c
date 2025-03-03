@@ -135,7 +135,7 @@ void Ain_Filtering_InitEvAdcChannels(void)
 /* Function to apply the filters to the EVADC channels */
 void Ain_Filtering_ApplyFiltering(void)
 {
-    /* Apply a 1st-order Infinite Impulse Response Filter (IIR) to all six analog inputs (AN0 to AN5) */
+    /* Apply a 1st-order Infinite Impulse Response Filter (IIR) to analog inputs */
     EVADC_G0_RCR0.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;  /* Set Data Modification Mode to Result Filtering Mode */
     EVADC_G0_RCR0.B.DRCTR = IfxEvadc_DataReductionControlMode_15;             /* Configure RCR0 for IIR filter (a=3, b=4) for AN0 */
 }

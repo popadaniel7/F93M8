@@ -6,7 +6,6 @@ uint8 DcyHandler_CanRx_ResetDcy = 255u;
 uint8 DcyHandler_CanRx_GearboxState = 255u;
 uint8 DcyHandler_CanRx_VehicleSpeed = 255u;
 uint8 DcyHandler_CanTx_InVehicleSafetyErrorFlag = 255u;
-uint8 DcyHandler_CanRx_TesterPresentStatus = 255u;
 uint8 DcyHandler_CanRx_RequestDiagnosisMode = 255u;
 DcyHandler_DcyStatus_t DcyHandler_CanTx_DcyStatus = DCY_INIT;
 DcyHandler_VehicleState_t DcyHandler_CanTx_VehicleState = VEHSTATE_INIT;
@@ -19,16 +18,6 @@ void DcyHandler_MainFunction(void)
     {
         switch(DcyHandler_CanRx_IgnitionState)
         {
-            case 255u:
-                /* initial value, DCY cannot be processed. */
-                DcyHandler_CanTx_DcyStatus = DCY_INIT;
-                DcyHandler_CanTx_VehicleState = VEHSTATE_INIT;
-                break;
-            case 254u:
-                /* error value, DCY cannot be processed. */
-                DcyHandler_CanTx_DcyStatus = DCY_ERROR;
-                DcyHandler_CanTx_VehicleState = VEHSTATE_ERROR;
-                break;
             case 0u:
                 /* Ignition off. */
                 DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
@@ -44,10 +33,6 @@ void DcyHandler_MainFunction(void)
                 /* Ignition on. */
                 switch(DcyHandler_CanRx_GearboxState)
                 {
-                    case 255u:
-                        break;
-                    case 254u:
-                        break;
                     case 0u:
                         DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
                         DcyHandler_CanTx_VehicleState = VEHSTATE_PRE_DRIVE_CHECK;
@@ -79,10 +64,6 @@ void DcyHandler_MainFunction(void)
                 }
                 break;
             }
-            case 3u:
-                DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
-                DcyHandler_CanTx_VehicleState = VEHSTATE_POST_DRIVE_CHECK;
-                break;
             default:
                 break;
         }

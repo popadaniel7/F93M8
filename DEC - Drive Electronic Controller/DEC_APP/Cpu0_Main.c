@@ -16,6 +16,7 @@
 #include "task_core0.h"
 #include "SafetyKit_SSW.h"
 #include "SafetyKit_Main.h"
+#include "aurix_pin_mappings.h"
 
 uint8 OsInit_C0 = 0u;
 
@@ -23,8 +24,7 @@ extern void Ssw_StartCores(void);
 
 void core0_main(void)
 {
-    //runSafeAppSwStartup();
-    //initSafetyKit();
+    runSafeAppSwStartup();
     /* Start core 1 and core 2. */
     Ssw_StartCores();
     SysMgr_EcuState = SYSMGR_STARTUP;
@@ -32,6 +32,8 @@ void core0_main(void)
     McuSm_InitializeBusMpu();
     Ain_FilteringInit();
     Crc_Init();
+    gpio_init_pins();
+    can0_node0_init_pins();
     Can_Init();
     Nvm_ReadAll();
     Dem_Init();
@@ -41,7 +43,10 @@ void core0_main(void)
     SysMgr_ProcessResetDtc();
     Os_Init_C0();
     OsInit_C0 = 1u;
-    //initCpuWatchdog(0);
-    //initSafetyWatchdog();
+    initCpuWatchdog(0);
+    initSafetyWatchdog();
+    serviceCpuWatchdog();
+    serviceSafetyWatchdog();
+    initSafetyKit();
     vTaskStartScheduler_core0();
 }

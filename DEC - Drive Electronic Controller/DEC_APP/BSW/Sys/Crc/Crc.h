@@ -11,5 +11,5 @@ typedef struct
 extern fceCrc g_fceCrc; /* Structure to store information */
 
 extern void Crc_Init(void);
-extern uint32 Crc_Calculate(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
+extern uint32 Crc_Calculate(uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
 extern uint32 Crc_CalculateFCECRC(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);

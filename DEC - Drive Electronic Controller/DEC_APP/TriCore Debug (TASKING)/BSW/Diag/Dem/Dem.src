@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f cc10900a --dep-file=BSW/Diag/Dem/Dem.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Diag/Dem/Dem.src ../BSW/Diag/Dem/Dem.c"
+	.compiler_invocation	"ctc -f cc10724a --dep-file=BSW/Diag/Dem/Dem.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Diag/Dem/Dem.src ../BSW/Diag/Dem/Dem.c"
 	.compiler_name		"ctc"
 	;source	'../BSW/Diag/Dem/Dem.c'
 
@@ -13,42 +13,71 @@ $TC162
 	
 	.global	Dem_Init
 ; Function Dem_Init
-.L14:
+.L21:
 Dem_Init:	.type	func
-	mov	d0,#0
-.L53:
+	mov	d15,#0
+.L60:
 	j	.L2
 .L3:
-	mov	d15,#2
-.L84:
-	div	e2,d0,d15
-.L85:
-	jne	d3,#1,.L4
-.L86:
-	movh.a	a15,#@his(Dem_DtcArray)
-	lea	a15,[a15]@los(Dem_DtcArray)
-.L87:
-	addsc.a	a15,a15,d0,#0
-.L88:
-	mov	d15,#0
-.L89:
-	st.b	[a15],d15
-.L90:
+	jne	d15,#0,.L4
+.L96:
 	j	.L5
 .L4:
+	jne	d15,#1,.L6
+.L97:
+	movh.a	a15,#@his(Dem_DtcArray)
+	lea	a15,[a15]@los(Dem_DtcArray)
+.L98:
+	add.a	a15,#1
+.L99:
+	mov	d0,#0
+.L100:
+	st.b	[a15],d0
+.L101:
+	j	.L7
+.L6:
+	jne	d15,#2,.L8
+.L102:
+	j	.L9
+.L8:
+.L9:
+.L7:
 .L5:
-	add	d0,#1
+	mov	d0,#2
+.L103:
+	div	e0,d15,d0
+.L104:
+	jne	d1,#1,.L10
+.L105:
+	jlt.u	d15,#3,.L11
+.L106:
+	movh.a	a15,#@his(Dem_DtcArray)
+	lea	a15,[a15]@los(Dem_DtcArray)
+.L107:
+	addsc.a	a15,a15,d15,#0
+.L108:
+	mov	d0,#0
+.L109:
+	st.b	[a15],d0
+.L110:
+	j	.L12
+.L11:
+.L10:
+.L12:
+	add	d15,#1
+.L61:
+	extr.u	d15,d15,#0,#8
 .L2:
-	mov	d15,#64
-.L91:
-	jlt.u	d0,d15,.L3
-.L47:
+	mov	d0,#66
+.L111:
+	jlt.u	d15,d0,.L3
+.L54:
 	ret
-.L46:
+.L53:
 	
 __Dem_Init_function_end:
 	.size	Dem_Init,__Dem_Init_function_end-Dem_Init
-.L32:
+.L39:
 	; End of function
 	
 	.sdecl	'.text.Dem.Dem_SetDtc',code,cluster('Dem_SetDtc')
@@ -57,61 +86,69 @@ __Dem_Init_function_end:
 	
 	.global	Dem_SetDtc
 ; Function Dem_SetDtc
-.L16:
+.L23:
 Dem_SetDtc:	.type	func
-	jeq	d5,#0,.L6
-.L63:
-	movh.a	a15,#@his(Dem_DtcArray)
-	lea	a15,[a15]@los(Dem_DtcArray)
-.L64:
-	addsc.a	a15,a15,d6,#0
-.L65:
-	st.b	[a15],d4
-.L66:
-	movh.a	a15,#@his(Dem_DtcArray)
-	lea	a15,[a15]@los(Dem_DtcArray)
-.L67:
-	addsc.a	a15,a15,d6,#0
-.L68:
-	st.b	[a15]1,d5
-.L69:
-	j	.L7
-.L6:
-.L7:
-	movh.a	a15,#@his(Dem_DtcArray)
-	lea	a15,[a15]@los(Dem_DtcArray)
-.L70:
-	addsc.a	a15,a15,d6,#0
-	ld.bu	d15,[a15]
+	jeq	d5,#0,.L13
 .L71:
-	jeq	d15,#0,.L8
+	mul	d15,d6,#2
 .L72:
-	jne	d5,#0,.L9
-.L73:
 	movh.a	a15,#@his(Dem_DtcArray)
 	lea	a15,[a15]@los(Dem_DtcArray)
+.L73:
+	addsc.a	a15,a15,d15,#0
 .L74:
-	addsc.a	a15,a15,d6,#0
-.L75:
 	st.b	[a15],d4
+.L75:
+	mul	d15,d6,#2
 .L76:
 	movh.a	a15,#@his(Dem_DtcArray)
 	lea	a15,[a15]@los(Dem_DtcArray)
 .L77:
-	addsc.a	a15,a15,d6,#0
+	addsc.a	a15,a15,d15,#0
 .L78:
 	st.b	[a15]1,d5
 .L79:
-	j	.L10
-.L9:
-.L8:
-.L10:
+	j	.L14
+.L13:
+.L14:
+	movh.a	a15,#@his(Dem_DtcArray)
+	lea	a15,[a15]@los(Dem_DtcArray)
+.L80:
+	addsc.a	a15,a15,d6,#0
+	ld.bu	d15,[a15]
+.L81:
+	jeq	d15,#0,.L15
+.L82:
+	jne	d5,#0,.L16
+.L83:
+	mul	d15,d6,#2
+.L84:
+	movh.a	a15,#@his(Dem_DtcArray)
+	lea	a15,[a15]@los(Dem_DtcArray)
+.L85:
+	addsc.a	a15,a15,d15,#0
+.L86:
+	st.b	[a15],d4
+.L87:
+	mul	d15,d6,#2
+.L88:
+	movh.a	a15,#@his(Dem_DtcArray)
+	lea	a15,[a15]@los(Dem_DtcArray)
+.L89:
+	addsc.a	a15,a15,d15,#0
+.L90:
+	st.b	[a15]1,d5
+.L91:
+	j	.L17
+.L16:
+.L15:
+.L17:
 	ret
-.L40:
+.L47:
 	
 __Dem_SetDtc_function_end:
 	.size	Dem_SetDtc,__Dem_SetDtc_function_end-Dem_SetDtc
-.L27:
+.L34:
 	; End of function
 	
 	.sdecl	'.text.Dem.Dem_ClearDtc',code,cluster('Dem_ClearDtc')
@@ -120,62 +157,62 @@ __Dem_SetDtc_function_end:
 	
 	.global	Dem_ClearDtc
 ; Function Dem_ClearDtc
-.L18:
+.L25:
 Dem_ClearDtc:	.type	func
 	mov	d0,#0
-.L54:
-	j	.L11
-.L12:
+.L62:
+	j	.L18
+.L19:
 	movh.a	a15,#@his(Dem_DtcArray)
 	lea	a15,[a15]@los(Dem_DtcArray)
-.L96:
+.L116:
 	addsc.a	a15,a15,d0,#0
-.L97:
+.L117:
 	mov	d15,#0
-.L98:
+.L118:
 	st.b	[a15],d15
-.L99:
+.L119:
 	add	d0,#1
-.L11:
-	mov	d15,#64
-.L100:
-	jlt.u	d0,d15,.L12
-.L50:
+.L18:
+	mov	d15,#66
+.L120:
+	jlt.u	d0,d15,.L19
+.L57:
 	ret
-.L49:
+.L56:
 	
 __Dem_ClearDtc_function_end:
 	.size	Dem_ClearDtc,__Dem_ClearDtc_function_end-Dem_ClearDtc
-.L37:
+.L44:
 	; End of function
 	
 	.sdecl	'.bss.Dem.Dem_DtcArray',data,cluster('Dem_DtcArray')
 	.sect	'.bss.Dem.Dem_DtcArray'
 	.global	Dem_DtcArray
 Dem_DtcArray:	.type	object
-	.size	Dem_DtcArray,64
-	.space	64
+	.size	Dem_DtcArray,66
+	.space	66
 	.calls	'Dem_Init','',0
 	.calls	'Dem_SetDtc','',0
 	.calls	'Dem_ClearDtc','',0
 	.sdecl	'.debug_info',debug
 	.sect	'.debug_info'
-.L20:
+.L27:
 	.word	597
 	.half	3
-	.word	.L21
+	.word	.L28
 	.byte	4
-.L19:
+.L26:
 	.byte	1
 	.byte	'../BSW/Diag/Dem/Dem.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L22
-.L41:
+	.word	.L29
+.L48:
 	.byte	2
 	.byte	'unsigned long int',0,4,7
-.L43:
+.L50:
 	.byte	2
 	.byte	'unsigned char',0,1,8,2
 	.byte	'short int',0,2,5,3
@@ -228,234 +265,165 @@ Dem_DtcArray:	.type	object
 	.byte	3
 	.byte	'Ifx_TickTime',0,3,76,28
 	.word	486
-.L52:
-	.byte	7,64
+.L59:
+	.byte	7,66
 	.word	243
-	.byte	8,63,0,0
+	.byte	8,65,0,0
 	.sdecl	'.debug_abbrev',debug
 	.sect	'.debug_abbrev'
-.L21:
+.L28:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,22,0,3,8,58,15,59,15,57,15
 	.byte	73,19,0,0,4,21,0,54,15,0,0,5,15,0,73,19,0,0,6,59,0,3,8,0,0,7,1,1,11,15,73,19,0,0,8,33,0,47,15,0,0,0
 	.sdecl	'.debug_line',debug
 	.sect	'.debug_line'
-.L22:
-	.word	.L56-.L55
-.L55:
+.L29:
+	.word	.L64-.L63
+.L63:
 	.half	3
-	.word	.L58-.L57
-.L57:
+	.word	.L66-.L65
+.L65:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std',0
 	.byte	0
 	.byte	'../BSW/Diag/Dem/Dem.c',0,0,0,0
 	.byte	'Platform_Types.h',0,1,0,0
 	.byte	'Ifx_Types.h',0,1,0,0,0
-.L58:
-.L56:
+.L66:
+.L64:
 	.sdecl	'.debug_info',debug,cluster('Dem_SetDtc')
 	.sect	'.debug_info'
-.L23:
+.L30:
 	.word	326
 	.half	3
-	.word	.L24
+	.word	.L31
 	.byte	4,1
 	.byte	'../BSW/Diag/Dem/Dem.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L26,.L25
+	.word	.L33,.L32
 	.byte	2
-	.word	.L19
+	.word	.L26
 	.byte	3
-	.byte	'Dem_SetDtc',0,1,23,6,1,1,1
-	.word	.L16,.L40,.L15
+	.byte	'Dem_SetDtc',0,1,40,6,1,1,1
+	.word	.L23,.L47,.L22
 	.byte	4
-	.byte	'dtcId',0,1,23,24
-	.word	.L41,.L42
+	.byte	'dtcId',0,1,40,24
+	.word	.L48,.L49
 	.byte	4
-	.byte	'dtcStatus',0,1,23,37
-	.word	.L43,.L44
+	.byte	'dtcStatus',0,1,40,37
+	.word	.L50,.L51
 	.byte	4
-	.byte	'index',0,1,23,54
-	.word	.L43,.L45
+	.byte	'index',0,1,40,54
+	.word	.L50,.L52
 	.byte	5
-	.word	.L16,.L40
+	.word	.L23,.L47
 	.byte	0,0
 	.sdecl	'.debug_abbrev',debug,cluster('Dem_SetDtc')
 	.sect	'.debug_abbrev'
-.L24:
+.L31:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
 	.sdecl	'.debug_line',debug,cluster('Dem_SetDtc')
 	.sect	'.debug_line'
-.L25:
-	.word	.L60-.L59
-.L59:
+.L32:
+	.word	.L68-.L67
+.L67:
 	.half	3
-	.word	.L62-.L61
-.L61:
+	.word	.L70-.L69
+.L69:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Diag/Dem/Dem.c',0,0,0,0,0
-.L62:
+.L70:
 	.byte	5,5,7,0,5,2
-	.word	.L16
-	.byte	3,24,1,5,9,7,9
-	.half	.L63-.L16
-	.byte	3,2,1,5,21,9
-	.half	.L64-.L63
-	.byte	1,5,29,9
-	.half	.L65-.L64
-	.byte	1,5,9,9
-	.half	.L66-.L65
-	.byte	3,1,1,5,21,9
-	.half	.L67-.L66
-	.byte	1,5,33,9
-	.half	.L68-.L67
-	.byte	1,5,43,9
-	.half	.L69-.L68
-	.byte	3,127,1,5,8,9
-	.half	.L7-.L69
-	.byte	3,8,1,5,20,9
-	.half	.L70-.L7
-	.byte	1,5,8,9
-	.half	.L71-.L70
-	.byte	1,5,23,7,9
+	.word	.L23
+	.byte	3,41,1,5,28,7,9
+	.half	.L71-.L23
+	.byte	3,2,1,5,9,9
 	.half	.L72-.L71
-	.byte	3,1,1,5,9,7,9
+	.byte	1,5,21,9
 	.half	.L73-.L72
-	.byte	3,2,1,5,21,9
-	.half	.L74-.L73
-	.byte	1,5,29,9
-	.half	.L75-.L74
-	.byte	1,5,9,9
-	.half	.L76-.L75
-	.byte	3,1,1,5,21,9
-	.half	.L77-.L76
 	.byte	1,5,33,9
+	.half	.L74-.L73
+	.byte	1,5,28,9
+	.half	.L75-.L74
+	.byte	3,1,1,5,9,9
+	.half	.L76-.L75
+	.byte	1,5,21,9
+	.half	.L77-.L76
+	.byte	1,5,37,9
 	.half	.L78-.L77
-	.byte	1,5,43,9
+	.byte	1,5,47,9
 	.half	.L79-.L78
+	.byte	3,127,1,5,8,9
+	.half	.L14-.L79
+	.byte	3,8,1,5,20,9
+	.half	.L80-.L14
+	.byte	1,5,8,9
+	.half	.L81-.L80
+	.byte	1,5,23,7,9
+	.half	.L82-.L81
+	.byte	3,1,1,5,28,7,9
+	.half	.L83-.L82
+	.byte	3,2,1,5,9,9
+	.half	.L84-.L83
+	.byte	1,5,21,9
+	.half	.L85-.L84
+	.byte	1,5,33,9
+	.half	.L86-.L85
+	.byte	1,5,28,9
+	.half	.L87-.L86
+	.byte	3,1,1,5,9,9
+	.half	.L88-.L87
+	.byte	1,5,21,9
+	.half	.L89-.L88
+	.byte	1,5,37,9
+	.half	.L90-.L89
+	.byte	1,5,47,9
+	.half	.L91-.L90
 	.byte	3,127,1,5,1,9
-	.half	.L10-.L79
+	.half	.L17-.L91
 	.byte	3,7,1,7,9
-	.half	.L27-.L10
+	.half	.L34-.L17
 	.byte	0,1,1
-.L60:
+.L68:
 	.sdecl	'.debug_ranges',debug,cluster('Dem_SetDtc')
 	.sect	'.debug_ranges'
-.L26:
-	.word	-1,.L16,0,.L27-.L16,0,0
+.L33:
+	.word	-1,.L23,0,.L34-.L23,0,0
 	.sdecl	'.debug_info',debug,cluster('Dem_Init')
 	.sect	'.debug_info'
-.L28:
+.L35:
 	.word	291
 	.half	3
-	.word	.L29
+	.word	.L36
 	.byte	4,1
 	.byte	'../BSW/Diag/Dem/Dem.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L31,.L30
+	.word	.L38,.L37
 	.byte	2
-	.word	.L19
+	.word	.L26
 	.byte	3
 	.byte	'Dem_Init',0,1,8,6,1,1,1
-	.word	.L14,.L46,.L13
+	.word	.L21,.L53,.L20
 	.byte	4
-	.word	.L14,.L46
+	.word	.L21,.L53
 	.byte	4
-	.word	.L14,.L47
+	.word	.L21,.L54
 	.byte	5
 	.byte	'i',0,1,10,15
-	.word	.L43,.L48
+	.word	.L50,.L55
 	.byte	0,0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('Dem_Init')
 	.sect	'.debug_abbrev'
-.L29:
+.L36:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('Dem_Init')
 	.sect	'.debug_line'
-.L30:
-	.word	.L81-.L80
-.L80:
-	.half	3
-	.word	.L83-.L82
-.L82:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../BSW/Diag/Dem/Dem.c',0,0,0,0,0
-.L83:
-	.byte	5,17,7,0,5,2
-	.word	.L14
-	.byte	3,9,1,5,44,9
-	.half	.L53-.L14
-	.byte	1,5,16,9
-	.half	.L3-.L53
-	.byte	3,2,1,5,14,9
-	.half	.L84-.L3
-	.byte	1,5,9,9
-	.half	.L85-.L84
-	.byte	1,5,13,7,9
-	.half	.L86-.L85
-	.byte	3,2,1,5,25,9
-	.half	.L87-.L86
-	.byte	1,5,31,9
-	.half	.L88-.L87
-	.byte	1,5,29,9
-	.half	.L89-.L88
-	.byte	1,5,33,9
-	.half	.L90-.L89
-	.byte	1,5,47,9
-	.half	.L5-.L90
-	.byte	3,124,1,5,26,9
-	.half	.L2-.L5
-	.byte	1,5,44,9
-	.half	.L91-.L2
-	.byte	1,5,1,7,9
-	.half	.L47-.L91
-	.byte	3,11,1,7,9
-	.half	.L32-.L47
-	.byte	0,1,1
-.L81:
-	.sdecl	'.debug_ranges',debug,cluster('Dem_Init')
-	.sect	'.debug_ranges'
-.L31:
-	.word	-1,.L14,0,.L32-.L14,0,0
-	.sdecl	'.debug_info',debug,cluster('Dem_ClearDtc')
-	.sect	'.debug_info'
-.L33:
-	.word	295
-	.half	3
-	.word	.L34
-	.byte	4,1
-	.byte	'../BSW/Diag/Dem/Dem.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L36,.L35
-	.byte	2
-	.word	.L19
-	.byte	3
-	.byte	'Dem_ClearDtc',0,1,47,6,1,1,1
-	.word	.L18,.L49,.L17
-	.byte	4
-	.word	.L18,.L49
-	.byte	4
-	.word	.L18,.L50
-	.byte	5
-	.byte	'i',0,1,49,15
-	.word	.L43,.L51
-	.byte	0,0,0,0
-	.sdecl	'.debug_abbrev',debug,cluster('Dem_ClearDtc')
-	.sect	'.debug_abbrev'
-.L34:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
-	.sdecl	'.debug_line',debug,cluster('Dem_ClearDtc')
-	.sect	'.debug_line'
-.L35:
+.L37:
 	.word	.L93-.L92
 .L92:
 	.half	3
@@ -465,105 +433,207 @@ Dem_DtcArray:	.type	object
 	.byte	'../BSW/Diag/Dem/Dem.c',0,0,0,0,0
 .L95:
 	.byte	5,17,7,0,5,2
-	.word	.L18
-	.byte	3,48,1,5,44,9
-	.half	.L54-.L18
+	.word	.L21
+	.byte	3,9,1,5,44,9
+	.half	.L60-.L21
 	.byte	1,5,9,9
-	.half	.L12-.L54
-	.byte	3,2,1,5,21,9
-	.half	.L96-.L12
-	.byte	1,5,27,9
-	.half	.L97-.L96
-	.byte	1,5,25,9
+	.half	.L3-.L60
+	.byte	3,2,1,7,9
+	.half	.L96-.L3
+	.byte	1,5,14,9
+	.half	.L4-.L96
+	.byte	3,4,1,5,11,7,9
+	.half	.L97-.L4
+	.byte	3,2,1,5,23,9
 	.half	.L98-.L97
-	.byte	1,5,47,9
+	.byte	1,5,29,9
 	.half	.L99-.L98
-	.byte	3,126,1,5,26,9
-	.half	.L11-.L99
+	.byte	1,5,27,9
+	.half	.L100-.L99
+	.byte	1,5,31,9
+	.half	.L101-.L100
+	.byte	1,5,14,9
+	.half	.L6-.L101
+	.byte	3,2,1,7,9
+	.half	.L102-.L6
+	.byte	1,5,16,9
+	.half	.L5-.L102
+	.byte	3,9,1,5,14,9
+	.half	.L103-.L5
+	.byte	1,5,12,9
+	.half	.L104-.L103
+	.byte	1,5,29,7,9
+	.half	.L105-.L104
+	.byte	1,5,13,7,9
+	.half	.L106-.L105
+	.byte	3,2,1,5,25,9
+	.half	.L107-.L106
+	.byte	1,5,31,9
+	.half	.L108-.L107
+	.byte	1,5,29,9
+	.half	.L109-.L108
+	.byte	1,5,33,9
+	.half	.L110-.L109
+	.byte	1,5,47,9
+	.half	.L12-.L110
+	.byte	3,107,1,5,26,9
+	.half	.L2-.L12
 	.byte	1,5,44,9
-	.half	.L100-.L11
+	.half	.L111-.L2
 	.byte	1,5,1,7,9
-	.half	.L50-.L100
-	.byte	3,4,1,7,9
-	.half	.L37-.L50
+	.half	.L54-.L111
+	.byte	3,28,1,7,9
+	.half	.L39-.L54
 	.byte	0,1,1
 .L93:
+	.sdecl	'.debug_ranges',debug,cluster('Dem_Init')
+	.sect	'.debug_ranges'
+.L38:
+	.word	-1,.L21,0,.L39-.L21,0,0
+	.sdecl	'.debug_info',debug,cluster('Dem_ClearDtc')
+	.sect	'.debug_info'
+.L40:
+	.word	295
+	.half	3
+	.word	.L41
+	.byte	4,1
+	.byte	'../BSW/Diag/Dem/Dem.c',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L43,.L42
+	.byte	2
+	.word	.L26
+	.byte	3
+	.byte	'Dem_ClearDtc',0,1,64,6,1,1,1
+	.word	.L25,.L56,.L24
+	.byte	4
+	.word	.L25,.L56
+	.byte	4
+	.word	.L25,.L57
+	.byte	5
+	.byte	'i',0,1,66,15
+	.word	.L50,.L58
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Dem_ClearDtc')
+	.sect	'.debug_abbrev'
+.L41:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Dem_ClearDtc')
+	.sect	'.debug_line'
+.L42:
+	.word	.L113-.L112
+.L112:
+	.half	3
+	.word	.L115-.L114
+.L114:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Diag/Dem/Dem.c',0,0,0,0,0
+.L115:
+	.byte	5,17,7,0,5,2
+	.word	.L25
+	.byte	3,193,0,1,5,44,9
+	.half	.L62-.L25
+	.byte	1,5,9,9
+	.half	.L19-.L62
+	.byte	3,2,1,5,21,9
+	.half	.L116-.L19
+	.byte	1,5,27,9
+	.half	.L117-.L116
+	.byte	1,5,25,9
+	.half	.L118-.L117
+	.byte	1,5,47,9
+	.half	.L119-.L118
+	.byte	3,126,1,5,26,9
+	.half	.L18-.L119
+	.byte	1,5,44,9
+	.half	.L120-.L18
+	.byte	1,5,1,7,9
+	.half	.L57-.L120
+	.byte	3,4,1,7,9
+	.half	.L44-.L57
+	.byte	0,1,1
+.L113:
 	.sdecl	'.debug_ranges',debug,cluster('Dem_ClearDtc')
 	.sect	'.debug_ranges'
-.L36:
-	.word	-1,.L18,0,.L37-.L18,0,0
+.L43:
+	.word	-1,.L25,0,.L44-.L25,0,0
 	.sdecl	'.debug_info',debug,cluster('Dem_DtcArray')
 	.sect	'.debug_info'
-.L38:
+.L45:
 	.word	248
 	.half	3
-	.word	.L39
+	.word	.L46
 	.byte	4,1
 	.byte	'../BSW/Diag/Dem/Dem.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L19
+	.word	.L26
 	.byte	3
 	.byte	'Dem_DtcArray',0,1,3,7
-	.word	.L52
+	.word	.L59
 	.byte	1,5,3
 	.word	Dem_DtcArray
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('Dem_DtcArray')
 	.sect	'.debug_abbrev'
-.L39:
+.L46:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
 	.byte	0,0,0
 	.sdecl	'.debug_loc',debug,cluster('Dem_ClearDtc')
 	.sect	'.debug_loc'
-.L17:
-	.word	-1,.L18,0,.L49-.L18
+.L24:
+	.word	-1,.L25,0,.L56-.L25
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L51:
-	.word	-1,.L18,.L54-.L18,.L49-.L18
+.L58:
+	.word	-1,.L25,.L62-.L25,.L56-.L25
 	.half	5
 	.byte	144,32,157,32,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('Dem_Init')
 	.sect	'.debug_loc'
-.L13:
-	.word	-1,.L14,0,.L46-.L14
+.L20:
+	.word	-1,.L21,0,.L53-.L21
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L48:
-	.word	-1,.L14,.L53-.L14,.L46-.L14
-	.half	5
-	.byte	144,32,157,32,0
+.L55:
+	.word	-1,.L21,.L60-.L21,.L61-.L21
+	.half	1
+	.byte	95
+	.word	.L2-.L21,.L53-.L21
+	.half	1
+	.byte	95
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('Dem_SetDtc')
 	.sect	'.debug_loc'
-.L15:
-	.word	-1,.L16,0,.L40-.L16
+.L22:
+	.word	-1,.L23,0,.L47-.L23
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L42:
-	.word	-1,.L16,0,.L40-.L16
+.L49:
+	.word	-1,.L23,0,.L47-.L23
 	.half	1
 	.byte	84
 	.word	0,0
-.L44:
-	.word	-1,.L16,0,.L40-.L16
+.L51:
+	.word	-1,.L23,0,.L47-.L23
 	.half	1
 	.byte	85
 	.word	0,0
-.L45:
-	.word	-1,.L16,0,.L40-.L16
+.L52:
+	.word	-1,.L23,0,.L47-.L23
 	.half	1
 	.byte	86
 	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L101:
+.L121:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
@@ -571,16 +641,16 @@ Dem_DtcArray:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('Dem_Init')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L101,.L14,.L46-.L14
+	.word	.L121,.L21,.L53-.L21
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('Dem_SetDtc')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L101,.L16,.L40-.L16
+	.word	.L121,.L23,.L47-.L23
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('Dem_ClearDtc')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L101,.L18,.L49-.L18
+	.word	.L121,.L25,.L56-.L25
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	; Module end

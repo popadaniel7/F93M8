@@ -109,7 +109,7 @@ void core0_main(void)
     IfxCpu_enableInterrupts();
     IfxScuWdt_disableCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_disableSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
-    Can_Init();
+    //Can_Init();
     FBL_ProgrammingAddress = 0;
     FBL_ProgrammingIndex = 0;
     FBL_FlashReadData(ROM_APPL_START_ADDR, &ROM_APPL_START_ADDR_storedValue);

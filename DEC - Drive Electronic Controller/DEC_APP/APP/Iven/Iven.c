@@ -1,34 +1,27 @@
 #include "Iven.h"
 
 static uint32 Iven_MainCounter = 0u;
-Iven_IcmTable_t Iven_IcmLookupTable[IVEN_ICM_NUMBER_OF_MESSAGES] = {{0u,0u}};
 uint8 Iven_CanTx_IcmId = 0u;
 uint8 Iven_StatusDriveControlMessageState = 0u;
 uint8 Iven_StatusLoadListMessageState = 0u;
 uint8 Iven_StatusPowerSupplyNetworkMessageState = 0u;
 uint8 Iven_CanRx_PSNWarn = 0u;
 uint8 Iven_CanRx_CurrentConsumption  = 0u;
-uint8 Iven_CanRx_CurrentConsumption2 = 0u;
-uint8 Iven_CanRx_MeasuredVoltageSupply = 0u;
+uint8 Iven_CanRx_MeasuredVoltageSupply = 50u;
 uint8 Iven_StatusActuatorMessageState = 0u;
 uint8 Iven_CanRx_StatusDoorLeft = 0u;
 uint8 Iven_CanRx_StatusDoorRight = 0u;
-uint8 Iven_CanRx_PowerSteeringControl = 0u;
 uint8 Iven_CanRx_GearboxControl = 0u;
-uint8 Iven_CanRx_AccelerationControl = 0u;
-uint8 Iven_CanRx_BrakeControl = 0u;
 uint8 Iven_CanRx_IgnitionControl = 0u;
 uint8 Iven_CanTx_PowerSteeringStatus = 0u;
 uint8 Iven_CanTx_IrSenStat = 0u;
-uint8 Iven_CanTx_PowerSteeringFanStatus = 0u;
-uint8 Iven_CanTx_EMotorStatus = 0u;
-uint8 Iven_CanTx_SpeedSensorStatus = 0u;
-uint8 Iven_CanTx_TempSenPSteering = 0u;
 uint8 Iven_CanRx_ErrorDetectedCbm = 0u;
 uint8 Iven_CanRx_ErrorDetectedPdm = 0u;
 uint8 Iven_CanTx_InVehicleSafetyError = 0u;
 uint8 Iven_CanTx_DecMcuError = 0u;
 uint8 Iven_CanTx_DiagnosticMode = 0u;
+uint8 Iven_CanRx_SafeDriveTrainStatusMessageState = 0u;
+uint8 Iven_CanRx_SdtsDriveTrainStatus = 0u;
 
 void Iven_MainFunction(void);
 
@@ -41,26 +34,21 @@ void Iven_MainFunction(void)
     static uint8 pIven_StatusPowerSupplyNetworkMessageState = 0;
     static uint8 pIven_CanRx_PSNWarn = 0;
     static uint8 pIven_CanRx_CurrentConsumption  = 0;
-    static uint8 pIven_CanRx_CurrentConsumption2 = 0;
     static uint8 pIven_CanRx_MeasuredVoltageSupply = 0;
     static uint8 pIven_StatusActuatorMessageState = 0;
     static uint8 pIven_CanRx_StatusDoorLeft = 0;
     static uint8 pIven_CanRx_StatusDoorRight = 0;
-    static uint8 pIven_CanRx_PowerSteeringControl = 0;
     static uint8 pIven_CanRx_GearboxControl = 0;
-    static uint8 pIven_CanRx_AccelerationControl = 0;
-    static uint8 pIven_CanRx_BrakeControl = 0;
     static uint8 pIven_CanRx_IgnitionControl = 0;
     static uint8 pIven_CanTx_PowerSteeringStatus = 0;
     static uint8 pIven_CanTx_IrSenStat = 0;
-    static uint8 pIven_CanTx_PowerSteeringFanStatus = 0;
-    static uint8 pIven_CanTx_EMotorStatus = 0;
-    static uint8 pIven_CanTx_SpeedSensorStatus = 0;
-    static uint8 pIven_CanTx_TempSenPSteering = 0;
     static uint8 pIven_CanRx_ErrorDetectedCbm = 0u;
     static uint8 pIven_CanRx_ErrorDetectedPdm = 0u;
     static uint8 pIven_CanTx_DecMcuError = 0u;
     static uint8 pIven_CanTx_DiagnosticMode = 0u;
+    static uint8 pIven_CanRx_SafeDriveTrainStatusMessageState = 0u;
+    static uint8 pIven_CanRx_SdtsDriveTrainStatus = 0u;
+
     /* Process IVENs start. */
     if((0u != Iven_CanTx_DiagnosticMode)
             && (Iven_CanTx_DiagnosticMode != pIven_CanTx_DiagnosticMode))
@@ -120,10 +108,8 @@ void Iven_MainFunction(void)
         /* Do nothing. */
     }
 
-    if(((2u <= Iven_CanRx_CurrentConsumption) ||
-            ((1u <= Iven_CanRx_CurrentConsumption) && (90u <= Iven_CanRx_CurrentConsumption2))) &&
-            (Iven_CanRx_CurrentConsumption != pIven_CanRx_CurrentConsumption) &&
-            (Iven_CanRx_CurrentConsumption2 != pIven_CanRx_CurrentConsumption2))
+    if((2u <= Iven_CanRx_CurrentConsumption)
+            && (Iven_CanRx_CurrentConsumption != pIven_CanRx_CurrentConsumption))
     {
         /* Overload on the power supply line. */
         /* Trigger ICM. */
@@ -182,48 +168,12 @@ void Iven_MainFunction(void)
         /* Do nothing. */
     }
 
-    if((253u == Iven_CanRx_PowerSteeringControl) &&
-            (Iven_CanRx_PowerSteeringControl != pIven_CanRx_PowerSteeringControl))
-    {
-        /* Invalid value. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID27].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
     if(253u == Iven_CanRx_GearboxControl &&
             (Iven_CanRx_GearboxControl != pIven_CanRx_GearboxControl))
     {
         /* Invalid value. */
         /* Trigger ICM. */
         Iven_IcmLookupTable[IVEN_ICMID28].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if((253u == Iven_CanRx_AccelerationControl) &&
-            (Iven_CanRx_AccelerationControl != pIven_CanRx_AccelerationControl))
-    {
-        /* Invalid value. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID29].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if((253u == Iven_CanRx_BrakeControl) &&
-            (Iven_CanRx_BrakeControl != pIven_CanRx_BrakeControl))
-    {
-        /* Invalid value. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID30].messageStatus = 1u;
     }
     else
     {
@@ -242,7 +192,7 @@ void Iven_MainFunction(void)
         /* Do nothing. */
     }
 
-    if((254u == Iven_CanTx_PowerSteeringStatus) &&
+    if((253u == Iven_CanTx_PowerSteeringStatus) &&
             (Iven_CanTx_PowerSteeringStatus != pIven_CanTx_PowerSteeringStatus))
     {
         /* Error value. */
@@ -260,66 +210,6 @@ void Iven_MainFunction(void)
         /* Error value. */
         /* Trigger ICM. */
         Iven_IcmLookupTable[IVEN_ICMID40].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if((254u == Iven_CanTx_PowerSteeringFanStatus) &&
-            (Iven_CanTx_PowerSteeringFanStatus != pIven_CanTx_PowerSteeringFanStatus))
-    {
-        /* Error value. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID31].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if((254u == Iven_CanTx_EMotorStatus) &&
-            (Iven_CanTx_EMotorStatus != pIven_CanTx_EMotorStatus))
-    {
-        /* Error value. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID25].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if((254u == Iven_CanTx_SpeedSensorStatus) &&
-            (Iven_CanTx_SpeedSensorStatus != pIven_CanTx_SpeedSensorStatus))
-    {
-        /* Error value. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID34].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if((254u == Iven_CanTx_TempSenPSteering) &&
-            (Iven_CanTx_TempSenPSteering != pIven_CanTx_TempSenPSteering))
-    {
-        /* Error value. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID31].messageStatus = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if((1u == Iven_CanTx_TempSenPSteering) &&
-            (Iven_CanTx_TempSenPSteering != pIven_CanTx_TempSenPSteering))
-    {
-        /* Steering motor temperature too high. */
-        /* Trigger ICM. */
-        Iven_IcmLookupTable[IVEN_ICMID13].messageStatus = 1u;
     }
     else
     {
@@ -362,7 +252,30 @@ void Iven_MainFunction(void)
         /* Do nothing. */
     }
 
-    if((1u == Iven_IcmLookupTable[IVEN_ICMID25].messageStatus) ||
+    if(253u == Iven_CanRx_SafeDriveTrainStatusMessageState && pIven_CanRx_SafeDriveTrainStatusMessageState != Iven_CanRx_SafeDriveTrainStatusMessageState)
+    {
+        pIven_CanRx_SafeDriveTrainStatusMessageState = Iven_CanRx_SafeDriveTrainStatusMessageState;
+        Iven_CanRx_SafeDriveTrainStatusMessageState = 0u;
+        Iven_IcmLookupTable[IVEN_ICMID35].messageStatus = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    if(253 == Iven_CanRx_SdtsDriveTrainStatus && pIven_CanRx_SdtsDriveTrainStatus != Iven_CanRx_SdtsDriveTrainStatus)
+    {
+        pIven_CanRx_SdtsDriveTrainStatus = Iven_CanRx_SdtsDriveTrainStatus;
+        Iven_CanRx_SdtsDriveTrainStatus = 0u;
+        Iven_IcmLookupTable[IVEN_ICMID35].messageStatus = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+
+    if(((1u == Iven_IcmLookupTable[IVEN_ICMID25].messageStatus) ||
             (1u == Iven_IcmLookupTable[IVEN_ICMID26].messageStatus) ||
             (1u == Iven_IcmLookupTable[IVEN_ICMID27].messageStatus) ||
             (1u == Iven_IcmLookupTable[IVEN_ICMID28].messageStatus) ||
@@ -370,13 +283,27 @@ void Iven_MainFunction(void)
             (1u == Iven_IcmLookupTable[IVEN_ICMID30].messageStatus) ||
             (1u == Iven_IcmLookupTable[IVEN_ICMID34].messageStatus) ||
             (1u == Iven_IcmLookupTable[IVEN_ICMID35].messageStatus) ||
-            (1u == Iven_IcmLookupTable[IVEN_ICMID40].messageStatus))
+            (1u == Iven_IcmLookupTable[IVEN_ICMID40].messageStatus)))
     {
         Iven_CanTx_InVehicleSafetyError = 1u;
     }
     else
     {
-        Iven_CanTx_InVehicleSafetyError = 0u;
+        if(0u == Iven_CanRx_PSNWarn
+                && 0u == Iven_StatusPowerSupplyNetworkMessageState
+                && 0u == Iven_StatusDriveControlMessageState
+                && 35u < Iven_CanRx_MeasuredVoltageSupply
+                && 3u >= Iven_CanRx_GearboxControl
+                && 253 > Iven_CanTx_PowerSteeringStatus
+                && 254U > Iven_CanTx_IrSenStat
+                && 3u > Iven_CanRx_CurrentConsumption)
+        {
+            Iven_CanTx_InVehicleSafetyError = 0u;
+        }
+        else
+        {
+            Iven_CanTx_InVehicleSafetyError = 1u;
+        }
     }
     /* Process IVENs end. */
     for(uint8 i = 0; i < IVEN_ICM_NUMBER_OF_MESSAGES; i++)
@@ -388,7 +315,7 @@ void Iven_MainFunction(void)
                 Iven_IcmLookupTable[i].messageCount++;
                 timestamp = Iven_MainCounter;
                 iteratorAux = i;
-                Iven_CanTx_IcmId = i;
+                Iven_CanTx_IcmId = i + 1;
             }
             else
             {
@@ -416,27 +343,18 @@ void Iven_MainFunction(void)
     pIven_StatusPowerSupplyNetworkMessageState = Iven_StatusPowerSupplyNetworkMessageState;
     pIven_CanRx_PSNWarn = Iven_CanRx_PSNWarn;
     pIven_CanRx_CurrentConsumption  = Iven_CanRx_CurrentConsumption;
-    pIven_CanRx_CurrentConsumption2 = Iven_CanRx_CurrentConsumption2;
     pIven_CanRx_MeasuredVoltageSupply = Iven_CanRx_MeasuredVoltageSupply;
     pIven_StatusActuatorMessageState = Iven_StatusActuatorMessageState;
     pIven_CanRx_StatusDoorLeft = Iven_CanRx_StatusDoorLeft;
     pIven_CanRx_StatusDoorRight = Iven_CanRx_StatusDoorRight;
-    pIven_CanRx_PowerSteeringControl = Iven_CanRx_PowerSteeringControl;
     pIven_CanRx_GearboxControl = Iven_CanRx_GearboxControl;
-    pIven_CanRx_AccelerationControl = Iven_CanRx_AccelerationControl;
-    pIven_CanRx_BrakeControl = Iven_CanRx_BrakeControl;
     pIven_CanRx_IgnitionControl = Iven_CanRx_IgnitionControl;
     pIven_CanTx_PowerSteeringStatus = Iven_CanTx_PowerSteeringStatus;
     pIven_CanTx_IrSenStat = Iven_CanTx_IrSenStat;
-    pIven_CanTx_PowerSteeringFanStatus = Iven_CanTx_PowerSteeringFanStatus;
-    pIven_CanTx_EMotorStatus = Iven_CanTx_EMotorStatus;
-    pIven_CanTx_SpeedSensorStatus = Iven_CanTx_SpeedSensorStatus;
-    pIven_CanTx_TempSenPSteering = Iven_CanTx_TempSenPSteering;
     pIven_CanTx_DecMcuError = Iven_CanTx_DecMcuError;
     pIven_CanTx_DiagnosticMode = Iven_CanTx_DiagnosticMode;
 
-    if((253u > Iven_CanRx_IgnitionControl) &&
-            (1u == pIven_CanRx_IgnitionControl) &&
+    if((1u == pIven_CanRx_IgnitionControl) &&
             (2u == Iven_CanRx_IgnitionControl))
     {
         pIven_StatusDriveControlMessageState = 0u;
@@ -444,22 +362,14 @@ void Iven_MainFunction(void)
         pIven_StatusPowerSupplyNetworkMessageState = 0u;
         pIven_CanRx_PSNWarn = 0u;
         pIven_CanRx_CurrentConsumption  = 0u;
-        pIven_CanRx_CurrentConsumption2 = 0u;
         pIven_CanRx_MeasuredVoltageSupply = 0u;
         pIven_StatusActuatorMessageState = 0u;
         pIven_CanRx_StatusDoorLeft = 0u;
         pIven_CanRx_StatusDoorRight = 0u;
-        pIven_CanRx_PowerSteeringControl = 0u;
         pIven_CanRx_GearboxControl = 0u;
-        pIven_CanRx_AccelerationControl = 0u;
-        pIven_CanRx_BrakeControl = 0u;
         pIven_CanRx_IgnitionControl = 0u;
         pIven_CanTx_PowerSteeringStatus = 0u;
         pIven_CanTx_IrSenStat = 0u;
-        pIven_CanTx_PowerSteeringFanStatus = 0u;
-        pIven_CanTx_EMotorStatus = 0u;
-        pIven_CanTx_SpeedSensorStatus = 0u;
-        pIven_CanTx_TempSenPSteering = 0u;
         pIven_CanRx_ErrorDetectedCbm = 0u;
         pIven_CanRx_ErrorDetectedPdm = 0u;
         pIven_CanTx_DecMcuError = 0u;

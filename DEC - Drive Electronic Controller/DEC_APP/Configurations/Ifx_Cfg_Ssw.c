@@ -75,17 +75,17 @@ void Ifx_Ssw_Lbist(void)
 {
     if (!IfxScuLbist_isDone())
     {
-        //if(Ifx_Ssw_isColdPoweronReset())
+        if(Ifx_Ssw_isColdPoweronReset())
         {
             IfxScuLbist_triggerInline(&IfxScuLbist_defaultConfig);
         }
     }
-//    if (!IfxScuLbist_evaluateResult(IfxScuLbist_defaultConfig.signature))
-//    {
-//        /* Application may have call to error handling here */
-//        while(1){__debug();}
-//        McuSm_PerformResetHook(376u, 1u);
-//    }
+    if (!IfxScuLbist_evaluateResult(IfxScuLbist_defaultConfig.signature))
+    {
+        /* Application may have call to error handling here */
+        while(1){__debug();}
+        McuSm_PerformResetHook(376u, 1u);
+    }
 
     Ifx_Ssw_jumpBackToLink();
 }

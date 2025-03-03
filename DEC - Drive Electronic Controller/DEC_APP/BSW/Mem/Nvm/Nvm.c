@@ -3,27 +3,30 @@
 #include "string.h"
 #include "Fls.h"
 #include "EncCal.h"
+#include "Dem.h"
 
 extern EncCal_VOData_t EncCal_VODataComplete_Default;
 
 uint32 Nvm_CurrentAddress;
 uint32 Nvm_SectorSwitchActivated;
 uint32 Nvm_CurrentSector;
-Nvm_Header_t Nvm_HeaderArr[NVM_NO_BLOCKS]=
+Nvm_Header_t Nvm_HeaderArr[NVM_NO_BLOCKS];
+Nvm_Header_t Nvm_HeaderArr_Default[NVM_NO_BLOCKS]=
 {
         {0u, 0u, 0u, 0u}, // block 0 dummy not used
-        {1u, ENCCAL_CALIBRATION_SIZE, 0u, 0u}, // calibration block
+        {1u, ENCCAL_CALIBRATION_SIZE * 4u, 0u, 0u}, // calibration block
         {2u, ENCCAL_CODING_SIZE, 0u, 0u}, // coding block
-        {3u, sizeof(EncCal_VODataComplete)/sizeof(uint32), 0u, 0u}, // VO data block
-        //{4u, DEM_DTC_SIZE, 0u, 0u}, // dtc data block
+        {3u, sizeof(EncCal_VODataComplete), 0u, 0u}, // VO data block
+        {4u, DEM_NUMBER_OF_DTCS, 0u, 0u}, // dtc data block
 };
-Nvm_NvStat_t Nvm_NvStatArr[NVM_NO_BLOCKS] =
+Nvm_NvStat_t Nvm_NvStatArr[NVM_NO_BLOCKS];
+Nvm_NvStat_t Nvm_NvStatArr_Default[NVM_NO_BLOCKS] =
 {
         {0u, 0u, 0u}, // block 0 dummy not used
-        {ENCCAL_CALIBRATION_SIZE, 0u, 0u,}, // calibration block
+        {ENCCAL_CALIBRATION_SIZE * 4u, 0u, 0u,}, // calibration block
         {ENCCAL_CODING_SIZE, 0u, 0u}, // coding block
-        {sizeof(EncCal_VODataComplete)/sizeof(uint32), 0u, 0u}, // VO data block
-        //{DEM_DTC_SIZE, 0u, 0u}, // dtc data block
+        {sizeof(EncCal_VODataComplete), 0u, 0u}, // VO data block
+        {DEM_NUMBER_OF_DTCS, 0u, 0u}, // dtc data block
 };
 Nvm_Block_t Nvm_BlockDataList[NVM_NO_BLOCKS] =
 {
@@ -31,7 +34,7 @@ Nvm_Block_t Nvm_BlockDataList[NVM_NO_BLOCKS] =
         {(uint32*)&EncCal_Calibration_Buffer, 0u},
         {(uint32*)&EncCal_Coding_Buffer, 0u},
         {(uint32*)&EncCal_VODataComplete, 0u},
-        //{(uint32*)&Dem_DtcArray, 0u},
+        {(uint32*)&Dem_DtcArray, 0u},
 };
 Nvm_Block_t Nvm_RomDefaults_BlockDataList[NVM_NO_BLOCKS] =
 {
@@ -39,7 +42,7 @@ Nvm_Block_t Nvm_RomDefaults_BlockDataList[NVM_NO_BLOCKS] =
         {(uint32*)&EncCal_Calibration_DefaultBuffer, 0u},
         {(uint32*)&EncCal_Coding_DefaultBuffer, 0u},
         {(uint32*)&EncCal_VODataComplete_Default, 0u},
-        //{(uint32*)&Dem_DtcArray_Default, 0u},
+        {(uint32*)&Dem_DtcArray, 0u},
 };
 uint8 Nvm_BlockIdListForWriteAll[NVM_NO_BLOCKS] = {0u, 0u, 0u, 0u};//, 1u}
 uint8 Nvm_WriteAllFinished;
@@ -85,9 +88,8 @@ void Nvm_WriteBlock(uint16 blockId, uint32 *data)
     uint16 size = 0u;
 
     address = Nvm_CurrentAddress;
-    size = Nvm_NvStatArr[blockId].blockSize;
+    size = Nvm_NvStatArr[blockId].blockSize / 4u;
     crc = Crc_Calculate(data, size, 0u);
-
 
     if((address + NVM_SIZE_HEADER_BYTES + Nvm_NvStatArr[blockId].blockSize + 8) < 0xAF040000)
     {
@@ -105,14 +107,14 @@ void Nvm_WriteBlock(uint16 blockId, uint32 *data)
     {
         /* Sector switch. */
         __debug();
-        //        Nvm_SectorSwitch();
-        //        Fls_WriteBlock(address, (uint32*)&Nvm_HeaderArr[blockId], NVM_SIZE_HEADER_BYTES);
-        //        address += NVM_SIZE_HEADER_BYTES;
-        //        Fls_WriteBlock(address, data, Nvm_NvStatArr[blockId].blockSize);
-        //        address += Nvm_NvStatArr[blockId].blockSize;
-        //        Fls_WriteBlock(address, crc, 8u);
-        //        address += 8u;
-        //        Nvm_CurrentAddress = address;
+        Nvm_SectorSwitch();
+        Fls_WriteBlock(address, (uint32*)&Nvm_HeaderArr[blockId], NVM_SIZE_HEADER_BYTES);
+        address += NVM_SIZE_HEADER_BYTES;
+        Fls_WriteBlock(address, data, Nvm_NvStatArr[blockId].blockSize);
+        address += Nvm_NvStatArr[blockId].blockSize;
+        Fls_WriteBlock(address, &crc, 8u);
+        address += 8u;
+        Nvm_CurrentAddress = address;
     }
 
     IfxCpu_enableInterrupts();
@@ -132,6 +134,7 @@ void Nvm_FindCurrentAddress()
     uint32 startPattern[2] = {0, 0};
     Nvm_Header_t localHeader;
     uint8 localBlockId = 0u;
+    uint8 localBlockCounter = 0u;
 
     if(0u == localAddress)
     {
@@ -149,7 +152,7 @@ void Nvm_FindCurrentAddress()
         /* Read start pattern of the sector. */
         Fls_ReadBlock(localAddress, (uint32*)&startPattern, 8u);
 
-        if(0xA5A5 == startPattern[0] && 0xA5A5 == startPattern[1])
+        if(0xA5A5A5A5U == startPattern[0] && 0xA5A5A5A5U == startPattern[1])
         {
             /* Sector pattern identified, proceed with header identification. */
             localAddress += 8u;
@@ -163,8 +166,8 @@ void Nvm_FindCurrentAddress()
                 if(0u != localBlockId
                         && NVM_NO_BLOCKS > localBlockId)
                 {
-                    if(localHeader.blockId == Nvm_HeaderArr[localBlockId].blockId
-                            && localHeader.blockSize == Nvm_HeaderArr[localBlockId].blockSize)
+                    if(localHeader.blockId == Nvm_HeaderArr_Default[localBlockId].blockId
+                            && localHeader.blockSize == Nvm_HeaderArr_Default[localBlockId].blockSize)
                     {
                         Nvm_HeaderArr[localBlockId].blockId = localHeader.blockId;
                         Nvm_HeaderArr[localBlockId].blockSize = localHeader.blockSize;
@@ -172,6 +175,16 @@ void Nvm_FindCurrentAddress()
                         Nvm_NvStatArr[localBlockId].blockAddress = localAddress + 8u;
                         localAddress += localHeader.blockSize + 8u; // 8u crc size and padding
                         Nvm_CurrentAddress = localAddress;
+                        localBlockCounter++;
+
+                        if(NVM_NO_BLOCKS - 1 == localBlockCounter)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            /* Do nothing. */
+                        }
                     }
                     else
                     {
@@ -190,22 +203,21 @@ void Nvm_FindCurrentAddress()
         }
         else if(0u != startPattern[0] && 0u != startPattern[1])
         {
-            __asm("nop");
             __debug();
-            //            /* Corrupted pattern, erase the data-flash. */
-            //            Fls_Erase(localAddress);
-            //            /* Write sector pattern, assumption is that the data-flash is empty. */
-            //            startPattern[0] = 0xA5A5u;
-            //            startPattern[1] = 0xA5A5u;
-            //            Fls_WriteBlock(localAddress, (uint32*)&startPattern, 8u);
-            //            localAddress += 8u;
-            //            Nvm_CurrentAddress = localAddress;
+            /* Corrupted pattern, erase the data-flash. */
+            Fls_Erase(localAddress);
+            /* Write sector pattern, assumption is that the data-flash is empty. */
+            startPattern[0] = 0xA5A5u;
+            startPattern[1] = 0xA5A5u;
+            Fls_WriteBlock(localAddress, (uint32*)&startPattern, 8u);
+            localAddress += 8u;
+            Nvm_CurrentAddress = localAddress;
         }
         else
         {
             /* Write sector pattern, assumption is that the data-flash is empty. */
-            startPattern[0] = 0xA5A5u;
-            startPattern[1] = 0xA5A5u;
+            startPattern[0] = 0xA5A5A5A5u;
+            startPattern[1] = 0xA5A5A5A5u;
             Fls_WriteBlock(localAddress, (uint32*)&startPattern, 8u);
             localAddress += 8u;
             Nvm_CurrentAddress = localAddress;
@@ -224,7 +236,7 @@ void Nvm_ReadAll(void)
     IfxCpu_disableInterrupts();
 
     uint32 localCrc[2] = {0u};
-    uint32 compareCrc[2] = {0u};
+    uint32 compareCrc = 0u;
     uint32 crcAddress = 0u;
 
     Nvm_FindCurrentAddress();
@@ -234,28 +246,28 @@ void Nvm_ReadAll(void)
         if((Nvm_HeaderArr[i].blockId != 0u) && (Nvm_HeaderArr[i].blockId != 0xFF)
                 && (Nvm_HeaderArr[i].blockSize != 0u && Nvm_HeaderArr[i].blockSize != 0xFF))
         {
-            Fls_ReadBlock(Nvm_NvStatArr[i].blockAddress, (uint32*)&Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize);
+            Fls_ReadBlock(Nvm_NvStatArr[i].blockAddress, Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize);
             crcAddress = Nvm_NvStatArr[i].blockAddress + Nvm_NvStatArr[i].blockSize;
-            Fls_ReadBlock(crcAddress, (uint32*)&localCrc, 8u);
-            compareCrc[1] = Crc_Calculate(Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize, 0u);
+            Fls_ReadBlock(crcAddress, localCrc, 8u);
+            compareCrc = Crc_Calculate(Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize / 4u, 0u);
 
-            if(compareCrc[1] == localCrc[1])
+            if(compareCrc == localCrc[0])
             {
                 /* Do nothing. */
             }
             else
             {
-                __debug();
-                //                memcpy(&Nvm_BlockDataList[i].data, &Nvm_RomDefaults_BlockDataList[i].data, sizeof(Nvm_RomDefaults_BlockDataList[i].data));
-                //                Nvm_WriteBlock(i, (uint32*)&Nvm_BlockDataList[i].data);
+                //__debug();
+                //memcpy(&Nvm_BlockDataList[i].data, &Nvm_RomDefaults_BlockDataList[i].data, sizeof(Nvm_RomDefaults_BlockDataList[i].data));
+                //Nvm_WriteBlock(i, (uint32*)&Nvm_BlockDataList[i].data);
             }
 
         }
         else
         {
-            __debug();
-            memcpy(&Nvm_BlockDataList[i].data, &Nvm_RomDefaults_BlockDataList[i].data, sizeof(Nvm_RomDefaults_BlockDataList[i].data));
-            Nvm_WriteBlock(i, (uint32*)&Nvm_BlockDataList[i].data);
+            memcpy(&Nvm_HeaderArr[i], &Nvm_HeaderArr_Default[i], sizeof(Nvm_HeaderArr[i]));
+            memcpy(&Nvm_NvStatArr[i], &Nvm_NvStatArr_Default[i], sizeof(Nvm_NvStatArr[i]));
+            Nvm_WriteBlock(i, Nvm_RomDefaults_BlockDataList[i].data);
         }
     }
 

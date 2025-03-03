@@ -3,6 +3,7 @@
 #include "Irq.h"
 #include "IfxCpu_IntrinsicsTasking.h"
 #include "IfxCpu_reg.h"
+#include "Iven.h"
 
 const McuSm_ResetReason_t McuSm_FullListCompare[] =
 {
@@ -246,6 +247,7 @@ uint32 McuSm_LastResetInformation;
 uint32 McuSm_IndexResetHistory;
 McuSm_ResetHistory_t McuSm_ResetHistory[20u];
 McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
+Iven_IcmTable_t Iven_IcmLookupTable[IVEN_ICM_NUMBER_OF_MESSAGES] = {{0u,0u}};
 uint32 DiagMaster_AliveTime;
 uint8 DiagMaster_ActiveSessionState;
 

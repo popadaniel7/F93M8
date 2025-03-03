@@ -24,7 +24,7 @@ uint8 EnergyMgmt_CanTx_VehicleState = 0u;
 uint8 EnergyMgmt_CanRx_StatusDoorLeft = 0u;
 uint8 EnergyMgmt_CanRx_StatusDoorRight = 0u;
 uint8 EnergyMgmt_CanRx_StatusHc05 = 0u;
-uint8 EnergyMgmt_CanRx_VoltageMeasured = 0u;
+uint8 EnergyMgmt_CanRx_VoltageMeasured = 50u;
 uint8 EnergyMgmt_CanRx_CurrentMeasured = 0u;
 uint8 EnergyMgmt_CanRx_CurrentMeasured2 = 0u;
 uint8 EnergyMgmt_CanTx_PowerSupplyReducedPerformance = 0u;
@@ -33,10 +33,8 @@ void EnergyMgmt_MainFunction(void);
 
 void EnergyMgmt_MainFunction(void)
 {
-    static uint32 timestamp = 0u;
+    static uint32 timestamp3 = 0u;
     static uint32 timestamp2 = 0u;
-    static uint8 flag = 0u;
-    static uint8 evaluateCarLockState = 0u;
     static uint32 cutoffTime = 0u;
     static uint32 totalCurrent = 0u;
     static uint32 totCurrTimer = 0u;
@@ -50,12 +48,23 @@ void EnergyMgmt_MainFunction(void)
     static uint32 counter6 = 0u;
     static uint32 counter7 = 0u;
     static uint32 counter8 = 0u;
+    static uint8 debFlagExceeded = 0u;
+    static uint8 pIgnState = 0u;
+
+    if(200u <= EnergyMgmt_MainCounter)
+    {
+        debFlagExceeded = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 
     totCurrTimer = EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer * 60u * 1000u / 5u;
     cutoffTime = EncCal_Coding_ConsumerCutoffTime * 60u * 1000u / 5u;
     totalCurrent = EnergyMgmt_CanRx_CurrentMeasured * 1000u + EnergyMgmt_CanRx_CurrentMeasured2 * 10u;
 
-    if((EncCal_Calibration_EnergyMgmt_UnderVoltageTh > EnergyMgmt_CanRx_VoltageMeasured) && (0u != EnergyMgmt_CanRx_VoltageMeasured))
+    if((EncCal_Calibration_EnergyMgmt_UnderVoltageTh > EnergyMgmt_CanRx_VoltageMeasured) && (0u != EnergyMgmt_CanRx_VoltageMeasured) && debFlagExceeded)
     {
         switchOffFlag2 = 1u;
         EnergyMgmt_CanTx_PowerSupplyReducedPerformance = 2u;
@@ -65,7 +74,7 @@ void EnergyMgmt_MainFunction(void)
         switchOffFlag2 = 0u;
     }
 
-    if(totalCurrent > (EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u))
+    if(totalCurrent > (EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u) && debFlagExceeded)
     {
         if(0u == timestamp2)
         {
@@ -86,7 +95,7 @@ void EnergyMgmt_MainFunction(void)
             switchOffFlag1 = 0u;
         }
     }
-    else if(totalCurrent < ((EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u) - 250u))
+    else if(totalCurrent < ((EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u) - 250u) && debFlagExceeded)
     {
         timestamp2 = 0u;
         switchOffFlag1 = 0u;
@@ -109,75 +118,31 @@ void EnergyMgmt_MainFunction(void)
 
     switch(EnergyMgmt_CanRx_IgnitionStatus)
     {
-        case 255u:
-        case 254u:
-        case 3u:
-            if(0u == timestamp)
+        case 0u:
+            if(0u != pIgnState)
             {
-                timestamp = EnergyMgmt_MainCounter;
+                timestamp3 = EnergyMgmt_MainCounter;
             }
             else
             {
                 /* Do nothing. */
             }
-
-            if(cutoffTime < (EnergyMgmt_MainCounter - timestamp))
-            {
-                flag = 1u;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-
-            if((0u == EnergyMgmt_CanRx_StatusDoorLeft && 0u == EnergyMgmt_CanRx_StatusDoorRight)
-                    && (0u == EnergyMgmt_CanRx_StatusHc05))
-            {
-                evaluateCarLockState = 1u;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-
-            if((1u == flag)
-                    || (1u == evaluateCarLockState))
+            
+            if(4000u < EnergyMgmt_MainCounter - timestamp3 && 0u != timestamp3)
             {
                 EnergyMgmt_CanTx_CommandLoad2 = 0u;
-                EnergyMgmt_CanTx_CommandLoad4 = 0u;
-                EnergyMgmt_CanTx_CommandLoad5 = 0u;
-                EnergyMgmt_CanTx_CommandLoad6 = 0u;
             }
             else
             {
-                if(2u == EncCal_Coding_DmuL)
-                {
-                    EnergyMgmt_CanTx_CommandLoad2 = 0u;
-                }
-                else
-                {
-                    EnergyMgmt_CanTx_CommandLoad2 = 1u;
-                }
-
-                EnergyMgmt_CanTx_CommandLoad4 = 0u;
-                EnergyMgmt_CanTx_CommandLoad5 = 0u;
-                EnergyMgmt_CanTx_CommandLoad6 = 0u;
-            }
-            break;
-        case 0u:
-            timestamp = 0u;
-            flag = 0u;
-            evaluateCarLockState = 0u;
-            EnergyMgmt_CanTx_CommandLoad2 = 0u;
+                /* Do nothing. */
+            }            
             EnergyMgmt_CanTx_CommandLoad4 = 0u;
             EnergyMgmt_CanTx_CommandLoad5 = 0u;
             EnergyMgmt_CanTx_CommandLoad6 = 0u;
+            EnergyMgmt_CanTx_CommandLoad7 = 0u;
+            EnergyMgmt_CanTx_CommandLoad8 = 0u;
             break;
         case 1u:
-            timestamp = 0u;
-            flag = 0u;
-            evaluateCarLockState = 0u;
-
             if(2u == EncCal_Coding_DmuL)
             {
                 EnergyMgmt_CanTx_CommandLoad2 = 0u;
@@ -186,16 +151,11 @@ void EnergyMgmt_MainFunction(void)
             {
                 EnergyMgmt_CanTx_CommandLoad2 = 1u;
             }
-
             EnergyMgmt_CanTx_CommandLoad4 = 0u;
             EnergyMgmt_CanTx_CommandLoad5 = 0u;
             EnergyMgmt_CanTx_CommandLoad6 = 0u;
             break;
         case 2u:
-            timestamp = 0;
-            flag = 0u;
-            evaluateCarLockState = 0u;
-
             if(2u == EncCal_Coding_DmuL)
             {
                 EnergyMgmt_CanTx_CommandLoad2 = 0u;
@@ -245,6 +205,15 @@ void EnergyMgmt_MainFunction(void)
         else
         {
             EnergyMgmt_CanTx_CommandLoad2 = 1u;
+        }
+        
+        if(2u == EncCal_Coding_L4)
+        {
+            EnergyMgmt_CanTx_CommandLoad4 = 0u;
+        }
+        else
+        {
+            EnergyMgmt_CanTx_CommandLoad4 = 1u;
         }
 
         if(2u == EncCal_Coding_L5)
@@ -462,6 +431,8 @@ void EnergyMgmt_MainFunction(void)
     {
         Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
     }
+    
+    pIgnState = EnergyMgmt_CanRx_IgnitionStatus;
 
     EnergyMgmt_MainCounter++;
 }

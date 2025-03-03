@@ -1,164 +1,142 @@
 #include "ColDet.h"
 #include "Ain.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
 #include "time.h"
 #include "Dem.h"
 
-typedef enum
-{
-    INIT = 255U,
-    SAFE = 0U,
-    WARNING = 1U,
-    BRAKE = 2U,
-    ERROR = 254U
-} ColDet_State_t;
+#define TIME_TO_COLLISION_WARN   2.0
+#define TIME_TO_COLLISION_BRAKE  1.0
+#define DISTANCE_STABLE_THRESHOLD_CM  1
 
-static const float DISTANCE_STABLE_THRESHOLD_CM = 2.0f;         // If distance changes less than +-2 centimeters, treat as stable
-static const float TIME_TO_COLLISION_WARN       = 2.0f;         // If TTC < 2s => go to WARNING
-static const float TIME_TO_COLLISION_BRAKE      = 1.0f;         // If TTC < 1s => go to BRAKE
-static ColDet_State_t g_collisionState = INIT;
-static float g_lastDistanceCm = 0xFFFFu;                        // Start with some large distance
 static uint32 ColDet_MainCounter = 0u;
+CollisionState ColDet_CanTx_CollisionState = COLLISION_SAFE;
+uint8 ColDet_CanTx_BrakeLevel = 0;  // current brake application level (as a percentage)=
 uint8 ColDet_CanTx_IrSenStat = 0u;
-float ColDet_CalculatedSpeed = 0u;
+uint8 ColDet_CanRx_CalculatedSpeed = 0u;
 
 void ColDet_MainFunction(void);
 
 void ColDet_MainFunction(void)
 {
-    static float distCm = 0u;
-    static float vehicleSpeed = 0u;
-    static float deltaDistCm = 0u;
-    static float approachSpeedMps = 0.0f;
-    static float distanceChangeMeters = 0u;
-    static float ttcSeconds = 0.0f;
-    static float distM = 0.0f;
-    static uint32 timestamp = 0u;
-    static uint32 warnDurationSec = 0u;
-
-    distCm = IRSensorValue;
-    vehicleSpeed = ColDet_CalculatedSpeed;  /* used to see if we are moving at all. */
-    deltaDistCm = distCm - g_lastDistanceCm;
-    g_lastDistanceCm  = distCm;
-    /* If our car is basically not moving, skip everything => Remain SAFE. */
-    if(vehicleSpeed < 0.01f)
+    // For simulation, define a max distance that indicates "no obstacle"
+    const uint32 NO_OBSTACLE_DISTANCE = 100000;  // 1000 m (just a large number)
+    // Variables to hold sensor readings
+    uint32 distanceCm = NO_OBSTACLE_DISTANCE;
+    uint32 lastDistanceCm = NO_OBSTACLE_DISTANCE;
+    double speed = 0.0;
+    double ttc = 0.0;
+    // 1. Read current sensor values
+    speed = ColDet_CanRx_CalculatedSpeed;         // current vehicle speed
+    distanceCm = IRSensorValue; // distance to obstacle from IR sensor
+    // 2. Filter sensor noise: ignore tiny fluctuations in distance
+    if (abs(distanceCm - lastDistanceCm) <= DISTANCE_STABLE_THRESHOLD_CM)
     {
-        if(g_collisionState != BRAKE)
-        {
-            g_collisionState = SAFE;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
+        // If the distance changed by 1 cm or less, treat it as essentially unchanged
+        distanceCm = lastDistanceCm;
     }
     else
     {
         /* Do nothing. */
     }
 
-    if(deltaDistCm < -DISTANCE_STABLE_THRESHOLD_CM)
+    lastDistanceCm = distanceCm;
+    // Determine if an obstacle is detected within sensor range
+    bool objectDetected = (distanceCm < NO_OBSTACLE_DISTANCE);
+    // 3. Calculate Time-to-Collision (TTC) if object is detected and car is moving
+    if (objectDetected && speed > 0.0)
     {
-        /* Negative deltaDist => distance decreased => We approach the front car. */
-        distanceChangeMeters = -(deltaDistCm / 100.0f); /* Convert centimeters -> meters and invert sign. */
-        approachSpeedMps = distanceChangeMeters / 0.04f;
-        /* If distance changed by -5 centimeters in 0.05s => 0.05m / 0.05s => approachSpeed = 1.0 m/s. */
+        // Convert distance and speed to consistent units (e.g., meters and m/s) if needed
+        // Here assuming distanceCm is in cm and speed is in cm/s for simplicity
+        ttc = distanceCm / speed;
     }
     else
     {
-        /* Distance stable or increasing => no approach. */
-        approachSpeedMps = 0.0f;
+        ttc = 9999;  // No collision imminent (no object or not moving)
     }
-    /* Compute Time to Collision if approachSpeed > 0. */
-    ttcSeconds = 99999.0f;
-    distM      = distCm / 100.0f; /* Convert to meters. */
+    // (These represent the distances at which TTC equals the thresholds)
+    // 5. State machine: decide state transitions and actions
+    switch (ColDet_CanTx_CollisionState)
+    {
+        case COLLISION_SAFE:
+            if (objectDetected && ttc <= TIME_TO_COLLISION_BRAKE)
+            {
+                // Obstacle extremely close – immediate emergency brake
+                ColDet_CanTx_CollisionState = COLLISION_BRAKE;
+                ColDet_CanTx_BrakeLevel = 100;            // full braking
+                // (In a real system, also trigger audible/visual collision alert)
+            }
+            else if (objectDetected && ttc <= TIME_TO_COLLISION_WARN) {
+                // Obstacle within warning range – enter warning state
+                ColDet_CanTx_CollisionState = COLLISION_WARNING;
+                // Initialize gradual braking
+                ColDet_CanTx_BrakeLevel = 30;             // e.g., 30% brake to start slowing
+                // (Also perhaps trigger a warning light/sound for driver)
+            }
+            else
+            {
+                // No threat – stay in SAFE
+                ColDet_CanTx_CollisionState = COLLISION_SAFE;
+                ColDet_CanTx_BrakeLevel = 0;
+            }
+            break;
 
-    if(approachSpeedMps > 0.01f)
-    {
-        ttcSeconds = distM / approachSpeedMps;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-    /* State machine logic. */
-    switch(g_collisionState)
-    {
-        case SAFE:
-        {
-            /* If we're not approaching or TTC > TIME_TO_COLLISION_WARN => remain SAFE. */
-            if(ttcSeconds > TIME_TO_COLLISION_WARN)
+        case COLLISION_WARNING:
+            if (!objectDetected || ttc > TIME_TO_COLLISION_WARN)
             {
-                /* Do nothing. */
+                // Obstacle gone or now far away – go back to SAFE
+                ColDet_CanTx_CollisionState = COLLISION_SAFE;
+                ColDet_CanTx_BrakeLevel = 0;
             }
-            else if(ttcSeconds < TIME_TO_COLLISION_BRAKE)
+            else if (ttc <= TIME_TO_COLLISION_BRAKE)
             {
-                /* immediate brake if TTC < 1 second. */
-                g_collisionState = BRAKE;
+                // Situation worsened – switch to emergency brake
+                ColDet_CanTx_CollisionState = COLLISION_BRAKE;
+                ColDet_CanTx_BrakeLevel = 100;
             }
             else
             {
-                /* TTC is between 1 second and 2 seconds => WARNING. */
-                g_collisionState   = WARNING;
-                timestamp = ColDet_MainCounter * 5u;
+                // Still in warning range – continue gradual braking
+                // Increase brake pressure stepwise but avoid harsh braking
+                if (ColDet_CanTx_BrakeLevel < 80)
+                {       // cap gradual braking at ~80%
+                    ColDet_CanTx_BrakeLevel += 10;        // ramp up brakes by 10% (adjust step as needed)
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+                // (The obstacle is still in front but not extremely close, so we are slowing down smoothly)
             }
             break;
-        }
-        case WARNING:
-        {
-            /* If we become safe again (TTC > TIME_TO_COLLISION_WARN), revert to SAFE. */
-            if(ttcSeconds > TIME_TO_COLLISION_WARN)
-            {
-                g_collisionState = SAFE;
-                break;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-            /* Remain in WARNING if TTC between 1 second and 2 seconds. */
-            warnDurationSec = (ColDet_MainCounter * 5u) - timestamp;
-            /* If TTC < 1 second => we want to brake, but let's ensure we gave at least MIN_WARNING_DURATION. */
-            if((ttcSeconds < TIME_TO_COLLISION_BRAKE))
-            {
-                g_collisionState = BRAKE;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-            break;
-        }
-        case BRAKE:
-        {
-            /* If we are now safe => release brake. */
-            if(ttcSeconds > TIME_TO_COLLISION_WARN)
-            {
-                g_collisionState = SAFE;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-            break;
-        }
-        default:
-            break;
-    }
 
-    if(0xFFFFu == IRSensorValue || 10u > IRSensorValue)
-    {
-        g_collisionState = ERROR;
-        Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 1u, 0u);
-    }
-    else
-    {
-        Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 0u, 0u);
+        case COLLISION_BRAKE:
+            if (!objectDetected || ttc > TIME_TO_COLLISION_WARN)
+            {
+                // Obstacle cleared or moved far – return to SAFE
+                ColDet_CanTx_CollisionState = COLLISION_SAFE;
+                // Optionally, if the car is almost stopped, keep brake applied a moment to be sure
+                ColDet_CanTx_BrakeLevel = 0;
+            }
+            else if (ttc > TIME_TO_COLLISION_BRAKE && ttc <= TIME_TO_COLLISION_WARN)
+            {
+                // Obstacle still ahead but not an immediate collision (TTC improved to >1s)
+                ColDet_CanTx_CollisionState = COLLISION_WARNING;
+                // Rather than full release, maintain moderate braking as a precaution
+                ColDet_CanTx_BrakeLevel = 50;         // e.g., reduce braking to 50%
+            }
+            else
+            {
+                // Remain in emergency brake state (ttc still <= 1s)
+                ColDet_CanTx_CollisionState = COLLISION_BRAKE;
+                ColDet_CanTx_BrakeLevel = 100;
+            }
+            break;
     }
 
-    ColDet_CanTx_IrSenStat = g_collisionState;
+    ColDet_CanTx_IrSenStat = ColDet_CanTx_CollisionState;
 
     ColDet_MainCounter++;
 }

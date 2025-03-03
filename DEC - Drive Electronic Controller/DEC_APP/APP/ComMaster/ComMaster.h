@@ -1,6 +1,9 @@
 #include "Ifx_Types.h"
 #include "Can.h"
 
+#define COMMASTER_NO_RX_MSG 10u
+#define COMMASTER_NO_TX_MSG 11u
+
 typedef struct
 {
         Can_TxMsg_t transmitMessage;
@@ -14,8 +17,15 @@ typedef struct
         uint8 receivedValidFlag;
 }ComMaster_ReceiveType_t;
 
-extern ComMaster_TransmitType_t ComMaster_TransmitTable[7u];
-extern ComMaster_ReceiveType_t ComMaster_ReceiveTable[9u];
+extern ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG];
+extern ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG];
+extern uint32 ComMaster_SdcMsgStat_Cnt;
+extern uint32 ComMaster_LlMsgStat_Cnt;
+extern uint32 ComMaster_SpsnMsgStat_Cnt;
+extern uint32 ComMaster_SaMsgStat_Cnt;
+extern uint32 ComMaster_CwcMsgStat_Cnt;
+extern uint32 ComMaster_SvcMsgStat_Cnt;
+extern uint32 ComMaster_LsMsgStat_Cnt;
 extern uint8 ComMaster_RxSignal_AutoClimate;
 extern uint8 ComMaster_RxSignal_ClimateTemperature;
 extern uint8 ComMaster_RxSignal_DisplayMode;
@@ -34,8 +44,6 @@ extern uint8 ComMaster_RxSignal_MeasuredVoltageSupply;
 extern uint8 ComMaster_RxSignal_PSNWarn;
 extern uint8 ComMaster_RxSignal_Recirculation;
 extern uint8 ComMaster_RxSignal_RotaryLightSwitch;
-extern uint8 ComMaster_RxSignal_StatusAcc;
-extern uint8 ComMaster_RxSignal_StatusBr;
 extern uint8 ComMaster_RxSignal_StatusIgn;
 extern uint8 ComMaster_RxSignal_StatusGb;
 extern uint8 ComMaster_RxSignal_StatusPs;
@@ -75,14 +83,43 @@ extern uint8 ComMaster_TxSignal_StatusOutTemp;
 extern uint8 ComMaster_TxSignal_PowerSteeringAngle;
 extern uint8 ComMaster_TxSignal_RecirculationRequest;
 extern uint8 ComMaster_TxSignal_RlsRequest;
-extern uint8 ComMaster_TxSignal_Rpm;
-extern uint8 ComMaster_TxSignal_Speed;
+extern uint8 ComMaster_RxSignal_Rpm;
+extern uint8 ComMaster_RxSignal_Speed;
 extern uint8 ComMaster_TxSignal_TurnSignals;
 extern uint8 ComMaster_TxSignal_VBat;
 extern uint8 ComMaster_TxSignal_WiperStockRequest;
 extern uint8 ComMaster_TxSignal_VehicleStatus;
+extern uint8 ComMaster_TxSignal_ReducedPowerSupply;
 extern uint8 ComMaster_ActivityOnTheBus;
+extern uint8 ComMaster_StatusDriveControlMessageState;
+extern uint8 ComMaster_StatusLoadListMessageState;
+extern uint8 ComMaster_StatusPowerSupplyNetworkMessageState;
+extern uint8 ComMaster_StatusActuatorMessageState;
+extern uint8 ComMaster_RxSignal_SdtsCrc;
+extern uint8 ComMaster_RxSignal_SdtsSeqCnt;
+extern uint8 ComMaster_RxSignal_SdtsVehSpeed;
+extern uint8 ComMaster_RxSignal_SdtsMotorRpm;
+extern uint8 ComMaster_RxSignal_SdtsDriveTrainStatus;
+extern uint8 ComMaster_TxSignal_SbaCrc;
+extern uint8 ComMaster_TxSignal_SbaSeqCnt;
+extern uint8 ComMaster_TxSignal_SbaAssistRequestStatus;
+extern uint8 ComMaster_TxSignal_SbaBrakeLevel;
+extern uint8 ComMaster_TxSignal_SssCrc;
+extern uint8 ComMaster_TxSignal_SssSeqCnt;
+extern uint8 ComMaster_TxSignal_SssPSNW;
+extern uint8 ComMaster_TxSignal_SssRPS;
+extern uint8 ComMaster_TxSignal_SveCrc;
+extern uint8 ComMaster_TxSignal_SveSeqCnt;
+extern uint8 ComMaster_TxSignal_SveIvenSafe;
+extern uint8 ComMaster_TxSignal_SisCrc;
+extern uint8 ComMaster_TxSignal_SisSeqCnt;
+extern uint8 ComMaster_TxSignal_SisIgnitionStatus;
+extern uint8 ComMaster_E2eError_Sdts;
+extern uint8 ComMaster_E2eSeqCnt_Sdts;
+extern uint8 ComMaster_CanTx_InVehicleSafetyErrorFlag;
+extern uint8 ComMaster_SafeDriveTrainStatusMessageState;
+extern uint32 ComMaster_SdtsMsgStat_Cnt;
 
 extern void ComMaster_MainFunction(void);
-extern void ComMaster_E2e_UpdateTx(McmcanType *message, uint8 sequenceCounter);
-extern uint8 ComMaster_E2e_CheckRx(McmcanType *message, uint8 sequenceCounter);
+extern void ComMaster_E2e_UpdateTx(Can_TxMsg_t *message, uint8 sequenceCounter);
+extern uint8 ComMaster_E2e_CheckRx(Can_RxMsg_t *message, uint8 sequenceCounter);

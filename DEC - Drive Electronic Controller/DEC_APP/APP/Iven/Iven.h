@@ -23,6 +23,8 @@ typedef struct
 {
         uint8 messageStatus;
         uint8 messageCount;
+        uint8 padding1;
+        uint8 padding2;
 }Iven_IcmTable_t;
 
 extern Iven_IcmTable_t Iven_IcmLookupTable[IVEN_ICM_NUMBER_OF_MESSAGES];
@@ -32,26 +34,20 @@ extern uint8 Iven_StatusLoadListMessageState;
 extern uint8 Iven_StatusPowerSupplyNetworkMessageState;
 extern uint8 Iven_CanRx_PSNWarn;
 extern uint8 Iven_CanRx_CurrentConsumption;
-extern uint8 Iven_CanRx_CurrentConsumption2;
 extern uint8 Iven_CanRx_MeasuredVoltageSupply;
 extern uint8 Iven_StatusActuatorMessageState;
 extern uint8 Iven_CanRx_StatusDoorLeft;
 extern uint8 Iven_CanRx_StatusDoorRight;
-extern uint8 Iven_CanRx_PowerSteeringControl;
 extern uint8 Iven_CanRx_GearboxControl;
-extern uint8 Iven_CanRx_AccelerationControl;
-extern uint8 Iven_CanRx_BrakeControl;
 extern uint8 Iven_CanRx_IgnitionControl;
 extern uint8 Iven_CanTx_PowerSteeringStatus;
 extern uint8 Iven_CanTx_IrSenStat;
-extern uint8 Iven_CanTx_PowerSteeringFanStatus;
-extern uint8 Iven_CanTx_EMotorStatus;
-extern uint8 Iven_CanTx_SpeedSensorStatus;
-extern uint8 Iven_CanTx_TempSenPSteering;
 extern uint8 Iven_CanRx_ErrorDetectedCbm;
 extern uint8 Iven_CanRx_ErrorDetectedPdm;
 extern uint8 Iven_CanTx_InVehicleSafetyError;
 extern uint8 Iven_CanTx_DecMcuError;
 extern uint8 Iven_CanTx_DiagnosticMode;
+extern uint8 Iven_CanRx_SafeDriveTrainStatusMessageState;
+extern uint8 Iven_CanRx_SdtsDriveTrainStatus;
 
 extern void Iven_MainFunction(void);

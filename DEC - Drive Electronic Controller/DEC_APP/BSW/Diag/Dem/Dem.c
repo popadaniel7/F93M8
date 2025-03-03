@@ -9,7 +9,24 @@ void Dem_Init(void)
 {
     for(uint8 i = 0; i < DEM_NUMBER_OF_DTCS; i++)
     {
-        if(i % 2 == 1)
+        if(0u == i)
+        {
+          /* Do nothing. */
+        }
+        else if(1u == i)
+        {
+          Dem_DtcArray[i] = 0u;
+        }
+        else if(2u == i)
+        {
+          /* Do nothing. */
+        }
+        else
+        {
+          /* Do nothing. */
+        }
+      
+        if(i % 2 == 1 && 2u < i)
         {
             Dem_DtcArray[i] = 0u;
         }
@@ -24,8 +41,8 @@ void Dem_SetDtc(uint32 dtcId, uint8 dtcStatus, uint8 index)
 {
     if(dtcStatus != 0u)
     {
-        Dem_DtcArray[index] = (uint8)dtcId;
-        Dem_DtcArray[index + 1] = dtcStatus;
+        Dem_DtcArray[index * 2] = (uint8)dtcId;
+        Dem_DtcArray[index * 2 + 1] = dtcStatus;
     }
     else
     {
@@ -35,8 +52,8 @@ void Dem_SetDtc(uint32 dtcId, uint8 dtcStatus, uint8 index)
     if(Dem_DtcArray[index] != 0u &&
             dtcStatus == 0u)
     {
-        Dem_DtcArray[index] = (uint8)dtcId;
-        Dem_DtcArray[index + 1] = dtcStatus;
+        Dem_DtcArray[index * 2] = (uint8)dtcId;
+        Dem_DtcArray[index * 2 + 1] = dtcStatus;
     }
     else
     {

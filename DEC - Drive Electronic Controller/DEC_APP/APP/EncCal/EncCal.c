@@ -124,35 +124,8 @@ EncCal_VOData_t EncCal_VODataComplete;
 uint32 EncCal_Calibration_Buffer[ENCCAL_CALIBRATION_SIZE];
 uint32 EncCal_Calibration_DefaultBuffer[ENCCAL_CALIBRATION_SIZE] =
 {
-        /*25u,10u,5u,100u,100u,10u,90u,500u,15u,15u,15u,15u,1u,1u,1u,1000u,100u,100u,100u,1u,1u,1u,10u,10u,1u,50u,3000u,*/2u,1u,1u,10u,80u,80u,2u,5000u,35u,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf
+        2u,1u,1u,10u,80u,80u,2u,5000u,35u,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf
 };
-//uint32 EncCal_Calibration_EPSCtrlPID_Kp                                         = 0u;
-//uint32 EncCal_Calibration_EPSCtrlPID_Ki                                         = 0u;
-//uint32 EncCal_Calibration_EPSCtrlPID_Kd                                         = 0u;
-//uint32 EncCal_Calibration_EPSCtrlPID_IntegralWindupMin                          = 0u;
-//uint32 EncCal_Calibration_EPSCtrlPID_IntegralWindupMax                          = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_SteeringToMotorRatio                          = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_InitialSetpoint                               = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_Bts7960PwmFrequencyMax                        = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_DcMotorStartupDutyCycle                       = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMin                          = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMax                          = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_OverloadCurrentDcMotor                        = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_DriveModeSportModeFactorForAssistance         = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_DriveModeComfortModeFactorForAssistance       = 0u;
-//uint32 EncCal_Calibration_EPSCtrl_DriveModeEcoModeFactorForAssistance           = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_PwmFrequenceyMax                           = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_DutyCycleToRpmFactor                       = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_PwmDutyCycleMin                            = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_PwmDutyCycleMax                            = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_DriveModeSportModeFactorForAcceleration    = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_DriveModeComfortModeFactorForAcceleration  = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_DriveModeEcoModeFactorForAcceleration      = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_FactorForAcceleration                      = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_FactorForDecceleration                     = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_DutyCycleStep                              = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_WheelCircumference                         = 0u;
-//uint32 EncCal_Calibration_EMotorCtrl_OutputSensorActiveValue                    = 0u;
 uint32 EncCal_Calibration_ColDet_StableDistanceCm                               = 0u;
 uint32 EncCal_Calibration_ColDet_TtcWarn                                        = 0u;
 uint32 EncCal_Calibration_ColDet_TtcBrake                                       = 0u;
@@ -164,7 +137,7 @@ uint32 EncCal_Calibration_EnergyMgmt_MaxOutputCurrent                           
 uint32 EncCal_Calibration_EnergyMgmt_UnderVoltageTh                             = 0u;
 uint8 EncCal_Coding_DefaultBuffer[ENCCAL_CODING_SIZE] =
 {
-        1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,/*1u,1u,1u,1u,1u,*/1u
+        1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u
 };
 uint8 EncCal_Coding_Buffer[ENCCAL_CODING_SIZE];
 uint8 EncCal_Coding_PsCtrl = 0u;
@@ -182,11 +155,6 @@ uint8 EncCal_Coding_L5 = 0u;
 uint8 EncCal_Coding_L6 = 0u;
 uint8 EncCal_Coding_L7 = 0u;
 uint8 EncCal_Coding_L8 = 0u;
-//uint8 EncCal_Coding_EpsCtrl = 0u;
-//uint8 EncCal_Coding_EMotorCtrl = 0u;
-//uint8 EncCal_Coding_EpsMotorFan = 0u;
-//uint8 EncCal_Coding_SpeedSen = 0u;
-//uint8 EncCal_Coding_TSen = 0u;
 uint8 EncCal_Coding_ConsumerCutoffTime = 0u;
 uint8 EncCal_CodingValidResult = 0u;
 uint8 EncCal_CalibrationValidResult = 0u;
@@ -236,276 +204,6 @@ void EncCal_ReadVoData(uint32* data)
 uint8 EncCal_CalibrationValidity(void)
 {
     static uint8 retVal = 0u;
-
-    //    if(5u > EncCal_Calibration_EPSCtrlPID_Kp || 50u < EncCal_Calibration_EPSCtrlPID_Kp)
-    //    {
-    //        EncCal_Calibration_EPSCtrlPID_Kp = 25u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EPSCtrlPID_Ki || 20u < EncCal_Calibration_EPSCtrlPID_Ki)
-    //    {
-    //        EncCal_Calibration_EPSCtrlPID_Ki = 10u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EPSCtrlPID_Ki || 10u < EncCal_Calibration_EPSCtrlPID_Ki)
-    //    {
-    //        EncCal_Calibration_EPSCtrlPID_Kd = 5u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(50u > EncCal_Calibration_EPSCtrlPID_IntegralWindupMin || 200u < EncCal_Calibration_EPSCtrlPID_IntegralWindupMin)
-    //    {
-    //        EncCal_Calibration_EPSCtrlPID_IntegralWindupMin = 100u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(50u > EncCal_Calibration_EPSCtrlPID_IntegralWindupMax || 200u < EncCal_Calibration_EPSCtrlPID_IntegralWindupMax)
-    //    {
-    //        EncCal_Calibration_EPSCtrlPID_IntegralWindupMax = 100u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(8u > EncCal_Calibration_EPSCtrl_SteeringToMotorRatio || 12u < EncCal_Calibration_EPSCtrl_SteeringToMotorRatio)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_SteeringToMotorRatio = 10u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(0u == EncCal_Calibration_EPSCtrl_SteeringToMotorRatio || 180u < EncCal_Calibration_EPSCtrl_SteeringToMotorRatio)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_SteeringToMotorRatio = 90u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(500u != EncCal_Calibration_EPSCtrl_Bts7960PwmFrequencyMax)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_Bts7960PwmFrequencyMax = 500u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(15u > EncCal_Calibration_EPSCtrl_DcMotorStartupDutyCycle || 100u < EncCal_Calibration_EPSCtrl_DcMotorStartupDutyCycle)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_DcMotorStartupDutyCycle = 15u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMin || 3u < EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMin)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMin = 15u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMax || 3u < EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMax)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMax = 15u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(6u > EncCal_Calibration_EPSCtrl_OverloadCurrentDcMotor || 8u < EncCal_Calibration_EPSCtrl_OverloadCurrentDcMotor)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_OverloadCurrentDcMotor = 15u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EPSCtrl_DriveModeSportModeFactorForAssistance || 10u < EncCal_Calibration_EPSCtrl_DriveModeSportModeFactorForAssistance)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_DriveModeSportModeFactorForAssistance = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EPSCtrl_DriveModeComfortModeFactorForAssistance || 10u < EncCal_Calibration_EPSCtrl_DriveModeComfortModeFactorForAssistance)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_DriveModeComfortModeFactorForAssistance = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EPSCtrl_DriveModeEcoModeFactorForAssistance || 10u < EncCal_Calibration_EPSCtrl_DriveModeEcoModeFactorForAssistance)
-    //    {
-    //        EncCal_Calibration_EPSCtrl_DriveModeEcoModeFactorForAssistance = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_PwmFrequenceyMax || 1000u < EncCal_Calibration_EMotorCtrl_PwmFrequenceyMax)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_PwmFrequenceyMax = 1000u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(100u > EncCal_Calibration_EMotorCtrl_DutyCycleToRpmFactor || 1000u < EncCal_Calibration_EMotorCtrl_DutyCycleToRpmFactor)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_DutyCycleToRpmFactor = 100u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_PwmDutyCycleMin || 100u < EncCal_Calibration_EMotorCtrl_PwmDutyCycleMin)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_PwmDutyCycleMin = 100u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_PwmDutyCycleMax || 100u < EncCal_Calibration_EMotorCtrl_PwmDutyCycleMax)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_PwmDutyCycleMax = 100u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_DriveModeSportModeFactorForAcceleration || 10u < EncCal_Calibration_EMotorCtrl_DriveModeSportModeFactorForAcceleration)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_DriveModeSportModeFactorForAcceleration = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_DriveModeComfortModeFactorForAcceleration || 10u < EncCal_Calibration_EMotorCtrl_DriveModeComfortModeFactorForAcceleration)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_DriveModeComfortModeFactorForAcceleration = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_DriveModeEcoModeFactorForAcceleration || 10u < EncCal_Calibration_EMotorCtrl_DriveModeEcoModeFactorForAcceleration)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_DriveModeEcoModeFactorForAcceleration = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_FactorForAcceleration || 10u < EncCal_Calibration_EMotorCtrl_FactorForAcceleration)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_FactorForAcceleration = 10u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_FactorForDecceleration || 10u < EncCal_Calibration_EMotorCtrl_FactorForDecceleration)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_FactorForDecceleration = 10u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_DutyCycleStep || 100u < EncCal_Calibration_EMotorCtrl_DutyCycleStep)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_DutyCycleStep = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(1u > EncCal_Calibration_EMotorCtrl_WheelCircumference || 100u < EncCal_Calibration_EMotorCtrl_WheelCircumference)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_WheelCircumference = 50u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(2000u > EncCal_Calibration_EMotorCtrl_OutputSensorActiveValue || 4095 < EncCal_Calibration_EMotorCtrl_OutputSensorActiveValue)
-    //    {
-    //        EncCal_Calibration_EMotorCtrl_OutputSensorActiveValue = 3000u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
 
     if(2u > EncCal_Calibration_ColDet_StableDistanceCm || 3u < EncCal_Calibration_ColDet_StableDistanceCm)
     {
@@ -764,56 +462,6 @@ uint8 EncCal_CodingValidity(void)
         /* Do nothing. */
     }
 
-    //    if(2u < EncCal_Coding_EpsCtrl)
-    //    {
-    //        EncCal_Coding_EpsCtrl = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(2u < EncCal_Coding_EMotorCtrl)
-    //    {
-    //        EncCal_Coding_EMotorCtrl = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(2u < EncCal_Coding_EpsMotorFan)
-    //    {
-    //        EncCal_Coding_EpsMotorFan = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(2u < EncCal_Coding_SpeedSen)
-    //    {
-    //        EncCal_Coding_SpeedSen = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-    //
-    //    if(2u < EncCal_Coding_TSen)
-    //    {
-    //        EncCal_Coding_TSen = 1u;
-    //        retVal = 1u;
-    //    }
-    //    else
-    //    {
-    //        /* Do nothing. */
-    //    }
-
     return retVal;
 }
 
@@ -844,34 +492,6 @@ void EncCal_InitCalibration(void)
         memcpy(EncCal_Calibration_Buffer, EncCal_Calibration_DefaultBuffer, sizeof(EncCal_Calibration_Buffer));
     }
 
-
-    //    EncCal_Calibration_EPSCtrlPID_Kp                                         = EncCal_Calibration_Buffer[0u];
-    //    EncCal_Calibration_EPSCtrlPID_Ki                                         = EncCal_Calibration_Buffer[1u];
-    //    EncCal_Calibration_EPSCtrlPID_Kd                                         = EncCal_Calibration_Buffer[2u];
-    //    EncCal_Calibration_EPSCtrlPID_IntegralWindupMin                          = EncCal_Calibration_Buffer[3u];
-    //    EncCal_Calibration_EPSCtrlPID_IntegralWindupMax                          = EncCal_Calibration_Buffer[4u];
-    //    EncCal_Calibration_EPSCtrl_SteeringToMotorRatio                          = EncCal_Calibration_Buffer[5u];
-    //    EncCal_Calibration_EPSCtrl_InitialSetpoint                               = EncCal_Calibration_Buffer[6u];
-    //    EncCal_Calibration_EPSCtrl_Bts7960PwmFrequencyMax                        = EncCal_Calibration_Buffer[7u];
-    //    EncCal_Calibration_EPSCtrl_DcMotorStartupDutyCycle                       = EncCal_Calibration_Buffer[8u];
-    //    EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMin                          = EncCal_Calibration_Buffer[9u];
-    //    EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMax                          = EncCal_Calibration_Buffer[10u];
-    //    EncCal_Calibration_EPSCtrl_OverloadCurrentDcMotor                        = EncCal_Calibration_Buffer[11u];
-    //    EncCal_Calibration_EPSCtrl_DriveModeSportModeFactorForAssistance         = EncCal_Calibration_Buffer[12u];
-    //    EncCal_Calibration_EPSCtrl_DriveModeComfortModeFactorForAssistance       = EncCal_Calibration_Buffer[13u];
-    //    EncCal_Calibration_EPSCtrl_DriveModeEcoModeFactorForAssistance           = EncCal_Calibration_Buffer[14u];
-    //    EncCal_Calibration_EMotorCtrl_PwmFrequenceyMax                           = EncCal_Calibration_Buffer[15u];
-    //    EncCal_Calibration_EMotorCtrl_DutyCycleToRpmFactor                       = EncCal_Calibration_Buffer[16u];
-    //    EncCal_Calibration_EMotorCtrl_PwmDutyCycleMin                            = EncCal_Calibration_Buffer[17u];
-    //    EncCal_Calibration_EMotorCtrl_PwmDutyCycleMax                            = EncCal_Calibration_Buffer[18u];
-    //    EncCal_Calibration_EMotorCtrl_DriveModeSportModeFactorForAcceleration    = EncCal_Calibration_Buffer[19u];
-    //    EncCal_Calibration_EMotorCtrl_DriveModeComfortModeFactorForAcceleration  = EncCal_Calibration_Buffer[20u];
-    //    EncCal_Calibration_EMotorCtrl_DriveModeEcoModeFactorForAcceleration      = EncCal_Calibration_Buffer[21u];
-    //    EncCal_Calibration_EMotorCtrl_FactorForAcceleration                      = EncCal_Calibration_Buffer[22u];
-    //    EncCal_Calibration_EMotorCtrl_FactorForDecceleration                     = EncCal_Calibration_Buffer[23u];
-    //    EncCal_Calibration_EMotorCtrl_DutyCycleStep                              = EncCal_Calibration_Buffer[24u];
-    //    EncCal_Calibration_EMotorCtrl_WheelCircumference                         = EncCal_Calibration_Buffer[25u];
-    //    EncCal_Calibration_EMotorCtrl_OutputSensorActiveValue                    = EncCal_Calibration_Buffer[26u];
     EncCal_Calibration_ColDet_StableDistanceCm                               = EncCal_Calibration_Buffer[0u];
     EncCal_Calibration_ColDet_TtcWarn                                        = EncCal_Calibration_Buffer[1u];
     EncCal_Calibration_ColDet_TtcBrake                                       = EncCal_Calibration_Buffer[2u];
@@ -889,7 +509,6 @@ void EncCal_InitCoding(void)
 {
     static uint8 i = 0u;
     static uint8 checkBufferNotEmptyFlag = 0u;
-
 
     for(i = 0u; i < ENCCAL_CODING_SIZE; i++)
     {
@@ -928,11 +547,6 @@ void EncCal_InitCoding(void)
     EncCal_Coding_L6                = (uint8)EncCal_Coding_Buffer[12u];
     EncCal_Coding_L7                = (uint8)EncCal_Coding_Buffer[13u];
     EncCal_Coding_L8                = (uint8)EncCal_Coding_Buffer[14u];
-    //    EncCal_Coding_EpsCtrl           = (uint8)EncCal_Coding_Buffer[15u];
-    //    EncCal_Coding_EMotorCtrl        = (uint8)EncCal_Coding_Buffer[16u];
-    //    EncCal_Coding_EpsMotorFan       = (uint8)EncCal_Coding_Buffer[17u];
-    //    EncCal_Coding_SpeedSen          = (uint8)EncCal_Coding_Buffer[18u];
-    //    EncCal_Coding_TSen              = (uint8)EncCal_Coding_Buffer[19u];
     EncCal_Coding_ConsumerCutoffTime = (uint8)EncCal_Coding_Buffer[15u];
 
     EncCal_CodingValidResult = EncCal_CodingValidity();
@@ -961,6 +575,6 @@ void EncCal_WriteCoding(uint32* data)
 void EncCal_MainFunction(void)
 {
     EncCal_InitCalibration();
-    //    EncCal_InitCoding();
-    //    EncCal_InitVoData();
+    EncCal_InitCoding();
+    EncCal_InitVoData();
 }

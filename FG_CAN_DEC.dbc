@@ -33,18 +33,46 @@ NS_ :
 
 BS_:
 
-BU_: CBS FRBE PDM CBM DMU DEC
+BU_: Tester EMC CBS FRBE PDM CBM DMU DEC
 
+
+BO_ 5 SafeIgnitionStatus: 3 DEC
+ SG_ Sis_IgnitionStatus : 16|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sis_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sis_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
+
+BO_ 4 SafeVehicleError: 3 DEC
+ SG_ Sve_IvenSafe : 16|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sve_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sve_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
+
+BO_ 3 SafeSupplyStatus: 4 DEC
+ SG_ Sss_RPS : 24|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sss_PSNW : 16|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sss_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sss_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
+
+BO_ 2 SafeBrakeAssist: 3 DEC
+ SG_ Sba_AssistRequestStatus : 16|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sba_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sba_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
+
+BO_ 1 SafeDriveTrainStatus: 5 EMC
+ SG_ Sdts_DriveTrainStatus : 32|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_MotorRpm : 24|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_VehSpeed : 16|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_SeqCnt : 8|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_Crc : 0|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 153 StatusBodyControl2: 5 DEC
- SG_ WiperStockRequest : 32|8@1+ (1,0) [0|255] "" Vector__XXX
- SG_ RlsRequest : 24|8@1+ (1,0) [0|255] ""  DMU
- SG_ ClimaTempRequest : 16|8@1+ (1,0) [0|255] ""  DMU,CBM
- SG_ DisplayModeRequest : 8|8@1+ (1,0) [0|255] ""  DMU
- SG_ FanValueRequest : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
+ SG_ WiperStockRequest : 32|8@1+ (1,0) [0|255] ""  DEC
+ SG_ RlsRequest : 24|8@1+ (1,0) [0|255] ""  DEC,DMU
+ SG_ ClimaTempRequest : 16|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
+ SG_ DisplayModeRequest : 8|8@1+ (1,0) [0|255] ""  DEC,DMU
+ SG_ FanValueRequest : 0|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
 
-BO_ 271 DataRecorder: 3 DEC
- SG_ DcyStatus : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+BO_ 271 DataRecorder: 2 DEC
+ SG_ DcyStatus : 0|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ VBat : 8|8@1+ (1,0) [0|255] ""  DMU
 
 BO_ 270 CommandLoad: 8 DEC
@@ -63,7 +91,7 @@ BO_ 264 LightStatus: 3 FRBE
  SG_ StatusFogLights : 0|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 266 ClimateWiperControl: 8 CBS
- SG_ OutTemp : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ OutTemp : 56|8@1+ (1,0) [0|255] ""  DEC
  SG_ WiperStock : 48|8@1+ (1,0) [0|255] ""  DEC
  SG_ RotaryLightSwitch : 40|8@1+ (1,0) [0|255] ""  DEC
  SG_ Recirculation : 32|8@1+ (1,0) [0|255] ""  DEC
@@ -97,13 +125,14 @@ BO_ 267 InfoClustermessage: 1 DEC
  SG_ ICM_ID : 0|8@1+ (1,0) [0|255] ""  DMU
 
 BO_ 151 VehicleState: 8 DEC
- SG_ VehicleStatus : 0|8@1+ (1,0) [0|255] "" Vector__XXX
- SG_ PowerSteeringAngle : 32|8@1+ (1,0) [0|255] ""  DMU
- SG_ Ignition : 16|8@1+ (1,0) [0|255] ""  DMU
- SG_ Speed : 56|8@1+ (1,0) [0|255] ""  CBM,DMU
- SG_ Rpm : 48|8@1+ (1,0) [0|255] ""  DMU
- SG_ IrSenStat : 40|8@1+ (1,0) [0|255] ""  DMU
- SG_ Gear : 24|8@1+ (1,0) [0|255] ""  DMU
+ SG_ ReducedPowerSupply : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VehicleStatus : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ PowerSteeringAngle : 8|8@1+ (1,0) [0|255] ""  DMU
+ SG_ Ignition : 0|8@1+ (1,0) [0|255] ""  DMU
+ SG_ Speed : 40|8@1+ (1,0) [0|255] ""  CBM,DMU
+ SG_ Rpm : 32|8@1+ (1,0) [0|255] ""  DMU
+ SG_ IrSenStat : 24|8@1+ (1,0) [0|255] ""  DMU
+ SG_ Gear : 16|8@1+ (1,0) [0|255] ""  DMU
 
 BO_ 268 StatusErrorSetting_701: 1 CBM
  SG_ Err701_ID : 0|8@1+ (1,0) [0|255] ""  DEC
@@ -116,32 +145,17 @@ BO_ 256 StatusDriveControl: 5 CBM
  SG_ StatusAcc : 0|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 152 StatusBodyControl: 6 DEC
- SG_ AutoClimateRequest : 40|8@1+ (1,0) [0|255] ""  DMU,CBM
- SG_ RecirculationRequest : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
- SG_ TurnSignals : 32|8@1+ (1,0) [0|255] ""  DMU
- SG_ StatusOutTemp : 24|8@1+ (1,0) [0|255] ""  CBM,DMU
- SG_ HighBeam : 16|8@1+ (1,0) [0|255] ""  DMU
- SG_ FogLights : 8|8@1+ (1,0) [0|255] ""  DMU
+ SG_ AutoClimateRequest : 40|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
+ SG_ RecirculationRequest : 0|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
+ SG_ TurnSignals : 32|8@1+ (1,0) [0|255] ""  DEC,DMU
+ SG_ StatusOutTemp : 24|8@1+ (1,0) [0|255] ""  DEC,CBM,DMU
+ SG_ HighBeam : 16|8@1+ (1,0) [0|255] ""  DEC,DMU
+ SG_ FogLights : 8|8@1+ (1,0) [0|255] ""  DEC,DMU
 
-BO_ 257 StatusActuator: 2 CBM
+BO_ 257 StatusActuator: 3 CBM
+ SG_ StatusHc05 : 16|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ StatusDoorRight : 8|8@1+ (1,0) [0|255] ""  DEC
  SG_ StatusDoorLeft : 0|8@1+ (1,0) [0|255] ""  DEC
-
-BO_ 1541 XCP_Response_605: 8 PDM
-
-BO_ 1539 XCP_Response_603: 8 DMU
-
-BO_ 1537 XCP_Response_601: 8 CBM
-
-BO_ 1535 XCP_Response_MasterRequest: 8 DEC
-
-BO_ 1534 XCP_Request_MasterRequest: 8 Vector__XXX
-
-BO_ 1540 XCP_Request_604: 8 DEC
-
-BO_ 1538 XCP_Request_602: 8 DEC
-
-BO_ 1536 XCP_Request_600: 8 DEC
 
 BO_ 1797 DiagCAN_Response_705: 8 PDM
 
@@ -151,19 +165,22 @@ BO_ 1793 DiagCAN_Response_701: 8 CBM
 
 BO_ 1791 DiagCAN_Response_DiagMaster: 8 DEC
 
-BO_ 1790 DiagCAN_Request_DiagMaster: 8 Vector__XXX
+BO_ 1790 DiagCAN_Request_DiagMaster: 8 Tester
 
-BO_ 1796 DiagCAN_Request_704: 8 DEC
+BO_ 1796 DiagCAN_Request_704: 8 Tester
 
-BO_ 1794 DiagCAN_Request_702: 8 DEC
+BO_ 1794 DiagCAN_Request_702: 8 Tester
 
-BO_ 1792 DiagCAN_Request_700: 8 DEC
+BO_ 1792 DiagCAN_Request_700: 8 Tester
 
 BO_ 1296 Networkmanagement3: 3 DEC
  SG_ NM3_PN2 : 16|8@1- (1,0) [0|0] ""  DMU
  SG_ NM3_PN1 : 8|8@1+ (1,0) [0|255] ""  CBM
  SG_ NM3 : 0|8@1+ (1,0) [0|255] ""  PDM,DMU,CBM
 
+BO_TX_BU_ 1797 : DEC,PDM;
+BO_TX_BU_ 1795 : DEC,DMU;
+BO_TX_BU_ 1793 : DEC,CBM;
 
 
 BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";

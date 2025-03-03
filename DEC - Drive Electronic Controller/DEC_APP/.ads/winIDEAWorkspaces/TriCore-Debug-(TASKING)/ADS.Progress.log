@@ -1,23 +1,26 @@
-LOADING	C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.hex
-LOADING	C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\TriCore Debug (TASKING)\DEC_APP.hex
+LOADING	C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\TriCore Debug (TASKING)\DEC_APP.elf
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
+LOADING	C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\TriCore Debug (TASKING)\DEC_APP.elf
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
+Unable to initialize: Cannot connect to target
+BBK Probe(IFXDAS) init failed.
 EMULATION	Probe - System; Root
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
-EMULATION	Initialization script (if any) done
-EMULATION	Final debug frequency set
-EMULATION	SoC ID match OK
-SoC	Detected device: TC370 series, rev. AA
-EMULATION	STARTED
-PROGRAMMING 	136071 bytes
-ERASING	Infineon TC37x_PFLASH_6MB
-PROGRAMMING	Infineon TC37x_PFLASH_6MB (12 sectors)
-EMULATION	END - Without cleanup
-EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
-EMULATION	Connected to SoC/core(s)
-EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
@@ -25,9 +28,10 @@ SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
+EMULATION	Asserting reset
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
@@ -35,9 +39,37 @@ SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
+EMULATION	Asserting reset
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
+EMULATION	Initialization script (if any) done
+EMULATION	Final debug frequency set
+EMULATION	SoC ID match OK
+SoC	Detected device: TC370 series, rev. AA
+EMULATION	STARTED
+EMULATION	END - Without cleanup
+LOADING	C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\TriCore Debug (TASKING)\DEC_APP.elf
+EMULATION	Probe - System; Root
+EMULATION	Initial debug frequency set
+EMULATION	Asserting reset
+EMULATION	Connected to SoC/core(s)
+EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
+EMULATION	Initialization script (if any) done
+No RAM which needs initialization found
+EMULATION	Final debug frequency set
+EMULATION	SoC ID match OK
+SoC	Detected device: TC370 series, rev. AA
+EMULATION	STARTED
+PROGRAMMING 	142987 bytes
+PROGRAMMING	Infineon TC37x_PFLASH_6MB (11 sectors)
+EMULATION	END - Without cleanup
+EMULATION	Initial debug frequency set
+EMULATION	Asserting reset
+EMULATION	Connected to SoC/core(s)
+EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
@@ -45,21 +77,10 @@ SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
+EMULATION	Asserting reset
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
-EMULATION	Initialization script (if any) done
-EMULATION	Final debug frequency set
-EMULATION	SoC ID match OK
-SoC	Detected device: TC370 series, rev. AA
-EMULATION	STARTED
-ERASING	Infineon TC37x_DFLASH_384kB
-OK
-EMULATION	END - Without cleanup
-EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
-EMULATION	Connected to SoC/core(s)
-EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
@@ -67,9 +88,10 @@ SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
+EMULATION	Asserting reset
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
@@ -77,9 +99,10 @@ SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
+EMULATION	Asserting reset
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
@@ -87,9 +110,38 @@ SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
+EMULATION	Asserting reset
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
+EMULATION	Initialization script (if any) done
+EMULATION	Final debug frequency set
+EMULATION	SoC ID match OK
+SoC	Detected device: TC370 series, rev. AA
+EMULATION	STARTED
+EMULATION	END - Without cleanup
+LOADING	C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\TriCore Debug (TASKING)\DEC_APP.elf
+EMULATION	Probe - System; Root
+EMULATION	Initial debug frequency set
+EMULATION	Asserting reset
+EMULATION	Connected to SoC/core(s)
+EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
+EMULATION	Initialization script (if any) done
+No RAM which needs initialization found
+EMULATION	Final debug frequency set
+EMULATION	SoC ID match OK
+SoC	Detected device: TC370 series, rev. AA
+EMULATION	STARTED
+PROGRAMMING 	142919 bytes
+PROGRAMMING	Infineon TC37x_PFLASH_6MB (11 sectors)
+SoC	Detected device: TC370 series, rev. AA
+EMULATION	END - Without cleanup
+EMULATION	Initial debug frequency set
+EMULATION	Asserting reset
+EMULATION	Connected to SoC/core(s)
+EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
@@ -97,12 +149,24 @@ SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
 EMULATION	Initial debug frequency set
-EMULATION	Reset not used - released
+EMULATION	Asserting reset
 EMULATION	Connected to SoC/core(s)
 EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
 EMULATION	Initialization script (if any) done
 EMULATION	Final debug frequency set
 EMULATION	SoC ID match OK
 SoC	Detected device: TC370 series, rev. AA
 EMULATION	STARTED
 EMULATION	END - Without cleanup
+EMULATION	Initial debug frequency set
+EMULATION	Asserting reset
+EMULATION	Connected to SoC/core(s)
+EMULATION	Finished connecting to SoC
+EMULATION	Releasing reset
+EMULATION	Initialization script (if any) done
+EMULATION	Final debug frequency set
+EMULATION	SoC ID match OK
+SoC	Detected device: TC370 series, rev. AA
+EMULATION	STARTED
+EMULATION	END - Not attempting cleanup

@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f cc7104a --dep-file=Cpu0_Main.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o Cpu0_Main.src ../Cpu0_Main.c"
+	.compiler_invocation	"ctc -f cc5920a --dep-file=Cpu0_Main.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_FBL\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o Cpu0_Main.src ../Cpu0_Main.c"
 	.compiler_name		"ctc"
 	;source	'../Cpu0_Main.c'
 
@@ -249,99 +249,97 @@ core0_main:	.type	func
 	mov	d4,d2
 	call	IfxScuWdt_disableSafetyWatchdog
 .L1307:
-	call	Can_Init
-.L1308:
 	movh.a	a15,#@his(FBL_ProgrammingAddress)
 	lea	a15,[a15]@los(FBL_ProgrammingAddress)
-.L1309:
+.L1308:
 	mov	d15,#0
-.L1310:
+.L1309:
 	st.w	[a15],d15
-.L1311:
+.L1310:
 	movh.a	a15,#@his(FBL_ProgrammingIndex)
 	lea	a15,[a15]@los(FBL_ProgrammingIndex)
-.L1312:
+.L1311:
 	mov	d15,#0
-.L1313:
+.L1312:
 	st.w	[a15],d15
-.L1314:
+.L1313:
 	movh.a	a15,#@his(ROM_APPL_START_ADDR)
 	lea	a15,[a15]@los(ROM_APPL_START_ADDR)
 	ld.w	d4,[a15]
-.L1315:
+.L1314:
 	movh.a	a4,#@his(ROM_APPL_START_ADDR_storedValue)
 	lea	a4,[a4]@los(ROM_APPL_START_ADDR_storedValue)
 	call	FBL_FlashReadData
-.L1316:
+.L1315:
 	movh.a	a15,#@his(ROM_APPL_START_ADDR_storedValue)
 	lea	a15,[a15]@los(ROM_APPL_START_ADDR_storedValue)
 	ld.w	d15,[a15]
-.L1317:
+.L1316:
 	jeq	d15,#-1,.L14
-.L1318:
+.L1317:
 	movh.a	a15,#@his(FBL_DSC_Pointer)
 	lea	a15,[a15]@los(FBL_DSC_Pointer)
-.L1319:
+.L1318:
 	lea	a2,0xb000173c
-.L1320:
+.L1319:
 	st.a	[a15],a2
-.L1321:
+.L1320:
 	movh.a	a15,#@his(FBL_DSC_Status)
 	lea	a15,[a15]@los(FBL_DSC_Status)
-.L1322:
+.L1321:
 	ld.w	d15,0xb000173c
-.L1323:
+.L1322:
 	st.w	[a15],d15
-.L1324:
+.L1323:
 	j	.L15
 .L14:
 .L15:
 	movh.a	a15,#@his(FBL_DSC_Status)
 	lea	a15,[a15]@los(FBL_DSC_Status)
 	ld.w	d15,[a15]
-.L1325:
+.L1324:
 	jeq	d15,#2,.L16
+.L1325:
+	movh.a	a15,#@his(FBL_DSC_Status)
+	lea	a15,[a15]@los(FBL_DSC_Status)
+	ld.w	d15,[a15]
 .L1326:
-	movh.a	a15,#@his(FBL_DSC_Status)
-	lea	a15,[a15]@los(FBL_DSC_Status)
-	ld.w	d15,[a15]
-.L1327:
 	jeq	d15,#6,.L17
-.L1328:
+.L1327:
 	movh.a	a15,#@his(FBL_DSC_Status)
 	lea	a15,[a15]@los(FBL_DSC_Status)
 	ld.w	d15,[a15]
-.L1329:
+.L1328:
 	jne	d15,#5,.L18
 .L17:
 .L16:
 	movh.a	a15,#@his(FBL_DSC_State)
 	lea	a15,[a15]@los(FBL_DSC_State)
-.L1330:
+.L1329:
 	movh.a	a2,#@his(FBL_DSC_Status)
 	lea	a2,[a2]@los(FBL_DSC_Status)
 	ld.w	d15,[a2]
-.L1331:
+.L1330:
 	st.b	[a15],d15
-.L1332:
+.L1331:
 	movh.a	a15,#@his(FBL_DSC_Status)
 	lea	a15,[a15]@los(FBL_DSC_Status)
 	ld.w	d15,[a15]
-.L1333:
+.L1332:
 	jne	d15,#6,.L19
-.L1334:
+.L1333:
 	call	FBL_DiagService_ER_SoftReset
-.L1335:
+.L1334:
 	j	.L20
 .L19:
 	movh.a	a15,#@his(FBL_DSC_Status)
 	lea	a15,[a15]@los(FBL_DSC_Status)
 	ld.w	d15,[a15]
-.L1336:
+.L1335:
 	jne	d15,#5,.L21
-.L1337:
+.L1336:
 	call	FBL_DiagService_ER_HardReset
-.L1338:
+.L1337:
 	j	.L22
 .L21:
 .L22:
@@ -351,11 +349,11 @@ core0_main:	.type	func
 	movh.a	a15,#@his(ROM_APPL_START_ADDR_storedValue)
 	lea	a15,[a15]@los(ROM_APPL_START_ADDR_storedValue)
 	ld.w	d15,[a15]
-.L1339:
+.L1338:
 	jeq	d15,#-1,.L24
-.L1340:
+.L1339:
 	call	FBL_JumpToAppl
-.L1341:
+.L1340:
 	j	.L25
 .L24:
 .L25:
@@ -364,7 +362,7 @@ core0_main:	.type	func
 .L27:
 .L26:
 	j	.L27
-.L1342:
+.L1341:
 	ret
 .L464:
 	
@@ -2661,7 +2659,6 @@ appEntryGlobal:	.type	object
 	.calls	'core0_main','IfxScuWdt_disableCpuWatchdog'
 	.calls	'core0_main','IfxScuWdt_getSafetyWatchdogPassword'
 	.calls	'core0_main','IfxScuWdt_disableSafetyWatchdog'
-	.calls	'core0_main','Can_Init'
 	.calls	'core0_main','FBL_FlashReadData'
 	.calls	'core0_main','FBL_DiagService_ER_SoftReset'
 	.calls	'core0_main','FBL_DiagService_ER_HardReset'
@@ -31012,92 +31009,90 @@ appEntryGlobal:	.type	object
 	.half	.L465-.L115
 	.byte	3,245,122,1,5,72,9
 	.half	.L1306-.L465
-	.byte	3,1,1,5,13,9
+	.byte	3,1,1,5,5,9
 	.half	.L1307-.L1306
-	.byte	3,1,1,5,5,9
+	.byte	3,2,1,5,30,9
 	.half	.L1308-.L1307
-	.byte	3,1,1,5,30,9
-	.half	.L1309-.L1308
 	.byte	1,5,28,9
-	.half	.L1310-.L1309
+	.half	.L1309-.L1308
 	.byte	1,5,5,9
-	.half	.L1311-.L1310
+	.half	.L1310-.L1309
 	.byte	3,1,1,5,28,9
-	.half	.L1312-.L1311
+	.half	.L1311-.L1310
 	.byte	1,5,26,9
+	.half	.L1312-.L1311
+	.byte	1,5,23,9
 	.half	.L1313-.L1312
-	.byte	1,5,23,9
-	.half	.L1314-.L1313
 	.byte	3,1,1,5,45,9
-	.half	.L1315-.L1314
+	.half	.L1314-.L1313
 	.byte	1,5,8,9
-	.half	.L1316-.L1315
+	.half	.L1315-.L1314
 	.byte	3,1,1,5,5,9
+	.half	.L1316-.L1315
+	.byte	1,5,9,7,9
 	.half	.L1317-.L1316
-	.byte	1,5,9,7,9
-	.half	.L1318-.L1317
 	.byte	3,2,1,5,27,9
-	.half	.L1319-.L1318
+	.half	.L1318-.L1317
 	.byte	1,5,25,9
+	.half	.L1319-.L1318
+	.byte	1,5,9,9
 	.half	.L1320-.L1319
-	.byte	1,5,9,9
-	.half	.L1321-.L1320
 	.byte	3,1,1,5,26,9
-	.half	.L1322-.L1321
+	.half	.L1321-.L1320
 	.byte	1,5,24,9
-	.half	.L1323-.L1322
+	.half	.L1322-.L1321
 	.byte	1,5,56,9
-	.half	.L1324-.L1323
+	.half	.L1323-.L1322
 	.byte	3,127,1,5,9,9
-	.half	.L15-.L1324
+	.half	.L15-.L1323
 	.byte	3,7,1,5,8,9
-	.half	.L1325-.L15
+	.half	.L1324-.L15
 	.byte	1,5,44,7,9
-	.half	.L1326-.L1325
+	.half	.L1325-.L1324
 	.byte	1,5,59,9
-	.half	.L1327-.L1326
+	.half	.L1326-.L1325
 	.byte	1,5,77,7,9
-	.half	.L1328-.L1327
+	.half	.L1327-.L1326
 	.byte	1,5,92,9
-	.half	.L1329-.L1328
+	.half	.L1328-.L1327
 	.byte	1,5,9,7,9
-	.half	.L16-.L1329
+	.half	.L16-.L1328
 	.byte	3,2,1,5,25,9
-	.half	.L1330-.L16
+	.half	.L1329-.L16
 	.byte	1,5,23,9
-	.half	.L1331-.L1330
+	.half	.L1330-.L1329
 	.byte	1,5,12,9
-	.half	.L1332-.L1331
+	.half	.L1331-.L1330
 	.byte	3,2,1,5,9,9
+	.half	.L1332-.L1331
+	.byte	1,5,41,7,9
 	.half	.L1333-.L1332
-	.byte	1,5,41,7,9
+	.byte	3,2,1,5,43,9
 	.half	.L1334-.L1333
-	.byte	3,2,1,5,43,9
-	.half	.L1335-.L1334
 	.byte	1,5,17,9
-	.half	.L19-.L1335
+	.half	.L19-.L1334
 	.byte	3,2,1,5,14,9
-	.half	.L1336-.L19
+	.half	.L1335-.L19
 	.byte	1,5,41,7,9
-	.half	.L1337-.L1336
+	.half	.L1336-.L1335
 	.byte	3,2,1,5,43,9
-	.half	.L1338-.L1337
+	.half	.L1337-.L1336
 	.byte	1,5,9,9
-	.half	.L20-.L1338
+	.half	.L20-.L1337
 	.byte	3,126,1,5,12,9
 	.half	.L18-.L20
 	.byte	3,11,1,5,9,9
-	.half	.L1339-.L18
+	.half	.L1338-.L18
 	.byte	1,5,27,7,9
-	.half	.L1340-.L1339
+	.half	.L1339-.L1338
 	.byte	3,2,1,5,29,9
-	.half	.L1341-.L1340
+	.half	.L1340-.L1339
 	.byte	1,5,12,9
-	.half	.L23-.L1341
+	.half	.L23-.L1340
 	.byte	3,8,1,5,1,9
-	.half	.L1342-.L23
+	.half	.L1341-.L23
 	.byte	3,3,1,7,9
-	.half	.L275-.L1342
+	.half	.L275-.L1341
 	.byte	0,1,1
 .L1303:
 	.sdecl	'.debug_ranges',debug,cluster('core0_main')
@@ -31922,7 +31917,7 @@ appEntryGlobal:	.type	object
 	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L1343:
+.L1342:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
@@ -31930,44 +31925,44 @@ appEntryGlobal:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('IfxFlash_enterPageMode')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L1343,.L105,.L303-.L105
+	.word	.L1342,.L105,.L303-.L105
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('IfxFlash_eraseMultipleSectors')
 	.sect	'.debug_frame'
 	.word	20
-	.word	.L1343,.L107,.L308-.L107
+	.word	.L1342,.L107,.L308-.L107
 	.byte	8,19,8,22,8,23,0,0
 	.sdecl	'.debug_frame',debug,cluster('IfxFlash_loadPage2X32')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L1343,.L109,.L315-.L109
+	.word	.L1342,.L109,.L315-.L109
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('IfxFlash_waitUnbusy')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L1343,.L111,.L320-.L111
+	.word	.L1342,.L111,.L320-.L111
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('IfxFlash_writePage')
 	.sect	'.debug_frame'
 	.word	20
-	.word	.L1343,.L113,.L324-.L113
+	.word	.L1342,.L113,.L324-.L113
 	.byte	8,19,8,22,8,23,0,0
 	.sdecl	'.debug_frame',debug,cluster('core0_main')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L115,.L464-.L115
+	.word	.L1342,.L115,.L464-.L115
 	.sdecl	'.debug_frame',debug,cluster('Can_Init')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L117,.L341-.L117
+	.word	.L1342,.L117,.L341-.L117
 	.sdecl	'.debug_frame',debug,cluster('Can_Tx')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L119,.L359-.L119
+	.word	.L1342,.L119,.L359-.L119
 	.sdecl	'.debug_frame',debug,cluster('Can_Rx')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L1343,.L121,.L362-.L121
+	.word	.L1342,.L121,.L362-.L121
 	.byte	4
 	.word	(.L480-.L121)/2
 	.byte	19,144,3,22,26,4,19,138,144,3,4
@@ -31976,32 +31971,32 @@ appEntryGlobal:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('ISR_CanTx')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L123,.L330-.L123
+	.word	.L1342,.L123,.L330-.L123
 	.sdecl	'.debug_frame',debug,cluster('ISR_CanRx')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L125,.L340-.L125
+	.word	.L1342,.L125,.L340-.L125
 	.sdecl	'.debug_frame',debug,cluster('FBL_CopyFunctionsToPSPR')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L127,.L463-.L127
+	.word	.L1342,.L127,.L463-.L127
 	.sdecl	'.debug_frame',debug,cluster('FBL_FlashReadData')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L1343,.L129,.L416-.L129
+	.word	.L1342,.L129,.L416-.L129
 	.byte	8,18,8,19,8,21,8,22,8,23,0,0
 	.sdecl	'.debug_frame',debug,cluster('FBL_FlashWriteData')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L131,.L420-.L131
+	.word	.L1342,.L131,.L420-.L131
 	.sdecl	'.debug_frame',debug,cluster('FBL_EraseFlash_APPL')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L133,.L453-.L133
+	.word	.L1342,.L133,.L453-.L133
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_DSC_RequestDownload')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L1343,.L135,.L384-.L135
+	.word	.L1342,.L135,.L384-.L135
 	.byte	4
 	.word	(.L513-.L135)/2
 	.byte	19,144,3,22,26,4,19,138,144,3,4
@@ -32010,7 +32005,7 @@ appEntryGlobal:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_DSC_TransferData')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L1343,.L137,.L388-.L137
+	.word	.L1342,.L137,.L388-.L137
 	.byte	4
 	.word	(.L515-.L137)/2
 	.byte	19,144,3,22,26,4,19,138,144,3,4
@@ -32019,7 +32014,7 @@ appEntryGlobal:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_DSC_RequestTransferExit')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L1343,.L139,.L399-.L139
+	.word	.L1342,.L139,.L399-.L139
 	.byte	4
 	.word	(.L519-.L139)/2
 	.byte	19,144,3,22,26,4,19,138,144,3,4
@@ -32028,7 +32023,7 @@ appEntryGlobal:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_RAR_MassEraseAPPL')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L1343,.L141,.L403-.L141
+	.word	.L1342,.L141,.L403-.L141
 	.byte	4
 	.word	(.L404-.L141)/2
 	.byte	19,144,3,22,26,4,19,138,144,3,4
@@ -32037,20 +32032,20 @@ appEntryGlobal:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('FBL_JumpToAppl')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L1343,.L143,.L368-.L143
+	.word	.L1342,.L143,.L368-.L143
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_ER_SoftReset')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L145,.L369-.L145
+	.word	.L1342,.L145,.L369-.L145
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_ER_HardReset')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L1343,.L147,.L377-.L147
+	.word	.L1342,.L147,.L377-.L147
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_RDBI_ReadActiveDiagnosticSession')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L1343,.L149,.L412-.L149
+	.word	.L1342,.L149,.L412-.L149
 	.byte	4
 	.word	(.L528-.L149)/2
 	.byte	19,144,3,22,26,4,19,138,144,3,4
@@ -32059,7 +32054,7 @@ appEntryGlobal:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('FBL_DiagService_DSC_Programming')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L1343,.L151,.L380-.L151
+	.word	.L1342,.L151,.L380-.L151
 	.byte	4
 	.word	(.L530-.L151)/2
 	.byte	19,144,3,22,26,4,19,138,144,3,4

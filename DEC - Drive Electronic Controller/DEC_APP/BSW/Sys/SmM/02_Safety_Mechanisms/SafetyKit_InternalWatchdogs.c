@@ -67,7 +67,7 @@ void initSafetyWatchdog(void)
     float32 watchdogBaseFreq;
     cfgSafetyWatchdog.inputFrequency = IfxScu_WDTCON1_IR_divBy16384;
     watchdogBaseFreq = IfxScuCcu_getSpbFrequency() / 16384.;
-    cfgSafetyWatchdog.reload = 0xC000; /* 0xC000 gives time to observe the value raising on the debugger */
+    cfgSafetyWatchdog.reload = 0xFF00U; /* 0xC000 gives time to observe the value raising on the debugger */
 
     IfxScuWdt_initSafetyWatchdog(safetyWatchdog, &cfgSafetyWatchdog);
 
@@ -85,7 +85,7 @@ void initSafetyWatchdog(void)
 void serviceSafetyWatchdog(void)
 {
     /* we wait until we can lock the safety watchdog for our own use */
-    while (IfxCpu_acquireMutex(&safetyWatchdogLock) == 0);
+    //while (IfxCpu_acquireMutex(&safetyWatchdogLock) == 0);
 
     /* Only service Safety Watchdog if ENDINIT is set, otherwise ENDINIT is currently cleared and in
      * use somewhere else */
@@ -144,7 +144,7 @@ void initCpuWatchdog(uint8 cpuIndex)
     float32 watchdogBaseFreq;
     cpuXwdgCfg.inputFrequency = IfxScu_WDTCON1_IR_divBy16384;
     watchdogBaseFreq = IfxScuCcu_getSpbFrequency() / 16384.;
-    cpuXwdgCfg.reload = 0xC000; /* 0xC000 gives time to observe the value raising on the debugger */
+    cpuXwdgCfg.reload = 0xFF00U; /* 0xC000 gives time to observe the value raising on the debugger */
 
     IfxScuWdt_initCpuWatchdog(ptrCpuXwatchdog, &cpuXwdgCfg);
     /* Only service Cpu Watchdog if ENDINIT is set, otherwise ENDINIT is currently cleared and in used somewhere else */

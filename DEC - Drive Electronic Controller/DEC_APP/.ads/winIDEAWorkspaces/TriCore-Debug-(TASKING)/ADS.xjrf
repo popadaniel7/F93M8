@@ -61,7 +61,7 @@
      </Floating>
     </Cfg_License>
     <Cfg_System>
-     <DebugModel>Full</DebugModel>
+     <DebugModel>Basic</DebugModel>
      <Debug>
       <Applications>
        <__.0>
@@ -77,7 +77,7 @@
          <IgnoreDLInfo>false</IgnoreDLInfo>
         </MemProp_ISA>
         <OS>
-         <Type>FreeRTOS</Type>
+         <Type>None</Type>
          <FreeRTOS>
           <ProfilerXMLPath></ProfilerXMLPath>
          </FreeRTOS>
@@ -140,92 +140,9 @@
          <Use>false</Use>
         </StackUsage>
         <SymbolFiles>
-         <DefaultFile>1</DefaultFile>
+         <DefaultFile>0</DefaultFile>
          <File>
           <__.0>
-           <Area></Area>
-           <Load>true</Load>
-           <OverrideMemArea>false</OverrideMemArea>
-           <Path>..\..\..\..\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.elf</Path>
-           <UseDefaultMSID>true</UseDefaultMSID>
-           <MSID>
-            <App>0x0</App>
-            <bAppID>false</bAppID>
-            <bVMID>false</bVMID>
-            <Level>Sys</Level>
-            <Secure>false</Secure>
-            <Use>false</Use>
-            <VM>0x0</VM>
-           </MSID>
-           <Options>
-            <AnalyzeBeyondCOFInFunc>false</AnalyzeBeyondCOFInFunc>
-            <AnalyzeCodeOutsideFunctions>true</AnalyzeCodeOutsideFunctions>
-            <CodeOffset>0x0</CodeOffset>
-            <InTargetDir>false</InTargetDir>
-            <LoadCode>false</LoadCode>
-            <LoadSymbols>false</LoadSymbols>
-            <MemPropOnLoadedCodeOnly>false</MemPropOnLoadedCodeOnly>
-            <MergeLines>true</MergeLines>
-            <Offset>0x0</Offset>
-            <OptimizeTypeName>true</OptimizeTypeName>
-            <SymbolOffset>0x0</SymbolOffset>
-            <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
-            <Type>ELF</Type>
-            <Elf>
-             <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
-             <CallStackGeneration>Automatic</CallStackGeneration>
-             <DumpELFHeaders>false</DumpELFHeaders>
-             <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
-             <InsertInlinedFunctions>false</InsertInlinedFunctions>
-             <LoadCodeFrom>Program Headers - Physical</LoadCodeFrom>
-             <LoadCodeFromExecutableSections>true</LoadCodeFromExecutableSections>
-             <LoadDebugSections>true</LoadDebugSections>
-             <LoadOnlyBeginningOfTheStatementLines>true</LoadOnlyBeginningOfTheStatementLines>
-             <LoadSymbolTableItems>None</LoadSymbolTableItems>
-             <LoadWeakFunctions>true</LoadWeakFunctions>
-             <LoadZeroSizedSegments>false</LoadZeroSizedSegments>
-             <MergeTypes>false</MergeTypes>
-             <OffsetFRAMEAdditionaly>0</OffsetFRAMEAdditionaly>
-             <Override64bitVariableLocation>true</Override64bitVariableLocation>
-             <RemoveOptimizedLines>true</RemoveOptimizedLines>
-             <RemoveOptimizedLinesForCU>true</RemoveOptimizedLinesForCU>
-             <ReverseBitFieldsOrder>false</ReverseBitFieldsOrder>
-             <UseSymbolTableForVariablesWithNoLocation>true</UseSymbolTableForVariablesWithNoLocation>
-             <Cosmic>
-              <nowidden>false</nowidden>
-              <sprec>false</sprec>
-             </Cosmic>
-             <IAR>
-              <LegacyLocationLists>false</LegacyLocationLists>
-             </IAR>
-             <Tasking>
-              <Demangle>false</Demangle>
-             </Tasking>
-            </Elf>
-            <Hex>
-             <IgnoreChecksum>false</IgnoreChecksum>
-            </Hex>
-            <IEEE>
-             <EnumSize>16-bit</EnumSize>
-             <Generator>Cosmic</Generator>
-             <ReadPublicSection>false</ReadPublicSection>
-            </IEEE>
-            <PE>
-             <AddSymbolsFromSymbolTable>false</AddSymbolsFromSymbolTable>
-            </PE>
-            <UBROF>
-             <ConvertBankAddresses>false</ConvertBankAddresses>
-             <Generator>IAR</Generator>
-            </UBROF>
-           </Options>
-           <PreProcessor>
-            <Analyze>none</Analyze>
-            <CommandLine></CommandLine>
-            <UseProjectDefines>false</UseProjectDefines>
-            <UseProjectIncludePaths>false</UseProjectIncludePaths>
-           </PreProcessor>
-          </__.0>
-          <__.1>
            <Area></Area>
            <Load>true</Load>
            <OverrideMemArea>false</OverrideMemArea>
@@ -256,7 +173,7 @@
             <Type>ELF</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
-             <CallStackGeneration>Simulated</CallStackGeneration>
+             <CallStackGeneration>Automatic</CallStackGeneration>
              <DumpELFHeaders>false</DumpELFHeaders>
              <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
              <InsertInlinedFunctions>false</InsertInlinedFunctions>
@@ -307,7 +224,7 @@
             <UseProjectDefines>false</UseProjectDefines>
             <UseProjectIncludePaths>false</UseProjectIncludePaths>
            </PreProcessor>
-          </__.1>
+          </__.0>
          </File>
         </SymbolFiles>
        </__.0>
@@ -319,13 +236,13 @@
         <SFRName>TC375T</SFRName>
         <UserName>MCU</UserName>
         <DLFs_Program>
-         <DefaultFile>-1</DefaultFile>
+         <DefaultFile>1</DefaultFile>
          <File>
           <__.0>
            <Area></Area>
            <Load>true</Load>
            <OverrideMemArea>false</OverrideMemArea>
-           <Path>..\..\..\..\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.hex</Path>
+           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.elf</Path>
            <UseDefaultMSID>true</UseDefaultMSID>
            <MSID>
             <App>0x0</App>
@@ -349,7 +266,7 @@
             <OptimizeTypeName>true</OptimizeTypeName>
             <SymbolOffset>0x0</SymbolOffset>
             <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
-            <Type>HEX</Type>
+            <Type>ELF</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
              <CallStackGeneration>Automatic</CallStackGeneration>
@@ -404,89 +321,6 @@
             <UseProjectIncludePaths>false</UseProjectIncludePaths>
            </PreProcessor>
           </__.0>
-          <__.1>
-           <Area></Area>
-           <Load>true</Load>
-           <OverrideMemArea>false</OverrideMemArea>
-           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.hex</Path>
-           <UseDefaultMSID>true</UseDefaultMSID>
-           <MSID>
-            <App>0x0</App>
-            <bAppID>false</bAppID>
-            <bVMID>false</bVMID>
-            <Level>Sys</Level>
-            <Secure>false</Secure>
-            <Use>false</Use>
-            <VM>0x0</VM>
-           </MSID>
-           <Options>
-            <AnalyzeBeyondCOFInFunc>false</AnalyzeBeyondCOFInFunc>
-            <AnalyzeCodeOutsideFunctions>true</AnalyzeCodeOutsideFunctions>
-            <CodeOffset>0x0</CodeOffset>
-            <InTargetDir>false</InTargetDir>
-            <LoadCode>false</LoadCode>
-            <LoadSymbols>false</LoadSymbols>
-            <MemPropOnLoadedCodeOnly>false</MemPropOnLoadedCodeOnly>
-            <MergeLines>true</MergeLines>
-            <Offset>0x0</Offset>
-            <OptimizeTypeName>true</OptimizeTypeName>
-            <SymbolOffset>0x0</SymbolOffset>
-            <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
-            <Type>HEX</Type>
-            <Elf>
-             <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
-             <CallStackGeneration>Automatic</CallStackGeneration>
-             <DumpELFHeaders>false</DumpELFHeaders>
-             <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
-             <InsertInlinedFunctions>false</InsertInlinedFunctions>
-             <LoadCodeFrom>Program Headers - Physical</LoadCodeFrom>
-             <LoadCodeFromExecutableSections>true</LoadCodeFromExecutableSections>
-             <LoadDebugSections>true</LoadDebugSections>
-             <LoadOnlyBeginningOfTheStatementLines>true</LoadOnlyBeginningOfTheStatementLines>
-             <LoadSymbolTableItems>None</LoadSymbolTableItems>
-             <LoadWeakFunctions>true</LoadWeakFunctions>
-             <LoadZeroSizedSegments>false</LoadZeroSizedSegments>
-             <MergeTypes>false</MergeTypes>
-             <OffsetFRAMEAdditionaly>0</OffsetFRAMEAdditionaly>
-             <Override64bitVariableLocation>true</Override64bitVariableLocation>
-             <RemoveOptimizedLines>true</RemoveOptimizedLines>
-             <RemoveOptimizedLinesForCU>true</RemoveOptimizedLinesForCU>
-             <ReverseBitFieldsOrder>false</ReverseBitFieldsOrder>
-             <UseSymbolTableForVariablesWithNoLocation>true</UseSymbolTableForVariablesWithNoLocation>
-             <Cosmic>
-              <nowidden>false</nowidden>
-              <sprec>false</sprec>
-             </Cosmic>
-             <IAR>
-              <LegacyLocationLists>false</LegacyLocationLists>
-             </IAR>
-             <Tasking>
-              <Demangle>false</Demangle>
-             </Tasking>
-            </Elf>
-            <Hex>
-             <IgnoreChecksum>false</IgnoreChecksum>
-            </Hex>
-            <IEEE>
-             <EnumSize>16-bit</EnumSize>
-             <Generator>Cosmic</Generator>
-             <ReadPublicSection>false</ReadPublicSection>
-            </IEEE>
-            <PE>
-             <AddSymbolsFromSymbolTable>false</AddSymbolsFromSymbolTable>
-            </PE>
-            <UBROF>
-             <ConvertBankAddresses>false</ConvertBankAddresses>
-             <Generator>IAR</Generator>
-            </UBROF>
-           </Options>
-           <PreProcessor>
-            <Analyze>none</Analyze>
-            <CommandLine></CommandLine>
-            <UseProjectDefines>false</UseProjectDefines>
-            <UseProjectIncludePaths>false</UseProjectIncludePaths>
-           </PreProcessor>
-          </__.1>
          </File>
         </DLFs_Program>
         <DLFs_Target>
@@ -593,7 +427,7 @@
        <DisplayLoadMap>False</DisplayLoadMap>
        <PostDLActionAlsoAfterReset>0</PostDLActionAlsoAfterReset>
        <TargetDownload>0</TargetDownload>
-       <VerifyDownload>False</VerifyDownload>
+       <VerifyDownload>True</VerifyDownload>
        <Download>
         <DefaultFile>-1</DefaultFile>
        </Download>
@@ -773,45 +607,9 @@
         <Count>0</Count>
         <Enabled>true</Enabled>
         <Expression></Expression>
-        <Location>&quot;..\..\..\Cpu0_Main.c&quot;::36</Location>
+        <Location>&quot;..\..\..\BSW\Sys\McuSm\McuSm.c&quot;::263</Location>
         <ProcessFilter></ProcessFilter>
        </__.0>
-       <__.1>
-        <ActionEnabled>false</ActionEnabled>
-        <ActionParams></ActionParams>
-        <ActionScript></ActionScript>
-        <ActionShow>false</ActionShow>
-        <Condition>false</Condition>
-        <Count>0</Count>
-        <Enabled>true</Enabled>
-        <Expression></Expression>
-        <Location>&quot;..\..\..\Cpu0_Main.c&quot;::39</Location>
-        <ProcessFilter></ProcessFilter>
-       </__.1>
-       <__.2>
-        <ActionEnabled>false</ActionEnabled>
-        <ActionParams></ActionParams>
-        <ActionScript></ActionScript>
-        <ActionShow>false</ActionShow>
-        <Condition>false</Condition>
-        <Count>0</Count>
-        <Enabled>true</Enabled>
-        <Expression></Expression>
-        <Location>&quot;..\..\..\Cpu0_Main.c&quot;::40</Location>
-        <ProcessFilter></ProcessFilter>
-       </__.2>
-       <__.3>
-        <ActionEnabled>false</ActionEnabled>
-        <ActionParams></ActionParams>
-        <ActionScript></ActionScript>
-        <ActionShow>false</ActionShow>
-        <Condition>false</Condition>
-        <Count>0</Count>
-        <Enabled>true</Enabled>
-        <Expression></Expression>
-        <Location>&quot;..\..\..\BSW\Mem\Nvm\Nvm.c&quot;::184</Location>
-        <ProcessFilter></ProcessFilter>
-       </__.3>
       </BPs>
       <Processes>
        <__.0>
@@ -1003,26 +801,9 @@
          <TriCore16>
           <Enabled>0</Enabled>
           <BP.0>
-           <Access>1</Access>
-           <Address>EncCal_Coding_Buffer,,DEC_APP.elf</Address>
-           <Enabled>1</Enabled>
-           <EntireObject>1</EntireObject>
-           <Range>1</Range>
-           <Event>
-            <BBM>0</BBM>
-            <BOD>0</BOD>
-            <CNT>0</CNT>
-            <CSP>0</CSP>
-            <CST>0</CST>
-            <Enable>1</Enable>
-            <EVTA>2</EVTA>
-            <SUSP>1</SUSP>
-           </Event>
-          </BP.0>
-          <BP.1>
-           <Access>1</Access>
+           <Access>0</Access>
            <Address></Address>
-           <Enabled>1</Enabled>
+           <Enabled>0</Enabled>
            <EntireObject>0</EntireObject>
            <Range>0</Range>
            <Event>
@@ -1031,9 +812,26 @@
             <CNT>0</CNT>
             <CSP>0</CSP>
             <CST>0</CST>
-            <Enable>1</Enable>
-            <EVTA>2</EVTA>
-            <SUSP>1</SUSP>
+            <Enable>0</Enable>
+            <EVTA>0</EVTA>
+            <SUSP>0</SUSP>
+           </Event>
+          </BP.0>
+          <BP.1>
+           <Access>0</Access>
+           <Address></Address>
+           <Enabled>0</Enabled>
+           <EntireObject>0</EntireObject>
+           <Range>0</Range>
+           <Event>
+            <BBM>0</BBM>
+            <BOD>0</BOD>
+            <CNT>0</CNT>
+            <CSP>0</CSP>
+            <CST>0</CST>
+            <Enable>0</Enable>
+            <EVTA>0</EVTA>
+            <SUSP>0</SUSP>
            </Event>
           </BP.1>
           <BP.2>
@@ -3058,14 +2856,14 @@
         <Devices>
          <__.0>
           <AllowDownloadOnly>false</AllowDownloadOnly>
-          <AllowErase>true</AllowErase>
+          <AllowErase>false</AllowErase>
           <CoreIndex>4294967295</CoreIndex>
           <Device>TC37x_PFLASH_6MB</Device>
           <DeviceAddress>0x80000000</DeviceAddress>
           <DeviceType>Unknown</DeviceType>
           <Enabled>true</Enabled>
           <EnableECC>1</EnableECC>
-          <EraseBeforeDownload>true</EraseBeforeDownload>
+          <EraseBeforeDownload>false</EraseBeforeDownload>
           <FillDevice>true</FillDevice>
           <FillFirst>0x0</FillFirst>
           <FillLast>0x0</FillLast>
@@ -3107,7 +2905,7 @@
          </__.0>
          <__.1>
           <AllowDownloadOnly>false</AllowDownloadOnly>
-          <AllowErase>true</AllowErase>
+          <AllowErase>false</AllowErase>
           <CoreIndex>4294967295</CoreIndex>
           <Device>TC37x_DFLASH_384kB</Device>
           <DeviceAddress>0xAF000000</DeviceAddress>
@@ -3264,11 +3062,11 @@
       <V_MINOR>21</V_MINOR>
       <BDM>
        <CallPoint>
-        <Attach_ConnectToSoC_Same>true</Attach_ConnectToSoC_Same>
-        <Attach_InitSoC_Same>true</Attach_InitSoC_Same>
-        <Attach_StopToExecute>false</Attach_StopToExecute>
-        <Debug_ConnectToSoC_Same>true</Debug_ConnectToSoC_Same>
-        <Debug_InitSoC_Same>true</Debug_InitSoC_Same>
+        <Attach_ConnectToSoC_Same>false</Attach_ConnectToSoC_Same>
+        <Attach_InitSoC_Same>false</Attach_InitSoC_Same>
+        <Attach_StopToExecute>true</Attach_StopToExecute>
+        <Debug_ConnectToSoC_Same>false</Debug_ConnectToSoC_Same>
+        <Debug_InitSoC_Same>false</Debug_InitSoC_Same>
         <Program_ResetAfterProgram>false</Program_ResetAfterProgram>
         <WDTDisable>false</WDTDisable>
         <Attach_ConnectToSoC>
@@ -3319,10 +3117,10 @@
         <SubCPU>TC375T</SubCPU>
         <Aurix>
          <AllowCacheMonExec>false</AllowCacheMonExec>
-         <ApplicationLBIST>true</ApplicationLBIST>
+         <ApplicationLBIST>false</ApplicationLBIST>
          <BRKIN>HIGH</BRKIN>
          <ClearICRIEWhenStopped>false</ClearICRIEWhenStopped>
-         <DAPClock>30000</DAPClock>
+         <DAPClock>5000</DAPClock>
          <DAPE>false</DAPE>
          <DAPE_Clock>10000</DAPE_Clock>
          <DAPE_DebugMode>DAP_W</DAPE_DebugMode>
@@ -3340,7 +3138,7 @@
          <Password_5>0</Password_5>
          <Password_6>0</Password_6>
          <Password_7>0</Password_7>
-         <QuickLBIST>true</QuickLBIST>
+         <QuickLBIST>false</QuickLBIST>
          <SingleStepMode>Run until next instruction</SingleStepMode>
          <SoC_Debug_SetOnReset>false</SoC_Debug_SetOnReset>
          <TimeSource_Profiler>tsu_rel</TimeSource_Profiler>
@@ -3491,10 +3289,10 @@
         </Aurix>
         <TriCore>
          <AllowCacheMonitorExecution>0</AllowCacheMonitorExecution>
-         <ApplicationLBIST>1</ApplicationLBIST>
+         <ApplicationLBIST>0</ApplicationLBIST>
          <BRKIN>1</BRKIN>
          <ClearICRIEWhenStopped>0</ClearICRIEWhenStopped>
-         <DAPClockkHz>30000</DAPClockkHz>
+         <DAPClockkHz>5000</DAPClockkHz>
          <DAPE>0</DAPE>
          <DAPEClockkHz>10000</DAPEClockkHz>
          <DAPEDebugMode>2</DAPEDebugMode>
@@ -3512,7 +3310,7 @@
          <Password.5>0</Password.5>
          <Password.6>0</Password.6>
          <Password.7>0</Password.7>
-         <QuickLBIST>1</QuickLBIST>
+         <QuickLBIST>0</QuickLBIST>
          <ReserveBPPair type="B">AA</ReserveBPPair>
          <SingleStepMode>0</SingleStepMode>
          <TimeSource_Profiler>1</TimeSource_Profiler>
@@ -3582,8 +3380,8 @@
         <GenerateAuroraClock>false</GenerateAuroraClock>
         <GenerateAuroraCRC>false</GenerateAuroraCRC>
         <IgnoreAccessErrors>false</IgnoreAccessErrors>
-        <InitRAM>Never</InitRAM>
-        <LatchRESET>false</LatchRESET>
+        <InitRAM>Auto</InitRAM>
+        <LatchRESET>true</LatchRESET>
         <MemorySecurityND_Policy>Allow</MemorySecurityND_Policy>
         <MemorySecurity_CheckEntryPoint>false</MemorySecurity_CheckEntryPoint>
         <MemorySecurity_Policy>Allow</MemorySecurity_Policy>
@@ -3606,7 +3404,7 @@
         <ResetDuration>20</ResetDuration>
         <ResetMethod>StopAndPreset</ResetMethod>
         <RESETMode>OD</RESETMode>
-        <ResetPinConnected>false</ResetPinConnected>
+        <ResetPinConnected>true</ResetPinConnected>
         <ReversedAuroraLanes>false</ReversedAuroraLanes>
         <SamplingEdge>Pos</SamplingEdge>
         <StopAfterReset>false</StopAfterReset>
@@ -3652,8 +3450,8 @@
         <GenerateAuroraClock>0</GenerateAuroraClock>
         <GenerateAuroraCRC>0</GenerateAuroraCRC>
         <IgnoreAccessErrors>0</IgnoreAccessErrors>
-        <InitRAM>0</InitRAM>
-        <LatchRESET>0</LatchRESET>
+        <InitRAM>2</InitRAM>
+        <LatchRESET>1</LatchRESET>
         <MemorySecurityND_Policy>2</MemorySecurityND_Policy>
         <MemorySecurity_CheckEntryPoint>0</MemorySecurity_CheckEntryPoint>
         <MemorySecurity_Policy>2</MemorySecurity_Policy>
@@ -4241,193 +4039,473 @@
            <Enabled>true</Enabled>
            <Name>STM0</Name>
           </__.0>
+          <__.100>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR8</Name>
+          </__.100>
+          <__.101>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR9</Name>
+          </__.101>
+          <__.102>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR10</Name>
+          </__.102>
+          <__.103>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR11</Name>
+          </__.103>
+          <__.104>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR12</Name>
+          </__.104>
+          <__.105>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR13</Name>
+          </__.105>
+          <__.106>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR14</Name>
+          </__.106>
+          <__.107>
+           <Enabled>false</Enabled>
+           <Name>ERAY0</Name>
+          </__.107>
+          <__.108>
+           <Enabled>false</Enabled>
+           <Name>GTM</Name>
+          </__.108>
+          <__.109>
+           <Enabled>false</Enabled>
+           <Name>CCU0</Name>
+          </__.109>
           <__.10>
-           <Enabled>true</Enabled>
-           <Name>ASCLIN1</Name>
+           <Enabled>false</Enabled>
+           <Name>QSPI4</Name>
           </__.10>
+          <__.110>
+           <Enabled>false</Enabled>
+           <Name>CCU1</Name>
+          </__.110>
+          <__.111>
+           <Enabled>false</Enabled>
+           <Name>GPT</Name>
+          </__.111>
+          <__.112>
+           <Enabled>false</Enabled>
+           <Name>VADC</Name>
+          </__.112>
+          <__.113>
+           <Enabled>false</Enabled>
+           <Name>DSADC</Name>
+          </__.113>
+          <__.114>
+           <Enabled>false</Enabled>
+           <Name>PSI5</Name>
+          </__.114>
+          <__.115>
+           <Enabled>false</Enabled>
+           <Name>PSI5S</Name>
+          </__.115>
+          <__.116>
+           <Enabled>false</Enabled>
+           <Name>HSSL0</Name>
+          </__.116>
+          <__.117>
+           <Enabled>false</Enabled>
+           <Name>CONVCTRL</Name>
+          </__.117>
           <__.11>
-           <Enabled>true</Enabled>
-           <Name>ASCLIN2</Name>
+           <Enabled>false</Enabled>
+           <Name>QSPI5</Name>
           </__.11>
           <__.12>
-           <Enabled>true</Enabled>
-           <Name>ASCLIN3</Name>
+           <Enabled>false</Enabled>
+           <Name>SMU</Name>
           </__.12>
           <__.13>
-           <Enabled>true</Enabled>
-           <Name>ASCLIN4</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN0</Name>
           </__.13>
           <__.14>
-           <Enabled>true</Enabled>
-           <Name>ASCLIN5</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN1</Name>
           </__.14>
           <__.15>
-           <Enabled>true</Enabled>
-           <Name>ASCLIN6</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN2</Name>
           </__.15>
           <__.16>
-           <Enabled>true</Enabled>
-           <Name>ASCLIN7</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN3</Name>
           </__.16>
           <__.17>
-           <Enabled>true</Enabled>
-           <Name>HSCT0</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN4</Name>
           </__.17>
           <__.18>
-           <Enabled>true</Enabled>
-           <Name>MSC0</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN5</Name>
           </__.18>
           <__.19>
-           <Enabled>true</Enabled>
-           <Name>MSC1</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN6</Name>
           </__.19>
           <__.1>
            <Enabled>true</Enabled>
            <Name>STM1</Name>
           </__.1>
           <__.20>
-           <Enabled>true</Enabled>
-           <Name>CAN0</Name>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN7</Name>
           </__.20>
           <__.21>
-           <Enabled>true</Enabled>
-           <Name>CAN1</Name>
+           <Enabled>false</Enabled>
+           <Name>HSCT0</Name>
           </__.21>
           <__.22>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR0</Name>
+           <Enabled>false</Enabled>
+           <Name>MSC0</Name>
           </__.22>
           <__.23>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR1</Name>
+           <Enabled>false</Enabled>
+           <Name>MSC1</Name>
           </__.23>
           <__.24>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR2</Name>
+           <Enabled>false</Enabled>
+           <Name>MSC2</Name>
           </__.24>
           <__.25>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR3</Name>
+           <Enabled>false</Enabled>
+           <Name>MSC3</Name>
           </__.25>
           <__.26>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR4</Name>
+           <Enabled>false</Enabled>
+           <Name>CAN0</Name>
           </__.26>
           <__.27>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR5</Name>
+           <Enabled>false</Enabled>
+           <Name>CAN1</Name>
           </__.27>
           <__.28>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR6</Name>
+           <Enabled>false</Enabled>
+           <Name>CAN2</Name>
           </__.28>
           <__.29>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR7</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR0</Name>
           </__.29>
           <__.2>
            <Enabled>true</Enabled>
            <Name>STM2</Name>
           </__.2>
           <__.30>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR8</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR1</Name>
           </__.30>
           <__.31>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR9</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR2</Name>
           </__.31>
           <__.32>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR10</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR3</Name>
           </__.32>
           <__.33>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR11</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR4</Name>
           </__.33>
           <__.34>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR12</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR5</Name>
           </__.34>
           <__.35>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR13</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR6</Name>
           </__.35>
           <__.36>
-           <Enabled>true</Enabled>
-           <Name>SENT_RCR14</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR7</Name>
           </__.36>
           <__.37>
-           <Enabled>true</Enabled>
-           <Name>ERAY0</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR8</Name>
           </__.37>
           <__.38>
-           <Enabled>true</Enabled>
-           <Name>GTM</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR9</Name>
           </__.38>
           <__.39>
-           <Enabled>true</Enabled>
-           <Name>CCU0</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR10</Name>
           </__.39>
           <__.3>
            <Enabled>true</Enabled>
-           <Name>QSPI0</Name>
+           <Name>STM3</Name>
           </__.3>
           <__.40>
-           <Enabled>true</Enabled>
-           <Name>CCU1</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR11</Name>
           </__.40>
           <__.41>
-           <Enabled>true</Enabled>
-           <Name>GPT</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR12</Name>
           </__.41>
           <__.42>
-           <Enabled>true</Enabled>
-           <Name>VADC</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR13</Name>
           </__.42>
           <__.43>
-           <Enabled>true</Enabled>
-           <Name>DSADC</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR14</Name>
           </__.43>
           <__.44>
-           <Enabled>true</Enabled>
-           <Name>PSI5</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR15</Name>
           </__.44>
           <__.45>
-           <Enabled>true</Enabled>
-           <Name>PSI5S</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR16</Name>
           </__.45>
           <__.46>
-           <Enabled>true</Enabled>
-           <Name>HSSL0</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR17</Name>
           </__.46>
           <__.47>
-           <Enabled>true</Enabled>
-           <Name>CONVCTRL</Name>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR18</Name>
           </__.47>
+          <__.48>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR19</Name>
+          </__.48>
+          <__.49>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR20</Name>
+          </__.49>
           <__.4>
            <Enabled>true</Enabled>
-           <Name>QSPI1</Name>
+           <Name>STM4</Name>
           </__.4>
+          <__.50>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR21</Name>
+          </__.50>
+          <__.51>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR22</Name>
+          </__.51>
+          <__.52>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR23</Name>
+          </__.52>
+          <__.53>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR24</Name>
+          </__.53>
+          <__.54>
+           <Enabled>false</Enabled>
+           <Name>ERAY0</Name>
+          </__.54>
+          <__.55>
+           <Enabled>false</Enabled>
+           <Name>ERAY1</Name>
+          </__.55>
+          <__.56>
+           <Enabled>false</Enabled>
+           <Name>GTM</Name>
+          </__.56>
+          <__.57>
+           <Enabled>false</Enabled>
+           <Name>CCU0</Name>
+          </__.57>
+          <__.58>
+           <Enabled>false</Enabled>
+           <Name>CCU1</Name>
+          </__.58>
+          <__.59>
+           <Enabled>false</Enabled>
+           <Name>GPT</Name>
+          </__.59>
           <__.5>
            <Enabled>true</Enabled>
-           <Name>QSPI2</Name>
+           <Name>STM5</Name>
           </__.5>
+          <__.60>
+           <Enabled>false</Enabled>
+           <Name>VADC</Name>
+          </__.60>
+          <__.61>
+           <Enabled>false</Enabled>
+           <Name>DSADC</Name>
+          </__.61>
+          <__.62>
+           <Enabled>false</Enabled>
+           <Name>PSI5</Name>
+          </__.62>
+          <__.63>
+           <Enabled>false</Enabled>
+           <Name>PSI5S</Name>
+          </__.63>
+          <__.64>
+           <Enabled>false</Enabled>
+           <Name>RIF0</Name>
+          </__.64>
+          <__.65>
+           <Enabled>false</Enabled>
+           <Name>RIF1</Name>
+          </__.65>
+          <__.66>
+           <Enabled>false</Enabled>
+           <Name>SPU0</Name>
+          </__.66>
+          <__.67>
+           <Enabled>false</Enabled>
+           <Name>SPU1</Name>
+          </__.67>
+          <__.68>
+           <Enabled>false</Enabled>
+           <Name>HSSL0</Name>
+          </__.68>
+          <__.69>
+           <Enabled>false</Enabled>
+           <Name>CONVCTRL</Name>
+          </__.69>
           <__.6>
-           <Enabled>true</Enabled>
-           <Name>QSPI3</Name>
+           <Enabled>false</Enabled>
+           <Name>QSPI0</Name>
           </__.6>
-          <__.7>
+          <__.70>
            <Enabled>true</Enabled>
+           <Name>STM0</Name>
+          </__.70>
+          <__.71>
+           <Enabled>true</Enabled>
+           <Name>STM1</Name>
+          </__.71>
+          <__.72>
+           <Enabled>true</Enabled>
+           <Name>STM2</Name>
+          </__.72>
+          <__.73>
+           <Enabled>false</Enabled>
+           <Name>QSPI0</Name>
+          </__.73>
+          <__.74>
+           <Enabled>false</Enabled>
+           <Name>QSPI1</Name>
+          </__.74>
+          <__.75>
+           <Enabled>false</Enabled>
+           <Name>QSPI2</Name>
+          </__.75>
+          <__.76>
+           <Enabled>false</Enabled>
+           <Name>QSPI3</Name>
+          </__.76>
+          <__.77>
+           <Enabled>false</Enabled>
            <Name>QSPI4</Name>
-          </__.7>
-          <__.8>
-           <Enabled>true</Enabled>
+          </__.77>
+          <__.78>
+           <Enabled>false</Enabled>
            <Name>SMU</Name>
-          </__.8>
-          <__.9>
-           <Enabled>true</Enabled>
+          </__.78>
+          <__.79>
+           <Enabled>false</Enabled>
            <Name>ASCLIN0</Name>
+          </__.79>
+          <__.7>
+           <Enabled>false</Enabled>
+           <Name>QSPI1</Name>
+          </__.7>
+          <__.80>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN1</Name>
+          </__.80>
+          <__.81>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN2</Name>
+          </__.81>
+          <__.82>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN3</Name>
+          </__.82>
+          <__.83>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN4</Name>
+          </__.83>
+          <__.84>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN5</Name>
+          </__.84>
+          <__.85>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN6</Name>
+          </__.85>
+          <__.86>
+           <Enabled>false</Enabled>
+           <Name>ASCLIN7</Name>
+          </__.86>
+          <__.87>
+           <Enabled>false</Enabled>
+           <Name>HSCT0</Name>
+          </__.87>
+          <__.88>
+           <Enabled>false</Enabled>
+           <Name>MSC0</Name>
+          </__.88>
+          <__.89>
+           <Enabled>false</Enabled>
+           <Name>MSC1</Name>
+          </__.89>
+          <__.8>
+           <Enabled>false</Enabled>
+           <Name>QSPI2</Name>
+          </__.8>
+          <__.90>
+           <Enabled>false</Enabled>
+           <Name>CAN0</Name>
+          </__.90>
+          <__.91>
+           <Enabled>false</Enabled>
+           <Name>CAN1</Name>
+          </__.91>
+          <__.92>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR0</Name>
+          </__.92>
+          <__.93>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR1</Name>
+          </__.93>
+          <__.94>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR2</Name>
+          </__.94>
+          <__.95>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR3</Name>
+          </__.95>
+          <__.96>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR4</Name>
+          </__.96>
+          <__.97>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR5</Name>
+          </__.97>
+          <__.98>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR6</Name>
+          </__.98>
+          <__.99>
+           <Enabled>false</Enabled>
+           <Name>SENT_RCR7</Name>
+          </__.99>
+          <__.9>
+           <Enabled>false</Enabled>
+           <Name>QSPI3</Name>
           </__.9>
          </SuspendItems>
         </PeripheralsSuspendInStop>
@@ -4487,7 +4565,7 @@
        </Communication>
        <IFX_DAS>
         <Config>
-         <Str></Str>
+         <Str>DAS JDS AURIX LITE KIT V2.0 (TC375) LK7KFCVS</Str>
         </Config>
        </IFX_DAS>
        <XCP>

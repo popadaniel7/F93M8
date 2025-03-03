@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f cc11032a --dep-file=APP/ColDet/ColDet.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o APP/ColDet/ColDet.src ../APP/ColDet/ColDet.c"
+	.compiler_invocation	"ctc -f cc3392a --dep-file=APP/ColDet/ColDet.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o APP/ColDet/ColDet.src ../APP/ColDet/ColDet.c"
 	.compiler_name		"ctc"
 	;source	'../APP/ColDet/ColDet.c'
 
@@ -13,1053 +13,749 @@ $TC162
 	
 	.global	ColDet_MainFunction
 ; Function ColDet_MainFunction
-.L32:
+.L34:
 ColDet_MainFunction:	.type	func
-	movh.a	a15,#@his(_999001_distCm)
-	lea	a15,[a15]@los(_999001_distCm)
-.L74:
-	movh.a	a2,#@his(IRSensorValue)
-	lea	a2,[a2]@los(IRSensorValue)
-	ld.w	d15,[a2]
-.L75:
-	st.w	[a15],d15
-.L76:
-	movh.a	a15,#@his(_999002_vehicleSpeed)
-	lea	a15,[a15]@los(_999002_vehicleSpeed)
-.L77:
-	movh.a	a2,#@his(ColDet_CalculatedSpeed)
-	lea	a2,[a2]@los(ColDet_CalculatedSpeed)
-	ld.w	d15,[a2]
-.L78:
-	st.w	[a15],d15
-.L79:
-	movh.a	a15,#@his(_999003_deltaDistCm)
-	lea	a15,[a15]@los(_999003_deltaDistCm)
-.L80:
-	movh.a	a2,#@his(IRSensorValue)
-	lea	a2,[a2]@los(IRSensorValue)
-	ld.w	d15,[a2]
-.L81:
-	movh.a	a2,#@his(g_lastDistanceCm)
-	lea	a2,[a2]@los(g_lastDistanceCm)
-	ld.w	d0,[a2]
-.L82:
-	sub.f	d15,d15,d0
+	mov	d0,#3125
+.L67:
+	sh	d0,#5
 .L83:
-	st.w	[a15],d15
-.L84:
-	movh.a	a15,#@his(g_lastDistanceCm)
-	lea	a15,[a15]@los(g_lastDistanceCm)
-.L85:
-	movh.a	a2,#@his(IRSensorValue)
-	lea	a2,[a2]@los(IRSensorValue)
-	ld.w	d15,[a2]
-.L86:
-	st.w	[a15],d15
-.L87:
-	movh.a	a15,#@his(ColDet_CalculatedSpeed)
-	lea	a15,[a15]@los(ColDet_CalculatedSpeed)
-	ld.w	d15,[a15]
-.L88:
-	mov.u	d0,#55050
-	addih	d0,d0,#15395
-.L89:
-	cmp.f	d15,d15,d0
-	extr.u	d15,d15,#0,#1
-.L90:
-	jeq	d15,#0,.L2
-.L91:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
+	movh.a	a15,#@his(ColDet_CanRx_CalculatedSpeed)
+	lea	a15,[a15]@los(ColDet_CanRx_CalculatedSpeed)
 	ld.bu	d15,[a15]
-.L92:
-	jeq	d15,#2,.L3
-.L93:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-.L94:
-	mov	d15,#0
-.L95:
-	st.b	[a15],d15
-.L96:
-	j	.L4
-.L3:
-.L4:
-	j	.L5
+	utof	d1,d15
+.L69:
+	movh.a	a15,#@his(IRSensorValue)
+	lea	a15,[a15]@los(IRSensorValue)
+	ld.w	d15,[a15]
+	ftouz	d2,d15
+.L71:
+	sub	d15,d2,d0
+	abs	d15,d15
+.L84:
+	jge	d15,#2,.L2
+.L85:
+	mov	d2,d0
+.L86:
+	j	.L3
 .L2:
+.L3:
+	lt.u	d0,d2,d0
+.L68:
+	jeq	d0,#0,.L4
+.L87:
+	mov	d15,#0
+.L88:
+	cmp.f	d15,d1,d15
+	extr.u	d15,d15,#2,#1
+	jeq	d15,#0,.L5
+.L89:
+	utof	d15,d2
+.L90:
+	div.f	d2,d15,d1
+.L72:
+	j	.L6
 .L5:
-	movh.a	a15,#@his(_999003_deltaDistCm)
-	lea	a15,[a15]@los(_999003_deltaDistCm)
-	ld.w	d15,[a15]
-.L97:
-	movh.a	a15,#@his(DISTANCE_STABLE_THRESHOLD_CM)
-	lea	a15,[a15]@los(DISTANCE_STABLE_THRESHOLD_CM)
-	ld.w	d0,[a15]
-.L98:
-	insn.t	d0,d0:31,d0:31
-.L99:
-	cmp.f	d15,d15,d0
-	jnz.t	d15:0,.L6
-.L100:
-	movh.a	a15,#@his(_999004_approachSpeedMps)
-	lea	a15,[a15]@los(_999004_approachSpeedMps)
-.L101:
-	mov	d15,#0
-.L102:
-	st.w	[a15],d15
-.L103:
-	j	.L7
+.L4:
+	mov	d2,#15360
+.L74:
+	addih	d2,d2,#17948
 .L6:
-	movh.a	a15,#@his(_999005_distanceChangeMeters)
-	lea	a15,[a15]@los(_999005_distanceChangeMeters)
-.L104:
-	movh.a	a2,#@his(_999003_deltaDistCm)
-	lea	a2,[a2]@los(_999003_deltaDistCm)
-	ld.w	d15,[a2]
-.L105:
-	movh	d0,#17096
-.L106:
-	div.f	d15,d15,d0
-.L107:
-	insn.t	d15,d15:31,d15:31
-.L108:
-	st.w	[a15],d15
-.L109:
-	movh.a	a15,#@his(_999004_approachSpeedMps)
-	lea	a15,[a15]@los(_999004_approachSpeedMps)
-.L110:
-	movh.a	a2,#@his(_999005_distanceChangeMeters)
-	lea	a2,[a2]@los(_999005_distanceChangeMeters)
-	ld.w	d15,[a2]
-.L111:
-	mov.u	d0,#55050
-	addih	d0,d0,#15651
-.L112:
-	div.f	d15,d15,d0
-.L113:
-	st.w	[a15],d15
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+	ld.bu	d1,[a15]
+.L70:
+	mov	d15,#0
+	jeq	d15,d1,.L7
+.L91:
+	mov	d15,#1
+	jeq	d15,d1,.L8
+.L92:
+	mov	d15,#2
+	jeq	d15,d1,.L9
+	j	.L10
 .L7:
-	movh.a	a15,#@his(_999006_ttcSeconds)
-	lea	a15,[a15]@los(_999006_ttcSeconds)
-.L114:
-	mov	d15,#20352
-	addih	d15,d15,#18371
-.L115:
-	st.w	[a15],d15
-.L116:
-	movh.a	a15,#@his(_999007_distM)
-	lea	a15,[a15]@los(_999007_distM)
-.L117:
-	movh.a	a2,#@his(IRSensorValue)
-	lea	a2,[a2]@los(IRSensorValue)
-	ld.w	d15,[a2]
-.L118:
-	movh	d0,#17096
-.L119:
-	div.f	d15,d15,d0
-.L120:
-	st.w	[a15],d15
-.L121:
-	movh.a	a15,#@his(_999004_approachSpeedMps)
-	lea	a15,[a15]@los(_999004_approachSpeedMps)
-	ld.w	d15,[a15]
-.L122:
-	mov.u	d0,#55050
-	addih	d0,d0,#15395
-.L123:
-	cmp.f	d15,d15,d0
-	extr.u	d15,d15,#2,#1
-.L124:
-	jeq	d15,#0,.L8
-.L125:
-	movh.a	a15,#@his(_999006_ttcSeconds)
-	lea	a15,[a15]@los(_999006_ttcSeconds)
-.L126:
-	movh.a	a2,#@his(_999007_distM)
-	lea	a2,[a2]@los(_999007_distM)
-	ld.w	d15,[a2]
-.L127:
-	movh.a	a2,#@his(_999004_approachSpeedMps)
-	lea	a2,[a2]@los(_999004_approachSpeedMps)
-	ld.w	d0,[a2]
-.L128:
-	div.f	d15,d15,d0
-.L129:
-	st.w	[a15],d15
-.L130:
-	j	.L9
-.L8:
-.L9:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-	ld.bu	d0,[a15]
-.L131:
-	mov	d15,#0
-	jeq	d15,d0,.L10
-.L132:
-	mov	d15,#1
-	jeq	d15,d0,.L11
-.L133:
+	jeq	d0,#0,.L11
+.L93:
+	movh	d15,#16256
+.L94:
+	cmp.f	d15,d2,d15
+	and	d15,#3
+	ne	d15,d15,#0
+	jeq	d15,#0,.L12
+.L95:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L96:
 	mov	d15,#2
-	jeq	d15,d0,.L12
+.L97:
+	st.b	[a15],d15
+.L98:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L99:
+	mov	d15,#100
+.L100:
+	st.b	[a15],d15
+.L101:
 	j	.L13
-.L10:
-	movh.a	a15,#@his(_999006_ttcSeconds)
-	lea	a15,[a15]@los(_999006_ttcSeconds)
-	ld.w	d15,[a15]
-.L134:
-	movh.a	a15,#@his(TIME_TO_COLLISION_WARN)
-	lea	a15,[a15]@los(TIME_TO_COLLISION_WARN)
-	ld.w	d0,[a15]
-.L135:
-	cmp.f	d15,d15,d0
-	extr.u	d15,d15,#2,#1
-.L136:
-	jeq	d15,#0,.L14
-.L137:
-	j	.L15
-.L14:
-	movh.a	a15,#@his(_999006_ttcSeconds)
-	lea	a15,[a15]@los(_999006_ttcSeconds)
-	ld.w	d15,[a15]
-.L138:
-	movh.a	a15,#@his(TIME_TO_COLLISION_BRAKE)
-	lea	a15,[a15]@los(TIME_TO_COLLISION_BRAKE)
-	ld.w	d0,[a15]
-.L139:
-	cmp.f	d15,d15,d0
-	jnz.t	d15:0,.L16
-.L140:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-.L141:
-	mov	d15,#1
-.L142:
-	st.b	[a15],d15
-.L143:
-	movh.a	a15,#@his(_999008_timestamp)
-	lea	a15,[a15]@los(_999008_timestamp)
-.L144:
-	movh.a	a2,#@his(ColDet_MainCounter)
-	lea	a2,[a2]@los(ColDet_MainCounter)
-	ld.w	d15,[a2]
-.L145:
-	mul	d15,d15,#5
-.L146:
-	st.w	[a15],d15
-.L147:
-	j	.L17
-.L16:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-.L148:
-	mov	d15,#2
-.L149:
-	st.b	[a15],d15
-.L17:
-.L15:
-	j	.L18
+.L12:
 .L11:
-	movh.a	a15,#@his(_999006_ttcSeconds)
-	lea	a15,[a15]@los(_999006_ttcSeconds)
-	ld.w	d15,[a15]
-.L150:
-	movh.a	a15,#@his(TIME_TO_COLLISION_WARN)
-	lea	a15,[a15]@los(TIME_TO_COLLISION_WARN)
-	ld.w	d0,[a15]
-.L151:
-	cmp.f	d15,d15,d0
-	extr.u	d15,d15,#2,#1
-.L152:
-	jeq	d15,#0,.L19
-.L153:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-.L154:
-	mov	d15,#0
-.L155:
+	jeq	d0,#0,.L14
+.L102:
+	movh	d15,#16384
+.L103:
+	cmp.f	d15,d2,d15
+	and	d15,#3
+	ne	d15,d15,#0
+	jeq	d15,#0,.L15
+.L104:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L105:
+	mov	d15,#1
+.L106:
 	st.b	[a15],d15
-.L156:
+.L107:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L108:
+	mov	d15,#30
+.L109:
+	st.b	[a15],d15
+.L110:
+	j	.L16
+.L15:
+.L14:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L111:
+	mov	d15,#0
+.L112:
+	st.b	[a15],d15
+.L113:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L114:
+	mov	d15,#0
+.L115:
+	st.b	[a15],d15
+.L16:
+.L13:
+	j	.L17
+.L8:
+	jeq	d0,#0,.L18
+.L116:
+	movh	d15,#16384
+.L117:
+	cmp.f	d15,d2,d15
+	extr.u	d15,d15,#2,#1
+	jeq	d15,#0,.L19
+.L18:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L118:
+	mov	d15,#0
+.L119:
+	st.b	[a15],d15
+.L120:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L121:
+	mov	d15,#0
+.L122:
+	st.b	[a15],d15
+.L123:
 	j	.L20
 .L19:
-	movh.a	a15,#@his(_999009_warnDurationSec)
-	lea	a15,[a15]@los(_999009_warnDurationSec)
-.L157:
-	movh.a	a2,#@his(ColDet_MainCounter)
-	lea	a2,[a2]@los(ColDet_MainCounter)
-	ld.w	d15,[a2]
-.L158:
-	mul	d15,d15,#5
-.L159:
-	movh.a	a2,#@his(_999008_timestamp)
-	lea	a2,[a2]@los(_999008_timestamp)
-	ld.w	d0,[a2]
-.L160:
-	sub	d15,d0
-.L161:
-	st.w	[a15],d15
-.L162:
-	movh.a	a15,#@his(_999006_ttcSeconds)
-	lea	a15,[a15]@los(_999006_ttcSeconds)
-	ld.w	d15,[a15]
-.L163:
-	movh.a	a15,#@his(TIME_TO_COLLISION_BRAKE)
-	lea	a15,[a15]@los(TIME_TO_COLLISION_BRAKE)
-	ld.w	d0,[a15]
-.L164:
-	cmp.f	d15,d15,d0
-	extr.u	d15,d15,#0,#1
-.L165:
+	movh	d15,#16256
+.L124:
+	cmp.f	d15,d2,d15
+	and	d15,#3
+	ne	d15,d15,#0
+.L125:
 	jeq	d15,#0,.L21
-.L166:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-.L167:
+.L126:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L127:
 	mov	d15,#2
-.L168:
+.L128:
 	st.b	[a15],d15
-.L169:
+.L129:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L130:
+	mov	d15,#100
+.L131:
+	st.b	[a15],d15
+.L132:
 	j	.L22
 .L21:
-.L22:
-	j	.L23
-.L12:
-	movh.a	a15,#@his(_999006_ttcSeconds)
-	lea	a15,[a15]@los(_999006_ttcSeconds)
-	ld.w	d15,[a15]
-.L170:
-	movh.a	a15,#@his(TIME_TO_COLLISION_WARN)
-	lea	a15,[a15]@los(TIME_TO_COLLISION_WARN)
-	ld.w	d0,[a15]
-.L171:
-	cmp.f	d15,d15,d0
-	extr.u	d15,d15,#2,#1
-.L172:
-	jeq	d15,#0,.L24
-.L173:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-.L174:
-	mov	d15,#0
-.L175:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+	ld.bu	d0,[a15]
+.L73:
+	mov	d15,#80
+.L133:
+	jge.u	d0,d15,.L23
+.L134:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+	movh.a	a2,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a2,[a2]@los(ColDet_CanTx_BrakeLevel)
+	ld.bu	d15,[a2]
+.L135:
+	add	d15,d15,#10
 	st.b	[a15],d15
-.L176:
-	j	.L25
-.L24:
-.L25:
-	j	.L26
-.L13:
-	j	.L27
-.L27:
-.L26:
+.L136:
+	j	.L24
 .L23:
+.L24:
+.L22:
 .L20:
-.L18:
-	movh.a	a15,#@his(IRSensorValue)
-	lea	a15,[a15]@los(IRSensorValue)
-	ld.w	d15,[a15]
-.L177:
-	mov.u	d0,#65280
-	addih	d0,d0,#18303
-	cmp.f	d15,d15,d0
-	jnz.t	d15:1,.L28
-.L178:
-	movh.a	a15,#@his(IRSensorValue)
-	lea	a15,[a15]@los(IRSensorValue)
-	ld.w	d15,[a15]
-.L179:
-	movh	d0,#16672
-.L180:
-	cmp.f	d15,d15,d0
-	extr.u	d15,d15,#0,#1
-	jeq	d15,#0,.L29
-.L28:
-	movh.a	a15,#@his(g_collisionState)
-	lea	a15,[a15]@los(g_collisionState)
-.L181:
-	mov	d15,#254
-.L182:
+	j	.L25
+.L9:
+	jeq	d0,#0,.L26
+.L137:
+	movh	d15,#16384
+.L138:
+	cmp.f	d15,d2,d15
+	extr.u	d15,d15,#2,#1
+	jeq	d15,#0,.L27
+.L26:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L139:
+	mov	d15,#0
+.L140:
 	st.b	[a15],d15
-.L183:
-	mov	d4,#48
-.L184:
-	mov	d5,#1
-.L185:
-	mov	d6,#0
-	call	Dem_SetDtc
-.L186:
-	j	.L30
-.L29:
-	mov	d4,#48
-.L187:
-	mov	d5,#0
-.L188:
-	mov	d6,#0
-	call	Dem_SetDtc
+.L141:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L142:
+	mov	d15,#0
+.L143:
+	st.b	[a15],d15
+.L144:
+	j	.L28
+.L27:
+	movh	d15,#16256
+.L145:
+	cmp.f	d15,d2,d15
+	extr.u	d15,d15,#2,#1
+.L146:
+	jeq	d15,#0,.L29
+.L147:
+	movh	d15,#16384
+.L148:
+	cmp.f	d15,d2,d15
+	and	d15,#3
+	ne	d15,d15,#0
+	jeq	d15,#0,.L30
+.L149:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L150:
+	mov	d15,#1
+.L151:
+	st.b	[a15],d15
+.L152:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L153:
+	mov	d15,#50
+.L154:
+	st.b	[a15],d15
+.L155:
+	j	.L31
 .L30:
+.L29:
+	movh.a	a15,#@his(ColDet_CanTx_CollisionState)
+	lea	a15,[a15]@los(ColDet_CanTx_CollisionState)
+.L156:
+	mov	d15,#2
+.L157:
+	st.b	[a15],d15
+.L158:
+	movh.a	a15,#@his(ColDet_CanTx_BrakeLevel)
+	lea	a15,[a15]@los(ColDet_CanTx_BrakeLevel)
+.L159:
+	mov	d15,#100
+.L160:
+	st.b	[a15],d15
+.L31:
+.L28:
+	j	.L32
+.L10:
+.L32:
+.L25:
+.L17:
 	movh.a	a15,#@his(ColDet_CanTx_IrSenStat)
 	lea	a15,[a15]@los(ColDet_CanTx_IrSenStat)
-.L189:
-	movh.a	a2,#@his(g_collisionState)
-	lea	a2,[a2]@los(g_collisionState)
+.L161:
+	movh.a	a2,#@his(ColDet_CanTx_CollisionState)
+	lea	a2,[a2]@los(ColDet_CanTx_CollisionState)
 	ld.bu	d15,[a2]
-.L190:
+.L162:
 	st.b	[a15],d15
-.L191:
+.L163:
 	movh.a	a15,#@his(ColDet_MainCounter)
 	lea	a15,[a15]@los(ColDet_MainCounter)
 	movh.a	a2,#@his(ColDet_MainCounter)
 	lea	a2,[a2]@los(ColDet_MainCounter)
 	ld.w	d15,[a2]
-.L192:
+.L164:
 	add	d15,#1
 	st.w	[a15],d15
-.L193:
+.L165:
 	ret
-.L58:
+.L54:
 	
 __ColDet_MainFunction_function_end:
 	.size	ColDet_MainFunction,__ColDet_MainFunction_function_end-ColDet_MainFunction
-.L41:
+.L43:
 	; End of function
 	
-	.sdecl	'.rodata.ColDet.DISTANCE_STABLE_THRESHOLD_CM',data,rom,cluster('DISTANCE_STABLE_THRESHOLD_CM')
-	.sect	'.rodata.ColDet.DISTANCE_STABLE_THRESHOLD_CM'
-	.align	2
-DISTANCE_STABLE_THRESHOLD_CM:	.type	object
-	.size	DISTANCE_STABLE_THRESHOLD_CM,4
-	.word	1073741824
-	.sdecl	'.rodata.ColDet.TIME_TO_COLLISION_WARN',data,rom,cluster('TIME_TO_COLLISION_WARN')
-	.sect	'.rodata.ColDet.TIME_TO_COLLISION_WARN'
-	.align	2
-TIME_TO_COLLISION_WARN:	.type	object
-	.size	TIME_TO_COLLISION_WARN,4
-	.word	1073741824
-	.sdecl	'.rodata.ColDet.TIME_TO_COLLISION_BRAKE',data,rom,cluster('TIME_TO_COLLISION_BRAKE')
-	.sect	'.rodata.ColDet.TIME_TO_COLLISION_BRAKE'
-	.align	2
-TIME_TO_COLLISION_BRAKE:	.type	object
-	.size	TIME_TO_COLLISION_BRAKE,4
-	.word	1065353216
-	.sdecl	'.data.ColDet.g_collisionState',data,cluster('g_collisionState')
-	.sect	'.data.ColDet.g_collisionState'
-g_collisionState:	.type	object
-	.size	g_collisionState,1
-	.byte	255
-	.sdecl	'.data.ColDet.g_lastDistanceCm',data,cluster('g_lastDistanceCm')
-	.sect	'.data.ColDet.g_lastDistanceCm'
-	.align	2
-g_lastDistanceCm:	.type	object
-	.size	g_lastDistanceCm,4
-	.word	1199570688
 	.sdecl	'.data.ColDet.ColDet_MainCounter',data,cluster('ColDet_MainCounter')
 	.sect	'.data.ColDet.ColDet_MainCounter'
 	.align	2
 ColDet_MainCounter:	.type	object
 	.size	ColDet_MainCounter,4
 	.space	4
+	.sdecl	'.data.ColDet.ColDet_CanTx_CollisionState',data,cluster('ColDet_CanTx_CollisionState')
+	.sect	'.data.ColDet.ColDet_CanTx_CollisionState'
+	.global	ColDet_CanTx_CollisionState
+ColDet_CanTx_CollisionState:	.type	object
+	.size	ColDet_CanTx_CollisionState,1
+	.space	1
+	.sdecl	'.data.ColDet.ColDet_CanTx_BrakeLevel',data,cluster('ColDet_CanTx_BrakeLevel')
+	.sect	'.data.ColDet.ColDet_CanTx_BrakeLevel'
+	.global	ColDet_CanTx_BrakeLevel
+ColDet_CanTx_BrakeLevel:	.type	object
+	.size	ColDet_CanTx_BrakeLevel,1
+	.space	1
 	.sdecl	'.data.ColDet.ColDet_CanTx_IrSenStat',data,cluster('ColDet_CanTx_IrSenStat')
 	.sect	'.data.ColDet.ColDet_CanTx_IrSenStat'
 	.global	ColDet_CanTx_IrSenStat
 ColDet_CanTx_IrSenStat:	.type	object
 	.size	ColDet_CanTx_IrSenStat,1
 	.space	1
-	.sdecl	'.data.ColDet.ColDet_CalculatedSpeed',data,cluster('ColDet_CalculatedSpeed')
-	.sect	'.data.ColDet.ColDet_CalculatedSpeed'
-	.global	ColDet_CalculatedSpeed
-	.align	2
-ColDet_CalculatedSpeed:	.type	object
-	.size	ColDet_CalculatedSpeed,4
-	.space	4
-	.sdecl	'.data.ColDet._999001_distCm',data,cluster('_999001_distCm')
-	.sect	'.data.ColDet._999001_distCm'
-	.align	2
-_999001_distCm:	.type	object
-	.size	_999001_distCm,4
-	.space	4
-	.sdecl	'.data.ColDet._999002_vehicleSpeed',data,cluster('_999002_vehicleSpeed')
-	.sect	'.data.ColDet._999002_vehicleSpeed'
-	.align	2
-_999002_vehicleSpeed:	.type	object
-	.size	_999002_vehicleSpeed,4
-	.space	4
-	.sdecl	'.data.ColDet._999003_deltaDistCm',data,cluster('_999003_deltaDistCm')
-	.sect	'.data.ColDet._999003_deltaDistCm'
-	.align	2
-_999003_deltaDistCm:	.type	object
-	.size	_999003_deltaDistCm,4
-	.space	4
-	.sdecl	'.data.ColDet._999004_approachSpeedMps',data,cluster('_999004_approachSpeedMps')
-	.sect	'.data.ColDet._999004_approachSpeedMps'
-	.align	2
-_999004_approachSpeedMps:	.type	object
-	.size	_999004_approachSpeedMps,4
-	.space	4
-	.sdecl	'.data.ColDet._999005_distanceChangeMeters',data,cluster('_999005_distanceChangeMeters')
-	.sect	'.data.ColDet._999005_distanceChangeMeters'
-	.align	2
-_999005_distanceChangeMeters:	.type	object
-	.size	_999005_distanceChangeMeters,4
-	.space	4
-	.sdecl	'.data.ColDet._999006_ttcSeconds',data,cluster('_999006_ttcSeconds')
-	.sect	'.data.ColDet._999006_ttcSeconds'
-	.align	2
-_999006_ttcSeconds:	.type	object
-	.size	_999006_ttcSeconds,4
-	.space	4
-	.sdecl	'.data.ColDet._999007_distM',data,cluster('_999007_distM')
-	.sect	'.data.ColDet._999007_distM'
-	.align	2
-_999007_distM:	.type	object
-	.size	_999007_distM,4
-	.space	4
-	.sdecl	'.data.ColDet._999008_timestamp',data,cluster('_999008_timestamp')
-	.sect	'.data.ColDet._999008_timestamp'
-	.align	2
-_999008_timestamp:	.type	object
-	.size	_999008_timestamp,4
-	.space	4
-	.sdecl	'.data.ColDet._999009_warnDurationSec',data,cluster('_999009_warnDurationSec')
-	.sect	'.data.ColDet._999009_warnDurationSec'
-	.align	2
-_999009_warnDurationSec:	.type	object
-	.size	_999009_warnDurationSec,4
-	.space	4
-	.calls	'ColDet_MainFunction','Dem_SetDtc'
+	.sdecl	'.data.ColDet.ColDet_CanRx_CalculatedSpeed',data,cluster('ColDet_CanRx_CalculatedSpeed')
+	.sect	'.data.ColDet.ColDet_CanRx_CalculatedSpeed'
+	.global	ColDet_CanRx_CalculatedSpeed
+ColDet_CanRx_CalculatedSpeed:	.type	object
+	.size	ColDet_CanRx_CalculatedSpeed,1
+	.space	1
 	.extern	IRSensorValue
-	.extern	Dem_SetDtc
 	.calls	'ColDet_MainFunction','',0
 	.sdecl	'.debug_info',debug
 	.sect	'.debug_info'
-.L34:
-	.word	785
+.L36:
+	.word	752
 	.half	3
-	.word	.L35
+	.word	.L37
 	.byte	4
-.L33:
+.L35:
 	.byte	1
 	.byte	'../APP/ColDet/ColDet.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L36
-.L59:
+	.word	.L38
 	.byte	2
-	.byte	'float',0,4,4
-.L60:
+	.byte	'int',0,4,5,3
+	.byte	'__abs',0
+	.word	223
+	.byte	1,1,1,1,4
+	.word	223
+	.byte	0
+.L57:
 	.byte	2
 	.byte	'unsigned long int',0,4,7
-.L61:
+.L55:
+	.byte	5
+	.word	251
+.L60:
 	.byte	2
-	.byte	'unsigned char',0,1,8,3
-	.byte	'Dem_SetDtc',0,1,40,13,1,1,1,1,4
-	.byte	'dtcId',0,1,40,31
-	.word	232
-	.byte	4
-	.byte	'dtcStatus',0,1,40,44
-	.word	253
-	.byte	4
-	.byte	'index',0,1,40,61
-	.word	253
-	.byte	0,2
-	.byte	'short int',0,2,5,5
-	.byte	'__wchar_t',0,2,1,1
-	.word	336
-	.byte	2
-	.byte	'unsigned int',0,4,7,5
-	.byte	'__size_t',0,2,1,1
-	.word	367
-	.byte	2
-	.byte	'int',0,4,5,5
-	.byte	'__ptrdiff_t',0,2,1,1
-	.word	400
-	.byte	6,1,7
-	.word	427
-	.byte	5
-	.byte	'__codeptr',0,2,1,1
-	.word	429
-	.byte	5
-	.byte	'uint8',0,3,108,29
-	.word	253
-	.byte	2
-	.byte	'unsigned short int',0,2,7,5
-	.byte	'uint16',0,3,112,29
-	.word	466
-	.byte	5
-	.byte	'uint32',0,3,116,29
-	.word	232
-	.byte	5
-	.byte	'sint16',0,3,129,1,29
-	.word	336
-	.byte	2
-	.byte	'long int',0,4,5,5
-	.byte	'sint32',0,3,134,1,29
-	.word	534
-	.byte	2
-	.byte	'long long int',0,8,5,5
-	.byte	'sint64',0,3,141,1,29
-	.word	562
-	.byte	5
-	.byte	'float32',0,3,170,1,29
-	.word	223
-	.byte	8
-	.byte	'void',0,7
-	.word	612
-	.byte	5
-	.byte	'pvoid',0,4,54,28
-	.word	618
-	.byte	5
-	.byte	'Ifx_TickTime',0,4,76,28
-	.word	562
-	.byte	9
-	.byte	'IRSensorValue',0,5,16,14
-	.word	223
-	.byte	1,1,5
-	.byte	'_iob_flag_t',0,6,82,25
-	.word	466
-.L65:
-	.byte	10,2,9,9,1,11
-	.byte	'SAFE',0,0,11
-	.byte	'WARNING',0,1,11
-	.byte	'BRAKE',0,2,11
-	.byte	'ERROR',0,254,1,11
-	.byte	'INIT',0,255,1,0,5
-	.byte	'ColDet_State_t',0,2,16,3
-	.word	702
-.L62:
-	.byte	12
-	.word	223
+	.byte	'float',0,4,4
 .L63:
-	.byte	12
+	.byte	2
+	.byte	'_Bool',0,1,2,2
+	.byte	'short int',0,2,5,6
+	.byte	'__wchar_t',0,1,1,1
+	.word	295
+	.byte	2
+	.byte	'unsigned int',0,4,7,6
+	.byte	'__size_t',0,1,1,1
+	.word	326
+	.byte	6
+	.byte	'__ptrdiff_t',0,1,1,1
 	.word	223
-.L64:
+	.byte	7,1,8
+	.word	379
+	.byte	6
+	.byte	'__codeptr',0,1,1,1
+	.word	381
+.L66:
+	.byte	2
+	.byte	'unsigned char',0,1,8,6
+	.byte	'uint8',0,2,108,29
+	.word	404
+	.byte	2
+	.byte	'unsigned short int',0,2,7,6
+	.byte	'uint16',0,2,112,29
+	.word	435
+	.byte	6
+	.byte	'uint32',0,2,116,29
+	.word	251
+	.byte	6
+	.byte	'sint16',0,2,129,1,29
+	.word	295
+	.byte	2
+	.byte	'long int',0,4,5,6
+	.byte	'sint32',0,2,134,1,29
+	.word	503
+	.byte	2
+	.byte	'long long int',0,8,5,6
+	.byte	'sint64',0,2,141,1,29
+	.word	531
+	.byte	6
+	.byte	'float32',0,2,170,1,29
+	.word	277
+	.byte	9
+	.byte	'void',0,8
+	.word	581
+	.byte	6
+	.byte	'pvoid',0,3,54,28
+	.word	587
+	.byte	6
+	.byte	'Ifx_TickTime',0,3,76,28
+	.word	531
+.L65:
+	.byte	10,4,3,9,1,11
+	.byte	'COLLISION_SAFE',0,0,11
+	.byte	'COLLISION_WARNING',0,1,11
+	.byte	'COLLISION_BRAKE',0,2,0,6
+	.byte	'CollisionState',0,4,8,3
+	.word	627
 	.byte	12
-	.word	223
+	.byte	'IRSensorValue',0,5,16,14
+	.word	277
+	.byte	1,1,6
+	.byte	'_iob_flag_t',0,6,82,25
+	.word	435
 	.byte	0
 	.sdecl	'.debug_abbrev',debug
 	.sect	'.debug_abbrev'
-.L35:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,46,1,3,8,58,15,59,15,57,15
-	.byte	54,15,39,12,63,12,60,12,0,0,4,5,0,3,8,58,15,59,15,57,15,73,19,0,0,5,22,0,3,8,58,15,59,15,57,15,73,19,0
-	.byte	0,6,21,0,54,15,0,0,7,15,0,73,19,0,0,8,59,0,3,8,0,0,9,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0
-	.byte	10,4,1,58,15,59,15,57,15,11,15,0,0,11,40,0,3,8,28,13,0,0,12,38,0,73,19,0,0,0
+.L37:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,46,1,3,8,73,19,54,15,39,12
+	.byte	63,12,60,12,0,0,4,5,0,73,19,0,0,5,38,0,73,19,0,0,6,22,0,3,8,58,15,59,15,57,15,73,19,0,0,7,21,0,54,15,0
+	.byte	0,8,15,0,73,19,0,0,9,59,0,3,8,0,0,10,4,1,58,15,59,15,57,15,11,15,0,0,11,40,0,3,8,28,13,0,0,12,52,0,3,8
+	.byte	58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
 	.sdecl	'.debug_line',debug
 	.sect	'.debug_line'
-.L36:
-	.word	.L67-.L66
-.L66:
+.L38:
+	.word	.L76-.L75
+.L75:
 	.half	3
-	.word	.L69-.L68
-.L68:
+	.word	.L78-.L77
+.L77:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
-	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem',0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std',0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain',0
 	.byte	'C:\\Infineon\\AURIX-Studio-1.10.6\\tools\\Compilers\\Tasking_1.1r8\\ctc\\include\\',0,0
-	.byte	'Dem.h',0,1,0,0
 	.byte	'../APP/ColDet/ColDet.c',0,0,0,0
-	.byte	'Platform_Types.h',0,2,0,0
-	.byte	'Ifx_Types.h',0,2,0,0
-	.byte	'Ain.h',0,3,0,0
-	.byte	'stdio.h',0,4,0,0,0
-.L69:
-.L67:
+	.byte	'Platform_Types.h',0,1,0,0
+	.byte	'Ifx_Types.h',0,1,0,0
+	.byte	'..\\APP\\ColDet\\ColDet.h',0,0,0,0
+	.byte	'Ain.h',0,2,0,0
+	.byte	'stdio.h',0,3,0,0,0
+.L78:
+.L76:
 	.sdecl	'.debug_info',debug,cluster('ColDet_MainFunction')
 	.sect	'.debug_info'
-.L37:
-	.word	518
+.L39:
+	.word	433
 	.half	3
-	.word	.L38
+	.word	.L40
 	.byte	4,1
 	.byte	'../APP/ColDet/ColDet.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L40,.L39
+	.word	.L42,.L41
 	.byte	2
-	.word	.L33
+	.word	.L35
 	.byte	3
-	.byte	'ColDet_MainFunction',0,1,29,6,1,1,1
-	.word	.L32,.L58,.L31
+	.byte	'ColDet_MainFunction',0,1,22,6,1,1,1
+	.word	.L34,.L54,.L33
 	.byte	4
-	.word	.L32,.L58
+	.word	.L34,.L54
 	.byte	5
-	.byte	'distCm',0,1,31,18
-	.word	.L59
-	.byte	5,3
-	.word	_999001_distCm
+	.byte	'NO_OBSTACLE_DISTANCE',0,1,25,18
+	.word	.L55,.L56
 	.byte	5
-	.byte	'vehicleSpeed',0,1,32,18
-	.word	.L59
-	.byte	5,3
-	.word	_999002_vehicleSpeed
+	.byte	'distanceCm',0,1,27,12
+	.word	.L57,.L58
 	.byte	5
-	.byte	'deltaDistCm',0,1,33,18
-	.word	.L59
-	.byte	5,3
-	.word	_999003_deltaDistCm
+	.byte	'lastDistanceCm',0,1,28,12
+	.word	.L57,.L59
 	.byte	5
-	.byte	'approachSpeedMps',0,1,34,18
-	.word	.L59
-	.byte	5,3
-	.word	_999004_approachSpeedMps
+	.byte	'speed',0,1,29,12
+	.word	.L60,.L61
 	.byte	5
-	.byte	'distanceChangeMeters',0,1,35,18
-	.word	.L59
-	.byte	5,3
-	.word	_999005_distanceChangeMeters
+	.byte	'ttc',0,1,30,12
+	.word	.L60,.L62
+	.byte	4
+	.word	.L3,.L54
 	.byte	5
-	.byte	'ttcSeconds',0,1,36,18
-	.word	.L59
-	.byte	5,3
-	.word	_999006_ttcSeconds
-	.byte	5
-	.byte	'distM',0,1,37,18
-	.word	.L59
-	.byte	5,3
-	.word	_999007_distM
-	.byte	5
-	.byte	'timestamp',0,1,38,19
-	.word	.L60
-	.byte	5,3
-	.word	_999008_timestamp
-	.byte	5
-	.byte	'warnDurationSec',0,1,39,19
-	.word	.L60
-	.byte	5,3
-	.word	_999009_warnDurationSec
-	.byte	0,0,0
+	.byte	'objectDetected',0,1,47,10
+	.word	.L63,.L64
+	.byte	0,0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('ColDet_MainFunction')
 	.sect	'.debug_abbrev'
-.L38:
+.L40:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('ColDet_MainFunction')
 	.sect	'.debug_line'
-.L39:
-	.word	.L71-.L70
-.L70:
+.L41:
+	.word	.L80-.L79
+.L79:
 	.half	3
-	.word	.L73-.L72
-.L72:
+	.word	.L82-.L81
+.L81:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../APP/ColDet/ColDet.c',0,0,0,0,0
-.L73:
-	.byte	5,5,7,0,5,2
-	.word	.L32
-	.byte	3,40,1,5,14,9
-	.half	.L74-.L32
-	.byte	1,5,12,9
-	.half	.L75-.L74
-	.byte	1,5,5,9
-	.half	.L76-.L75
-	.byte	3,1,1,5,20,9
-	.half	.L77-.L76
-	.byte	1,5,18,9
-	.half	.L78-.L77
-	.byte	1,5,5,9
-	.half	.L79-.L78
-	.byte	3,1,1,5,19,9
-	.half	.L80-.L79
-	.byte	1,5,28,9
-	.half	.L81-.L80
-	.byte	1,5,26,9
-	.half	.L82-.L81
-	.byte	1,5,17,9
-	.half	.L83-.L82
-	.byte	1,5,5,9
-	.half	.L84-.L83
-	.byte	3,1,1,5,25,9
+.L82:
+	.byte	5,41,7,0,5,2
+	.word	.L34
+	.byte	3,24,1,5,13,9
+	.half	.L83-.L34
+	.byte	3,7,1,5,18,9
+	.half	.L69-.L83
+	.byte	3,1,1,5,9,9
+	.half	.L71-.L69
+	.byte	3,2,1,5,5,9
+	.half	.L84-.L71
+	.byte	1,5,20,7,9
 	.half	.L85-.L84
-	.byte	1,5,23,9
+	.byte	3,3,1,5,36,9
 	.half	.L86-.L85
-	.byte	1,5,8,9
-	.half	.L87-.L86
-	.byte	3,2,1,5,23,9
-	.half	.L88-.L87
-	.byte	1,5,21,9
-	.half	.L89-.L88
-	.byte	1,5,5,9
-	.half	.L90-.L89
-	.byte	1,5,12,7,9
-	.half	.L91-.L90
-	.byte	3,2,1,5,9,9
-	.half	.L92-.L91
-	.byte	1,5,13,7,9
-	.half	.L93-.L92
-	.byte	3,2,1,5,32,9
-	.half	.L94-.L93
-	.byte	1,5,30,9
-	.half	.L95-.L94
-	.byte	1,5,36,9
-	.half	.L96-.L95
-	.byte	1,5,9,9
-	.half	.L4-.L96
-	.byte	3,2,1,5,8,9
-	.half	.L5-.L4
-	.byte	3,10,1,5,23,9
-	.half	.L97-.L5
-	.byte	1,5,22,9
-	.half	.L98-.L97
-	.byte	1,5,5,9
-	.half	.L99-.L98
-	.byte	1,5,9,9
-	.half	.L100-.L99
-	.byte	3,10,1,5,28,9
-	.half	.L101-.L100
-	.byte	1,5,26,9
-	.half	.L102-.L101
-	.byte	1,5,55,9
-	.half	.L103-.L102
-	.byte	3,121,1,5,9,9
-	.half	.L6-.L103
-	.byte	1,5,34,9
-	.half	.L104-.L6
-	.byte	1,5,48,9
-	.half	.L105-.L104
-	.byte	1,5,46,9
-	.half	.L106-.L105
-	.byte	1,5,32,9
-	.half	.L107-.L106
-	.byte	1,5,30,9
-	.half	.L108-.L107
-	.byte	1,5,9,9
-	.half	.L109-.L108
-	.byte	3,1,1,5,28,9
-	.half	.L110-.L109
-	.byte	1,5,51,9
-	.half	.L111-.L110
-	.byte	1,5,49,9
-	.half	.L112-.L111
-	.byte	1,5,26,9
-	.half	.L113-.L112
-	.byte	1,5,5,9
-	.half	.L7-.L113
-	.byte	3,9,1,5,18,9
-	.half	.L114-.L7
-	.byte	1,5,16,9
-	.half	.L115-.L114
-	.byte	1,5,5,9
-	.half	.L116-.L115
-	.byte	3,1,1,5,18,9
-	.half	.L117-.L116
-	.byte	1,5,27,9
-	.half	.L118-.L117
-	.byte	1,5,25,9
-	.half	.L119-.L118
-	.byte	1,5,16,9
-	.half	.L120-.L119
-	.byte	1,5,8,9
-	.half	.L121-.L120
-	.byte	3,2,1,5,27,9
-	.half	.L122-.L121
-	.byte	1,5,25,9
-	.half	.L123-.L122
-	.byte	1,5,5,9
-	.half	.L124-.L123
-	.byte	1,5,9,7,9
-	.half	.L125-.L124
-	.byte	3,2,1,5,22,9
-	.half	.L126-.L125
-	.byte	1,5,30,9
-	.half	.L127-.L126
-	.byte	1,5,28,9
-	.half	.L128-.L127
-	.byte	1,5,20,9
-	.half	.L129-.L128
-	.byte	1,5,46,9
-	.half	.L130-.L129
-	.byte	1,5,12,9
-	.half	.L9-.L130
-	.byte	3,7,1,5,14,9
-	.half	.L131-.L9
-	.byte	3,2,1,9
-	.half	.L132-.L131
-	.byte	3,20,1,9
-	.half	.L133-.L132
-	.byte	3,25,1,5,16,9
-	.half	.L10-.L133
-	.byte	3,86,1,5,29,9
-	.half	.L134-.L10
-	.byte	1,5,27,9
-	.half	.L135-.L134
-	.byte	1,5,13,9
-	.half	.L136-.L135
-	.byte	1,7,9
-	.half	.L137-.L136
-	.byte	1,5,21,9
-	.half	.L14-.L137
-	.byte	3,4,1,5,34,9
-	.half	.L138-.L14
-	.byte	1,5,18,9
-	.half	.L139-.L138
-	.byte	1,5,17,9
-	.half	.L140-.L139
-	.byte	3,8,1,5,38,9
-	.half	.L141-.L140
-	.byte	1,5,36,9
-	.half	.L142-.L141
-	.byte	1,5,17,9
-	.half	.L143-.L142
-	.byte	3,1,1,5,29,9
-	.half	.L144-.L143
-	.byte	1,5,48,9
-	.half	.L145-.L144
-	.byte	1,5,27,9
-	.half	.L146-.L145
-	.byte	1,5,41,9
-	.half	.L147-.L146
-	.byte	3,122,1,5,17,9
-	.half	.L16-.L147
-	.byte	1,5,36,9
-	.half	.L148-.L16
-	.byte	1,5,34,9
-	.half	.L149-.L148
-	.byte	1,5,13,9
-	.half	.L15-.L149
-	.byte	3,8,1,5,16,9
-	.half	.L11-.L15
-	.byte	3,5,1,5,29,9
-	.half	.L150-.L11
-	.byte	1,5,27,9
-	.half	.L151-.L150
-	.byte	1,5,13,9
-	.half	.L152-.L151
-	.byte	1,5,17,7,9
-	.half	.L153-.L152
-	.byte	3,2,1,5,36,9
-	.half	.L154-.L153
-	.byte	1,5,34,9
-	.half	.L155-.L154
-	.byte	1,5,17,9
-	.half	.L156-.L155
-	.byte	3,1,1,5,13,9
-	.half	.L19-.L156
-	.byte	3,7,1,5,32,9
-	.half	.L157-.L19
-	.byte	1,5,51,9
-	.half	.L158-.L157
-	.byte	1,5,59,9
-	.half	.L159-.L158
-	.byte	1,5,57,9
-	.half	.L160-.L159
-	.byte	1,5,29,9
-	.half	.L161-.L160
-	.byte	1,5,17,9
-	.half	.L162-.L161
-	.byte	3,2,1,5,30,9
-	.half	.L163-.L162
-	.byte	1,5,28,9
-	.half	.L164-.L163
-	.byte	1,5,13,9
-	.half	.L165-.L164
-	.byte	1,5,17,7,9
-	.half	.L166-.L165
-	.byte	3,2,1,5,36,9
-	.half	.L167-.L166
-	.byte	1,5,34,9
-	.half	.L168-.L167
-	.byte	1,5,41,9
-	.half	.L169-.L168
-	.byte	1,5,13,9
-	.half	.L22-.L169
-	.byte	3,6,1,5,16,9
-	.half	.L12-.L22
-	.byte	3,5,1,5,29,9
-	.half	.L170-.L12
-	.byte	1,5,27,9
-	.half	.L171-.L170
-	.byte	1,5,13,9
-	.half	.L172-.L171
-	.byte	1,5,17,7,9
-	.half	.L173-.L172
-	.byte	3,2,1,5,36,9
-	.half	.L174-.L173
-	.byte	1,5,34,9
-	.half	.L175-.L174
-	.byte	1,5,40,9
-	.half	.L176-.L175
-	.byte	1,5,13,9
-	.half	.L25-.L176
-	.byte	3,6,1,9
-	.half	.L13-.L25
-	.byte	3,3,1,5,19,9
-	.half	.L18-.L13
-	.byte	3,3,1,5,8,9
-	.half	.L177-.L18
-	.byte	1,5,42,9
-	.half	.L178-.L177
-	.byte	1,5,36,9
-	.half	.L179-.L178
-	.byte	1,5,40,9
-	.half	.L180-.L179
-	.byte	1,5,9,9
-	.half	.L28-.L180
-	.byte	3,2,1,5,28,9
-	.half	.L181-.L28
-	.byte	1,5,26,9
-	.half	.L182-.L181
-	.byte	1,5,20,9
-	.half	.L183-.L182
-	.byte	3,1,1,5,57,9
-	.half	.L184-.L183
-	.byte	1,5,61,9
-	.half	.L185-.L184
+	.byte	1,5,39,9
+	.half	.L3-.L86
+	.byte	3,9,1,5,9,9
+	.half	.L68-.L3
+	.byte	3,2,1,5,35,7,9
+	.half	.L87-.L68
 	.byte	1,5,33,9
-	.half	.L186-.L185
-	.byte	3,127,1,5,20,9
-	.half	.L29-.L186
-	.byte	3,5,1,5,57,9
-	.half	.L187-.L29
+	.half	.L88-.L87
+	.byte	1,5,15,9
+	.half	.L89-.L88
+	.byte	3,4,1,5,26,9
+	.half	.L90-.L89
+	.byte	1,5,33,9
+	.half	.L72-.L90
+	.byte	1,5,15,9
+	.half	.L4-.L72
+	.byte	3,4,1,5,13,9
+	.half	.L6-.L4
+	.byte	3,4,1,5,14,9
+	.half	.L70-.L6
+	.byte	3,2,1,9
+	.half	.L91-.L70
+	.byte	3,23,1,9
+	.half	.L92-.L91
+	.byte	3,29,1,5,17,9
+	.half	.L7-.L92
+	.byte	3,77,1,5,42,7,9
+	.half	.L93-.L7
+	.byte	1,5,39,9
+	.half	.L94-.L93
+	.byte	1,5,17,9
+	.half	.L95-.L94
+	.byte	3,3,1,5,47,9
+	.half	.L96-.L95
+	.byte	1,5,45,9
+	.half	.L97-.L96
+	.byte	1,5,17,9
+	.half	.L98-.L97
+	.byte	3,1,1,5,43,9
+	.half	.L99-.L98
+	.byte	1,5,41,9
+	.half	.L100-.L99
+	.byte	1,5,62,9
+	.half	.L101-.L100
+	.byte	3,127,1,5,22,9
+	.half	.L11-.L101
+	.byte	3,4,1,5,47,7,9
+	.half	.L102-.L11
+	.byte	1,5,44,9
+	.half	.L103-.L102
+	.byte	1,5,17,9
+	.half	.L104-.L103
+	.byte	3,2,1,5,47,9
+	.half	.L105-.L104
+	.byte	1,5,45,9
+	.half	.L106-.L105
+	.byte	1,5,17,9
+	.half	.L107-.L106
+	.byte	3,2,1,5,43,9
+	.half	.L108-.L107
+	.byte	1,5,41,9
+	.half	.L109-.L108
+	.byte	1,5,64,9
+	.half	.L110-.L109
+	.byte	3,126,1,5,17,9
+	.half	.L14-.L110
+	.byte	3,8,1,5,47,9
+	.half	.L111-.L14
+	.byte	1,5,45,9
+	.half	.L112-.L111
+	.byte	1,5,17,9
+	.half	.L113-.L112
+	.byte	3,1,1,5,43,9
+	.half	.L114-.L113
+	.byte	1,5,41,9
+	.half	.L115-.L114
+	.byte	1,5,13,9
+	.half	.L13-.L115
+	.byte	3,2,1,5,18,9
+	.half	.L8-.L13
+	.byte	3,3,1,5,42,7,9
+	.half	.L116-.L8
+	.byte	1,5,40,9
+	.half	.L117-.L116
+	.byte	1,5,17,9
+	.half	.L18-.L117
+	.byte	3,3,1,5,47,9
+	.half	.L118-.L18
+	.byte	1,5,45,9
+	.half	.L119-.L118
+	.byte	1,5,17,9
+	.half	.L120-.L119
+	.byte	3,1,1,5,43,9
+	.half	.L121-.L120
+	.byte	1,5,41,9
+	.half	.L122-.L121
 	.byte	1,5,61,9
-	.half	.L188-.L187
-	.byte	1,5,5,9
-	.half	.L30-.L188
+	.half	.L123-.L122
+	.byte	3,127,1,5,29,9
+	.half	.L19-.L123
+	.byte	3,3,1,5,26,9
+	.half	.L124-.L19
+	.byte	1,5,18,9
+	.half	.L125-.L124
+	.byte	1,5,17,7,9
+	.half	.L126-.L125
+	.byte	3,3,1,5,47,9
+	.half	.L127-.L126
+	.byte	1,5,45,9
+	.half	.L128-.L127
+	.byte	1,5,17,9
+	.half	.L129-.L128
+	.byte	3,1,1,5,43,9
+	.half	.L130-.L129
+	.byte	1,5,41,9
+	.half	.L131-.L130
+	.byte	1,5,62,9
+	.half	.L132-.L131
+	.byte	3,127,1,5,21,9
+	.half	.L21-.L132
+	.byte	3,7,1,5,47,9
+	.half	.L73-.L21
+	.byte	1,5,17,9
+	.half	.L133-.L73
+	.byte	1,5,21,7,9
+	.half	.L134-.L133
+	.byte	3,2,1,5,45,9
+	.half	.L135-.L134
+	.byte	1,5,50,9
+	.half	.L136-.L135
+	.byte	1,5,13,9
+	.half	.L20-.L136
+	.byte	3,8,1,5,18,9
+	.half	.L9-.L20
+	.byte	3,3,1,5,42,7,9
+	.half	.L137-.L9
+	.byte	1,5,40,9
+	.half	.L138-.L137
+	.byte	1,5,17,9
+	.half	.L26-.L138
+	.byte	3,3,1,5,47,9
+	.half	.L139-.L26
+	.byte	1,5,45,9
+	.half	.L140-.L139
+	.byte	1,5,17,9
+	.half	.L141-.L140
+	.byte	3,2,1,5,43,9
+	.half	.L142-.L141
+	.byte	1,5,41,9
+	.half	.L143-.L142
+	.byte	1,5,61,9
+	.half	.L144-.L143
+	.byte	3,126,1,5,28,9
+	.half	.L27-.L144
+	.byte	3,4,1,5,26,9
+	.half	.L145-.L27
+	.byte	1,5,22,9
+	.half	.L146-.L145
+	.byte	1,5,62,7,9
+	.half	.L147-.L146
+	.byte	1,5,59,9
+	.half	.L148-.L147
+	.byte	1,5,17,9
+	.half	.L149-.L148
+	.byte	3,3,1,5,47,9
+	.half	.L150-.L149
+	.byte	1,5,45,9
+	.half	.L151-.L150
+	.byte	1,5,17,9
+	.half	.L152-.L151
+	.byte	3,2,1,5,43,9
+	.half	.L153-.L152
+	.byte	1,5,41,9
+	.half	.L154-.L153
+	.byte	1,5,64,9
+	.half	.L155-.L154
+	.byte	3,126,1,5,17,9
+	.half	.L29-.L155
+	.byte	3,7,1,5,47,9
+	.half	.L156-.L29
+	.byte	1,5,45,9
+	.half	.L157-.L156
+	.byte	1,5,17,9
+	.half	.L158-.L157
+	.byte	3,1,1,5,43,9
+	.half	.L159-.L158
+	.byte	1,5,41,9
+	.half	.L160-.L159
+	.byte	1,5,13,9
+	.half	.L28-.L160
+	.byte	3,2,1,5,5,9
+	.half	.L17-.L28
 	.byte	3,3,1,5,30,9
-	.half	.L189-.L30
+	.half	.L161-.L17
 	.byte	1,5,28,9
-	.half	.L190-.L189
+	.half	.L162-.L161
 	.byte	1,5,5,9
-	.half	.L191-.L190
+	.half	.L163-.L162
 	.byte	3,2,1,5,23,9
-	.half	.L192-.L191
+	.half	.L164-.L163
 	.byte	1,5,1,9
-	.half	.L193-.L192
+	.half	.L165-.L164
 	.byte	3,1,1,7,9
-	.half	.L41-.L193
+	.half	.L43-.L165
 	.byte	0,1,1
-.L71:
+.L80:
 	.sdecl	'.debug_ranges',debug,cluster('ColDet_MainFunction')
 	.sect	'.debug_ranges'
-.L40:
-	.word	-1,.L32,0,.L41-.L32,0,0
-	.sdecl	'.debug_info',debug,cluster('ColDet_CanTx_IrSenStat')
-	.sect	'.debug_info'
 .L42:
-	.word	259
-	.half	3
-	.word	.L43
-	.byte	4,1
-	.byte	'../APP/ColDet/ColDet.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L33
-	.byte	3
-	.byte	'ColDet_CanTx_IrSenStat',0,2,24,7
-	.word	.L61
-	.byte	1,5,3
-	.word	ColDet_CanTx_IrSenStat
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('ColDet_CanTx_IrSenStat')
-	.sect	'.debug_abbrev'
-.L43:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
-	.byte	0,0,0
-	.sdecl	'.debug_info',debug,cluster('ColDet_CalculatedSpeed')
+	.word	-1,.L34,0,.L43-.L34,0,0
+	.sdecl	'.debug_info',debug,cluster('ColDet_CanTx_CollisionState')
 	.sect	'.debug_info'
 .L44:
-	.word	259
+	.word	264
 	.half	3
 	.word	.L45
 	.byte	4,1
@@ -1067,22 +763,22 @@ _999009_warnDurationSec:	.type	object
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L33
+	.word	.L35
 	.byte	3
-	.byte	'ColDet_CalculatedSpeed',0,2,25,7
-	.word	.L59
+	.byte	'ColDet_CanTx_CollisionState',0,1,15,16
+	.word	.L65
 	.byte	1,5,3
-	.word	ColDet_CalculatedSpeed
+	.word	ColDet_CanTx_CollisionState
 	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('ColDet_CalculatedSpeed')
+	.sdecl	'.debug_abbrev',debug,cluster('ColDet_CanTx_CollisionState')
 	.sect	'.debug_abbrev'
 .L45:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
 	.byte	0,0,0
-	.sdecl	'.debug_info',debug,cluster('DISTANCE_STABLE_THRESHOLD_CM')
+	.sdecl	'.debug_info',debug,cluster('ColDet_CanTx_BrakeLevel')
 	.sect	'.debug_info'
 .L46:
-	.word	264
+	.word	260
 	.half	3
 	.word	.L47
 	.byte	4,1
@@ -1090,21 +786,22 @@ _999009_warnDurationSec:	.type	object
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L33
+	.word	.L35
 	.byte	3
-	.byte	'DISTANCE_STABLE_THRESHOLD_CM',0,2,18,20
-	.word	.L62
-	.byte	5,3
-	.word	DISTANCE_STABLE_THRESHOLD_CM
+	.byte	'ColDet_CanTx_BrakeLevel',0,1,16,7
+	.word	.L66
+	.byte	1,5,3
+	.word	ColDet_CanTx_BrakeLevel
 	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('DISTANCE_STABLE_THRESHOLD_CM')
+	.sdecl	'.debug_abbrev',debug,cluster('ColDet_CanTx_BrakeLevel')
 	.sect	'.debug_abbrev'
 .L47:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('TIME_TO_COLLISION_WARN')
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('ColDet_CanTx_IrSenStat')
 	.sect	'.debug_info'
 .L48:
-	.word	258
+	.word	259
 	.half	3
 	.word	.L49
 	.byte	4,1
@@ -1112,21 +809,22 @@ _999009_warnDurationSec:	.type	object
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L33
+	.word	.L35
 	.byte	3
-	.byte	'TIME_TO_COLLISION_WARN',0,2,19,20
-	.word	.L63
-	.byte	5,3
-	.word	TIME_TO_COLLISION_WARN
+	.byte	'ColDet_CanTx_IrSenStat',0,1,17,7
+	.word	.L66
+	.byte	1,5,3
+	.word	ColDet_CanTx_IrSenStat
 	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('TIME_TO_COLLISION_WARN')
+	.sdecl	'.debug_abbrev',debug,cluster('ColDet_CanTx_IrSenStat')
 	.sect	'.debug_abbrev'
 .L49:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('TIME_TO_COLLISION_BRAKE')
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('ColDet_CanRx_CalculatedSpeed')
 	.sect	'.debug_info'
 .L50:
-	.word	259
+	.word	265
 	.half	3
 	.word	.L51
 	.byte	4,1
@@ -1134,21 +832,22 @@ _999009_warnDurationSec:	.type	object
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L33
+	.word	.L35
 	.byte	3
-	.byte	'TIME_TO_COLLISION_BRAKE',0,2,20,20
-	.word	.L64
-	.byte	5,3
-	.word	TIME_TO_COLLISION_BRAKE
+	.byte	'ColDet_CanRx_CalculatedSpeed',0,1,18,7
+	.word	.L66
+	.byte	1,5,3
+	.word	ColDet_CanRx_CalculatedSpeed
 	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('TIME_TO_COLLISION_BRAKE')
+	.sdecl	'.debug_abbrev',debug,cluster('ColDet_CanRx_CalculatedSpeed')
 	.sect	'.debug_abbrev'
 .L51:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('g_collisionState')
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12,2,9
+	.byte	0,0,0
+	.sdecl	'.debug_info',debug,cluster('ColDet_MainCounter')
 	.sect	'.debug_info'
 .L52:
-	.word	252
+	.word	254
 	.half	3
 	.word	.L53
 	.byte	4,1
@@ -1156,77 +855,70 @@ _999009_warnDurationSec:	.type	object
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L33
+	.word	.L35
 	.byte	3
-	.byte	'g_collisionState',0,2,21,23
-	.word	.L65
-	.byte	5,3
-	.word	g_collisionState
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('g_collisionState')
-	.sect	'.debug_abbrev'
-.L53:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('g_lastDistanceCm')
-	.sect	'.debug_info'
-.L54:
-	.word	252
-	.half	3
-	.word	.L55
-	.byte	4,1
-	.byte	'../APP/ColDet/ColDet.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L33
-	.byte	3
-	.byte	'g_lastDistanceCm',0,2,22,14
-	.word	.L59
-	.byte	5,3
-	.word	g_lastDistanceCm
-	.byte	0
-	.sdecl	'.debug_abbrev',debug,cluster('g_lastDistanceCm')
-	.sect	'.debug_abbrev'
-.L55:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
-	.sdecl	'.debug_info',debug,cluster('ColDet_MainCounter')
-	.sect	'.debug_info'
-.L56:
-	.word	254
-	.half	3
+	.byte	'ColDet_MainCounter',0,1,14,15
 	.word	.L57
-	.byte	4,1
-	.byte	'../APP/ColDet/ColDet.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1,2
-	.word	.L33
-	.byte	3
-	.byte	'ColDet_MainCounter',0,2,23,15
-	.word	.L60
 	.byte	5,3
 	.word	ColDet_MainCounter
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('ColDet_MainCounter')
 	.sect	'.debug_abbrev'
-.L57:
+.L53:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
 	.sdecl	'.debug_loc',debug,cluster('ColDet_MainFunction')
 	.sect	'.debug_loc'
-.L31:
-	.word	-1,.L32,0,.L58-.L32
+.L33:
+	.word	-1,.L34,0,.L54-.L34
 	.half	2
 	.byte	138,0
 	.word	0,0
+.L56:
+	.word	-1,.L34,.L67-.L34,.L68-.L34
+	.half	5
+	.byte	144,32,157,32,0
+	.word	0,0
+.L58:
+	.word	-1,.L34,.L71-.L34,.L72-.L34
+	.half	1
+	.byte	82
+	.word	.L4-.L34,.L74-.L34
+	.half	1
+	.byte	82
+	.word	0,0
+.L59:
+	.word	0,0
+.L64:
+	.word	-1,.L34,.L68-.L34,.L73-.L34
+	.half	5
+	.byte	144,32,157,32,0
+	.word	.L9-.L34,.L17-.L34
+	.half	5
+	.byte	144,32,157,32,0
+	.word	0,0
+.L61:
+	.word	-1,.L34,.L69-.L34,.L70-.L34
+	.half	1
+	.byte	81
+	.word	0,0
+.L62:
+	.word	-1,.L34,.L72-.L34,.L4-.L34
+	.half	1
+	.byte	82
+	.word	.L74-.L34,.L54-.L34
+	.half	1
+	.byte	82
+	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L194:
+.L166:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
 	.byte	8,39
 	.sdecl	'.debug_frame',debug,cluster('ColDet_MainFunction')
 	.sect	'.debug_frame'
-	.word	12
-	.word	.L194,.L32,.L58-.L32
+	.word	24
+	.word	.L166,.L34,.L54-.L34
+	.byte	8,19,8,20,8,21,8,22,8,23,0,0
 	; Module end

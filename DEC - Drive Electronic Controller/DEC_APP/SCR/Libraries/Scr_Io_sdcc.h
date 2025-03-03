@@ -25,14 +25,34 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
 #ifndef SCR_IO_SDCC_H
 #define SCR_IO_SDCC_H
-
 #include "Scr_Generic_Defs.h"
 
-
+__sfr __at(ADDR_SCR_WCAN_BTL1_CTRL)        SCR_WCAN_BTL1_CTRL;
+__sfr __at(ADDR_SCR_WCAN_BTL2_CTRL)        SCR_WCAN_BTL2_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DLC_CTRL)        SCR_WCAN_DLC_CTRL;
+__sfr __at(ADDR_SCR_WCAN_PAGE)        SCR_WCAN_PAGE;
+__sfr __at(ADDR_SCR_WCAN_CFG)        SCR_WCAN_CFG;
+__sfr __at(ADDR_SCR_WCAN_DATA0_CTRL)        SCR_WCAN_DATA0_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DATA1_CTRL)        SCR_WCAN_DATA1_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DATA2_CTRL)        SCR_WCAN_DATA2_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DATA3_CTRL)        SCR_WCAN_DATA3_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DATA4_CTRL)        SCR_WCAN_DATA4_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DATA5_CTRL)        SCR_WCAN_DATA5_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DATA6_CTRL)        SCR_WCAN_DATA6_CTRL;
+__sfr __at(ADDR_SCR_WCAN_DATA7_CTRL)        SCR_WCAN_DATA7_CTRL;
+__sfr __at(ADDR_SCR_WCAN_ID0_CTRL)        SCR_WCAN_ID0_CTRL;
+__sfr __at(ADDR_SCR_WCAN_ID1_CTRL)        SCR_WCAN_ID1_CTRL;
+__sfr __at(ADDR_SCR_WCAN_ID2_CTRL)        SCR_WCAN_ID2_CTRL;
+__sfr __at(ADDR_SCR_WCAN_ID3_CTRL)        SCR_WCAN_ID3_CTRL;
+__sfr __at(ADDR_SCR_WCAN_MASK_ID0_CTRL)        SCR_WCAN_MASK_ID0_CTRL;
+__sfr __at(ADDR_SCR_WCAN_MASK_ID1_CTRL)        SCR_WCAN_MASK_ID1_CTRL;
+__sfr __at(ADDR_SCR_WCAN_MASK_ID2_CTRL)        SCR_WCAN_MASK_ID2_CTRL;
+__sfr __at(ADDR_SCR_WCAN_MASK_ID3_CTRL)        SCR_WCAN_MASK_ID3_CTRL;
+__sfr __at(ADDR_SCR_SCU_RSTCON)        SCR_SCU_RSTCON;
 __sfr __at(ADDR_SCR_IO_PAGE)        SCR_IO_PAGE;
+__sfr __at(ADDR_SCR_P00_IOCR2)      SCR_P00_IOCR2;
 __sfr __at(ADDR_SCR_P00_IOCR4)      SCR_P00_IOCR4;
 __sfr __at(ADDR_SCR_P00_IOCR5)      SCR_P00_IOCR5;
 __sfr __at(ADDR_SCR_P00_OUT)        SCR_P00_OUT;

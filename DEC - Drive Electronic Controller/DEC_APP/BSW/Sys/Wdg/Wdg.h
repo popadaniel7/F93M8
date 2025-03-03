@@ -1,12 +1,5 @@
-extern void Wdg_InitializeSafetyWatchdog(void);
-extern void Wdg_InitializeCpu0Watchdog(void);
-extern void Wdg_InitializeCpu1Watchdog(void);
-extern void Wdg_InitializeCpu2Watchdog(void);
-extern void Wdg_ReloadCpu0Watchdog(void);
-extern void Wdg_ReloadCpu1Watchdog(void);
-extern void Wdg_ReloadCpu2Watchdog(void);
 extern void Wdg_DeInitializeSafetyWatchdog(void);
 extern void Wdg_DeInitializeCpu0Watchdog(void);
 extern void Wdg_DeInitializeCpu1Watchdog(void);
 extern void Wdg_DeInitializeCpu2Watchdog(void);
-extern void Wdg_ReloadSafetyWatchdog(void);
+

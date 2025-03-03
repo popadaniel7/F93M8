@@ -5,60 +5,6 @@
 #include "Ifx_Cfg_Trap.h"
 #include "IfxDts_Dts.h"
 
-#define DEBUG_CODE 1
-#define POWERONRESET_MASK \
-        (((unsigned int)1u << 28u) | \
-                ((unsigned int)1u << 25u) | \
-                ((unsigned int)1u << 24u) | \
-                ((unsigned int)1u << 23u))
-#define APPLICATIONRESET_MASK                         \
-        (((unsigned int)1 << 4) |     \
-                ((unsigned int)1 << 7) | \
-                ((unsigned int)1 << 6) | \
-                ((unsigned int)1 << 5) | \
-                ((unsigned int)1 << 3) |   \
-                ((unsigned int)1 << 1) | \
-                ((unsigned int)1 << 0))
-#define DPR_GRANULARITY                 8                           /* Data Protection Range granularity in bytes   */
-#define CPR_GRANULARITY                 32                          /* Code Protection Range granularity in bytes   */
-/* Data Protection Ranges */
-#define DATA_PROTECTION_RANGE_0         0
-#define DATA_PROTECTION_RANGE_1         1
-#define DATA_PROTECTION_RANGE_2         2
-#define DATA_PROTECTION_RANGE_3         3
-#define DATA_PROTECTION_RANGE_4         4
-#define DATA_PROTECTION_RANGE_5         5
-#define DATA_PROTECTION_RANGE_6         6
-#define DATA_PROTECTION_RANGE_7         7
-#define DATA_PROTECTION_RANGE_8         8
-#define DATA_PROTECTION_RANGE_9         9
-#define DATA_PROTECTION_RANGE_10        10
-#define DATA_PROTECTION_RANGE_11        11
-#define DATA_PROTECTION_RANGE_12        12
-#define DATA_PROTECTION_RANGE_13        13
-#define DATA_PROTECTION_RANGE_14        14
-#define DATA_PROTECTION_RANGE_15        15
-#define DATA_PROTECTION_RANGE_16        16
-#define DATA_PROTECTION_RANGE_17        17
-/* Code Protection Ranges */
-#define CODE_PROTECTION_RANGE_0         0
-#define CODE_PROTECTION_RANGE_1         1
-#define CODE_PROTECTION_RANGE_2         2
-#define CODE_PROTECTION_RANGE_3         3
-#define CODE_PROTECTION_RANGE_4         4
-#define CODE_PROTECTION_RANGE_5         5
-#define CODE_PROTECTION_RANGE_6         6
-#define CODE_PROTECTION_RANGE_7         7
-#define CODE_PROTECTION_RANGE_8         8
-#define CODE_PROTECTION_RANGE_9         9
-/* Protection Sets */
-#define PROTECTION_SET_0                0
-#define PROTECTION_SET_1                1
-#define PROTECTION_SET_2                2
-#define PROTECTION_SET_3                3
-#define PROTECTION_SET_4                4
-#define PROTECTION_SET_5                5
-
 typedef enum
 {
     NO_ERR = 0xEFEFU,
@@ -277,23 +223,12 @@ typedef struct
         uint32              information;
 }McuSm_ResetHistory_t;
 
-extern uint8 g_isMeasureAvailable;  /* Variable to store availability of new measurements */
-extern  Ifx_CSA McuSm_CSA_capture[IFXCPU_NUM_MODULES][CSA_CAPTURE_LIMIT];
-extern  uint32 McuSm_STACK_capture[IFXCPU_NUM_MODULES][STACK_CAPTURE_LIMIT][STACK_CAPTURE_SIZE];
-extern  Ifx_CPU_PIETR McuSm_PIETR_capture[IFXCPU_NUM_MODULES];
-extern  Ifx_CPU_PIEAR McuSm_PIEAR_capture[IFXCPU_NUM_MODULES];
-extern  Ifx_CPU_DIETR McuSm_DIETR_capture[IFXCPU_NUM_MODULES];
-extern  Ifx_CPU_DIEAR McuSm_DIEAR_capture[IFXCPU_NUM_MODULES];
-extern  Ifx_CPU_DATR McuSm_DATR_capture[IFXCPU_NUM_MODULES];
-extern  Ifx_CPU_DEADD McuSm_DEADD_capture[IFXCPU_NUM_MODULES];
-extern  Ifx_SMU_AG McuSm_AG_capture[IFXCPU_NUM_MODULES][12];
 extern  uint32 McuSm_LastResetReason;
 extern  uint32 McuSm_LastResetInformation;
 extern  uint32 McuSm_IndexResetHistory;
 extern  McuSm_ResetHistory_t McuSm_ResetHistory[20u];
 extern  McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
 
-IFX_INLINE void McuSm_SetActiveProtectionSet(uint8 protectionSet);
 extern void McuSm_InitializeBusMpu(void);
 extern void McuSm_EnableBusMpu(void);
 extern void McuSm_InitializeDataProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range);
@@ -316,11 +251,3 @@ extern void McuSm_TRAP2(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP3(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP4(IfxCpu_Trap trapInfo);
 extern void McuSm_TRAP7(IfxCpu_Trap trapInfo);
-
-IFX_INLINE void McuSm_SetActiveProtectionSet(uint8 protectionSet)
-{
-    Ifx_CPU_PSW PSWRegisterValue;
-    PSWRegisterValue.U = __mfcr(CPU_PSW);               /* Get the Program Status Word (PSW) register value         */
-    PSWRegisterValue.B.PRS = protectionSet;             /* Set the PRS bit-field to enable the Protection Set        */
-    __mtcr(CPU_PSW, PSWRegisterValue.U);                /* Set the Program Status Word (PSW) register               */
-}
