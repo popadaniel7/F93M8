@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_adc1_filter.xml                                                   -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<!-- Filter Template -->
+<!-- Parameters: -->
+<!--   IDX: filter index, range 0..3 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>4b527730594ffa81758ba4dfe1c6668fad744534c775f3f556caf0c15436bca9</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <treecontainer headerlabels="Item;Value;" label="Filter $IDX$" desc="Filter Channel $IDX$" columnwidths="200;150">
+    <header file="adc1_defines.h">
+      <var define="ADC1.FILT$IDX$_USED_BY" svn="0" default="255" header="temp_defines.h"/>
+      <edit label="Used by Channel" readonly="1" define="ADC1.FILT$IDX$_USED_BY_TXT" svd="0" default="available" header=""/>
+      <combo label="Filter Coefficient" define="ADC1.FILTCFG.COEF_A$IDX$" setdef="ADC1.TIM_CHCFG.run=1">
+        <item label="1/2" override="value1"  setdef="ADC1.FILT$IDX$_TXT=1/2"/>
+        <item label="1/4" override="value2"  setdef="ADC1.FILT$IDX$_TXT=1/4"/>
+        <item label="1/8" override="value3"  setdef="ADC1.FILT$IDX$_TXT=1/8"/>
+        <item label="1/16" override="value4" setdef="ADC1.FILT$IDX$_TXT=1/16"/>
+      </combo>
+      <math visible="false" define="ADC1.FILT$IDX$_USE_CNT" svd="0" formula="ADC1.FILT$IDX$_USE0+ADC1.FILT$IDX$_USE1+ADC1.FILT$IDX$_USE2+ADC1.FILT$IDX$_USE3+ADC1.FILT$IDX$_USE4+ADC1.FILT$IDX$_USE5+ADC1.FILT$IDX$_USE6+ADC1.FILT$IDX$_USE7+ADC1.FILT$IDX$_USE8+ADC1.FILT$IDX$_USE9+ADC1.FILT$IDX$_USE10+ADC1.FILT$IDX$_USE11+ADC1.FILT$IDX$_USE12+ADC1.FILT$IDX$_USE13+ADC1.FILT$IDX$_USE14+ADC1.FILT$IDX$_USE15+ADC1.FILT$IDX$_USE16+ADC1.FILT$IDX$_USE17+ADC1.FILT$IDX$_USE18+ADC1.FILT$IDX$_USE19" header="temp_defines.h"/>
+    </header>
+  </treecontainer>
+</ifxmlcfg>

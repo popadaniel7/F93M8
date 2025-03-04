@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_t2x_graph.xml                                                     -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-11-25, BG:   EP-623: Updated displayed frequency name and value   -->
+<!-- V0.1.2: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.3: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- IDX: $IDX$, T21 -->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>1c20caa10cbb903f24531e7029f9fe9ee4d6e05958c78f813bc7358ecea66fb8</checksum>
+  <version label="V0.1.3"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <groupcontainer label="$IDX$ Diagram" define="$IDX$_GRAPH" pos="0;0" size="510;800">
+    <verticalcontainer visible="false">
+      <!-- Edits for text -->
+      <edit visible="false" define="$IDX$PS" svd="0" header=""/>
+      <edit visible="false" define="$IDX$IN" svd="0" header=""/>
+      <edit visible="false" define="$IDX$EX" svd="0" header=""/>
+
+      <!-- Edits for colors -->
+      <edit visible="false" label="$IDX$_G_1" define="$IDX$_G_1" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_2" define="$IDX$_G_2" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_3" define="$IDX$_G_3" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_4" define="$IDX$_G_4" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_5" define="$IDX$_G_5" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_7" define="$IDX$_G_7" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_8" define="$IDX$_G_8" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_9" define="$IDX$_G_9" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_G_12" define="$IDX$_G_12" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EX_1" define="$IDX$_EX_1" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EX_3" define="$IDX$_EX_3" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EX_5" define="$IDX$_EX_5" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EX_6" define="$IDX$_EX_6" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EX_7" define="$IDX$_EX_7" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EX_8" define="$IDX$_EX_8" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EX_9" define="$IDX$_EX_9" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EXSTART_1" define="$IDX$_EXSTART_1" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EXSTART_2" define="$IDX$_EXSTART_2" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EXSTART_3" define="$IDX$_EXSTART_3" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_EXSTART_4" define="$IDX$_EXSTART_4" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_1" define="$IDX$_INT_1" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_2"  define="$IDX$_INT_2" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_3"  define="$IDX$_INT_3" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_4"  define="$IDX$_INT_4" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_5"  define="$IDX$_INT_5" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_6"  define="$IDX$_INT_6" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_7"  define="$IDX$_INT_7" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_8"  define="$IDX$_INT_8" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_9"  define="$IDX$_INT_9" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_10" define="$IDX$_INT_10" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_11" define="$IDX$_INT_11" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_12" define="$IDX$_INT_12" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_13" define="$IDX$_INT_13" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_14" define="$IDX$_INT_14" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_15" define="$IDX$_INT_15" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_16" define="$IDX$_INT_16" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_17" define="$IDX$_INT_17" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_18" define="$IDX$_INT_18" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_19" define="$IDX$_INT_19" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_20" define="$IDX$_INT_20" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_21" define="$IDX$_INT_21" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_INT_22" define="$IDX$_INT_22" svd="0" header=""/>
+
+
+      <edit visible="false" label="vis_$IDX$_1" define="VIS_$IDX$_1" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_2" define="VIS_$IDX$_2" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_3" define="VIS_$IDX$_3" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_4" define="VIS_$IDX$_4" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_5" define="VIS_$IDX$_5" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_6" define="VIS_$IDX$_6" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_7" define="VIS_$IDX$_7" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_8" define="VIS_$IDX$_8" svd="0" header=""/>
+      <edit visible="false" label="vis_$IDX$_10" define="VIS_$IDX$_10" svd="0" header=""/>
+    </verticalcontainer>
+    <svgembed define="$IDX$_Block">
+      <svg viewBox="0 0 505 735">
+        <rect width="505" height="735" style="fill:#FFFFF0;stroke-width:0.30644634"/>
+        <g id="$IDX$">
+          <!-- T2 frequency for the clock -> only in Timer mode -->
+          <text x="5" y="75" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_G_1$">fPER = $SCU_fTIMER2x_MHz$ MHz</text>
+          <rect x="97" y="67" width="6" height="6" style="fill:$$IDX$_G_1$;stroke-width:1" /> 
+          <line x1="100" y1="70" x2="170" y2="70" style="stroke:$$IDX$_G_1$;stroke-width:1" />
+          <path d="M150 70 L140 65 L140 75 Z" style="fill:$$IDX$_G_1$"/>
+          <text x="150" y="50" text-anchor="start" font-family="arial" font-weight="bold" font-size="13" fill="$$IDX$_G_1$" >Prescaler</text>
+          <rect x="150" y="55" width="40" height="30" style="fill:$$IDX$_G_2$;stroke:$$IDX$_G_1$;stroke-width:1;opacity:1.0"/>
+          <text x="170" y="75" text-anchor="middle" font-family="arial" font-size="14" fill="$$IDX$_G_1$">/ $$IDX$PS$</text>
+          <line x1="190" y1="70" x2="240" y2="70" style="stroke:$$IDX$_G_1$;stroke-width:1" />
+          <line x1="240" y1="70" x2="240" y2="130" style="stroke:$$IDX$_G_1$;stroke-width:1" />
+          <text x="235" y="200" text-anchor="start" transform="rotate(-90 235,200)" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_G_1$">f$IDX$ = $f$IDX$_scaled$ $f$IDX$_unit$</text>
+
+          <!-- Input for the clock -> only in Counter mode -->
+          <text x="5" y="135" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_G_3$">$$IDX$IN$</text>
+          <rect x="97" y="127" width="6" height="6" style="fill:$$IDX$_G_3$;stroke-width:1" /> 
+          <line x1="100" y1="130" x2="150" y2="130" style="stroke:$$IDX$_G_3$;stroke-width:1" />
+          <path d="M150 130 L140 125 L140 135 Z" style="fill:$$IDX$_G_3$"/>
+          <rect x="150" y="110" width="40" height="40" style="fill:$$IDX$_G_4$;stroke:$$IDX$_G_3$;stroke-width:1;opacity:1.0"/>
+          <line x1="155" y1="115" x2="170" y2="115" style="stroke:$$IDX$_G_3$;stroke-width:1"/>
+          <line x1="170" y1="115" x2="170" y2="145" style="stroke:$$IDX$_G_3$;stroke-width:1"/>
+          <line x1="170" y1="145" x2="185" y2="145" style="stroke:$$IDX$_G_3$;stroke-width:1"/>
+          <path d="M170 135 L165 125 L175 125 Z" style="fill:$$IDX$_G_3$"/>
+          <line x1="190" y1="130" x2="240" y2="130" style="stroke:$$IDX$_G_3$;stroke-width:1" />
+          <line x1="240" y1="130" x2="240" y2="340" style="stroke:$$IDX$_G_5$;stroke-width:1" />
+          <path d="M240 340 L235 330 L245 330 Z" style="fill:$$IDX$_G_5$"/>
+
+          <!-- Timer 20 CNT Register block -->
+          <rect x="230" y="340" width="120" height="80" style="fill:$$IDX$_G_7$;stroke:$$IDX$_G_5$;stroke-width:1;opacity:1.0" />
+          <text x="290" y="370" text-anchor="middle" font-family="arial" font-weight="bold" font-size="16" fill="$$IDX$_G_5$">Timer $IDX$</text>
+          <text x="290" y="400" text-anchor="middle" font-family="arial" font-weight="bold" font-size="16" fill="$$IDX$_G_5$">CNT Register</text>
+
+          <!-- Timer 20 RC Register block -->
+          <rect x="230" y="580" width="120" height="80" style="fill:$$IDX$_G_7$;stroke:$$IDX$_G_5$;stroke-width:1;opacity:1.0" />
+          <text x="290" y="610" text-anchor="middle" font-family="arial" font-weight="bold" font-size="16" fill="$$IDX$_G_5$">Timer $IDX$</text>
+          <text x="290" y="640" text-anchor="middle" font-family="arial" font-weight="bold" font-size="16" fill="$$IDX$_G_5$">RC Register</text>
+
+          <!-- FFFF down counting Register block -->
+          <rect x="255" y="150" width="70" height="30" style="fill:$$IDX$_G_9$;stroke:$$IDX$_G_8$;stroke-width:1;opacity:1.0" />
+          <text x="290" y="170" text-anchor="middle" font-family="arial" font-weight="bold" font-size="14" fill="$$IDX$_G_8$">0xFFFF</text>
+
+          <!-- Reload block -->
+          <rect x="270" y="480" width="40" height="40" style="fill:$$IDX$_G_7$;stroke:$$IDX$_G_5$;stroke-width:1;opacity:1.0" />
+          <polyline points="278,512 290,488 302,512 278,512" style="fill:none;stroke:$$IDX$_G_5$;stroke-width:1" visibility="$VIS_$IDX$_7$"/>
+
+          <!-- Capture block when capture mode -->
+          <polyline points="278,488 302,488 290,512 278,488" style="fill:none;stroke:$$IDX$_G_12$;stroke-width:1" visibility="$VIS_$IDX$_8$"/>
+
+          <!-- Lines between Reload block and $IDX$ Registers blocks -->
+          <polyline points="290,425 280,435 285,435 285,475 295,475 295,435 300,435 290,425" style="fill:none;stroke:$$IDX$_G_5$;stroke-width:1" visibility="$VIS_$IDX$_7$"/>
+          <polyline points="290,525 280,535 285,535 285,575 295,575 295,535 300,535 290,525" style="fill:none;stroke:$$IDX$_G_5$;stroke-width:1" visibility="$VIS_$IDX$_7$"/>
+
+          <!-- Lines between Capture block and $IDX$ Registers blocks -->
+          <polyline points="285,425 285,465 280,465 290,475 300,465 295,465 295,425 285,425" style="fill:none;stroke:$$IDX$_G_12$;stroke-width:1" visibility="$VIS_$IDX$_8$"/>
+          <polyline points="285,525 285,565 280,565 290,575 300,565 295,565 295,525 285,525" style="fill:none;stroke:$$IDX$_G_12$;stroke-width:1" visibility="$VIS_$IDX$_8$"/>
+
+          <!-- Capture block when UD enabled -->
+          <rect x="270" y="240" width="40" height="40" style="fill:$$IDX$_G_9$;stroke:$$IDX$_G_8$;stroke-width:1;opacity:1.0" />
+          <polyline points="278,248 290,272 302,248 278,248" style="fill:none;stroke:$$IDX$_G_8$;stroke-width:1"/>
+
+          <!-- Lines between FFFF block and $IDX$ Registers blocks -->
+          <polyline points="290,335 280,325 285,325 285,285 295,285 295,325 300,325 290,335" style="fill:none;stroke:$$IDX$_G_8$;stroke-width:1"/>
+          <polyline points="290,235 280,225 285,225 285,185 295,185 295,225 300,225 290,235" style="fill:none;stroke:$$IDX$_G_8$;stroke-width:1"/>
+
+          <!-- $IDX$EX  for Auto-Reload without UD -->
+          <text x="5" y="505" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_EX_1$">$$IDX$EX$</text>
+          <rect x="97" y="497" width="6" height="6" style="fill:$$IDX$_EX_1$;stroke-width:1" /> 
+          <line x1="100" y1="500" x2="150" y2="500" style="stroke:$$IDX$_EX_1$;stroke-width:1" />
+          <path d="M150 500 L140 495 L140 505 Z" style="fill:$$IDX$_EX_1$"/>
+          <line x1="190" y1="500" x2="210" y2="500" style="stroke:$$IDX$_EX_1$;stroke-width:1" />
+          <line x1="210" y1="500" x2="270" y2="500" style="stroke:$$IDX$_EX_1$;stroke-width:1" />
+          <path d="M270 500 L260 495 L260 505 Z" style="fill:$$IDX$_EX_1$"/>
+          <text x="150" y="475" text-anchor="start" font-family="arial" font-weight="bold" font-size="11" fill="$$IDX$_EX_3$" visibility="$VIS_$IDX$_1$">EDGESEL</text>
+          <rect x="150" y="480" width="40" height="40" style="fill:$$IDX$_EX_5$;stroke:$$IDX$_EX_1$;stroke-width:1;opacity:1.0"/>
+          <line x1="155" y1="515" x2="170" y2="515" style="stroke:$$IDX$_EX_6$;stroke-width:1" visibility="$VIS_$IDX$_2$"/>
+          <line x1="170" y1="485" x2="170" y2="515" style="stroke:$$IDX$_EX_6$;stroke-width:1" visibility="$VIS_$IDX$_2$"/>
+          <line x1="170" y1="485" x2="185" y2="485" style="stroke:$$IDX$_EX_6$;stroke-width:1" visibility="$VIS_$IDX$_2$"/>
+          <path d="M170 495 L165 505 L175 505 Z" style="fill:$$IDX$_EX_6$" visibility="$VIS_$IDX$_2$"/>
+          <line x1="155" y1="485" x2="170" y2="485" style="stroke:$$IDX$_EX_7$;stroke-width:1" visibility="$VIS_$IDX$_3$"/>
+          <line x1="170" y1="485" x2="170" y2="515" style="stroke:$$IDX$_EX_7$;stroke-width:1" visibility="$VIS_$IDX$_3$"/>
+          <line x1="170" y1="515" x2="185" y2="515" style="stroke:$$IDX$_EX_7$;stroke-width:1" visibility="$VIS_$IDX$_3$"/>
+          <path d="M170 505 L165 495 L175 495 Z" style="fill:$$IDX$_EX_7$" visibility="$VIS_$IDX$_3$"/>
+
+          <!-- $IDX$EX  for Auto-Reload with UD -->
+          <line x1="100" y1="260" x2="100" y2="500" style="stroke:$$IDX$_EX_8$;stroke-width:1" />
+          <line x1="100" y1="260" x2="150" y2="260" style="stroke:$$IDX$_EX_8$;stroke-width:1" />
+          <path d="M150 260 L140 255 L140 265 Z" style="fill:$$IDX$_EX_8$"/>
+          <line x1="190" y1="260" x2="270" y2="260" style="stroke:$$IDX$_EX_8$;stroke-width:1" />
+          <path d="M270 260 L260 255 L260 265 Z" style="fill:$$IDX$_EX_8$"/>
+          <text x="150" y="235" text-anchor="start" font-family="arial" font-weight="bold" font-size="11" fill="$$IDX$_EX_8$" >$IDX$EX = 0</text>
+          <rect x="150" y="240" width="40" height="40" style="fill:$$IDX$_EX_9$;stroke:$$IDX$_EX_8$;stroke-width:1;opacity:1.0"/> 
+          <line x1="155" y1="245" x2="185" y2="275" style="stroke:$$IDX$_EX_8$;stroke-width:1" />
+          <path d="M185 275 L177 272 L182 267 Z" style="fill:$$IDX$_EX_8$"/>
+          <text x="265" y="255" text-anchor="end" font-family="arial" font-size="13" fill="$$IDX$_EX_8$">Underflow</text>
+          <text x="150" y="475" text-anchor="start" font-family="arial" font-weight="bold" font-size="11" fill="$$IDX$_EX_8$" visibility="$VIS_$IDX$_4$">$IDX$EX = 1</text>
+          <line x1="155" y1="515" x2="185" y2="485" style="stroke:$$IDX$_EX_8$;stroke-width:1" visibility="$VIS_$IDX$_4$" />
+          <path d="M185 485 L177 488 L182 493 Z" style="fill:$$IDX$_EX_8$" visibility="$VIS_$IDX$_4$"/>
+          <text x="265" y="495" text-anchor="end" font-family="arial" font-size="13" fill="$$IDX$_EX_8$">Overflow</text>
+
+          <!-- External Start -->
+          <line x1="125" y1="380" x2="125" y2="500" style="stroke:$$IDX$_EXSTART_1$;stroke-width:1" />
+          <line x1="125" y1="380" x2="150" y2="380" style="stroke:$$IDX$_EXSTART_1$;stroke-width:1" />
+          <path d="M150 380 L140 375 L140 385 Z" style="fill:$$IDX$_EXSTART_1$"/>
+          <text x="135" y="460" text-anchor="start" transform="rotate(-90 135,460)" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_EXSTART_1$">External Start</text>
+          <line x1="190" y1="380" x2="230" y2="380" style="stroke:$$IDX$_EXSTART_1$;stroke-width:1" />
+          <path d="M230 380 L220 375 L220 385 Z" style="fill:$$IDX$_EXSTART_1$"/>
+          <text x="150" y="355" text-anchor="start" font-family="arial" font-weight="bold" font-size="11" fill="$$IDX$_EXSTART_1$" >T2REGS</text>
+          <rect x="150" y="360" width="40" height="40" style="fill:$$IDX$_EXSTART_2$;stroke:$$IDX$_EXSTART_1$;stroke-width:1;opacity:1.0"/>
+          <line x1="155" y1="395" x2="170" y2="395" style="stroke:$$IDX$_EXSTART_3$;stroke-width:1" visibility="$VIS_$IDX$_5$"/>
+          <line x1="170" y1="365" x2="170" y2="395" style="stroke:$$IDX$_EXSTART_3$;stroke-width:1" visibility="$VIS_$IDX$_5$"/>
+          <line x1="170" y1="365" x2="185" y2="365" style="stroke:$$IDX$_EXSTART_3$;stroke-width:1" visibility="$VIS_$IDX$_5$"/>
+          <path d="M170 375 L165 385 L175 385 Z" style="fill:$$IDX$_EXSTART_3$" visibility="$VIS_$IDX$_5$"/>
+          <line x1="155" y1="365" x2="170" y2="365" style="stroke:$$IDX$_EXSTART_4$;stroke-width:1" visibility="$VIS_$IDX$_6$"/>
+          <line x1="170" y1="365" x2="170" y2="395" style="stroke:$$IDX$_EXSTART_4$;stroke-width:1" visibility="$VIS_$IDX$_6$"/>
+          <line x1="170" y1="395" x2="185" y2="395" style="stroke:$$IDX$_EXSTART_4$;stroke-width:1" visibility="$VIS_$IDX$_6$"/>
+          <path d="M170 385 L165 375 L175 375 Z" style="fill:$$IDX$_EXSTART_4$" visibility="$VIS_$IDX$_6$"/>
+
+          <!-- Underflow of $IDX$ CNT Register -->
+          <line x1="350" y1="370" x2="360" y2="370" style="stroke:$$IDX$_INT_1$;stroke-width:1" />
+          <line x1="360" y1="260" x2="360" y2="370" style="stroke:$$IDX$_INT_1$;stroke-width:1" />
+          <line x1="310" y1="260" x2="360" y2="260" style="stroke:$$IDX$_INT_1$;stroke-width:1" />
+          <path d="M310 260 L320 255 L320 265 Z" style="fill:$$IDX$_INT_1$"/>
+          <text x="320" y="255" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_1$">Underflow</text>
+
+          <!-- Overflow of $IDX$ CNT Register -->
+          <line x1="350" y1="390" x2="360" y2="390" style="stroke:$$IDX$_INT_2$;stroke-width:1" />
+          <line x1="360" y1="390" x2="360" y2="500" style="stroke:$$IDX$_INT_3$;stroke-width:1" />
+          <line x1="310" y1="500" x2="360" y2="500" style="stroke:$$IDX$_INT_3$;stroke-width:1" />
+          <path d="M310 500 L320 505 L320 495 Z" style="fill:$$IDX$_INT_3$"/>
+          <text x="320" y="515" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_3$">Overflow</text>
+          <text x="360" y="385" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_4$">Overflow</text>
+
+          <!-- Interrupt TF2 -->
+          <line x1="395" y1="390" x2="440" y2="390" style="stroke:$$IDX$_INT_5$;stroke-width:1" />
+          <path d="M440 390 L430 385 L430 395 Z" style="fill:$$IDX$_INT_5$"/>
+          <text x="430" y="405" text-anchor="end" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_INT_6$">TF2</text>
+          <text x="445" y="395" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_6$" visibility="$VIS_$IDX$_1$">$IDX$ IRQ</text>
+          <text x="445" y="395" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_7$" visibility="$VIS_$IDX$_10$">OV_CLK</text>
+
+          <!-- Interrupts for UD enabled -->
+          <!-- Line from EX2 Overflow -->
+          <line x1="210" y1="500" x2="210" y2="450" style="stroke:$$IDX$_INT_8$;stroke-width:1" />
+          <line x1="210" y1="450" x2="395" y2="450" style="stroke:$$IDX$_INT_8$;stroke-width:1" />
+          <line x1="395" y1="395" x2="395" y2="450" style="stroke:$$IDX$_INT_8$;stroke-width:1" />
+          <path d="M395 395 L390 405 L400 405 Z" style="fill:$$IDX$_INT_8$"/>
+          <!-- Line from EX2 Underflow -->
+          <line x1="210" y1="260" x2="210" y2="310" style="stroke:$$IDX$_INT_8$;stroke-width:1" />
+          <line x1="210" y1="310" x2="395" y2="310" style="stroke:$$IDX$_INT_8$;stroke-width:1" />
+          <line x1="395" y1="310" x2="395" y2="365" style="stroke:$$IDX$_INT_8$;stroke-width:1" />
+          <path d="M395 365 L390 355 L400 355 Z" style="fill:$$IDX$_INT_8$"/>
+          <!-- OR block -->
+          <rect x="380" y="365" width="30" height="30" style="fill:$$IDX$_INT_10$;stroke:$$IDX$_INT_9$;stroke-width:1;opacity:1.0" visibility="$VIS_$IDX$_4$"/>
+          <text x="395" y="385" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_INT_9$" visibility="$VIS_$IDX$_4$">OR</text>
+          <!-- Line from TF2 Underflow -->
+          <line x1="360" y1="370" x2="380" y2="370" style="stroke:$$IDX$_INT_11$;stroke-width:1" />
+          <path d="M380 370 L370 365 L370 375 Z" style="fill:$$IDX$_INT_11$"/>
+          <!-- Line from TF2 Overflow -->
+          <line x1="360" y1="390" x2="380" y2="390" style="stroke:$$IDX$_INT_12$;stroke-width:1" visibility="$VIS_$IDX$_7$" />
+          <path d="M380 390 L370 385 L370 395 Z" style="fill:$$IDX$_INT_12$" visibility="$VIS_$IDX$_7$"/>
+          <!-- Result after OR -->
+          <line x1="410" y1="380" x2="440" y2="380" style="stroke:$$IDX$_INT_13$;stroke-width:1" />
+          <path d="M440 380 L430 375 L430 385 Z" style="fill:$$IDX$_INT_13$"/>
+          <text x="445" y="385" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_13$">$IDX$ IRQ</text>
+
+          <!-- Interrupts for UD disabled -->
+          <!-- Line from TF2 -->
+          <line x1="360" y1="390" x2="395" y2="390" style="stroke:$$IDX$_INT_14$;stroke-width:1" visibility="$VIS_$IDX$_1$"/>
+          <line x1="395" y1="390" x2="410" y2="390" style="stroke:$$IDX$_INT_15$;stroke-width:1" visibility="$VIS_$IDX$_1$"/>
+          <line x1="395" y1="390" x2="395" y2="450" style="stroke:$$IDX$_INT_16$;stroke-width:1" visibility="$VIS_$IDX$_1$"/>
+          <path d="M395 450 L390 440 L400 440 Z" style="fill:$$IDX$_INT_16$" visibility="$VIS_$IDX$_1$"/>
+          <text x="410" y="440" text-anchor="start" transform="rotate(-90 410,440)" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_INT_16$" visibility="$VIS_$IDX$_1$">TF2</text>
+          <!-- OR block -->
+          <rect x="380" y="450" width="30" height="30" style="fill:$$IDX$_INT_18$;stroke:$$IDX$_INT_17$;stroke-width:1;opacity:1.0" visibility="$VIS_$IDX$_1$"/>
+          <text x="395" y="470" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_INT_17$" visibility="$VIS_$IDX$_1$">OR</text>
+          <!-- Line from EX2 -->
+          <line x1="210" y1="500" x2="210" y2="680" style="stroke:$$IDX$_INT_19$;stroke-width:1" />
+          <line x1="210" y1="680" x2="395" y2="680" style="stroke:$$IDX$_INT_19$;stroke-width:1" />
+          <line x1="395" y1="480" x2="395" y2="680" style="stroke:$$IDX$_INT_20$;stroke-width:1" />
+          <path d="M395 480 L390 490 L400 490 Z" style="fill:$$IDX$_INT_20$"/>
+          <text x="410" y="490" text-anchor="end" transform="rotate(-90 410,490)" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_INT_20$">EXF2</text>
+          <!-- Result after OR -->
+          <line x1="410" y1="470" x2="440" y2="470" style="stroke:$$IDX$_INT_21$;stroke-width:1" />
+          <path d="M440 470 L430 465 L430 475 Z" style="fill:$$IDX$_INT_21$"/>
+          <text x="445" y="475" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_21$">$IDX$ IRQ</text>
+
+          <!-- Interrupts for Baudrate Generator -->
+          <!-- Additional line from EXF2 -->
+          <line x1="395" y1="680" x2="440" y2="680" style="stroke:$$IDX$_INT_22$;stroke-width:1" />
+          <path d="M440 680 L430 675 L430 685 Z" style="fill:$$IDX$_INT_22$"/>
+          <text x="430" y="695" text-anchor="end" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_INT_22$">EXF2</text>
+          <text x="445" y="685" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_INT_22$">$IDX$ IRQ</text>
+
+        </g>
+      </svg>
+    </svgembed>
+  </groupcontainer>
+</ifxmlcfg>

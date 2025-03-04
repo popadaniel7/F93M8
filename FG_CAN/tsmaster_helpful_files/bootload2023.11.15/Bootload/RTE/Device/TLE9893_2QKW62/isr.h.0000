@@ -1,0 +1,264 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/**
+ * \file     isr.h
+ *
+ * \brief    Interrupt Service Routines low level access library
+ *
+ * \version  V0.4.1
+ * \date     02. Nov 2020
+ *
+ * \note
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** DM           Daniel Mysliwitz                                              **
+** BG           Blandine Guillot                                              **
+** JO           Julia Ott                                                     **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2020-08-24, JO:   Initial version                                  **
+** V0.2.0: 2020-09-29, JO:   EP-483: Fixed condition for the 'Check if NVIC   **
+**                           node x is enabled' in all                        **
+**                           isr_nvic_irqx_handler.c files                    **
+** V0.3.0: 2020-10-20, BG:   EP-532: Added function prototypes from NVIC      **
+**                           handlers and isr_exceptions.c                    **
+** V0.4.0: 2020-10-28, JO:   EP-563: Added NMI_Handler to isr_exceptions.c,   **
+**                           Formatted files isr related files                **
+** V0.4.1: 2020-11-02, JO:   EP-556: Removed ADC2 EOC Fail interrupts         **
+*******************************************************************************/
+
+#ifndef _ISR_H
+#define _ISR_H
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "types.h"
+#include "tle989x.h"
+#include "tle_variants.h"
+#include "isr_defines.h"
+
+
+/*******************************************************************************
+**                          Global Macro Declarations                         **
+*******************************************************************************/
+#define NMI_INP_NMI 3
+#define WARN_INP_NVIC_IRQ0 0
+#define WARN_INP_NVIC_IRQ1 1
+#define CCU7_INP_NVIC_IRQ2 0
+#define CCU7_INP_NVIC_IRQ3 1
+#define CCU7_INP_NVIC_IRQ4 2
+#define CCU7_INP_NVIC_IRQ5 3
+#define MEMCTRL_INP_NVIC_IRQ6 0
+#define GPT12_INP_NVIC_IRQ7 0
+#define GPT12_INP_NVIC_IRQ8 1
+#define ADC2_INP_NVIC_IRQ10 0
+#define ADC2_INP_NVIC_IRQ11 1
+#define MON_INP_NVIC_IRQ12 0
+#define MON_INP_NVIC_IRQ13 1
+#define ADC1_INP_NVIC_IRQ14 0
+#define ADC1_INP_NVIC_IRQ15 1
+#define ADC1_INP_NVIC_IRQ16 2
+#define ADC1_INP_NVIC_IRQ17 3
+#define BEMF_SDADC_INP_NVIC_IRQ18 0
+#define BEMF_SDADC_INP_NVIC_IRQ19 1
+#define EXTINT_INP_NVIC_IRQ20 0
+#define EXTINT_INP_NVIC_IRQ21 1
+#define UART_INP_NVIC_IRQ22 0
+#define UART_INP_NVIC_IRQ23 1
+#define SSC_INP_NVIC_IRQ24 0
+#define SSC_INP_NVIC_IRQ25 1
+#define CAN_INP_NVIC_IRQ26 0
+#define CAN_INP_NVIC_IRQ27 1
+#define CAN_INP_NVIC_IRQ28 2
+#define DMA_INP_NVIC_IRQ29 0
+#define DMA_INP_NVIC_IRQ30 1
+#define T20_INP_NVIC_IRQ9 0
+#define T21_INP_NVIC_IRQ31 0
+
+/*******************************************************************************
+**                        Global Variable Declarations                        **
+*******************************************************************************/
+
+/* global counter variable for ms, can count ~1.5 months, requirement EMPS-SHRQ-66 */
+extern uint32 u32_globTimestamp_ms;
+
+#if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq0;
+#endif
+#if (NVIC_IRQ1_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq1;
+#endif
+#if (NVIC_IRQ2_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq2;
+#endif
+#if (NVIC_IRQ3_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq3;
+#endif
+#if (NVIC_IRQ4_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq4;
+#endif
+#if (NVIC_IRQ5_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq5;
+#endif
+#if (NVIC_IRQ6_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq6;
+#endif
+#if (NVIC_IRQ7_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq7;
+#endif
+#if (NVIC_IRQ8_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq8;
+#endif
+#if (NVIC_IRQ10_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq10;
+#endif
+#if (NVIC_IRQ11_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq11;
+#endif
+#if (NVIC_IRQ12_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq12;
+#endif
+#if (NVIC_IRQ13_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq13;
+#endif
+#if (NVIC_IRQ14_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq14;
+#endif
+#if (NVIC_IRQ15_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq15;
+#endif
+#if (NVIC_IRQ16_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq16;
+#endif
+#if (NVIC_IRQ17_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq17;
+#endif
+#if (NVIC_IRQ18_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq18;
+#endif
+#if (NVIC_IRQ19_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq19;
+#endif
+#if (NVIC_IRQ20_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq20;
+#endif
+#if (NVIC_IRQ21_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq21;
+#endif
+#if (NVIC_IRQ22_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq22;
+#endif
+#if (NVIC_IRQ23_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq23;
+#endif
+#if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq24;
+#endif
+#if (NVIC_IRQ25_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq25;
+#endif
+#if (NVIC_IRQ26_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq26;
+#endif
+#if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq27;
+#endif
+#if (NVIC_IRQ28_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq28;
+#endif
+#if (NVIC_IRQ29_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq29;
+#endif
+#if (NVIC_IRQ30_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq30;
+#endif
+#if (NVIC_IRQ9_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq9;
+#endif
+#if (NVIC_IRQ31_HANDLER_INT_CHECK == 1)
+  extern uint8 u8_interrupt_cnt_irq31;
+#endif
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+void HardFault_Handler(void);
+void MemManage_Handler(void);
+void BusFault_Handler(void);
+void UsageFault_Handler(void);
+void NMI_Handler(void);
+void SysTick_Handler(void);
+void PendSV_Handler(void);
+void NVIC_IRQ0_Handler(void);
+void NVIC_IRQ1_Handler(void);
+void NVIC_IRQ2_Handler(void);
+void NVIC_IRQ3_Handler(void);
+void NVIC_IRQ4_Handler(void);
+void NVIC_IRQ5_Handler(void);
+void NVIC_IRQ6_Handler(void);
+void NVIC_IRQ7_Handler(void);
+void NVIC_IRQ8_Handler(void);
+void NVIC_IRQ9_Handler(void);
+void NVIC_IRQ10_Handler(void);
+void NVIC_IRQ11_Handler(void);
+void NVIC_IRQ12_Handler(void);
+void NVIC_IRQ13_Handler(void);
+void NVIC_IRQ14_Handler(void);
+void NVIC_IRQ15_Handler(void);
+void NVIC_IRQ16_Handler(void);
+void NVIC_IRQ17_Handler(void);
+void NVIC_IRQ18_Handler(void);
+void NVIC_IRQ19_Handler(void);
+void NVIC_IRQ20_Handler(void);
+void NVIC_IRQ21_Handler(void);
+void NVIC_IRQ22_Handler(void);
+void NVIC_IRQ23_Handler(void);
+void NVIC_IRQ24_Handler(void);
+void NVIC_IRQ25_Handler(void);
+void NVIC_IRQ26_Handler(void);
+void NVIC_IRQ27_Handler(void);
+void NVIC_IRQ28_Handler(void);
+void NVIC_IRQ29_Handler(void);
+void NVIC_IRQ30_Handler(void);
+void NVIC_IRQ31_Handler(void);
+
+
+#endif /* _ISR_H */
+

@@ -1,0 +1,306 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+/**
+ * \file     cantrx.h
+ *
+ * \brief    CANTRX low level access library
+ *
+ * \version  V0.3.4
+ * \date     12. Nov 2021
+ *
+ * \note
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** DM           Daniel Mysliwitz                                              **
+** BG           Blandine Guillot                                              **
+** JO           Julia Ott                                                     **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2019-10-28, DM:   Initial version                                  **
+** V0.2.0: 2020-04-28, BG:   Updated revision history format                  **
+** V0.3.0: 2020-11-27, BG:   EP-627: Added functions for CANTRX               **
+** V0.3.1: 2020-12-18, BG:   EP-652: Corrected name of error code variable    **
+** V0.3.2: 2021-02-02, BG:   EP-654: Separated CAN and CANTRX                 **
+**                           Renamed file                                     **
+** V0.3.3: 2021-04-06, BG:   EP-760: Replaced if instructions to check if the **
+**                           module is enabled with preprocessor directives to**
+**                           avoid compiler warnings                          **
+** V0.3.4: 2021-11-12, JO:   EP-937: Updated copyright and branding           **
+*******************************************************************************/
+
+#ifndef _CANTRX_H
+#define _CANTRX_H
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "types.h"
+#include "tle989x.h"
+#include "cantrx_defines.h"
+
+/*******************************************************************************
+**                        Global Constant Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Type Declarations                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+sint8 CANTRX_init(void);
+INLINE void CANTRX_enBusDominantTimeoutInt(void);
+INLINE void CANTRX_disBusDominantTimeoutInt(void);
+INLINE uint8 CANTRX_getBusDominantTimeoutIntSts(void);
+INLINE uint8 CANTRX_getBusDominantTimeoutSts(void);
+INLINE void CANTRX_clrBusDominantTimeoutIntSts(void);
+INLINE void CANTRX_clrBusDominantTimeoutSts(void);
+INLINE void CANTRX_enTXDDominantTimeoutInt(void);
+INLINE void CANTRX_disTXDDominantTimeoutInt(void);
+INLINE uint8 CANTRX_getTXDDominantTimeoutIntSts(void);
+INLINE uint8 CANTRX_getTXDDominantTimeoutSts(void);
+INLINE void CANTRX_clrTXDDominantTimeoutIntSts(void);
+INLINE void CANTRX_clrTXDDominantTimeoutSts(void);
+INLINE void CANTRX_enCANOvertempInt(void);
+INLINE void CANTRX_disCANOvertempInt(void);
+INLINE uint8 CANTRX_getCANOvertempIntSts(void);
+INLINE uint8 CANTRX_getCANOvertempSts(void);
+INLINE void CANTRX_clrCANOvertempIntSts(void);
+INLINE void CANTRX_clrCANOvertempSts(void);
+INLINE void CANTRX_enActBusWhenCANSleepInt(void);
+INLINE void CANTRX_disActBusWhenCANSleepInt(void);
+INLINE uint8 CANTRX_getActBusWhenCANSleepIntSts(void);
+INLINE uint8 CANTRX_getCANSupplyUndervoltageSts(void);
+INLINE void CANTRX_clrActBusWhenCANSleepIntSts(void);
+
+/*******************************************************************************
+**                       Deprecated Function Declarations                     **
+*******************************************************************************/
+
+/** \brief Set CANTRX Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void CANTRX_setCANTRXIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/*******************************************************************************
+**                     Global Inline Function Definitions                     **
+*******************************************************************************/
+
+/** \brief Enable Bus Dominant Timeout Interrupt
+ */
+INLINE void CANTRX_enBusDominantTimeoutInt(void)
+{
+  CANTRX->IRQEN.bit.BUS_TO_IEN = 1u;
+}
+
+/** \brief Disable Bus Dominant Timeout Interrupt
+ */
+INLINE void CANTRX_disBusDominantTimeoutInt(void)
+{
+  CANTRX->IRQEN.bit.BUS_TO_IEN = 0u;
+}
+
+/** \brief Get Bus Dominant Timeout Interrupt Status
+ *
+ * \return uint8 Bus Dominant Timeout Interrupt Status
+ */
+INLINE uint8 CANTRX_getBusDominantTimeoutIntSts(void)
+{
+  return CANTRX->IRQS.bit.BUS_TO_IS;
+}
+
+/** \brief Get Bus Dominant Timeout Status
+ *
+ * \return uint8 Bus Dominant Timeout Status
+ */
+INLINE uint8 CANTRX_getBusDominantTimeoutSts(void)
+{
+  return CANTRX->IRQS.bit.BUS_TO_STS;
+}
+
+/** \brief Clear Bus Dominant Timeout Interrupt Status
+ */
+INLINE void CANTRX_clrBusDominantTimeoutIntSts(void)
+{
+  CANTRX->IRQCLR.bit.BUS_TO_ISC = 1u;
+}
+
+/** \brief Clear Bus Dominant Timeout Status
+ */
+INLINE void CANTRX_clrBusDominantTimeoutSts(void)
+{
+  CANTRX->IRQCLR.bit.BUS_TO_SC = 1u;
+}
+
+/** \brief Enable TXD Dominant Timeout Interrupt
+ */
+INLINE void CANTRX_enTXDDominantTimeoutInt(void)
+{
+  CANTRX->IRQEN.bit.TXD_TO_IEN = 1u;
+}
+
+/** \brief Disable TXD Dominant Timeout Interrupt
+ */
+INLINE void CANTRX_disTXDDominantTimeoutInt(void)
+{
+  CANTRX->IRQEN.bit.TXD_TO_IEN = 0u;
+}
+
+/** \brief Get TXD Dominant Timeout Interrupt Status
+ *
+ * \return uint8 TXD Dominant Timeout Interrupt Status
+ */
+INLINE uint8 CANTRX_getTXDDominantTimeoutIntSts(void)
+{
+  return CANTRX->IRQS.bit.TXD_TO_IS;
+}
+
+/** \brief Get TXD Dominant Timeout Status
+ *
+ * \return uint8 TXD Dominant Timeout Status
+ */
+INLINE uint8 CANTRX_getTXDDominantTimeoutSts(void)
+{
+  return CANTRX->IRQS.bit.TXD_TO_STS;
+}
+
+/** \brief Clear TXD Dominant Timeout Interrupt Status
+ */
+INLINE void CANTRX_clrTXDDominantTimeoutIntSts(void)
+{
+  CANTRX->IRQCLR.bit.TXD_TO_ISC = 1u;
+}
+
+/** \brief Clear TXD Dominant Timeout Status
+ */
+INLINE void CANTRX_clrTXDDominantTimeoutSts(void)
+{
+  CANTRX->IRQCLR.bit.TXD_TO_SC = 1u;
+}
+
+/** \brief Enable CAN Overtemperature Interrupt
+ */
+INLINE void CANTRX_enCANOvertempInt(void)
+{
+  CANTRX->IRQEN.bit.OT_IEN = 1u;
+}
+
+/** \brief Disable CAN Overtemperature Interrupt
+ */
+INLINE void CANTRX_disCANOvertempInt(void)
+{
+  CANTRX->IRQEN.bit.OT_IEN = 0u;
+}
+
+/** \brief Get CAN Overtemperature Interrupt Status
+ *
+ * \return uint8 CAN Overtemperature Interrupt Status
+ */
+INLINE uint8 CANTRX_getCANOvertempIntSts(void)
+{
+  return CANTRX->IRQS.bit.OT_IS;
+}
+
+/** \brief Get CAN Overtemperature Status
+ *
+ * \return uint8 CAN Overtemperature Status
+ */
+INLINE uint8 CANTRX_getCANOvertempSts(void)
+{
+  return CANTRX->IRQS.bit.OT_STS;
+}
+
+/** \brief Clear CAN Overtemperature Interrupt Status
+ */
+INLINE void CANTRX_clrCANOvertempIntSts(void)
+{
+  CANTRX->IRQCLR.bit.OT_ISC = 1u;
+}
+
+/** \brief Clear CAN Overtemperature Status
+ */
+INLINE void CANTRX_clrCANOvertempSts(void)
+{
+  CANTRX->IRQCLR.bit.OT_SC = 1u;
+}
+
+/** \brief Enable Bus Active During CAN Sleep Interrupt
+ */
+INLINE void CANTRX_enActBusWhenCANSleepInt(void)
+{
+  CANTRX->IRQEN.bit.BUS_ACT_IEN = 1u;
+}
+
+/** \brief Disable Bus Active During CAN Sleep Interrupt
+ */
+INLINE void CANTRX_disActBusWhenCANSleepInt(void)
+{
+  CANTRX->IRQEN.bit.BUS_ACT_IEN = 0u;
+}
+
+/** \brief Get Bus Active During CAN Sleep Interrupt Status
+ *
+ * \return uint8 Bus Active During CAN Sleep Interrupt Status
+ */
+INLINE uint8 CANTRX_getActBusWhenCANSleepIntSts(void)
+{
+  return CANTRX->IRQS.bit.BUS_ACT_IS;
+}
+
+/** \brief Get CAN Supply Undervoltage Status
+ *
+ * \return uint8 CAN Supply Undervoltage Status
+ */
+INLINE uint8 CANTRX_getCANSupplyUndervoltageSts(void)
+{
+  return CANTRX->IRQS.bit.UV_STS;
+}
+
+/** \brief Clear Bus Active During CAN Sleep Interrupt Status
+ */
+INLINE void CANTRX_clrActBusWhenCANSleepIntSts(void)
+{
+  CANTRX->IRQCLR.bit.BUS_ACT_ISC = 1u;
+}
+
+#endif /* _CAN_H */

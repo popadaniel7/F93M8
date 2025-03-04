@@ -1,0 +1,183 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "csacsc.h"
+
+/*******************************************************************************
+**                          Private Macro Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Private Constant Definitions                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Private Type Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Private Variable Definitions                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Private Function Declarations                      **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+/** \brief Initialize all CW registers of the CSA/CSC module
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 CSACSC_init(void)
+{
+  int i;
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  
+  if ((CSACSC_CTRL1 & CSACSC_CTRL1_CSAC_EN_Msk) == 1)
+  {
+    /* Program gain min., offset min. and threshold max., CSAC_EN remains reset */
+    CSACSC->CTRL1.reg = CSACSC_CTRL1 & (uint32)~CSACSC_CTRL1_CSAC_EN_Msk;
+    /* Set CSAC_EN */
+    CSACSC->CTRL1.reg = CSACSC_CTRL1;
+
+    /* CSA/CSC BIST starts running */
+    for (i = 0; i < 100000; i++)
+    {
+      __NOP();
+    }
+
+    while ((CSACSC_getBistSts() == 0u) && (PMU->FS_STS.bit.CSC_BIST_FAIL_STS == 0u))
+    {
+      /* Wait until CSA/CSC BIST is finished */
+    }
+
+    if (CSACSC_getBistSts() == 1u)
+    {
+      /* CSA/CSC BIST passed */
+      /* Configure remaining parameters */
+      CSACSC->CTRL2.reg = CSACSC_CTRL2;
+      /* Clear the interrupt status */
+      CSACSC_clrParamErrorIntSts();
+      CSACSC_clrOverCurrIntSts();
+      /* Set the interrupt configuration */
+      CSACSC->IRQEN.reg = CSACSC_IRQEN;
+    }
+  }
+  else
+  {
+    e_returnCode = ERR_LOG_CODE_MODULE_DISABLED_IN_CW;
+  }
+
+  return e_returnCode;
+}
+
+/** \brief Perform the calibration of the CSA
+ * \brief For this purpose the channel 19 / sequence 3 are reconfigured to perform a CSA measurement.
+ * \brief The ADC1 configuration will be restored after the measurement is done.
+ * \note Ensure that no current (0A) is flowing through the shunt for the calibration step.
+ *
+ * \param u16p_Val_mV pointer to the ADC1 result value
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 CSACSC_startCalibration(uint16 *u16p_Val_mV)
+{
+  uint32 u32_chCfg19Bak;
+  uint32 u32_sqCfg3Bak;
+  uint32 u32_sq3SlotBak;
+  tADC1_CHCFGx s_chCfgNew;
+  tADC1_SQCFGx s_sqCfgNew;
+  tADC1_SQSLOTx s_slotNew;
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Backup ADC1 channel19-/sequence3-/slot.seq3-configuration */
+  u32_chCfg19Bak = ADC1->CHCFG19.reg;
+  u32_sqCfg3Bak = ADC1->SQCFG3.reg;
+  u32_sq3SlotBak = ADC1->SQSLOT3.reg;
+  /* Configure the channel */
+  s_chCfgNew.reg = 0;
+  /* Conversion Class 2 (2) */
+  s_chCfgNew.bit.CLASSEL = 2;
+  /* No compare channel selected (4) */
+  s_chCfgNew.bit.CMPSEL = 4;
+  /* No filter channel selected (4) */
+  s_chCfgNew.bit.FILSEL = 4;
+  /* Analog input 18 (CSA) selected */
+  s_chCfgNew.bit.INSEL = 18;
+  /* Configure the sequencer */
+  s_sqCfgNew.reg = 0;
+  /* Enable one slot (1) */
+  s_sqCfgNew.bit.SLOTS = 1;
+  /* Configure the slot */
+  s_slotNew.reg = 0;
+  /* Select digital channel 19 for slot 0 (19)*/
+  s_slotNew.bit.CHSEL0 = 19;
+  /* Load new configuration to ADC1 channel19-/sequence3-/slot.seq3-configuration */
+  ADC1->SQSLOT3.reg = s_slotNew.reg;
+  ADC1->SQCFG3.reg = s_sqCfgNew.reg;
+  ADC1->CHCFG19.reg = s_chCfgNew.reg;
+  /* Start the sequencer 3 */
+  ADC1_startSequence(ADC1_SEQ3);
+
+  /* Wait for end-of-conversion event for sequence 3 */
+  while (ADC1_getEndOfConvSts(ADC1_SEQ3, ADC1_SEQ_SLOT0) == 0) {}
+
+  /* Get the result in millivolt for sequence 3 slot 0 */
+  e_returnCode = ADC1_getSeqResult_mV(u16p_Val_mV, ADC1_SEQ3, ADC1_SEQ_SLOT0);
+  /* Restore ADC1 channel19-/sequence3-/slot.seq3-configuration */
+  ADC1->SQSLOT3.reg = u32_sq3SlotBak;
+  ADC1->SQCFG3.reg = u32_sqCfg3Bak;
+  ADC1->CHCFG19.reg = u32_chCfg19Bak;
+  return e_returnCode;
+}
+
+/*******************************************************************************
+**                         Private Function Definitions                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                       Deprecated Function Definitions                      **
+*******************************************************************************/
+
+void CSACSC_setOverCurrIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CSACSC_setParamErrorIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}

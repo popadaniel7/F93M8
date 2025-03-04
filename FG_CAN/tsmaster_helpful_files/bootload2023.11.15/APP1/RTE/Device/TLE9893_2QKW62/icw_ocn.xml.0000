@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn.xml                                                                -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-23, DM:   EP-464: Added ADC2 module                            -->
+<!-- V0.1.0: 2020-10-23, JO:   EP-482: Include the module XMLs as template to avoid -->
+<!--                           checksum error due to Config Wizard bug              -->
+<!-- V0.1.1: 2020-11-06, JO:   EP-555: Run calc_ccu7.py at startup in case CCU7 is  -->
+<!--                           enabled                                              -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>f04dae866efb426973fc58ac412d7ff90a70708e468c8cded09a2e17eb0191fb</checksum>
+  <version label="V0.1.1"/>
+  <svd file="TLE989x.svd"/>
+  <pinmapping file="tle989x.pin"/>
+  <usesPython/>
+  <tooltipconfig value="0x0FFF"/>
+  <tabcontainer resize="1">
+
+    <timer visible="false" define="OCN_INIT" svd="0" interval="1" singleShot="1" run="1">
+      <action event="changed" cmd="setDef" data="BEMF_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="BDRV_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="GPT12_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="PMU_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="SDADC_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="SSC_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="T2X_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="UART_INIT.run=1"/>
+      <action event="changed" cond="CCU7_EN==0" cmd="setDef" data="CCU7_MODULE.enabled=0"/> 
+      <action event="changed" cmd="runScript" data="python:ccu7_calc.py"/>
+    </timer>
+    
+    <verticalcontainer label="Pin Overview">
+      <pinmapper label="Pinmapper" define="pinmapper"/>
+    </verticalcontainer>
+    
+    <include BestTeam="SEV">icw_ocn_bsl.xml</include>
+    <include BestTeam="SEV">icw_ocn_scu.xml</include>
+    <include BestTeam="SEV">icw_ocn_pmu.xml</include>        
+    <include BestTeam="SEV">icw_ocn_interrupt.xml</include>
+    <include BestTeam="SEV">icw_ocn_gpio.xml</include>
+    <include BestTeam="SEV">icw_ocn_mon.xml</include>
+    <include BestTeam="SEV">icw_ocn_adc1.xml</include>
+    <include BestTeam="SEV">icw_ocn_csacsc.xml</include>
+    <include BestTeam="SEV">icw_ocn_adc2.xml</include>
+    <include SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include SDK="NoBugs">icw_ocn_ccu7.xml</include>
+    <include SDK="NoBugs">icw_ocn_bdrv.xml</include>
+    <include SDK="NoBugs">icw_ocn_bemf.xml</include>
+    <include SDK="NoBugs">icw_ocn_gpt12.xml</include>
+    <include SDK="NoBugs">icw_ocn_ssc.xml</include>
+    <include SDK="NoBugs">icw_ocn_timer2x.xml</include>
+    <include SDK="NoBugs">icw_ocn_uartx.xml</include>
+    <include SDK="NoBugs">icw_ocn_dma.xml</include>
+
+  </tabcontainer>
+</ifxmlcfg>

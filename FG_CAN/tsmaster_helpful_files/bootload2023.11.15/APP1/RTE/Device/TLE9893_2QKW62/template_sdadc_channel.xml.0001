@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_sdadc_channel.xml                                                 -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!-- V0.1.2: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>29a1eecf2854adcfcc9632ee31a960f85ee1e4b1faf9686b31b5260e60b52c41</checksum>
+  <version label="V0.1.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <groupcontainer label="Channel $IDX$" size="620;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0">
+    <header file="sdadc_defines.h">
+      <verticalcontainer font="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0,Regular">
+        <checkbox label="Enable Channel $IDX$" define="SDADC.CFG0.EN$IDX$">
+          <action event="checked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+          <action event="unchecked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+        </checkbox>
+
+        <groupcontainer enabled="false" label="Modulator (2nd order type)" define="SDADC_MODULATOR$IDX$" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="174;192;103">
+          <verticalcontainer font="MS Shell Dlg 2,9,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+            <radio define="SDADC.MODULATOR$IDX$_CFG" svd="0" header="temp_defines.h" default="0" setDef="SDADC_UPDATE_CH$IDX$.run=1">
+              <radiobutton label="Use Internal Modulator">
+                <action event="selected" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </radiobutton>
+              <horizontalcontainer enabled="false" define="SDADC_POSAN$IDX$">
+                <text label="Positive Analog Input"/>
+                <combo label="Positive Analog Input" define="SDADC.INSEL_IN0PSEL_$IDX$" svd="0" default="label=VDD/2" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="VDD/2"/>
+                  <item label="P2.4" lockon="GPIO.P2_INDIS.INDIS4=1"/>
+                  <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=1" startcond="device==TLE9893QKW62S"/>
+                  <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=1" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=1" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=1" startcond="device==TLE9893_2QKW62S_internal"/>
+                </combo>
+                <combo label="Positive Analog Input" define="SDADC.INSEL_IN1PSEL_$IDX$" svd="0" default="label=VDD/2" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="VDD/2"/>
+                  <item label="P2.5" lockon="GPIO.P2_INDIS.INDIS5=1"/>
+                  <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=1" startcond="device==TLE9893QKW62S"/>
+                  <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=1" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=1" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=1" startcond="device==TLE9893_2QKW62S_internal"/>
+                </combo>
+              </horizontalcontainer>
+              <horizontalcontainer enabled="false" define="SDADC_NEGAN$IDX$">
+                <text label="Negative Analog Input"/>
+                <combo label="Negative Analog Input" define="SDADC.INSEL_IN0NSEL_$IDX$" svd="0" default="label=VDD/2" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="VDD/2"/>
+                  <item label="P2.2" lockon="GPIO.P2_INDIS.INDIS2=1"/>
+                  <item label="P2.6" lockon="GPIO.P2_INDIS.INDIS6=1"/>
+                </combo> 
+                <combo label="Negative Analog Input" define="SDADC.INSEL_IN1NSEL_$IDX$" svd="0" default="label=VDD/2" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="VDD/2"/>
+                  <item label="P2.3" lockon="GPIO.P2_INDIS.INDIS3=1"/>
+                  <item label="P2.7 (*)" lockon="GPIO.P2_INDIS.INDIS7=1" startcond="device==TLE9893QKW62S"/>
+                  <item label="P2.7 (*)" lockon="GPIO.P2_INDIS.INDIS7=1" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P2.7 (*)" lockon="GPIO.P2_INDIS.INDIS7=1" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P2.7 (*)" lockon="GPIO.P2_INDIS.INDIS7=1" startcond="device==TLE9893_2QKW62S_internal"/>
+                </combo> 
+              </horizontalcontainer>
+              <radiobutton label="Use External Modulator">
+                <action event="selected" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </radiobutton>
+              <horizontalcontainer enabled="false" define="SDADC_DIGINP$IDX$">
+                <text label="Digital Input"/>
+                <combo label="Digital Input" define="SDADC.INSEL_DIN0SEL_$IDX$" svd="0" default="label=Modulator of Ch$IDX$" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="Modulator of Ch$IDX$"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893QKW62S"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62S_internal"/>
+                  <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=1" startcond="device==TLE9893QKW62S"/>
+                  <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=1" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=1" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=1" startcond="device==TLE9893_2QKW62S_internal"/>
+                </combo> 
+                <combo label="Digital Input" define="SDADC.INSEL_DIN1SEL_$IDX$" svd="0" default="label=Modulator of Ch$IDX$" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="Modulator of Ch$IDX$"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=1;GPIO.P0_ALTSEL0.ALTSEL5=1" startcond="device==TLE9893QKW62S"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=1;GPIO.P0_ALTSEL0.ALTSEL5=1" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=1;GPIO.P0_ALTSEL0.ALTSEL5=1" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=1;GPIO.P0_ALTSEL0.ALTSEL5=1" startcond="device==TLE9893_2QKW62S_internal"/>
+                  <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893QKW62S"/>
+                  <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62S_internal"/>
+                </combo> 
+              </horizontalcontainer>
+            </radio>
+          </verticalcontainer>
+        </groupcontainer>
+
+        <groupcontainer enabled="false" label="Demodulator (3rd order CIC filter type)" define="SDADC_CICFILTER$IDX$" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="132;182;167">
+          <verticalcontainer font="MS Shell Dlg 2,9,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+            <radio define="SDADC.DEMODULATOR$IDX$_CFG" svd="0" header="temp_defines.h" default="0" setDef="SDADC_UPDATE_CH$IDX$.run=1">
+              <radiobutton label="Use Internal Demodulator">
+                <action event="selected" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </radiobutton>
+              <horizontalcontainer enabled="false" define="SDADC_DEMMODE$IDX$">
+                <text label="Filter Mode"/>
+                <combo label="Filter Mode" define="SDADC.CFG0.CICMODE$IDX$" default="label=Continuous, clocked when Ch$IDX$ enabled" setDef="SDADC_UPDATE_CH$IDX$.run=1">
+                  <item label="Continuous, clocked when Ch$IDX$ enabled" override="value1"/>
+                  <item label="Triggered with external event" override="value2"/>
+                </combo>
+              </horizontalcontainer>
+              <horizontalcontainer enabled="false" define="SDADC_TRIGEVENT$IDX$">
+                <text label="Trigger Event"/>
+                <combo label="Trigger Event" define="SDADC.INSEL_TRG0SEL_$IDX$" svd="0" default="label=CCU7.SR3" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="CCU7.SR3"/>
+                  <item label="CCU7.SR2"/>
+                </combo> 
+                <combo label="Trigger Event" define="SDADC.INSEL_TRG1SEL_$IDX$" svd="0" default="label=CCU7.SR3" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="CCU7.SR3"/>
+                  <item label="CCU7.SR2"/>
+                </combo> 
+              </horizontalcontainer>
+              <horizontalcontainer enabled="false" define="SDADC_DECFAC$IDX$">
+                <text label="Decimation Factor"/>
+                <spinbox label="Decimation Factor" define="SDADC.CFG1_DECF$IDX$" svd="0" range="16;512" default="16" header="temp_defines.h">
+                  <action event="changed" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+                </spinbox>
+                <math visible="false" define="SDADC.CFG1.DECF$IDX$" formula="SDADC.CFG1_DECF$IDX$==16?0:SDADC.CFG1_DECF$IDX$"/>
+              </horizontalcontainer>
+              <radiobutton label="Use External Demodulator">
+                <action event="selected" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </radiobutton>
+              <horizontalcontainer enabled="false" define="SDADC_DOUT$IDX$MAP">
+                <text label="DOUT$IDX$ Mapping"/>
+                <combo label="DOUT$IDX$ Mapping" define="SDADC.ALTSEL_DOUT0_$IDX$" svd="0" default="label=off" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="off"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=0" startcond="device==TLE9893QKW62S"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=0" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=0" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=0" startcond="device==TLE9893_2QKW62S_internal"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=0" startcond="device==TLE9893QKW62S"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=0" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=0" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=0" startcond="device==TLE9893_2QKW62S_internal"/>
+                </combo> 
+                <combo label="DOUT$IDX$ Mapping" define="SDADC.ALTSEL_DOUT1_$IDX$" svd="0" default="label=off" setDef="SDADC_UPDATE_CH$IDX$.run=1" header="temp_defines.h">
+                  <item label="off"/>
+                  <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="device==TLE9893QKW62S"/>
+                  <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="device==TLE9893_2QKW62S_internal"/>
+                  <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="device==TLE9893QKW62S"/>
+                  <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="device==TLE9893_2QKW62"/>
+                  <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="device==TLE9893_2QKW62S"/>
+                  <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="device==TLE9893_2QKW62S_internal"/>
+                </combo> 
+              </horizontalcontainer>
+            </radio>
+          </verticalcontainer>
+        </groupcontainer>
+
+        <groupcontainer enabled="false" label="Result" define="SDADC_RESULT$IDX$" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;55;122">
+          <verticalcontainer font="MS Shell Dlg 2,9,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+            <horizontalcontainer>
+              <text label="Enable Wait for Read of Result Register"/>
+              <checkbox define="SDADC.CFG0.WFREN$IDX$">
+                <action event="checked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+                <action event="unchecked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </checkbox>
+            </horizontalcontainer>
+            <horizontalcontainer>
+              <text label="Result Left Shift"/>
+              <spinbox label="Result Left Shift" define="SDADC.CFG1.RESSHIFT$IDX$" range="0;15" default="0">
+                <action event="changed" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </spinbox>
+            </horizontalcontainer>
+          </verticalcontainer>
+        </groupcontainer>
+
+        <groupcontainer enabled="false" label="Comparator" define="SDADC_COMP$IDX$" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+          <verticalcontainer font="MS Shell Dlg 2,9,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+            <horizontalcontainer>
+              <text label="Compare Mode"/>
+              <combo label="Compare Mode" define="SDADC.CMP$IDX$_CTRL.MODE" default="label=Over- and undervoltage">
+                <item label="Over- and undervoltage" override="value1"/>
+                <item label="Undervoltage" override="value2"/>
+                <item label="Overvoltage" override="value3"/>
+              </combo>
+            </horizontalcontainer>
+            <horizontalcontainer>
+              <text label="Upper Compare Level"/>
+              <spinbox label="Upper Compare Level" define="SDADC.CMP$IDX$_CTRL.UPPER" range="0;255" default="0">
+                <action event="changed" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </spinbox>
+            </horizontalcontainer>
+            <horizontalcontainer>
+              <text label="Hysteresis Upper Compare Level"/>
+              <combo label="Hysteresis" define="SDADC.CMP$IDX$_CTRL.HYST_UP" default="label=Hysteresis off" setDef="SDADC_UPDATE_CH$IDX$.run=1">
+                <item label="Hysteresis off" override="value1"/>
+                <item label="Hysteresis = 4" override="value2"/>
+                <item label="Hysteresis = 8" override="value3"/>
+                <item label="Hysteresis = 16" override="value4"/>
+              </combo>
+            </horizontalcontainer>
+            <horizontalcontainer>
+              <text label="Lower Compare Level"/>
+              <spinbox label="Lower Compare Level" define="SDADC.CMP$IDX$_CTRL.LOWER" range="0;255" default="0">
+                <action event="changed" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+              </spinbox>
+            </horizontalcontainer>
+            <horizontalcontainer>
+              <text label="Hysteresis Lower Compare Level"/>
+              <combo label="Hysteresis" define="SDADC.CMP$IDX$_CTRL.HYST_LO" default="label=Hysteresis off" setDef="SDADC_UPDATE_CH$IDX$.run=1">
+                <item label="Hysteresis off" override="value1"/>
+                <item label="Hysteresis = 4" override="value2"/>
+                <item label="Hysteresis = 8" override="value3"/>
+                <item label="Hysteresis = 16" override="value4"/>
+              </combo>
+            </horizontalcontainer>
+            <horizontalcontainer>
+              <text label="Signal Output Selection"/>
+              <combo label="Signal Output Selection" define="SDADC.CMP$IDX$_CTRL.UPLO_OUTSEL" default="label=UP or LO">
+                <item label="UP or LO" override="value1"/>
+                <item label="UP xor LO" override="value2"/>
+                <item label="only UP" override="value3"/>
+                <item label="only LO" override="value4"/>
+              </combo>
+            </horizontalcontainer>
+          </verticalcontainer>
+        </groupcontainer>
+
+      </verticalcontainer>
+    </header>
+  </groupcontainer>
+</ifxmlcfg>

@@ -1,0 +1,240 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+/**
+ * \file     timer2x.h
+ *
+ * \brief    Timer20/Timer21 low level access library
+ *
+ * \version  V0.4.6
+ * \date     18. Dec 2020
+ *
+ * \note
+ */
+
+/** \addtogroup T2X_api
+ *  @{
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** DM           Daniel Mysliwitz                                              **
+** BG           Blandine Guillot                                              **
+** JO           Julia Ott                                                     **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2019-10-28, DM:   Initial version                                  **
+** V0.2.0: 2020-04-28, BG:   Updated revision history format                  **
+** V0.3.0: 2020-05-18, BG:   Added first functions                            **
+** V0.4.0: 2020-07-10, BG:   Added inline functions list                      **
+** V0.4.1: 2020-09-30, JO:   EP-485: Fixed T2x_setIntervalTimer functions by  **
+**                           removing /1000000 (fT2x is given in MHz, not Hz) **
+** V0.4.2: 2020-10-06, BG:   EP-492: Removed MISRA 2012 errors                **
+** V0.4.3: 2020-10-21, BG:   EP-539: Considered the enable checkbox in CW in  **
+**                           the initialization function                      **
+** V0.4.4: 2020-11-12, JO:   EP-590: Removed \param none and \return none to  **
+**                           avoid doxygen warning                            **
+**                           Added end of group for doxygen                   **
+** V0.4.5: 2020-11-20, BG:   EP-610: Corrected MISRA 2012 errors              **
+**                           The following rules are globally deactivated:    **
+**                           - Info 774: Boolean within 'if' always evaluates **
+**                             to False/True                                  **
+** V0.4.6: 2020-12-18, BG:   EP-652: Corrected name of error code variable    **
+*******************************************************************************/
+
+#ifndef _TIMER2X_H
+#define _TIMER2X_H
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "types.h"
+#include "tle989x.h"
+#include "tle_variants.h"
+#include "t2x_defines.h"
+#include "isr_defines.h"
+#include "scu_defines.h"
+
+/*******************************************************************************
+**                        Global Constant Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Type Declarations                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+sint8 T20_init(void);
+sint8 T21_init(void);
+sint8 T20_setIntervalTimer(uint32 u32_timeInterval_us);
+sint8 T21_setIntervalTimer(uint32 u32_timeInterval_us);
+INLINE void T20_start(void);
+INLINE void T20_stop(void);
+INLINE void T21_start(void);
+INLINE void T21_stop(void);
+INLINE uint16 T20_getValue(void);
+INLINE uint16 T21_getValue(void);
+INLINE uint8 T20_getOverUnderflowSts(void);
+INLINE uint8 T20_getExternalSts(void);
+INLINE uint8 T21_getOverUnderflowSts(void);
+INLINE uint8 T21_getExternalSts(void);
+INLINE void T20_clrOverUnderflowSts(void);
+INLINE void T20_clrExternalSts(void);
+INLINE void T21_clrOverUnderflowSts(void);
+INLINE void T21_clrExternalSts(void);
+
+/*******************************************************************************
+**                     Global Inline Function Definitions                     **
+*******************************************************************************/
+
+/** \brief Start T20
+ */
+INLINE void T20_start(void)
+{
+  T20->CON.bit.TR2 = 1u;
+}
+
+/** \brief Stop T20
+ */
+INLINE void T20_stop(void)
+{
+  T20->CON.bit.TR2 = 0u;
+}
+
+/** \brief Start T21
+ */
+INLINE void T21_start(void)
+{
+  T21->CON.bit.TR2 = 1u;
+}
+
+/** \brief Stop T21
+ */
+INLINE void T21_stop(void)
+{
+  T21->CON.bit.TR2 = 0u;
+}
+
+/** \brief Get T20 Count Value T20.CNT
+ *
+ * \return uint16 T20 Count Value
+ */
+INLINE uint16 T20_getValue(void)
+{
+  return (uint16)T20->CNT.reg;
+}
+
+/** \brief Get T21 Count Value T21.CNT
+ *
+ * \return uint16 T21 Count Value
+ */
+INLINE uint16 T21_getValue(void)
+{
+  return (uint16)T21->CNT.reg;
+}
+
+/** \brief Get T20 Overflow/Underflow Status T20.CON.TF2
+ *
+ * \return uint8 T20 Overflow/Underflow Status
+ */
+INLINE uint8 T20_getOverUnderflowSts(void)
+{
+  return (uint8)T20->CON.bit.TF2;
+}
+
+/** \brief Get T20 External Status T20.CON.EXF2
+ *
+ * \return uint8 T20 External Status
+ */
+INLINE uint8 T20_getExternalSts(void)
+{
+  return (uint8)T20->CON.bit.EXF2;
+}
+
+/** \brief Get T21 Overflow/Underflow Status T21.CON.TF2
+ *
+ * \return uint8 T21 Overflow/Underflow Status
+ */
+INLINE uint8 T21_getOverUnderflowSts(void)
+{
+  return (uint8)T21->CON.bit.TF2;
+}
+
+/** \brief Get T21 External Status T21.CON.EXF2
+ *
+ * \return uint8 T21 External Status
+ */
+INLINE uint8 T21_getExternalSts(void)
+{
+  return (uint8)T21->CON.bit.EXF2;
+}
+
+/** \brief Clear T20 Overflow/Underflow Status T20.ICLR.TF2CLR
+ */
+INLINE void T20_clrOverUnderflowSts(void)
+{
+  T20->ICLR.bit.TF2CLR = 1u;
+}
+
+/** \brief Clear T20 External Status T20.ICLR.EXF2CLR
+ */
+INLINE void T20_clrExternalSts(void)
+{
+  T20->ICLR.bit.EXF2CLR = 1u;
+}
+
+/** \brief Clear T21 Overflow/Underflow Status T21.ICLR.TF2CLR
+ */
+INLINE void T21_clrOverUnderflowSts(void)
+{
+  T21->ICLR.bit.TF2CLR = 1u;
+}
+
+/** \brief Clear T21 External Status T21.ICLR.EXF2CLR
+ */
+INLINE void T21_clrExternalSts(void)
+{
+  T21->ICLR.bit.EXF2CLR = 1u;
+}
+
+/** @}*/
+
+#endif /* _TIMER2X_H */

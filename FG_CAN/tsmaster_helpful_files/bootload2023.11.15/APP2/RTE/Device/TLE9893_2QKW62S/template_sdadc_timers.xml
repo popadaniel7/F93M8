@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_sdadc_timers.xml                                                  -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!-- V0.1.3: 2022-04-19, JO:   EP-999: Corrected graph                              -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>0646ae5414dadeb4099c769be5175817cee2d8cc15eb488a1516241bc54512d6</checksum>
+  <version label="V0.1.3"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Timers" visible="false">
+
+    <timer visible="false" define="SDADC_UPDATE_CH$IDX$" svd="0" interval="1" singleShot="1" run="0" header="">
+      <!-- Visibility of the containers -->
+      <!-- Edit value for graph -->
+      <action event="changed" cmd="setDef" data="IN$IDX$PSEL=SDADC.INSEL_IN$IDX$PSEL_$IDX$.label"/>
+      <action event="changed" cmd="setDef" data="IN$IDX$NSEL=SDADC.INSEL_IN$IDX$NSEL_$IDX$.label"/>
+      <action event="changed" cmd="setDef" data="DECFACT$IDX$=SDADC.CFG1_DECF$IDX$"/>
+      <action event="changed" cmd="setDef" data="LSH$IDX$=SDADC.CFG1.RESSHIFT$IDX$"/>
+      <action event="changed" cmd="setDef" data="UP$IDX$=SDADC.CMP$IDX$_CTRL.UPPER"/>
+      <action event="changed" cmd="setDef" data="LO$IDX$=SDADC.CMP$IDX$_CTRL.LOWER"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_UP==0" event="changed" cmd="setDef" data="HYSTUP$IDX$=off"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_UP==1" event="changed" cmd="setDef" data="HYSTUP$IDX$=4"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_UP==2" event="changed" cmd="setDef" data="HYSTUP$IDX$=8"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_UP==3" event="changed" cmd="setDef" data="HYSTUP$IDX$=16"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_LO==0" event="changed" cmd="setDef" data="HYSTLO$IDX$=off"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_LO==1" event="changed" cmd="setDef" data="HYSTLO$IDX$=4"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_LO==2" event="changed" cmd="setDef" data="HYSTLO$IDX$=8"/>
+      <action cond="SDADC.CMP$IDX$_CTRL.HYST_LO==3" event="changed" cmd="setDef" data="HYSTLO$IDX$=16"/>
+      <action event="changed" cmd="setDef" data="DIN$IDX$SEL=SDADC.INSEL_DIN$IDX$SEL_$IDX$.label"/>
+      <action event="changed" cmd="setDef" data="DOUT$IDX$=SDADC.ALTSEL_DOUT$IDX$_$IDX$.label"/>
+      <action event="changed" cmd="setDef" data="TRIG$IDX$=SDADC.INSEL_TRG$IDX$SEL_$IDX$.label"/>
+      <!-- Visibility/Enable of the elements inside the containers -->
+      <action cond="SDADC.CFG0.EN$IDX$==0" event="changed" cmd="setDef" data="SDADC_MODULATOR$IDX$.enabled=0;SDADC_CICFILTER$IDX$.enabled=0;SDADC_RESULT$IDX$.enabled=0;SDADC_COMP$IDX$.enabled=0"/>
+      <action cond="SDADC.CFG0.EN$IDX$==1" event="changed" cmd="setDef" data="SDADC_MODULATOR$IDX$.enabled=1;SDADC_CICFILTER$IDX$.enabled=1;SDADC_RESULT$IDX$.enabled=1;SDADC_COMP$IDX$.enabled=1"/>
+      <action cond="SDADC.INSEL_DIN$IDX$SEL_$IDX$==0" event="changed" cmd="setDef" data="SDADC_POSAN$IDX$.enabled=1;SDADC_NEGAN$IDX$.enabled=1"/>
+      <action cond="SDADC.INSEL_DIN$IDX$SEL_$IDX$!=0" event="changed" cmd="setDef" data="SDADC_POSAN$IDX$.enabled=0;SDADC_NEGAN$IDX$.enabled=0"/>
+      <action cond="SDADC.CFG0.CICMODE$IDX$==0" event="changed" cmd="setDef" data="SDADC_DEMMODE$IDX$.enabled=1;SDADC_TRIGEVENT$IDX$.enabled=0;SDADC_DECFAC$IDX$.enabled=1;SDADC_RESULT$IDX$.enabled=1;SDADC_COMP$IDX$.enabled=1"/>
+      <action cond="SDADC.CFG0.CICMODE$IDX$==1" event="changed" cmd="setDef" data="SDADC_DEMMODE$IDX$.enabled=1;SDADC_TRIGEVENT$IDX$.enabled=1;SDADC_DECFAC$IDX$.enabled=1;SDADC_RESULT$IDX$.enabled=1;SDADC_COMP$IDX$.enabled=1"/>
+      <!-- Color/Forms update in the graph SDADC -->
+      <action cond="SDADC.CFG0.EN$IDX$==0" event="changed" cmd="setDef" data="SDADC_$IDX$_1=#F0F0F0;SDADC_$IDX$_2=#F0F0F0;SDADC_$IDX$_3=#F0F0F0;SDADC_$IDX$_4=#F0F0F0;SDADC_$IDX$_5=#F0F0F0;SDADC_$IDX$_7=#F0F0F0;SDADC_$IDX$_8=#F0F0F0;SDADC_$IDX$_9=#F0F0F0;SDADC_$IDX$_10=#F0F0F0;SDADC_$IDX$_11=#F0F0F0;SDADC_$IDX$_12=#F0F0F0;SDADC_$IDX$_13=#F0F0F0;SDADC_$IDX$_14=#F0F0F0;SDADC_$IDX$_15=#F0F0F0;SDADC_$IDX$_6=#FFFFF0"/>
+      <action cond="SDADC.CFG0.EN$IDX$==1" event="changed" cmd="setDef" data="SDADC_$IDX$_1=#000000                      ;SDADC_$IDX$_3=#AEC067;SDADC_$IDX$_4=#000000;SDADC_$IDX$_5=#84B6A7;SDADC_$IDX$_7=#AB377A;SDADC_$IDX$_8=#FFE054;SDADC_$IDX$_9=#F07F3C"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.CFG0.WFREN$IDX$==0)" event="changed" cmd="setDef" data="SDADC_$IDX$_6=#FFFFF0"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.CFG0.WFREN$IDX$==1)" event="changed" cmd="setDef" data="SDADC_$IDX$_6=#000000"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*((SDADC.RES$IDX$_INT_EN!=1).+(SDADC.IEN.RES$IDX$_EN!=1))" event="changed" cmd="setDef" data="SDADC_$IDX$_10=#FFFFF0"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.RES$IDX$_INT_EN==1).*(SDADC.IEN.RES$IDX$_EN==1)"   event="changed" cmd="setDef" data="SDADC_$IDX$_10=#000000"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*((SDADC.CMP$IDX$_UP_INT_EN!=1).+(SDADC.IEN.CMP$IDX$_UP_EN!=1))" event="changed" cmd="setDef" data="SDADC_$IDX$_11=#FFFFF0"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.CMP$IDX$_UP_INT_EN==1).*(SDADC.IEN.CMP$IDX$_UP_EN==1)"   event="changed" cmd="setDef" data="SDADC_$IDX$_11=#000000"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*((SDADC.CMP$IDX$_LO_INT_EN!=1).+(SDADC.IEN.CMP$IDX$_LO_EN!=1))" event="changed" cmd="setDef" data="SDADC_$IDX$_12=#FFFFF0"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.CMP$IDX$_LO_INT_EN==1).*(SDADC.IEN.CMP$IDX$_LO_EN==1)"   event="changed" cmd="setDef" data="SDADC_$IDX$_12=#000000"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.INSEL_DIN$IDX$SEL_$IDX$==0)" event="changed" cmd="setDef" data="SDADC_$IDX$_2=#000000;SDADC_$IDX$_3=#AEC067;SDADC_$IDX$_14=#FFFFF0;VIS_SDADC_$IDX$_1=hidden ;VIS_SDADC_$IDX$_2=visible"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.INSEL_DIN$IDX$SEL_$IDX$!=0)" event="changed" cmd="setDef" data="SDADC_$IDX$_2=#FFFFF0;SDADC_$IDX$_3=#FFFFF0;SDADC_$IDX$_14=#000000;VIS_SDADC_$IDX$_1=visible;VIS_SDADC_$IDX$_2=hidden"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.ALTSEL_DOUT$IDX$_$IDX$==0).*(SDADC.CFG0.CICMODE$IDX$==0)" event="changed" cmd="setDef" data="SDADC_$IDX$_5=#84B6A7                      ;SDADC_$IDX$_7=#AB377A;SDADC_$IDX$_8=#FFE054;SDADC_$IDX$_9=#F07F3C                                                                     ;SDADC_$IDX$_13=#FFFFF0;SDADC_$IDX$_15=#FFFFF0;VIS_SDADC_$IDX$_3=hidden"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.ALTSEL_DOUT$IDX$_$IDX$==0).*(SDADC.CFG0.CICMODE$IDX$==1)" event="changed" cmd="setDef" data="SDADC_$IDX$_5=#84B6A7                      ;SDADC_$IDX$_7=#AB377A;SDADC_$IDX$_8=#FFE054;SDADC_$IDX$_9=#F07F3C                                                                     ;SDADC_$IDX$_13=#000000;SDADC_$IDX$_15=#FFFFF0;VIS_SDADC_$IDX$_3=hidden"/>
+      <action cond="(SDADC.CFG0.EN$IDX$==1).*(SDADC.ALTSEL_DOUT$IDX$_$IDX$!=0)"                               event="changed" cmd="setDef" data="SDADC_$IDX$_15=#000000;VIS_SDADC_$IDX$_3=visible"/>
+      <action event="changed" cmd="setDef" data="SDADC_Block.update=1"/>
+    </timer>
+
+  </verticalcontainer>
+</ifxmlcfg>

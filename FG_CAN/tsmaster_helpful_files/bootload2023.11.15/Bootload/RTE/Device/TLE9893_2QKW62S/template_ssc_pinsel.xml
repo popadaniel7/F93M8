@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_ssc_pinsel.xml                                                    -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-21, BG:   EP-541: Added 'none' entry to solve conflicts with   -->
+<!--                           multiple lockons                                     -->
+<!--                           EP-542: Corrected lockons for inputs                 -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-23, DM:   EP-546: Corrected chip select encoding               -->
+<!-- V0.1.2: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!-- V0.1.3: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project               -->
+<!-- V0.1.4: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!--                           Corrected wrong lockons for pins                     -->
+<!-- V0.2.0: 2021-03-22, JO:   EP-734: Updated CW minimal version to 2.6.3,         -->
+<!--                           Added usage of setdefine feature that was introduced -->
+<!--                           in Config Wizard version 2.6.3                       -->
+<!-- V0.2.1: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Module Definition -->
+<!-- IDX: SSC0, SSC1 -->
+
+<ifxmlcfg version="2.6.3">
+  <checksum>f2c1cfddc65637d3bdfd5192d4804307fa73a86b06a41133bb03c90b5c11601c</checksum>
+  <version label="V0.2.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <!-- PIN SELECT -->
+  <groupcontainer label="Pin Selection" define="CONT_$IDX$_$MODE$_PINSEL" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177" size="375;-1">
+    <header file="ssc_defines.h">
+      <verticalcontainer>
+
+        <!-- In Slave Mode -->
+        <!-- Clock -->
+        <horizontalcontainer>
+        <text label="Clock $MODE_MTSR$"/>
+        <combo define="$IDX$_$MODE$.INSEL_CLKSEL_M0" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=1;GPIO.P0_ALTSEL0.ALTSEL3=1"/>
+          <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=1;GPIO.P0_ALTSEL0.ALTSEL5=3" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_CLKSEL_M1" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P1.0" lockon="GPIO.P1_DIR.DIR0=1;GPIO.P1_ALTSEL0.ALTSEL0=1"/>
+          <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=1;GPIO.P0_ALTSEL0.ALTSEL7=3" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_CLKSEL_S0" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=0"/>
+          <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=0" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_CLKSEL_S1" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P1.0" lockon="GPIO.P1_DIR.DIR0=0"/>
+          <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- MTSR -->
+        <horizontalcontainer>
+        <text label="MTSR $MODE_MTSR$"/>
+        <combo define="$IDX$_$MODE$.INSEL_MTSRSEL_M0" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=1;GPIO.P0_ALTSEL0.ALTSEL1=5"/>
+          <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=3" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=1;GPIO.P0_ALTSEL0.ALTSEL6=7" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_MTSRSEL_M1" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=1;GPIO.P0_ALTSEL1.ALTSEL8=3" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="P0.9 (*)" lockon="GPIO.P0_DIR.DIR9=1;GPIO.P0_ALTSEL1.ALTSEL9=6" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=1;GPIO.P1_ALTSEL0.ALTSEL1=1"/>
+          <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=1;GPIO.P1_ALTSEL0.ALTSEL2=7"/>
+          <item label="none" value="0xFF"/>
+        </combo>
+        <combo define="$IDX$_$MODE$.INSEL_MTSRSEL_S0" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=0"/>
+            <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=0" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_MTSRSEL_S1" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=0"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- MRST -->
+        <horizontalcontainer>
+        <text label="MRST $MODE_MRST$"/>
+        <combo define="$IDX$_$MODE$.INSEL_MRSTSEL_M0" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=0"/>
+            <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P2.5" lockon="GPIO.P2_INDIS.INDIS5=0"/>
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=0"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_MRSTSEL_M1" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=0"/>
+            <item label="P0.9 (*)" lockon="GPIO.P0_DIR.DIR9=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P2.6" lockon="GPIO.P2_INDIS.INDIS6=0"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+        </combo>
+        <combo define="$IDX$_$MODE$.INSEL_MRSTSEL_S0" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=1;GPIO.P0_ALTSEL0.ALTSEL2=3"/>
+          <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=1;GPIO.P0_ALTSEL0.ALTSEL6=3" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+        </combo>
+        <combo define="$IDX$_$MODE$.INSEL_MRSTSEL_S1" svd="0" header="temp_defines.h" default="label=none">
+          <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=1;GPIO.P1_ALTSEL0.ALTSEL2=1"/>
+          <item label="P0.9 (*)" lockon="GPIO.P0_DIR.DIR9=1;GPIO.P0_ALTSEL1.ALTSEL9=3" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- CS Enable -->
+        <horizontalcontainer>
+          <checkbox label="Enable Chip Select" define="$IDX$_$MODE$.CON_CSEN" svd="0" header="temp_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Chip Select -->
+        <horizontalcontainer define="CONT_$IDX$_$MODE$_CS">
+        <text label="Chip Select $MODE_MTSR$"/>
+        <combo define="$IDX$_$MODE$.CON_CSSEL_M0" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P1.2"  value="1" lockon="GPIO.P1_DIR.DIR2=1;GPIO.P1_ALTSEL0.ALTSEL2=3"/>
+            <item label="P0.10" value="2" lockon="GPIO.P0_DIR.DIR10=1;GPIO.P0_ALTSEL1.ALTSEL10=3"/>
+            <item label="P1.3 (*)"  value="4" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=1" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P0.9 (*)"  value="8" lockon="GPIO.P0_DIR.DIR9=1;GPIO.P0_ALTSEL1.ALTSEL9=4" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.CON_CSSEL_M1" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.2"  value="1" lockon="GPIO.P0_DIR.DIR2=1;GPIO.P0_ALTSEL0.ALTSEL2=4"/>
+            <item label="P0.10" value="2" lockon="GPIO.P0_DIR.DIR10=1;GPIO.P0_ALTSEL1.ALTSEL10=2"/>
+            <item label="P1.4 (*)"  value="4" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P0.6 (*)"  value="8" lockon="GPIO.P0_DIR.DIR6=1;GPIO.P0_ALTSEL0.ALTSEL6=4" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_CSSEL_S0" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P1.0" lockon="GPIO.P1_DIR.DIR0=0"/>
+            <item label="P2.6" lockon="GPIO.P2_INDIS.INDIS6=0"/>
+            <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P0.9 (*)" lockon="GPIO.P0_DIR.DIR9=0" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_$MODE$.INSEL_CSSEL_S1" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=0"/>
+            <item label="P2.4" lockon="GPIO.P2_INDIS.INDIS4=0"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="UC_FEATURE_64PIN==1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </header>
+  </groupcontainer>
+</ifxmlcfg>
+

@@ -1,0 +1,269 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+/**
+ * \file     mon.h
+ *
+ * \brief    High Voltage Monitor Input low level access library
+ *
+ * \version  V0.3.2
+ * \date     12. Nov 2020
+ *
+ * \note
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** DM           Daniel Mysliwitz                                              **
+** BG           Blandine Guillot                                              **
+** JO           Julia Ott                                                     **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2019-10-28, DM:   Initial version                                  **
+** V0.2.0: 2020-04-28, BG:   Updated revision history format                  **
+** V0.3.0: 2020-09-16, DM:   MON_en/disMONx() renamed to MON_en/disMONxInt()  **
+** V0.3.1: 2020-10-06, BG:   EP-492: Removed MISRA 2012 errors                **
+** V0.3.2: 2020-11-12, JO:   EP-590: Removed \param none and \return none to  **
+**                           avoid doxygen warning                            **
+*******************************************************************************/
+
+#ifndef _MON_H
+#define _MON_H
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "types.h"
+#include "tle989x.h"
+#include "tle_variants.h"
+#include "pmu_defines.h"
+
+/*******************************************************************************
+**                        Global Constant Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Type Declarations                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+sint8 MON_init(void);
+INLINE void MON_enMON1Int(void);
+INLINE void MON_disMON1Int(void);
+INLINE void MON_enMON2Int(void);
+INLINE void MON_disMON2Int(void);
+INLINE void MON_enMON3Int(void);
+INLINE void MON_disMON3Int(void);
+INLINE uint8 MON_getMON1RiseIntSts(void);
+INLINE uint8 MON_getMON1FallIntSts(void);
+INLINE uint8 MON_getMON2RiseIntSts(void);
+INLINE uint8 MON_getMON2FallIntSts(void);
+INLINE uint8 MON_getMON3RiseIntSts(void);
+INLINE uint8 MON_getMON3FallIntSts(void);
+INLINE void MON_clrMON1RiseIntSts(void);
+INLINE void MON_clrMON1FallIntSts(void);
+INLINE void MON_clrMON2RiseIntSts(void);
+INLINE void MON_clrMON2FallIntSts(void);
+INLINE void MON_clrMON3RiseIntSts(void);
+INLINE void MON_clrMON3FallIntSts(void);
+
+/*******************************************************************************
+**                       Deprecated Function Declarations                     **
+*******************************************************************************/
+
+/** \brief Set MON1 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void MON_setMON1IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set MON2 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void MON_setMON2IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set MON3 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void MON_setMON3IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/*******************************************************************************
+**                     Global Inline Function Definitions                     **
+*******************************************************************************/
+
+/** \brief Enable MON1 Interrupt
+ */
+INLINE void MON_enMON1Int(void)
+{
+  SCU->MONIEN.bit.MON1EN = 1u;
+}
+
+/** \brief Disable MON1 Interrupt
+ */
+INLINE void MON_disMON1Int(void)
+{
+  SCU->MONIEN.bit.MON1EN = 0u;
+}
+
+/** \brief Enable MON2 Interrupt
+ */
+INLINE void MON_enMON2Int(void)
+{
+  SCU->MONIEN.bit.MON2EN = 1u;
+}
+
+/** \brief Disable MON2 Interrupt
+ */
+INLINE void MON_disMON2Int(void)
+{
+  SCU->MONIEN.bit.MON2EN = 0u;
+}
+
+/** \brief Enable MON3 Interrupt
+ */
+INLINE void MON_enMON3Int(void)
+{
+  SCU->MONIEN.bit.MON3EN = 1u;
+}
+
+/** \brief Disable MON3 Interrupt
+ */
+INLINE void MON_disMON3Int(void)
+{
+  SCU->MONIEN.bit.MON3EN = 0u;
+}
+
+/** \brief Get MON1 Rising Edge Interrupt Status
+ *
+ * \return uint8 MON1 Rising Edge Interrupt Status
+ */
+INLINE uint8 MON_getMON1RiseIntSts(void)
+{
+  return SCU->MONIS.bit.MON1R;
+}
+
+/** \brief Get MON1 Falling Edge Interrupt Status
+ *
+ * \return uint8 MON1 Falling Edge Interrupt Status
+ */
+INLINE uint8 MON_getMON1FallIntSts(void)
+{
+  return SCU->MONIS.bit.MON1F;
+}
+
+/** \brief Get MON2 Rising Edge Interrupt Status
+ *
+ * \return uint8 MON2 Rising Edge Interrupt Status
+ */
+INLINE uint8 MON_getMON2RiseIntSts(void)
+{
+  return SCU->MONIS.bit.MON2R;
+}
+
+/** \brief Get MON2 Falling Edge Interrupt Status
+ *
+ * \return uint8 MON2 Falling Edge Interrupt Status
+ */
+INLINE uint8 MON_getMON2FallIntSts(void)
+{
+  return SCU->MONIS.bit.MON2F;
+}
+
+/** \brief Get MON3 Rising Edge Interrupt Status
+ *
+ * \return uint8 MON3 Rising Edge Interrupt Status
+ */
+INLINE uint8 MON_getMON3RiseIntSts(void)
+{
+  return SCU->MONIS.bit.MON3R;
+}
+
+/** \brief Get MON3 Falling Edge Interrupt Status
+ *
+ * \return uint8 MON3 Falling Edge Interrupt Status
+ */
+INLINE uint8 MON_getMON3FallIntSts(void)
+{
+  return SCU->MONIS.bit.MON3F;
+}
+
+/** \brief Clear MON1 Rising Edge Interrupt Status
+ */
+INLINE void MON_clrMON1RiseIntSts(void)
+{
+  SCU->MONISC.bit.MON1RCLR = 1u;
+}
+
+/** \brief Clear MON1 Falling Edge Interrupt Status
+ */
+INLINE void MON_clrMON1FallIntSts(void)
+{
+  SCU->MONISC.bit.MON1FCLR = 1u;
+}
+
+/** \brief Clear MON2 Rising Edge Interrupt Status
+ */
+INLINE void MON_clrMON2RiseIntSts(void)
+{
+  SCU->MONISC.bit.MON2RCLR = 1u;
+}
+
+/** \brief Clear MON2 Falling Edge Interrupt Status
+ */
+INLINE void MON_clrMON2FallIntSts(void)
+{
+  SCU->MONISC.bit.MON2FCLR = 1u;
+}
+
+/** \brief Clear MON3 Rising Edge Interrupt Status
+ */
+INLINE void MON_clrMON3RiseIntSts(void)
+{
+  SCU->MONISC.bit.MON3RCLR = 1u;
+}
+
+/** \brief Clear MON3 Falling Edge Interrupt Status
+ */
+INLINE void MON_clrMON3FallIntSts(void)
+{
+  SCU->MONISC.bit.MON3FCLR = 1u;
+}
+
+#endif /* _MON_H */

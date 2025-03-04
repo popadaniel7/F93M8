@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_uart_mode.xml                                                     -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-21, BG:   EP-541: Added 'none' entry to solve conflicts with   -->
+<!--                           multiple lockons                                     -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!--********************************************************************************-->
+
+<!-- Mode Definition -->
+<!-- IDX: UART0, UART1 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>f3fd04fc606874d736ce14af2168c38de509c38e24daf56749d71edeaa7b63b3</checksum>
+  <version label="V0.1.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Mode Definition" uielement="branch" define="$IDX$_DEF_MODE">
+
+    <!-- BAUDRATE GENERATOR -->
+    <groupcontainer label="Baudrate Generator Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <edit visible="false" label="$IDX$_BRA" define="$IDX$_BRA" default="1000000" svd="0" header="temp_defines.h"/>
+        <radio define="$IDX$.BR_CONFIG" svd="0" header="temp_defines.h" default="0" setDef="$IDX$_UPDATE_MODE.run=1">
+          <radiobutton label="Automatic Configuration">
+            <action event="selected" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </radiobutton>
+
+          <horizontalcontainer define="CONT_$IDX$_BR_AUTO">
+            <text label="Baudrate Value"/>
+            <combo define="$IDX$.BR_VAL_AUTO" default="label=1 MBaud" svd="0" header="temp_defines.h">
+              <item label="1 kBaud" value="1000" lockon="$IDX$_BRA=1000"/>
+              <item label="10 kBaud" value="10000" lockon="$IDX$_BRA=10000"/>
+              <item label="100 kBaud" value="100000" lockon="$IDX$_BRA=100000"/>
+              <item label="500 kBaud" value="500000" lockon="$IDX$_BRA=500000"/>
+              <item label="1 MBaud" value="1000000" lockon="$IDX$_BRA=1000000"/>
+              <item label="15 MBaud" value="15000000" lockon="$IDX$_BRA=15000000"/>
+            </combo>
+          </horizontalcontainer>
+
+          <radiobutton label="Manual Configuration">
+            <action event="selected" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </radiobutton>
+
+          <!-- Prescaler -->
+          <horizontalcontainer define="CONT_$IDX$_BRPRE">
+            <text label="Prescaler"/>
+            <combo define="$IDX$.BCON_BR_PRE" svd="0" header="temp_defines.h" default="label=fSYS / 1" size="130;-1" setDef="$IDX$_UPDATE_MODE.run=1">
+              <item label="fSYS / 1"/>
+              <item label="fSYS / 2"/>
+              <item label="fSYS / 4"/>
+              <item label="fSYS / 8"/>
+              <item label="fSYS / 16"/>
+              <item label="fSYS / 32"/>
+            </combo>
+            <text label="          Register Value:" size="150;-1"/>
+            <math define="$IDX$_BRPRE_REG" svd="0" header="temp_defines.h" format="%01X" formula="($IDX$.BR_CONFIG==0)?(0:$IDX$.BCON_BR_PRE)" size="100;-1"/>
+          </horizontalcontainer>
+
+          <!-- Fractional Divider -->
+          <horizontalcontainer define="CONT_$IDX$_BRDIV">
+            <text label="Fractional Divider [0;31]"/>
+            <spinbox define="$IDX$.BCON_BG_FD_SEL" svd="0" header="temp_defines.h" default="0" range="0;31" size="130;-1">
+              <action event="changed" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            </spinbox>
+            <text label="          Register Value:" size="150;-1"/>
+            <math define="$IDX$_BRDIV_REG" svd="0" header="temp_defines.h" format="%02X" formula="($IDX$.BR_CONFIG==0)?(0:$IDX$.BCON_BG_FD_SEL)" size="100;-1"/>
+          </horizontalcontainer>
+
+          <!-- BR Reload Value -->
+          <horizontalcontainer define="CONT_$IDX$_BRRELVAL">
+            <text label="Reload Value [0;2047]"/>
+            <spinbox define="$IDX$.BCON_BG_BR_VALUE" svd="0" header="temp_defines.h" default="1" range="0;2047" size="130;-1">
+              <action event="changed" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            </spinbox>
+            <text label="          Register Value:" size="150;-1"/>
+            <math define="$IDX$_BRRELVAL_REG" svd="0" header="temp_defines.h" format="%03X" formula="($IDX$.BR_CONFIG==0)?(trunc(fSYS/(16*$IDX$_BRA)):$IDX$.BCON_BG_BR_VALUE)" size="100;-1"/>
+          </horizontalcontainer>
+        </radio>
+
+        <!-- Effective Baudrate -->
+        <horizontalcontainer>
+          <text label="Effective Baudrate:"/>
+          <math define="$IDX$_EFFBR" unit=" kBaud" svd="0" header="temp_defines.h" default="0" formula="((($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BR_CONFIG==0))?(trunc(fSYS/1000/(16*$IDX$_BRRELVAL_REG)):(((($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BR_CONFIG==1))?(trunc(fSYS/1000/(16*$IDX$BRPRE*($IDX$_BRRELVAL_REG+($IDX$.BCON_BG_FD_SEL/32)))):trunc(fSYS/1000/64))))"/>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <!-- RECEPTION -->
+    <groupcontainer label="Reception Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="206;217;164">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Input Selection -->
+        <horizontalcontainer>
+          <text label="Input Selection"/>
+        <combo define="$IDX$_UART0.INSEL_RXDSEL" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=0"/>
+            <item label="P0.8" lockon="GPIO.P0_DIR.DIR8=0"/>
+            <item label="P1.4" lockon="GPIO.P1_DIR.DIR4=0"/>
+            <item label="CANTRX.RXD"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_UART1.INSEL_RXDSEL" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=0"/>
+            <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=0"/>
+            <item label="P2.8" lockon="GPIO.P2_INDIS.INDIS8=0"/>
+            <item label="MON.MON10"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Enable Receiver -->
+        <horizontalcontainer>
+          <text label="Enable Receiver of Serial Port"/>
+          <checkbox define="$IDX$.SCON_REN" svd="0" header="temp_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Receiver Mode -->
+        <horizontalcontainer>
+          <text label="Receiver Mode"/>
+          <combo define="$IDX$.SCON_RMOD" svd="0" header="temp_defines.h" default="label=RXBUF is not updated if IS.RI = 1" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="RXBUF is not updated if IS.RI = 1"/>
+            <item label="RXBUF is updated if IS.RI = 1"/>
+          </combo>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <!-- TRANSMISSION -->
+    <groupcontainer label="Transmission Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Transmit Start Trigger Selection -->
+        <horizontalcontainer>
+          <text label="Transmit Start Trigger Selection"/>
+          <combo define="$IDX$.SCON_TXENSEL" svd="0" header="temp_defines.h" default="label=Write to TXBUF" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="Write to TXBUF"/>
+            <item label="Write to TXSTART"/>
+            <item label="TX Start Event on Rising Edge"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- TX Start Event Input -->
+        <horizontalcontainer define="CONT_$IDX$_TXSTARTINP">
+          <text label="Transmit Start Input Selection"/>
+        <combo define="$IDX$_UART0.INSEL_TXEVSEL" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.4" lockon="GPIO.P0_DIR.DIR4=0"/>
+            <item label="SCU.INP1_IRQ1"/>
+            <item label="CCU7.SR3"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_UART1.INSEL_TXEVSEL" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=0"/>
+            <item label="SCU.INP1_IRQ1"/>
+            <item label="CCU7.SR3"/>
+            <item label="SCU.INP2_IRQ1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- TX Data Inverter -->
+        <horizontalcontainer>
+          <text label="Enable TXD Inversion"/>
+          <checkbox define="$IDX$.SCON_TXINV" svd="0" header="temp_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Output Selection -->
+        <horizontalcontainer>
+          <text label="Output Selection"/>
+        <combo define="$IDX$_UART0.OUTPUT_TXDSEL" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=1;GPIO.P0_ALTSEL0.ALTSEL1=1"/>
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=1;GPIO.P0_ALTSEL0.ALTSEL3=6"/>
+            <item label="P0.7" lockon="GPIO.P0_DIR.DIR7=1;GPIO.P0_ALTSEL0.ALTSEL7=5"/>
+            <item label="P1.3" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=4"/>
+            <item label="CANTRX.TXDB"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_UART1.OUTPUT_TXDSEL" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=1;GPIO.P0_ALTSEL0.ALTSEL2=1"/>
+            <item label="P0.4" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=4"/>
+            <item label="P1.1" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL1=3"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Enable Break/Sync Detection -->
+        <horizontalcontainer>
+          <text label="Enable Break/Sync Detection"/>
+          <checkbox define="$IDX$.LINCON_BREN" svd="0" header="temp_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <groupcontainer label="Interrupt" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Receive Interrupt -->
+        <horizontalcontainer>
+          <text label="Receive Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$_RIINTEN" svd="0" header="isr_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_RINODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX$_RI" header="isr_defines.h" default="label=IRQ22" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="IRQ22" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="IRQ23" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_RIEN">
+          <text label="Enable Receive Interrupt"/>
+          <checkbox define="$IDX$.IEN_RIEN" header="isr_defines.h" svd="0" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_RICB">
+          <text label="Callback"/>
+          <edit define="$IDX$.RI_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+
+        <!-- Transmit Interrupt -->
+        <horizontalcontainer>
+          <text label="Transmit Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$_TIINTEN" svd="0" header="isr_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_TINODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX$_TI" header="isr_defines.h" default="label=IRQ22" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="IRQ22" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="IRQ23" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_TIEN">
+          <text label="Enable Transmit Interrupt"/>
+          <checkbox define="$IDX$.IEN_TIEN" header="isr_defines.h" svd="0" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_TICB">
+          <text label="Callback"/>
+          <edit define="$IDX$.TI_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+
+        <!-- End of Sync Interrupt -->
+        <horizontalcontainer define="CONT_$IDX$_ENEOS">
+          <text label="End Of Sync Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$_EOSINTEN" svd="0" header="isr_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_EOSNODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX_LIN$_EOFSYN" header="isr_defines.h" default="label=IRQ22" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="IRQ22" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="IRQ23" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_EOSEN">
+          <text label="Enable End of Sync Interrupt"/>
+          <checkbox define="$IDX$.IEN_EOFSYNEN" header="isr_defines.h" svd="0" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_EOSCB">
+          <text label="Callback"/>
+          <edit define="$IDX$.EOS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+
+        <!-- Sync Error Interrupt -->
+        <horizontalcontainer define="CONT_$IDX$_ENSYNCERR">
+          <text label="Sync Error Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$_SYNCERRINTEN" svd="0" header="isr_defines.h" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_SYNCERRNODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX_LIN$_ERRSYN" header="isr_defines.h" default="label=IRQ22" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="IRQ22" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="IRQ23" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_SYNCERREN">
+          <text label="Enable Sync Error Interrupt"/>
+          <checkbox define="$IDX$.IEN_ERRSYNEN" header="isr_defines.h" svd="0" default="0">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_SYNCERRCB">
+          <text label="Callback"/>
+          <edit define="$IDX$.SYNCERR_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+  </verticalcontainer>          
+</ifxmlcfg>
+

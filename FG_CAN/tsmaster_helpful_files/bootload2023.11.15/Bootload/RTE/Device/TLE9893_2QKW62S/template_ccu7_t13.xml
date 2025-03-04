@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_ccu7_t13.xml                                                     -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-23, JO:   EP-469: Added xml tag and checksum                   -->
+<!-- V0.1.0: 2020-10-14, JO:   EP-469: modified XML so that ccu7_calc.py runs when  -->
+<!--                           required, not continuously in background             -->
+<!-- V0.1.1: 2020-12-18, JO:   EP-607: Added define CCU7_T13_CLK_HZ                -->
+<!-- V0.1.2: 2021-01-05, JO:   EP-667: Addded svd="0" to define CCU7_T13_CLK_HZ    -->
+<!-- V0.1.3: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.4: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Parameter: -->
+<!-- TIMER_IDX: T13 -->
+<!-- CMPVAL_IDX: C73 -->
+<!-- TCTR2_REGISTER_IDX: '' (empty) -->
+<!-- TCTR2_FIELD_IDX: 3 or x -->
+<!-- values for CCU7.TCTR2.T1xTE depend on Timer, so labels are given to template: -->
+<!-- T1xTEC_0 -->
+<!-- T1xTEC_1 -->
+<!-- T1xTEC_2 -->
+<!-- T1xTEC_3 -->
+<!-- T1xTEC_4 -->
+<!-- T1xTEC_5 -->
+<!-- T1xTEC_6 -->
+<!-- T1xTEC_7 -->
+<ifxmlcfg version="2.6.2">
+  <checksum>ea4ed31b74c51b7a3731b82a85b52f94357d0516e75ce71906bab14d5349b40f</checksum>
+  <version label="V0.1.4"/>
+
+  <verticalcontainer label="$TIMER_IDX$">
+    <header file="ccu7_defines.h">
+      <var define="CCU7_$TIMER_IDX$_CA_MODE" default="0" header="temp_defines.h"/>
+
+      <treecontainer label="$TIMER_IDX$" headerlabels="Item;Value;" columnwidths="250;250;1">
+        <combo label="Clock Select" define="CCU7.T_CLK_CTRL.$TIMER_IDX$_CLK_SEL">
+          <item label="fCCU7: No prescaler selected" override="value1"/>
+          <item label="fFDIV0: Clock from Fractional Divider 0" override="value2"/>
+          <item label="fFDIV1: Clock from Fractional Divider 1" override="value3"/>
+        </combo>
+
+        <checkbox label="Add. 1/256 prescaler" define="CCU7.TCTR0.$TIMER_IDX$PRE"/>
+
+        <math label="$TIMER_IDX$ Clock before prescaler" unit="MHz" define="CCU7_$TIMER_IDX$_CLK_BEFPSC" visible="false" svd="0" header="temp_defines.h" formula="CCU7.T_CLK_CTRL.$TIMER_IDX$_CLK_SEL==0?CCU7_FCCU7:(CCU7.T_CLK_CTRL.$TIMER_IDX$_CLK_SEL==1?CCU7_FDIV0_CLK:CCU7_FDIV1_CLK)"/>
+        <math label="$TIMER_IDX$ Clock" unit="MHz" define="CCU7_$TIMER_IDX$_CLK" svd="0" formula="CCU7.TCTR0.T13PRE==0?CCU7_$TIMER_IDX$_CLK_BEFPSC:CCU7_$TIMER_IDX$_CLK_BEFPSC/256">
+          <action event="changed" cmd="setDef" data="CCU7_$TIMER_IDX$_CLK_EDIT=CCU7_$TIMER_IDX$_CLK"/>
+        </math>
+        <math visible="false" label="$TIMER_IDX$ Clock" unit="Hz" define="CCU7_$TIMER_IDX$_CLK_HZ" svd="0" formula="CCU7_$TIMER_IDX$_CLK*1000000"/>
+
+        <math label="Max. Period" unit="us" define="CCU7_$TIMER_IDX$_MAX_PERIOD" svd="0" header="temp_defines.h" formula="65535/CCU7_$TIMER_IDX$_CLK"/>
+
+        <combo label="Single Shot" define="CCU7.TCTR2$TCTR2_REGISTER_IDX$.T1$TCTR2_FIELD_IDX$SSC">
+          <item label="Disabled" override="value1"/>
+          <item label="Enabled" override="value2"/>
+        </combo>
+
+        <combo label="Trigger Select" define="CCU7.TCTR2$TCTR2_REGISTER_IDX$.T1$TCTR2_FIELD_IDX$TEC">
+          <item label="$T1xTEC_0$"/>
+          <item label="$T1xTEC_1$"/>
+          <item label="$T1xTEC_2$"/>
+          <item label="$T1xTEC_3$"/>
+          <item label="$T1xTEC_4$"/>
+          <item label="$T1xTEC_5$"/>
+          <item label="$T1xTEC_6$"/>
+          <item label="$T1xTEC_7$"/>
+        </combo>
+
+        <!-- T1xTED is the same for T13/T14/15/16 -->
+        <combo label="Trigger Event Direction" define="CCU7.TCTR2$TCTR2_REGISTER_IDX$.T1$TCTR2_FIELD_IDX$TED">
+          <item label="Reserved, no triggering"/>
+          <item label="Selected event is active while T12 is counting up (CDIR = 0)"/>
+          <item label="Selected event is active while T12 is counting down (CDIR = 1)"/>
+          <item label="Selected event is active independently of the count direction of T12"/>
+        </combo>
+
+        <combo label="Trigger External Run Select" define="CCU7.TCTR2$TCTR2_REGISTER_IDX$.T1$TCTR2_FIELD_IDX$RSEL">
+        </combo>
+
+        <include 
+        TIMER_IDX="$TIMER_IDX$" 
+        PER_REGISTER="CCU7.$TIMER_IDX$PR.T1xPV">
+      template_ccu7_perval_input.xml</include>
+
+        <include 
+        TIMER_IDX="$TIMER_IDX$" 
+        TIMER_REGISTER="CCU7.$TIMER_IDX$PR.T1xPV" 
+        CMPVAL_IDX="$CMPVAL_IDX$" 
+        CMPVAL_REGISTER="CCU7.$CMPVAL_IDX$SR.CCS"
+        COLOR="red">
+      template_ccu7_cmpval_input.xml</include>
+
+        <branch label="Register Value Summary">
+          <math label="$TIMER_IDX$ Period Register Value" define="CCU7.$TIMER_IDX$PR.T1xPV" formula="CCU7_$TIMER_IDX$_PERIOD-1"/> 
+          <math label="$CMPVAL_IDX$ Compare Register Value" define="CCU7.$CMPVAL_IDX$SR.CCS" formula="CCU7_$CMPVAL_IDX$_CMPVAL_CALC"/>
+        </branch>
+
+      </treecontainer>
+
+    </header>  
+  </verticalcontainer>
+  
+</ifxmlcfg>

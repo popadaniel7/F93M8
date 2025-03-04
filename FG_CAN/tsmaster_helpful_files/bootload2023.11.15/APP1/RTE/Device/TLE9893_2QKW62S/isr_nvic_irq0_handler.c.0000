@@ -1,0 +1,624 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "tle989x.h"
+#include "isr.h"
+#include "isr_defines.h"
+
+
+/* Check if NVIC node 0 is enabled */
+#if ((CPU_NVIC_ISER & CPU_NVIC_ISER_IRQEN0_Msk) == (1u << CPU_NVIC_ISER_IRQEN0_Pos))
+
+/*******************************************************************************
+**                        Global Variable Definitions                         **
+*******************************************************************************/
+
+#if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+  uint8 u8_interrupt_cnt_irq0;
+#endif
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+void NVIC_IRQ0_Handler(void)
+{
+  #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+    u8_interrupt_cnt_irq0 = 0;
+  #endif
+  /* Bus dominant timeout */
+  #if (CANTRX_BUS_TO_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_CANTX_Msk) >>  SCU_INP0_INP_CANTX_Pos) == WARN_INP_NVIC_IRQ0)
+      if (CANTRX->IRQEN.bit.BUS_TO_IEN == 1u)
+      {
+        if (CANTRX->IRQS.bit.BUS_TO_IS == 1u)
+        {
+          CANTRX_BUS_TO_CALLBACK();
+          CANTRX->IRQCLR.bit.BUS_TO_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* TXD dominant timeout  */
+  #if (CANTRX_TXD_TO_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_CANTX_Msk) >>  SCU_INP0_INP_CANTX_Pos) == WARN_INP_NVIC_IRQ0)
+      if (CANTRX->IRQEN.bit.TXD_TO_IEN == 1u)
+      {
+        if (CANTRX->IRQS.bit.TXD_TO_IS == 1u)
+        {
+          CANTRX_TXD_TO_CALLBACK();
+          CANTRX->IRQCLR.bit.TXD_TO_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Overtemperature */
+  #if (CANTRX_OT_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_CANTX_Msk) >>  SCU_INP0_INP_CANTX_Pos) == WARN_INP_NVIC_IRQ0)
+      if (CANTRX->IRQEN.bit.OT_IEN == 1u)
+      {
+        if (CANTRX->IRQS.bit.OT_IS == 1u)
+        {
+          CANTRX_OT_CALLBACK();
+          CANTRX->IRQCLR.bit.OT_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Bus active during CAN sleep */
+  #if (CANTRX_BUS_ACT_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_CANTX_Msk) >>  SCU_INP0_INP_CANTX_Pos) == WARN_INP_NVIC_IRQ0)
+      if (CANTRX->IRQEN.bit.BUS_ACT_IEN == 1u)
+      {
+        if (CANTRX->IRQS.bit.BUS_ACT_IS == 1u)
+        {
+          CANTRX_BUS_ACT_CALLBACK();
+          CANTRX->IRQCLR.bit.BUS_ACT_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* External LS1 MOSFET overcurrent */
+  #if (BDRV_LS1_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.LS1_OC_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.LS1_OC_IS      == 1u)
+        {
+          BDRV_LS1_OC_CALLBACK();
+          BDRV->IRQCLR.bit.LS1_OC_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* LS1 off-state drain source monitoring */
+  #if (BDRV_LS1_DS_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.LS1_DS_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.LS1_DS_IS == 1u)
+        {
+          BDRV_LS1_DS_CALLBACK();
+          BDRV->IRQCLR.bit.LS1_DS_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* External HS1 MOSFET overcurrent */
+  #if (BDRV_HS1_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HS1_OC_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HS1_OC_IS == 1u)
+        {
+          BDRV_HS1_OC_CALLBACK();
+          BDRV->IRQCLR.bit.HS1_OC_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* HS1 off-state drain source monitoring */
+  #if (BDRV_HS1_DS_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HS1_DS_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HS1_DS_IS == 1u)
+        {
+          BDRV_HS1_DS_CALLBACK();
+          BDRV->IRQCLR.bit.HS1_DS_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* External LS2 MOSFET overcurrent */
+  #if (BDRV_LS2_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.LS2_OC_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.LS2_OC_IS == 1u)
+        {
+          BDRV_LS2_OC_CALLBACK();
+          BDRV->IRQCLR.bit.LS2_OC_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* LS2 off-state drain source monitoring */
+  #if (BDRV_LS2_DS_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.LS2_DS_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.LS2_DS_IS == 1u)
+        {
+          BDRV_LS2_DS_CALLBACK();
+          BDRV->IRQCLR.bit.LS2_DS_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* External HS2 MOSFET overcurrent */
+  #if (BDRV_HS2_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HS2_OC_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HS2_OC_IS == 1u)
+        {
+          BDRV_HS2_OC_CALLBACK();
+          BDRV->IRQCLR.bit.HS2_OC_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* HS2 off-state drain source monitoring */
+  #if (BDRV_HS2_DS_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HS2_DS_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HS2_DS_IS == 1u)
+        {
+          BDRV_HS2_DS_CALLBACK();
+          BDRV->IRQCLR.bit.HS2_DS_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* External HS3 MOSFET overcurrent */
+  #if (BDRV_LS3_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.LS3_OC_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.LS3_OC_IS == 1u)
+        {
+          BDRV_LS3_OC_CALLBACK();
+          BDRV->IRQCLR.bit.LS3_OC_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* LS3 off-state drain source monitoring */
+  #if (BDRV_LS3_DS_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.LS3_DS_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.LS3_DS_IS == 1u)
+        {
+          BDRV_LS3_DS_CALLBACK();
+          BDRV->IRQCLR.bit.LS3_DS_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* External HS3 MOSFET overcurrent */
+  #if (BDRV_HS3_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HS3_OC_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HS3_OC_IS == 1u)
+        {
+          BDRV_HS3_OC_CALLBACK();
+          BDRV->IRQCLR.bit.HS3_OC_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* HS3 off-state drain source monitoring */
+  #if (BDRV_HS3_DS_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HS3_DS_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HS3_DS_IS == 1u)
+        {
+          BDRV_HS3_DS_CALLBACK();
+          BDRV->IRQCLR.bit.HS3_DS_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Half bridge 1 adaptive sequencer */
+  #if (BDRV_HB1_ASEQ_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HB1_ASEQ_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HB1_ASEQ_IS == 1u)
+        {
+          BDRV_HB1_ASEQ_CALLBACK();
+          BDRV->IRQCLR.bit.HB1_ASEQ_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Half bridge 2 adaptive sequencer */
+  #if (BDRV_HB2_ASEQ_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HB2_ASEQ_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HB2_ASEQ_IS == 1u)
+        {
+          BDRV_HB2_ASEQ_CALLBACK();
+          BDRV->IRQCLR.bit.HB2_ASEQ_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Half bridge 3 adaptive sequencer */
+  #if (BDRV_HB3_ASEQ_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HB3_ASEQ_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HB3_ASEQ_IS == 1u)
+        {
+          BDRV_HB3_ASEQ_CALLBACK();
+          BDRV->IRQCLR.bit.HB3_ASEQ_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Driver sequence error */
+  #if (BDRV_SEQ_ERR_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.SEQ_ERR_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.SEQ_ERR_IS == 1u)
+        {
+          BDRV_SEQ_ERR_CALLBACK();
+          BDRV->IRQCLR.bit.SEQ_ERR_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Half bridge 1 active driver detection */
+  #if (BDRV_HB1_ACTDRV_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HB1_ACTDRV_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HB1_ACTDRV_IS == 1u)
+        {
+          BDRV_HB1_ACTDRV_CALLBACK();
+          BDRV->IRQCLR.bit.HB1_ACTDRV_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Half bridge 2 active driver detection */
+  #if (BDRV_HB2_ACTDRV_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HB2_ACTDRV_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HB2_ACTDRV_IS == 1u)
+        {
+          BDRV_HB2_ACTDRV_CALLBACK();
+          BDRV->IRQCLR.bit.HB2_ACTDRV_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Half bridge 3 active driver detection */
+  #if (BDRV_HB3_ACTDRV_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ1_Msk) >>  SCU_INP0_INP_BDRV_IRQ1_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.HB3_ACTDRV_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.HB3_ACTDRV_IS == 1u)
+        {
+          BDRV_HB3_ACTDRV_CALLBACK();
+          BDRV->IRQCLR.bit.HB3_ACTDRV_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* Charge pump comparator low voltage */
+  #if (BDRV_VCP_LOTH2_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_BDRV_IRQ0_Msk) >>  SCU_INP0_INP_BDRV_IRQ0_Pos) == WARN_INP_NVIC_IRQ0)
+      if (BDRV->IRQEN.bit.VCP_LOTH2_IEN == 1u)
+      {
+        if (BDRV->IRQS.bit.VCP_LOTH2_IS == 1u)
+        {
+          BDRV_VCP_LOTH2_CALLBACK();
+          BDRV->IRQCLR.bit.VCP_LOTH2_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CSC Overcurrent event */
+  #if (CSACSC_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_CSC_Msk) >>  SCU_INP0_INP_CSC_Pos) == WARN_INP_NVIC_IRQ0)
+      if (CSACSC->IRQEN.bit.CSC_OC_IEN == 1u)
+      {
+        if (CSACSC->IRQS.bit.CSC_OC_IS == 1u)
+        {
+          CSACSC_OC_CALLBACK();
+          CSACSC->IRQCLR.bit.CSC_OC_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CSA minimum gain or offset selection error */
+  #if (CSACSC_PARAM_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_CSC_Msk) >>  SCU_INP0_INP_CSC_Pos) == WARN_INP_NVIC_IRQ0)
+      if (CSACSC->IRQEN.bit.SEL_ERR_IEN == 1u)
+      {
+        if (CSACSC->IRQS.bit.SEL_ERR_IS == 1u)
+        {
+          CSACSC_PARAM_CALLBACK();
+          CSACSC->IRQCLR.bit.SEL_ERR_ISC = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* PMU VDDP undervoltage warning */
+  #if (PMU_VDDP_UVWARN_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_PMU_Msk) >>  SCU_INP0_INP_PMU_Pos) == WARN_INP_NVIC_IRQ0)
+      if (PMU->VDDP_IRQEN.bit.UVWARN_IEN == 1u)
+      {
+        if (PMU->VDDP_STS.bit.UVWARN_IS == 1u)
+        {
+          PMU_VDDP_UVWARN_CALLBACK();
+          PMU->VDDP_STS_CLR.bit.UVWARN_IS_CLR = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* PMU VDDP overvoltage */
+  #if (PMU_VDDP_OV_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_PMU_Msk) >>  SCU_INP0_INP_PMU_Pos) == WARN_INP_NVIC_IRQ0)
+      if (PMU->VDDP_IRQEN.bit.OV_IEN == 1u)
+      {
+        if (PMU->VDDP_STS.bit.OV_IS == 1u)
+        {
+          PMU_VDDP_OV_CALLBACK();
+          PMU->VDDP_STS_CLR.bit.OV_IS_CLR = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* PMU VDDC undervoltage warning */
+  #if (PMU_VDDC_UVWARN_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_PMU_Msk) >>  SCU_INP0_INP_PMU_Pos) == WARN_INP_NVIC_IRQ0)
+      if (PMU->VDDC_IRQEN.bit.UVWARN_IEN == 1u)
+      {
+        if (PMU->VDDC_STS.bit.UVWARN_IS == 1u)
+        {
+          PMU_VDDC_UVWARN_CALLBACK();
+          PMU->VDDC_STS_CLR.bit.UVWARN_IS_CLR = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* PMU VDDC overvoltage */
+  #if (PMU_VDDC_OV_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_PMU_Msk) >>  SCU_INP0_INP_PMU_Pos) == WARN_INP_NVIC_IRQ0)
+      if (PMU->VDDC_IRQEN.bit.OV_IEN == 1u)
+      {
+        if (PMU->VDDC_STS.bit.OV_IS == 1u)
+        {
+          PMU_VDDC_OV_CALLBACK();
+          PMU->VDDC_STS_CLR.bit.OV_IS_CLR = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* PMU VDDEXT undervoltage */
+  #if (PMU_VDDEXT_UV_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_PMU_Msk) >>  SCU_INP0_INP_PMU_Pos) == WARN_INP_NVIC_IRQ0)
+      if (PMU->VDDEXT_IRQEN.bit.UV_IEN == 1u)
+      {
+        if (PMU->VDDEXT_STS.bit.UV_IS == 1u)
+        {
+          PMU_VDDEXT_UV_CALLBACK();
+          PMU->VDDEXT_STS_CLR.bit.UV_IS_CLR = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* PMU VDDEXT overtemperature */
+  #if (PMU_VDDEXT_OT_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_PMU_Msk) >>  SCU_INP0_INP_PMU_Pos) == WARN_INP_NVIC_IRQ0)
+      if (PMU->VDDEXT_IRQEN.bit.OT_IEN == 1u)
+      {
+        if (PMU->VDDEXT_STS.bit.OT_IS == 1u)
+        {
+          PMU_VDDEXT_OT_CALLBACK();
+          PMU->VDDEXT_STS_CLR.bit.OT_IS_CLR = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* ARVG (VAREF Overcurrent) */
+  #if (ARVG_VAREF_OC_INT_EN == 1)
+    #if (((SCU_INP0 & SCU_INP0_INP_ARVG_Msk) >>  SCU_INP0_INP_ARVG_Pos) == WARN_INP_NVIC_IRQ0)
+      if (ARVG->VAREF_IEN.bit.OC_IEN == 1u)
+      {
+        if (ARVG->VAREF_IRQ.bit.OC_IS == 1u)
+        {
+          ARVG_VAREF_OC_CALLBACK();
+          ARVG->VAREF_IRQ_CLR.bit.OC_IS_CLR = 1u;
+          #if (NVIC_IRQ0_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq0 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+}
+#endif /* ((CPU_NVIC_ISER & CPU_NVIC_ISER_IRQEN0_Msk) == 1u) */

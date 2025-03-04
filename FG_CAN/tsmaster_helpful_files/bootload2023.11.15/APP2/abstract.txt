@@ -1,0 +1,13 @@
+Getting started: Getting started Project with all components and the       
+required settings in the 'Options for Target' dialog                       
+
+'Options for Target' setting:                                              
+--> Target: Uncheck IROM2 and IRAM2, Check Use MicroLIB                    
+--> C/C++ (AC6): Change Optimization from Oz to O0                         
+--> ASM: Change Assembler Option from armclang to armasm                           
+--> Debug: Uncheck "Run to main", Add ini file provided in this project    
+    content of ini file with filename debug.ini:                           
+    SP = _RWORD(0x11000080)                                                
+    PC = _RWORD(0x11000084)                                                
+--> Debug --> Settings: Change connect from Normal to With Pre-Reset,      
+    Change Reset from Autodetect to VECTRESET                              

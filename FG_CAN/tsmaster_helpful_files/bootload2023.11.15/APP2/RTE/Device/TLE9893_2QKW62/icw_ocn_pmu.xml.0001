@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_pmu.xml                                                            -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-15, BG:   EP-495: Added the watchdog section, previously in SCU-->
+<!-- V0.0.3: 2020-10-21, JO:   EP-536: Added option to enable/disable the watchdog  -->
+<!-- V0.0.4: 2020-10-27, BG:   EP-551: Locked pin P0.10 when enabled as reset pin   -->
+<!-- V0.0.5: 2020-11-16, JO:   EP-587: Enabled PMU.MISC_CTRL.FI_PU_EN by default    -->
+<!-- V0.0.6: 2020-11-17, BG:   EP-602: Removed the checkbox to enable the watchdog  -->
+<!-- V0.0.7: 2020-12-03, BG:   EP-624: Moved the MONx config from PMU to MON tab    -->
+<!--                           Enabled the MON as wake-up sources per default       -->
+<!-- V0.1.0: 2020-12-07, BG:   EP-637: Updated timing display for cyclic wake and   -->
+<!--                           cyclic sense                                         -->
+<!--                           Moved Wake-up with reset from stop mode into Misc    -->
+<!-- V0.1.1: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.3.1">
+  <checksum>e192265d24898e887b0d095a2f9170b2d2c5864590df9db90e02a3949b2094a4</checksum>
+  <version label="V0.1.1"/>
+  <svd file="tle989x.svd"/>
+  <verticalcontainer label="PMU">
+    <header file="pmu_defines.h">
+
+      <include IDX="PMU">template_pmu_timer.xml</include>
+
+      <timer visible="false" define="PMU_INIT" svd="0" interval="1" singleShot="1" run="0" header="">
+        <action event="changed" cmd="setDef" data="UPDATE_MODE.run=1"/>
+      </timer>
+
+      <verticalcontainer>
+
+        <!-- PMU CONFIG -->
+        <horizontalcontainer label="PMU">
+          <verticalcontainer>
+
+            <!-- VOLTAGE CONTROL -->
+            <groupcontainer label="Voltage Control" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228" size="480;300">
+              <treecontainer label="Voltage Control" headerlabels="Item;Value;" columnwidths="280;50">
+                <branch label="VDDP" expand="1">
+                  <combo label="Stop Mode Configuration" define="PMU.VDDP_CTRL.MCNFSTOP" default="label=Adaptive Mode" size="150;-1">
+                    <item label="Adaptive Mode" override="value1"/>
+                    <item label="Low Current Mode" override="value2"/>
+                    <item hide="value3"/>
+                    <item label="High Current Mode" override="value4"/>
+                  </combo>
+                  <combo label="Current Threshold" define="PMU.VDDP_CTRL.ITH_SEL" default="label=Low Threshold" size="150;-1">
+                    <item label="Low Threshold" override="value1"/>
+                    <item label="High Threshold" override="value2"/>
+                  </combo>
+                </branch>
+                <branch label="VDDC" expand="1">
+                  <combo label="Stop Mode Configuration" define="PMU.VDDC_CTRL.MCNFSTOP" default="label=Adaptive Mode" size="150;-1">
+                    <item label="Adaptive Mode" override="value1"/>
+                    <item label="Low Current Mode" override="value2"/>
+                    <item hide="value3"/>
+                    <item label="High Current Mode" override="value4"/>
+                  </combo>
+                </branch>
+                <branch label="VDDEXT" expand="1">
+                  <checkbox label="Enable VDDEXT" define="PMU.VDDEXT_CTRL.EN" default="0"/>
+                  <checkbox label="Enable VDDEXT Cyclic Sense" define="PMU.VDDEXT_CTRL.CYC_EN" default="0"/>
+                </branch>
+              </treecontainer>
+            </groupcontainer>
+            
+            <!-- WATCHDOG -->
+            <groupcontainer label="Watchdog" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177" size="480;200">
+              <treecontainer label="Watchdog" headerlabels="Item;Value;" columnwidths="280;150">
+                <spinbox label="Watchdog Period [ms]" define="PMU.WD_CTRL_WDP" svd="0" range="16;1008" step="1" default="1008" size="100;-1" header="temp_defines.h"/>
+                <math visible="false" define="PMU.WD_CTRL.WDP" formula="trunc(PMU.WD_CTRL_WDP/16)"/>
+                <math label="Effective Watchdog Period [ms]" define="PMU.WD_CTRL_WDP_EFFECTIVE" svd="0" formula="PMU.WD_CTRL.WDP*16" header="temp_defines.h"/>
+                <math visible="false" label="Trigger Point" define="PMU.SAFE_TRIGGER" svd="0" formula="round(PMU.WD_CTRL_WDP_EFFECTIVE*0.715)"/>
+              </treecontainer>
+            </groupcontainer>
+
+            <!-- MISCELLANEOUS -->
+            <groupcontainer label="Miscellaneous" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="206;217;164" size="480;250">
+              <treecontainer label="Voltage Control" headerlabels="Item;Value;" columnwidths="280;50">
+                <checkbox label="Enable Failure Input Pull-Up" define="PMU.MISC_CTRL.FI_PU_EN" default="1"/>
+                <combo label="Reset Blind Time" define="PMU.RST_CTRL.TFB" default="label=1023 us" size="100;-1">
+                  <item label="8 us" override="value1"/>
+                  <item label="16 us" override="value2"/>
+                  <item label="31 us" override="value3"/>
+                  <item label="63 us" override="value4"/>
+                  <item label="127 us" override="value5"/>
+                  <item label="255 us" override="value6"/>
+                  <item label="511 us" override="value7"/>
+                  <item label="1023 us" override="value8"/>
+                </combo>
+                <checkbox label="Enable Pin P0.10 as Reset PIN" define="PMU.START_CONFIG.RST_PIN_EN" default="1" lockon="GPIO.P0_DIR.DIR10=0"/>
+                <checkbox label="Enable VDDC Reduction in Stop Mode" define="PMU.WAKE_CTRL.VDDC_RED_EN" default="1"/>
+                <checkbox label="Enable Wake-up with Reset from Stop Mode" define="PMU.WAKE_CTRL.WAKE_W_RST" default="0" size="200;-1"/>
+                <checkbox label="Enable RAM Test after Wake from Stop Mode" define="PMU.START_CONFIG.CONF"/>
+              </treecontainer>
+            </groupcontainer>
+          </verticalcontainer>
+
+          <!-- INTERRUPTS -->
+          <groupcontainer label="Interrupts" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84" size="410;-1">
+            <verticalcontainer>
+
+              <!-- Node Selection -->
+              <horizontalcontainer>
+                <text label="Node Selection" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <combo define="SCU.INP0.INP_PMU" header="isr_defines.h">
+                  <item label="WARN_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN0=1"/>
+                  <item label="WARN_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN1=1"/>
+                </combo>
+              </horizontalcontainer>
+
+              <!-- VDDP IRQ -->
+              <text label="VDDP Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+              <include INT_TXT="VDDP Undervoltage Warning Interrupt" VOLT="VDDP" TRIG="UVWARN">template_pmu_interrupt.xml</include>
+              <include INT_TXT="VDDP Overvoltage Interrupt" VOLT="VDDP" TRIG="OV">template_pmu_interrupt.xml</include>
+
+              <!-- VDDC IRQ -->
+              <text label="VDDC Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+              <include INT_TXT="VDDC Undervoltage Warning Interrupt" VOLT="VDDC" TRIG="UVWARN">template_pmu_interrupt.xml</include>
+              <include INT_TXT="VDDC Overvoltage Interrupt" VOLT="VDDC" TRIG="OV">template_pmu_interrupt.xml</include>
+
+              <!-- VDDEXT IRQ -->
+              <text label="VDDEXT Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+              <include INT_TXT="VDDEXT Undervoltage Interrupt" VOLT="VDDEXT" TRIG="UV">template_pmu_interrupt.xml</include>
+              <include INT_TXT="VDDEXT Overtemperature Interrupt" VOLT="VDDEXT" TRIG="OT">template_pmu_interrupt.xml</include>
+
+            </verticalcontainer>
+          </groupcontainer>
+
+          <!-- WAKE-UP CONTROL -->
+          <groupcontainer label="Wake-up Control" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="245;179;138" size="970;-1">
+            <horizontalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+
+              <!-- Wake-Up Sources -->
+              <groupcontainer label="Wake-up Sources" size="220;-1">
+                <verticalcontainer>
+                  <checkbox label="CAN" define="PMU.WAKE_CTRL.CAN_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Cyclic" define="PMU.WAKE_CTRL.CYC_WAKE_EN" default="1" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="GPIO_0" define="PMU.WAKE_CTRL.GPIO0_WAKE_EN" default="0" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="GPIO_1" define="PMU.WAKE_CTRL.GPIO1_WAKE_EN" default="0" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="GPIO_2" define="PMU.WAKE_CTRL.GPIO2_WAKE_EN" default="0" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="GPIO_3" define="PMU.WAKE_CTRL.GPIO3_WAKE_EN" default="0" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="GPIO_4" define="PMU.WAKE_CTRL.GPIO4_WAKE_EN" default="0" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="GPIO_5" define="PMU.WAKE_CTRL.GPIO5_WAKE_EN" default="0" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="MON1" define="PMU.WAKE_CTRL.MON1_WAKE_EN" default="1" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="MON2" define="PMU.WAKE_CTRL.MON2_WAKE_EN" default="1" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="MON3" define="PMU.WAKE_CTRL.MON3_WAKE_EN" default="1" size="200;-1">
+                    <action event="checked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                    <action event="unchecked" cmd="setDef" data="UPDATE_MODE.run=1"/>
+                  </checkbox>
+                  <checkbox label="Stop Mode VDDP UV Warning" define="PMU.WAKE_CTRL.VDDP_UVWARN_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Stop Mode VDDP OV" define="PMU.WAKE_CTRL.VDDP_OV_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Stop Mode VDDP OC" define="PMU.WAKE_CTRL.VDDP_HCM_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Stop Mode VDDC UV Warning" define="PMU.WAKE_CTRL.VDDC_UVWARN_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Stop Mode VDDC OV" define="PMU.WAKE_CTRL.VDDC_OV_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Stop Mode VDDC OC" define="PMU.WAKE_CTRL.VDDC_HCM_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Stop Mode VDDEXT OT" define="PMU.WAKE_CTRL.VDDEXT_OT_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="Stop Mode VDDEXT UV" define="PMU.WAKE_CTRL.VDDEXT_UV_WAKE_EN" default="0" size="200;-1"/>
+                  <checkbox label="VSD OV" define="PMU.WAKE_CTRL.VSDOV_WAKE_EN" default="0" size="200;-1"/>
+                </verticalcontainer>
+              </groupcontainer>
+
+              <verticalcontainer>
+
+                <!-- Wake-Up Control via GPIO -->
+                <groupcontainer label="Wake-Up Control via GPIO" define="CONT_GPIO">
+                  <verticalcontainer>
+                    <horizontalcontainer size="230;-1">
+                      <text label="Filter Time"/>
+                      <combo define="PMU.WAKE_FILT_CTRL.GPIO_FT" default="label=4 us">
+                        <item label="4 us" override="value1"/>
+                        <item label="8 us" override="value2"/>
+                        <item label="16 us" override="value3"/>
+                        <item label="32 us" override="value4"/>
+                      </combo>
+                    </horizontalcontainer>
+                    <horizontalcontainer>
+                      <include IDX="0">template_pmu_gpiowake.xml</include>
+                      <include IDX="1">template_pmu_gpiowake.xml</include>
+                      <include IDX="2">template_pmu_gpiowake.xml</include>
+                    </horizontalcontainer>
+                    <horizontalcontainer>
+                      <include IDX="3">template_pmu_gpiowake.xml</include>
+                      <include IDX="4">template_pmu_gpiowake.xml</include>
+                      <include IDX="5">template_pmu_gpiowake.xml</include>
+                    </horizontalcontainer>
+
+                  </verticalcontainer>
+                </groupcontainer>
+
+                <!-- Wake-Up Control via MON -->
+                <groupcontainer label="Wake Control via MON" define="CONT_MON">
+                  <verticalcontainer>
+                    <horizontalcontainer size="220;-1">
+                      <text label="Filter Time" size="130;-1"/>
+                      <combo define="PMU.WAKE_FILT_CTRL.MON_FT" default="label=16 us" size="70;-1">
+                        <item label="16 us" override="value1"/>
+                        <item label="32 us" override="value2"/>
+                      </combo>
+                      
+                    </horizontalcontainer>
+                    <text label="/*\ MON are configurable in the MON tab. /*\" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                  </verticalcontainer>
+                </groupcontainer>
+
+                <horizontalcontainer>
+
+                  <!-- Wake-Up Control via Cyclic -->
+                  <groupcontainer label="Wake Control via Cyclic" define="CONT_CYCLIC">
+                    <verticalcontainer>
+                      <math visible="false" define="PMU.CYC_CTRL.CYC_SENSE_EN" formula="PMU.WAKE_GPIO_CTRL0.CYC.+PMU.WAKE_GPIO_CTRL1.CYC.+PMU.WAKE_GPIO_CTRL2.CYC.+PMU.WAKE_GPIO_CTRL3.CYC.+PMU.WAKE_GPIO_CTRL4.CYC.+PMU.WAKE_GPIO_CTRL5.CYC.+PMU.MON_CTRL1.CYC_SENSE_EN.+PMU.MON_CTRL2.CYC_SENSE_EN.+PMU.MON_CTRL3.CYC_SENSE_EN"/>
+                      <horizontalcontainer>
+                        <text label="Off-Time [ms]"/>
+                        <spinbox define="PMU.CYC_WAKE_CTRL_CYC_TOFF" range="2;2048" default="1152" svd="0" header="temp_defines.h"/>
+                        <math visible="false" label="Exponent" define="PMU.CYC_CTRL.CYC_WAKE_E01" formula="((((PMU.CYC_WAKE_CTRL_CYC_TOFF/2)-1)&lt;16).*(((PMU.CYC_WAKE_CTRL_CYC_TOFF/2)-1)&gt;1))?(0:((((PMU.CYC_WAKE_CTRL_CYC_TOFF/8)-1)&lt;16).*(((PMU.CYC_WAKE_CTRL_CYC_TOFF/8)-1)&gt;1))?(1:((((PMU.CYC_WAKE_CTRL_CYC_TOFF/32)-1)&lt;16).*(((PMU.CYC_WAKE_CTRL_CYC_TOFF/32)-1)&gt;1))?(2:3)))"/>
+                        <math visible="false" label="Mantissa" define="PMU.CYC_CTRL.CYC_WAKE_M03" formula="round((PMU.CYC_WAKE_CTRL_CYC_TOFF/(2*(4^PMU.CYC_CTRL.CYC_WAKE_E01)))-1)"/>
+                      </horizontalcontainer>
+                      <horizontalcontainer>
+                        <text label="Effective Off-Time"/>
+                        <math visible="true" define="PMU.CYC_WAKE_CTRL_CYC_TOFF_REAL" unit=" ms" svd="0" formula="2*(4^PMU.CYC_CTRL.CYC_WAKE_E01)*(PMU.CYC_CTRL.CYC_WAKE_M03+1)" header="temp_defines.h"/>
+                      </horizontalcontainer>
+                    </verticalcontainer>
+                  </groupcontainer>
+
+                  <!-- Wake-Up Control via Cyclic Sense -->
+                  <groupcontainer label="Wake Control via Cyclic Sense" define="CONT_CYC_SENSE">
+                    <verticalcontainer>
+                      <horizontalcontainer>
+                        <text label="On-Time"/>
+                        <combo define="PMU.CYC_CTRL.CYC_ON_TIME" default="label=150 us">
+                          <item label="150 us" override="value1"/>
+                          <item label="250 us" override="value2"/>
+                          <item label="500 us" override="value3"/>
+                          <item label="1 ms" override="value4"/>
+                          <item label="2 ms" override="value5"/>
+                          <item label="5 ms" override="value6"/>
+                          <item label="10 ms" override="value7"/>
+                          <item label="20 ms" override="value8"/>
+                        </combo>
+                      </horizontalcontainer>
+                      <horizontalcontainer>
+                        <text label="Off-Time [ms]"/>
+                        <spinbox define="PMU.CYC_SENSE_CTRL_CYC_TOFF" range="2;2048" default="1152" svd="0" header="temp_defines.h"/>
+                        <math visible="false" label="Exponent" define="PMU.CYC_CTRL.CYC_SENSE_E01" formula="((((PMU.CYC_SENSE_CTRL_CYC_TOFF/2)-1)&lt;16).*(((PMU.CYC_SENSE_CTRL_CYC_TOFF/2)-1)&gt;1))?(0:((((PMU.CYC_SENSE_CTRL_CYC_TOFF/8)-1)&lt;16).*(((PMU.CYC_SENSE_CTRL_CYC_TOFF/8)-1)&gt;1))?(1:((((PMU.CYC_SENSE_CTRL_CYC_TOFF/32)-1)&lt;16).*(((PMU.CYC_SENSE_CTRL_CYC_TOFF/32)-1)&gt;1))?(2:3)))"/>
+                        <math visible="false" label="Mantissa" define="PMU.CYC_CTRL.CYC_SENSE_M03" formula="round((PMU.CYC_SENSE_CTRL_CYC_TOFF/(2*(4^PMU.CYC_CTRL.CYC_SENSE_E01)))-1)"/>
+                      </horizontalcontainer>
+                      <horizontalcontainer>
+                        <text label="Effective Off-Time"/>
+                        <math visible="true" define="PMU.CYC_SENSE_CTRL_CYC_TOFF_REAL" unit=" ms" svd="0" formula="2*(4^PMU.CYC_CTRL.CYC_SENSE_E01)*(PMU.CYC_CTRL.CYC_SENSE_M03+1)" header="temp_defines.h"/>
+                      </horizontalcontainer>
+                    </verticalcontainer>
+                  </groupcontainer>
+                </horizontalcontainer>
+              </verticalcontainer>
+            </horizontalcontainer>
+          </groupcontainer>
+        </horizontalcontainer>
+      </verticalcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>

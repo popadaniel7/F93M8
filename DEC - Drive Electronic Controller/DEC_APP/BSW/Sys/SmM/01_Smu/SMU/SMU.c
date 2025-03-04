@@ -727,6 +727,24 @@ void safetyKitEnableAllSMUAlarms(void)
         /* Iterate through all alarms of every group */
         for(uint8 alarmPos = 0 ; alarmPos < 32 ; alarmPos++)
         {
+            if(9u == alarmGroup && (5u == alarmPos || 17u == alarmPos))
+            {
+                continue;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+          
+            if(6u == alarmGroup && 20u == alarmPos)
+            {
+                continue;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+          
             if(7u == alarmGroup && 1u == alarmPos)
             {
                 continue;

@@ -1,0 +1,1353 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;*******************************************************
+                       ********************************************************
+                       *******
+    2 00000000         ;
+    3 00000000         ; @file     startup_tle989x.s
+    4 00000000         ; @brief    CMSIS Core Device Startup File for
+    5 00000000         ;           Infineon TLE988x and TLE989x Device Series
+    6 00000000         ; @version  V0.4.0
+    7 00000000         ; @date     11. Nov 2021
+    8 00000000         ;
+    9 00000000         ; Copyright (c) Infineon Technologies AG
+   10 00000000         ; All rights reserved.
+   11 00000000         ;
+   12 00000000         ; Redistribution and use in source and binary forms, wit
+                       h or without modification,are permitted provided that th
+                       e
+   13 00000000         ; following conditions are met:
+   14 00000000         ;
+   15 00000000         ;   Redistributions of source code must retain the above
+                        copyright notice, this list of conditions and the  foll
+                       owing
+   16 00000000         ;   disclaimer.
+   17 00000000         ;
+   18 00000000         ;   Redistributions in binary form must reproduce the ab
+                       ove copyright notice, this list of conditions and the
+   19 00000000         ;   following disclaimer in the documentation and/or oth
+                       er materials provided with the distribution.
+   20 00000000         ;
+   21 00000000         ;   Neither the name of the copyright holders nor the na
+                       mes of its contributors may be used to endorse or promot
+                       e
+   22 00000000         ;   products derived from this software without specific
+                        prior written permission.
+   23 00000000         ;
+   24 00000000         ; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+                        CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANT
+                       IES,
+   25 00000000         ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+                       OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+                       ARE
+   26 00000000         ; DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+                       CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDE
+                       NTAL,
+   27 00000000         ; SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDIN
+                       G, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS O
+                       R
+   28 00000000         ; SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS I
+                       NTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILI
+                       TY,
+   29 00000000         ; WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDI
+                       NG NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF T
+                       HE
+   30 00000000         ; USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILI
+                       TY OF SUCH DAMAGE.
+   31 00000000         ;
+   32 00000000         ;*******************************************************
+                       ********************************************************
+                       ******/
+   33 00000000         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   34 00000000         ;*******************************************************
+                       ************************
+   35 00000000         ;                       Author(s) Identity              
+                                             **
+   36 00000000         ;*******************************************************
+                       ************************
+   37 00000000         ;  Initials     Name                                    
+                                             **
+   38 00000000         ;  -----------------------------------------------------
+                       ----------------------**
+   39 00000000         ;  DM           Daniel Mysliwitz                        
+                                             **
+   40 00000000         ;  BG           Blandine Guillot                        
+                                             **
+   41 00000000         ;  JO           Julia Ott                               
+                                             **
+   42 00000000         ;*******************************************************
+                       ***********************/
+   43 00000000         
+   44 00000000         ;*******************************************************
+                       ************************
+   45 00000000         ;                       Revision Control History        
+                                             **
+   46 00000000         ;*******************************************************
+                       ************************
+   47 00000000         ;  V0.1.0: 2020-03-03, JO:   Initial version            
+                                             **
+   48 00000000         ;  V0.1.1: 2020-08-25, JO:   Renamed SystemInit to Syste
+                       m_init                **
+   49 00000000         ;                            Corrected name of NVIC_IRQx
+                       _Handler (0-31)       **
+   50 00000000         ;  V0.1.2: 2020-09-11, DM:   Added NAC/NAD and SECBOOT_K
+                       EY                    **
+   51 00000000         ;  V0.1.3: 2020-10-09, JO:   Corrected Offset of Vector 
+                       Table                 **
+   52 00000000         ;  V0.2.0: 2020-10-15, JO:   EP-525: Moved vector table 
+                       to address 0x11000100,**
+   53 00000000         ;                            keep __initial_sp and Reset
+                       _Handler also at the  **
+   54 00000000         ;                            original addresses (Offset 
+                       0x80) for the BootROM **
+   55 00000000         ;  V0.2.1: 2020-11-11, JO:   EP-582: Renamed System_init
+                        to SystemInit        **
+   56 00000000         ;  V0.3.0: 2021-04-09, JO:   EP-753: Applied FLASH1_CACH
+                       E_EN setting from     **
+   57 00000000         ;                            Config Wizard              
+                                             **
+   58 00000000         ;  V0.3.1: 2021-06-25, JO:   EP-851: Updated code to app
+                       ly Cache En/Dis       **
+   59 00000000         ;                            setting to remove faulty be
+                       havior with           **
+   60 00000000         ;                            J-Link Debugger            
+                                             **
+   61 00000000         ;  V0.3.2: 2021-07-12, BG:   EP-716: Updated .inc filena
+                       me                    **
+   62 00000000         ;  V0.3.3: 2021-11-11, JO:   EP-937: Updated copyright a
+                       nd branding           **
+   63 00000000         ;  V0.4.0: 2021-11-11, JO:   EP-977: Added checks to app
+                       ly CACHE_EN setting   **
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   64 00000000         ;                            only when PC (MSP/PSP) does
+                       n't point to Flash1   **
+   65 00000000         ;*******************************************************
+                       ***********************/
+   66 00000000         
+   67 00000000 00000350 
+                       Stack_Size
+                               EQU              0x350
+   68 00000000         
+   69 00000000                 AREA             STACK, NOINIT, READWRITE, ALIGN
+=3
+   70 00000000         Stack_Mem
+                               SPACE            Stack_Size
+   71 00000350         __initial_sp
+   72 00000350         
+   73 00000350         ; <h> Heap Configuration
+   74 00000350         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
+   75 00000350         ; </h>
+   76 00000350         
+   77 00000350 00000000 
+                       Heap_Size
+                               EQU              0x00000000
+   78 00000350         
+   79 00000350                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
+3
+   80 00000000         __heap_base
+   81 00000000         Heap_Mem
+                               SPACE            Heap_Size
+   82 00000000         __heap_limit
+   83 00000000         
+   84 00000000                 THUMB
+   85 00000000                 PRESERVE8
+   86 00000000         
+   87 00000000         
+   88 00000000         ;*******************************************************
+                       ************************
+   89 00000000         ; Fill-up the Vector Table entries with the exceptions I
+                       SR address
+   90 00000000         ;*******************************************************
+                       ************************
+   91 00000000                 AREA             RESET, DATA, READONLY
+   92 00000000                 INCLUDE          bsl_defines_ARM.inc
+    1 00000000 FE01FB04 
+                       BSL_NAD_NAC
+                               EQU              0xFE01FB04
+    2 00000000 FFFFFFFF 
+                       SECBOOT_KEY
+                               EQU              0xFFFFFFFF
+    3 00000000 00000004 
+                       FLASH1_CACHE_EN
+                               EQU              0x00000004
+    4 00000000                 END
+   93 00000000                 EXPORT           __Vectors
+   94 00000000                 EXPORT           __Vectors_End
+   95 00000000                 EXPORT           __Vectors_Size
+   96 00000000         
+   97 00000000         ; First page
+   98 00000000 FE01FB04        DCD              BSL_NAD_NAC ; 0x11000000: NAC_N
+                                                            AD
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+   99 00000004 00000000        DCD              0           ; 0x11000004
+  100 00000008 00000000        DCD              0           ; 0x11000008: Secur
+                                                            e Boot Hash0
+  101 0000000C 00000000        DCD              0           ; 0x1100000C: Secur
+                                                            e Boot Hash0
+  102 00000010 00000000        DCD              0           ; 0x11000010: Secur
+                                                            e Boot Hash0
+  103 00000014 00000000        DCD              0           ; 0x11000014: Secur
+                                                            e Boot Hash0
+  104 00000018 00000000        DCD              0           ; 0x11000018: Secur
+                                                            e Boot Size
+  105 0000001C FFFFFFFF        DCD              SECBOOT_KEY ; 0x1100001C: Secur
+                                                            e Boot Key
+  106 00000020 00000000        DCD              0           ; 0x11000020
+  107 00000024 00000000        DCD              0           ; 0x11000024
+  108 00000028 00000000        DCD              0           ; 0x11000028
+  109 0000002C 00000000        DCD              0           ; 0x1100002C
+  110 00000030 00000000        DCD              0           ; 0x11000030
+  111 00000034 00000000        DCD              0           ; 0x11000034
+  112 00000038 00000000        DCD              0           ; 0x11000038
+  113 0000003C 00000000        DCD              0           ; 0x1100003C
+  114 00000040 00000000        DCD              0           ; 0x11000040
+  115 00000044 00000000        DCD              0           ; 0x11000044
+  116 00000048 00000000        DCD              0           ; 0x11000048
+  117 0000004C 00000000        DCD              0           ; 0x1100004C
+  118 00000050 00000000        DCD              0           ; 0x11000050
+  119 00000054 00000000        DCD              0           ; 0x11000054
+  120 00000058 00000000        DCD              0           ; 0x11000058
+  121 0000005C 00000000        DCD              0           ; 0x1100005C
+  122 00000060 00000000        DCD              0           ; 0x11000060
+  123 00000064 00000000        DCD              0           ; 0x11000064
+  124 00000068 00000000        DCD              0           ; 0x11000068
+  125 0000006C 00000000        DCD              0           ; 0x1100006C
+  126 00000070 00000000        DCD              0           ; 0x11000070
+  127 00000074 00000000        DCD              0           ; 0x11000074
+  128 00000078 00000000        DCD              0           ; 0x11000078
+  129 0000007C 00000000        DCD              0           ; 0x1100007C
+  130 00000080         
+  131 00000080         ; Second page
+  132 00000080 00000000        DCD              __initial_sp ; 0x11000080
+  133 00000084 00000000        DCD              Reset_Handler ; 0x11000084
+  134 00000088 00000000        DCD              0           ; 0x11000088
+  135 0000008C 00000000        DCD              0           ; 0x1100008C
+  136 00000090 00000000        DCD              0           ; 0x11000090
+  137 00000094 00000000        DCD              0           ; 0x11000094
+  138 00000098 00000000        DCD              0           ; 0x11000098
+  139 0000009C 00000000        DCD              0           ; 0x1100009C
+  140 000000A0 00000000        DCD              0           ; 0x110000A0
+  141 000000A4 00000000        DCD              0           ; 0x110000A4
+  142 000000A8 00000000        DCD              0           ; 0x110000A8
+  143 000000AC 00000000        DCD              0           ; 0x110000AC
+  144 000000B0 00000000        DCD              0           ; 0x110000B0
+  145 000000B4 00000000        DCD              0           ; 0x110000B4
+  146 000000B8 00000000        DCD              0           ; 0x110000B8
+  147 000000BC 00000000        DCD              0           ; 0x110000BC
+  148 000000C0 00000000        DCD              0           ; 0x110000C0
+  149 000000C4 00000000        DCD              0           ; 0x110000C4
+  150 000000C8 00000000        DCD              0           ; 0x110000C8
+  151 000000CC 00000000        DCD              0           ; 0x110000CC
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+  152 000000D0 00000000        DCD              0           ; 0x110000D0
+  153 000000D4 00000000        DCD              0           ; 0x110000D4
+  154 000000D8 00000000        DCD              0           ; 0x110000D8
+  155 000000DC 00000000        DCD              0           ; 0x110000DC
+  156 000000E0 00000000        DCD              0           ; 0x110000E0
+  157 000000E4 00000000        DCD              0           ; 0x110000E4
+  158 000000E8 00000000        DCD              0           ; 0x110000E8
+  159 000000EC 00000000        DCD              0           ; 0x110000EC
+  160 000000F0 00000000        DCD              0           ; 0x110000F0
+  161 000000F4 00000000        DCD              0           ; 0x110000F4
+  162 000000F8 00000000        DCD              0           ; 0x110000F8
+  163 000000FC 00000000        DCD              0           ; 0x110000FC
+  164 00000100         
+  165 00000100         
+  166 00000100         ; Third page, starts at 0x11000100: Vector table
+  167 00000100 00000000 
+                       __Vectors
+                               DCD              __initial_sp
+  168 00000104 00000000        DCD              Reset_Handler
+  169 00000108 00000000        DCD              NMI_Handler ; NMI Handler
+  170 0000010C 00000000        DCD              HardFault_Handler ; Hard Fault 
+                                                            Handler
+  171 00000110 00000000        DCD              MemManage_Handler 
+                                                            ; MPU Fault Handler
+                                                            
+  172 00000114 00000000        DCD              BusFault_Handler 
+                                                            ; Bus Fault Handler
+                                                            
+  173 00000118 00000000        DCD              UsageFault_Handler ; Usage Faul
+                                                            t Handler
+  174 0000011C 00000000        DCD              0           ; Reserved
+  175 00000120 00000000        DCD              0           ; Reserved
+  176 00000124 00000000        DCD              0           ; Reserved
+  177 00000128 00000000        DCD              0           ; Reserved
+  178 0000012C 00000000        DCD              SVC_Handler ; SVCall Handler
+  179 00000130 00000000        DCD              DebugMon_Handler ; Debug Monito
+                                                            r Handler
+  180 00000134 00000000        DCD              0           ; Reserved
+  181 00000138 00000000        DCD              PendSV_Handler ; PendSV Handler
+                                                            
+  182 0000013C 00000000        DCD              SysTick_Handler 
+                                                            ; SysTick Handler
+  183 00000140         
+  184 00000140         ; External Interrupts
+  185 00000140 00000000        DCD              NVIC_IRQ0_Handler ; 0: PMU, BDR
+                                                            V, CSC, ARVG
+  186 00000144 00000000        DCD              NVIC_IRQ1_Handler ; 1: PMU, BDR
+                                                            V, CSC, ARVG
+  187 00000148 00000000        DCD              NVIC_IRQ2_Handler ; 2: CCU7
+  188 0000014C 00000000        DCD              NVIC_IRQ3_Handler ; 3: CCU7
+  189 00000150 00000000        DCD              NVIC_IRQ4_Handler ; 4: CCU7
+  190 00000154 00000000        DCD              NVIC_IRQ5_Handler ; 5: CCU7
+  191 00000158 000000C1        DCD              0x000000c1  ; 6: MEMCTRL
+  192 0000015C 00000000        DCD              NVIC_IRQ7_Handler ; 7: GPT12E
+  193 00000160 00000000        DCD              NVIC_IRQ8_Handler ; 8: GPT12E
+  194 00000164 00000000        DCD              NVIC_IRQ9_Handler ; 9: Timer2
+  195 00000168 00000000        DCD              NVIC_IRQ10_Handler ; 10: ADC2
+  196 0000016C 00000000        DCD              NVIC_IRQ11_Handler ; 11: ADC2
+  197 00000170 00000000        DCD              NVIC_IRQ12_Handler ; 12: MON
+
+
+
+ARM Macro Assembler    Page 6 
+
+
+  198 00000174 00000000        DCD              NVIC_IRQ13_Handler ; 13: MON
+  199 00000178 00000000        DCD              NVIC_IRQ14_Handler ; 14: ADC1
+  200 0000017C 00000000        DCD              NVIC_IRQ15_Handler ; 15: ADC1
+  201 00000180 00000000        DCD              NVIC_IRQ16_Handler ; 16: ADC1
+  202 00000184 00000000        DCD              NVIC_IRQ17_Handler ; 17: ADC1
+  203 00000188 00000000        DCD              NVIC_IRQ18_Handler 
+                                                            ; 18: BEMF, SDADC
+  204 0000018C 00000000        DCD              NVIC_IRQ19_Handler 
+                                                            ; 19: BEMF, SDADC
+  205 00000190 00000000        DCD              NVIC_IRQ20_Handler ; 20: EXTINT
+                                                            
+  206 00000194 00000000        DCD              NVIC_IRQ21_Handler ; 21: EXTINT
+                                                            
+  207 00000198 00000000        DCD              NVIC_IRQ22_Handler 
+                                                            ; 22: UART0/1, LIN
+  208 0000019C 00000000        DCD              NVIC_IRQ23_Handler 
+                                                            ; 23: UART0/1, LIN
+  209 000001A0 00000000        DCD              NVIC_IRQ24_Handler ; 24: SSC0/1
+                                                            
+  210 000001A4 00000000        DCD              NVIC_IRQ25_Handler ; 25: SSC0/1
+                                                            
+  211 000001A8 00000000        DCD              NVIC_IRQ26_Handler 
+                                                            ; 26: MultiCAN
+  212 000001AC 00000000        DCD              NVIC_IRQ27_Handler 
+                                                            ; 27: MultiCAN
+  213 000001B0 00000000        DCD              NVIC_IRQ28_Handler 
+                                                            ; 28: MultiCAN
+  214 000001B4 00000000        DCD              NVIC_IRQ29_Handler ; 29: DMA
+  215 000001B8 00000000        DCD              NVIC_IRQ30_Handler ; 30: DMA
+  216 000001BC 00000000        DCD              NVIC_IRQ31_Handler 
+                                                            ; 31: Timer21
+  217 000001C0         
+  218 000001C0         
+  219 000001C0         __Vectors_End
+  220 000001C0         
+  221 000001C0 000000C0 
+                       __Vectors_Size
+                               EQU              __Vectors_End - __Vectors
+  222 000001C0         
+  223 000001C0                 AREA             |.text|, CODE, READONLY
+  224 00000000         
+  225 00000000         ;-------------------------------------------------------
+                       ------------------------
+  226 00000000         ; Reset Handler
+  227 00000000         ;
+  228 00000000         Reset_Handler
+                               PROC
+  229 00000000                 EXPORT           Reset_Handler             [WEAK
+]
+  230 00000000                 IMPORT           SystemInit
+  231 00000000                 IMPORT           __main
+  232 00000000         
+  233 00000000         ; CACHE_EN must not be applied when PC is in Flash 1. Lo
+                       ad PC to R2 for checking
+  234 00000000 467A            MOV              R2,PC
+  235 00000002         ; compare the PC value with FLASH1 range
+  236 00000002 12002000 
+                       FLASH1_BEGIN
+                               EQU              0x12002000
+
+
+
+ARM Macro Assembler    Page 7 
+
+
+  237 00000002 1203FFFF 
+                       FLASH1_END
+                               EQU              0x1203FFFF
+  238 00000002         ; PC <  FLASH1_BEGIN --> for sure not in FLASH1 --> appl
+                       y_cache_en_setting
+  239 00000002 4B12            LDR              R3, =FLASH1_BEGIN
+  240 00000004 429A            CMP              R2, R3
+  241 00000006 DB02            BLT              apply_cache_en_setting
+  242 00000008         ; else PC <  FLASH1_END --> in range of FLASH1 --> conti
+                       nue_with_systeminit
+  243 00000008 4B11            LDR              R3, =FLASH1_END
+  244 0000000A 429A            CMP              R2, R3
+  245 0000000C DB04            BLT              continue_with_systeminit
+  246 0000000E         
+  247 0000000E         ; Apply Cache en/dis setting 
+  248 0000000E         apply_cache_en_setting
+  249 0000000E         ; address of MEMCTRL->MEMCONTROL.reg is 0x48044040
+  250 0000000E 48044040 
+                       STARTUP_MEMCTRL_MEMCONTROL_ADDR
+                               EQU              0x48044040
+  251 0000000E 4811            LDR              R0, =STARTUP_MEMCTRL_MEMCONTROL
+_ADDR
+  252 00000010 6801            LDR              R1, [R0, #0x00]
+  253 00000012 F041 0104       ORR              R1, R1, #FLASH1_CACHE_EN
+  254 00000016 6001            STR              R1, [R0, #0x00]
+  255 00000018         
+  256 00000018         ; default reset handler content: call SystemInit and __m
+                       ain
+  257 00000018         continue_with_systeminit
+  258 00000018 480F            LDR              R0, =SystemInit
+  259 0000001A 4780            BLX              R0
+  260 0000001C 480F            LDR              R0, =__main
+  261 0000001E 4700            BX               R0
+  262 00000020                 ENDP
+  263 00000020         
+  264 00000020         ;-------------------------------------------------------
+                       ------------------------
+  265 00000020         ; Dummy Exception Handlers (infinite loops which can be 
+                       modified)                
+  266 00000020         ;
+  268 00000020         SVC_Handler_main
+                               PROC
+  269 00000020                 EXPORT           SVC_Handler_main            [WE
+AK]
+  270 00000020 E7FE            B                .
+  271 00000022                 ENDP
+  272 00000022         NMI_Handler
+                               PROC
+  273 00000022                 EXPORT           NMI_Handler                [WEA
+K]
+  274 00000022 E7FE            B                .
+  275 00000024                 ENDP
+  277 00000024         HardFault_Handler
+                               PROC
+  278 00000024                 EXPORT           HardFault_Handler          [WEA
+K]
+  279 00000024 E7FE            B                .
+  280 00000026                 ENDP
+  282 00000026         MemManage_Handler
+
+
+
+ARM Macro Assembler    Page 8 
+
+
+                               PROC
+  283 00000026                 EXPORT           MemManage_Handler          [WEA
+K]
+  284 00000026 E7FE            B                .
+  285 00000028                 ENDP
+  287 00000028         BusFault_Handler
+                               PROC
+  288 00000028                 EXPORT           BusFault_Handler           [WEA
+K]
+  289 00000028 E7FE            B                .
+  290 0000002A                 ENDP
+  292 0000002A         UsageFault_Handler
+                               PROC
+  293 0000002A                 EXPORT           UsageFault_Handler         [WEA
+K]
+  294 0000002A E7FE            B                .
+  295 0000002C                 ENDP
+  296 0000002C         SVC_Handler
+                               PROC
+  297 0000002C 2004            MOVS             R0, #4
+  298 0000002E 4671            MOV              R1, LR
+  299 00000030 4208            TST              R0, R1
+  300 00000032 D003            BEQ              stacking_used_MSP
+  301 00000034 F3EF 8009       MRS              R0, PSP     ; first parameter -
+                                                             stacking was using
+                                                             PSP
+  302 00000038 4909            LDR              R1, =SVC_Handler_main
+  303 0000003A 4708            BX               R1
+  304 0000003C         stacking_used_MSP
+  305 0000003C F3EF 8008       MRS              R0, MSP     ; first parameter -
+                                                             stacking was using
+                                                             MSP
+  306 00000040 4907            LDR              R1, =SVC_Handler_main
+  307 00000042 4708            BX               R1
+  308 00000044                 ENDP
+  310 00000044         DebugMon_Handler
+                               PROC
+  311 00000044                 EXPORT           DebugMon_Handler           [WEA
+K]
+  312 00000044 E7FE            B                .
+  313 00000046                 ENDP
+  314 00000046         PendSV_Handler
+                               PROC
+  315 00000046                 EXPORT           PendSV_Handler             [WEA
+K]
+  316 00000046 E7FE            B                .
+  317 00000048                 ENDP
+  318 00000048         SysTick_Handler
+                               PROC
+  319 00000048                 EXPORT           SysTick_Handler            [WEA
+K]
+  320 00000048 E7FE            B                .
+  321 0000004A                 ENDP
+  322 0000004A         
+  323 0000004A         Default_Handler
+                               PROC
+  324 0000004A                 EXPORT           NVIC_IRQ0_Handler            [W
+EAK]
+  325 0000004A                 EXPORT           NVIC_IRQ1_Handler            [W
+
+
+
+ARM Macro Assembler    Page 9 
+
+
+EAK]
+  326 0000004A                 EXPORT           NVIC_IRQ2_Handler            [W
+EAK]
+  327 0000004A                 EXPORT           NVIC_IRQ3_Handler            [W
+EAK]
+  328 0000004A                 EXPORT           NVIC_IRQ4_Handler            [W
+EAK]
+  329 0000004A                 EXPORT           NVIC_IRQ5_Handler            [W
+EAK]
+  330 0000004A                 EXPORT           NVIC_IRQ6_Handler            [W
+EAK]
+  331 0000004A                 EXPORT           NVIC_IRQ7_Handler            [W
+EAK]
+  332 0000004A                 EXPORT           NVIC_IRQ8_Handler            [W
+EAK]
+  333 0000004A                 EXPORT           NVIC_IRQ9_Handler            [W
+EAK]
+  334 0000004A                 EXPORT           NVIC_IRQ10_Handler           [W
+EAK]
+  335 0000004A                 EXPORT           NVIC_IRQ11_Handler           [W
+EAK]
+  336 0000004A                 EXPORT           NVIC_IRQ12_Handler           [W
+EAK]
+  337 0000004A                 EXPORT           NVIC_IRQ13_Handler           [W
+EAK]
+  338 0000004A                 EXPORT           NVIC_IRQ14_Handler           [W
+EAK]
+  339 0000004A                 EXPORT           NVIC_IRQ15_Handler           [W
+EAK]
+  340 0000004A                 EXPORT           NVIC_IRQ16_Handler           [W
+EAK]
+  341 0000004A                 EXPORT           NVIC_IRQ17_Handler           [W
+EAK]
+  342 0000004A                 EXPORT           NVIC_IRQ18_Handler           [W
+EAK]
+  343 0000004A                 EXPORT           NVIC_IRQ19_Handler           [W
+EAK]
+  344 0000004A                 EXPORT           NVIC_IRQ20_Handler           [W
+EAK]
+  345 0000004A                 EXPORT           NVIC_IRQ21_Handler           [W
+EAK]
+  346 0000004A                 EXPORT           NVIC_IRQ22_Handler           [W
+EAK]
+  347 0000004A                 EXPORT           NVIC_IRQ23_Handler           [W
+EAK]
+  348 0000004A                 EXPORT           NVIC_IRQ24_Handler           [W
+EAK]
+  349 0000004A                 EXPORT           NVIC_IRQ25_Handler           [W
+EAK]
+  350 0000004A                 EXPORT           NVIC_IRQ26_Handler           [W
+EAK]
+  351 0000004A                 EXPORT           NVIC_IRQ27_Handler           [W
+EAK]
+  352 0000004A                 EXPORT           NVIC_IRQ28_Handler           [W
+EAK]
+  353 0000004A                 EXPORT           NVIC_IRQ29_Handler           [W
+EAK]
+  354 0000004A                 EXPORT           NVIC_IRQ30_Handler           [W
+EAK]
+
+
+
+ARM Macro Assembler    Page 10 
+
+
+  355 0000004A                 EXPORT           NVIC_IRQ31_Handler           [W
+EAK]
+  356 0000004A         
+  357 0000004A         NVIC_IRQ0_Handler
+  358 0000004A         NVIC_IRQ1_Handler
+  359 0000004A         NVIC_IRQ2_Handler
+  360 0000004A         NVIC_IRQ3_Handler
+  361 0000004A         NVIC_IRQ4_Handler
+  362 0000004A         NVIC_IRQ5_Handler
+  363 0000004A         NVIC_IRQ6_Handler
+  364 0000004A         NVIC_IRQ7_Handler
+  365 0000004A         NVIC_IRQ8_Handler
+  366 0000004A         NVIC_IRQ9_Handler
+  367 0000004A         NVIC_IRQ10_Handler
+  368 0000004A         NVIC_IRQ11_Handler
+  369 0000004A         NVIC_IRQ12_Handler
+  370 0000004A         NVIC_IRQ13_Handler
+  371 0000004A         NVIC_IRQ14_Handler
+  372 0000004A         NVIC_IRQ15_Handler
+  373 0000004A         NVIC_IRQ16_Handler
+  374 0000004A         NVIC_IRQ17_Handler
+  375 0000004A         NVIC_IRQ18_Handler
+  376 0000004A         NVIC_IRQ19_Handler
+  377 0000004A         NVIC_IRQ20_Handler
+  378 0000004A         NVIC_IRQ21_Handler
+  379 0000004A         NVIC_IRQ22_Handler
+  380 0000004A         NVIC_IRQ23_Handler
+  381 0000004A         NVIC_IRQ24_Handler
+  382 0000004A         NVIC_IRQ25_Handler
+  383 0000004A         NVIC_IRQ26_Handler
+  384 0000004A         NVIC_IRQ27_Handler
+  385 0000004A         NVIC_IRQ28_Handler
+  386 0000004A         NVIC_IRQ29_Handler
+  387 0000004A         NVIC_IRQ30_Handler
+  388 0000004A         NVIC_IRQ31_Handler
+  389 0000004A E7FE            B                .
+  390 0000004C                 ENDP
+  391 0000004C         
+  392 0000004C         ;-------------------------------------------------------
+                       ------------------------
+  393 0000004C         ; User Initial Stack & Heap
+  394 0000004C         ;
+  395 0000004C                 IF               :DEF:__MICROLIB
+  396 0000004C         
+  397 0000004C                 EXPORT           __initial_sp
+  398 0000004C                 EXPORT           __heap_base
+  399 0000004C                 EXPORT           __heap_limit
+  400 0000004C         
+  401 0000004C                 ELSE
+  415                          ENDIF
+  416 0000004C         
+  417 0000004C                 END
+              12002000 
+              1203FFFF 
+              48044040 
+              00000000 
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+
+
+
+ARM Macro Assembler    Page 11 
+
+
+nd=.\objects\startup_tle989x.d -o.\objects\startup_tle989x.o -I.\RTE\Device\TLE
+9893_2QKW62S -I.\RTE\_Bootload -IC:\Users\Lxp20\AppData\Local\Arm\Packs\ARM\CMS
+IS\5.9.0\CMSIS\Core\Include -IC:\Users\Lxp20\AppData\Local\Arm\Packs\Infineon\T
+LE988x_9x_DFP\0.7.0\device\tlelib\inc --predefine="__MICROLIB SETA 1" --predefi
+ne="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="TLE9893
+_2QKW62S SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\startup_tle989x.l
+st RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+STACK 00000000
+
+Symbol: STACK
+   Definitions
+      At line 69 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      None
+Comment: STACK unused
+Stack_Mem 00000000
+
+Symbol: Stack_Mem
+   Definitions
+      At line 70 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      None
+Comment: Stack_Mem unused
+__initial_sp 00000350
+
+Symbol: __initial_sp
+   Definitions
+      At line 71 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 132 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 167 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 397 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+HEAP 00000000
+
+Symbol: HEAP
+   Definitions
+      At line 79 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      None
+Comment: HEAP unused
+Heap_Mem 00000000
+
+Symbol: Heap_Mem
+   Definitions
+      At line 81 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      None
+Comment: Heap_Mem unused
+__heap_base 00000000
+
+Symbol: __heap_base
+   Definitions
+      At line 80 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 398 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: __heap_base used once
+__heap_limit 00000000
+
+Symbol: __heap_limit
+   Definitions
+      At line 82 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 399 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: __heap_limit used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 91 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000100
+
+Symbol: __Vectors
+   Definitions
+      At line 167 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 93 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 221 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+__Vectors_End 000001C0
+
+Symbol: __Vectors_End
+   Definitions
+      At line 219 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 94 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 221 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 223 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      None
+Comment: .text unused
+BusFault_Handler 00000028
+
+Symbol: BusFault_Handler
+   Definitions
+      At line 287 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 172 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 288 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+DebugMon_Handler 00000044
+
+Symbol: DebugMon_Handler
+   Definitions
+      At line 310 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 179 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 311 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+Default_Handler 0000004A
+
+Symbol: Default_Handler
+   Definitions
+      At line 323 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      None
+Comment: Default_Handler unused
+HardFault_Handler 00000024
+
+Symbol: HardFault_Handler
+   Definitions
+      At line 277 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 170 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 278 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+MemManage_Handler 00000026
+
+Symbol: MemManage_Handler
+   Definitions
+      At line 282 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 171 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 283 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NMI_Handler 00000022
+
+Symbol: NMI_Handler
+   Definitions
+      At line 272 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 169 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 273 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ0_Handler 0000004A
+
+Symbol: NVIC_IRQ0_Handler
+   Definitions
+      At line 357 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 185 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 324 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ10_Handler 0000004A
+
+Symbol: NVIC_IRQ10_Handler
+   Definitions
+      At line 367 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 195 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 334 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ11_Handler 0000004A
+
+Symbol: NVIC_IRQ11_Handler
+   Definitions
+      At line 368 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 196 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 335 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ12_Handler 0000004A
+
+Symbol: NVIC_IRQ12_Handler
+   Definitions
+      At line 369 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 197 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 336 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ13_Handler 0000004A
+
+Symbol: NVIC_IRQ13_Handler
+   Definitions
+      At line 370 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 198 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 337 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ14_Handler 0000004A
+
+Symbol: NVIC_IRQ14_Handler
+   Definitions
+      At line 371 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 199 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 338 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ15_Handler 0000004A
+
+Symbol: NVIC_IRQ15_Handler
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
+
+   Definitions
+      At line 372 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 200 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 339 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ16_Handler 0000004A
+
+Symbol: NVIC_IRQ16_Handler
+   Definitions
+      At line 373 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 201 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 340 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ17_Handler 0000004A
+
+Symbol: NVIC_IRQ17_Handler
+   Definitions
+      At line 374 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 202 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 341 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ18_Handler 0000004A
+
+Symbol: NVIC_IRQ18_Handler
+   Definitions
+      At line 375 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 203 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 342 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ19_Handler 0000004A
+
+Symbol: NVIC_IRQ19_Handler
+   Definitions
+      At line 376 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 204 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 343 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ1_Handler 0000004A
+
+Symbol: NVIC_IRQ1_Handler
+   Definitions
+      At line 358 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 186 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 325 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ20_Handler 0000004A
+
+Symbol: NVIC_IRQ20_Handler
+   Definitions
+      At line 377 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 205 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 344 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+
+
+ARM Macro Assembler    Page 4 Alphabetic symbol ordering
+Relocatable symbols
+
+
+NVIC_IRQ21_Handler 0000004A
+
+Symbol: NVIC_IRQ21_Handler
+   Definitions
+      At line 378 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 206 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 345 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ22_Handler 0000004A
+
+Symbol: NVIC_IRQ22_Handler
+   Definitions
+      At line 379 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 207 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 346 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ23_Handler 0000004A
+
+Symbol: NVIC_IRQ23_Handler
+   Definitions
+      At line 380 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 208 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 347 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ24_Handler 0000004A
+
+Symbol: NVIC_IRQ24_Handler
+   Definitions
+      At line 381 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 209 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 348 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ25_Handler 0000004A
+
+Symbol: NVIC_IRQ25_Handler
+   Definitions
+      At line 382 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 210 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 349 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ26_Handler 0000004A
+
+Symbol: NVIC_IRQ26_Handler
+   Definitions
+      At line 383 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 211 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 350 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ27_Handler 0000004A
+
+Symbol: NVIC_IRQ27_Handler
+   Definitions
+
+
+
+ARM Macro Assembler    Page 5 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 384 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 212 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 351 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ28_Handler 0000004A
+
+Symbol: NVIC_IRQ28_Handler
+   Definitions
+      At line 385 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 213 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 352 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ29_Handler 0000004A
+
+Symbol: NVIC_IRQ29_Handler
+   Definitions
+      At line 386 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 214 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 353 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ2_Handler 0000004A
+
+Symbol: NVIC_IRQ2_Handler
+   Definitions
+      At line 359 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 187 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 326 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ30_Handler 0000004A
+
+Symbol: NVIC_IRQ30_Handler
+   Definitions
+      At line 387 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 215 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 354 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ31_Handler 0000004A
+
+Symbol: NVIC_IRQ31_Handler
+   Definitions
+      At line 388 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 216 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 355 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ3_Handler 0000004A
+
+Symbol: NVIC_IRQ3_Handler
+   Definitions
+      At line 360 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 188 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 327 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+
+
+
+ARM Macro Assembler    Page 6 Alphabetic symbol ordering
+Relocatable symbols
+
+NVIC_IRQ4_Handler 0000004A
+
+Symbol: NVIC_IRQ4_Handler
+   Definitions
+      At line 361 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 189 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 328 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ5_Handler 0000004A
+
+Symbol: NVIC_IRQ5_Handler
+   Definitions
+      At line 362 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 190 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 329 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ6_Handler 0000004A
+
+Symbol: NVIC_IRQ6_Handler
+   Definitions
+      At line 363 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 330 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: NVIC_IRQ6_Handler used once
+NVIC_IRQ7_Handler 0000004A
+
+Symbol: NVIC_IRQ7_Handler
+   Definitions
+      At line 364 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 192 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 331 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ8_Handler 0000004A
+
+Symbol: NVIC_IRQ8_Handler
+   Definitions
+      At line 365 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 193 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 332 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+NVIC_IRQ9_Handler 0000004A
+
+Symbol: NVIC_IRQ9_Handler
+   Definitions
+      At line 366 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 194 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 333 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+PendSV_Handler 00000046
+
+Symbol: PendSV_Handler
+   Definitions
+      At line 314 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+
+
+
+ARM Macro Assembler    Page 7 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 181 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 315 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 228 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 133 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 168 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 229 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+SVC_Handler 0000002C
+
+Symbol: SVC_Handler
+   Definitions
+      At line 296 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 178 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: SVC_Handler used once
+SVC_Handler_main 00000020
+
+Symbol: SVC_Handler_main
+   Definitions
+      At line 268 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 269 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 302 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 306 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+SysTick_Handler 00000048
+
+Symbol: SysTick_Handler
+   Definitions
+      At line 318 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 182 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 319 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+UsageFault_Handler 0000002A
+
+Symbol: UsageFault_Handler
+   Definitions
+      At line 292 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 173 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+      At line 293 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+
+apply_cache_en_setting 0000000E
+
+Symbol: apply_cache_en_setting
+   Definitions
+      At line 248 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 241 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: apply_cache_en_setting used once
+continue_with_systeminit 00000018
+
+
+
+
+ARM Macro Assembler    Page 8 Alphabetic symbol ordering
+Relocatable symbols
+
+Symbol: continue_with_systeminit
+   Definitions
+      At line 257 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 245 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: continue_with_systeminit used once
+stacking_used_MSP 0000003C
+
+Symbol: stacking_used_MSP
+   Definitions
+      At line 304 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 300 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: stacking_used_MSP used once
+48 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+BSL_NAD_NAC FE01FB04
+
+Symbol: BSL_NAD_NAC
+   Definitions
+      At line 1 in file RTE/Device/TLE9893_2QKW62S/bsl_defines_ARM.inc
+   Uses
+      At line 98 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: BSL_NAD_NAC used once
+FLASH1_BEGIN 12002000
+
+Symbol: FLASH1_BEGIN
+   Definitions
+      At line 236 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 239 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: FLASH1_BEGIN used once
+FLASH1_CACHE_EN 00000004
+
+Symbol: FLASH1_CACHE_EN
+   Definitions
+      At line 3 in file RTE/Device/TLE9893_2QKW62S/bsl_defines_ARM.inc
+   Uses
+      At line 253 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: FLASH1_CACHE_EN used once
+FLASH1_END 1203FFFF
+
+Symbol: FLASH1_END
+   Definitions
+      At line 237 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 243 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: FLASH1_END used once
+Heap_Size 00000000
+
+Symbol: Heap_Size
+   Definitions
+      At line 77 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 81 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: Heap_Size used once
+SECBOOT_KEY FFFFFFFF
+
+Symbol: SECBOOT_KEY
+   Definitions
+      At line 2 in file RTE/Device/TLE9893_2QKW62S/bsl_defines_ARM.inc
+   Uses
+      At line 105 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: SECBOOT_KEY used once
+STARTUP_MEMCTRL_MEMCONTROL_ADDR 48044040
+
+Symbol: STARTUP_MEMCTRL_MEMCONTROL_ADDR
+   Definitions
+      At line 250 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 251 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: STARTUP_MEMCTRL_MEMCONTROL_ADDR used once
+Stack_Size 00000350
+
+Symbol: Stack_Size
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
+   Definitions
+      At line 67 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 70 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: Stack_Size used once
+__Vectors_Size 000000C0
+
+Symbol: __Vectors_Size
+   Definitions
+      At line 221 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 95 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: __Vectors_Size used once
+9 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+SystemInit 00000000
+
+Symbol: SystemInit
+   Definitions
+      At line 230 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 258 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: SystemInit used once
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 231 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+   Uses
+      At line 260 in file RTE/Device/TLE9893_2QKW62S/startup_tle989x.S
+Comment: __main used once
+2 symbols
+405 symbols in table

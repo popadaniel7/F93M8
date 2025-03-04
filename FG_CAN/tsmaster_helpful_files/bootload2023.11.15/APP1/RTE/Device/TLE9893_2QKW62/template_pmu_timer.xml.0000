@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_pmu_timer.xml                                                     -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>d7beca07b534ff1f824e28218e54fc7481eec3ab00883766bb6053dca145311e</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Timers" visible="false">
+    <timer visible="false" define="UPDATE_MODE" svd="0" interval="1" singleShot="1" run="0" header="">
+      <!-- Enabling elements -->
+      <!-- Interrupts -->
+      <action cond="PMU.VDDP_UVWARN_INT_EN==0" event="changed" cmd="setDef" data="CONT_VDDP_UVWARN_EN.enabled=0;CONT_VDDP_UVWARN_CB.enabled=0"/>
+      <action cond="PMU.VDDP_UVWARN_INT_EN==1" event="changed" cmd="setDef" data="CONT_VDDP_UVWARN_EN.enabled=1;CONT_VDDP_UVWARN_CB.enabled=1"/>
+      <action cond="PMU.VDDP_OV_INT_EN==0" event="changed" cmd="setDef" data="CONT_VDDP_OV_EN.enabled=0;CONT_VDDP_OV_CB.enabled=0"/>
+      <action cond="PMU.VDDP_OV_INT_EN==1" event="changed" cmd="setDef" data="CONT_VDDP_OV_EN.enabled=1;CONT_VDDP_OV_CB.enabled=1"/>
+      <action cond="PMU.VDDC_UVWARN_INT_EN==0" event="changed" cmd="setDef" data="CONT_VDDC_UVWARN_EN.enabled=0;CONT_VDDC_UVWARN_CB.enabled=0"/>
+      <action cond="PMU.VDDC_UVWARN_INT_EN==1" event="changed" cmd="setDef" data="CONT_VDDC_UVWARN_EN.enabled=1;CONT_VDDC_UVWARN_CB.enabled=1"/>
+      <action cond="PMU.VDDC_OV_INT_EN==0" event="changed" cmd="setDef" data="CONT_VDDC_OV_EN.enabled=0;CONT_VDDC_OV_CB.enabled=0"/>
+      <action cond="PMU.VDDC_OV_INT_EN==1" event="changed" cmd="setDef" data="CONT_VDDC_OV_EN.enabled=1;CONT_VDDC_OV_CB.enabled=1"/>
+      <action cond="PMU.VDDEXT_UV_INT_EN==0" event="changed" cmd="setDef" data="CONT_VDDEXT_UV_EN.enabled=0;CONT_VDDEXT_UV_CB.enabled=0"/>
+      <action cond="PMU.VDDEXT_UV_INT_EN==1" event="changed" cmd="setDef" data="CONT_VDDEXT_UV_EN.enabled=1;CONT_VDDEXT_UV_CB.enabled=1"/>
+      <action cond="PMU.VDDEXT_OT_INT_EN==0" event="changed" cmd="setDef" data="CONT_VDDEXT_OT_EN.enabled=0;CONT_VDDEXT_OT_CB.enabled=0"/>
+      <action cond="PMU.VDDEXT_OT_INT_EN==1" event="changed" cmd="setDef" data="CONT_VDDEXT_OT_EN.enabled=1;CONT_VDDEXT_OT_CB.enabled=1"/>
+      <!-- GPIO Wake Up -->
+      <action cond="(PMU.WAKE_CTRL.GPIO0_WAKE_EN==0).*
+                  (PMU.WAKE_CTRL.GPIO1_WAKE_EN==0).*
+                  (PMU.WAKE_CTRL.GPIO2_WAKE_EN==0).*
+                  (PMU.WAKE_CTRL.GPIO3_WAKE_EN==0).*
+                  (PMU.WAKE_CTRL.GPIO4_WAKE_EN==0).*
+                  (PMU.WAKE_CTRL.GPIO5_WAKE_EN==0)" event="changed" cmd="setDef" data="CONT_GPIO.enabled=0"/>
+      <action cond="(PMU.WAKE_CTRL.GPIO0_WAKE_EN==1).+
+                  (PMU.WAKE_CTRL.GPIO1_WAKE_EN==1).+
+                  (PMU.WAKE_CTRL.GPIO2_WAKE_EN==1).+
+                  (PMU.WAKE_CTRL.GPIO3_WAKE_EN==1).+
+                  (PMU.WAKE_CTRL.GPIO4_WAKE_EN==1).+
+                  (PMU.WAKE_CTRL.GPIO5_WAKE_EN==1)" event="changed" cmd="setDef" data="CONT_GPIO.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.GPIO0_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_GPIO_0.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.GPIO0_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_GPIO_0.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.GPIO1_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_GPIO_1.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.GPIO1_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_GPIO_1.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.GPIO2_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_GPIO_2.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.GPIO2_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_GPIO_2.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.GPIO3_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_GPIO_3.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.GPIO3_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_GPIO_3.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.GPIO4_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_GPIO_4.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.GPIO4_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_GPIO_4.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.GPIO5_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_GPIO_5.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.GPIO5_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_GPIO_5.enabled=1"/>
+      <!-- MON Wake Up -->
+      <action cond="(PMU.WAKE_CTRL.MON1_WAKE_EN==0).*
+                  (PMU.WAKE_CTRL.MON2_WAKE_EN==0).*
+                  (PMU.WAKE_CTRL.MON3_WAKE_EN==0)" event="changed" cmd="setDef" data="CONT_MON.enabled=0"/>
+      <action cond="(PMU.WAKE_CTRL.MON1_WAKE_EN==1).+
+                  (PMU.WAKE_CTRL.MON2_WAKE_EN==1).+
+                  (PMU.WAKE_CTRL.MON3_WAKE_EN==1)" event="changed" cmd="setDef" data="CONT_MON.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.MON1_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_MON_1.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.MON1_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_MON_1.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.MON2_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_MON_2.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.MON2_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_MON_2.enabled=1"/>
+      <action cond="PMU.WAKE_CTRL.MON3_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_MON_3.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.MON3_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_MON_3.enabled=1"/>
+      <!-- Cyclic Sense -->
+      <action cond="((PMU.WAKE_CTRL.GPIO0_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL0.CYC==0)).*
+                  ((PMU.WAKE_CTRL.GPIO1_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL1.CYC==0)).*
+                  ((PMU.WAKE_CTRL.GPIO2_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL2.CYC==0)).*
+                  ((PMU.WAKE_CTRL.GPIO3_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL3.CYC==0)).*
+                  ((PMU.WAKE_CTRL.GPIO4_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL4.CYC==0)).*
+                  ((PMU.WAKE_CTRL.GPIO5_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL5.CYC==0)).*
+                  ((PMU.WAKE_CTRL.MON1_WAKE_EN==0).+(PMU.MON_CTRL1.CYC_SENSE_EN==0)).*
+                  ((PMU.WAKE_CTRL.MON2_WAKE_EN==0).+(PMU.MON_CTRL2.CYC_SENSE_EN==0)).*
+                  ((PMU.WAKE_CTRL.MON3_WAKE_EN==0).+(PMU.MON_CTRL3.CYC_SENSE_EN==0)).*
+                  (PMU.CYC_CTRL.CYC_SENSE_EN==0)" event="changed" cmd="setDef" data="CONT_CYC_SENSE.enabled=0"/>
+      <action cond="((PMU.WAKE_CTRL.GPIO0_WAKE_EN==1).*(PMU.WAKE_GPIO_CTRL0.CYC==1)).+
+                  ((PMU.WAKE_CTRL.GPIO1_WAKE_EN==1).*(PMU.WAKE_GPIO_CTRL1.CYC==1)).+
+                  ((PMU.WAKE_CTRL.GPIO2_WAKE_EN==1).*(PMU.WAKE_GPIO_CTRL2.CYC==1)).+
+                  ((PMU.WAKE_CTRL.GPIO3_WAKE_EN==1).*(PMU.WAKE_GPIO_CTRL3.CYC==1)).+
+                  ((PMU.WAKE_CTRL.GPIO4_WAKE_EN==1).*(PMU.WAKE_GPIO_CTRL4.CYC==1)).+
+                  ((PMU.WAKE_CTRL.GPIO5_WAKE_EN==1).*(PMU.WAKE_GPIO_CTRL5.CYC==1)).+
+                  ((PMU.WAKE_CTRL.MON1_WAKE_EN==1).*(PMU.MON_CTRL1.CYC_SENSE_EN==1)).+
+                  ((PMU.WAKE_CTRL.MON2_WAKE_EN==1).*(PMU.MON_CTRL2.CYC_SENSE_EN==1)).+
+                  ((PMU.WAKE_CTRL.MON3_WAKE_EN==1).*(PMU.MON_CTRL3.CYC_SENSE_EN==1)).+
+                  (PMU.CYC_CTRL.CYC_SENSE_EN==1)" event="changed" cmd="setDef" data="CONT_CYC_SENSE.enabled=1"/>
+      <!-- Cyclic Wake Up -->
+      <action cond="PMU.WAKE_CTRL.CYC_WAKE_EN==0" event="changed" cmd="setDef" data="CONT_CYCLIC.enabled=0"/>
+      <action cond="PMU.WAKE_CTRL.CYC_WAKE_EN==1" event="changed" cmd="setDef" data="CONT_CYCLIC.enabled=1"/>
+
+    </timer>
+  </verticalcontainer>
+</ifxmlcfg>

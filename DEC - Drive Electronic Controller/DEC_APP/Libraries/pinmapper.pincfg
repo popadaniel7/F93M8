@@ -70,18 +70,14 @@
   <v1:propertySetting propertyId="p20_6.symbolicname" value="CAN_STB"/>
   <v1:propertySetting propertyId="p20_7.symbolicname" value="CAN0_NODE0_RXD"/>
   <v1:propertySetting propertyId="p20_8.symbolicname" value="CAN0_NODE0_TXD"/>
-  <v1:configSetting configurationId="scrwcan0.rxd.bind" altId="scrwcan0.rxd.bind.rxd4">
-    <v1:connectionSetting altId="scr_p00_2.in.bind.in"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="p00_1.out.bind" altId="p00_1.out.bind.gpio"/>
   <v1:configSetting configurationId="p00_0.out.bind" altId="p00_0.out.bind.gpio"/>
-  <v1:configSetting configurationId="scr_p00_2.in.bind" altId="scr_p00_2.in.bind.in">
-    <v1:connectionSetting altId="scrwcan0.rxd.bind.rxd4"/>
-  </v1:configSetting>
+  <v1:configSetting configurationId="scr_p00_2.in.bind" altId="scr_p00_2.in.bind.none"/>
   <v1:configSetting configurationId="p20_6.driver" altId="p20_6.driver.speed1"/>
   <v1:configSetting configurationId="p00_0.dir" altId="p00_0.dir.out"/>
   <v1:configSetting configurationId="p00_1.dir" altId="p00_1.dir.out"/>
   <v1:propertySetting propertyId="p00_1.symbolicname" value="WUP_PDM"/>
   <v1:propertySetting propertyId="p00_0.symbolicname" value="WUP_DMU"/>
-  <v1:propertySetting propertyId="scr_p00_2.symbolicname" value="SCRWCAN0_RXD"/>
+  <v1:configSetting configurationId="scr_p00_7.in.bind" altId="scr_p00_7.in.bind.none"></v1:configSetting>
+  <v1:configSetting configurationId="scr_p00_2.dir" altId="scr_p00_2.dir.in"/>
 </v1:pinSettings>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_mon.xml                                                            -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>f20b71898e5ea799064399d4341b46b0dcd1d5e011de4d2b419d08b50540d60f</checksum>
+  <version label="V0.0.1"/>
+  <svd file="TLE989x.svd"/>
+  <verticalcontainer label="MON">
+    <header file="isr_defines.h">
+      <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+
+        <editbox label="Note" define="MON.NOTE" read-only="1" svd="0" default="The MON inputs as wake-up sources are configurable in the PMU tab." size="-1;100" header=""/>
+
+        <branch label="MON1" expand="1">
+          <combo label="Node Selection" define="SCU.INP2.INP_MON1">
+            <item label="IRQ12" override="value1" lockon="CPU.NVIC_ISER.IRQEN12=1"/>
+            <item label="IRQ13" override="value2" lockon="CPU.NVIC_ISER.IRQEN13=1"/>
+          </combo>
+          <checkbox label="Rising Edge Interrupt" define="MON.MON1_R_INT_EN" uielement="branch" svd="0">
+            <checkbox label="Enable Interrupt" define="SCU.MONCON.MON1IEV[0]"/>
+            <edit label="Callback" define="MON.MON1_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+          </checkbox>      
+          <checkbox label="Falling Edge Interrupt" define="MON.MON1_F_INT_EN" uielement="branch" svd="0">
+            <checkbox label="Enable Interrupt" define="SCU.MONCON.MON1IEV[1]"/>
+            <edit label="Callback" define="MON.MON1_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+          </checkbox>
+          <math label="MON1 Interrupt Enable" define="SCU.MONIEN.MON1EN" formula="SCU.MONCON.MON1IEV[0].+SCU.MONCON.MON1IEV[1]"/>
+        </branch>
+
+        <branch label="MON2" expand="1">
+          <combo label="Node Selection" define="SCU.INP2.INP_MON2">
+            <item label="IRQ12" override="value1" lockon="CPU.NVIC_ISER.IRQEN12=1"/>
+            <item label="IRQ13" override="value2" lockon="CPU.NVIC_ISER.IRQEN13=1"/>
+          </combo>
+          <checkbox label="Rising Edge Interrupt" define="MON.MON2_R_INT_EN" uielement="branch" svd="0">
+            <checkbox label="Enable Interrupt" define="SCU.MONCON.MON2IEV[0]"/>
+            <edit label="Callback" define="MON.MON2_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+          </checkbox>      
+          <checkbox label="Falling Edge Interrupt" define="MON.MON2_F_INT_EN" uielement="branch" svd="0">
+            <checkbox label="Enable Interrupt" define="SCU.MONCON.MON2IEV[1]"/>
+            <edit label="Callback" define="MON.MON2_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+          </checkbox>
+          <math label="MON2 Interrupt Enable" define="SCU.MONIEN.MON2EN" formula="SCU.MONCON.MON2IEV[0].+SCU.MONCON.MON2IEV[1]"/>
+        </branch>
+
+        <branch label="MON3" expand="1">
+          <combo label="Node Selection" define="SCU.INP2.INP_MON3">
+            <item label="IRQ12" override="value1" lockon="CPU.NVIC_ISER.IRQEN12=1"/>
+            <item label="IRQ13" override="value2" lockon="CPU.NVIC_ISER.IRQEN13=1"/>
+          </combo>
+          <checkbox label="Rising Edge Interrupt" define="MON.MON3_R_INT_EN" uielement="branch" svd="0">
+            <checkbox label="Enable Interrupt" define="SCU.MONCON.MON3IEV[0]"/>
+            <edit label="Callback" define="MON.MON3_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+          </checkbox>      
+          <checkbox label="Falling Edge Interrupt" define="MON.MON3_F_INT_EN" uielement="branch" svd="0">
+            <checkbox label="Enable Interrupt" define="SCU.MONCON.MON3IEV[1]"/>
+            <edit label="Callback" define="MON.MON3_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+          </checkbox>
+          <math label="MON3 Interrupt Enable" define="SCU.MONIEN.MON3EN" formula="SCU.MONCON.MON3IEV[0].+SCU.MONCON.MON3IEV[1]"/>
+        </branch>
+      </treecontainer>
+    </header>
+  </verticalcontainer>
+
+</ifxmlcfg>

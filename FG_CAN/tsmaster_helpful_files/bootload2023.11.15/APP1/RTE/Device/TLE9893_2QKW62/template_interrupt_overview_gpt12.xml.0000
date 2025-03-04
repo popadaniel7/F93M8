@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_interrupt_overview_gpt12.xml                                      -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>57c4432b5f01f17cc25314d48744be2135672cb80874247c012a45f066347e81</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1"  stretch="2">
+    <text label="Configured Interrupts of Nodes 7, 8"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="GPT12_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_GPT12.GPT1T2_CALLBACK=GPT12.GPT1T2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_GPT12.GPT1T3_CALLBACK=GPT12.GPT1T3_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_GPT12.GPT1T4_CALLBACK=GPT12.GPT1T4_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_GPT12.GPT2T5_CALLBACK=GPT12.GPT2T5_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_GPT12.GPT2T6_CALLBACK=GPT12.GPT2T6_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_GPT12.GPT2CAPREL_CALLBACK=GPT12.GPT2CAPREL_CALLBACK"/>
+      </timer>
+      <math formula="GPT12.GPT1T2_INT_EN"><action event="changed" cmd="setDef" data="GPT12.GPT1T2_INT_BOX.visible=GPT12.GPT1T2_INT_EN"/></math>
+      <math formula="GPT12.GPT1T3_INT_EN"><action event="changed" cmd="setDef" data="GPT12.GPT1T3_INT_BOX.visible=GPT12.GPT1T3_INT_EN"/></math>
+      <math formula="GPT12.GPT1T4_INT_EN"><action event="changed" cmd="setDef" data="GPT12.GPT1T4_INT_BOX.visible=GPT12.GPT1T4_INT_EN"/></math>
+      <math formula="GPT12.GPT2T5_INT_EN"><action event="changed" cmd="setDef" data="GPT12.GPT2T5_INT_BOX.visible=GPT12.GPT2T5_INT_EN"/></math>
+      <math formula="GPT12.GPT2T6_INT_EN"><action event="changed" cmd="setDef" data="GPT12.GPT2T6_INT_BOX.visible=GPT12.GPT2T6_INT_EN"/></math>
+      <math formula="GPT12.GPT2CAPREL_INT_EN"><action event="changed" cmd="setDef" data="GPT12.GPT2CAPREL_INT_BOX.visible=GPT12.GPT2CAPREL_INT_EN"/></math>
+    </verticalcontainer> <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="GPT12.GPT1T2_INT_BOX" visible="false">
+        <text size="200;-1" label="GPT12 T2"/>
+        <math size="75;-1" formula="SCU.INP1.INP_GPT1T2+7"/>
+        <math size="75;-1" formula="SCU.GPTIEN.GPT1T2EN"/>
+        <edit size="400;-1" define="RO_GPT12.GPT1T2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="GPT12.GPT1T3_INT_BOX" visible="false">
+        <text size="200;-1" label="GPT12 T3"/>
+        <math size="75;-1" formula="SCU.INP1.INP_GPT1T3+7"/>
+        <math size="75;-1" formula="SCU.GPTIEN.GPT1T3EN"/>
+        <edit size="400;-1" define="RO_GPT12.GPT1T3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="GPT12.GPT1T4_INT_BOX" visible="false">
+        <text size="200;-1" label="GPT12 T4"/>
+        <math size="75;-1" formula="SCU.INP1.INP_GPT1T4+7"/>
+        <math size="75;-1" formula="SCU.GPTIEN.GPT1T4EN"/>
+        <edit size="400;-1" define="RO_GPT12.GPT1T4_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="GPT12.GPT2T5_INT_BOX" visible="false">
+        <text size="200;-1" label="GPT12 T5"/>
+        <math size="75;-1" formula="SCU.INP1.INP_GPT2T5+7"/>
+        <math size="75;-1" formula="SCU.GPTIEN.GPT2T5EN"/>
+        <edit size="400;-1" define="RO_GPT12.GPT2T5_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="GPT12.GPT2T6_INT_BOX" visible="false">
+        <text size="200;-1" label="GPT12 T6"/>
+        <math size="75;-1" formula="SCU.INP1.INP_GPT2T6+7"/>
+        <math size="75;-1" formula="SCU.GPTIEN.GPT2T6EN"/>
+        <edit size="400;-1" define="RO_GPT12.GPT2T6_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="GPT12.GPT2CAPREL_INT_BOX" visible="false">
+        <text size="200;-1" label="GPT12 CAPREL"/>
+        <math size="75;-1" formula="SCU.INP1.INP_GPT2CR+7"/>
+        <math size="75;-1" formula="SCU.GPTIEN.GPT2CREN"/>
+        <edit size="400;-1" define="RO_GPT12.GPT2CAPREL_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer> <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>
+

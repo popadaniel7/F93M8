@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_gpio_p0p1.xml                                                     -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-15, BG:   EP-520: Renamed SW-controlled GPIO functionality     -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Parameter: -->
+<!-- PORT_IDX --> 
+<!-- PIN_IDX -->
+<!-- ATLSEL_IDX -->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>5ca22260fd87715069aa66bd55d85315f09f8251837f36ede6043630b35848d2</checksum>
+  <version label="V0.1.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <branch label="P$PORT_IDX$.$PIN_IDX$" expand="1">
+    <header file="gpio_defines.h">
+      <radio label="Direction" define="GPIO.P$PORT_IDX$_DIR.DIR$PIN_IDX$">
+        <radiobutton label="Input" value="0"></radiobutton>
+        <radiobutton label="Output" value="1" uielement="branch">
+          <combo label="Data" define="GPIO.P$PORT_IDX$_OUT.PO$PIN_IDX$"/> 
+          <combo label="Mode" define="GPIO.P$PORT_IDX$_OD.OD$PIN_IDX$"/>
+        <checkbox define="GPIO_P$PORT_IDX$$PIN_IDX$_SWCONTROLLED_OUTPUT" svd="0" label="Lock Altsel to GPIO" lockon="GPIO.P$PORT_IDX$_ALTSEL$ATLSEL_IDX$.ALTSEL$PIN_IDX$=0"/>
+          <combo label="Alternate Select" define="GPIO.P$PORT_IDX$_ALTSEL$ATLSEL_IDX$.ALTSEL$PIN_IDX$"/>
+          <combo label="Driver Mode" define="GPIO.P$PORT_IDX$_POCON.PDM$PIN_IDX$"/>    
+        </radiobutton>
+      </radio>
+      <combo label="Pull Mode" define="GPIO_PULLMODE_P$PORT_IDX$_$PIN_IDX$" svd="0" header="">
+        <item label="None"      value="0"/>
+        <item label="Pull-Down" value="2"/>
+        <item label="Pull-Up"   value="3"/>
+      </combo>
+      <math label="Pull Up/Down Enable" define="GPIO.P$PORT_IDX$_PUD.PUDEN$PIN_IDX$" visible="false" formula="GPIO_PULLMODE_P$PORT_IDX$_$PIN_IDX$?1:0"/>
+      <math label="Pull Up/Down Selection" define="GPIO.P$PORT_IDX$_PUD.PUDSEL$PIN_IDX$" visible="false" formula="GPIO_PULLMODE_P$PORT_IDX$_$PIN_IDX$.*1"/>
+    </header>
+  </branch>
+</ifxmlcfg>

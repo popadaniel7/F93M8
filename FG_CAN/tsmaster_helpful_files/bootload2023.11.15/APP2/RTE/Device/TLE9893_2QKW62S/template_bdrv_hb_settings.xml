@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_bdrv_hb_settings.xml                                                         -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2021-02-15, BG:   Initial version                                      -->
+<!-- V0.0.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- HB_IDX: Half-bridge index -->
+<ifxmlcfg version="2.6.2">
+  <checksum>28218ff670cf246ad6921fe7572c99bc4f2109a4550e909b31e1a3170ee7444b</checksum>
+  <version label="V0.0.2"/>
+  <svd file="TLE989x.svd"/>
+  <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+    <verticalcontainer size="-1;120">
+      <horizontalcontainer>
+        <text label="Switch-on Configuration" size="150;-1"/>
+        <combo label="Switch-on Configuration" define="BDRV.CTRL2.HB$HB_IDX$ONSEQCNF" default="label=CONST, Driver operate with constant current" size="300;-1">
+          <item label="CONST, Driver operate with constant current" override="value1">
+            <action event="selected" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          </item>
+          <item label="SEQ, Sequencer is enabled" override="value2">
+            <action event="selected" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          </item>
+        </combo>
+      </horizontalcontainer>
+      <horizontalcontainer>
+        <text label="Switch-off Configuration" size="150;-1"/>
+        <combo label="Switch-off Configuration" define="BDRV.CTRL2.HB$HB_IDX$OFFSEQCNF" default="label=CONST, Driver operate with constant current" size="300;-1">
+          <item label="CONST, Driver operate with constant current" override="value1">
+            <action event="selected" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          </item>
+          <item label="SEQ, Sequencer is enabled" override="value2">
+            <action event="selected" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          </item>
+        </combo>
+      </horizontalcontainer>
+      <horizontalcontainer>
+        <text label="Sequencer Mapping" size="150;-1"/>
+        <combo label="Sequencer Mapping" define="BDRV.SEQMAP.HB$HB_IDX$_SEQMAP" default="label=LS$HB_IDX$, Sequencer is mapped to low-side driver" size="300;-1">
+          <item label="LS$HB_IDX$, Sequencer is mapped to low-side driver" override="value1"/>
+          <item label="HS$HB_IDX$, Sequencer is mapped to high-side driver" override="value2"/>
+        </combo>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_SEQMAP_NOTE" visible="false">
+        <svgembed>
+          <svg width="1200" height="25">
+            <rect width="1200" height="25" style="fill:#FFFFFF;stroke-width:1"/>
+            <rect x="300" y="0" width="600" height="25" style="fill:#FF0000;stroke-width:1"/>
+            <text x="600" y="20" text-anchor="middle" font-family="arial" font-size="15" font-weight="bold" fill="#FFFFFF">=> Sequencer Mapping not relevant, defined by automatic active driver detection</text>
+          </svg>
+        </svgembed>
+      </horizontalcontainer>
+    </verticalcontainer>
+    <horizontalline/>
+    <horizontalcontainer>
+      <include HB_IDX="$HB_IDX$" CYCLE="CHRG" CYCLE_TXT="CHARGE" ON_OFF="ON">template_bdrv_hb_chrg_dischrg_settings.xml</include>
+      <include HB_IDX="$HB_IDX$" CYCLE="DISCHRG" CYCLE_TXT="DISCHARGE" ON_OFF="OFF">template_bdrv_hb_chrg_dischrg_settings.xml</include>
+    </horizontalcontainer>
+  </verticalcontainer>
+</ifxmlcfg>

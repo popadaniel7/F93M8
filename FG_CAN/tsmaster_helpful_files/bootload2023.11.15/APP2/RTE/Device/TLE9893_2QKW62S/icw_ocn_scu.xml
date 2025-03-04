@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_scu.xml                                                            -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) 2022 Infineon Technologies AG                                     -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-22, JO:   EP-471: Added field PMU.WD_CTRL.EN (always set to 3) -->
+<!--                           Added formula for effective watchdog period          -->
+<!-- V0.0.3: 2020-10-12, BG:   EP-515: Added a formula to calculate the safe        -->
+<!--                           trigger point                                        -->
+<!--                           EP-515: Removed the combobox to choose the number of -->
+<!--                           SOW (cf. API PMU_serviceSOW(uint8 u8_nbSOW))         -->
+<!-- V0.0.4: 2020-10-15, BG:   EP-495: Removed the watchdog section to put it into  -->
+<!--                           the PMU module                                       -->
+<!-- V0.0.5: 2020-10-15, JO:   EP-524: Added fields PLL.CON0.PLLEN, PLL.CON0.PLLEN  -->
+<!-- V0.0.6: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project               -->
+<!-- V0.0.7: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.0: 2021-03-09, JO:   EP-734: Updated CW minimal version to 2.6.3,         -->
+<!--                           Added usage of setdefine feature that was introduced -->
+<!--                           in Config Wizard version 2.6.3                       -->
+<!-- V0.1.1: 2021-05-07, JO:   EP-812: Updated range for XTAL start time, added     -->
+<!--                           valid ranges to fREF, fCVO, fPLL for PLL1 and PLL2   -->
+<!-- V0.2.0: 2021-04-09, JO:   EP-753: Added FLASH1_CACHE_EN for using the Cache    -->
+<!-- V0.2.1: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!-- V0.2.2: 2022-06-28, JO:   EP-1021: Added timeout for PLL initialization        -->
+<!-- V0.2.3: 2022-09-26, JO:   EP-1243: Added define SYSTEMINIT_FSWD_INIT           -->
+<!-- V0.3.0: 2022-07-20, JO:   EP-836: Added python for SCU, added graph            -->
+<!--                           Corrected lock in case no PLL/XTAL is used for fSYS1 -->
+<!--                           Moved range checks to python                         -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.6.3">
+  <checksum>514d4d167199db4bba9da7e1fd6c3a522c43f471c76b5e108be4f9bf2c091a88</checksum>
+  <version label="V0.3.0"/>
+
+  <horizontalcontainer label="SCU, Startup, Cache">
+    <header file="scu_defines.h">
+      <treecontainer label="Intermediate variables" headerlabels="Item;Value;" columnwidths="300;250;1" visible="false">        
+        <doublespinbox define="SCU_fCPU_MHz_SPIN" header="" svd="0" default="40"/>
+        <math label="CPU Clock" unit=" MHz" define="SCU_fCPU_MHz" svd="0" formula="SCU_fCPU_MHz_SPIN"/>
+        <math label="Peripherals Clock (except UART, CAN)" define="SCU_fPER_MHz" unit=" MHz" svd="0" formula="SCU_fCPU_MHz"/>
+        <math visible="false" define="SCU_fADC1_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <math visible="false" define="SCU_fADC2_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <math visible="false" define="SCU_fBDRV_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <math visible="false" define="SCU_fCCU7_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <math visible="false" define="SCU_fGPT12_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <math visible="false" define="SCU_fSDADC_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <math visible="false" define="SCU_fSSC_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <math visible="false" define="SCU_fTIMER2x_MHz" unit=" MHz" svd="0" formula="SCU_fPER_MHz"/>
+        <doublespinbox define="SCU_fMI_MHz_SPIN" header="" svd="0"/>
+        <math label="MI Clock" unit=" MHz" define="SCU_fMI_MHz" svd="0" formula="SCU_fMI_MHz_SPIN"/>
+        <math label="TFILT Clock" unit=" MHz" define="SCU_fTFILT_MHz" svd="0" formula="SCU_fSYS0_MHz/SCU_fTFILT_PRESCALER"/>
+        <doublespinbox define="SCU_fUART_MHz_SPIN" header="" svd="0"/>
+        <math label="UART Clock" unit=" MHz" define="SCU_fUART_MHz" svd="0" formula="SCU_fUART_MHz_SPIN"/>
+        <doublespinbox define="SCU_fCAN_MHz_SPIN" header="" svd="0"/>
+        <math label="CAN Clock" unit=" MHz" define="SCU_fCAN_MHz" svd="0" formula="SCU_fCAN_MHz_SPIN"/>
+        <math visible="false" label="MCLK" unit=" MHz" define="SCU_fMCLK_MHz" svd="0" formula="20"/>
+        <math visible="false" label="HP40_CLK" unit=" MHz" define="SCU_fHP_MHz" svd="0" formula="40"/>
+        <math visible="false" label="REF_CLK" unit=" MHz" define="SCU_fREFCLK_MHz" svd="0" formula="0.1"/>
+        <doublespinbox define="SCU_PLL0_fREF_MHz_SPIN" header="" svd="0"/>
+        <doublespinbox define="SCU_PLL0_fVCO_MHz_SPIN" header="" svd="0"/>
+        <doublespinbox define="SCU_PLL0_fPLL_MHz_SPIN" header="" svd="0" deafult="60"/>
+        <doublespinbox define="SCU_PLL1_fREF_MHz_SPIN" header="" svd="0"/>
+        <doublespinbox define="SCU_PLL1_fVCO_MHz_SPIN" header="" svd="0"/>
+        <doublespinbox define="SCU_PLL1_fPLL_MHz_SPIN" header="" svd="0" deafult="40"/>
+        <doublespinbox define="SCU_fSYS0_MHz_SPIN" header="" svd="0" deafult="60"/>
+        <doublespinbox define="SCU_fSYS1_MHz_SPIN" header="" svd="0" deafult="40"/>
+        
+        <!-- Only for the python script to be able to connect with the radiobuttons -->
+        <!-- (radiobuttons lock the edits) -->
+        <edit define="SCU_BASIC_noXTAL_fUART_fCAN_SEL_EDIT" visible="false" svd="0" header=""/>
+        <edit define="SCU_CLK_CONFIG_EDIT" visible="false" svd="0" header=""/>
+
+      </treecontainer>
+      <treecontainer label="SCU Clock" headerlabels="Item;Value;" columnwidths="300;250;1">
+        <branch label="Clock" expand="1">
+          <var define="SCU_fOSC_ANALOG_MHz_MAX" datatype="float" header="temp_defines.h" default="16"/>
+          <!-- AJ: Limit SCU_fOSC_DIGITAL_MHz_MAX to 24 instead of 40 is ok, otherwise shaper would need to be disabled -->
+          <var define="SCU_fOSC_DIGITAL_MHz_MAX" datatype="float" header="temp_defines.h" default="24"/>
+
+          <radio define="SCU_CLK_CONGIF" svd="0" header="temp_defines.h">
+            <radiobutton label="Basic Clock Configuration" uielement="branch" expand="1" lockon="SCU_CLK_CONFIG_EDIT=0">
+              <!-- Also sets MI Clock to 20MHz and TFILT Clock to 4MHz, required in datasheet -->
+              <combo label="Clock for CPU and Periph. (except UART, CAN)" define="SCU_BASIC_fCPU_MHz" svd="0" default="0" header="temp_defines.h">
+                <item label="60MHz, PLL0" lockon="SCU_PLL0_EN=1;PLL.CON0.INSEL=2;PLL.CON0.PDIV=5;PLL.CON0.NDIV=120;PLL.CON0.K2DIV=0;SCU.CLKSEL.SELSYS0=2;SCU.CLKCON.PRECPU=0;SCU.CLKCON.PREMI=2;SCU_fTFILT_PRESCALER=15"/>
+                <item label="40MHz, PLL0" lockon="SCU_PLL0_EN=1;PLL.CON0.INSEL=2;PLL.CON0.PDIV=5;PLL.CON0.NDIV=80;PLL.CON0.K2DIV=0;SCU.CLKSEL.SELSYS0=2;SCU.CLKCON.PRECPU=0;SCU.CLKCON.PREMI=1;SCU_fTFILT_PRESCALER=10"/>
+                <item label="40MHz, no PLL" lockon="SCU.CLKSEL.SELSYS0=0;SCU.CLKCON.PRECPU=0;SCU.CLKCON.PREMI=1;SCU_fTFILT_PRESCALER=10"/>
+              </combo>
+              <radio define="SCU_BASIC_noXTAL_fUART_fCAN_SEL" default="0" svd="0" header="temp_defines.h">
+                <radiobutton label="No XTAL for UART/CAN Clock" uielement="branch" lockon="SCU_BASIC_noXTAL_fUART_fCAN_SEL_EDIT=0">
+                  <combo label="Clock for UART/CAN" define="SCU_BASIC_noXTAL_fUART_fCAN_MHz" svd="0" default="2" header="temp_defines.h">
+                    <item label="80MHz, PLL1" lockon="SCU_PLL1_EN=1;PLL.CON1.INSEL=2;PLL.CON1.PDIV=5;PLL.CON1.NDIV=160;PLL.CON1.K2DIV=0;SCU.CLKSEL.SELSYS1=3;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PREUART=0;SCU.CLKCON.PRECAN=0"/>
+                    <item label="60MHz, PLL1" lockon="SCU_PLL1_EN=1;PLL.CON1.INSEL=2;PLL.CON1.PDIV=5;PLL.CON1.NDIV=120;PLL.CON1.K2DIV=0;SCU.CLKSEL.SELSYS1=3;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PREUART=0;SCU.CLKCON.PRECAN=0"/>
+                    <item label="40MHz, PLL1" lockon="SCU_PLL1_EN=1;PLL.CON1.INSEL=2;PLL.CON1.PDIV=5;PLL.CON1.NDIV=80;PLL.CON1.K2DIV=0;SCU.CLKSEL.SELSYS1=3;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PRECPU=0;SCU.CLKCON.PRECAN=0"/>
+                    <item label="40MHz, no PLL" lockon="SCU.CLKSEL.SELSYS1=0;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PREUART=0;SCU.CLKCON.PRECAN=0"/>
+                  </combo>              
+                </radiobutton>
+                <radiobutton label="XTAL for UART/CAN Clock" uielement="branch" lockon="SCU_BASIC_noXTAL_fUART_fCAN_SEL_EDIT=1">
+                  <combo label="Clock for UART/CAN" define="SCU_BASIC_XTAL_fUART_fCAN_MHz" svd="0" default="0" header="temp_defines.h">
+                    <item label="80MHz, 5MHz XTAL (analog)" lockon="SCU.XTALCON.XPD=0;GPIO.P2_INDIS.INDIS0=1;GPIO_PULLMODE_P2_0=0;GPIO.P2_INDIS.INDIS1=1;GPIO_PULLMODE_P2_1=0;SCU_fXTAL_MHz=5;SCU_PLL1_XTAL=1;SCU.XTALCON.XWDGEN=1;SCU_PLL1_EN=1;PLL.CON1.INSEL=1;PLL.CON1.PDIV=5;PLL.CON1.NDIV=160;PLL.CON1.K2DIV=0;SCU.CLKSEL.SELSYS1=3;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PREUART=0;SCU.CLKCON.PRECAN=0"/>
+                    <item label="80MHz, 8MHz XTAL (analog)" lockon="SCU.XTALCON.XPD=0;GPIO.P2_INDIS.INDIS0=1;GPIO_PULLMODE_P2_0=0;GPIO.P2_INDIS.INDIS1=1;GPIO_PULLMODE_P2_1=0;SCU_fXTAL_MHz=8;SCU_PLL1_XTAL=1;SCU.XTALCON.XWDGEN=1;SCU_PLL1_EN=1;PLL.CON1.INSEL=1;PLL.CON1.PDIV=8;PLL.CON1.NDIV=160;PLL.CON1.K2DIV=0;SCU.CLKSEL.SELSYS1=3;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PREUART=0;SCU.CLKCON.PRECAN=0"/>
+                    <item label="80MHz, 12MHz XTAL (analog)" lockon="SCU.XTALCON.XPD=0;GPIO.P2_INDIS.INDIS0=1;GPIO_PULLMODE_P2_0=0;GPIO.P2_INDIS.INDIS1=1;GPIO_PULLMODE_P2_1=0;SCU_fXTAL_MHz=12;SCU_PLL1_XTAL=1;SCU.XTALCON.XWDGEN=1;SCU_PLL1_EN=1;PLL.CON1.INSEL=1;PLL.CON1.PDIV=12;PLL.CON1.NDIV=160;PLL.CON1.K2DIV=0;SCU.CLKSEL.SELSYS1=3;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PREUART=0;SCU.CLKCON.PRECAN=0"/>
+                    <item label="80MHz, 16MHz XTAL (analog)" lockon="SCU.XTALCON.XPD=0;GPIO.P2_INDIS.INDIS0=1;GPIO_PULLMODE_P2_0=0;GPIO.P2_INDIS.INDIS1=1;GPIO_PULLMODE_P2_1=0;SCU_fXTAL_MHz=16;SCU_PLL1_XTAL=1;SCU.XTALCON.XWDGEN=1;SCU_PLL1_EN=1;PLL.CON1.INSEL=1;PLL.CON1.PDIV=16;PLL.CON1.NDIV=160;PLL.CON1.K2DIV=0;SCU.CLKSEL.SELSYS1=3;SCU.CLKEN.UARTCLKEN=1;SCU.CLKEN.CANCLKEN=1;SCU.CLKCON.PREUART=0;SCU.CLKCON.PRECAN=0"/>
+                  </combo>              
+                  <spinbox label="Time for XTAL to start during init [ms]" define="SCU_BASIC_XTAL_START_TIME_MS" svd="0" range="3;100" header="temp_defines.h">
+                    <action event="changed" cmd="setDef" data="SCU_XTAL_START_TIME_MS=SCU_BASIC_XTAL_START_TIME_MS"/>
+                </spinbox>
+                </radiobutton>
+              </radio>
+            </radiobutton>
+            <radiobutton label="Advanced Clock Configuration" uielement="branch" lockon="SCU_CLK_CONFIG_EDIT=1">
+              <branch label="Clock Sources">
+                <text label="Configure XTAL, PLL0, PLL1"/>
+                <!-- XTAL -->
+                <checkbox label="Enable XTAL" define="SCU.XTALCON.XPD" default="1" role="inverted" uielement="branch" lockon="GPIO.P2_INDIS.INDIS0=1;GPIO_PULLMODE_P2_0=0;GPIO.P2_INDIS.INDIS1=1;GPIO_PULLMODE_P2_1=0">
+                  <combo label="Oscillator Type" define="SCU_XTAL_TYPE" svd="0" header="temp_defines.h">
+                    <item label="Analog oscillator, connected to XTALI/XTALO" setdef="SCU_fXTAL_MHz.max=SCU_fOSC_ANALOG_MHz_MAX"/>
+                    <item label="Digital oscillator, connected to XTALI" setdef="SCU_fXTAL_MHz.max=SCU_fOSC_DIGITAL_MHz_MAX"/>
+                  </combo>
+                  <spinbox label="XTAL Frequency [MHz]" define="SCU_fXTAL_MHz" svd="0" default="5" range="1;24" header="temp_defines.h"/>
+                  <spinbox label="Time for XTAL to start during init [ms]" define="SCU_XTAL_START_TIME_MS" svd="0" range="1;100"/>
+                  <checkbox label="Use XTAL as source for PLL0" define="SCU_PLL0_XTAL" svd="0" lockon="SCU_PLL0_EN=1;PLL.CON0.INSEL=1" header="temp_defines.h"/>
+                  <checkbox label="Use XTAL as source for PLL1" define="SCU_PLL1_XTAL" svd="0" lockon="SCU_PLL1_EN=1;PLL.CON1.INSEL=1" header="temp_defines.h"/>
+                  <checkbox label="Enable Hysteresis Control" define="SCU.XTALCON.XTALHYSEN" uielement="branch" default="1">
+                    <combo label="Select Hysteresis" define="SCU.XTALCON.XTALHYS" default="0"/>
+                    <!-- SCU.XTALCON.XTALHYSEN=0 is recommended setting -->
+                  </checkbox>
+                  <checkbox label="Enable XTAL Watchdog" define="SCU.XTALCON.XWDGEN"/>
+                  <text label="XTAL Watchdog NMI can be configured"/>
+                  <text label="in the Interrupt Tab"/>
+                </checkbox>
+                <!-- PLL0 -->
+                <checkbox label="PLL0" define="SCU_PLL0_EN" svd="0" default="1" uielement="branch">
+                  <math define="PLL.CON0.PLLEN" visible="false" formula="SCU_PLL0_EN"/>
+                  <combo label="Input Signal" define="PLL.CON0.INSEL" default="2">
+                    <item hide="value1"/>
+                    <item overridevalue="1">
+                      <!-- xtal clock selected -->
+                      <action event="selected" cmd="runScript" cond="SCU.XTALCON.XPD==1" data="MessageBox(Please configure XTAL!)"/>
+                    </item>
+                    <item hide="value4"/>
+                  </combo>
+                  <spinbox label="Time for PLL0 to start during init [ms]" define="SCU_PLL0_START_TIME_MS" svd="0" range="1;100" default="2"/>
+                  <math label="PLL0 fIN" unit=" MHz" visible="false" define="SCU_PLL0_fIN" svd="0" formula="PLL.CON0.INSEL==1?(SCU_fXTAL_MHz):(SCU_fHP_MHz/8)" header="temp_defines.h"/>
+                  <branch label="PLL Settings" expand="1">
+                    <spinbox label="PDIV (Divisor)" define="PLL.CON0.PDIV" range="4;50" default="5"/>
+                    <spinbox label="NDIV (Multiplier)" define="PLL.CON0.NDIV" range="39;200" default="120"/>
+                    <combo label="K2DIV (Divisor)" define="PLL.CON0.K2DIV" default="0"/>
+                  </branch>
+                  <checkbox label="Enable Spread Feature" define="PLL.SPCTR.SPEN0" uielement="branch">
+                    <combo label="Spread Range" define="PLL.SPCTR.SPRANGE0"/>
+                    <text label="Note: NDIV min/max values "/>
+                    <text label="of 39/200 will not be exceeded."/>
+                    <spinbox label="NDIV Value Update Interval" define="PLL_SPCTR_SPUPVAL0_CODED" svd="0" range="1;1024" header="temp_defines.h"/>
+                    <text label="(every n-th PLL0 clock cycle)"/>
+                    <math visible="false" define="PLL.SPCTR.SPUPVAL0" formula="PLL_SPCTR_SPUPVAL0_CODED-1"/>
+                  </checkbox>
+                  <math label="PLL0 fREF [0.8-1.27MHz]" unit=" MHz" define="SCU_PLL0_fREF_MHz" svd="0" formula="SCU_PLL0_fREF_MHz_SPIN" header="temp_defines.h"/>
+                  <math label="PLL0 fVCO [48-160MHz]" unit=" MHz" define="SCU_PLL0_fVCO_MHz" svd="0" formula="SCU_PLL0_fVCO_MHz_SPIN" header="temp_defines.h"/>
+                  <math label="PLL0 fPLL [5-80MHz]" unit=" MHz" define="SCU_PLL0_fPLL_MHz" svd="0" formula="SCU_PLL0_fVCO_MHz/(PLL.CON0.K2DIV+2)" header="temp_defines.h"/>
+                </checkbox>
+                <!-- PLL1 -->
+                <checkbox label="PLL1" define="SCU_PLL1_EN" svd="0" default="1" uielement="branch">
+                <math define="PLL.CON1.PLLEN" visible="false" formula="SCU_PLL1_EN"/>
+                  <combo label="Input Signal" define="PLL.CON1.INSEL" default="2">
+                    <item hide="value1"/>
+                    <item overridevalue="1">
+                      <!-- xtal clock selected -->
+                      <action event="selected" cmd="runScript" cond="SCU.XTALCON.XPD==1" data="MessageBox(Please configure XTAL!)"/>
+                    </item>
+                    <item hide="value4"/>
+                  </combo>
+                  <spinbox label="Time for PLL1 to start during init [ms]" define="SCU_PLL1_START_TIME_MS" svd="0" range="1;100" default="2"/>
+                  <math label="PLL1 fIN" unit=" MHz" visible="false" define="SCU_PLL1_fIN" svd="0" formula="PLL.CON1.INSEL==1?(SCU_fXTAL_MHz):(SCU_fHP_MHz/8)" header="temp_defines.h"/>
+                  <branch label="PLL Settings" expand="1">
+                    <spinbox label="PDIV (Divisor)" define="PLL.CON1.PDIV" range="4;50" default="5"/>
+                    <spinbox label="NDIV (Multiplier)" define="PLL.CON1.NDIV" range="39;200" default="80"/>
+                    <combo label="K2DIV (Divisor)" define="PLL.CON1.K2DIV" default="0"/>
+                  </branch>
+                  <checkbox label="Enable Spread Feature" define="PLL.SPCTR.SPEN1" uielement="branch">
+                    <combo label="Spread Range" define="PLL.SPCTR.SPRANGE1"/>
+                    <text label="Note: NDIV min/max values "/>
+                    <text label="of 39/200 will not be exceeded."/>
+                    <spinbox label="NDIV Value Update Interval" define="PLL_SPCTR_SPUPVAL1_CODED" svd="0" range="1;1024" header="temp_defines.h"/>
+                    <text label="(every n-th PLL0 clock cycle)"/>
+                    <math visible="false" define="PLL.SPCTR.SPUPVAL1" formula="PLL_SPCTR_SPUPVAL1_CODED-1"/>
+                  </checkbox>
+                <math label="PLL1 fREF [0.8-1.27MHz]" unit=" MHz" define="SCU_PLL1_fREF_MHz" svd="0" formula="SCU_PLL1_fREF_MHz_SPIN" header="temp_defines.h"/>
+                <math label="PLL1 fVCO [48-160MHz]" unit=" MHz" define="SCU_PLL1_fVCO_MHz" svd="0" formula="SCU_PLL1_fVCO_MHz_SPIN" header="temp_defines.h"/>
+                <math label="PLL1 fPLL [5-80MHz]" unit=" MHz" define="SCU_PLL1_fPLL_MHz" svd="0" formula="SCU_PLL1_fPLL_MHz_SPIN" header="temp_defines.h"/>
+                </checkbox>
+              </branch>
+              <branch label="Clock Tree Configuration">
+                <text label="Configure fSYS0, fSYS1"/>
+                <text label="Input can be "/>
+                <text label="- 40MHz (HP40 Clock)"/>
+                <text label="- XTAL (directly or via PLL0/1, depends on PLL settings)"/>
+                <text label="- fPLL0"/>
+                <text label="- fPLL1"/>
+                <!-- fSYS0 -->
+                <!-- Clock sources: SCU_fHP_MHz, SCU_fXTAL_MHz, SCU_PLL0_fPLL_MHz, SCU_PLL1_fPLL_MHz -->
+                <branch label="fSYS0">
+                  <combo label="Source for fSYS0" define="SCU.CLKSEL.SELSYS0" default="2">
+                    <item overridevalue="0"/>
+                    <item overridevalue="1">
+                      <!-- xtal clock selected -->
+                      <action event="selected" cmd="runScript" cond="SCU.XTALCON.XPD==1" data="MessageBox(Please configure XTAL!)"/>
+                    </item>
+                  </combo>
+                  <math label="fSYS0" unit=" MHz" define="SCU_fSYS0_MHz" formula="SCU_fSYS0_MHz_SPIN" svd="0"/>
+                  <branch label="Add. Prescaler for fSYS0-based Clocks">
+                    <!-- CPU Clock -->
+                    <branch label="CPU Clock (CPU and Peripherals)">
+                      <combo label="Clock Prescaler" define="SCU.CLKCON.PRECPU"/>
+                      <!-- SCU_fCPU_MHz -->    
+                    </branch>
+                    <!-- MI Clock -->
+                    <branch label="MI Clock (shall be set to 20MHz)">
+                      <combo label="Clock Prescaler" define="SCU.CLKCON.PREMI" default="2"/>
+                    <!-- SCU_fMI_MHz -->
+                    </branch>
+                    <!-- FILT Clock -->
+                    <branch label="TFILT Clock (shall be set to 4MHz)">
+                      <spinbox label="Clock Prescaler" define="SCU_fTFILT_PRESCALER" svd="0" range="1;32" default="15" header="temp_defines.h"/>
+                      <math visible="false" define="SCU.CLKCON.PREFILT" formula="SCU_fTFILT_PRESCALER-1"/>
+                      <!-- SCU_fTFILT_MHz -->
+                    </branch>        
+                  </branch>
+                </branch>
+                <!-- fSYS1 -->
+                <!-- Clock sources: SCU_fHP_MHz, SCU_fXTAL_MHz, SCU_PLL0_fPLL_MHz, SCU_PLL1_fPLL_MHz -->
+                <branch label="fSYS1">
+                  <combo label="Source for fSYS1" define="SCU.CLKSEL.SELSYS1" default="3">
+                    <item overridevalue="0"/>
+                    <item overridevalue="1">
+                      <!-- xtal clock selected -->
+                      <action event="selected" cmd="runScript" cond="SCU.XTALCON.XPD==1" data="MessageBox(Please configure XTAL!)"/>
+                    </item>
+                  </combo>
+                  <checkbox label="Enable UART Clock" define="SCU.CLKEN.UARTCLKEN"/>
+                  <checkbox label="Enable CAN Clock" define="SCU.CLKEN.CANCLKEN"/>
+                  <math label="fSYS1" unit=" MHz" define="SCU_fSYS1_MHz" formula="SCU_fSYS1_MHz_SPIN" svd="0"/>
+                  <branch label="Add. Prescaler for fSYS1-based Clocks">
+                    <!-- UART Clock -->
+                    <branch label="UART Clock">
+                      <combo label="Clock Prescaler" define="SCU.CLKCON.PREUART"/>
+                      <!-- SCU_fUART_MHz -->        
+                    </branch>
+                    <!-- CAN Clock -->
+                    <branch label="CAN Clock">
+                      <combo label="Clock Prescaler" define="SCU.CLKCON.PRECAN"/>
+                      <!-- SCU_fCAN_MHz -->        
+                    </branch>
+                  </branch>
+                </branch>
+              </branch>
+            </radiobutton>
+          </radio>
+          
+          <checkbox label="CLKOUT Feature" define="SCU.CLKSEL.CLKOUTEN" uielement="branch">
+            <!-- Clock sources: SCU_fHP_MHz, SCU_fXTAL_MHz, SCU_PLL0_fPLL_MHz, SCU_PLL1_fPLL_MHz, SCU_fCPU_MHz, SCU_fREFCLK_MHz, SCU_fMCLK_MHz -->
+            <combo label="Select Output Frequency" define="SCU.CLKSEL.SELCLKOUT">
+              <item overridevalue="0"/>
+              <item overridevalue="1">
+                <!-- xtal clock selected -->
+                <action event="selected" cmd="runScript" cond="SCU.XTALCON.XPD==1" data="MessageBox(Please configure XTAL!)"/>
+              </item>
+              <item hide="value8"/>
+            </combo>
+            <combo label="Select Divider" define="SCU.CLKCON.PRECLKOUT"/>
+            <checkbox label="Ensure 50% Duty Cycle (fOUT/2)" define="SCU.CLKCON.DIV2CLKOUT"/>
+            <math visible="false" define="SCU_fOUT_PRESCALER" svd="0" formula="(SCU.CLKCON.PRECLKOUT&lt;5?((SCU.CLKCON.PRECLKOUT+1):
+                                                                                (SCU.CLKCON.PRECLKOUT==5?(8):
+                                                                                (SCU.CLKCON.PRECLKOUT==6?(16):(20))))) * (SCU.CLKCON.DIV2CLKOUT+1)" header="temp_defines.h"/> 
+            <combo label="Pin Select" define="SCU_CLKOUT_PIN" svd="0" header="temp_defines.h">
+              <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=1;GPIO.P0_ALTSEL0.ALTSEL3=4"/>
+              <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=1;GPIO.P1_ALTSEL0.ALTSEL2=4"/>
+              <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=2" startcond="UC_FEATURE_64PIN==1"/>
+            </combo>
+            <math label="Frequency at GPIO" unit=" MHz" define="SCU_fOUT" svd="0" formula="(SCU.CLKSEL.SELCLKOUT==0?(SCU_fHP_MHz):
+                                                                                            (SCU.CLKSEL.SELCLKOUT==1?(SCU_fXTAL_MHz):
+                                                                                            (SCU.CLKSEL.SELCLKOUT==2?(SCU_PLL0_fPLL_MHz):
+                                                                                            (SCU.CLKSEL.SELCLKOUT==3?(SCU_PLL1_fPLL_MHz):
+                                                                                            (SCU.CLKSEL.SELCLKOUT==4?(SCU_fCPU_MHz):
+                                                                                            (SCU.CLKSEL.SELCLKOUT==5?(SCU_fMCLK_MHz):(SCU_fREFCLK_MHz))))))) / SCU_fOUT_PRESCALER" header="temp_defines.h"/>
+          </checkbox>
+        
+        </branch>
+        
+        <branch label="SystemInit configuration" expand="1">
+          <checkbox define="SYSTEMINIT_FSWD_INIT" svd="0" label="Initialize the Fail safe Watchdog" default="1">
+            <!-- checked action is required for unchecked action to work -->
+            <action event="checked" cmd="setdef" data="SYSTEMINIT_FSWD_INIT=1"/>
+            <action event="checked" cmd="runScript" data="MessageBox(Note: FSWD will be initialized in SystemInit! This is the default behavior.)"/>
+            <action event="unchecked" cmd="runScript" data="MessageBox(Note: FSWD will not be initialized in SystemInit. Please ensure is initialized before calling TLE_init!)"/>
+          </checkbox>
+        </branch>
+
+        <branch label="Cache" expand="1">
+          <checkbox define="FLASH1_CACHE_EN" svd="0" label="Enable Cache for Flash1" default="1"/>
+        </branch>
+
+      </treecontainer>
+    </header>
+    <treecontainer visible="false">
+      <header file="">
+        <!-- fields to be used by the graphic -->
+        <doublespinbox label="SCU_PLL0_fPLL_SPIN" define="SCU_PLL0_fPLL_SPIN" svd="0"/>
+        <doublespinbox label="SCU_PLL1_fPLL_SPIN" define="SCU_PLL1_fPLL_SPIN" svd="0"/>
+        <edit label="VIS_HP40_2_PLL0" define="VIS_HP40_2_PLL0" svd="0"/>
+        <edit label="VIS_XTAL_2_PLL0" define="VIS_XTAL_2_PLL0" svd="0"/>
+        <edit label="VIS_HP40_2_PLL1" define="VIS_HP40_2_PLL1" svd="0"/>
+        <edit label="VIS_XTAL_2_PLL1" define="VIS_XTAL_2_PLL1" svd="0"/>
+        <edit label="VIS_HP40_2_SYS0" define="VIS_HP40_2_SYS0" svd="0"/>
+        <edit label="VIS_XTAL_2_SYS0" define="VIS_XTAL_2_SYS0" svd="0"/>
+        <edit label="VIS_PLL0_2_SYS0" define="VIS_PLL0_2_SYS0" svd="0"/>
+        <edit label="VIS_PLL1_2_SYS0" define="VIS_PLL1_2_SYS0" svd="0"/>
+        <edit label="VIS_HP40_2_SYS1" define="VIS_HP40_2_SYS1" svd="0"/>
+        <edit label="VIS_XTAL_2_SYS1" define="VIS_XTAL_2_SYS1" svd="0"/>
+        <edit label="VIS_PLL0_2_SYS1" define="VIS_PLL0_2_SYS1" svd="0"/>
+        <edit label="VIS_PLL1_2_SYS1" define="VIS_PLL1_2_SYS1" svd="0"/>    
+      </header>
+    </treecontainer>
+    <svgembed define="scu_clk_graph" passive="1">
+      <svg width="1000" height="300">
+        <defs>
+          <g id="clk_box">
+            <rect style="fill:white;stroke:black;stroke-width:2" width="80" height="50"/>
+            <line style="stroke:black;stroke-width:2" x1="80" y1="25" x2="175" y2="25"/>
+          </g>
+          <g id="clk_box_long">
+            <rect style="fill:white;stroke:black;stroke-width:2" width="80" height="50"/>
+            <line style="stroke:black;stroke-width:2" x1="80" y1="25" x2="325" y2="25"/>
+          </g>
+          <g id="prescaler_box">
+            <rect style="fill:grey;stroke:black;stroke-width:2" width="80" height="50"/>
+            <line style="stroke:black;stroke-width:2" x1="80" y1="25" x2="320" y2="25"/>
+            <text x="5" y="30" font-family="arial" font-size="20" fill="black">Presc.</text>
+          </g>
+        </defs>
+        <!-- background -->
+        <rect style="fill:white;stroke-width:0" width="1000" height="300"/>
+        <!-- clock sources -->
+        <g transform="translate(25 25)">
+          <text text-anchor="begin" x="0" y="-5" font-family="arial" font-size="20" fill="black">Clock Sources</text>
+          <rect style="fill:lightgrey;stroke:black;stroke-width:2" width="350" height="250" />
+          <g transform="translate(25 10)">
+            <!-- HP40 -->
+            <g transform="translate(0 0)">
+              <use href="#clk_box_long"/>
+              <text x="5" y="30" font-family="arial" font-size="20" fill="black">HP40</text>
+              <text x="235" y="20" font-family="arial" font-size="20" fill="black">40 MHz</text>
+            </g>
+            <!-- XTAL -->
+            <g transform="translate(0 60)">
+              <use href="#clk_box_long"/>
+              <text x="5" y="30" font-family="arial" font-size="20" fill="black">XTAL</text>
+              <text x="235" y="20" font-family="arial" font-size="20" fill="black">$SCU_fXTAL_MHz$ MHz</text>
+            </g>
+            <!-- PLL0 -->
+            <g transform="translate(150 120)">
+              <use href="#clk_box"/>
+              <text x="5" y="30" font-family="arial" font-size="20" fill="black">PLL0</text>
+              <text x="85" y="20" font-family="arial" font-size="20" fill="black">$SCU_PLL0_fPLL_MHz_SPIN$ MHz</text>
+              <line style="stroke:black;stroke-width:2" x1="-10" y1="25" x2="0" y2="25"/>
+              <!-- HP40 -->
+              <line style="stroke:black;stroke-width:2" x1="-50" y1="-95" x2="-10" y2="25" visibility="$VIS_HP40_2_PLL0$"/>
+              <!-- XTAL -->
+              <line style="stroke:black;stroke-width:2" x1="-50" y1="-35" x2="-10" y2="25" visibility="$VIS_XTAL_2_PLL0$"/>
+            </g>
+            <!-- PLL1 -->
+            <g transform="translate(150 180)">
+              <use href="#clk_box"/>
+              <text x="5" y="30" font-family="arial" font-size="20" fill="black">PLL1</text>
+              <text x="85" y="20" font-family="arial" font-size="20" fill="black">$SCU_PLL1_fPLL_MHz_SPIN$ MHz</text>
+              <line style="stroke:black;stroke-width:2" x1="-10" y1="25" x2="0" y2="25"/>
+              <!-- HP40 -->
+              <line style="stroke:black;stroke-width:2" x1="-50" y1="-155" x2="-10" y2="25" visibility="$VIS_HP40_2_PLL1$"/>
+              <!-- XTAL -->
+              <line style="stroke:black;stroke-width:2" x1="-50" y1="-95" x2="-10" y2="25" visibility="$VIS_XTAL_2_PLL1$"/>
+           </g>
+          </g>
+        </g>
+        <!-- clock tree -->
+        <g transform="translate(450 25)">
+          <text text-anchor="begin" x="0" y="-5" font-family="arial" font-size="20" fill="black">Clock Tree</text>
+          <rect style="fill:lightgrey;stroke:black;stroke-width:2" width="305" height="250" />
+          <g transform="translate(25 10)">
+            <!-- fSYS0 -->
+            <g transform="translate(0 10)">
+              <line style="stroke:black;stroke-width:2" x1="-25" y1="25" x2="0" y2="25"/>
+              <use href="#clk_box"/>
+              <text x="5" y="30" font-family="arial" font-size="20" fill="black">SYS0</text>
+              <text x="85" y="20" font-family="arial" font-size="20" fill="black">$SCU_fSYS0_MHz_SPIN$ MHz</text>
+              <!-- lines from clock source -->
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="15" x2="-25" y2="25" visibility="$VIS_HP40_2_SYS0$"/>
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="75" x2="-25" y2="25"  visibility="$VIS_XTAL_2_SYS0$"/>
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="135" x2="-25" y2="25" visibility="$VIS_PLL0_2_SYS0$"/>
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="195" x2="-25" y2="25" visibility="$VIS_PLL1_2_SYS0$"/>
+              <g transform="translate(175 0)">
+                <use href="#prescaler_box"/>
+                <text x="110" y="20" font-family="arial" font-size="20" fill="black">fCPU/fPER = $SCU_fCPU_MHz$ MHz</text>
+              </g>
+            </g>            
+            <!-- fSYS1 -->
+            <g transform="translate(0 110)">
+              <line style="stroke:black;stroke-width:2" x1="-25" y1="25" x2="0" y2="25"/>
+              <use href="#clk_box"/>
+              <text x="5" y="30" font-family="arial" font-size="20" fill="black">SYS1</text>
+              <text x="85" y="20" font-family="arial" font-size="20" fill="black">$SCU_fSYS1_MHz_SPIN$ MHz</text>
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="-85" x2="-25" y2="25" visibility="$VIS_HP40_2_SYS1$"/>
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="-25" x2="-25" y2="25"  visibility="$VIS_XTAL_2_SYS1$"/>
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="35" x2="-25" y2="25" visibility="$VIS_PLL0_2_SYS1$"/>
+              <line style="stroke:black;stroke-width:2" x1="-100" y1="95" x2="-25" y2="25" visibility="$VIS_PLL1_2_SYS1$"/>
+              <g transform="translate(175 0)">
+                <use href="#prescaler_box"/>
+                <text x="110" y="20" font-family="arial" font-size="20" fill="black">fCAN = $SCU_fCAN_MHz$ MHz</text>
+              </g>
+              <line style="stroke:black;stroke-width:2" x1="150" y1="25" x2="150" y2="85"/>
+              <line style="stroke:black;stroke-width:2" x1="150" y1="85" x2="175" y2="85"/>
+              <g transform="translate(175 60)">
+                <use href="#prescaler_box"/>
+                <text x="110" y="20" font-family="arial" font-size="20" fill="black">fUART = $SCU_fUART_MHz$ MHz</text>
+              </g>
+            </g>
+          </g>
+        </g>
+        
+      </svg>
+    </svgembed>    
+  </horizontalcontainer>
+  
+
+</ifxmlcfg>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_bsl.xml                                                            -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-16, BG:   EP-527: Deactivated the NAC/NAD configuration in     -->
+<!--                           Config Wizard, must be done in bsl_defines.inc       -->
+<!-- V0.0.3: 2020-10-22, JO:   EP-539: Updated default value of NAC/NAD so that the -->
+<!--                           generated value is 0xFE01FE01 (works on target)      -->
+<!-- V0.0.4: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.0.5: 2021-06-23, JO:   EP-847: Added edit for NAC NAD value to be used by   -->
+<!--                           python script                                        -->
+<!-- V0.0.6: 2021-10-15, JO:   EP-962: Updated default NAC setting                  -->
+<!-- V0.0.7: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!-- V0.0.8: 2021-11-18, JO:   EP-982: Added note regarding NAC/NAD change          -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.6.2">
+  <checksum>9d5298d0ad9e8c9098585b792f0f14b359e323110600c18b9c51d52a503c2fb7</checksum>
+  <version label="V0.0.8"/>
+
+  <verticalcontainer label="BSL">
+    <timer visible="false" define="BSL_INIT" svd="0" interval="1" singleShot="1" run="1">
+      <!-- init NACNAD edit -->
+      <action event="changed" cmd="setDef" data="BSL_NAD_NAC_REG=BSL.NAD_NAC[31:0]"/>
+    </timer>
+    <treecontainer headerlabels="Item;Value;" label="BSL" desc="Bootstrap Loader" columnwidths="400;250">
+      <header file="bsl_defines.h">
+
+        <checkbox label="NAC/NAD Configuration" define="BSL.NAC_NAD_EN" svd="0" uielement="branch" expand="1" default="1">
+          <combo label="BSL Interface Select" define="BSL._NAC_[7:6]" svd="0" default="label=CAN" size="250;-1">
+            <item label="CAN"/>
+            <item label="UART"/>
+          </combo>
+
+          <spinbox label="BSL Active Time NAC [ms]" define="BSL.NAC" svd="0" default="20" step="5" range="0;145"/>
+          <math visible="false" define="BSL._NAC_[5:0]" svd="0" format="%04X" formula="BSL.NAC/5"/>
+
+          <spinbox label="Node Address NAD" define="BSL._NAD_[7:0]" svd="0" range="1;0xFF" default="1"/>
+          <math visible="true" label="NAC/NAD Value" define="BSL.NAD_NAC[31:0]" svd="0" format="%04X" formula="(BSL._NAD_[7:0].^0xFF)*0x1000000+BSL._NAD_[7:0]*0x10000+(BSL._NAC_[7:6].^0x3)*0x100*0x40+(BSL._NAC_[5:0].^0x3F)*0x100+BSL._NAC_[7:6]*0x40+BSL._NAC_[5:0]">
+            <action event="changed" cmd="setDef" data="BSL_NAD_NAC_REG=BSL.NAD_NAC[31:0]"/>
+          </math>
+          <editbox label="Note" define="BSL.NOTE_NACNAD" svd="0" header="temp_defines.h" size="250;65" readonly="1" default="To apply the NAC/NAD Configuration in Keil uVision, please use 'Rebuild' instead of 'Build'."/>
+
+        </checkbox>
+      </header>
+    </treecontainer>
+    
+    <treecontainer headerlabels="Item;Value;" label="BSL" desc="Bootstrap Loader" columnwidths="400;250" visible="false">
+      <edit visible="false" define="BSL_NAD_NAC_REG" svd="0" header=""/> 
+    </treecontainer>
+
+  </verticalcontainer>
+</ifxmlcfg>

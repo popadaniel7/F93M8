@@ -1,0 +1,267 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "tle989x.h"
+#include "isr.h"
+#include "isr_defines.h"
+
+
+/* Check if NVIC node 24 is enabled */
+#if ((CPU_NVIC_ISER & CPU_NVIC_ISER_IRQEN24_Msk) == (1u << CPU_NVIC_ISER_IRQEN24_Pos))
+
+/*******************************************************************************
+**                        Global Variable Definitions                         **
+*******************************************************************************/
+
+#if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+  uint8 u8_interrupt_cnt_irq24;
+#endif
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+void NVIC_IRQ24_Handler(void)
+{
+  #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+    u8_interrupt_cnt_irq24 = 0;
+  #endif
+  /* SSC0 Transmit */
+  #if (SSC0_TI_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC0_TIR_Msk) >>  SCU_INP6_INP_SSC0_TIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC0->IEN.bit.TIREN == 1u)
+      {
+        if (SSC0->IS.bit.TIR == 1u)
+        {
+          SSC0_TI_CALLBACK();
+          SSC0->ISC.bit.TIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC0 Receive */
+  #if (SSC0_RI_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC0_RIR_Msk) >>  SCU_INP6_INP_SSC0_RIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC0->IEN.bit.RIREN == 1u)
+      {
+        if (SSC0->IS.bit.RIR == 1u)
+        {
+          SSC0_RI_CALLBACK();
+          SSC0->ISC.bit.RIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC0 Transmit Error */
+  #if (SSC0_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC0_EIR_Msk) >>  SCU_INP6_INP_SSC0_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC0->IEN.bit.TEIREN == 1u)
+      {
+        if (SSC0->IS.bit.TEIR == 1u)
+        {
+          SSC0_TEI_CALLBACK();
+          SSC0->ISC.bit.TEIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC0 Receive Error */
+  #if (SSC0_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC0_EIR_Msk) >>  SCU_INP6_INP_SSC0_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC0->IEN.bit.REIREN == 1u)
+      {
+        if (SSC0->IS.bit.REIR == 1u)
+        {
+          SSC0_REI_CALLBACK();
+          SSC0->ISC.bit.REIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC0 Phase Error */
+  #if (SSC0_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC0_EIR_Msk) >>  SCU_INP6_INP_SSC0_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC0->IEN.bit.PEIREN == 1u)
+      {
+        if (SSC0->IS.bit.PEIR == 1u)
+        {
+          SSC0_PEI_CALLBACK();
+          SSC0->ISC.bit.PEIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC0 Baudrate Error */
+  #if (SSC0_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC0_EIR_Msk) >>  SCU_INP6_INP_SSC0_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC0->IEN.bit.BEIREN == 1u)
+      {
+        if (SSC0->IS.bit.BEIR == 1u)
+        {
+          SSC0_BEI_CALLBACK();
+          SSC0->ISC.bit.BEIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC1 Transmit */
+  #if (SSC1_TI_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC1_TIR_Msk) >>  SCU_INP6_INP_SSC1_TIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC1->IEN.bit.TIREN == 1u)
+      {
+        if (SSC1->IS.bit.TIR == 1u)
+        {
+          SSC1_TI_CALLBACK();
+          SSC1->ISC.bit.TIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC1 Receive */
+  #if (SSC1_RI_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC1_RIR_Msk) >>  SCU_INP6_INP_SSC1_RIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC1->IEN.bit.RIREN == 1u)
+      {
+        if (SSC1->IS.bit.RIR == 1u)
+        {
+          SSC1_RI_CALLBACK();
+          SSC1->ISC.bit.RIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC1 Transmit Error */
+  #if (SSC1_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC1_EIR_Msk) >>  SCU_INP6_INP_SSC1_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC1->IEN.bit.TEIREN == 1u)
+      {
+        if (SSC1->IS.bit.TEIR == 1u)
+        {
+          SSC1_TEI_CALLBACK();
+          SSC1->ISC.bit.TEIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC1 Receive Error */
+  #if (SSC1_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC1_EIR_Msk) >>  SCU_INP6_INP_SSC1_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC1->IEN.bit.REIREN == 1u)
+      {
+        if (SSC1->IS.bit.REIR == 1u)
+        {
+          SSC1_REI_CALLBACK();
+          SSC1->ISC.bit.REIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC1 Phase Error */
+  #if (SSC1_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC1_EIR_Msk) >>  SCU_INP6_INP_SSC1_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC1->IEN.bit.PEIREN == 1u)
+      {
+        if (SSC1->IS.bit.PEIR == 1u)
+        {
+          SSC1_PEI_CALLBACK();
+          SSC1->ISC.bit.PEIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* SSC1 Baudrate Error */
+  #if (SSC1_ERR_INT_EN == 1)
+    #if (((SCU_INP6 & SCU_INP6_INP_SSC1_EIR_Msk) >>  SCU_INP6_INP_SSC1_EIR_Pos) == SSC_INP_NVIC_IRQ24)
+      if (SSC1->IEN.bit.BEIREN == 1u)
+      {
+        if (SSC1->IS.bit.BEIR == 1u)
+        {
+          SSC1_BEI_CALLBACK();
+          SSC1->ISC.bit.BEIRCLR = 1u;
+          #if (NVIC_IRQ24_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq24 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+}
+#endif /* ((CPU_NVIC_ISER & CPU_NVIC_ISER_IRQEN24_Msk) == 1u) */

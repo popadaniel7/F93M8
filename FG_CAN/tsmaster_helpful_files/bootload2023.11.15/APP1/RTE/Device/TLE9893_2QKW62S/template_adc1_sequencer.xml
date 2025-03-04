@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_adc1_sequencer.xml                                                -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-11-17, BG:   EP-494: Added an update of the sequencer graph to    -->
+<!--                           display the correct sequence                         -->
+<!-- V0.1.2: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!-- V0.2.0: 2020-12-16, BG:   EP-647: Restructured module with Python              -->
+<!-- V0.2.1: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Sequencer Template -->
+<!-- Parameter: -->
+<!--   IDX: sequencer index, range 0..3 -->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>6da86bc6abf130f2fdc64c8249a82b931f627e80ffde00e94796d513959bbfe4</checksum>
+  <version label="V0.2.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <treecontainer label="Sequence $IDX$" desc="Sequence $IDX$ Config" headerlabels="Item;Value;" columnwidths="200;600">
+    <header file="adc1_defines.h">
+      <checkbox label="Trigger Enabled" define="ADC1.SQCFG$IDX$.GTSW" default="1"/>
+      <combo label="Trigger Source" define="ADC1.SQCFG$IDX$.TRGSEL"/>
+      <combo label="Trigger Gate Source" define="ADC1.SQCFG$IDX$.GTSEL"/>
+      <combo label="Sequence Repetition" define="ADC1.SQCFG$IDX$.SQREP"/>
+      <checkbox label="Enable Collision Detection" define="ADC1.SQCFG$IDX$.COLLCFG"/>
+      <checkbox label="Enable Wait for Read" define="ADC1.SQCFG$IDX$.WFRCFG"/>
+      <combo label="Number of Slots" define="ADC1.SQCFG$IDX$.SLOTS" default="label=Sequencer disabled">
+        <item label="Sequencer disabled" value="0" override="value1"/>
+        <item label="1 slot"             value="1" override="value2"/>
+        <item label="2 slots"            value="2" override="value3"/>
+        <item label="3 slots"            value="3" override="value4"/>
+        <item label="4 slots"            value="4" override="value5"/>
+        <item hide="value6"/>
+        <item hide="value7"/>
+        <item hide="value8"/>
+      </combo>
+      <verticalcontainer label="Sequence Definition">
+        <horizontalcontainer></horizontalcontainer>
+        <horizontalcontainer></horizontalcontainer>
+        <horizontalcontainer></horizontalcontainer>
+        <horizontalcontainer>
+          <text label="Slot 0"/>
+          <text label="Slot 1"/>
+          <text label="Slot 2"/>
+          <text label="Slot 3"/>
+        </horizontalcontainer>
+        <horizontalcontainer>
+          <include SQIDX="$IDX$" SLIDX="0">template_adc1_sequencer_slots.xml</include>
+          <include SQIDX="$IDX$" SLIDX="1">template_adc1_sequencer_slots.xml</include>
+          <include SQIDX="$IDX$" SLIDX="2">template_adc1_sequencer_slots.xml</include>
+          <include SQIDX="$IDX$" SLIDX="3">template_adc1_sequencer_slots.xml</include>             
+        </horizontalcontainer>
+      </verticalcontainer>
+      <branch label="Interrupt Enable">
+        <checkbox label="Sequence Done" define="ADC1.SQ$IDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+          <checkbox label="Enable Interrupt" define="ADC1.IEN0.IEN_SQ$IDX$" header="isr_defines.h"/>
+          <combo label="Node Selection" define="ADC1.INP3.INP_SQ$IDX$" header="isr_defines.h">
+            <item label="ADC1_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN14=1"/>
+            <item label="ADC1_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN15=1"/>
+            <item label="ADC1_INP2_NVIC_IRQn" override="value3" lockon="CPU.NVIC_ISER.IRQEN16=1"/>
+            <item label="ADC1_INP3_NVIC_IRQn" override="value4" lockon="CPU.NVIC_ISER.IRQEN17=1"/>
+          </combo>
+          <edit label="Callback" define="ADC1.SQ$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+        </checkbox>
+        <checkbox label="Collision Detection" define="ADC1.COLL$IDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+          <checkbox label="Enable Interrupt" define="ADC1.IEN1.IEN_COLL$IDX$" header="isr_defines.h"/>
+          <combo label="Node Selection" define="ADC1.INP3.INP_COLL$IDX$" header="isr_defines.h">
+            <item label="ADC1_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN14=1"/>
+            <item label="ADC1_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN15=1"/>
+            <item label="ADC1_INP2_NVIC_IRQn" override="value3" lockon="CPU.NVIC_ISER.IRQEN16=1"/>
+            <item label="ADC1_INP3_NVIC_IRQn" override="value4" lockon="CPU.NVIC_ISER.IRQEN17=1"/>
+          </combo>
+          <edit label="Callback" define="ADC1.COLL$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+        </checkbox>
+        <checkbox label="Wait for Read" define="ADC1.WFR$IDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+          <checkbox label="Enable Interrupt" define="ADC1.IEN1.IEN_WFR$IDX$" header="isr_defines.h"/>
+          <combo label="Node Selection" define="ADC1.INP3.INP_WFR$IDX$" header="isr_defines.h">
+            <item label="ADC1_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN14=1"/>
+            <item label="ADC1_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN15=1"/>
+            <item label="ADC1_INP2_NVIC_IRQn" override="value3" lockon="CPU.NVIC_ISER.IRQEN16=1"/>
+            <item label="ADC1_INP3_NVIC_IRQn" override="value4" lockon="CPU.NVIC_ISER.IRQEN17=1"/>
+          </combo>
+          <edit label="Callback" define="ADC1.WFR$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+        </checkbox>
+      </branch>
+    </header>
+  </treecontainer>
+</ifxmlcfg>

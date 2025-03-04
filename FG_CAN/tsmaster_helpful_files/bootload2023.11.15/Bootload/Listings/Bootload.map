@@ -1,0 +1,2052 @@
+Component: Arm Compiler for Embedded 6.19 Tool: armlink [5e73cb00]
+
+==============================================================================
+
+Section Cross References
+
+    main.o(.text.main) refers to server.o(.text.UDS_init) for UDS_init
+    main.o(.text.main) refers to crclib.o(.text.crc32) for crc32
+    main.o(.text.main) refers to jumptoapp.o(.text.app_jump) for app_jump
+    main.o(.text.main) refers to pmu.o(.text.PMU_initFailSafeWatchdog) for PMU_initFailSafeWatchdog
+    main.o(.text.main) refers to pmu.o(.text.PMU_clrFailSafeWatchdogFailSts) for PMU_clrFailSafeWatchdogFailSts
+    main.o(.text.main) refers to tle_device.o(.text.TLE_init) for TLE_init
+    main.o(.text.main) refers to multican_handler.o(.text.MultiCAN_init) for MultiCAN_init
+    main.o(.text.main) refers to multican_handler.o(.bss.LinkTxPoint) for LinkTxPoint
+    main.o(.text.main) refers to tp_config.o(.bss.link_tp) for link_tp
+    main.o(.text.main) refers to multican_handler.o(.bss.LinkRxPoint) for LinkRxPoint
+    main.o(.text.main) refers to server.o(.bss.ServerLinkPoint) for ServerLinkPoint
+    main.o(.text.main) refers to tp_config.o(.text.init_for_all_links) for init_for_all_links
+    main.o(.text.main) refers to tp_config.o(.bss.init_tp) for init_tp
+    main.o(.text.main) refers to can_iso_tp.o(.text.iso_can_tp_create) for iso_can_tp_create
+    main.o(.text.main) refers to can_iso_tp.o(.text.iso_can_tp_N_USData_request) for iso_can_tp_N_USData_request
+    main.o(.text.main) refers to main.o(.bss.enter_120_mode) for enter_120_mode
+    main.o(.text.main) refers to main.o(.bss.sclock_count) for sclock_count
+    main.o(.text.main) refers to uds27_sa.o(.bss.UDS27_RN) for UDS27_RN
+    main.o(.text.main) refers to server.o(.text.UDS_server_poll) for UDS_server_poll
+    main.o(.text.main) refers to multican_handler.o(.bss.msg_Rx_exit) for msg_Rx_exit
+    main.o(.text.main) refers to multican_handler.o(.bss.msg_Rx) for msg_Rx
+    main.o(.text.main) refers to can_iso_tp.o(.text.iso_can_tp_L_Data_indication) for iso_can_tp_L_Data_indication
+    main.o(.text.main) refers to multican_handler.o(.bss.msgPublic_ok) for msgPublic_ok
+    main.o(.text.main) refers to multican_handler.o(.bss.msgPublic) for msgPublic
+    main.o(.text.main) refers to can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) for iso_can_tp_L_Data_confirm
+    main.o(.text.main) refers to pmu.o(.text.PMU_serviceFailSafeWatchdog) for PMU_serviceFailSafeWatchdog
+    main.o(.text.main) refers to can_iso_tp.o(.text.iso_can_tp_poll) for iso_can_tp_poll
+    main.o(.text.main) refers to multican_handler.o(.bss.can_receive_counter) for can_receive_counter
+    main.o(.text.main) refers to main.o(.text.__NVIC_SystemReset) for __NVIC_SystemReset
+    main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.__NVIC_SystemReset) refers to main.o(.text.__NVIC_SystemReset) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.Systick_ISR) refers to main.o(.text.Systick_ISR) for [Anonymous Symbol]
+    can_iso_tp.o(.text.iso_can_tp_create) refers to can_iso_tp.o(.rodata.str1.1) for .L.str.1
+    can_iso_tp.o(.text.iso_can_tp_create) refers to memseta.o(.text) for __aeabi_memclr4
+    can_iso_tp.o(.text.iso_can_tp_create) refers to mcu_lock.o(.text.mcu_lock_init) for mcu_lock_init
+    can_iso_tp.o(.text.iso_can_tp_create) refers to fifoqueue.o(.text.QueueInit) for QueueInit
+    can_iso_tp.o(.text.iso_can_tp_create) refers to can_iso_tp.o(.text.event_manage_block_init) for event_manage_block_init
+    can_iso_tp.o(.ARM.exidx.text.iso_can_tp_create) refers to can_iso_tp.o(.text.iso_can_tp_create) for [Anonymous Symbol]
+    can_iso_tp.o(.text.event_manage_block_init) refers to mcu_lock.o(.text.mcu_lock_init) for mcu_lock_init
+    can_iso_tp.o(.text.event_manage_block_init) refers to fifoqueue.o(.text.QueueInit) for QueueInit
+    can_iso_tp.o(.ARM.exidx.text.event_manage_block_init) refers to can_iso_tp.o(.text.event_manage_block_init) for [Anonymous Symbol]
+    can_iso_tp.o(.text.iso_can_tp_poll) refers to can_iso_tp.o(.rodata.str1.1) for .L.str.12
+    can_iso_tp.o(.text.iso_can_tp_poll) refers to can_iso_tp.o(.text.rx_event_poll_handle) for rx_event_poll_handle
+    can_iso_tp.o(.text.iso_can_tp_poll) refers to fifoqueue.o(.text.QueueIn) for QueueIn
+    can_iso_tp.o(.text.iso_can_tp_poll) refers to mcu_lock.o(.text.mcu_lock_try_lock) for mcu_lock_try_lock
+    can_iso_tp.o(.text.iso_can_tp_poll) refers to fifoqueue.o(.text.QueueOut) for QueueOut
+    can_iso_tp.o(.text.iso_can_tp_poll) refers to mcu_lock.o(.text.mcu_lock_unlock) for mcu_lock_unlock
+    can_iso_tp.o(.text.iso_can_tp_poll) refers to can_iso_tp.o(.text.tx_event_poll_handle) for tx_event_poll_handle
+    can_iso_tp.o(.ARM.exidx.text.iso_can_tp_poll) refers to can_iso_tp.o(.text.iso_can_tp_poll) for [Anonymous Symbol]
+    can_iso_tp.o(.ARM.exidx.text.rx_event_poll_handle) refers to can_iso_tp.o(.text.rx_event_poll_handle) for [Anonymous Symbol]
+    can_iso_tp.o(.text.report_event_to_manage_block) refers to fifoqueue.o(.text.QueueIn) for QueueIn
+    can_iso_tp.o(.text.report_event_to_manage_block) refers to mcu_lock.o(.text.mcu_lock_try_lock) for mcu_lock_try_lock
+    can_iso_tp.o(.text.report_event_to_manage_block) refers to fifoqueue.o(.text.QueueOut) for QueueOut
+    can_iso_tp.o(.text.report_event_to_manage_block) refers to mcu_lock.o(.text.mcu_lock_unlock) for mcu_lock_unlock
+    can_iso_tp.o(.ARM.exidx.text.report_event_to_manage_block) refers to can_iso_tp.o(.text.report_event_to_manage_block) for [Anonymous Symbol]
+    can_iso_tp.o(.text.tx_event_poll_handle) refers to can_iso_tp.o(.text.tx_event_cf_frame) for tx_event_cf_frame
+    can_iso_tp.o(.ARM.exidx.text.tx_event_poll_handle) refers to can_iso_tp.o(.text.tx_event_poll_handle) for [Anonymous Symbol]
+    can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) refers to can_iso_tp.o(.rodata.cst16) for dlc_len_table
+    can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) refers to memcmp.o(.text) for memcmp
+    can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) refers to can_iso_tp.o(.rodata.str1.1) for .L.str.14
+    can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) refers to can_iso_tp.o(.text.rx_event_L_Data_Confirm_handle) for rx_event_L_Data_Confirm_handle
+    can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) refers to can_iso_tp.o(.text.tx_event_L_Data_Confirm_handle) for tx_event_L_Data_Confirm_handle
+    can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) refers to can_iso_tp.o(.text.report_event_to_manage_block) for report_event_to_manage_block
+    can_iso_tp.o(.ARM.exidx.text.iso_can_tp_L_Data_confirm) refers to can_iso_tp.o(.text.iso_can_tp_L_Data_confirm) for [Anonymous Symbol]
+    can_iso_tp.o(.ARM.exidx.text.rx_event_L_Data_Confirm_handle) refers to can_iso_tp.o(.text.rx_event_L_Data_Confirm_handle) for [Anonymous Symbol]
+    can_iso_tp.o(.text.tx_event_L_Data_Confirm_handle) refers to can_iso_tp.o(.text.tx_event_cf_frame) for tx_event_cf_frame
+    can_iso_tp.o(.text.tx_event_L_Data_Confirm_handle) refers to can_iso_tp.o(.rodata.cst16) for dlc_len_table
+    can_iso_tp.o(.ARM.exidx.text.tx_event_L_Data_Confirm_handle) refers to can_iso_tp.o(.text.tx_event_L_Data_Confirm_handle) for [Anonymous Symbol]
+    can_iso_tp.o(.text.iso_can_tp_L_Data_indication) refers to can_iso_tp.o(.rodata.str1.1) for .L.str.16
+    can_iso_tp.o(.text.iso_can_tp_L_Data_indication) refers to can_iso_tp.o(.text.tx_event_L_Data_indication_handle) for tx_event_L_Data_indication_handle
+    can_iso_tp.o(.text.iso_can_tp_L_Data_indication) refers to memcpya.o(.text) for __aeabi_memcpy4
+    can_iso_tp.o(.text.iso_can_tp_L_Data_indication) refers to can_iso_tp.o(.text.rx_event_L_Data_indication_handle) for rx_event_L_Data_indication_handle
+    can_iso_tp.o(.text.iso_can_tp_L_Data_indication) refers to can_iso_tp.o(.text.report_event_to_manage_block) for report_event_to_manage_block
+    can_iso_tp.o(.ARM.exidx.text.iso_can_tp_L_Data_indication) refers to can_iso_tp.o(.text.iso_can_tp_L_Data_indication) for [Anonymous Symbol]
+    can_iso_tp.o(.text.tx_event_L_Data_indication_handle) refers to can_iso_tp.o(.text.tx_event_cf_frame) for tx_event_cf_frame
+    can_iso_tp.o(.ARM.exidx.text.tx_event_L_Data_indication_handle) refers to can_iso_tp.o(.text.tx_event_L_Data_indication_handle) for [Anonymous Symbol]
+    can_iso_tp.o(.text.rx_event_L_Data_indication_handle) refers to can_iso_tp.o(.rodata.cst16) for dlc_len_table
+    can_iso_tp.o(.text.rx_event_L_Data_indication_handle) refers to memcpya.o(.text) for __aeabi_memcpy
+    can_iso_tp.o(.text.rx_event_L_Data_indication_handle) refers to memseta.o(.text) for __aeabi_memset
+    can_iso_tp.o(.ARM.exidx.text.rx_event_L_Data_indication_handle) refers to can_iso_tp.o(.text.rx_event_L_Data_indication_handle) for [Anonymous Symbol]
+    can_iso_tp.o(.text.iso_can_tp_N_USData_request) refers to can_iso_tp.o(.rodata.str1.1) for .L.str.20
+    can_iso_tp.o(.text.iso_can_tp_N_USData_request) refers to can_iso_tp.o(.text.tx_event_N_USData_Request_handle) for tx_event_N_USData_Request_handle
+    can_iso_tp.o(.text.iso_can_tp_N_USData_request) refers to fifoqueue.o(.text.QueueIn) for QueueIn
+    can_iso_tp.o(.text.iso_can_tp_N_USData_request) refers to mcu_lock.o(.text.mcu_lock_try_lock) for mcu_lock_try_lock
+    can_iso_tp.o(.text.iso_can_tp_N_USData_request) refers to fifoqueue.o(.text.QueueOut) for QueueOut
+    can_iso_tp.o(.text.iso_can_tp_N_USData_request) refers to mcu_lock.o(.text.mcu_lock_unlock) for mcu_lock_unlock
+    can_iso_tp.o(.ARM.exidx.text.iso_can_tp_N_USData_request) refers to can_iso_tp.o(.text.iso_can_tp_N_USData_request) for [Anonymous Symbol]
+    can_iso_tp.o(.text.tx_event_N_USData_Request_handle) refers to can_iso_tp.o(.rodata.cst16) for dlc_len_table
+    can_iso_tp.o(.text.tx_event_N_USData_Request_handle) refers to can_iso_tp.o(.rodata.str1.1) for .L.str.21
+    can_iso_tp.o(.text.tx_event_N_USData_Request_handle) refers to memcpya.o(.text) for __aeabi_memcpy
+    can_iso_tp.o(.ARM.exidx.text.tx_event_N_USData_Request_handle) refers to can_iso_tp.o(.text.tx_event_N_USData_Request_handle) for [Anonymous Symbol]
+    can_iso_tp.o(.text.tx_event_cf_frame) refers to can_iso_tp.o(.rodata.cst16) for dlc_len_table
+    can_iso_tp.o(.text.tx_event_cf_frame) refers to memcpya.o(.text) for __aeabi_memcpy
+    can_iso_tp.o(.text.tx_event_cf_frame) refers to memseta.o(.text) for __aeabi_memset
+    can_iso_tp.o(.ARM.exidx.text.tx_event_cf_frame) refers to can_iso_tp.o(.text.tx_event_cf_frame) for [Anonymous Symbol]
+    fifoqueue.o(.ARM.exidx.text.QueueInit) refers to fifoqueue.o(.text.QueueInit) for [Anonymous Symbol]
+    fifoqueue.o(.ARM.exidx.text.QueueIn) refers to fifoqueue.o(.text.QueueIn) for [Anonymous Symbol]
+    fifoqueue.o(.ARM.exidx.text.QueueOut) refers to fifoqueue.o(.text.QueueOut) for [Anonymous Symbol]
+    mcu_lock.o(.ARM.exidx.text.mcu_lock_init) refers to mcu_lock.o(.text.mcu_lock_init) for [Anonymous Symbol]
+    mcu_lock.o(.ARM.exidx.text.mcu_lock_try_lock) refers to mcu_lock.o(.text.mcu_lock_try_lock) for [Anonymous Symbol]
+    mcu_lock.o(.ARM.exidx.text.mcu_lock_unlock) refers to mcu_lock.o(.text.mcu_lock_unlock) for [Anonymous Symbol]
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.bss.ServerData) for ServerData
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.data.SecurityAccess_STATION) for SecurityAccess_STATION
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.data.UDS27_Timelock_count) for UDS27_Timelock_count
+    server.o(.text.UdsServerRequestProcess) refers to memseta.o(.text) for __aeabi_memclr4
+    server.o(.text.UdsServerRequestProcess) refers to crclib.o(.text.crc32) for crc32
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.bss.ServerLinkPoint) for ServerLinkPoint
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.data.Serive_Online) for Serive_Online
+    server.o(.text.UdsServerRequestProcess) refers to can_iso_tp.o(.text.iso_can_tp_N_USData_request) for iso_can_tp_N_USData_request
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.text.udsServer_sendResponse) for udsServer_sendResponse
+    server.o(.text.UdsServerRequestProcess) refers to uds27_sa.o(.bss.UDS_SericeAccess_Seed) for UDS_SericeAccess_Seed
+    server.o(.text.UdsServerRequestProcess) refers to uds27_sa.o(.text.Creating_Seed) for Creating_Seed
+    server.o(.text.UdsServerRequestProcess) refers to uds27_sa.o(.bss.UDS_SericeAccess_Key) for UDS_SericeAccess_Key
+    server.o(.text.UdsServerRequestProcess) refers to uds27_sa.o(.text.PasswordGenerator) for PasswordGenerator
+    server.o(.text.UdsServerRequestProcess) refers to uds27_sa.o(.text.SecurityAccess_unlock) for SecurityAccess_unlock
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.bss.Timelock_error_count) for Timelock_error_count
+    server.o(.text.UdsServerRequestProcess) refers to server.o(.text.UDS_Serice_EcuReset) for UDS_Serice_EcuReset
+    server.o(.ARM.exidx.text.UdsServerRequestProcess) refers to server.o(.text.UdsServerRequestProcess) for [Anonymous Symbol]
+    server.o(.text.UDS_Serice_EcuReset) refers to server.o(.text.__NVIC_SystemReset) for __NVIC_SystemReset
+    server.o(.ARM.exidx.text.UDS_Serice_EcuReset) refers to server.o(.text.UDS_Serice_EcuReset) for [Anonymous Symbol]
+    server.o(.text.udsServer_sendResponse) refers to server.o(.bss.ServerData) for ServerData
+    server.o(.text.udsServer_sendResponse) refers to server.o(.bss.ServerLinkPoint) for ServerLinkPoint
+    server.o(.text.udsServer_sendResponse) refers to can_iso_tp.o(.text.iso_can_tp_N_USData_request) for iso_can_tp_N_USData_request
+    server.o(.ARM.exidx.text.udsServer_sendResponse) refers to server.o(.text.udsServer_sendResponse) for [Anonymous Symbol]
+    server.o(.text.UDS_init) refers to server.o(.data.SecurityAccess_STATION) for SecurityAccess_STATION
+    server.o(.text.UDS_init) refers to server.o(.data.Serive_Online) for Serive_Online
+    server.o(.text.UDS_init) refers to server.o(.data.UDS27_Timelock_count) for UDS27_Timelock_count
+    server.o(.ARM.exidx.text.UDS_init) refers to server.o(.text.UDS_init) for [Anonymous Symbol]
+    server.o(.text.UDS_server_poll) refers to server.o(.data.UDS27_Timelock_count) for UDS27_Timelock_count
+    server.o(.text.UDS_server_poll) refers to server.o(.data.Serive_Online) for Serive_Online
+    server.o(.text.UDS_server_poll) refers to server.o(.text.__NVIC_SystemReset) for __NVIC_SystemReset
+    server.o(.ARM.exidx.text.UDS_server_poll) refers to server.o(.text.UDS_server_poll) for [Anonymous Symbol]
+    server.o(.ARM.exidx.text.__NVIC_SystemReset) refers to server.o(.text.__NVIC_SystemReset) for [Anonymous Symbol]
+    uds27_sa.o(.text.Creating_Seed) refers to uds27_sa.o(.bss.UDS27_RN) for UDS27_RN
+    uds27_sa.o(.ARM.exidx.text.Creating_Seed) refers to uds27_sa.o(.text.Creating_Seed) for [Anonymous Symbol]
+    uds27_sa.o(.ARM.exidx.text.PasswordGenerator) refers to uds27_sa.o(.text.PasswordGenerator) for [Anonymous Symbol]
+    uds27_sa.o(.ARM.exidx.text.SecurityAccess_unlock) refers to uds27_sa.o(.text.SecurityAccess_unlock) for [Anonymous Symbol]
+    jumptoapp.o(.ARM.exidx.text.BootJumpASM) refers to jumptoapp.o(.text.BootJumpASM) for [Anonymous Symbol]
+    jumptoapp.o(.text.app_jump) refers to pmu.o(.text.PMU_serviceFailSafeWatchdogSOW) for PMU_serviceFailSafeWatchdogSOW
+    jumptoapp.o(.text.app_jump) refers to jumptoapp.o(.text.BootJumpASM) for BootJumpASM
+    jumptoapp.o(.ARM.exidx.text.app_jump) refers to jumptoapp.o(.text.app_jump) for [Anonymous Symbol]
+    tp_config.o(.text.init_for_all_links) refers to tp_config.o(.bss.link_tp) for link_tp
+    tp_config.o(.text.init_for_all_links) refers to memseta.o(.text) for __aeabi_memclr4
+    tp_config.o(.text.init_for_all_links) refers to tp_config.o(.bss.init_tp) for init_tp
+    tp_config.o(.text.init_for_all_links) refers to tp_config.o(.text.L_Data_request) for L_Data_request
+    tp_config.o(.text.init_for_all_links) refers to tp_config.o(.text.N_USData_indication) for N_USData_indication
+    tp_config.o(.text.init_for_all_links) refers to tp_config.o(.text.N_USData_confirm) for N_USData_confirm
+    tp_config.o(.text.init_for_all_links) refers to tp_config.o(.bss.rx_buff) for rx_buff
+    tp_config.o(.text.init_for_all_links) refers to tp_config.o(.text.print_debug_info) for print_debug_info
+    tp_config.o(.ARM.exidx.text.init_for_all_links) refers to tp_config.o(.text.init_for_all_links) for [Anonymous Symbol]
+    tp_config.o(.text.L_Data_request) refers to memseta.o(.text) for __aeabi_memclr4
+    tp_config.o(.text.L_Data_request) refers to multican_handler.o(.bss.msgPublic) for msgPublic
+    tp_config.o(.text.L_Data_request) refers to memcpya.o(.text) for __aeabi_memcpy4
+    tp_config.o(.text.L_Data_request) refers to multican_handler.o(.text.CAN_TransmitReqMsgObj3_data) for CAN_TransmitReqMsgObj3_data
+    tp_config.o(.ARM.exidx.text.L_Data_request) refers to tp_config.o(.text.L_Data_request) for [Anonymous Symbol]
+    tp_config.o(.text.N_USData_indication) refers to server.o(.text.UdsServerRequestProcess) for UdsServerRequestProcess
+    tp_config.o(.ARM.exidx.text.N_USData_indication) refers to tp_config.o(.text.N_USData_indication) for [Anonymous Symbol]
+    tp_config.o(.ARM.exidx.text.N_USData_confirm) refers to tp_config.o(.text.N_USData_confirm) for [Anonymous Symbol]
+    tp_config.o(.ARM.exidx.text.print_debug_info) refers to tp_config.o(.text.print_debug_info) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc4_itu) refers to crclib.o(.text.crc4_itu) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc5_epc) refers to crclib.o(.text.crc5_epc) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc5_itu) refers to crclib.o(.text.crc5_itu) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc5_usb) refers to crclib.o(.text.crc5_usb) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc6_itu) refers to crclib.o(.text.crc6_itu) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc7_mmc) refers to crclib.o(.text.crc7_mmc) for [Anonymous Symbol]
+    crclib.o(.text.crc8_table) refers to crclib.o(.rodata.crc_table) for crc_table
+    crclib.o(.ARM.exidx.text.crc8_table) refers to crclib.o(.text.crc8_table) for [Anonymous Symbol]
+    crclib.o(.text.CRC_16_table) refers to crclib.o(.rodata.CRC16_TABLE) for CRC16_TABLE
+    crclib.o(.ARM.exidx.text.CRC_16_table) refers to crclib.o(.text.CRC_16_table) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc8) refers to crclib.o(.text.crc8) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc8_itu) refers to crclib.o(.text.crc8_itu) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc8_rohc) refers to crclib.o(.text.crc8_rohc) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc8_maxim) refers to crclib.o(.text.crc8_maxim) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_ibm) refers to crclib.o(.text.crc16_ibm) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_maxim) refers to crclib.o(.text.crc16_maxim) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_usb) refers to crclib.o(.text.crc16_usb) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_modbus) refers to crclib.o(.text.crc16_modbus) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_ccitt) refers to crclib.o(.text.crc16_ccitt) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_ccitt_false) refers to crclib.o(.text.crc16_ccitt_false) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_x25) refers to crclib.o(.text.crc16_x25) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_xmodem) refers to crclib.o(.text.crc16_xmodem) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc16_dnp) refers to crclib.o(.text.crc16_dnp) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc32) refers to crclib.o(.text.crc32) for [Anonymous Symbol]
+    crclib.o(.ARM.exidx.text.crc32_mpeg_2) refers to crclib.o(.text.crc32_mpeg_2) for [Anonymous Symbol]
+    systick.o(.text.SYS_Init) refers to scu.o(.text.SCU_initClk) for SCU_initClk
+    systick.o(.text.SYS_Init) refers to scu.o(.text.SCU_initSysTick) for SCU_initSysTick
+    systick.o(.text.SYS_Init) refers to pmu.o(.text.PMU_initFailSafeWatchdog) for PMU_initFailSafeWatchdog
+    systick.o(.ARM.exidx.text.SYS_Init) refers to systick.o(.text.SYS_Init) for [Anonymous Symbol]
+    multican_handler.o(.ARM.exidx.text.MultiCAN_init) refers to multican_handler.o(.text.MultiCAN_init) for [Anonymous Symbol]
+    multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj0) refers to multican_handler.o(.text.CAN_TransmitReqMsgObj0) for [Anonymous Symbol]
+    multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj1) refers to multican_handler.o(.text.CAN_TransmitReqMsgObj1) for [Anonymous Symbol]
+    multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj2) refers to multican_handler.o(.text.CAN_TransmitReqMsgObj2) for [Anonymous Symbol]
+    multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj3) refers to multican_handler.o(.text.CAN_TransmitReqMsgObj3) for [Anonymous Symbol]
+    multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj3_data) refers to multican_handler.o(.text.CAN_TransmitReqMsgObj3_data) for [Anonymous Symbol]
+    multican_handler.o(.text.NVIC_IRQ26_Handler) refers to multican_handler.o(.bss.msgPublic_ok) for msgPublic_ok
+    multican_handler.o(.ARM.exidx.text.NVIC_IRQ26_Handler) refers to multican_handler.o(.text.NVIC_IRQ26_Handler) for [Anonymous Symbol]
+    multican_handler.o(.text.NVIC_IRQ27_Handler) refers to multican_handler.o(.bss.can_receive_counter) for can_receive_counter
+    multican_handler.o(.text.NVIC_IRQ27_Handler) refers to multican_handler.o(.bss.NVIC_IRQ27_Handler.rxbuffer) for NVIC_IRQ27_Handler.rxbuffer
+    multican_handler.o(.text.NVIC_IRQ27_Handler) refers to multican_handler.o(.bss.msg_Rx) for msg_Rx
+    multican_handler.o(.text.NVIC_IRQ27_Handler) refers to multican_handler.o(.bss.msg_Rx_exit) for msg_Rx_exit
+    multican_handler.o(.ARM.exidx.text.NVIC_IRQ27_Handler) refers to multican_handler.o(.text.NVIC_IRQ27_Handler) for [Anonymous Symbol]
+    multican_handler.o(.text.NVIC_IRQ28_Handler) refers to scu.o(.text.SCU_delay_us) for SCU_delay_us
+    multican_handler.o(.text.NVIC_IRQ28_Handler) refers to multican_handler.o(.text.MultiCAN_init) for MultiCAN_init
+    multican_handler.o(.ARM.exidx.text.NVIC_IRQ28_Handler) refers to multican_handler.o(.text.NVIC_IRQ28_Handler) for [Anonymous Symbol]
+    multican_handler.o(.ARM.exidx.text.T16_ISR) refers to multican_handler.o(.text.T16_ISR) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_init) refers to adc1.o(.text.ADC1_init) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getChResult) refers to adc1.o(.text.ADC1_getChResult) for [Anonymous Symbol]
+    adc1.o(.text.ADC1_getChResult_mV) refers to adc1.o(.rodata.cu16_ADC1_analogInput_Att) for cu16_ADC1_analogInput_Att
+    adc1.o(.ARM.exidx.text.ADC1_getChResult_mV) refers to adc1.o(.text.ADC1_getChResult_mV) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getAnalogInputFromChannel) refers to adc1.o(.text.ADC1_getAnalogInputFromChannel) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getChFiltResult) refers to adc1.o(.text.ADC1_getChFiltResult) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getFiltIdxFromChannel) refers to adc1.o(.text.ADC1_getFiltIdxFromChannel) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getFiltChResult) refers to adc1.o(.text.ADC1_getFiltChResult) for [Anonymous Symbol]
+    adc1.o(.text.ADC1_getChFiltResult_mV) refers to adc1.o(.rodata.cu16_ADC1_analogInput_Att) for cu16_ADC1_analogInput_Att
+    adc1.o(.ARM.exidx.text.ADC1_getChFiltResult_mV) refers to adc1.o(.text.ADC1_getChFiltResult_mV) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getSeqResult) refers to adc1.o(.text.ADC1_getSeqResult) for [Anonymous Symbol]
+    adc1.o(.text.ADC1_getSeqResult_mV) refers to adc1.o(.rodata.cu16_ADC1_analogInput_Att) for cu16_ADC1_analogInput_Att
+    adc1.o(.ARM.exidx.text.ADC1_getSeqResult_mV) refers to adc1.o(.text.ADC1_getSeqResult_mV) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_startSequence) refers to adc1.o(.text.ADC1_startSequence) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getEndOfConvSts) refers to adc1.o(.text.ADC1_getEndOfConvSts) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_getCalibEnFromChannel) refers to adc1.o(.text.ADC1_getCalibEnFromChannel) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh0IntNodePtr) refers to adc1.o(.text.ADC1_setCh0IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh1IntNodePtr) refers to adc1.o(.text.ADC1_setCh1IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh2IntNodePtr) refers to adc1.o(.text.ADC1_setCh2IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh3IntNodePtr) refers to adc1.o(.text.ADC1_setCh3IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh4IntNodePtr) refers to adc1.o(.text.ADC1_setCh4IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh5IntNodePtr) refers to adc1.o(.text.ADC1_setCh5IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh6IntNodePtr) refers to adc1.o(.text.ADC1_setCh6IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh7IntNodePtr) refers to adc1.o(.text.ADC1_setCh7IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh8IntNodePtr) refers to adc1.o(.text.ADC1_setCh8IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh9IntNodePtr) refers to adc1.o(.text.ADC1_setCh9IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh10IntNodePtr) refers to adc1.o(.text.ADC1_setCh10IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh11IntNodePtr) refers to adc1.o(.text.ADC1_setCh11IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh12IntNodePtr) refers to adc1.o(.text.ADC1_setCh12IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh13IntNodePtr) refers to adc1.o(.text.ADC1_setCh13IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh14IntNodePtr) refers to adc1.o(.text.ADC1_setCh14IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh15IntNodePtr) refers to adc1.o(.text.ADC1_setCh15IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh16IntNodePtr) refers to adc1.o(.text.ADC1_setCh16IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh17IntNodePtr) refers to adc1.o(.text.ADC1_setCh17IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh18IntNodePtr) refers to adc1.o(.text.ADC1_setCh18IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCh19IntNodePtr) refers to adc1.o(.text.ADC1_setCh19IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp0LoIntNodePtr) refers to adc1.o(.text.ADC1_setCmp0LoIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp1LoIntNodePtr) refers to adc1.o(.text.ADC1_setCmp1LoIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp2LoIntNodePtr) refers to adc1.o(.text.ADC1_setCmp2LoIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp3LoIntNodePtr) refers to adc1.o(.text.ADC1_setCmp3LoIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp0UpIntNodePtr) refers to adc1.o(.text.ADC1_setCmp0UpIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp1UpIntNodePtr) refers to adc1.o(.text.ADC1_setCmp1UpIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp2UpIntNodePtr) refers to adc1.o(.text.ADC1_setCmp2UpIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setCmp3UpIntNodePtr) refers to adc1.o(.text.ADC1_setCmp3UpIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq0IntNodePtr) refers to adc1.o(.text.ADC1_setSeq0IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq1IntNodePtr) refers to adc1.o(.text.ADC1_setSeq1IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq2IntNodePtr) refers to adc1.o(.text.ADC1_setSeq2IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq3IntNodePtr) refers to adc1.o(.text.ADC1_setSeq3IntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq0CollIntNodePtr) refers to adc1.o(.text.ADC1_setSeq0CollIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq1CollIntNodePtr) refers to adc1.o(.text.ADC1_setSeq1CollIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq2CollIntNodePtr) refers to adc1.o(.text.ADC1_setSeq2CollIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq3CollIntNodePtr) refers to adc1.o(.text.ADC1_setSeq3CollIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq0WaitForReadIntNodePtr) refers to adc1.o(.text.ADC1_setSeq0WaitForReadIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq1WaitForReadIntNodePtr) refers to adc1.o(.text.ADC1_setSeq1WaitForReadIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq2WaitForReadIntNodePtr) refers to adc1.o(.text.ADC1_setSeq2WaitForReadIntNodePtr) for [Anonymous Symbol]
+    adc1.o(.ARM.exidx.text.ADC1_setSeq3WaitForReadIntNodePtr) refers to adc1.o(.text.ADC1_setSeq3WaitForReadIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_init) refers to adc2.o(.text.ADC2_init) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_getChResult) refers to adc2.o(.text.ADC2_getChResult) for [Anonymous Symbol]
+    adc2.o(.text.ADC2_getChResult_mV) refers to adc2.o(.rodata.cu16_ADC2_analogInput_Att) for cu16_ADC2_analogInput_Att
+    adc2.o(.ARM.exidx.text.ADC2_getChResult_mV) refers to adc2.o(.text.ADC2_getChResult_mV) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_getChFiltResult) refers to adc2.o(.text.ADC2_getChFiltResult) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_getFiltIdxFromChannel) refers to adc2.o(.text.ADC2_getFiltIdxFromChannel) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_getFiltChResult) refers to adc2.o(.text.ADC2_getFiltChResult) for [Anonymous Symbol]
+    adc2.o(.text.ADC2_getChFiltResult_mV) refers to adc2.o(.rodata.cu16_ADC2_analogInput_Att) for cu16_ADC2_analogInput_Att
+    adc2.o(.ARM.exidx.text.ADC2_getChFiltResult_mV) refers to adc2.o(.text.ADC2_getChFiltResult_mV) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_getSeqResult) refers to adc2.o(.text.ADC2_getSeqResult) for [Anonymous Symbol]
+    adc2.o(.text.ADC2_getSeqResult_mV) refers to adc2.o(.rodata.cu16_ADC2_analogInput_Att) for cu16_ADC2_analogInput_Att
+    adc2.o(.ARM.exidx.text.ADC2_getSeqResult_mV) refers to adc2.o(.text.ADC2_getSeqResult_mV) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_startSequence) refers to adc2.o(.text.ADC2_startSequence) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_getEndOfConvSts) refers to adc2.o(.text.ADC2_getEndOfConvSts) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh0IntNodePtr) refers to adc2.o(.text.ADC2_setCh0IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh1IntNodePtr) refers to adc2.o(.text.ADC2_setCh1IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh2IntNodePtr) refers to adc2.o(.text.ADC2_setCh2IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh3IntNodePtr) refers to adc2.o(.text.ADC2_setCh3IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh4IntNodePtr) refers to adc2.o(.text.ADC2_setCh4IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh5IntNodePtr) refers to adc2.o(.text.ADC2_setCh5IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh6IntNodePtr) refers to adc2.o(.text.ADC2_setCh6IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh7IntNodePtr) refers to adc2.o(.text.ADC2_setCh7IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh8IntNodePtr) refers to adc2.o(.text.ADC2_setCh8IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh9IntNodePtr) refers to adc2.o(.text.ADC2_setCh9IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh10IntNodePtr) refers to adc2.o(.text.ADC2_setCh10IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh11IntNodePtr) refers to adc2.o(.text.ADC2_setCh11IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh12IntNodePtr) refers to adc2.o(.text.ADC2_setCh12IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh13IntNodePtr) refers to adc2.o(.text.ADC2_setCh13IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCh14IntNodePtr) refers to adc2.o(.text.ADC2_setCh14IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp0LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp0LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp1LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp1LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp2LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp2LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp3LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp3LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp4LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp4LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp5LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp5LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp6LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp6LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp7LoIntNodePtr) refers to adc2.o(.text.ADC2_setCmp7LoIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp0UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp0UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp1UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp1UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp2UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp2UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp3UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp3UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp4UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp4UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp5UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp5UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp6UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp6UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setCmp7UpIntNodePtr) refers to adc2.o(.text.ADC2_setCmp7UpIntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setSeq0IntNodePtr) refers to adc2.o(.text.ADC2_setSeq0IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setSeq1IntNodePtr) refers to adc2.o(.text.ADC2_setSeq1IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setSeq2IntNodePtr) refers to adc2.o(.text.ADC2_setSeq2IntNodePtr) for [Anonymous Symbol]
+    adc2.o(.ARM.exidx.text.ADC2_setSeq3IntNodePtr) refers to adc2.o(.text.ADC2_setSeq3IntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_initCP) refers to bdrv.o(.text.BDRV_initCP) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_init) refers to bdrv.o(.text.BDRV_init) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setBridge) refers to bdrv.o(.text.BDRV_setBridge) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setLSChrgConstMode) refers to bdrv.o(.text.BDRV_setLSChrgConstMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHSChrgConstMode) refers to bdrv.o(.text.BDRV_setHSChrgConstMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setLSDischrgConstMode) refers to bdrv.o(.text.BDRV_setLSDischrgConstMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHSDischrgConstMode) refers to bdrv.o(.text.BDRV_setHSDischrgConstMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setLSChrgSeqMode) refers to bdrv.o(.text.BDRV_setLSChrgSeqMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHSChrgSeqMode) refers to bdrv.o(.text.BDRV_setHSChrgSeqMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setLSDischrgSeqMode) refers to bdrv.o(.text.BDRV_setLSDischrgSeqMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHSDischrgSeqMode) refers to bdrv.o(.text.BDRV_setHSDischrgSeqMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setChrgAdaptSeqMode) refers to bdrv.o(.text.BDRV_setChrgAdaptSeqMode) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setDischrgAdaptSeqMode) refers to bdrv.o(.text.BDRV_setDischrgAdaptSeqMode) for [Anonymous Symbol]
+    bdrv.o(.text.BDRV_checkShortDiagnosis) refers to scu.o(.text.SCU_delay_us) for SCU_delay_us
+    bdrv.o(.ARM.exidx.text.BDRV_checkShortDiagnosis) refers to bdrv.o(.text.BDRV_checkShortDiagnosis) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_clrFaultSts) refers to bdrv.o(.text.BDRV_clrFaultSts) for [Anonymous Symbol]
+    bdrv.o(.text.BDRV_checkOpenLoad) refers to scu.o(.text.SCU_delay_us) for SCU_delay_us
+    bdrv.o(.ARM.exidx.text.BDRV_checkOpenLoad) refers to bdrv.o(.text.BDRV_checkOpenLoad) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_getFaultSts) refers to bdrv.o(.text.BDRV_getFaultSts) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_getFaults) refers to bdrv.o(.text.BDRV_getFaults) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setExternalLS1MosfetOvercurrentIntNodePtr) refers to bdrv.o(.text.BDRV_setExternalLS1MosfetOvercurrentIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setExternalHS1MosfetOvercurrentIntNodePtr) refers to bdrv.o(.text.BDRV_setExternalHS1MosfetOvercurrentIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setExternalLS2MosfetOvercurrentIntNodePtr) refers to bdrv.o(.text.BDRV_setExternalLS2MosfetOvercurrentIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setExternalHS2MosfetOvercurrentIntNodePtr) refers to bdrv.o(.text.BDRV_setExternalHS2MosfetOvercurrentIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setExternalLS3MosfetOvercurrentIntNodePtr) refers to bdrv.o(.text.BDRV_setExternalLS3MosfetOvercurrentIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setExternalHS3MosfetOvercurrentIntNodePtr) refers to bdrv.o(.text.BDRV_setExternalHS3MosfetOvercurrentIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setLS1DrainSrcMonitoringIntNodePtr) refers to bdrv.o(.text.BDRV_setLS1DrainSrcMonitoringIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHS1DrainSrcMonitoringIntNodePtr) refers to bdrv.o(.text.BDRV_setHS1DrainSrcMonitoringIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setLS2DrainSrcMonitoringIntNodePtr) refers to bdrv.o(.text.BDRV_setLS2DrainSrcMonitoringIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHS2DrainSrcMonitoringIntNodePtr) refers to bdrv.o(.text.BDRV_setHS2DrainSrcMonitoringIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setLS3DrainSrcMonitoringIntNodePtr) refers to bdrv.o(.text.BDRV_setLS3DrainSrcMonitoringIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHS3DrainSrcMonitoringIntNodePtr) refers to bdrv.o(.text.BDRV_setHS3DrainSrcMonitoringIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHB1AdaptSeqIntNodePtr) refers to bdrv.o(.text.BDRV_setHB1AdaptSeqIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHB2AdaptSeqIntNodePtr) refers to bdrv.o(.text.BDRV_setHB2AdaptSeqIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHB3AdaptSeqIntNodePtr) refers to bdrv.o(.text.BDRV_setHB3AdaptSeqIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHB1ActDrvDetectIntNodePtr) refers to bdrv.o(.text.BDRV_setHB1ActDrvDetectIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHB2ActDrvDetectIntNodePtr) refers to bdrv.o(.text.BDRV_setHB2ActDrvDetectIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setHB3ActDrvDetectIntNodePtr) refers to bdrv.o(.text.BDRV_setHB3ActDrvDetectIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setDrvSeqErrIntNodePtr) refers to bdrv.o(.text.BDRV_setDrvSeqErrIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setPh1ZCFallIntNodePtr) refers to bdrv.o(.text.BDRV_setPh1ZCFallIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setPh2ZCFallIntNodePtr) refers to bdrv.o(.text.BDRV_setPh2ZCFallIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setPh3ZCFallIntNodePtr) refers to bdrv.o(.text.BDRV_setPh3ZCFallIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setPh1ZCRiseIntNodePtr) refers to bdrv.o(.text.BDRV_setPh1ZCRiseIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setPh2ZCRiseIntNodePtr) refers to bdrv.o(.text.BDRV_setPh2ZCRiseIntNodePtr) for [Anonymous Symbol]
+    bdrv.o(.ARM.exidx.text.BDRV_setPh3ZCRiseIntNodePtr) refers to bdrv.o(.text.BDRV_setPh3ZCRiseIntNodePtr) for [Anonymous Symbol]
+    cantrx.o(.ARM.exidx.text.CANTRX_init) refers to cantrx.o(.text.CANTRX_init) for [Anonymous Symbol]
+    cantrx.o(.ARM.exidx.text.CANTRX_setCANTRXIntNodePtr) refers to cantrx.o(.text.CANTRX_setCANTRXIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_init) refers to ccu7.o(.text.CCU7_init) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_enModule) refers to ccu7.o(.text.CCU7_enModule) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_disModule) refers to ccu7.o(.text.CCU7_disModule) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setCC70AIntNodePtr) refers to ccu7.o(.text.CCU7_setCC70AIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setCC71AIntNodePtr) refers to ccu7.o(.text.CCU7_setCC71AIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setCC72AIntNodePtr) refers to ccu7.o(.text.CCU7_setCC72AIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setCHEIntNodePtr) refers to ccu7.o(.text.CCU7_setCHEIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setErrorIntNodePtr) refers to ccu7.o(.text.CCU7_setErrorIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setT12IntNodePtr) refers to ccu7.o(.text.CCU7_setT12IntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setT13IntNodePtr) refers to ccu7.o(.text.CCU7_setT13IntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setC70BIntNodePtr) refers to ccu7.o(.text.CCU7_setC70BIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setC71BIntNodePtr) refers to ccu7.o(.text.CCU7_setC71BIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setC72BIntNodePtr) refers to ccu7.o(.text.CCU7_setC72BIntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setT14IntNodePtr) refers to ccu7.o(.text.CCU7_setT14IntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setT15IntNodePtr) refers to ccu7.o(.text.CCU7_setT15IntNodePtr) for [Anonymous Symbol]
+    ccu7.o(.ARM.exidx.text.CCU7_setT16IntNodePtr) refers to ccu7.o(.text.CCU7_setT16IntNodePtr) for [Anonymous Symbol]
+    csacsc.o(.text.CSACSC_init) refers to pmu.o(.text.PMU_serviceFailSafeWatchdog) for PMU_serviceFailSafeWatchdog
+    csacsc.o(.ARM.exidx.text.CSACSC_init) refers to csacsc.o(.text.CSACSC_init) for [Anonymous Symbol]
+    csacsc.o(.text.CSACSC_startCalibration) refers to adc1.o(.text.ADC1_startSequence) for ADC1_startSequence
+    csacsc.o(.text.CSACSC_startCalibration) refers to adc1.o(.text.ADC1_getEndOfConvSts) for ADC1_getEndOfConvSts
+    csacsc.o(.text.CSACSC_startCalibration) refers to adc1.o(.text.ADC1_getSeqResult_mV) for ADC1_getSeqResult_mV
+    csacsc.o(.ARM.exidx.text.CSACSC_startCalibration) refers to csacsc.o(.text.CSACSC_startCalibration) for [Anonymous Symbol]
+    csacsc.o(.ARM.exidx.text.CSACSC_setOverCurrIntNodePtr) refers to csacsc.o(.text.CSACSC_setOverCurrIntNodePtr) for [Anonymous Symbol]
+    csacsc.o(.ARM.exidx.text.CSACSC_setParamErrorIntNodePtr) refers to csacsc.o(.text.CSACSC_setParamErrorIntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_init) refers to dma.o(.text.DMA_init) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setBasicTransfer) refers to dma.o(.text.DMA_setBasicTransfer) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_resetChannel) refers to dma.o(.text.DMA_resetChannel) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setMemSctGth) refers to dma.o(.text.DMA_setMemSctGth) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setPerSctGth) refers to dma.o(.text.DMA_setPerSctGth) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setPrimaryTaskSctGth) refers to dma.o(.text.DMA_setPrimaryTaskSctGth) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setTaskSctGth) refers to dma.o(.text.DMA_setTaskSctGth) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh0IntNodePtr) refers to dma.o(.text.DMA_setCh0IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh1IntNodePtr) refers to dma.o(.text.DMA_setCh1IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh2IntNodePtr) refers to dma.o(.text.DMA_setCh2IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh3IntNodePtr) refers to dma.o(.text.DMA_setCh3IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh4IntNodePtr) refers to dma.o(.text.DMA_setCh4IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh5IntNodePtr) refers to dma.o(.text.DMA_setCh5IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh6IntNodePtr) refers to dma.o(.text.DMA_setCh6IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setCh7IntNodePtr) refers to dma.o(.text.DMA_setCh7IntNodePtr) for [Anonymous Symbol]
+    dma.o(.ARM.exidx.text.DMA_setErrIntNodePtr) refers to dma.o(.text.DMA_setErrIntNodePtr) for [Anonymous Symbol]
+    gpio.o(.ARM.exidx.text.GPIO_init) refers to gpio.o(.text.GPIO_init) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_init) refers to gpt12.o(.text.GPT12_init) for [Anonymous Symbol]
+    gpt12.o(.text.GPT12_setIntervalTimerT3) refers to uldiv.o(.text) for __aeabi_uldivmod
+    gpt12.o(.ARM.exidx.text.GPT12_setIntervalTimerT3) refers to gpt12.o(.text.GPT12_setIntervalTimerT3) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_setIntervalTimerT6) refers to gpt12.o(.text.GPT12_setIntervalTimerT6) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_setT2IntNodePtr) refers to gpt12.o(.text.GPT12_setT2IntNodePtr) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_setT3IntNodePtr) refers to gpt12.o(.text.GPT12_setT3IntNodePtr) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_setT4IntNodePtr) refers to gpt12.o(.text.GPT12_setT4IntNodePtr) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_setT5IntNodePtr) refers to gpt12.o(.text.GPT12_setT5IntNodePtr) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_setT6IntNodePtr) refers to gpt12.o(.text.GPT12_setT6IntNodePtr) for [Anonymous Symbol]
+    gpt12.o(.ARM.exidx.text.GPT12_setCapRelIntNodePtr) refers to gpt12.o(.text.GPT12_setCapRelIntNodePtr) for [Anonymous Symbol]
+    int.o(.ARM.exidx.text.INT_init) refers to int.o(.text.INT_init) for [Anonymous Symbol]
+    isr_exceptions.o(.ARM.exidx.text.HardFault_Handler) refers to isr_exceptions.o(.text.HardFault_Handler) for [Anonymous Symbol]
+    isr_exceptions.o(.ARM.exidx.text.MemManage_Handler) refers to isr_exceptions.o(.text.MemManage_Handler) for [Anonymous Symbol]
+    isr_exceptions.o(.ARM.exidx.text.BusFault_Handler) refers to isr_exceptions.o(.text.BusFault_Handler) for [Anonymous Symbol]
+    isr_exceptions.o(.ARM.exidx.text.UsageFault_Handler) refers to isr_exceptions.o(.text.UsageFault_Handler) for [Anonymous Symbol]
+    isr_exceptions.o(.ARM.exidx.text.NMI_Handler) refers to isr_exceptions.o(.text.NMI_Handler) for [Anonymous Symbol]
+    isr_exceptions.o(.text.SysTick_Handler) refers to main.o(.bss.enter_120_mode) for enter_120_mode
+    isr_exceptions.o(.text.SysTick_Handler) refers to isr_exceptions.o(.bss.u32_globTimestamp_ms) for u32_globTimestamp_ms
+    isr_exceptions.o(.text.SysTick_Handler) refers to pmu.o(.text.PMU_countFailSafeWatchdog) for PMU_countFailSafeWatchdog
+    isr_exceptions.o(.text.SysTick_Handler) refers to pmu.o(.bss.u32_failsafeWatchdogCnt) for u32_failsafeWatchdogCnt
+    isr_exceptions.o(.ARM.exidx.text.SysTick_Handler) refers to isr_exceptions.o(.text.SysTick_Handler) for [Anonymous Symbol]
+    isr_exceptions.o(.ARM.exidx.text.PendSV_Handler) refers to isr_exceptions.o(.text.PendSV_Handler) for [Anonymous Symbol]
+    isr_nvic_irq0_handler.o(.ARM.exidx.text.NVIC_IRQ0_Handler) refers to isr_nvic_irq0_handler.o(.text.NVIC_IRQ0_Handler) for [Anonymous Symbol]
+    isr_nvic_irq12_handler.o(.text.NVIC_IRQ12_Handler) refers to isr_nvic_irq12_handler.o(.bss.u8_interrupt_cnt_irq12) for u8_interrupt_cnt_irq12
+    isr_nvic_irq12_handler.o(.ARM.exidx.text.NVIC_IRQ12_Handler) refers to isr_nvic_irq12_handler.o(.text.NVIC_IRQ12_Handler) for [Anonymous Symbol]
+    isr_nvic_irq18_handler.o(.ARM.exidx.text.NVIC_IRQ18_Handler) refers to isr_nvic_irq18_handler.o(.text.NVIC_IRQ18_Handler) for [Anonymous Symbol]
+    isr_nvic_irq20_handler.o(.ARM.exidx.text.NVIC_IRQ20_Handler) refers to isr_nvic_irq20_handler.o(.text.NVIC_IRQ20_Handler) for [Anonymous Symbol]
+    isr_nvic_irq22_handler.o(.ARM.exidx.text.NVIC_IRQ22_Handler) refers to isr_nvic_irq22_handler.o(.text.NVIC_IRQ22_Handler) for [Anonymous Symbol]
+    isr_nvic_irq24_handler.o(.ARM.exidx.text.NVIC_IRQ24_Handler) refers to isr_nvic_irq24_handler.o(.text.NVIC_IRQ24_Handler) for [Anonymous Symbol]
+    isr_nvic_irq29_handler.o(.ARM.exidx.text.NVIC_IRQ29_Handler) refers to isr_nvic_irq29_handler.o(.text.NVIC_IRQ29_Handler) for [Anonymous Symbol]
+    isr_nvic_irq2_handler.o(.text.NVIC_IRQ2_Handler) refers to multican_handler.o(.text.T16_ISR) for T16_ISR
+    isr_nvic_irq2_handler.o(.ARM.exidx.text.NVIC_IRQ2_Handler) refers to isr_nvic_irq2_handler.o(.text.NVIC_IRQ2_Handler) for [Anonymous Symbol]
+    mon.o(.ARM.exidx.text.MON_init) refers to mon.o(.text.MON_init) for [Anonymous Symbol]
+    mon.o(.ARM.exidx.text.MON_setMON1IntNodePtr) refers to mon.o(.text.MON_setMON1IntNodePtr) for [Anonymous Symbol]
+    mon.o(.ARM.exidx.text.MON_setMON2IntNodePtr) refers to mon.o(.text.MON_setMON2IntNodePtr) for [Anonymous Symbol]
+    mon.o(.ARM.exidx.text.MON_setMON3IntNodePtr) refers to mon.o(.text.MON_setMON3IntNodePtr) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_init) refers to pmu.o(.text.PMU_init) for [Anonymous Symbol]
+    pmu.o(.text.PMU_countFailSafeWatchdog) refers to pmu.o(.bss.u32_failsafeWatchdogCnt) for u32_failsafeWatchdogCnt
+    pmu.o(.ARM.exidx.text.PMU_countFailSafeWatchdog) refers to pmu.o(.text.PMU_countFailSafeWatchdog) for [Anonymous Symbol]
+    pmu.o(.text.PMU_initFailSafeWatchdog) refers to pmu.o(.bss.u32_failsafeWatchdogCnt) for u32_failsafeWatchdogCnt
+    pmu.o(.ARM.exidx.text.PMU_initFailSafeWatchdog) refers to pmu.o(.text.PMU_initFailSafeWatchdog) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_stopFailSafeWatchdog) refers to pmu.o(.text.PMU_stopFailSafeWatchdog) for [Anonymous Symbol]
+    pmu.o(.text.PMU_serviceFailSafeWatchdog) refers to pmu.o(.bss.u32_failsafeWatchdogCnt) for u32_failsafeWatchdogCnt
+    pmu.o(.text.PMU_serviceFailSafeWatchdog) refers to pmu.o(.bss.b_SOWactive) for b_SOWactive
+    pmu.o(.text.PMU_serviceFailSafeWatchdog) refers to pmu.o(.bss.b_firstNOW) for b_firstNOW
+    pmu.o(.ARM.exidx.text.PMU_serviceFailSafeWatchdog) refers to pmu.o(.text.PMU_serviceFailSafeWatchdog) for [Anonymous Symbol]
+    pmu.o(.text.PMU_clrFailSafeWatchdogFailSts) refers to pmu.o(.bss.b_SOWactive) for b_SOWactive
+    pmu.o(.text.PMU_clrFailSafeWatchdogFailSts) refers to pmu.o(.bss.b_firstNOW) for b_firstNOW
+    pmu.o(.text.PMU_clrFailSafeWatchdogFailSts) refers to pmu.o(.bss.u32_failsafeWatchdogCnt) for u32_failsafeWatchdogCnt
+    pmu.o(.ARM.exidx.text.PMU_clrFailSafeWatchdogFailSts) refers to pmu.o(.text.PMU_clrFailSafeWatchdogFailSts) for [Anonymous Symbol]
+    pmu.o(.text.PMU_serviceFailSafeWatchdogSOW) refers to pmu.o(.bss.b_SOWactive) for b_SOWactive
+    pmu.o(.ARM.exidx.text.PMU_serviceFailSafeWatchdogSOW) refers to pmu.o(.text.PMU_serviceFailSafeWatchdogSOW) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_setVDDPUndervoltageWarnIntNodePtr) refers to pmu.o(.text.PMU_setVDDPUndervoltageWarnIntNodePtr) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_setVDDPOvervoltageIntNodePtr) refers to pmu.o(.text.PMU_setVDDPOvervoltageIntNodePtr) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_setVDDCUndervoltageWarnIntNodePtr) refers to pmu.o(.text.PMU_setVDDCUndervoltageWarnIntNodePtr) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_setVDDCOvervoltageIntNodePtr) refers to pmu.o(.text.PMU_setVDDCOvervoltageIntNodePtr) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_setVDDEXTUndervoltageIntNodePtr) refers to pmu.o(.text.PMU_setVDDEXTUndervoltageIntNodePtr) for [Anonymous Symbol]
+    pmu.o(.ARM.exidx.text.PMU_setVDDEXTOvertemperatureIntNodePtr) refers to pmu.o(.text.PMU_setVDDEXTOvertemperatureIntNodePtr) for [Anonymous Symbol]
+    scu.o(.ARM.exidx.text.SCU_init) refers to scu.o(.text.SCU_init) for [Anonymous Symbol]
+    scu.o(.text.SCU_initClk) refers to scu.o(.bss.e_xtalSts) for e_xtalSts
+    scu.o(.text.SCU_initClk) refers to isr_exceptions.o(.bss.u32_globTimestamp_ms) for u32_globTimestamp_ms
+    scu.o(.text.SCU_initClk) refers to scu.o(.text.SCU_checkXTALDiagnosis) for SCU_checkXTALDiagnosis
+    scu.o(.ARM.exidx.text.SCU_initClk) refers to scu.o(.text.SCU_initClk) for [Anonymous Symbol]
+    scu.o(.ARM.exidx.text.SCU_checkXTALDiagnosis) refers to scu.o(.text.SCU_checkXTALDiagnosis) for [Anonymous Symbol]
+    scu.o(.ARM.exidx.text.SCU_delay_us) refers to scu.o(.text.SCU_delay_us) for [Anonymous Symbol]
+    scu.o(.ARM.exidx.text.SCU_initSysTick) refers to scu.o(.text.SCU_initSysTick) for [Anonymous Symbol]
+    scu.o(.text.SCU_enSafeSwitchOffSeq) refers to pmu.o(.text.PMU_initFailSafeWatchdog) for PMU_initFailSafeWatchdog
+    scu.o(.text.SCU_enSafeSwitchOffSeq) refers to csacsc.o(.text.CSACSC_init) for CSACSC_init
+    scu.o(.text.SCU_enSafeSwitchOffSeq) refers to bdrv.o(.text.BDRV_init) for BDRV_init
+    scu.o(.ARM.exidx.text.SCU_enSafeSwitchOffSeq) refers to scu.o(.text.SCU_enSafeSwitchOffSeq) for [Anonymous Symbol]
+    scu.o(.ARM.exidx.text.SCU_enterDeepSleepMode) refers to scu.o(.text.SCU_enterDeepSleepMode) for [Anonymous Symbol]
+    scu.o(.ARM.exidx.text.SCU_enterStopModeWithResetWakeup) refers to scu.o(.text.SCU_enterStopModeWithResetWakeup) for [Anonymous Symbol]
+    scu.o(.text.SCU_enterStopModeWithoutResetWakeup) refers to system_tle989x.o(.text.SystemInit) for SystemInit
+    scu.o(.text.SCU_enterStopModeWithoutResetWakeup) refers to pmu.o(.text.PMU_initFailSafeWatchdog) for PMU_initFailSafeWatchdog
+    scu.o(.text.SCU_enterStopModeWithoutResetWakeup) refers to csacsc.o(.text.CSACSC_init) for CSACSC_init
+    scu.o(.text.SCU_enterStopModeWithoutResetWakeup) refers to bdrv.o(.text.BDRV_init) for BDRV_init
+    scu.o(.ARM.exidx.text.SCU_enterStopModeWithoutResetWakeup) refers to scu.o(.text.SCU_enterStopModeWithoutResetWakeup) for [Anonymous Symbol]
+    scu.o(.ARM.exidx.text.SCU_enterSleepMode) refers to scu.o(.text.SCU_enterSleepMode) for [Anonymous Symbol]
+    sdadc.o(.ARM.exidx.text.SDADC_init) refers to sdadc.o(.text.SDADC_init) for [Anonymous Symbol]
+    sdadc.o(.ARM.exidx.text.SDADC_setCh0ResIntNodePtr) refers to sdadc.o(.text.SDADC_setCh0ResIntNodePtr) for [Anonymous Symbol]
+    sdadc.o(.ARM.exidx.text.SDADC_setCh0CmpUpIntNodePtr) refers to sdadc.o(.text.SDADC_setCh0CmpUpIntNodePtr) for [Anonymous Symbol]
+    sdadc.o(.ARM.exidx.text.SDADC_setCh0CmpLoIntNodePtr) refers to sdadc.o(.text.SDADC_setCh0CmpLoIntNodePtr) for [Anonymous Symbol]
+    sdadc.o(.ARM.exidx.text.SDADC_setCh1ResIntNodePtr) refers to sdadc.o(.text.SDADC_setCh1ResIntNodePtr) for [Anonymous Symbol]
+    sdadc.o(.ARM.exidx.text.SDADC_setCh1CmpUpIntNodePtr) refers to sdadc.o(.text.SDADC_setCh1CmpUpIntNodePtr) for [Anonymous Symbol]
+    sdadc.o(.ARM.exidx.text.SDADC_setCh1CmpLoIntNodePtr) refers to sdadc.o(.text.SDADC_setCh1CmpLoIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC0_init) refers to ssc.o(.text.SSC0_init) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC1_init) refers to ssc.o(.text.SSC1_init) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC0_setEmptyTXBufferIntNodePtr) refers to ssc.o(.text.SSC0_setEmptyTXBufferIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC0_setEmptyRXBufferIntNodePtr) refers to ssc.o(.text.SSC0_setEmptyRXBufferIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC0_setTXErrIntNodePtr) refers to ssc.o(.text.SSC0_setTXErrIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC0_setRXErrIntNodePtr) refers to ssc.o(.text.SSC0_setRXErrIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC0_setPhaseErrIntNodePtr) refers to ssc.o(.text.SSC0_setPhaseErrIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC0_setBaudrateErrIntNodePtr) refers to ssc.o(.text.SSC0_setBaudrateErrIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC1_setEmptyTXBufferIntNodePtr) refers to ssc.o(.text.SSC1_setEmptyTXBufferIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC1_setEmptyRXBufferIntNodePtr) refers to ssc.o(.text.SSC1_setEmptyRXBufferIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC1_setTXErrIntNodePtr) refers to ssc.o(.text.SSC1_setTXErrIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC1_setRXErrIntNodePtr) refers to ssc.o(.text.SSC1_setRXErrIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC1_setPhaseErrIntNodePtr) refers to ssc.o(.text.SSC1_setPhaseErrIntNodePtr) for [Anonymous Symbol]
+    ssc.o(.ARM.exidx.text.SSC1_setBaudrateErrIntNodePtr) refers to ssc.o(.text.SSC1_setBaudrateErrIntNodePtr) for [Anonymous Symbol]
+    startup_tle989x.o(RESET) refers to startup_tle989x.o(STACK) for __initial_sp
+    startup_tle989x.o(RESET) refers to startup_tle989x.o(.text) for Reset_Handler
+    startup_tle989x.o(RESET) refers to isr_exceptions.o(.text.NMI_Handler) for NMI_Handler
+    startup_tle989x.o(RESET) refers to isr_exceptions.o(.text.HardFault_Handler) for HardFault_Handler
+    startup_tle989x.o(RESET) refers to isr_exceptions.o(.text.MemManage_Handler) for MemManage_Handler
+    startup_tle989x.o(RESET) refers to isr_exceptions.o(.text.BusFault_Handler) for BusFault_Handler
+    startup_tle989x.o(RESET) refers to isr_exceptions.o(.text.UsageFault_Handler) for UsageFault_Handler
+    startup_tle989x.o(RESET) refers to isr_exceptions.o(.text.PendSV_Handler) for PendSV_Handler
+    startup_tle989x.o(RESET) refers to isr_exceptions.o(.text.SysTick_Handler) for SysTick_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq0_handler.o(.text.NVIC_IRQ0_Handler) for NVIC_IRQ0_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq2_handler.o(.text.NVIC_IRQ2_Handler) for NVIC_IRQ2_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq12_handler.o(.text.NVIC_IRQ12_Handler) for NVIC_IRQ12_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq18_handler.o(.text.NVIC_IRQ18_Handler) for NVIC_IRQ18_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq20_handler.o(.text.NVIC_IRQ20_Handler) for NVIC_IRQ20_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq22_handler.o(.text.NVIC_IRQ22_Handler) for NVIC_IRQ22_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq24_handler.o(.text.NVIC_IRQ24_Handler) for NVIC_IRQ24_Handler
+    startup_tle989x.o(RESET) refers to multican_handler.o(.text.NVIC_IRQ26_Handler) for NVIC_IRQ26_Handler
+    startup_tle989x.o(RESET) refers to multican_handler.o(.text.NVIC_IRQ27_Handler) for NVIC_IRQ27_Handler
+    startup_tle989x.o(RESET) refers to multican_handler.o(.text.NVIC_IRQ28_Handler) for NVIC_IRQ28_Handler
+    startup_tle989x.o(RESET) refers to isr_nvic_irq29_handler.o(.text.NVIC_IRQ29_Handler) for NVIC_IRQ29_Handler
+    startup_tle989x.o(.text) refers to system_tle989x.o(.text.SystemInit) for SystemInit
+    startup_tle989x.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    system_tle989x.o(.text.SystemInit) refers to scu.o(.text.SCU_initSysTick) for SCU_initSysTick
+    system_tle989x.o(.text.SystemInit) refers to scu.o(.text.SCU_initClk) for SCU_initClk
+    system_tle989x.o(.ARM.exidx.text.SystemInit) refers to system_tle989x.o(.text.SystemInit) for [Anonymous Symbol]
+    timer2x.o(.ARM.exidx.text.T20_init) refers to timer2x.o(.text.T20_init) for [Anonymous Symbol]
+    timer2x.o(.ARM.exidx.text.T21_init) refers to timer2x.o(.text.T21_init) for [Anonymous Symbol]
+    timer2x.o(.ARM.exidx.text.T20_setIntervalTimer) refers to timer2x.o(.text.T20_setIntervalTimer) for [Anonymous Symbol]
+    timer2x.o(.ARM.exidx.text.T21_setIntervalTimer) refers to timer2x.o(.text.T21_setIntervalTimer) for [Anonymous Symbol]
+    tle_device.o(.text.TLE_init) refers to scu.o(.text.SCU_init) for SCU_init
+    tle_device.o(.text.TLE_init) refers to pmu.o(.text.PMU_init) for PMU_init
+    tle_device.o(.text.TLE_init) refers to adc1.o(.text.ADC1_init) for ADC1_init
+    tle_device.o(.text.TLE_init) refers to adc2.o(.text.ADC2_init) for ADC2_init
+    tle_device.o(.text.TLE_init) refers to bdrv.o(.text.BDRV_initCP) for BDRV_initCP
+    tle_device.o(.text.TLE_init) refers to csacsc.o(.text.CSACSC_init) for CSACSC_init
+    tle_device.o(.text.TLE_init) refers to bdrv.o(.text.BDRV_init) for BDRV_init
+    tle_device.o(.text.TLE_init) refers to ccu7.o(.text.CCU7_init) for CCU7_init
+    tle_device.o(.text.TLE_init) refers to cantrx.o(.text.CANTRX_init) for CANTRX_init
+    tle_device.o(.text.TLE_init) refers to dma.o(.text.DMA_init) for DMA_init
+    tle_device.o(.text.TLE_init) refers to gpio.o(.text.GPIO_init) for GPIO_init
+    tle_device.o(.text.TLE_init) refers to gpt12.o(.text.GPT12_init) for GPT12_init
+    tle_device.o(.text.TLE_init) refers to mon.o(.text.MON_init) for MON_init
+    tle_device.o(.text.TLE_init) refers to sdadc.o(.text.SDADC_init) for SDADC_init
+    tle_device.o(.text.TLE_init) refers to ssc.o(.text.SSC0_init) for SSC0_init
+    tle_device.o(.text.TLE_init) refers to ssc.o(.text.SSC1_init) for SSC1_init
+    tle_device.o(.text.TLE_init) refers to timer2x.o(.text.T20_init) for T20_init
+    tle_device.o(.text.TLE_init) refers to timer2x.o(.text.T21_init) for T21_init
+    tle_device.o(.text.TLE_init) refers to uart.o(.text.UART0_init) for UART0_init
+    tle_device.o(.text.TLE_init) refers to uart.o(.text.UART1_init) for UART1_init
+    tle_device.o(.text.TLE_init) refers to int.o(.text.INT_init) for INT_init
+    tle_device.o(.text.TLE_init) refers to tle_device.o(.bss.UC_FLASH0_UBSL_SIZE) for UC_FLASH0_UBSL_SIZE
+    tle_device.o(.text.TLE_init) refers to tle_device.o(.bss.UC_FLASH0_UDATA_START) for UC_FLASH0_UDATA_START
+    tle_device.o(.text.TLE_init) refers to tle_device.o(.bss.UC_FLASH0_UDATA_SIZE) for UC_FLASH0_UDATA_SIZE
+    tle_device.o(.ARM.exidx.text.TLE_init) refers to tle_device.o(.text.TLE_init) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART0_init) refers to uart.o(.text.UART0_init) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART1_init) refers to uart.o(.text.UART1_init) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART0_getBaudrate) refers to uart.o(.text.UART0_getBaudrate) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART1_getBaudrate) refers to uart.o(.text.UART1_getBaudrate) for [Anonymous Symbol]
+    uart.o(.text.UARTx_setBaudrate) refers to uldiv.o(.text) for __aeabi_uldivmod
+    uart.o(.ARM.exidx.text.UARTx_setBaudrate) refers to uart.o(.text.UARTx_setBaudrate) for [Anonymous Symbol]
+    uart.o(.text.UART0_setBaudrate) refers to uart.o(.text.UARTx_setBaudrate) for UARTx_setBaudrate
+    uart.o(.ARM.exidx.text.UART0_setBaudrate) refers to uart.o(.text.UART0_setBaudrate) for [Anonymous Symbol]
+    uart.o(.text.UART1_setBaudrate) refers to uart.o(.text.UARTx_setBaudrate) for UARTx_setBaudrate
+    uart.o(.ARM.exidx.text.UART1_setBaudrate) refers to uart.o(.text.UART1_setBaudrate) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART0_setTXIntSts) refers to uart.o(.text.UART0_setTXIntSts) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART0_setRXIntSts) refers to uart.o(.text.UART0_setRXIntSts) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART0_setSyncErrIntSts) refers to uart.o(.text.UART0_setSyncErrIntSts) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART0_setEOFIntSts) refers to uart.o(.text.UART0_setEOFIntSts) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART1_setTXIntSts) refers to uart.o(.text.UART1_setTXIntSts) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART1_setRXIntSts) refers to uart.o(.text.UART1_setRXIntSts) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART1_setSyncErrIntSts) refers to uart.o(.text.UART1_setSyncErrIntSts) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART1_setEOFIntSts) refers to uart.o(.text.UART1_setEOFIntSts) for [Anonymous Symbol]
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    uldiv.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    uldiv.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup_tle989x.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup_tle989x.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(.text.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(.text.main) for main
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing main.o(.text), (0 bytes).
+    Removing main.o(.ARM.exidx.text.main), (8 bytes).
+    Removing main.o(.ARM.exidx.text.__NVIC_SystemReset), (8 bytes).
+    Removing main.o(.text.Systick_ISR), (2 bytes).
+    Removing main.o(.ARM.exidx.text.Systick_ISR), (8 bytes).
+    Removing main.o(.rodata..L__const.main.APP_jump_Bootload_response), (7 bytes).
+    Removing main.o(.ARM.use_no_argv), (4 bytes).
+    Removing can_iso_tp.o(.text), (0 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.iso_can_tp_create), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.event_manage_block_init), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.iso_can_tp_poll), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.rx_event_poll_handle), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.report_event_to_manage_block), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.tx_event_poll_handle), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.iso_can_tp_L_Data_confirm), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.rx_event_L_Data_Confirm_handle), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.tx_event_L_Data_Confirm_handle), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.iso_can_tp_L_Data_indication), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.tx_event_L_Data_indication_handle), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.rx_event_L_Data_indication_handle), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.iso_can_tp_N_USData_request), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.tx_event_N_USData_Request_handle), (8 bytes).
+    Removing can_iso_tp.o(.ARM.exidx.text.tx_event_cf_frame), (8 bytes).
+    Removing fifoqueue.o(.text), (0 bytes).
+    Removing fifoqueue.o(.ARM.exidx.text.QueueInit), (8 bytes).
+    Removing fifoqueue.o(.ARM.exidx.text.QueueIn), (8 bytes).
+    Removing fifoqueue.o(.ARM.exidx.text.QueueOut), (8 bytes).
+    Removing mcu_lock.o(.text), (0 bytes).
+    Removing mcu_lock.o(.ARM.exidx.text.mcu_lock_init), (8 bytes).
+    Removing mcu_lock.o(.ARM.exidx.text.mcu_lock_try_lock), (8 bytes).
+    Removing mcu_lock.o(.ARM.exidx.text.mcu_lock_unlock), (8 bytes).
+    Removing server.o(.text), (0 bytes).
+    Removing server.o(.ARM.exidx.text.UdsServerRequestProcess), (8 bytes).
+    Removing server.o(.ARM.exidx.text.UDS_Serice_EcuReset), (8 bytes).
+    Removing server.o(.ARM.exidx.text.udsServer_sendResponse), (8 bytes).
+    Removing server.o(.ARM.exidx.text.UDS_init), (8 bytes).
+    Removing server.o(.ARM.exidx.text.UDS_server_poll), (8 bytes).
+    Removing server.o(.ARM.exidx.text.__NVIC_SystemReset), (8 bytes).
+    Removing uds27_sa.o(.text), (0 bytes).
+    Removing uds27_sa.o(.ARM.exidx.text.Creating_Seed), (8 bytes).
+    Removing uds27_sa.o(.ARM.exidx.text.PasswordGenerator), (8 bytes).
+    Removing uds27_sa.o(.ARM.exidx.text.SecurityAccess_unlock), (8 bytes).
+    Removing jumptoapp.o(.text), (0 bytes).
+    Removing jumptoapp.o(.ARM.exidx.text.BootJumpASM), (8 bytes).
+    Removing jumptoapp.o(.ARM.exidx.text.app_jump), (8 bytes).
+    Removing tp_config.o(.text), (0 bytes).
+    Removing tp_config.o(.ARM.exidx.text.init_for_all_links), (8 bytes).
+    Removing tp_config.o(.ARM.exidx.text.L_Data_request), (8 bytes).
+    Removing tp_config.o(.ARM.exidx.text.N_USData_indication), (8 bytes).
+    Removing tp_config.o(.ARM.exidx.text.N_USData_confirm), (8 bytes).
+    Removing tp_config.o(.ARM.exidx.text.print_debug_info), (8 bytes).
+    Removing crclib.o(.text), (0 bytes).
+    Removing crclib.o(.text.crc4_itu), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc4_itu), (8 bytes).
+    Removing crclib.o(.text.crc5_epc), (66 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc5_epc), (8 bytes).
+    Removing crclib.o(.text.crc5_itu), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc5_itu), (8 bytes).
+    Removing crclib.o(.text.crc5_usb), (72 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc5_usb), (8 bytes).
+    Removing crclib.o(.text.crc6_itu), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc6_itu), (8 bytes).
+    Removing crclib.o(.text.crc7_mmc), (66 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc7_mmc), (8 bytes).
+    Removing crclib.o(.text.crc8_table), (38 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc8_table), (8 bytes).
+    Removing crclib.o(.text.CRC_16_table), (48 bytes).
+    Removing crclib.o(.ARM.exidx.text.CRC_16_table), (8 bytes).
+    Removing crclib.o(.text.crc8), (58 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc8), (8 bytes).
+    Removing crclib.o(.text.crc8_itu), (74 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc8_itu), (8 bytes).
+    Removing crclib.o(.text.crc8_rohc), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc8_rohc), (8 bytes).
+    Removing crclib.o(.text.crc8_maxim), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc8_maxim), (8 bytes).
+    Removing crclib.o(.text.crc16_ibm), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_ibm), (8 bytes).
+    Removing crclib.o(.text.crc16_maxim), (76 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_maxim), (8 bytes).
+    Removing crclib.o(.text.crc16_usb), (74 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_usb), (8 bytes).
+    Removing crclib.o(.text.crc16_modbus), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_modbus), (8 bytes).
+    Removing crclib.o(.text.crc16_ccitt), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_ccitt), (8 bytes).
+    Removing crclib.o(.text.crc16_ccitt_false), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_ccitt_false), (8 bytes).
+    Removing crclib.o(.text.crc16_x25), (74 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_x25), (8 bytes).
+    Removing crclib.o(.text.crc16_xmodem), (62 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_xmodem), (8 bytes).
+    Removing crclib.o(.text.crc16_dnp), (76 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc16_dnp), (8 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc32), (8 bytes).
+    Removing crclib.o(.text.crc32_mpeg_2), (72 bytes).
+    Removing crclib.o(.ARM.exidx.text.crc32_mpeg_2), (8 bytes).
+    Removing crclib.o(.rodata.crc_table), (256 bytes).
+    Removing crclib.o(.rodata.CRC16_TABLE), (512 bytes).
+    Removing flash.o(.text), (0 bytes).
+    Removing systick.o(.text), (0 bytes).
+    Removing systick.o(.text.SYS_Init), (30 bytes).
+    Removing systick.o(.ARM.exidx.text.SYS_Init), (8 bytes).
+    Removing multican_handler.o(.text), (0 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.MultiCAN_init), (8 bytes).
+    Removing multican_handler.o(.text.CAN_TransmitReqMsgObj0), (40 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj0), (8 bytes).
+    Removing multican_handler.o(.text.CAN_TransmitReqMsgObj1), (40 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj1), (8 bytes).
+    Removing multican_handler.o(.text.CAN_TransmitReqMsgObj2), (40 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj2), (8 bytes).
+    Removing multican_handler.o(.text.CAN_TransmitReqMsgObj3), (58 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj3), (8 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.CAN_TransmitReqMsgObj3_data), (8 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.NVIC_IRQ26_Handler), (8 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.NVIC_IRQ27_Handler), (8 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.NVIC_IRQ28_Handler), (8 bytes).
+    Removing multican_handler.o(.ARM.exidx.text.T16_ISR), (8 bytes).
+    Removing adc1.o(.text), (0 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_init), (8 bytes).
+    Removing adc1.o(.text.ADC1_getChResult), (78 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getChResult), (8 bytes).
+    Removing adc1.o(.text.ADC1_getChResult_mV), (212 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getChResult_mV), (8 bytes).
+    Removing adc1.o(.text.ADC1_getAnalogInputFromChannel), (24 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getAnalogInputFromChannel), (8 bytes).
+    Removing adc1.o(.text.ADC1_getChFiltResult), (144 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getChFiltResult), (8 bytes).
+    Removing adc1.o(.text.ADC1_getFiltIdxFromChannel), (24 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getFiltIdxFromChannel), (8 bytes).
+    Removing adc1.o(.text.ADC1_getFiltChResult), (78 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getFiltChResult), (8 bytes).
+    Removing adc1.o(.text.ADC1_getChFiltResult_mV), (268 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getChFiltResult_mV), (8 bytes).
+    Removing adc1.o(.text.ADC1_getSeqResult), (224 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getSeqResult), (8 bytes).
+    Removing adc1.o(.text.ADC1_getSeqResult_mV), (914 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getSeqResult_mV), (8 bytes).
+    Removing adc1.o(.text.ADC1_startSequence), (56 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_startSequence), (8 bytes).
+    Removing adc1.o(.text.ADC1_getEndOfConvSts), (44 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getEndOfConvSts), (8 bytes).
+    Removing adc1.o(.text.ADC1_getCalibEnFromChannel), (38 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_getCalibEnFromChannel), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh0IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh0IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh1IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh1IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh2IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh2IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh3IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh3IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh4IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh4IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh5IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh5IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh6IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh6IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh7IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh7IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh8IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh8IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh9IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh9IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh10IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh10IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh11IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh11IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh12IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh12IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh13IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh13IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh14IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh14IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh15IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh15IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh16IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh16IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh17IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh17IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh18IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh18IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCh19IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCh19IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp0LoIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp0LoIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp1LoIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp1LoIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp2LoIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp2LoIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp3LoIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp3LoIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp0UpIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp0UpIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp1UpIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp1UpIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp2UpIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp2UpIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setCmp3UpIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setCmp3UpIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq0IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq0IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq1IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq1IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq2IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq2IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq3IntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq3IntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq0CollIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq0CollIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq1CollIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq1CollIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq2CollIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq2CollIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq3CollIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq3CollIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq0WaitForReadIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq0WaitForReadIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq1WaitForReadIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq1WaitForReadIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq2WaitForReadIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq2WaitForReadIntNodePtr), (8 bytes).
+    Removing adc1.o(.text.ADC1_setSeq3WaitForReadIntNodePtr), (2 bytes).
+    Removing adc1.o(.ARM.exidx.text.ADC1_setSeq3WaitForReadIntNodePtr), (8 bytes).
+    Removing adc1.o(.rodata.cu16_ADC1_analogInput_Att), (54 bytes).
+    Removing adc2.o(.text), (0 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_init), (8 bytes).
+    Removing adc2.o(.text.ADC2_getChResult), (80 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getChResult), (8 bytes).
+    Removing adc2.o(.text.ADC2_getChResult_mV), (196 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getChResult_mV), (8 bytes).
+    Removing adc2.o(.text.ADC2_getChFiltResult), (142 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getChFiltResult), (8 bytes).
+    Removing adc2.o(.text.ADC2_getFiltIdxFromChannel), (26 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getFiltIdxFromChannel), (8 bytes).
+    Removing adc2.o(.text.ADC2_getFiltChResult), (80 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getFiltChResult), (8 bytes).
+    Removing adc2.o(.text.ADC2_getChFiltResult_mV), (244 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getChFiltResult_mV), (8 bytes).
+    Removing adc2.o(.text.ADC2_getSeqResult), (222 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getSeqResult), (8 bytes).
+    Removing adc2.o(.text.ADC2_getSeqResult_mV), (814 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getSeqResult_mV), (8 bytes).
+    Removing adc2.o(.text.ADC2_startSequence), (46 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_startSequence), (8 bytes).
+    Removing adc2.o(.text.ADC2_getEndOfConvSts), (50 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_getEndOfConvSts), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh0IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh0IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh1IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh1IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh2IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh2IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh3IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh3IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh4IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh4IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh5IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh5IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh6IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh6IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh7IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh7IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh8IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh8IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh9IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh9IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh10IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh10IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh11IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh11IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh12IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh12IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh13IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh13IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCh14IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCh14IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp0LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp0LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp1LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp1LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp2LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp2LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp3LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp3LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp4LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp4LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp5LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp5LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp6LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp6LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp7LoIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp7LoIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp0UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp0UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp1UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp1UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp2UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp2UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp3UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp3UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp4UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp4UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp5UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp5UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp6UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp6UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setCmp7UpIntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setCmp7UpIntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setSeq0IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setSeq0IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setSeq1IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setSeq1IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setSeq2IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setSeq2IntNodePtr), (8 bytes).
+    Removing adc2.o(.text.ADC2_setSeq3IntNodePtr), (2 bytes).
+    Removing adc2.o(.ARM.exidx.text.ADC2_setSeq3IntNodePtr), (8 bytes).
+    Removing adc2.o(.rodata.cu16_ADC2_analogInput_Att), (30 bytes).
+    Removing bdrv.o(.text), (0 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_initCP), (8 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_init), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setBridge), (690 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setBridge), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setLSChrgConstMode), (286 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setLSChrgConstMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHSChrgConstMode), (330 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHSChrgConstMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setLSDischrgConstMode), (200 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setLSDischrgConstMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHSDischrgConstMode), (282 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHSDischrgConstMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setLSChrgSeqMode), (596 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setLSChrgSeqMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHSChrgSeqMode), (714 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHSChrgSeqMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setLSDischrgSeqMode), (330 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setLSDischrgSeqMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHSDischrgSeqMode), (572 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHSDischrgSeqMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setChrgAdaptSeqMode), (136 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setChrgAdaptSeqMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setDischrgAdaptSeqMode), (136 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setDischrgAdaptSeqMode), (8 bytes).
+    Removing bdrv.o(.text.BDRV_checkShortDiagnosis), (678 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_checkShortDiagnosis), (8 bytes).
+    Removing bdrv.o(.text.BDRV_clrFaultSts), (20 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_clrFaultSts), (8 bytes).
+    Removing bdrv.o(.text.BDRV_checkOpenLoad), (816 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_checkOpenLoad), (8 bytes).
+    Removing bdrv.o(.text.BDRV_getFaultSts), (18 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_getFaultSts), (8 bytes).
+    Removing bdrv.o(.text.BDRV_getFaults), (116 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_getFaults), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setExternalLS1MosfetOvercurrentIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setExternalLS1MosfetOvercurrentIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setExternalHS1MosfetOvercurrentIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setExternalHS1MosfetOvercurrentIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setExternalLS2MosfetOvercurrentIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setExternalLS2MosfetOvercurrentIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setExternalHS2MosfetOvercurrentIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setExternalHS2MosfetOvercurrentIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setExternalLS3MosfetOvercurrentIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setExternalLS3MosfetOvercurrentIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setExternalHS3MosfetOvercurrentIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setExternalHS3MosfetOvercurrentIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setLS1DrainSrcMonitoringIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setLS1DrainSrcMonitoringIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHS1DrainSrcMonitoringIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHS1DrainSrcMonitoringIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setLS2DrainSrcMonitoringIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setLS2DrainSrcMonitoringIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHS2DrainSrcMonitoringIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHS2DrainSrcMonitoringIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setLS3DrainSrcMonitoringIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setLS3DrainSrcMonitoringIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHS3DrainSrcMonitoringIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHS3DrainSrcMonitoringIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHB1AdaptSeqIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHB1AdaptSeqIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHB2AdaptSeqIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHB2AdaptSeqIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHB3AdaptSeqIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHB3AdaptSeqIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHB1ActDrvDetectIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHB1ActDrvDetectIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHB2ActDrvDetectIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHB2ActDrvDetectIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setHB3ActDrvDetectIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setHB3ActDrvDetectIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setDrvSeqErrIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setDrvSeqErrIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setPh1ZCFallIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setPh1ZCFallIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setPh2ZCFallIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setPh2ZCFallIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setPh3ZCFallIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setPh3ZCFallIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setPh1ZCRiseIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setPh1ZCRiseIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setPh2ZCRiseIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setPh2ZCRiseIntNodePtr), (8 bytes).
+    Removing bdrv.o(.text.BDRV_setPh3ZCRiseIntNodePtr), (2 bytes).
+    Removing bdrv.o(.ARM.exidx.text.BDRV_setPh3ZCRiseIntNodePtr), (8 bytes).
+    Removing bootrom.o(.text), (0 bytes).
+    Removing can.o(.text), (0 bytes).
+    Removing cantrx.o(.text), (0 bytes).
+    Removing cantrx.o(.ARM.exidx.text.CANTRX_init), (8 bytes).
+    Removing cantrx.o(.text.CANTRX_setCANTRXIntNodePtr), (2 bytes).
+    Removing cantrx.o(.ARM.exidx.text.CANTRX_setCANTRXIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text), (0 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_init), (8 bytes).
+    Removing ccu7.o(.text.CCU7_enModule), (312 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_enModule), (8 bytes).
+    Removing ccu7.o(.text.CCU7_disModule), (216 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_disModule), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setCC70AIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setCC70AIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setCC71AIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setCC71AIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setCC72AIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setCC72AIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setCHEIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setCHEIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setErrorIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setErrorIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setT12IntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setT12IntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setT13IntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setT13IntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setC70BIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setC70BIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setC71BIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setC71BIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setC72BIntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setC72BIntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setT14IntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setT14IntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setT15IntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setT15IntNodePtr), (8 bytes).
+    Removing ccu7.o(.text.CCU7_setT16IntNodePtr), (2 bytes).
+    Removing ccu7.o(.ARM.exidx.text.CCU7_setT16IntNodePtr), (8 bytes).
+    Removing csacsc.o(.text), (0 bytes).
+    Removing csacsc.o(.ARM.exidx.text.CSACSC_init), (8 bytes).
+    Removing csacsc.o(.text.CSACSC_startCalibration), (212 bytes).
+    Removing csacsc.o(.ARM.exidx.text.CSACSC_startCalibration), (8 bytes).
+    Removing csacsc.o(.text.CSACSC_setOverCurrIntNodePtr), (2 bytes).
+    Removing csacsc.o(.ARM.exidx.text.CSACSC_setOverCurrIntNodePtr), (8 bytes).
+    Removing csacsc.o(.text.CSACSC_setParamErrorIntNodePtr), (2 bytes).
+    Removing csacsc.o(.ARM.exidx.text.CSACSC_setParamErrorIntNodePtr), (8 bytes).
+    Removing dma.o(.text), (0 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_init), (8 bytes).
+    Removing dma.o(.text.DMA_setBasicTransfer), (226 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setBasicTransfer), (8 bytes).
+    Removing dma.o(.text.DMA_resetChannel), (66 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_resetChannel), (8 bytes).
+    Removing dma.o(.text.DMA_setMemSctGth), (90 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setMemSctGth), (8 bytes).
+    Removing dma.o(.text.DMA_setPerSctGth), (90 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setPerSctGth), (8 bytes).
+    Removing dma.o(.text.DMA_setPrimaryTaskSctGth), (50 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setPrimaryTaskSctGth), (8 bytes).
+    Removing dma.o(.text.DMA_setTaskSctGth), (170 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setTaskSctGth), (8 bytes).
+    Removing dma.o(.text.DMA_setCh0IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh0IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setCh1IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh1IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setCh2IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh2IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setCh3IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh3IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setCh4IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh4IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setCh5IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh5IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setCh6IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh6IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setCh7IntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setCh7IntNodePtr), (8 bytes).
+    Removing dma.o(.text.DMA_setErrIntNodePtr), (2 bytes).
+    Removing dma.o(.ARM.exidx.text.DMA_setErrIntNodePtr), (8 bytes).
+    Removing gpio.o(.text), (0 bytes).
+    Removing gpio.o(.ARM.exidx.text.GPIO_init), (8 bytes).
+    Removing gpt12.o(.text), (0 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_init), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setIntervalTimerT3), (178 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setIntervalTimerT3), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setIntervalTimerT6), (132 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setIntervalTimerT6), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setT2IntNodePtr), (2 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setT2IntNodePtr), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setT3IntNodePtr), (2 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setT3IntNodePtr), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setT4IntNodePtr), (2 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setT4IntNodePtr), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setT5IntNodePtr), (2 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setT5IntNodePtr), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setT6IntNodePtr), (2 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setT6IntNodePtr), (8 bytes).
+    Removing gpt12.o(.text.GPT12_setCapRelIntNodePtr), (2 bytes).
+    Removing gpt12.o(.ARM.exidx.text.GPT12_setCapRelIntNodePtr), (8 bytes).
+    Removing int.o(.text), (0 bytes).
+    Removing int.o(.ARM.exidx.text.INT_init), (8 bytes).
+    Removing isr_exceptions.o(.text), (0 bytes).
+    Removing isr_exceptions.o(.ARM.exidx.text.HardFault_Handler), (8 bytes).
+    Removing isr_exceptions.o(.ARM.exidx.text.MemManage_Handler), (8 bytes).
+    Removing isr_exceptions.o(.ARM.exidx.text.BusFault_Handler), (8 bytes).
+    Removing isr_exceptions.o(.ARM.exidx.text.UsageFault_Handler), (8 bytes).
+    Removing isr_exceptions.o(.ARM.exidx.text.NMI_Handler), (8 bytes).
+    Removing isr_exceptions.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
+    Removing isr_exceptions.o(.ARM.exidx.text.PendSV_Handler), (8 bytes).
+    Removing isr_nvic_irq0_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq0_handler.o(.ARM.exidx.text.NVIC_IRQ0_Handler), (8 bytes).
+    Removing isr_nvic_irq10_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq11_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq12_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq12_handler.o(.ARM.exidx.text.NVIC_IRQ12_Handler), (8 bytes).
+    Removing isr_nvic_irq13_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq14_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq15_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq16_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq17_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq18_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq18_handler.o(.ARM.exidx.text.NVIC_IRQ18_Handler), (8 bytes).
+    Removing isr_nvic_irq19_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq1_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq20_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq20_handler.o(.ARM.exidx.text.NVIC_IRQ20_Handler), (8 bytes).
+    Removing isr_nvic_irq21_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq22_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq22_handler.o(.ARM.exidx.text.NVIC_IRQ22_Handler), (8 bytes).
+    Removing isr_nvic_irq23_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq24_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq24_handler.o(.ARM.exidx.text.NVIC_IRQ24_Handler), (8 bytes).
+    Removing isr_nvic_irq25_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq26_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq27_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq28_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq29_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq29_handler.o(.ARM.exidx.text.NVIC_IRQ29_Handler), (8 bytes).
+    Removing isr_nvic_irq2_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq2_handler.o(.ARM.exidx.text.NVIC_IRQ2_Handler), (8 bytes).
+    Removing isr_nvic_irq30_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq31_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq3_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq4_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq5_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq7_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq8_handler.o(.text), (0 bytes).
+    Removing isr_nvic_irq9_handler.o(.text), (0 bytes).
+    Removing mon.o(.text), (0 bytes).
+    Removing mon.o(.ARM.exidx.text.MON_init), (8 bytes).
+    Removing mon.o(.text.MON_setMON1IntNodePtr), (2 bytes).
+    Removing mon.o(.ARM.exidx.text.MON_setMON1IntNodePtr), (8 bytes).
+    Removing mon.o(.text.MON_setMON2IntNodePtr), (2 bytes).
+    Removing mon.o(.ARM.exidx.text.MON_setMON2IntNodePtr), (8 bytes).
+    Removing mon.o(.text.MON_setMON3IntNodePtr), (2 bytes).
+    Removing mon.o(.ARM.exidx.text.MON_setMON3IntNodePtr), (8 bytes).
+    Removing pmu.o(.text), (0 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_init), (8 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_countFailSafeWatchdog), (8 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_initFailSafeWatchdog), (8 bytes).
+    Removing pmu.o(.text.PMU_stopFailSafeWatchdog), (18 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_stopFailSafeWatchdog), (8 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_serviceFailSafeWatchdog), (8 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_clrFailSafeWatchdogFailSts), (8 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_serviceFailSafeWatchdogSOW), (8 bytes).
+    Removing pmu.o(.text.PMU_setVDDPUndervoltageWarnIntNodePtr), (2 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_setVDDPUndervoltageWarnIntNodePtr), (8 bytes).
+    Removing pmu.o(.text.PMU_setVDDPOvervoltageIntNodePtr), (2 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_setVDDPOvervoltageIntNodePtr), (8 bytes).
+    Removing pmu.o(.text.PMU_setVDDCUndervoltageWarnIntNodePtr), (2 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_setVDDCUndervoltageWarnIntNodePtr), (8 bytes).
+    Removing pmu.o(.text.PMU_setVDDCOvervoltageIntNodePtr), (2 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_setVDDCOvervoltageIntNodePtr), (8 bytes).
+    Removing pmu.o(.text.PMU_setVDDEXTUndervoltageIntNodePtr), (2 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_setVDDEXTUndervoltageIntNodePtr), (8 bytes).
+    Removing pmu.o(.text.PMU_setVDDEXTOvertemperatureIntNodePtr), (2 bytes).
+    Removing pmu.o(.ARM.exidx.text.PMU_setVDDEXTOvertemperatureIntNodePtr), (8 bytes).
+    Removing scu.o(.text), (0 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_init), (8 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_initClk), (8 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_checkXTALDiagnosis), (8 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_delay_us), (8 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_initSysTick), (8 bytes).
+    Removing scu.o(.text.SCU_enSafeSwitchOffSeq), (28 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_enSafeSwitchOffSeq), (8 bytes).
+    Removing scu.o(.text.SCU_enterDeepSleepMode), (14 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_enterDeepSleepMode), (8 bytes).
+    Removing scu.o(.text.SCU_enterStopModeWithResetWakeup), (102 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_enterStopModeWithResetWakeup), (8 bytes).
+    Removing scu.o(.text.SCU_enterStopModeWithoutResetWakeup), (158 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_enterStopModeWithoutResetWakeup), (8 bytes).
+    Removing scu.o(.text.SCU_enterSleepMode), (92 bytes).
+    Removing scu.o(.ARM.exidx.text.SCU_enterSleepMode), (8 bytes).
+    Removing sdadc.o(.text), (0 bytes).
+    Removing sdadc.o(.ARM.exidx.text.SDADC_init), (8 bytes).
+    Removing sdadc.o(.text.SDADC_setCh0ResIntNodePtr), (2 bytes).
+    Removing sdadc.o(.ARM.exidx.text.SDADC_setCh0ResIntNodePtr), (8 bytes).
+    Removing sdadc.o(.text.SDADC_setCh0CmpUpIntNodePtr), (2 bytes).
+    Removing sdadc.o(.ARM.exidx.text.SDADC_setCh0CmpUpIntNodePtr), (8 bytes).
+    Removing sdadc.o(.text.SDADC_setCh0CmpLoIntNodePtr), (2 bytes).
+    Removing sdadc.o(.ARM.exidx.text.SDADC_setCh0CmpLoIntNodePtr), (8 bytes).
+    Removing sdadc.o(.text.SDADC_setCh1ResIntNodePtr), (2 bytes).
+    Removing sdadc.o(.ARM.exidx.text.SDADC_setCh1ResIntNodePtr), (8 bytes).
+    Removing sdadc.o(.text.SDADC_setCh1CmpUpIntNodePtr), (2 bytes).
+    Removing sdadc.o(.ARM.exidx.text.SDADC_setCh1CmpUpIntNodePtr), (8 bytes).
+    Removing sdadc.o(.text.SDADC_setCh1CmpLoIntNodePtr), (2 bytes).
+    Removing sdadc.o(.ARM.exidx.text.SDADC_setCh1CmpLoIntNodePtr), (8 bytes).
+    Removing ssc.o(.text), (0 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC0_init), (8 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC1_init), (8 bytes).
+    Removing ssc.o(.text.SSC0_setEmptyTXBufferIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC0_setEmptyTXBufferIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC0_setEmptyRXBufferIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC0_setEmptyRXBufferIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC0_setTXErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC0_setTXErrIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC0_setRXErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC0_setRXErrIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC0_setPhaseErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC0_setPhaseErrIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC0_setBaudrateErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC0_setBaudrateErrIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC1_setEmptyTXBufferIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC1_setEmptyTXBufferIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC1_setEmptyRXBufferIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC1_setEmptyRXBufferIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC1_setTXErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC1_setTXErrIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC1_setRXErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC1_setRXErrIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC1_setPhaseErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC1_setPhaseErrIntNodePtr), (8 bytes).
+    Removing ssc.o(.text.SSC1_setBaudrateErrIntNodePtr), (2 bytes).
+    Removing ssc.o(.ARM.exidx.text.SSC1_setBaudrateErrIntNodePtr), (8 bytes).
+    Removing startup_tle989x.o(HEAP), (0 bytes).
+    Removing system_tle989x.o(.text), (0 bytes).
+    Removing system_tle989x.o(.ARM.exidx.text.SystemInit), (8 bytes).
+    Removing timer2x.o(.text), (0 bytes).
+    Removing timer2x.o(.ARM.exidx.text.T20_init), (8 bytes).
+    Removing timer2x.o(.ARM.exidx.text.T21_init), (8 bytes).
+    Removing timer2x.o(.text.T20_setIntervalTimer), (150 bytes).
+    Removing timer2x.o(.ARM.exidx.text.T20_setIntervalTimer), (8 bytes).
+    Removing timer2x.o(.text.T21_setIntervalTimer), (150 bytes).
+    Removing timer2x.o(.ARM.exidx.text.T21_setIntervalTimer), (8 bytes).
+    Removing tle_device.o(.text), (0 bytes).
+    Removing tle_device.o(.ARM.exidx.text.TLE_init), (8 bytes).
+    Removing uart.o(.text), (0 bytes).
+    Removing uart.o(.ARM.exidx.text.UART0_init), (8 bytes).
+    Removing uart.o(.ARM.exidx.text.UART1_init), (8 bytes).
+    Removing uart.o(.text.UART0_getBaudrate), (44 bytes).
+    Removing uart.o(.ARM.exidx.text.UART0_getBaudrate), (8 bytes).
+    Removing uart.o(.text.UART1_getBaudrate), (44 bytes).
+    Removing uart.o(.ARM.exidx.text.UART1_getBaudrate), (8 bytes).
+    Removing uart.o(.text.UARTx_setBaudrate), (384 bytes).
+    Removing uart.o(.ARM.exidx.text.UARTx_setBaudrate), (8 bytes).
+    Removing uart.o(.text.UART0_setBaudrate), (12 bytes).
+    Removing uart.o(.ARM.exidx.text.UART0_setBaudrate), (8 bytes).
+    Removing uart.o(.text.UART1_setBaudrate), (12 bytes).
+    Removing uart.o(.ARM.exidx.text.UART1_setBaudrate), (8 bytes).
+    Removing uart.o(.text.UART0_setTXIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART0_setTXIntSts), (8 bytes).
+    Removing uart.o(.text.UART0_setRXIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART0_setRXIntSts), (8 bytes).
+    Removing uart.o(.text.UART0_setSyncErrIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART0_setSyncErrIntSts), (8 bytes).
+    Removing uart.o(.text.UART0_setEOFIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART0_setEOFIntSts), (8 bytes).
+    Removing uart.o(.text.UART1_setTXIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART1_setTXIntSts), (8 bytes).
+    Removing uart.o(.text.UART1_setRXIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART1_setRXIntSts), (8 bytes).
+    Removing uart.o(.text.UART1_setSyncErrIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART1_setSyncErrIntSts), (8 bytes).
+    Removing uart.o(.text.UART1_setEOFIntSts), (2 bytes).
+    Removing uart.o(.ARM.exidx.text.UART1_setEOFIntSts), (8 bytes).
+
+677 unused section(s) (total 18485 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/string/memcmp.c         0x00000000   Number         0  memcmp.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
+    ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
+    FIFOQUEUE.c                              0x00000000   Number         0  fifoqueue.o ABSOLUTE
+    JumpToAPP.c                              0x00000000   Number         0  jumptoapp.o ABSOLUTE
+    MultiCAN_handler.c                       0x00000000   Number         0  multican_handler.o ABSOLUTE
+    RTE/Device/TLE9893_2QKW62S/startup_tle989x.S 0x00000000   Number         0  startup_tle989x.o ABSOLUTE
+    TP_Config.c                              0x00000000   Number         0  tp_config.o ABSOLUTE
+    UDS27_SA.c                               0x00000000   Number         0  uds27_sa.o ABSOLUTE
+    adc1.c                                   0x00000000   Number         0  adc1.o ABSOLUTE
+    adc2.c                                   0x00000000   Number         0  adc2.o ABSOLUTE
+    bdrv.c                                   0x00000000   Number         0  bdrv.o ABSOLUTE
+    bootrom.c                                0x00000000   Number         0  bootrom.o ABSOLUTE
+    can.c                                    0x00000000   Number         0  can.o ABSOLUTE
+    can_iso_tp.c                             0x00000000   Number         0  can_iso_tp.o ABSOLUTE
+    cantrx.c                                 0x00000000   Number         0  cantrx.o ABSOLUTE
+    ccu7.c                                   0x00000000   Number         0  ccu7.o ABSOLUTE
+    crcLib.c                                 0x00000000   Number         0  crclib.o ABSOLUTE
+    csacsc.c                                 0x00000000   Number         0  csacsc.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    dma.c                                    0x00000000   Number         0  dma.o ABSOLUTE
+    flash.c                                  0x00000000   Number         0  flash.o ABSOLUTE
+    gpio.c                                   0x00000000   Number         0  gpio.o ABSOLUTE
+    gpt12.c                                  0x00000000   Number         0  gpt12.o ABSOLUTE
+    handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
+    init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    int.c                                    0x00000000   Number         0  int.o ABSOLUTE
+    isr_exceptions.c                         0x00000000   Number         0  isr_exceptions.o ABSOLUTE
+    isr_nvic_irq0_handler.c                  0x00000000   Number         0  isr_nvic_irq0_handler.o ABSOLUTE
+    isr_nvic_irq10_handler.c                 0x00000000   Number         0  isr_nvic_irq10_handler.o ABSOLUTE
+    isr_nvic_irq11_handler.c                 0x00000000   Number         0  isr_nvic_irq11_handler.o ABSOLUTE
+    isr_nvic_irq12_handler.c                 0x00000000   Number         0  isr_nvic_irq12_handler.o ABSOLUTE
+    isr_nvic_irq13_handler.c                 0x00000000   Number         0  isr_nvic_irq13_handler.o ABSOLUTE
+    isr_nvic_irq14_handler.c                 0x00000000   Number         0  isr_nvic_irq14_handler.o ABSOLUTE
+    isr_nvic_irq15_handler.c                 0x00000000   Number         0  isr_nvic_irq15_handler.o ABSOLUTE
+    isr_nvic_irq16_handler.c                 0x00000000   Number         0  isr_nvic_irq16_handler.o ABSOLUTE
+    isr_nvic_irq17_handler.c                 0x00000000   Number         0  isr_nvic_irq17_handler.o ABSOLUTE
+    isr_nvic_irq18_handler.c                 0x00000000   Number         0  isr_nvic_irq18_handler.o ABSOLUTE
+    isr_nvic_irq19_handler.c                 0x00000000   Number         0  isr_nvic_irq19_handler.o ABSOLUTE
+    isr_nvic_irq1_handler.c                  0x00000000   Number         0  isr_nvic_irq1_handler.o ABSOLUTE
+    isr_nvic_irq20_handler.c                 0x00000000   Number         0  isr_nvic_irq20_handler.o ABSOLUTE
+    isr_nvic_irq21_handler.c                 0x00000000   Number         0  isr_nvic_irq21_handler.o ABSOLUTE
+    isr_nvic_irq22_handler.c                 0x00000000   Number         0  isr_nvic_irq22_handler.o ABSOLUTE
+    isr_nvic_irq23_handler.c                 0x00000000   Number         0  isr_nvic_irq23_handler.o ABSOLUTE
+    isr_nvic_irq24_handler.c                 0x00000000   Number         0  isr_nvic_irq24_handler.o ABSOLUTE
+    isr_nvic_irq25_handler.c                 0x00000000   Number         0  isr_nvic_irq25_handler.o ABSOLUTE
+    isr_nvic_irq26_handler.c                 0x00000000   Number         0  isr_nvic_irq26_handler.o ABSOLUTE
+    isr_nvic_irq27_handler.c                 0x00000000   Number         0  isr_nvic_irq27_handler.o ABSOLUTE
+    isr_nvic_irq28_handler.c                 0x00000000   Number         0  isr_nvic_irq28_handler.o ABSOLUTE
+    isr_nvic_irq29_handler.c                 0x00000000   Number         0  isr_nvic_irq29_handler.o ABSOLUTE
+    isr_nvic_irq2_handler.c                  0x00000000   Number         0  isr_nvic_irq2_handler.o ABSOLUTE
+    isr_nvic_irq30_handler.c                 0x00000000   Number         0  isr_nvic_irq30_handler.o ABSOLUTE
+    isr_nvic_irq31_handler.c                 0x00000000   Number         0  isr_nvic_irq31_handler.o ABSOLUTE
+    isr_nvic_irq3_handler.c                  0x00000000   Number         0  isr_nvic_irq3_handler.o ABSOLUTE
+    isr_nvic_irq4_handler.c                  0x00000000   Number         0  isr_nvic_irq4_handler.o ABSOLUTE
+    isr_nvic_irq5_handler.c                  0x00000000   Number         0  isr_nvic_irq5_handler.o ABSOLUTE
+    isr_nvic_irq7_handler.c                  0x00000000   Number         0  isr_nvic_irq7_handler.o ABSOLUTE
+    isr_nvic_irq8_handler.c                  0x00000000   Number         0  isr_nvic_irq8_handler.o ABSOLUTE
+    isr_nvic_irq9_handler.c                  0x00000000   Number         0  isr_nvic_irq9_handler.o ABSOLUTE
+    main.c                                   0x00000000   Number         0  main.o ABSOLUTE
+    mcu_lock.c                               0x00000000   Number         0  mcu_lock.o ABSOLUTE
+    mon.c                                    0x00000000   Number         0  mon.o ABSOLUTE
+    pmu.c                                    0x00000000   Number         0  pmu.o ABSOLUTE
+    scu.c                                    0x00000000   Number         0  scu.o ABSOLUTE
+    sdadc.c                                  0x00000000   Number         0  sdadc.o ABSOLUTE
+    server.c                                 0x00000000   Number         0  server.o ABSOLUTE
+    ssc.c                                    0x00000000   Number         0  ssc.o ABSOLUTE
+    system_tle989x.c                         0x00000000   Number         0  system_tle989x.o ABSOLUTE
+    systick.c                                0x00000000   Number         0  systick.o ABSOLUTE
+    timer2x.c                                0x00000000   Number         0  timer2x.o ABSOLUTE
+    tle_device.c                             0x00000000   Number         0  tle_device.o ABSOLUTE
+    uart.c                                   0x00000000   Number         0  uart.o ABSOLUTE
+    RESET                                    0x11000000   Section      448  startup_tle989x.o(RESET)
+    .ARM.Collect$$$$00000000                 0x110001c0   Section        0  entry.o(.ARM.Collect$$$$00000000)
+    .ARM.Collect$$$$00000001                 0x110001c0   Section        4  entry2.o(.ARM.Collect$$$$00000001)
+    .ARM.Collect$$$$00000004                 0x110001c4   Section        4  entry5.o(.ARM.Collect$$$$00000004)
+    .ARM.Collect$$$$00000008                 0x110001c8   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
+    .ARM.Collect$$$$0000000A                 0x110001c8   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
+    .ARM.Collect$$$$0000000B                 0x110001c8   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
+    __lit__00000000                          0x110001d0   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .ARM.Collect$$$$0000000D                 0x110001d0   Section        0  entry10a.o(.ARM.Collect$$$$0000000D)
+    .ARM.Collect$$$$0000000F                 0x110001d0   Section        0  entry11a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00002712                 0x110001d0   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    .text                                    0x110001d4   Section      100  startup_tle989x.o(.text)
+    SVC_Handler                              0x11000201   Thumb Code    24  startup_tle989x.o(.text)
+    .text                                    0x11000238   Section        0  memcpya.o(.text)
+    .text                                    0x1100025c   Section        0  memseta.o(.text)
+    .text                                    0x11000280   Section        0  memcmp.o(.text)
+    .text                                    0x1100029c   Section       36  init.o(.text)
+    [Anonymous Symbol]                       0x110002c0   Section        0  adc1.o(.text.ADC1_init)
+    [Anonymous Symbol]                       0x1100041c   Section        0  adc2.o(.text.ADC2_init)
+    [Anonymous Symbol]                       0x110004a8   Section        0  bdrv.o(.text.BDRV_init)
+    [Anonymous Symbol]                       0x1100067c   Section        0  bdrv.o(.text.BDRV_initCP)
+    [Anonymous Symbol]                       0x11000698   Section        0  jumptoapp.o(.text.BootJumpASM)
+    [Anonymous Symbol]                       0x110006a0   Section        0  isr_exceptions.o(.text.BusFault_Handler)
+    [Anonymous Symbol]                       0x110006a4   Section        0  cantrx.o(.text.CANTRX_init)
+    [Anonymous Symbol]                       0x110006b8   Section        0  multican_handler.o(.text.CAN_TransmitReqMsgObj3_data)
+    [Anonymous Symbol]                       0x11000768   Section        0  ccu7.o(.text.CCU7_init)
+    [Anonymous Symbol]                       0x110008a0   Section        0  csacsc.o(.text.CSACSC_init)
+    [Anonymous Symbol]                       0x110008fc   Section        0  uds27_sa.o(.text.Creating_Seed)
+    [Anonymous Symbol]                       0x11000958   Section        0  dma.o(.text.DMA_init)
+    [Anonymous Symbol]                       0x11000960   Section        0  gpio.o(.text.GPIO_init)
+    [Anonymous Symbol]                       0x110009b4   Section        0  gpt12.o(.text.GPT12_init)
+    [Anonymous Symbol]                       0x110009bc   Section        0  isr_exceptions.o(.text.HardFault_Handler)
+    [Anonymous Symbol]                       0x110009c0   Section        0  int.o(.text.INT_init)
+    L_Data_request                           0x11000b8d   Thumb Code    88  tp_config.o(.text.L_Data_request)
+    [Anonymous Symbol]                       0x11000b8c   Section        0  tp_config.o(.text.L_Data_request)
+    [Anonymous Symbol]                       0x11000be4   Section        0  mon.o(.text.MON_init)
+    [Anonymous Symbol]                       0x11000be8   Section        0  isr_exceptions.o(.text.MemManage_Handler)
+    [Anonymous Symbol]                       0x11000bec   Section        0  multican_handler.o(.text.MultiCAN_init)
+    [Anonymous Symbol]                       0x110011e0   Section        0  isr_exceptions.o(.text.NMI_Handler)
+    [Anonymous Symbol]                       0x110011e4   Section        0  isr_nvic_irq0_handler.o(.text.NVIC_IRQ0_Handler)
+    [Anonymous Symbol]                       0x110011e8   Section        0  isr_nvic_irq12_handler.o(.text.NVIC_IRQ12_Handler)
+    [Anonymous Symbol]                       0x110011f8   Section        0  isr_nvic_irq18_handler.o(.text.NVIC_IRQ18_Handler)
+    [Anonymous Symbol]                       0x110011fc   Section        0  isr_nvic_irq20_handler.o(.text.NVIC_IRQ20_Handler)
+    [Anonymous Symbol]                       0x11001200   Section        0  isr_nvic_irq22_handler.o(.text.NVIC_IRQ22_Handler)
+    [Anonymous Symbol]                       0x11001204   Section        0  isr_nvic_irq24_handler.o(.text.NVIC_IRQ24_Handler)
+    [Anonymous Symbol]                       0x11001208   Section        0  multican_handler.o(.text.NVIC_IRQ26_Handler)
+    [Anonymous Symbol]                       0x11001268   Section        0  multican_handler.o(.text.NVIC_IRQ27_Handler)
+    [Anonymous Symbol]                       0x11001464   Section        0  multican_handler.o(.text.NVIC_IRQ28_Handler)
+    [Anonymous Symbol]                       0x11001530   Section        0  isr_nvic_irq29_handler.o(.text.NVIC_IRQ29_Handler)
+    [Anonymous Symbol]                       0x11001534   Section        0  isr_nvic_irq2_handler.o(.text.NVIC_IRQ2_Handler)
+    N_USData_confirm                         0x11001561   Thumb Code     2  tp_config.o(.text.N_USData_confirm)
+    [Anonymous Symbol]                       0x11001560   Section        0  tp_config.o(.text.N_USData_confirm)
+    N_USData_indication                      0x11001565   Thumb Code    14  tp_config.o(.text.N_USData_indication)
+    [Anonymous Symbol]                       0x11001564   Section        0  tp_config.o(.text.N_USData_indication)
+    [Anonymous Symbol]                       0x11001574   Section        0  pmu.o(.text.PMU_clrFailSafeWatchdogFailSts)
+    [Anonymous Symbol]                       0x11001604   Section        0  pmu.o(.text.PMU_countFailSafeWatchdog)
+    [Anonymous Symbol]                       0x11001614   Section        0  pmu.o(.text.PMU_init)
+    [Anonymous Symbol]                       0x11001664   Section        0  pmu.o(.text.PMU_initFailSafeWatchdog)
+    [Anonymous Symbol]                       0x110016b8   Section        0  pmu.o(.text.PMU_serviceFailSafeWatchdog)
+    [Anonymous Symbol]                       0x11001720   Section        0  pmu.o(.text.PMU_serviceFailSafeWatchdogSOW)
+    [Anonymous Symbol]                       0x11001758   Section        0  uds27_sa.o(.text.PasswordGenerator)
+    [Anonymous Symbol]                       0x11001798   Section        0  isr_exceptions.o(.text.PendSV_Handler)
+    [Anonymous Symbol]                       0x1100179c   Section        0  fifoqueue.o(.text.QueueIn)
+    [Anonymous Symbol]                       0x110017f4   Section        0  fifoqueue.o(.text.QueueInit)
+    [Anonymous Symbol]                       0x11001818   Section        0  fifoqueue.o(.text.QueueOut)
+    [Anonymous Symbol]                       0x1100186c   Section        0  scu.o(.text.SCU_checkXTALDiagnosis)
+    [Anonymous Symbol]                       0x11001aa0   Section        0  scu.o(.text.SCU_delay_us)
+    [Anonymous Symbol]                       0x11001b38   Section        0  scu.o(.text.SCU_init)
+    [Anonymous Symbol]                       0x11001b4c   Section        0  scu.o(.text.SCU_initClk)
+    [Anonymous Symbol]                       0x11001cdc   Section        0  scu.o(.text.SCU_initSysTick)
+    [Anonymous Symbol]                       0x11001d04   Section        0  sdadc.o(.text.SDADC_init)
+    [Anonymous Symbol]                       0x11001d0c   Section        0  ssc.o(.text.SSC0_init)
+    [Anonymous Symbol]                       0x11001d14   Section        0  ssc.o(.text.SSC1_init)
+    [Anonymous Symbol]                       0x11001d1c   Section        0  uds27_sa.o(.text.SecurityAccess_unlock)
+    [Anonymous Symbol]                       0x11001d60   Section        0  isr_exceptions.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x11001db8   Section        0  system_tle989x.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x11001dd4   Section        0  multican_handler.o(.text.T16_ISR)
+    [Anonymous Symbol]                       0x11001dd8   Section        0  timer2x.o(.text.T20_init)
+    [Anonymous Symbol]                       0x11001df4   Section        0  timer2x.o(.text.T21_init)
+    [Anonymous Symbol]                       0x11001dfc   Section        0  tle_device.o(.text.TLE_init)
+    [Anonymous Symbol]                       0x11001eb8   Section        0  uart.o(.text.UART0_init)
+    [Anonymous Symbol]                       0x11001ec0   Section        0  uart.o(.text.UART1_init)
+    UDS_Serice_EcuReset                      0x11001ec9   Thumb Code    16  server.o(.text.UDS_Serice_EcuReset)
+    [Anonymous Symbol]                       0x11001ec8   Section        0  server.o(.text.UDS_Serice_EcuReset)
+    [Anonymous Symbol]                       0x11001ed8   Section        0  server.o(.text.UDS_init)
+    [Anonymous Symbol]                       0x11001f14   Section        0  server.o(.text.UDS_server_poll)
+    [Anonymous Symbol]                       0x11001f50   Section        0  server.o(.text.UdsServerRequestProcess)
+    [Anonymous Symbol]                       0x1100273c   Section        0  isr_exceptions.o(.text.UsageFault_Handler)
+    __NVIC_SystemReset                       0x11002741   Thumb Code    36  main.o(.text.__NVIC_SystemReset)
+    [Anonymous Symbol]                       0x11002740   Section        0  main.o(.text.__NVIC_SystemReset)
+    __NVIC_SystemReset                       0x11002765   Thumb Code    36  server.o(.text.__NVIC_SystemReset)
+    [Anonymous Symbol]                       0x11002764   Section        0  server.o(.text.__NVIC_SystemReset)
+    [Anonymous Symbol]                       0x11002788   Section        0  jumptoapp.o(.text.app_jump)
+    [Anonymous Symbol]                       0x110027f4   Section        0  crclib.o(.text.crc32)
+    event_manage_block_init                  0x1100283d   Thumb Code    34  can_iso_tp.o(.text.event_manage_block_init)
+    [Anonymous Symbol]                       0x1100283c   Section        0  can_iso_tp.o(.text.event_manage_block_init)
+    [Anonymous Symbol]                       0x11002860   Section        0  tp_config.o(.text.init_for_all_links)
+    [Anonymous Symbol]                       0x11002904   Section        0  can_iso_tp.o(.text.iso_can_tp_L_Data_confirm)
+    [Anonymous Symbol]                       0x11002a3c   Section        0  can_iso_tp.o(.text.iso_can_tp_L_Data_indication)
+    [Anonymous Symbol]                       0x11002b28   Section        0  can_iso_tp.o(.text.iso_can_tp_N_USData_request)
+    [Anonymous Symbol]                       0x11002c2c   Section        0  can_iso_tp.o(.text.iso_can_tp_create)
+    [Anonymous Symbol]                       0x11002e58   Section        0  can_iso_tp.o(.text.iso_can_tp_poll)
+    [Anonymous Symbol]                       0x11002f8c   Section        0  main.o(.text.main)
+    [Anonymous Symbol]                       0x1100321c   Section        0  mcu_lock.o(.text.mcu_lock_init)
+    [Anonymous Symbol]                       0x11003224   Section        0  mcu_lock.o(.text.mcu_lock_try_lock)
+    [Anonymous Symbol]                       0x11003254   Section        0  mcu_lock.o(.text.mcu_lock_unlock)
+    print_debug_info                         0x1100325d   Thumb Code     2  tp_config.o(.text.print_debug_info)
+    [Anonymous Symbol]                       0x1100325c   Section        0  tp_config.o(.text.print_debug_info)
+    report_event_to_manage_block             0x11003261   Thumb Code    78  can_iso_tp.o(.text.report_event_to_manage_block)
+    [Anonymous Symbol]                       0x11003260   Section        0  can_iso_tp.o(.text.report_event_to_manage_block)
+    rx_event_L_Data_Confirm_handle           0x110032b1   Thumb Code    36  can_iso_tp.o(.text.rx_event_L_Data_Confirm_handle)
+    [Anonymous Symbol]                       0x110032b0   Section        0  can_iso_tp.o(.text.rx_event_L_Data_Confirm_handle)
+    rx_event_L_Data_indication_handle        0x110032d5   Thumb Code   660  can_iso_tp.o(.text.rx_event_L_Data_indication_handle)
+    [Anonymous Symbol]                       0x110032d4   Section        0  can_iso_tp.o(.text.rx_event_L_Data_indication_handle)
+    rx_event_poll_handle                     0x11003569   Thumb Code   152  can_iso_tp.o(.text.rx_event_poll_handle)
+    [Anonymous Symbol]                       0x11003568   Section        0  can_iso_tp.o(.text.rx_event_poll_handle)
+    tx_event_L_Data_Confirm_handle           0x11003601   Thumb Code   170  can_iso_tp.o(.text.tx_event_L_Data_Confirm_handle)
+    [Anonymous Symbol]                       0x11003600   Section        0  can_iso_tp.o(.text.tx_event_L_Data_Confirm_handle)
+    tx_event_L_Data_indication_handle        0x110036ad   Thumb Code   186  can_iso_tp.o(.text.tx_event_L_Data_indication_handle)
+    [Anonymous Symbol]                       0x110036ac   Section        0  can_iso_tp.o(.text.tx_event_L_Data_indication_handle)
+    tx_event_N_USData_Request_handle         0x11003769   Thumb Code   434  can_iso_tp.o(.text.tx_event_N_USData_Request_handle)
+    [Anonymous Symbol]                       0x11003768   Section        0  can_iso_tp.o(.text.tx_event_N_USData_Request_handle)
+    tx_event_cf_frame                        0x1100391d   Thumb Code   276  can_iso_tp.o(.text.tx_event_cf_frame)
+    [Anonymous Symbol]                       0x1100391c   Section        0  can_iso_tp.o(.text.tx_event_cf_frame)
+    tx_event_poll_handle                     0x11003a31   Thumb Code   146  can_iso_tp.o(.text.tx_event_poll_handle)
+    [Anonymous Symbol]                       0x11003a30   Section        0  can_iso_tp.o(.text.tx_event_poll_handle)
+    udsServer_sendResponse                   0x11003ac5   Thumb Code   104  server.o(.text.udsServer_sendResponse)
+    [Anonymous Symbol]                       0x11003ac4   Section        0  server.o(.text.udsServer_sendResponse)
+    i.__scatterload_copy                     0x11003b2c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x11003b3a   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x11003b3c   Section       14  handlers.o(i.__scatterload_zeroinit)
+    dlc_len_table                            0x11003b4a   Data          16  can_iso_tp.o(.rodata.cst16)
+    [Anonymous Symbol]                       0x11003b4a   Section        0  can_iso_tp.o(.rodata.cst16)
+    .L.str.12                                0x11003b5a   Data          68  can_iso_tp.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x11003b5a   Section        0  can_iso_tp.o(.rodata.str1.1)
+    .L.str.14                                0x11003b9e   Data          67  can_iso_tp.o(.rodata.str1.1)
+    .L.str.17                                0x11003be1   Data          70  can_iso_tp.o(.rodata.str1.1)
+    .L.str.13                                0x11003c27   Data          68  can_iso_tp.o(.rodata.str1.1)
+    .L.str.15                                0x11003c6b   Data          67  can_iso_tp.o(.rodata.str1.1)
+    .L.str.16                                0x11003cae   Data          70  can_iso_tp.o(.rodata.str1.1)
+    .L.str.20                                0x11003cf4   Data          69  can_iso_tp.o(.rodata.str1.1)
+    .L.str.18                                0x11003d39   Data          71  can_iso_tp.o(.rodata.str1.1)
+    .L.str.1                                 0x11003d80   Data          48  can_iso_tp.o(.rodata.str1.1)
+    .L.str.8                                 0x11003db0   Data          40  can_iso_tp.o(.rodata.str1.1)
+    .L.str.4                                 0x11003dd8   Data          43  can_iso_tp.o(.rodata.str1.1)
+    .L.str.3                                 0x11003e03   Data          43  can_iso_tp.o(.rodata.str1.1)
+    .L.str.2                                 0x11003e2e   Data          38  can_iso_tp.o(.rodata.str1.1)
+    .L.str.7                                 0x11003e54   Data          49  can_iso_tp.o(.rodata.str1.1)
+    .L.str.21                                0x11003e85   Data          67  can_iso_tp.o(.rodata.str1.1)
+    .L.str.9                                 0x11003ec8   Data          42  can_iso_tp.o(.rodata.str1.1)
+    .L.str.10                                0x11003ef2   Data          51  can_iso_tp.o(.rodata.str1.1)
+    .L.str.11                                0x11003f25   Data          51  can_iso_tp.o(.rodata.str1.1)
+    NVIC_IRQ27_Handler.rxbuffer              0x18002018   Data          64  multican_handler.o(.bss.NVIC_IRQ27_Handler.rxbuffer)
+    [Anonymous Symbol]                       0x18002018   Section        0  multican_handler.o(.bss.NVIC_IRQ27_Handler.rxbuffer)
+    ServerData                               0x18002058   Data        2080  server.o(.bss.ServerData)
+    [Anonymous Symbol]                       0x18002058   Section        0  server.o(.bss.ServerData)
+    Timelock_error_count                     0x1800287c   Data           4  server.o(.bss.Timelock_error_count)
+    [Anonymous Symbol]                       0x1800287c   Section        0  server.o(.bss.Timelock_error_count)
+    b_SOWactive                              0x18002898   Data           1  pmu.o(.bss.b_SOWactive)
+    [Anonymous Symbol]                       0x18002898   Section        0  pmu.o(.bss.b_SOWactive)
+    b_firstNOW                               0x18002899   Data           1  pmu.o(.bss.b_firstNOW)
+    [Anonymous Symbol]                       0x18002899   Section        0  pmu.o(.bss.b_firstNOW)
+    rx_buff                                  0x18002b91   Data        1026  tp_config.o(.bss.rx_buff)
+    [Anonymous Symbol]                       0x18002b91   Section        0  tp_config.o(.bss.rx_buff)
+    sclock_count                             0x18002f94   Data           4  main.o(.bss.sclock_count)
+    [Anonymous Symbol]                       0x18002f94   Section        0  main.o(.bss.sclock_count)
+    STACK                                    0x18002fa8   Section      848  startup_tle989x.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv4$P$D$K$B$S$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$~IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    __decompress                              - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _microlib_exit                            - Undefined Weak Reference
+    __Vectors_Size                           0x000000c0   Number         0  startup_tle989x.o ABSOLUTE
+    __Vectors                                0x11000100   Data           4  startup_tle989x.o(RESET)
+    __Vectors_End                            0x110001c0   Data           0  startup_tle989x.o(RESET)
+    __main                                   0x110001c1   Thumb Code     0  entry.o(.ARM.Collect$$$$00000000)
+    _main_stk                                0x110001c1   Thumb Code     0  entry2.o(.ARM.Collect$$$$00000001)
+    _main_scatterload                        0x110001c5   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    __main_after_scatterload                 0x110001c9   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    _main_clock                              0x110001c9   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
+    _main_cpp_init                           0x110001c9   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
+    _main_init                               0x110001c9   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
+    __rt_final_cpp                           0x110001d1   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000D)
+    __rt_final_exit                          0x110001d1   Thumb Code     0  entry11a.o(.ARM.Collect$$$$0000000F)
+    Reset_Handler                            0x110001d5   Thumb Code    32  startup_tle989x.o(.text)
+    SVC_Handler_main                         0x110001f5   Thumb Code     2  startup_tle989x.o(.text)
+    DebugMon_Handler                         0x11000219   Thumb Code     2  startup_tle989x.o(.text)
+    NVIC_IRQ10_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ11_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ13_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ14_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ15_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ16_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ17_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ19_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ1_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ21_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ23_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ25_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ30_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ31_Handler                       0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ3_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ4_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ5_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ6_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ7_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ8_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    NVIC_IRQ9_Handler                        0x1100021f   Thumb Code     0  startup_tle989x.o(.text)
+    __aeabi_memcpy                           0x11000239   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x11000239   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x11000239   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memset                           0x1100025d   Thumb Code    14  memseta.o(.text)
+    __aeabi_memset4                          0x1100025d   Thumb Code     0  memseta.o(.text)
+    __aeabi_memset8                          0x1100025d   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr                           0x1100026b   Thumb Code     4  memseta.o(.text)
+    __aeabi_memclr4                          0x1100026b   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr8                          0x1100026b   Thumb Code     0  memseta.o(.text)
+    _memset$wrapper                          0x1100026f   Thumb Code    18  memseta.o(.text)
+    memcmp                                   0x11000281   Thumb Code    26  memcmp.o(.text)
+    __scatterload                            0x1100029d   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x1100029d   Thumb Code     0  init.o(.text)
+    ADC1_init                                0x110002c1   Thumb Code   348  adc1.o(.text.ADC1_init)
+    ADC2_init                                0x1100041d   Thumb Code   140  adc2.o(.text.ADC2_init)
+    BDRV_init                                0x110004a9   Thumb Code   468  bdrv.o(.text.BDRV_init)
+    BDRV_initCP                              0x1100067d   Thumb Code    26  bdrv.o(.text.BDRV_initCP)
+    BootJumpASM                              0x11000699   Thumb Code     6  jumptoapp.o(.text.BootJumpASM)
+    BusFault_Handler                         0x110006a1   Thumb Code     2  isr_exceptions.o(.text.BusFault_Handler)
+    CANTRX_init                              0x110006a5   Thumb Code    18  cantrx.o(.text.CANTRX_init)
+    CAN_TransmitReqMsgObj3_data              0x110006b9   Thumb Code   174  multican_handler.o(.text.CAN_TransmitReqMsgObj3_data)
+    CCU7_init                                0x11000769   Thumb Code   312  ccu7.o(.text.CCU7_init)
+    CSACSC_init                              0x110008a1   Thumb Code    92  csacsc.o(.text.CSACSC_init)
+    Creating_Seed                            0x110008fd   Thumb Code    90  uds27_sa.o(.text.Creating_Seed)
+    DMA_init                                 0x11000959   Thumb Code     6  dma.o(.text.DMA_init)
+    GPIO_init                                0x11000961   Thumb Code    82  gpio.o(.text.GPIO_init)
+    GPT12_init                               0x110009b5   Thumb Code     6  gpt12.o(.text.GPT12_init)
+    HardFault_Handler                        0x110009bd   Thumb Code     2  isr_exceptions.o(.text.HardFault_Handler)
+    INT_init                                 0x110009c1   Thumb Code   458  int.o(.text.INT_init)
+    MON_init                                 0x11000be5   Thumb Code     2  mon.o(.text.MON_init)
+    MemManage_Handler                        0x11000be9   Thumb Code     2  isr_exceptions.o(.text.MemManage_Handler)
+    MultiCAN_init                            0x11000bed   Thumb Code  1522  multican_handler.o(.text.MultiCAN_init)
+    NMI_Handler                              0x110011e1   Thumb Code     2  isr_exceptions.o(.text.NMI_Handler)
+    NVIC_IRQ0_Handler                        0x110011e5   Thumb Code     2  isr_nvic_irq0_handler.o(.text.NVIC_IRQ0_Handler)
+    NVIC_IRQ12_Handler                       0x110011e9   Thumb Code    14  isr_nvic_irq12_handler.o(.text.NVIC_IRQ12_Handler)
+    NVIC_IRQ18_Handler                       0x110011f9   Thumb Code     2  isr_nvic_irq18_handler.o(.text.NVIC_IRQ18_Handler)
+    NVIC_IRQ20_Handler                       0x110011fd   Thumb Code     2  isr_nvic_irq20_handler.o(.text.NVIC_IRQ20_Handler)
+    NVIC_IRQ22_Handler                       0x11001201   Thumb Code     2  isr_nvic_irq22_handler.o(.text.NVIC_IRQ22_Handler)
+    NVIC_IRQ24_Handler                       0x11001205   Thumb Code     2  isr_nvic_irq24_handler.o(.text.NVIC_IRQ24_Handler)
+    NVIC_IRQ26_Handler                       0x11001209   Thumb Code    96  multican_handler.o(.text.NVIC_IRQ26_Handler)
+    NVIC_IRQ27_Handler                       0x11001269   Thumb Code   506  multican_handler.o(.text.NVIC_IRQ27_Handler)
+    NVIC_IRQ28_Handler                       0x11001465   Thumb Code   204  multican_handler.o(.text.NVIC_IRQ28_Handler)
+    NVIC_IRQ29_Handler                       0x11001531   Thumb Code     2  isr_nvic_irq29_handler.o(.text.NVIC_IRQ29_Handler)
+    NVIC_IRQ2_Handler                        0x11001535   Thumb Code    42  isr_nvic_irq2_handler.o(.text.NVIC_IRQ2_Handler)
+    PMU_clrFailSafeWatchdogFailSts           0x11001575   Thumb Code   142  pmu.o(.text.PMU_clrFailSafeWatchdogFailSts)
+    PMU_countFailSafeWatchdog                0x11001605   Thumb Code    16  pmu.o(.text.PMU_countFailSafeWatchdog)
+    PMU_init                                 0x11001615   Thumb Code    80  pmu.o(.text.PMU_init)
+    PMU_initFailSafeWatchdog                 0x11001665   Thumb Code    84  pmu.o(.text.PMU_initFailSafeWatchdog)
+    PMU_serviceFailSafeWatchdog              0x110016b9   Thumb Code   104  pmu.o(.text.PMU_serviceFailSafeWatchdog)
+    PMU_serviceFailSafeWatchdogSOW           0x11001721   Thumb Code    56  pmu.o(.text.PMU_serviceFailSafeWatchdogSOW)
+    PasswordGenerator                        0x11001759   Thumb Code    62  uds27_sa.o(.text.PasswordGenerator)
+    PendSV_Handler                           0x11001799   Thumb Code     2  isr_exceptions.o(.text.PendSV_Handler)
+    QueueIn                                  0x1100179d   Thumb Code    88  fifoqueue.o(.text.QueueIn)
+    QueueInit                                0x110017f5   Thumb Code    34  fifoqueue.o(.text.QueueInit)
+    QueueOut                                 0x11001819   Thumb Code    84  fifoqueue.o(.text.QueueOut)
+    SCU_checkXTALDiagnosis                   0x1100186d   Thumb Code   564  scu.o(.text.SCU_checkXTALDiagnosis)
+    SCU_delay_us                             0x11001aa1   Thumb Code   150  scu.o(.text.SCU_delay_us)
+    SCU_init                                 0x11001b39   Thumb Code    18  scu.o(.text.SCU_init)
+    SCU_initClk                              0x11001b4d   Thumb Code   400  scu.o(.text.SCU_initClk)
+    SCU_initSysTick                          0x11001cdd   Thumb Code    40  scu.o(.text.SCU_initSysTick)
+    SDADC_init                               0x11001d05   Thumb Code     6  sdadc.o(.text.SDADC_init)
+    SSC0_init                                0x11001d0d   Thumb Code     6  ssc.o(.text.SSC0_init)
+    SSC1_init                                0x11001d15   Thumb Code     6  ssc.o(.text.SSC1_init)
+    SecurityAccess_unlock                    0x11001d1d   Thumb Code    66  uds27_sa.o(.text.SecurityAccess_unlock)
+    SysTick_Handler                          0x11001d61   Thumb Code    88  isr_exceptions.o(.text.SysTick_Handler)
+    SystemInit                               0x11001db9   Thumb Code    26  system_tle989x.o(.text.SystemInit)
+    T16_ISR                                  0x11001dd5   Thumb Code     2  multican_handler.o(.text.T16_ISR)
+    T20_init                                 0x11001dd9   Thumb Code    26  timer2x.o(.text.T20_init)
+    T21_init                                 0x11001df5   Thumb Code     6  timer2x.o(.text.T21_init)
+    TLE_init                                 0x11001dfd   Thumb Code   188  tle_device.o(.text.TLE_init)
+    UART0_init                               0x11001eb9   Thumb Code     6  uart.o(.text.UART0_init)
+    UART1_init                               0x11001ec1   Thumb Code     6  uart.o(.text.UART1_init)
+    UDS_init                                 0x11001ed9   Thumb Code    58  server.o(.text.UDS_init)
+    UDS_server_poll                          0x11001f15   Thumb Code    60  server.o(.text.UDS_server_poll)
+    UdsServerRequestProcess                  0x11001f51   Thumb Code  2026  server.o(.text.UdsServerRequestProcess)
+    UsageFault_Handler                       0x1100273d   Thumb Code     2  isr_exceptions.o(.text.UsageFault_Handler)
+    app_jump                                 0x11002789   Thumb Code   106  jumptoapp.o(.text.app_jump)
+    crc32                                    0x110027f5   Thumb Code    70  crclib.o(.text.crc32)
+    init_for_all_links                       0x11002861   Thumb Code   162  tp_config.o(.text.init_for_all_links)
+    iso_can_tp_L_Data_confirm                0x11002905   Thumb Code   310  can_iso_tp.o(.text.iso_can_tp_L_Data_confirm)
+    iso_can_tp_L_Data_indication             0x11002a3d   Thumb Code   234  can_iso_tp.o(.text.iso_can_tp_L_Data_indication)
+    iso_can_tp_N_USData_request              0x11002b29   Thumb Code   208  can_iso_tp.o(.text.iso_can_tp_N_USData_request)
+    iso_can_tp_create                        0x11002c2d   Thumb Code   420  can_iso_tp.o(.text.iso_can_tp_create)
+    iso_can_tp_poll                          0x11002e59   Thumb Code   306  can_iso_tp.o(.text.iso_can_tp_poll)
+    main                                     0x11002f8d   Thumb Code   656  main.o(.text.main)
+    mcu_lock_init                            0x1100321d   Thumb Code     6  mcu_lock.o(.text.mcu_lock_init)
+    mcu_lock_try_lock                        0x11003225   Thumb Code    46  mcu_lock.o(.text.mcu_lock_try_lock)
+    mcu_lock_unlock                          0x11003255   Thumb Code     6  mcu_lock.o(.text.mcu_lock_unlock)
+    __scatterload_copy                       0x11003b2d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x11003b3b   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x11003b3d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    Region$$Table$$Base                      0x11003f58   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x11003f78   Number         0  anon$$obj.o(Region$$Table)
+    SecurityAccess_STATION                   0x18002000   Data           1  server.o(.data.SecurityAccess_STATION)
+    Serive_Online                            0x18002004   Data           4  server.o(.data.Serive_Online)
+    UDS27_Timelock_count                     0x18002008   Data           4  server.o(.data.UDS27_Timelock_count)
+    LinkRxPoint                              0x18002010   Data           4  multican_handler.o(.bss.LinkRxPoint)
+    LinkTxPoint                              0x18002014   Data           4  multican_handler.o(.bss.LinkTxPoint)
+    ServerLinkPoint                          0x18002878   Data           4  server.o(.bss.ServerLinkPoint)
+    UC_FLASH0_UBSL_SIZE                      0x18002880   Data           4  tle_device.o(.bss.UC_FLASH0_UBSL_SIZE)
+    UC_FLASH0_UDATA_SIZE                     0x18002884   Data           4  tle_device.o(.bss.UC_FLASH0_UDATA_SIZE)
+    UC_FLASH0_UDATA_START                    0x18002888   Data           4  tle_device.o(.bss.UC_FLASH0_UDATA_START)
+    UDS27_RN                                 0x1800288c   Data           4  uds27_sa.o(.bss.UDS27_RN)
+    UDS_SericeAccess_Key                     0x18002890   Data           4  uds27_sa.o(.bss.UDS_SericeAccess_Key)
+    UDS_SericeAccess_Seed                    0x18002894   Data           4  uds27_sa.o(.bss.UDS_SericeAccess_Seed)
+    can_receive_counter                      0x1800289c   Data           4  multican_handler.o(.bss.can_receive_counter)
+    e_xtalSts                                0x180028a0   Data           1  scu.o(.bss.e_xtalSts)
+    enter_120_mode                           0x180028a1   Data           1  main.o(.bss.enter_120_mode)
+    init_tp                                  0x180028a4   Data          60  tp_config.o(.bss.init_tp)
+    link_tp                                  0x180028e0   Data         540  tp_config.o(.bss.link_tp)
+    msgPublic                                0x18002afc   Data          72  multican_handler.o(.bss.msgPublic)
+    msgPublic_ok                             0x18002b44   Data           1  multican_handler.o(.bss.msgPublic_ok)
+    msg_Rx                                   0x18002b48   Data          72  multican_handler.o(.bss.msg_Rx)
+    msg_Rx_exit                              0x18002b90   Data           1  multican_handler.o(.bss.msg_Rx_exit)
+    u32_failsafeWatchdogCnt                  0x18002f98   Data           4  pmu.o(.bss.u32_failsafeWatchdogCnt)
+    u32_globTimestamp_ms                     0x18002f9c   Data           4  isr_exceptions.o(.bss.u32_globTimestamp_ms)
+    u8_interrupt_cnt_irq12                   0x18002fa0   Data           1  isr_nvic_irq12_handler.o(.bss.u8_interrupt_cnt_irq12)
+    __initial_sp                             0x180032f8   Data           0  startup_tle989x.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x110001c1
+
+  Load Region LR_IROM1 (Base: 0x11000000, Size: 0x00003f88, Max: 0x00006000, ABSOLUTE)
+
+    Execution Region RW_IRAM1 (Exec base: 0x01800008, Load base: 0x11003f78, Size: 0x00000000, Max: 0x00001ff8, ABSOLUTE)
+
+    **** No section assigned to this execution region ****
+
+
+    Execution Region ER_IROM1 (Exec base: 0x11000000, Load base: 0x11000000, Size: 0x00003f78, Max: 0x00006000, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x11000000   0x11000000   0x000001c0   Data   RO          974    RESET               startup_tle989x.o
+    0x110001c0   0x110001c0   0x00000000   Code   RO         1055  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x110001c0   0x110001c0   0x00000004   Code   RO         1068    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x110001c4   0x110001c4   0x00000004   Code   RO         1071    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x110001c8   0x110001c8   0x00000000   Code   RO         1073    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x110001c8   0x110001c8   0x00000000   Code   RO         1075    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x110001c8   0x110001c8   0x00000008   Code   RO         1076    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x110001d0   0x110001d0   0x00000000   Code   RO         1078    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x110001d0   0x110001d0   0x00000000   Code   RO         1080    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x110001d0   0x110001d0   0x00000004   Code   RO         1069    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x110001d4   0x110001d4   0x00000064   Code   RO          975    .text               startup_tle989x.o
+    0x11000238   0x11000238   0x00000024   Code   RO         1060    .text               mc_w.l(memcpya.o)
+    0x1100025c   0x1100025c   0x00000024   Code   RO         1062    .text               mc_w.l(memseta.o)
+    0x11000280   0x11000280   0x0000001a   Code   RO         1064    .text               mc_w.l(memcmp.o)
+    0x1100029a   0x1100029a   0x00000002   PAD
+    0x1100029c   0x1100029c   0x00000024   Code   RO         1086    .text               mc_w.l(init.o)
+    0x110002c0   0x110002c0   0x0000015c   Code   RO          265    .text.ADC1_init     adc1.o
+    0x1100041c   0x1100041c   0x0000008c   Code   RO          380    .text.ADC2_init     adc2.o
+    0x110004a8   0x110004a8   0x000001d4   Code   RO          483    .text.BDRV_init     bdrv.o
+    0x1100067c   0x1100067c   0x0000001a   Code   RO          481    .text.BDRV_initCP   bdrv.o
+    0x11000696   0x11000696   0x00000002   PAD
+    0x11000698   0x11000698   0x00000006   Code   RO          131    .text.BootJumpASM   jumptoapp.o
+    0x1100069e   0x1100069e   0x00000002   PAD
+    0x110006a0   0x110006a0   0x00000002   Code   RO          730    .text.BusFault_Handler  isr_exceptions.o
+    0x110006a2   0x110006a2   0x00000002   PAD
+    0x110006a4   0x110006a4   0x00000012   Code   RO          577    .text.CANTRX_init   cantrx.o
+    0x110006b6   0x110006b6   0x00000002   PAD
+    0x110006b8   0x110006b8   0x000000ae   Code   RO          239    .text.CAN_TransmitReqMsgObj3_data  multican_handler.o
+    0x11000766   0x11000766   0x00000002   PAD
+    0x11000768   0x11000768   0x00000138   Code   RO          588    .text.CCU7_init     ccu7.o
+    0x110008a0   0x110008a0   0x0000005c   Code   RO          628    .text.CSACSC_init   csacsc.o
+    0x110008fc   0x110008fc   0x0000005a   Code   RO          114    .text.Creating_Seed  uds27_sa.o
+    0x11000956   0x11000956   0x00000002   PAD
+    0x11000958   0x11000958   0x00000006   Code   RO          644    .text.DMA_init      dma.o
+    0x1100095e   0x1100095e   0x00000002   PAD
+    0x11000960   0x11000960   0x00000052   Code   RO          684    .text.GPIO_init     gpio.o
+    0x110009b2   0x110009b2   0x00000002   PAD
+    0x110009b4   0x110009b4   0x00000006   Code   RO          692    .text.GPT12_init    gpt12.o
+    0x110009ba   0x110009ba   0x00000002   PAD
+    0x110009bc   0x110009bc   0x00000002   Code   RO          726    .text.HardFault_Handler  isr_exceptions.o
+    0x110009be   0x110009be   0x00000002   PAD
+    0x110009c0   0x110009c0   0x000001ca   Code   RO          718    .text.INT_init      int.o
+    0x11000b8a   0x11000b8a   0x00000002   PAD
+    0x11000b8c   0x11000b8c   0x00000058   Code   RO          145    .text.L_Data_request  tp_config.o
+    0x11000be4   0x11000be4   0x00000002   Code   RO          836    .text.MON_init      mon.o
+    0x11000be6   0x11000be6   0x00000002   PAD
+    0x11000be8   0x11000be8   0x00000002   Code   RO          728    .text.MemManage_Handler  isr_exceptions.o
+    0x11000bea   0x11000bea   0x00000002   PAD
+    0x11000bec   0x11000bec   0x000005f2   Code   RO          229    .text.MultiCAN_init  multican_handler.o
+    0x110011de   0x110011de   0x00000002   PAD
+    0x110011e0   0x110011e0   0x00000002   Code   RO          734    .text.NMI_Handler   isr_exceptions.o
+    0x110011e2   0x110011e2   0x00000002   PAD
+    0x110011e4   0x110011e4   0x00000002   Code   RO          748    .text.NVIC_IRQ0_Handler  isr_nvic_irq0_handler.o
+    0x110011e6   0x110011e6   0x00000002   PAD
+    0x110011e8   0x110011e8   0x0000000e   Code   RO          758    .text.NVIC_IRQ12_Handler  isr_nvic_irq12_handler.o
+    0x110011f6   0x110011f6   0x00000002   PAD
+    0x110011f8   0x110011f8   0x00000002   Code   RO          772    .text.NVIC_IRQ18_Handler  isr_nvic_irq18_handler.o
+    0x110011fa   0x110011fa   0x00000002   PAD
+    0x110011fc   0x110011fc   0x00000002   Code   RO          782    .text.NVIC_IRQ20_Handler  isr_nvic_irq20_handler.o
+    0x110011fe   0x110011fe   0x00000002   PAD
+    0x11001200   0x11001200   0x00000002   Code   RO          791    .text.NVIC_IRQ22_Handler  isr_nvic_irq22_handler.o
+    0x11001202   0x11001202   0x00000002   PAD
+    0x11001204   0x11001204   0x00000002   Code   RO          800    .text.NVIC_IRQ24_Handler  isr_nvic_irq24_handler.o
+    0x11001206   0x11001206   0x00000002   PAD
+    0x11001208   0x11001208   0x00000060   Code   RO          241    .text.NVIC_IRQ26_Handler  multican_handler.o
+    0x11001268   0x11001268   0x000001fa   Code   RO          243    .text.NVIC_IRQ27_Handler  multican_handler.o
+    0x11001462   0x11001462   0x00000002   PAD
+    0x11001464   0x11001464   0x000000cc   Code   RO          245    .text.NVIC_IRQ28_Handler  multican_handler.o
+    0x11001530   0x11001530   0x00000002   Code   RO          812    .text.NVIC_IRQ29_Handler  isr_nvic_irq29_handler.o
+    0x11001532   0x11001532   0x00000002   PAD
+    0x11001534   0x11001534   0x0000002a   Code   RO          820    .text.NVIC_IRQ2_Handler  isr_nvic_irq2_handler.o
+    0x1100155e   0x1100155e   0x00000002   PAD
+    0x11001560   0x11001560   0x00000002   Code   RO          149    .text.N_USData_confirm  tp_config.o
+    0x11001562   0x11001562   0x00000002   PAD
+    0x11001564   0x11001564   0x0000000e   Code   RO          147    .text.N_USData_indication  tp_config.o
+    0x11001572   0x11001572   0x00000002   PAD
+    0x11001574   0x11001574   0x0000008e   Code   RO          861    .text.PMU_clrFailSafeWatchdogFailSts  pmu.o
+    0x11001602   0x11001602   0x00000002   PAD
+    0x11001604   0x11001604   0x00000010   Code   RO          853    .text.PMU_countFailSafeWatchdog  pmu.o
+    0x11001614   0x11001614   0x00000050   Code   RO          851    .text.PMU_init      pmu.o
+    0x11001664   0x11001664   0x00000054   Code   RO          855    .text.PMU_initFailSafeWatchdog  pmu.o
+    0x110016b8   0x110016b8   0x00000068   Code   RO          859    .text.PMU_serviceFailSafeWatchdog  pmu.o
+    0x11001720   0x11001720   0x00000038   Code   RO          863    .text.PMU_serviceFailSafeWatchdogSOW  pmu.o
+    0x11001758   0x11001758   0x0000003e   Code   RO          116    .text.PasswordGenerator  uds27_sa.o
+    0x11001796   0x11001796   0x00000002   PAD
+    0x11001798   0x11001798   0x00000002   Code   RO          738    .text.PendSV_Handler  isr_exceptions.o
+    0x1100179a   0x1100179a   0x00000002   PAD
+    0x1100179c   0x1100179c   0x00000058   Code   RO           62    .text.QueueIn       fifoqueue.o
+    0x110017f4   0x110017f4   0x00000022   Code   RO           60    .text.QueueInit     fifoqueue.o
+    0x11001816   0x11001816   0x00000002   PAD
+    0x11001818   0x11001818   0x00000054   Code   RO           64    .text.QueueOut      fifoqueue.o
+    0x1100186c   0x1100186c   0x00000234   Code   RO          892    .text.SCU_checkXTALDiagnosis  scu.o
+    0x11001aa0   0x11001aa0   0x00000096   Code   RO          894    .text.SCU_delay_us  scu.o
+    0x11001b36   0x11001b36   0x00000002   PAD
+    0x11001b38   0x11001b38   0x00000012   Code   RO          888    .text.SCU_init      scu.o
+    0x11001b4a   0x11001b4a   0x00000002   PAD
+    0x11001b4c   0x11001b4c   0x00000190   Code   RO          890    .text.SCU_initClk   scu.o
+    0x11001cdc   0x11001cdc   0x00000028   Code   RO          896    .text.SCU_initSysTick  scu.o
+    0x11001d04   0x11001d04   0x00000006   Code   RO          917    .text.SDADC_init    sdadc.o
+    0x11001d0a   0x11001d0a   0x00000002   PAD
+    0x11001d0c   0x11001d0c   0x00000006   Code   RO          938    .text.SSC0_init     ssc.o
+    0x11001d12   0x11001d12   0x00000002   PAD
+    0x11001d14   0x11001d14   0x00000006   Code   RO          940    .text.SSC1_init     ssc.o
+    0x11001d1a   0x11001d1a   0x00000002   PAD
+    0x11001d1c   0x11001d1c   0x00000042   Code   RO          118    .text.SecurityAccess_unlock  uds27_sa.o
+    0x11001d5e   0x11001d5e   0x00000002   PAD
+    0x11001d60   0x11001d60   0x00000058   Code   RO          736    .text.SysTick_Handler  isr_exceptions.o
+    0x11001db8   0x11001db8   0x0000001a   Code   RO          982    .text.SystemInit    system_tle989x.o
+    0x11001dd2   0x11001dd2   0x00000002   PAD
+    0x11001dd4   0x11001dd4   0x00000002   Code   RO          247    .text.T16_ISR       multican_handler.o
+    0x11001dd6   0x11001dd6   0x00000002   PAD
+    0x11001dd8   0x11001dd8   0x0000001a   Code   RO          990    .text.T20_init      timer2x.o
+    0x11001df2   0x11001df2   0x00000002   PAD
+    0x11001df4   0x11001df4   0x00000006   Code   RO          992    .text.T21_init      timer2x.o
+    0x11001dfa   0x11001dfa   0x00000002   PAD
+    0x11001dfc   0x11001dfc   0x000000bc   Code   RO         1006    .text.TLE_init      tle_device.o
+    0x11001eb8   0x11001eb8   0x00000006   Code   RO         1018    .text.UART0_init    uart.o
+    0x11001ebe   0x11001ebe   0x00000002   PAD
+    0x11001ec0   0x11001ec0   0x00000006   Code   RO         1020    .text.UART1_init    uart.o
+    0x11001ec6   0x11001ec6   0x00000002   PAD
+    0x11001ec8   0x11001ec8   0x00000010   Code   RO           90    .text.UDS_Serice_EcuReset  server.o
+    0x11001ed8   0x11001ed8   0x0000003a   Code   RO           94    .text.UDS_init      server.o
+    0x11001f12   0x11001f12   0x00000002   PAD
+    0x11001f14   0x11001f14   0x0000003c   Code   RO           96    .text.UDS_server_poll  server.o
+    0x11001f50   0x11001f50   0x000007ea   Code   RO           88    .text.UdsServerRequestProcess  server.o
+    0x1100273a   0x1100273a   0x00000002   PAD
+    0x1100273c   0x1100273c   0x00000002   Code   RO          732    .text.UsageFault_Handler  isr_exceptions.o
+    0x1100273e   0x1100273e   0x00000002   PAD
+    0x11002740   0x11002740   0x00000024   Code   RO            4    .text.__NVIC_SystemReset  main.o
+    0x11002764   0x11002764   0x00000024   Code   RO           98    .text.__NVIC_SystemReset  server.o
+    0x11002788   0x11002788   0x0000006a   Code   RO          133    .text.app_jump      jumptoapp.o
+    0x110027f2   0x110027f2   0x00000002   PAD
+    0x110027f4   0x110027f4   0x00000046   Code   RO          206    .text.crc32         crclib.o
+    0x1100283a   0x1100283a   0x00000002   PAD
+    0x1100283c   0x1100283c   0x00000022   Code   RO           22    .text.event_manage_block_init  can_iso_tp.o
+    0x1100285e   0x1100285e   0x00000002   PAD
+    0x11002860   0x11002860   0x000000a2   Code   RO          143    .text.init_for_all_links  tp_config.o
+    0x11002902   0x11002902   0x00000002   PAD
+    0x11002904   0x11002904   0x00000136   Code   RO           32    .text.iso_can_tp_L_Data_confirm  can_iso_tp.o
+    0x11002a3a   0x11002a3a   0x00000002   PAD
+    0x11002a3c   0x11002a3c   0x000000ea   Code   RO           38    .text.iso_can_tp_L_Data_indication  can_iso_tp.o
+    0x11002b26   0x11002b26   0x00000002   PAD
+    0x11002b28   0x11002b28   0x00000104   Code   RO           44    .text.iso_can_tp_N_USData_request  can_iso_tp.o
+    0x11002c2c   0x11002c2c   0x0000022c   Code   RO           20    .text.iso_can_tp_create  can_iso_tp.o
+    0x11002e58   0x11002e58   0x00000132   Code   RO           24    .text.iso_can_tp_poll  can_iso_tp.o
+    0x11002f8a   0x11002f8a   0x00000002   PAD
+    0x11002f8c   0x11002f8c   0x00000290   Code   RO            2    .text.main          main.o
+    0x1100321c   0x1100321c   0x00000006   Code   RO           74    .text.mcu_lock_init  mcu_lock.o
+    0x11003222   0x11003222   0x00000002   PAD
+    0x11003224   0x11003224   0x0000002e   Code   RO           76    .text.mcu_lock_try_lock  mcu_lock.o
+    0x11003252   0x11003252   0x00000002   PAD
+    0x11003254   0x11003254   0x00000006   Code   RO           78    .text.mcu_lock_unlock  mcu_lock.o
+    0x1100325a   0x1100325a   0x00000002   PAD
+    0x1100325c   0x1100325c   0x00000002   Code   RO          151    .text.print_debug_info  tp_config.o
+    0x1100325e   0x1100325e   0x00000002   PAD
+    0x11003260   0x11003260   0x0000004e   Code   RO           28    .text.report_event_to_manage_block  can_iso_tp.o
+    0x110032ae   0x110032ae   0x00000002   PAD
+    0x110032b0   0x110032b0   0x00000024   Code   RO           34    .text.rx_event_L_Data_Confirm_handle  can_iso_tp.o
+    0x110032d4   0x110032d4   0x00000294   Code   RO           42    .text.rx_event_L_Data_indication_handle  can_iso_tp.o
+    0x11003568   0x11003568   0x00000098   Code   RO           26    .text.rx_event_poll_handle  can_iso_tp.o
+    0x11003600   0x11003600   0x000000aa   Code   RO           36    .text.tx_event_L_Data_Confirm_handle  can_iso_tp.o
+    0x110036aa   0x110036aa   0x00000002   PAD
+    0x110036ac   0x110036ac   0x000000ba   Code   RO           40    .text.tx_event_L_Data_indication_handle  can_iso_tp.o
+    0x11003766   0x11003766   0x00000002   PAD
+    0x11003768   0x11003768   0x000001b2   Code   RO           46    .text.tx_event_N_USData_Request_handle  can_iso_tp.o
+    0x1100391a   0x1100391a   0x00000002   PAD
+    0x1100391c   0x1100391c   0x00000114   Code   RO           48    .text.tx_event_cf_frame  can_iso_tp.o
+    0x11003a30   0x11003a30   0x00000092   Code   RO           30    .text.tx_event_poll_handle  can_iso_tp.o
+    0x11003ac2   0x11003ac2   0x00000002   PAD
+    0x11003ac4   0x11003ac4   0x00000068   Code   RO           92    .text.udsServer_sendResponse  server.o
+    0x11003b2c   0x11003b2c   0x0000000e   Code   RO         1090    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x11003b3a   0x11003b3a   0x00000002   Code   RO         1091    i.__scatterload_null  mc_w.l(handlers.o)
+    0x11003b3c   0x11003b3c   0x0000000e   Code   RO         1092    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x11003b4a   0x11003b4a   0x00000010   Data   RO           51    .rodata.cst16       can_iso_tp.o
+    0x11003b5a   0x11003b5a   0x000003fe   Data   RO           50    .rodata.str1.1      can_iso_tp.o
+    0x11003f58   0x11003f58   0x00000020   Data   RO         1089    Region$$Table       anon$$obj.o
+
+
+    Execution Region RW_IRAM2 (Exec base: 0x18002000, Load base: 0x11003f78, Size: 0x000012f8, Max: 0x00005c00, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x18002000   0x11003f78   0x00000001   Data   RW          103    .data.SecurityAccess_STATION  server.o
+    0x18002001   0x11003f79   0x00000003   PAD
+    0x18002004   0x11003f7c   0x00000004   Data   RW          104    .data.Serive_Online  server.o
+    0x18002008   0x11003f80   0x00000004   Data   RW          102    .data.UDS27_Timelock_count  server.o
+    0x1800200c   0x11003f84   0x00000004   PAD
+    0x18002010        -       0x00000004   Zero   RW          253    .bss.LinkRxPoint    multican_handler.o
+    0x18002014        -       0x00000004   Zero   RW          251    .bss.LinkTxPoint    multican_handler.o
+    0x18002018        -       0x00000040   Zero   RW          256    .bss.NVIC_IRQ27_Handler.rxbuffer  multican_handler.o
+    0x18002058        -       0x00000820   Zero   RW          100    .bss.ServerData     server.o
+    0x18002878        -       0x00000004   Zero   RW          101    .bss.ServerLinkPoint  server.o
+    0x1800287c        -       0x00000004   Zero   RW          105    .bss.Timelock_error_count  server.o
+    0x18002880        -       0x00000004   Zero   RW         1008    .bss.UC_FLASH0_UBSL_SIZE  tle_device.o
+    0x18002884        -       0x00000004   Zero   RW         1010    .bss.UC_FLASH0_UDATA_SIZE  tle_device.o
+    0x18002888        -       0x00000004   Zero   RW         1009    .bss.UC_FLASH0_UDATA_START  tle_device.o
+    0x1800288c        -       0x00000004   Zero   RW          120    .bss.UDS27_RN       uds27_sa.o
+    0x18002890        -       0x00000004   Zero   RW          122    .bss.UDS_SericeAccess_Key  uds27_sa.o
+    0x18002894        -       0x00000004   Zero   RW          121    .bss.UDS_SericeAccess_Seed  uds27_sa.o
+    0x18002898        -       0x00000001   Zero   RW          878    .bss.b_SOWactive    pmu.o
+    0x18002899        -       0x00000001   Zero   RW          879    .bss.b_firstNOW     pmu.o
+    0x1800289a   0x11003f84   0x00000002   PAD
+    0x1800289c        -       0x00000004   Zero   RW          249    .bss.can_receive_counter  multican_handler.o
+    0x180028a0        -       0x00000001   Zero   RW          908    .bss.e_xtalSts      scu.o
+    0x180028a1        -       0x00000001   Zero   RW            8    .bss.enter_120_mode  main.o
+    0x180028a2   0x11003f84   0x00000002   PAD
+    0x180028a4        -       0x0000003c   Zero   RW          154    .bss.init_tp        tp_config.o
+    0x180028e0        -       0x0000021c   Zero   RW          153    .bss.link_tp        tp_config.o
+    0x18002afc        -       0x00000048   Zero   RW          250    .bss.msgPublic      multican_handler.o
+    0x18002b44        -       0x00000001   Zero   RW          252    .bss.msgPublic_ok   multican_handler.o
+    0x18002b45   0x11003f84   0x00000003   PAD
+    0x18002b48        -       0x00000048   Zero   RW          255    .bss.msg_Rx         multican_handler.o
+    0x18002b90        -       0x00000001   Zero   RW          254    .bss.msg_Rx_exit    multican_handler.o
+    0x18002b91        -       0x00000402   Zero   RW          155    .bss.rx_buff        tp_config.o
+    0x18002f93   0x11003f84   0x00000001   PAD
+    0x18002f94        -       0x00000004   Zero   RW           10    .bss.sclock_count   main.o
+    0x18002f98        -       0x00000004   Zero   RW          877    .bss.u32_failsafeWatchdogCnt  pmu.o
+    0x18002f9c        -       0x00000004   Zero   RW          740    .bss.u32_globTimestamp_ms  isr_exceptions.o
+    0x18002fa0        -       0x00000001   Zero   RW          760    .bss.u8_interrupt_cnt_irq12  isr_nvic_irq12_handler.o
+    0x18002fa1   0x11003f84   0x00000007   PAD
+    0x18002fa8        -       0x00000350   Zero   RW          972    STACK               startup_tle989x.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       348          0          0          0          0      37275   adc1.o
+       140          0          0          0          0      33636   adc2.o
+       494          0          0          0          0      77526   bdrv.o
+      3838        188       1038          0          0      17071   can_iso_tp.o
+        18          0          0          0          0       2035   cantrx.o
+       312          0          0          0          0      17297   ccu7.o
+        70          0          0          0          0       9555   crclib.o
+        92          0          0          0          0      34842   csacsc.o
+         6          0          0          0          0       7780   dma.o
+       206          0          0          0          0       2207   fifoqueue.o
+        82          0          0          0          0       5799   gpio.o
+         6          0          0          0          0       4852   gpt12.o
+       458          0          0          0          0     119057   int.o
+       100          0          0          0          4      11377   isr_exceptions.o
+         2          0          0          0          0        435   isr_nvic_irq0_handler.o
+        14          0          0          0          1        672   isr_nvic_irq12_handler.o
+         2          0          0          0          0        438   isr_nvic_irq18_handler.o
+         2          0          0          0          0        438   isr_nvic_irq20_handler.o
+         2          0          0          0          0        438   isr_nvic_irq22_handler.o
+         2          0          0          0          0        438   isr_nvic_irq24_handler.o
+         2          0          0          0          0        438   isr_nvic_irq29_handler.o
+        42          0          0          0          0      14809   isr_nvic_irq2_handler.o
+       112          0          0          0          0      16205   jumptoapp.o
+       692          0          0          0          5      45152   main.o
+        58          0          0          0          0       1258   mcu_lock.o
+         2          0          0          0          0        652   mon.o
+      2504          0          0          0        222     110218   multican_handler.o
+       482          0          0          0          6      24560   pmu.o
+      1172          0          0          0          1      45421   scu.o
+         6          0          0          0          0       1183   sdadc.o
+      2300        236          0          9       2088      23553   server.o
+        12          0          0          0          0       1809   ssc.o
+       100         24        448          0        848        904   startup_tle989x.o
+        26          0          0          0          0        684   system_tle989x.o
+        32          0          0          0          0       3746   timer2x.o
+       188          0          0          0         12       7363   tle_device.o
+       268          0          0          0       1626       4954   tp_config.o
+        12          0          0          0          0       7268   uart.o
+       218          0          0          0         12       1740   uds27_sa.o
+
+    ----------------------------------------------------------------------
+     14544        448       1518         12       4844     695085   Object Totals
+         0          0         32          0          0          0   (incl. Generated)
+       122          0          0          3         19          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         0          0          0          0          0          0   entry.o
+         0          0          0          0          0          0   entry10a.o
+         0          0          0          0          0          0   entry11a.o
+         8          4          0          0          0          0   entry2.o
+         4          0          0          0          0          0   entry5.o
+         0          0          0          0          0          0   entry7b.o
+         0          0          0          0          0          0   entry8b.o
+         8          4          0          0          0          0   entry9a.o
+        30          0          0          0          0          0   handlers.o
+        36          8          0          0          0         68   init.o
+        26          0          0          0          0         80   memcmp.o
+        36          0          0          0          0         68   memcpya.o
+        36          0          0          0          0        108   memseta.o
+
+    ----------------------------------------------------------------------
+       186         16          0          0          0        324   Library Totals
+         2          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+       184         16          0          0          0        324   mc_w.l
+
+    ----------------------------------------------------------------------
+       186         16          0          0          0        324   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+     14730        464       1518         12       4844     694717   Grand Totals
+     14730        464       1518         12       4844     694717   ELF Image Totals
+     14730        464       1518         12          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                16248 (  15.87kB)
+    Total RW  Size (RW Data + ZI Data)              4856 (   4.74kB)
+    Total ROM Size (Code + RO Data + RW Data)      16260 (  15.88kB)
+
+==============================================================================
+

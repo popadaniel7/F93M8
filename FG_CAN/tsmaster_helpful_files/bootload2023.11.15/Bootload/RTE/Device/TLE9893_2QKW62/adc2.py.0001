@@ -1,0 +1,688 @@
+#<checksum>c0c1ab87968330e6fc7ee1f9090082d553a4e4c081a9a99b9d232eff7fce6ef3</checksum>
+
+#
+# \file     adc2.py
+#
+# \brief    Script to calculate the ADC2 values
+#
+# \version  V0.1.2
+# \date     12 Nov 2020
+#
+
+###############################################################################
+#                              Author(s) Identity                             #
+#*****************************************************************************#
+#  Initials     Name                                                          #
+#  -------------------------------------------------------------------------- #
+#  JO           Julia Ott                                                     #
+#  DM           Daniel Mysliwitz                                              #
+#  BG           Blandine Guillot                                              #
+###############################################################################
+
+###############################################################################
+#                           Revision Control History                          #
+#*****************************************************************************#
+#  V0.1.0: 2020-11-04, DM:   Initial version                                  #
+#  V0.1.1: 2020-11-04, JO:   EP-568: Added checksum                           #
+#  V0.1.2: 2020-11-12, BG:   EP-588: Corrected channel number for both VSD    #
+#                            and VCP                                          #
+###############################################################################
+
+
+
+#print(ADC2_UPPER_TH0.__dict__.keys())
+#object_methods = [method_name for method_name in dir(ADC2_UPPER_TH0) if callable(getattr(ADC2_UPPER_TH0, method_name))]
+#print (object_methods)
+
+FILT_CHANNEL_6 = "0"
+FILT_CHANNEL_7 = "1"
+FILT_CHANNEL_NONE = 2
+CMP_CHANNEL_6 = "0"
+CMP_CHANNEL_7 = "1"
+CMP_CHANNEL_NONE = 2
+CMP_RESULT_INSEL = 0
+CMP_FILTER_INSEL = 1
+CAL_TICKS_CHx = 4
+FILT_TICKS_CHx = 1
+CMP_TICKS_CHx = 1
+CHANNEL_MAX = 15
+
+#filterUserChannel = [0, 4, 5, 6, 7, 9, 10, 11, 12]
+registerModeList          = ["math", "combo", "combo", "combo", "math", "math", "math", "math", "combo", "math", "math", "math", "math", "combo", "combo" ]
+filterSelectRegisterList  = [ADC2_CHCFG0_FILSEL, ADC2_CHCFG1_FILSEL, ADC2_CHCFG2_FILSEL, ADC2_CHCFG3_FILSEL, ADC2_CHCFG4_FILSEL, ADC2_CHCFG5_FILSEL, ADC2_CHCFG6_FILSEL, ADC2_CHCFG7_FILSEL, ADC2_CHCFG8_FILSEL, ADC2_CHCFG9_FILSEL, ADC2_CHCFG10_FILSEL, ADC2_CHCFG11_FILSEL, ADC2_CHCFG12_FILSEL, ADC2_CHCFG13_FILSEL, ADC2_CHCFG14_FILSEL]
+filterSelUserRegisterList = [ADC2_CHCFG0_FILSEL_user, 0, 0, 0, ADC2_CHCFG4_FILSEL_user, ADC2_CHCFG5_FILSEL_user, ADC2_CHCFG6_FILSEL_user, ADC2_CHCFG7_FILSEL_user, 0, ADC2_CHCFG9_FILSEL_user, ADC2_CHCFG10_FILSEL_user, ADC2_CHCFG11_FILSEL_user, ADC2_CHCFG12_FILSEL_user, 0, 0]
+filterCoeffRegisterList   = [ADC2_FILTCFG_COEF_A0, ADC2_FILTCFG_COEF_A1, ADC2_FILTCFG_COEF_A2, ADC2_FILTCFG_COEF_A3, ADC2_FILTCFG_COEF_A4, ADC2_FILTCFG_COEF_A5, ADC2_FILTCFG_COEF_A6, ADC2_FILTCFG_COEF_A7]
+filterCoeffTextList       = ["1/2", "1/4", "1/8", "1/16"]
+compareSelectRegisterList = [ADC2_CHCFG0_CMPSEL, ADC2_CHCFG1_CMPSEL, ADC2_CHCFG2_CMPSEL, ADC2_CHCFG3_CMPSEL, ADC2_CHCFG4_CMPSEL, ADC2_CHCFG5_CMPSEL, ADC2_CHCFG6_CMPSEL, ADC2_CHCFG7_CMPSEL, ADC2_CHCFG8_CMPSEL, ADC2_CHCFG9_CMPSEL, ADC2_CHCFG10_CMPSEL, ADC2_CHCFG11_CMPSEL, ADC2_CHCFG12_CMPSEL, ADC2_CHCFG13_CMPSEL, ADC2_CHCFG14_CMPSEL]
+compareSelUserRegisterList= [ADC2_CHCFG0_CMPSEL_user, 0, 0, 0, ADC2_CHCFG4_CMPSEL_user, ADC2_CHCFG5_CMPSEL_user, ADC2_CHCFG6_CMPSEL_user, ADC2_CHCFG7_CMPSEL_user, 0, ADC2_CHCFG9_CMPSEL_user, ADC2_CHCFG10_CMPSEL_user, ADC2_CHCFG11_CMPSEL_user, ADC2_CHCFG12_CMPSEL_user, 0, 0]
+compareInputSelectList    = [ADC2_CMPCFG0_INSEL, ADC2_CMPCFG1_INSEL, ADC2_CMPCFG2_INSEL, ADC2_CMPCFG3_INSEL, ADC2_CMPCFG4_INSEL, ADC2_CMPCFG5_INSEL, ADC2_CMPCFG6_INSEL, ADC2_CMPCFG7_INSEL]
+compareModeSelRegisterList= [ADC2_CMPCFG0_MODE, ADC2_CMPCFG1_MODE, ADC2_CMPCFG2_MODE, ADC2_CMPCFG3_MODE, ADC2_CMPCFG4_MODE, ADC2_CMPCFG5_MODE, ADC2_CMPCFG6_MODE, ADC2_CMPCFG7_MODE]
+compareUpThSelRegisterList= [ADC2_UPPER_TH0, ADC2_UPPER_TH1, ADC2_UPPER_TH2, ADC2_UPPER_TH3, ADC2_UPPER_TH4, ADC2_UPPER_TH5, ADC2_UPPER_TH6, ADC2_UPPER_TH7]
+compareLoThSelRegisterList= [ADC2_LOWER_TH0, ADC2_LOWER_TH1, ADC2_LOWER_TH2, ADC2_LOWER_TH3, ADC2_LOWER_TH4, ADC2_LOWER_TH5, ADC2_LOWER_TH6, ADC2_LOWER_TH7]
+classSelectRegisterList   = [ADC2_CHCFG0_CLASSEL, ADC2_CHCFG1_CLASSEL, ADC2_CHCFG2_CLASSEL, ADC2_CHCFG3_CLASSEL, ADC2_CHCFG4_CLASSEL, ADC2_CHCFG5_CLASSEL, ADC2_CHCFG6_CLASSEL, ADC2_CHCFG7_CLASSEL, ADC2_CHCFG8_CLASSEL, ADC2_CHCFG9_CLASSEL, ADC2_CHCFG10_CLASSEL, ADC2_CHCFG11_CLASSEL, ADC2_CHCFG12_CLASSEL, ADC2_CHCFG13_CLASSEL, ADC2_CHCFG14_CLASSEL]
+classCategoryVarList      = [ADC2_CONVCFG0_CTRY, ADC2_CONVCFG1_CTRY, ADC2_CONVCFG2_CTRY, ADC2_CONVCFG3_CTRY]
+classSTCRegisterList      = [ADC2_CONVCFG0_STC, ADC2_CONVCFG1_STC, ADC2_CONVCFG2_STC, ADC2_CONVCFG3_STC]
+convTimeTicksList         = [ADC2_CONV0_TICKS, ADC2_CONV1_TICKS, ADC2_CONV2_TICKS, ADC2_CONV3_TICKS]
+channelInselRegisterList  = [ADC2_CHCFG0_INSEL, ADC2_CHCFG1_INSEL, ADC2_CHCFG2_INSEL, ADC2_CHCFG3_INSEL, ADC2_CHCFG4_INSEL, ADC2_CHCFG5_INSEL, ADC2_CHCFG6_INSEL, ADC2_CHCFG7_INSEL, ADC2_CHCFG8_INSEL, ADC2_CHCFG9_INSEL, ADC2_CHCFG10_INSEL, ADC2_CHCFG11_INSEL, ADC2_CHCFG12_INSEL, ADC2_CHCFG13_INSEL, ADC2_CHCFG14_INSEL]
+channelRepRegisterList    = [ADC2_CHCFG0_CHREP_user, ADC2_CHCFG1_CHREP_user, ADC2_CHCFG2_CHREP_user, ADC2_CHCFG3_CHREP_user, ADC2_CHCFG4_CHREP_user, ADC2_CHCFG5_CHREP_user, ADC2_CHCFG6_CHREP_user, ADC2_CHCFG7_CHREP_user, ADC2_CHCFG8_CHREP_user, ADC2_CHCFG9_CHREP_user, ADC2_CHCFG10_CHREP_user, ADC2_CHCFG11_CHREP_user, ADC2_CHCFG12_CHREP_user, ADC2_CHCFG13_CHREP_user, ADC2_CHCFG14_CHREP_user]
+inBoxWidth                = [160, 160, 160, 160, 240, 240, 240, 160, 160, 160, 160, 160, 240, 240, 300]
+calibEnableRegisterList   = [ADC2_CALIB0_EN, ADC2_CALIB1_EN, ADC2_CALIB2_EN, ADC2_CALIB3_EN, ADC2_CALIB4_EN, ADC2_CALIB5_EN, ADC2_CALIB6_EN, ADC2_CALIB7_EN, ADC2_CALIB8_EN, ADC2_CALIB9_EN, ADC2_CALIB10_EN, ADC2_CALIB11_EN, ADC2_CALIB12_EN, ADC2_CALIB13_EN, ADC2_CALIB14_EN]
+maxVoltageList            = [25.83, 31.00, 8.15, 51.67, 31.00, 31.00, 31.00, 5.34, 5.34, 5.34, 5.34, 5.34, 5.34, 5.34, 5.34]
+
+def calcKernelTime(channelTabIdx):
+    fADC2 = float(ADC2_CLK.text.partition(" ")[0])
+    classIdx = int(classSelectRegisterList[channelTabIdx].currentData)
+    if (classIdx < 4):
+        kernelTime = format(float(int(convTimeTicksList[classIdx].text) + int(convTimeTicksList[classIdx].text) * channelRepRegisterList[channelTabIdx].value) / fADC2, '.2f')
+    else:
+        kernelTime = 0.0
+    return kernelTime
+
+def calcResultTime(channelTabIdx):
+    fADC2 = float(ADC2_CLK.text.partition(" ")[0])
+    classIdx = int(classSelectRegisterList[channelTabIdx].currentData)
+    if (classIdx < 4):
+        TICKS_IN2RES_SINGLE = int(convTimeTicksList[classIdx].text) + calibEnableRegisterList[channelTabIdx].checked * CAL_TICKS_CHx
+        TICKS_IN2RES_REP    = TICKS_IN2RES_SINGLE + TICKS_IN2RES_SINGLE * channelRepRegisterList[channelTabIdx].value
+        TIME_IN2RES         = format(float(TICKS_IN2RES_REP) / fADC2, '.2f')
+    else:
+        TIME_IN2RES = 0.0
+    return TIME_IN2RES
+
+def calcFilterTime(channelTabIdx):
+    fADC2 = float(ADC2_CLK.text.partition(" ")[0])
+    classIdx = int(classSelectRegisterList[channelTabIdx].currentData)
+    if (classIdx < 4):
+        TICKS_IN2RES_SINGLE = int(convTimeTicksList[classIdx].text) + calibEnableRegisterList[channelTabIdx].checked * CAL_TICKS_CHx
+        TICKS_IN2RES_REP    = TICKS_IN2RES_SINGLE + TICKS_IN2RES_SINGLE * channelRepRegisterList[channelTabIdx].value
+        TIME_IN2FILT        = format((TICKS_IN2RES_REP + FILT_TICKS_CHx) / fADC2, '.2f')
+    else:
+        TIME_IN2FILT = 0.0
+    return TIME_IN2FILT
+
+def calcCompareTime(channelTabIdx):
+    fADC2 = float(ADC2_CLK.text.partition(" ")[0])
+    classIdx = int(classSelectRegisterList[channelTabIdx].currentData)
+    cmpTabIdx = ADC2_CMPCHCONT.currentIndex
+    if (classIdx < 4):
+        TICKS_IN2RES_SINGLE = int(convTimeTicksList[classIdx].text) + calibEnableRegisterList[channelTabIdx].checked * CAL_TICKS_CHx
+        TICKS_IN2RES_REP    = TICKS_IN2RES_SINGLE + TICKS_IN2RES_SINGLE * channelRepRegisterList[channelTabIdx].value
+        if (int(compareInputSelectList[cmpTabIdx].text) == CMP_RESULT_INSEL):
+            #result register as input
+            TIME_IN2CMP         = format((TICKS_IN2RES_REP + CMP_TICKS_CHx) / fADC2, '.2f')
+        else:
+            #filter result register as input
+            TIME_IN2CMP         = format((TICKS_IN2RES_REP + FILT_TICKS_CHx + CMP_TICKS_CHx) / fADC2, '.2f')
+    else:
+        TIME_IN2CMP = 0.0
+    return TIME_IN2CMP
+
+def calcChannelTime(channelTabIdx):
+    #print("calcChannelTime.channelTabIdx = " + str(channelTabIdx))
+    channelTime = calcResultTime(channelTabIdx)
+    #print("calcChannelTime.calcResultTime() = " + channelTime)
+    if (registerModeList[channelTabIdx] == "math"):
+        filtIdx = int(filterSelectRegisterList[channelTabIdx].text)
+    else:
+        filtIdx = int(filterSelectRegisterList[channelTabIdx].currentData)
+    #print("calcChannelTime.filtIdx = " + str(filtIdx))
+    if (filtIdx < 8):
+        channelTime = calcFilterTime(channelTabIdx)
+        #print("calcChannelTime.calcFilterTime() = " + channelTime)
+    if (registerModeList[channelTabIdx] == "math"):
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].text)
+    else:
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].currentData)
+    #print("calcChannelTime.cmpIdx = " + str(cmpIdx))
+    if (cmpIdx < 8):
+        channelTime = calcCompareTime(channelTabIdx)
+        #print("calcChannelTime.calcCompareTime() = " + channelTime)
+    return channelTime
+        
+
+def FiltSelectCh67(channelTabIdx, reg):
+    if (channelTabIdx < CHANNEL_MAX):
+        #print("FiltSelectCh67: channelTabIdx = " + str(channelTabIdx))
+        reg = filterSelUserRegisterList[channelTabIdx]
+        if (reg != 0):
+            #print("FiltSelectCh67: user channels")
+            if (reg.currentData == FILT_CHANNEL_6):
+                if (ADC2_FILT6_USED_TXT.text == 'available'):
+                    if (ADC2_FILT7_USED_TXT.text == str(channelTabIdx)):
+                        ADC2_FILT7_USED_TXT.text = 'available'
+                    ADC2_FILT6_USED_TXT.text = str(channelTabIdx)
+                    application.runScript("SetTab(ADC2.FILTCHCONT, 6)")
+                    ADC2_FILT_NO.value = 6
+                    ADC2_FILT_TXT.text = filterCoeffTextList[filterCoeffRegisterList[6].currentIndex]
+                    ADC2_USE_FILTx.value = 1
+                else:
+                    if (ADC2_FILT6_USED_TXT.text != str(channelTabIdx)):
+                        application.runScript("ShowConsole(1);MessageBox(Filter Channel 6 already used)")
+                        reg.currentIndex = FILT_CHANNEL_NONE
+                        ADC2_USE_FILTx.value = 0
+            elif (reg.currentData == FILT_CHANNEL_7):
+                if (ADC2_FILT7_USED_TXT.text == 'available'):
+                    if (ADC2_FILT6_USED_TXT.text == str(channelTabIdx)):
+                        ADC2_FILT6_USED_TXT.text = 'available'
+                    ADC2_FILT7_USED_TXT.text = str(channelTabIdx)
+                    application.runScript("SetTab(ADC2.FILTCHCONT, 7)")
+                    ADC2_FILT_NO.value = 7
+                    ADC2_FILT_TXT.text = filterCoeffTextList[filterCoeffRegisterList[7].currentIndex]
+                    ADC2_USE_FILTx.value = 1
+                else:
+                    if (ADC2_FILT7_USED_TXT.text != str(channelTabIdx)):
+                        application.runScript("ShowConsole(1);MessageBox(Filter Channel 7 already used)")
+                        reg.currentIndex = FILT_CHANNEL_NONE
+                        ADC2_USE_FILTx.value = 0
+            else:
+                if (ADC2_FILT6_USED_TXT.text == str(channelTabIdx)):
+                    ADC2_FILT6_USED_TXT.text = 'available'
+                if (ADC2_FILT7_USED_TXT.text == str(channelTabIdx)):
+                    ADC2_FILT7_USED_TXT.text = 'available'
+                ADC2_USE_FILTx.value = 0
+        if (registerModeList[channelTabIdx] == "math"):
+            filtIdx = int(filterSelectRegisterList[channelTabIdx].text)
+        else:
+            filtIdx = int(filterSelectRegisterList[channelTabIdx].currentData)
+        if (filtIdx < 8):
+            sCmd = "SetTab(ADC2.FILTCHCONT, " + str(filtIdx) + ")"
+            application.runScript(sCmd)
+            ADC2_FILT_NO.value = int(filtIdx)
+            ADC2_FILT_TXT.text = filterCoeffTextList[filterCoeffRegisterList[filtIdx].currentIndex]
+            ADC2_USE_FILTx.value = 1
+        else:
+            ADC2_USE_FILTx.value = 0
+
+def CmpSelectCh67(channelTabIdx, reg):
+    if (channelTabIdx < CHANNEL_MAX):
+        #print("CmpSelectCh67: channelTabIdx = " + str(channelTabIdx))
+        reg = compareSelUserRegisterList[channelTabIdx]
+        if (reg != 0):
+            if (reg.currentData == CMP_CHANNEL_6):
+                if (ADC2_CMP6_USED_TXT.text == 'available'):
+                    if (ADC2_CMP7_USED_TXT.text == str(channelTabIdx)):
+                        ADC2_CMP7_USED_TXT.text = 'available'
+                    ADC2_CMP6_USED_TXT.text = str(channelTabIdx)
+                    application.runScript("SetTab(ADC2.CMPCHCONT, 6)")
+                    ADC2_CMP_NO.value = 6
+                    ADC2_CMP_MODE_TXT.text = compareModeSelRegisterList[6].currentText
+                    ADC2_CMP_UTH_TXT.text = compareUpThSelRegisterList[6].text
+                    ADC2_CMP_LTH_TXT.text = compareLoThSelRegisterList[6].text
+                    ADC2_USE_CMPx.value = 1
+                    compareUpThSelRegisterList[6].maximum = maxVoltageList[channelTabIdx]
+                else:
+                    if (ADC2_CMP6_USED_TXT.text != str(channelTabIdx)):
+                        application.runScript("ShowConsole(1);MessageBox(Compare Channel 6 already used)")
+                        reg.currentIndex = CMP_CHANNEL_NONE
+            elif (reg.currentData == CMP_CHANNEL_7):
+                if (ADC2_CMP7_USED_TXT.text == 'available'):
+                    if (ADC2_CMP6_USED_TXT.text == str(channelTabIdx)):
+                        ADC2_CMP6_USED_TXT.text = 'available'
+                    ADC2_CMP7_USED_TXT.text = str(channelTabIdx)
+                    application.runScript("SetTab(ADC2.CMPCHCONT, 7)")
+                    ADC2_CMP_NO.value = 7
+                    ADC2_CMP_MODE_TXT.text = compareModeSelRegisterList[7].currentText
+                    ADC2_CMP_UTH_TXT.text = compareUpThSelRegisterList[7].text
+                    ADC2_CMP_LTH_TXT.text = compareLoThSelRegisterList[7].text
+                    ADC2_USE_CMPx.value = 1
+                    compareUpThSelRegisterList[7].maximum = maxVoltageList[channelTabIdx]
+                else:
+                    if (ADC2_CMP7_USED_TXT.text != str(channelTabIdx)):
+                        application.runScript("ShowConsole(1);MessageBox(Compare Channel 7 already used)")
+                        reg.currentIndex = CMP_CHANNEL_NONE
+            else:
+                if (ADC2_CMP6_USED_TXT.text == str(channelTabIdx)):
+                    ADC2_CMP6_USED_TXT.text = 'available'
+                if (ADC2_CMP7_USED_TXT.text == str(channelTabIdx)):
+                    ADC2_CMP7_USED_TXT.text = 'available'
+                ADC2_USE_CMPx.value = 0
+        if (registerModeList[channelTabIdx] == "math"):
+            cmpIdx = int(compareSelectRegisterList[channelTabIdx].text)
+        else:
+            cmpIdx = int(compareSelectRegisterList[channelTabIdx].currentData)
+        #print('cmpIdx = ' + cmpIdx)
+        if (cmpIdx < 8):
+            sCmd = "SetTab(ADC2.CMPCHCONT, " + str(cmpIdx) + ")"
+            application.runScript(sCmd)
+            ADC2_CMP_NO.value = cmpIdx
+            ADC2_CMP_MODE_TXT.text = compareModeSelRegisterList[cmpIdx].currentText
+            ADC2_CMP_UTH_TXT.text = compareUpThSelRegisterList[cmpIdx].text
+            ADC2_CMP_LTH_TXT.text = compareLoThSelRegisterList[cmpIdx].text
+            ADC2_CMP_SRCx.value = int(compareInputSelectList[cmpIdx].text)
+            ADC2_USE_CMPx.value = 1
+        else:
+            ADC2_USE_CMPx.value = 0
+
+def FiltSelectChx(itemIdx):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    ADC2_TIME_IN2FILT.text = str(calcFilterTime(channelTabIdx))
+    FiltSelectCh67(channelTabIdx, filterSelUserRegisterList[channelTabIdx])
+    updateSeqGraphics()
+    application.runScript("setDef(ADC2.ADBlock.update=1)")
+
+def FiltCoeffSelChx(coeffIdx):
+    ADC2_FILT_TXT.text = filterCoeffTextList[coeffIdx]
+    application.runScript("setDef(ADC2.ADBlock.update=1)")
+    
+def ClassSelectChx(itemIdx):
+    sCmd = "SetTab(ADC2.CHCLASSCONT, " + str(itemIdx) + ")"
+    application.runScript(sCmd)
+    #print('classSelIdx = ' + str(itemIdx))
+    ADC2_CHCLS_NO.value = itemIdx
+    ADC2_CHCLS_CTRY.text = classCategoryVarList[itemIdx].text
+    ADC2_STC_TXT.text = classSTCRegisterList[itemIdx].currentText
+    updateSeqGraphics()
+    application.runScript("setDef(ADC2.ADBlock.update=1)")
+
+def CmpSelectChx(itemIdx):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    ADC2_TIME_IN2CMP.text = str(calcCompareTime(channelTabIdx))
+    CmpSelectCh67(channelTabIdx, compareSelUserRegisterList[channelTabIdx])
+    updateSeqGraphics()
+    application.runScript("setDef(ADC2.ADBlock.update=1)")
+
+def STCSelectChx(itemIdx):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    classTabIdx = ADC2_CHCLASSCONT.currentIndex
+    #print('Ch['+str(channelTabIdx)+'].Classel = '+classSelectRegisterList[channelTabIdx].currentData+'; Class[' + str(classTabIdx) + '].STC = ' + str(itemIdx))
+    if (int(classSelectRegisterList[channelTabIdx].currentData) == classTabIdx):
+        ADC2_STC_TXT.text = classSTCRegisterList[int(classTabIdx)].currentText
+        ADC2_TIME_KERNEL.text = str(calcKernelTime(channelTabIdx))
+        ADC2_TIME_IN2RES.text = str(calcResultTime(channelTabIdx))
+        ADC2_TIME_IN2FILT.text = str(calcFilterTime(channelTabIdx))
+        ADC2_TIME_IN2CMP.text = str(calcCompareTime(channelTabIdx))
+        updateSeqGraphics()
+        application.runScript("setDef(ADC2.ADBlock.update=1)")
+
+def onChannelTabChange(channelTabIdx):
+    #set filter tab according to channel config
+    FiltSelectCh67(channelTabIdx, filterSelUserRegisterList[channelTabIdx])
+    
+    #set class tab according to channel config
+    classIdx = int(classSelectRegisterList[channelTabIdx].currentData)
+    if (classIdx < 4):
+        sCmd = "SetTab(ADC2.CHCLASSCONT, " + str(classIdx) + ")"
+        application.runScript(sCmd)
+        ADC2_CHCLS_NO.value = classIdx
+        ADC2_CHCLS_CTRY.text = classCategoryVarList[classIdx].text
+        ADC2_STC_TXT.text = classSTCRegisterList[classIdx].currentText
+    
+    #set compare tab according to channel config
+    CmpSelectCh67(channelTabIdx, compareSelUserRegisterList[channelTabIdx])
+    
+    #evaluate calibration setting
+    if (calibEnableRegisterList[channelTabIdx].checked == 1):
+        ADC2_USE_CALIBx.value = 1
+    else:
+        ADC2_USE_CALIBx.value = 0
+        
+    CmpInputSelChx("1")
+    #calc timings
+    ADC2_TIME_KERNEL.text = str(calcKernelTime(channelTabIdx))
+    ADC2_TIME_IN2RES.text = str(calcResultTime(channelTabIdx))
+#    ADC2_TIME_IN2FILT.text = str(calcFilterTime(channelTabIdx))
+#    ADC2_TIME_IN2CMP.text = str(calcCompareTime(channelTabIdx))
+
+    #update the graphics
+    ADC2_INBOX_WIDTH.value = inBoxWidth[channelTabIdx]
+    ADC2_RES_NO.text = str(channelTabIdx)
+    ADC2_CH_NAME.text = channelInselRegisterList[channelTabIdx].text
+    updateSeqGraphics()
+    application.runScript("setDef(ADC2.ADBlock.update=1)")
+    
+def onCalibEn(state):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    if (state == 0):
+        ADC2_USE_CALIBx.value = 0
+    else:
+        ADC2_USE_CALIBx.value = 1
+    ADC2_TIME_IN2RES.text = str(calcResultTime(channelTabIdx))
+    ADC2_TIME_IN2FILT.text = str(calcFilterTime(channelTabIdx))
+    ADC2_TIME_IN2CMP.text = str(calcCompareTime(channelTabIdx))
+    updateSeqGraphics()
+    application.runScript("setDef(ADC2.ADBlock.update=1)")
+
+def onEdit(text):
+    print(text)
+
+def onEditDone():
+    print(ADC2_SELECTED_CH.text)
+
+def onMathDone(text):
+    print('math')
+    
+def Save_Handler():
+    print('Save pressed')
+    file = open("bsl_define.inc", "w")
+    file.write("BSL_NAD_NAC     EQU     0x807FB748\n")
+    file.write("SECBOOT_KEY     EQU     0\n")
+    file.write("                END\n")
+    file.close()
+    
+def CmpInputSelChx(text):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    cmpTabIdx = ADC2_CMPCHCONT.currentIndex
+    if (registerModeList[channelTabIdx] == "math"):
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].text)
+    else:
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].currentData)
+    if (cmpIdx == cmpTabIdx):
+        ADC2_CMP_SRCx.value = int(text)
+        ADC2_TIME_IN2CMP.text = str(calcCompareTime(channelTabIdx))
+        updateSeqGraphics()
+        application.runScript("setDef(ADC2.ADBlock.update=1)")
+
+def CmpModeSelChx(mode):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    cmpTabIdx = ADC2_CMPCHCONT.currentIndex
+    if (registerModeList[channelTabIdx] == "math"):
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].text)
+    else:
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].currentData)
+    if (cmpIdx == cmpTabIdx):
+        ADC2_CMP_MODE_TXT.text = compareModeSelRegisterList[cmpIdx].currentText
+        application.runScript("setDef(ADC2.ADBlock.update=1)")
+    
+def CmpUpThSelChx(value):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    cmpTabIdx = ADC2_CMPCHCONT.currentIndex
+    if (registerModeList[channelTabIdx] == "math"):
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].text)
+    else:
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].currentData)
+    if (cmpIdx == cmpTabIdx):
+        ADC2_CMP_UTH_TXT.text = compareUpThSelRegisterList[cmpIdx].text
+        application.runScript("setDef(ADC2.ADBlock.update=1)")
+    
+def CmpLoThSelChx(value):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    cmpTabIdx = ADC2_CMPCHCONT.currentIndex
+    if (registerModeList[channelTabIdx] == "math"):
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].text)
+    else:
+        cmpIdx = int(compareSelectRegisterList[channelTabIdx].currentData)
+    if (cmpIdx == cmpTabIdx):
+        ADC2_CMP_LTH_TXT.text = compareLoThSelRegisterList[cmpIdx].text
+        application.runScript("setDef(ADC2.ADBlock.update=1)")
+    
+def RepSelectChx(repValue):
+    fADC2 = float(ADC2_CLK.text.partition(" ")[0])
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    ADC2_TIME_KERNEL.text = calcKernelTime(channelTabIdx)
+    ADC2_TIME_IN2RES.text = str(calcResultTime(channelTabIdx))
+    ADC2_TIME_IN2FILT.text = str(calcFilterTime(channelTabIdx))
+    ADC2_TIME_IN2CMP.text = str(calcCompareTime(channelTabIdx))
+    updateSeqGraphics()
+    application.runScript("setDef(ADC2.ADBlock.update=1)")
+   
+def freqChange(divValue):
+    channelTabIdx = ADC2_CHNCFGCONT.currentIndex
+    onChannelTabChange(channelTabIdx)
+
+def updateSeqGraphics():
+    ADC2_S0_TIMES.text = str(format(float(calcChannelTime(0)) + float(calcChannelTime(1)) + float(calcChannelTime(2)) + float(calcChannelTime(3)), '.2f'))
+    ADC2_S1_TIMES.text = str(format(float(calcChannelTime(13)) + float(calcChannelTime(4)) + float(calcChannelTime(5)) + float(calcChannelTime(6)), '.2f'))
+    ADC2_S2_TIMES.text = str(format(float(calcChannelTime(7)) + float(calcChannelTime(8)) + float(calcChannelTime(9)) + float(calcChannelTime(10)), '.2f'))
+    chIdx = int(ADC2_SQSLOT3_CHSEL3_user.currentData)
+    if (chIdx < CHANNEL_MAX):
+        ADC2_S3_TIMES.text = str(format(float(calcChannelTime(11)) + float(calcChannelTime(12)) + float(calcChannelTime(13)) + float(calcChannelTime(chIdx)),'.2f'))
+    else:
+        ADC2_S3_TIMES.text = str(format(float(calcChannelTime(11)) + float(calcChannelTime(12)) + float(calcChannelTime(13)), '.2f'))
+    application.runScript("setDef(ADC2.SQBlock.update=1)")
+
+def updateSeq3Slot3(channelIdx):
+    if (channelIdx < CHANNEL_MAX):
+        ADC2_S3S3_CH.value = channelIdx
+        ADC2_S3S3_NAME_TXT.text = channelInselRegisterList[channelIdx].text
+        ADC2_S3S3_COLOR.text = ADC2_BLACK_COLOR.text
+        ADC2_S3S3_BOXCOLOR.text = ADC2_GREEN_COLOR.text;
+    else:
+        ADC2_S3S3_COLOR.text = ADC2_BOXCOLOR.text
+        ADC2_S3S3_BOXCOLOR.text = ADC2_BOXCOLOR.text;
+    updateSeqGraphics()
+    
+  
+#print('Run adc2.py...')
+ADC2_CALIB0_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB1_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB2_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB3_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB4_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB5_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB6_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB7_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB8_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB9_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB10_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB11_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB12_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB13_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CALIB14_EN.connect('stateChanged(int)', onCalibEn)
+ADC2_CHCFG0_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG4_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG5_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG6_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG7_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG9_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG10_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG11_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_CHCFG12_FILSEL_user.connect('currentIndexChanged(int)', FiltSelectChx)
+ADC2_FILTCFG_COEF_A0.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+ADC2_FILTCFG_COEF_A1.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+ADC2_FILTCFG_COEF_A2.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+ADC2_FILTCFG_COEF_A3.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+ADC2_FILTCFG_COEF_A4.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+ADC2_FILTCFG_COEF_A5.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+ADC2_FILTCFG_COEF_A6.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+ADC2_FILTCFG_COEF_A7.connect('currentIndexChanged(int)', FiltCoeffSelChx)
+
+ADC2_CHCFG0_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG1_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG2_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG3_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG4_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG5_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG6_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG7_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG8_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG9_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG10_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG11_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG12_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG13_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+ADC2_CHCFG14_CLASSEL.connect('currentIndexChanged(int)', ClassSelectChx)
+
+ADC2_CHCFG0_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG4_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG5_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG6_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG7_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG9_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG10_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG11_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+ADC2_CHCFG12_CMPSEL_user.connect('currentIndexChanged(int)', CmpSelectChx)
+
+ADC2_CHCFG0_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG1_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG2_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG3_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG4_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG5_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG6_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG7_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG8_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG9_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG10_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG11_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG12_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG13_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+ADC2_CHCFG14_CHREP_user.connect('valueChanged(int)', RepSelectChx)
+
+#ADC2_SELECTED_CH.connect('textChanged(QString)', onEdit)
+#ADC2_SELECTED_CH.connect('editingFinished()', onEditDone)
+ADC2_CHNCFGCONT.connect('currentChanged(int)', onChannelTabChange)
+
+ADC2_CONVCFG0_STC.connect('currentIndexChanged(int)', STCSelectChx)
+ADC2_CONVCFG1_STC.connect('currentIndexChanged(int)', STCSelectChx)
+ADC2_CONVCFG2_STC.connect('currentIndexChanged(int)', STCSelectChx)
+ADC2_CONVCFG3_STC.connect('currentIndexChanged(int)', STCSelectChx)
+
+ADC2_CLKCON_CLKDIV.connect('updateMathLabels(QString)', onMathDone)
+
+ADC2_CMPCFG0_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+ADC2_CMPCFG1_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+ADC2_CMPCFG2_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+ADC2_CMPCFG3_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+ADC2_CMPCFG4_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+ADC2_CMPCFG5_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+ADC2_CMPCFG6_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+ADC2_CMPCFG7_INSEL.connect('textChanged(QString)', CmpInputSelChx)
+
+ADC2_CMPCFG0_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+ADC2_CMPCFG1_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+ADC2_CMPCFG2_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+ADC2_CMPCFG3_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+ADC2_CMPCFG4_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+ADC2_CMPCFG5_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+ADC2_CMPCFG6_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+ADC2_CMPCFG7_MODE.connect('currentIndexChanged(int)', CmpModeSelChx)
+
+ADC2_UPPER_TH0.connect('valueChanged(double)', CmpUpThSelChx)
+ADC2_UPPER_TH1.connect('valueChanged(double)', CmpUpThSelChx)
+ADC2_UPPER_TH2.connect('valueChanged(double)', CmpUpThSelChx)
+ADC2_UPPER_TH3.connect('valueChanged(double)', CmpUpThSelChx)
+ADC2_UPPER_TH4.connect('valueChanged(double)', CmpUpThSelChx)
+ADC2_UPPER_TH5.connect('valueChanged(double)', CmpUpThSelChx)
+ADC2_UPPER_TH6.connect('valueChanged(double)', CmpUpThSelChx)
+ADC2_UPPER_TH7.connect('valueChanged(double)', CmpUpThSelChx)
+
+ADC2_LOWER_TH0.connect('valueChanged(double)', CmpLoThSelChx)
+ADC2_LOWER_TH1.connect('valueChanged(double)', CmpLoThSelChx)
+ADC2_LOWER_TH2.connect('valueChanged(double)', CmpLoThSelChx)
+ADC2_LOWER_TH3.connect('valueChanged(double)', CmpLoThSelChx)
+ADC2_LOWER_TH4.connect('valueChanged(double)', CmpLoThSelChx)
+ADC2_LOWER_TH5.connect('valueChanged(double)', CmpLoThSelChx)
+ADC2_LOWER_TH6.connect('valueChanged(double)', CmpLoThSelChx)
+ADC2_LOWER_TH7.connect('valueChanged(double)', CmpLoThSelChx)
+
+ADC2_SQSLOT3_CHSEL3_user.connect('currentIndexChanged(int)', updateSeq3Slot3)
+
+ADC2_CLKCON_CLKDIVp1.connect('valueChanged(int)', freqChange)
+
+#FILE_SAVE.connect('triggered()', Save_Handler)
+
+#init variables and fields
+fADC2 = float(ADC2_CLK.text.partition(" ")[0])
+
+#init filter channel
+ADC2_CHCFG1_FILSEL.currentIndex = 0
+application.runScript("lock(ADC2.CHCFG1.FILSEL.value=0)")
+ADC2_CHCFG2_FILSEL.currentIndex = 1
+application.runScript("lock(ADC2.CHCFG2.FILSEL.value=1)")
+ADC2_CHCFG3_FILSEL.currentIndex = 2
+application.runScript("lock(ADC2.CHCFG3.FILSEL.value=2)")
+#ADC2_CHCFG4_FILSEL_user.currentIndex = 2
+#ADC2_CHCFG5_FILSEL_user.currentIndex = 2
+#ADC2_CHCFG6_FILSEL_user.currentIndex = 2
+#ADC2_CHCFG7_FILSEL_user.currentIndex = 2
+ADC2_CHCFG8_FILSEL.currentIndex = 3
+application.runScript("lock(ADC2.CHCFG8.FILSEL.value=3)")
+#ADC2_CHCFG9_FILSEL_user.currentIndex = 2
+#ADC2_CHCFG10_FILSEL_user.currentIndex = 2
+#ADC2_CHCFG11_FILSEL_user.currentIndex = 2
+#ADC2_CHCFG12_FILSEL_user.currentIndex = 2
+ADC2_CHCFG13_FILSEL.currentIndex = 4
+application.runScript("lock(ADC2.CHCFG13.FILSEL.value=4)")
+ADC2_CHCFG14_FILSEL.currentIndex = 5
+application.runScript("lock(ADC2.CHCFG14.FILSEL.value=5)")
+#Conversion Class Category    
+if ADC2_CONVCFG0_CTRY.text == "":
+    ADC2_CONVCFG0_CTRY.text = "Low voltage inputs"
+if ADC2_CONVCFG1_CTRY.text == "":
+    ADC2_CONVCFG1_CTRY.text = "High voltage inputs"
+if ADC2_CONVCFG2_CTRY.text == "":
+    ADC2_CONVCFG2_CTRY.text = "User definable"
+if ADC2_CONVCFG3_CTRY.text == "":
+    ADC2_CONVCFG3_CTRY.text = "User definable"
+#init compare channel
+ADC2_CHCFG1_CMPSEL.currentIndex = 0
+application.runScript("lock(ADC2.CHCFG1.CMPSEL.value=0)")
+ADC2_CHCFG2_CMPSEL.currentIndex = 1
+application.runScript("lock(ADC2.CHCFG2.CMPSEL.value=1)")
+ADC2_CHCFG3_CMPSEL.currentIndex = 2
+application.runScript("lock(ADC2.CHCFG3.CMPSEL.value=2)")
+ADC2_CHCFG8_CMPSEL.currentIndex = 3
+application.runScript("lock(ADC2.CHCFG8.CMPSEL.value=3)")
+ADC2_CHCFG13_CMPSEL.currentIndex = 4
+application.runScript("lock(ADC2.CHCFG13.CMPSEL.value=4)")
+ADC2_CHCFG14_CMPSEL.currentIndex = 5
+application.runScript("lock(ADC2.CHCFG14.CMPSEL.value=5)")
+
+#sequencer lockings
+application.runScript("lock(ADC2.SQSLOT0_CHSEL0_user.value=0)")
+ADC2_S0S0_CH.value = 0
+ADC2_S0S0_NAME_TXT.text = channelInselRegisterList[0].text
+application.runScript("lock(ADC2.SQSLOT0_CHSEL1_user.value=1)")
+ADC2_S0S1_CH.value = 1
+ADC2_S0S1_NAME_TXT.text = channelInselRegisterList[1].text
+application.runScript("lock(ADC2.SQSLOT0_CHSEL2_user.value=2)")
+ADC2_S0S2_CH.value = 2
+ADC2_S0S2_NAME_TXT.text = channelInselRegisterList[2].text
+application.runScript("lock(ADC2.SQSLOT0_CHSEL3_user.value=3)")
+ADC2_S0S3_CH.value = 3
+ADC2_S0S3_NAME_TXT.text = channelInselRegisterList[3].text
+
+application.runScript("lock(ADC2.SQSLOT1_CHSEL0_user.value=13)")
+ADC2_S1S0_CH.value = 13
+ADC2_S1S0_NAME_TXT.text = channelInselRegisterList[13].text
+application.runScript("lock(ADC2.SQSLOT1_CHSEL1_user.value=4)")
+ADC2_S1S1_CH.value = 4
+ADC2_S1S1_NAME_TXT.text = channelInselRegisterList[4].text
+application.runScript("lock(ADC2.SQSLOT1_CHSEL2_user.value=5)")
+ADC2_S1S2_CH.value = 5
+ADC2_S1S2_NAME_TXT.text = channelInselRegisterList[5].text
+application.runScript("lock(ADC2.SQSLOT1_CHSEL3_user.value=6)")
+ADC2_S1S3_CH.value = 6
+ADC2_S1S3_NAME_TXT.text = channelInselRegisterList[6].text
+
+application.runScript("lock(ADC2.SQSLOT2_CHSEL0_user.value=7)")
+ADC2_S2S0_CH.value = 7
+ADC2_S2S0_NAME_TXT.text = channelInselRegisterList[7].text
+application.runScript("lock(ADC2.SQSLOT2_CHSEL1_user.value=8)")
+ADC2_S2S1_CH.value = 8
+ADC2_S2S1_NAME_TXT.text = channelInselRegisterList[8].text
+application.runScript("lock(ADC2.SQSLOT2_CHSEL2_user.value=9)")
+ADC2_S2S2_CH.value = 9
+ADC2_S2S2_NAME_TXT.text = channelInselRegisterList[9].text
+application.runScript("lock(ADC2.SQSLOT2_CHSEL3_user.value=10)")
+ADC2_S2S3_CH.value = 10
+ADC2_S2S3_NAME_TXT.text = channelInselRegisterList[10].text
+
+application.runScript("lock(ADC2.SQSLOT3_CHSEL0_user.value=11)")
+ADC2_S3S0_CH.value = 11
+ADC2_S3S0_NAME_TXT.text = channelInselRegisterList[11].text
+application.runScript("lock(ADC2.SQSLOT3_CHSEL1_user.value=12)")
+ADC2_S3S1_CH.value = 12
+ADC2_S3S1_NAME_TXT.text = channelInselRegisterList[12].text
+application.runScript("lock(ADC2.SQSLOT3_CHSEL2_user.value=14)")
+ADC2_S3S2_CH.value = 14
+ADC2_S3S2_NAME_TXT.text = channelInselRegisterList[14].text
+application.runScript("setDef(ADC2.SQSLOT3_CHSEL3_user.value=15)")
+
+application.runScript("lock(ADC2.SQCFG0.SLOTS.value=4)")
+application.runScript("lock(ADC2.SQCFG1.SLOTS.value=4)")
+application.runScript("lock(ADC2.SQCFG2.SLOTS.value=4)")
+application.runScript("setDef(ADC2.SQCFG3.SLOTS.value=3)")
+ADC2_INBOX_WIDTH.value = inBoxWidth[0]
+
+ADC2_TIME_KERNEL.text = str(calcKernelTime(0))
+ADC2_TIME_IN2RES.text = str(calcResultTime(0))
+ADC2_TIME_IN2FILT.text = str(calcFilterTime(0))
+ADC2_TIME_IN2CMP.text = str(calcCompareTime(0))
+
+onChannelTabChange(0)
+
+#ADC2_FILT_TXT.text = "---"
+#ADC2_CMP_MODE_TXT.text = "---"
+#ADC2_CMP_UTH_TXT.text = "---"
+#ADC2_CMP_LTH_TXT.text = "---"

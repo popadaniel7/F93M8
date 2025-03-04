@@ -1,0 +1,165 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+/**
+ * \file     scu.h
+ *
+ * \brief    System Control Unit low level access library
+ *
+ * \version  V0.3.5
+ * \date     18. Dec 2020
+ *
+ * \note
+ */
+
+/** \addtogroup SCU_api
+ *  @{
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** DM           Daniel Mysliwitz                                              **
+** BG           Blandine Guillot                                              **
+** JO           Julia Ott                                                     **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2019-10-28, DM:   Initial version                                  **
+** V0.2.0: 2020-04-28, BG:   Updated revision history format                  **
+** V0.2.1: 2020-09-28, JO:   EP-477: Removed definition of variable           **
+**                           u32_globtimestamp_ms from scu.c (defined in      **
+**                           file isr_exceptions.c)                           **
+** V0.2.2: 2020-10-06, BG:   EP-492: Removed MISRA 2012 errors                **
+** V0.2.3: 2020-10-20, BG:   EP-532: Added missing function prototypes        **
+** V0.3.0: 2020-10-20, JO:   EP-524: Added parameter for SysTick reload value **
+**                           to function SCU_initSysTick                      **
+** V0.3.1: 2020-10-21, BG:   EP-535: Corrected initialization of XTAL         **
+** V0.3.2: 2020-11-12, JO:   EP-590: Removed \param none and \return none to  **
+**                           avoid doxygen warning                            **
+**                           Added end of group for doxygen                   **
+** V0.3.3: 2020-11-16, JO:   EP-582: Applied renaming of System_init to       **
+**                           SystemInit, applied removal of return value of   **
+**                           SystemInit                                       **
+** V0.3.3: 2020-11-27, BG:   EP-610: Corrected MISRA 2012 errors              **
+** V0.3.4: 2020-12-04, JO:   EP-626: Applied parameter change of function     **
+**                           PMU_getWakeupSrc()                               **
+**                           Changed parameter type of SCU_enterSleepMode     **
+**                           from tPMU_wakeupSrc to uint32                    **
+** V0.3.5: 2020-12-18, BG:   EP-652: Corrected name of error code variable    **
+*******************************************************************************/
+
+#ifndef _SCU_H
+#define _SCU_H
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "types.h"
+#include "tle989x.h"
+#include "tle_variants.h"
+#include "system_tle989x.h"
+#include "bdrv.h"
+#include "csacsc.h"
+#include "isr.h" /* for u32_globTimestamp_ms */
+#include "pmu.h"
+#include "isr_defines.h" /* for CPU_SYSTICK_RL */
+#include "scu_defines.h"
+
+/*******************************************************************************
+**                        Global Constant Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Type Declarations                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Macro Declarations                         **
+*******************************************************************************/
+
+/** \brief Multiplier can use fCPU in MHz directly (Mhz <-> us) */
+#define MULTIPLIER_US_TO_TICKS SCU_fCPU_MHz
+
+/*******************************************************************************
+**                        Global Variable Declarations                        **
+*******************************************************************************/
+
+/** \brief XTAL status */
+extern sint8 e_xtalSts;
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+void SCU_init(void);
+sint8 SCU_initClk(void);
+sint8 SCU_checkXTALDiagnosis(void);
+void SCU_delay_us(uint32 u32_time_us);
+void SCU_initSysTick(uint32 u32_value);
+sint8 SCU_enSafeSwitchOffSeq(void);
+sint8 SCU_enterDeepSleepMode(void);
+sint8 SCU_enterStopModeWithResetWakeup(void);
+sint8 SCU_exitStopModeWithResetWakeup(void);
+sint8 SCU_enterStopModeWithoutResetWakeup(void);
+sint8 SCU_exitStopModeWithoutResetWakeup(void);
+sint8 SCU_enterSleepMode(uint8 u8_enRAMTest, uint32 u32_wakeupSrc);
+sint8 SCU_exitSleepMode(void);
+sint8 SCU_exitFailSleepMode(void);
+INLINE uint32 SCU_getSysTickCntVal(void);
+INLINE uint32 SCU_getSysTickRelVal(void);
+
+/*******************************************************************************
+**                     Global Inline Function Definitions                     **
+*******************************************************************************/
+
+/** \brief Get the current SysTick Count Value
+ *
+ * \return current SysTick Count Value
+ */
+INLINE uint32 SCU_getSysTickCntVal(void)
+{
+  return (uint32)CPU->SYSTICK_CUR.bit.CURRENT;
+}
+
+/** \brief Get the current SysTick Reload Value
+ *
+ * \return SysTick Reload Value
+ */
+INLINE uint32 SCU_getSysTickRelVal(void)
+{
+  return (uint32)CPU->SYSTICK_RL.bit.RELOAD;
+}
+
+/** @}*/
+
+#endif /* _SCU_H */

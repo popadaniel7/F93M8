@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_adc2.xml                                                           -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-10-23, DM:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-27, BG:   EP-560: Updated default values                       -->
+<!--                           EP-560: Changed the transmitted parameter for        -->
+<!--                           attenuator                                           -->
+<!-- V0.0.3: 2020-10-29, BG:   EP-560: Updated template name according to NMI int.  -->
+<!-- V0.0.4: 2020-11-12, BG:   EP-588: Corrected channel number for both VSD        -->
+<!--                           and VCP                                              -->
+<!-- V0.0.5: 2021-01-14, BG:   EP-672: Harmonized text for Conversion classes       -->
+<!-- V0.0.6: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>048298a8fd322d8ef4c491a8ff1dd55c0f7cd8ad6561a912aa067fc1eebd99da</checksum>
+  <version label="V0.0.6"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <horizontalcontainer label="ADC2">
+    <header file="adc2_defines.h">
+      <!-- Attenuator types -->
+      <var define="ADC2.ATT_TYPE0" svd="0" default="12" header="temp_defines.h"/>
+      <var define="ADC2.ATT_TYPE1" svd="0" default="10" header="temp_defines.h"/>
+      <var define="ADC2.ATT_TYPE2" svd="0" default="6" header="temp_defines.h"/>
+      <var define="ADC2.ATT_TYPE3" svd="0" default="38" header="temp_defines.h"/>
+      <var define="ADC2.ATT_TYPE4" svd="0" default="58" header="temp_defines.h"/>
+      <var define="ADC2.CONV_TICKS_CHx" svd="0" default="0" header="temp_defines.h"/>
+      <var define="ADC2.CHREPx" svd="0" default="0" header="temp_defines.h"/>
+      <edit define="ADC2.GREEN_COLOR" visible="false" svd="0" default="CCE9AD" header="temp_defines.h"/>
+      <edit define="ADC2.BLACK_COLOR" visible="false" svd="0" default="000000" header="temp_defines.h"/>
+      <edit define="ADC2.BOXCOLOR" visible="false" svd="0" default="F1F1F1" header="temp_defines.h"/>
+      <edit define="ADC2.ACTIVE_COLOR" visible="false" svd="0" default="FFC90E" header="temp_defines.h"/>
+      <!--var define="ADC2.DUMMY" svd="0" default="12" header="temp_defines.h"/-->
+      <edit visible="false" define="ADC2.TIME_KERNEL" svd="0" default="0" header="temp_defines.h"/>
+      <edit visible="false" define="ADC2.TIME_IN2CMP" svd="0" default="0" header="temp_defines.h"/>
+      <edit visible="false" define="ADC2.TIME_IN2FILT" svd="0" default="0" header="temp_defines.h"/>
+      <edit visible="false" define="ADC2.TIME_IN2RES" svd="0" default="0" header="temp_defines.h"/>
+      <!--edit visible="false" define="ADC2.SELECTED_CH" svd="0" default="0"/-->
+      <verticalcontainer>
+        <checkbox label="Enable ADC2" define="ADC2.GLOBCONF.EN" default="1" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+          <action event="checked" cmd="setDef" data="ADC2.TOP.enabled=1"/>
+          <action event="unchecked" cmd="setDef" data="ADC2.TOP.enabled=0"/>
+          <!--action event="checked" cmd="setDef" data="ADC2.TIM_INIT.run=1"/-->
+        </checkbox>
+        <groupcontainer define="ADC2.TOP">
+          <tabcontainer>
+            <horizontalcontainer label="Configuration">
+              <verticalcontainer stretch="2">
+                <!-- Clock Settings -->
+                <groupcontainer label="Clock Settings" define="ADC2.CLOCKSETTING" size="-1;130" font="Source Sans Pro,12,0,0,100,0,0,0,0,0">
+                  <treecontainer headerlabels="Item;Value;" columnwidths="300;300">
+                    <math label="ADC2 Clock" define="ADC2.CLK" svd="0" unit=" MHz" formula="SCU_fADC2_MHz/ADC2.CLKCON_CLKDIVp1" header="temp_defines.h">
+                      <action event="changed" cmd="setDef" data="ADC2.CLK_EDIT=ADC2.CLK"/>
+                    </math>
+                    <math visible="false" define="ADC2.CLKCON.CLKDIV" formula="ADC2.CLKCON_CLKDIVp1-1"/>
+                    <spinbox label="Clock Divider [1..16]" define="ADC2.CLKCON_CLKDIVp1" svd="0" range="1;16" default="1" header="temp_defines.h"/>
+                  </treecontainer>
+                  <edit svd="0" visible="false" label="ADC2 Clock Edit" define="ADC2.CLK_EDIT"/>
+                </groupcontainer>
+                <!-- Channel Config -->
+                <groupcontainer label="Channel Config" define="ADC2.CHANNELCONFIG" size="-1;300" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228">
+                  <groupcontainer label="Variables Definitions" visible="false">
+                  </groupcontainer>
+                  <tabcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="240;240;240" define="ADC2.CHNCFGCONT">
+                    <include IDX="0"  INTREGIDX="0" CHINSEL="VS"               ATTVALUE="12" CLASS="1">template_adc2_channel_user.xml</include>
+                    <include IDX="1"  INTREGIDX="0" CHINSEL="VSD (OV)"         ATTVALUE="10" CLASS="1">template_adc2_channel.xml</include>
+                    <include IDX="2"  INTREGIDX="0" CHINSEL="VSD (UV)"         ATTVALUE="38" CLASS="1">template_adc2_channel.xml</include>
+                    <include IDX="3"  INTREGIDX="0" CHINSEL="VCP"              ATTVALUE="6"  CLASS="1">template_adc2_channel.xml</include>
+                    <include IDX="4"  INTREGIDX="0" CHINSEL="MON1 (0..31V)"    ATTVALUE="10" CLASS="1">template_adc2_channel_user.xml</include>
+                    <include IDX="5"  INTREGIDX="0" CHINSEL="MON2 (0..31V)"    ATTVALUE="10" CLASS="1">template_adc2_channel_user.xml</include>
+                    <include IDX="6"  INTREGIDX="0" CHINSEL="MON3 (0..31V)"    ATTVALUE="10" CLASS="1">template_adc2_channel_user.xml</include>
+                    <include IDX="7"  INTREGIDX="0" CHINSEL="VDDEXT"           ATTVALUE="58" CLASS="1">template_adc2_channel_user.xml</include>
+                    <include IDX="8"  INTREGIDX="0" CHINSEL="VCAN"             ATTVALUE="58" CLASS="0">template_adc2_channel.xml</include>
+                    <include IDX="9"  INTREGIDX="0" CHINSEL="VDDP"             ATTVALUE="58" CLASS="0">template_adc2_channel_user.xml</include>
+                    <include IDX="10" INTREGIDX="0" CHINSEL="VDDC"             ATTVALUE="58" CLASS="0">template_adc2_channel_user.xml</include>
+                    <include IDX="11" INTREGIDX="0" CHINSEL="VAREF"            ATTVALUE="58" CLASS="0">template_adc2_channel_user.xml</include>
+                    <include IDX="12" INTREGIDX="0" CHINSEL="PMU BandGap"      ATTVALUE="58" CLASS="0">template_adc2_channel_user.xml</include>
+                    <include IDX="13" INTREGIDX="0" CHINSEL="TEMP0 (BDRV)"     ATTVALUE="58" CLASS="0">template_adc2_channel.xml</include>
+                    <include IDX="14" INTREGIDX="0" CHINSEL="TEMP1 (SYS_TEMP)" ATTVALUE="58" CLASS="0">template_adc2_channel.xml</include>
+                  </tabcontainer>
+                </groupcontainer>
+                <!-- Channel Classes -->
+                <groupcontainer define="ADC2.CHANNELCLASS" label="Conversion Classes" size="-1;160" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177" visible="true">
+                  <tabcontainer label="ADC2.CHCLASSCONT" font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="240;240;240"  define="ADC2.CHCLASSCONT">
+                    <include IDX="0" DEFSTC="8">template_adc2_channel_class.xml</include>
+                    <include IDX="1" DEFSTC="20">template_adc2_channel_class.xml</include>
+                    <include IDX="2" DEFSTC="20">template_adc2_channel_class.xml</include>
+                    <include IDX="3" DEFSTC="20">template_adc2_channel_class.xml</include>
+                  </tabcontainer>
+                </groupcontainer>
+                <!-- Filter Channels -->
+                <groupcontainer define="ADC2.FILTERCHANNEL" label="Filter Channels" size="-1;160" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84" visible="true">
+                  <tabcontainer label="ADC2.FILTCHCONT" define="ADC2.FILTCHCONT" font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="240;240;240">
+                    <include FILTIDX="0" CHIDX="1" >template_adc2_filter_fix.xml</include>
+                    <include FILTIDX="1" CHIDX="2" >template_adc2_filter_fix.xml</include>
+                    <include FILTIDX="2" CHIDX="3" >template_adc2_filter_fix.xml</include>
+                    <include FILTIDX="3" CHIDX="8" >template_adc2_filter_fix.xml</include>
+                    <include FILTIDX="4" CHIDX="13">template_adc2_filter_fix.xml</include>
+                    <include FILTIDX="5" CHIDX="14">template_adc2_filter_fix.xml</include>
+                    <include FILTIDX="6"           >template_adc2_filter.xml</include>
+                    <include FILTIDX="7"           >template_adc2_filter.xml</include>
+                  </tabcontainer>
+                </groupcontainer>
+                <!-- Compare Channels -->
+                <groupcontainer define="ADC2.COMPARECHANNEL" label="Compare Channels" size="-1;400" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="245;179;138" visible="true">
+                    <edit define="ADC2.CMPCFG0_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                    <edit define="ADC2.CMPCFG1_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                    <edit define="ADC2.CMPCFG2_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                    <edit define="ADC2.CMPCFG3_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                    <edit define="ADC2.CMPCFG4_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                    <edit define="ADC2.CMPCFG5_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                    <edit define="ADC2.CMPCFG6_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                    <edit define="ADC2.CMPCFG7_INSEL" svd="0" readonly="1" default="0" visible="false"/>
+                  <tabcontainer label="ADC2.CMPCHCONT" define="ADC2.CMPCHCONT" font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" >
+                    <include CMPIDX="0" CHIDX="1"  INP_SEL="1" MODE="2" MAX="31.00" UPPER="28.98" LOWER="18.07" HYST_UP="2" HYST_LO="2" RST_BLANK="0" BLANK="1">template_adc2_compare_fix_nmi_uplo.xml</include>
+                    <include CMPIDX="1" CHIDX="2"  INP_SEL="1" MODE="1" MAX="8.15"  UPPER="5.30"  LOWER="5.30"  HYST_UP="2" HYST_LO="2" RST_BLANK="0" BLANK="1">template_adc2_compare_fix_nmi_lo.xml</include>
+                    <include CMPIDX="2" CHIDX="3"  INP_SEL="1" MODE="0" MAX="51.67" UPPER="44.05" LOWER="14.15" HYST_UP="2" HYST_LO="2" RST_BLANK="0" BLANK="1">template_adc2_compare_fix_nmi_uplo.xml</include>
+                    <include CMPIDX="3" CHIDX="8"  INP_SEL="1" MODE="0" MAX="5.34"  UPPER="5.31"  LOWER="4.60"  HYST_UP="1" HYST_LO="1" RST_BLANK="0" BLANK="2">template_adc2_compare_fix_nmi_lo.xml</include>
+                    <include CMPIDX="4" CHIDX="13" INP_SEL="1" MODE="2" MAX="5.34"  UPPER="1.07"  LOWER="0.95"  HYST_UP="1" HYST_LO="1" RST_BLANK="0" BLANK="1">template_adc2_compare_fix_nmi_up.xml</include>
+                    <include CMPIDX="5" CHIDX="14" INP_SEL="1" MODE="2" MAX="5.34"  UPPER="1.07"  LOWER="0.95"  HYST_UP="1" HYST_LO="1" RST_BLANK="0" BLANK="1">template_adc2_compare_fix.xml</include>
+                    <include CMPIDX="6"                                                                                                                        >template_adc2_compare.xml</include>
+                    <include CMPIDX="7"                                                                                                                        >template_adc2_compare.xml</include>
+                  </tabcontainer>
+                </groupcontainer>
+              </verticalcontainer>
+            </horizontalcontainer>
+            <horizontalcontainer label="Sequencer">
+              <!-- Sequencer Config -->
+              <groupcontainer label="Sequencer Config" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="204;233;173">
+                <tabcontainer label="ADC2.SEQCONT" font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" >
+                  <include IDX="0">template_adc2_sequencer.xml</include>
+                  <include IDX="1">template_adc2_sequencer.xml</include>
+                  <include IDX="2">template_adc2_sequencer.xml</include>
+                  <include IDX="3">template_adc2_sequencer.xml</include>
+                </tabcontainer>
+              </groupcontainer>
+            </horizontalcontainer>
+          </tabcontainer>
+          <verticalcontainer stretch="2">
+            <groupcontainer label="Sequencer Diagram" define="ADC2.SEQDIAGRAM" size="-1;350" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" visible="true" stretch="2">
+              <edit define="ADC2.S0_TIMES" visible="false" svd="0" default="0"/>
+              <edit define="ADC2.S1_TIMES" visible="false" svd="0" default="0"/>
+              <edit define="ADC2.S2_TIMES" visible="false" svd="0" default="0"/>
+              <edit define="ADC2.S3_TIMES" visible="false" svd="0" default="0"/>
+              <edit define="ADC2.S3S3_COLOR" visible="false"  svd="0" default="F1F1F1" header="temp_defines.h"/>
+              <edit define="ADC2.S3S3_BOXCOLOR" visible="false"  svd="0" default="F1F1F1" header="temp_defines.h"/>
+              <svgembed define="ADC2.SQBlock" passive="1">
+              <svg viewBox="0 0 900 300">
+                <rect width="900" height="300" style="fill:#ffffff;stroke-width:0.30644634"/>
+                <g id="seq0" transform="translate(1,1)">
+                <text x="1" y="62" font-family="arial" font-size="20" fill="black">Sequence 0</text>
+                <g id="slot0" transform="translate(120,1)">
+                  <!-- Slot 0 -->
+                  <text x="75" y="20" text-anchor="middle" font-family="arial" font-size="20" fill="black">Slot 0</text>
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S0S0_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S0S0_NAME_TXT$</text>
+                </g>
+                <g id="slot1" transform="translate(280,1)">
+                  <!-- Slot 1 -->
+                  <text x="75" y="20" text-anchor="middle" font-family="arial" font-size="20" fill="black">Slot 1</text>
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S0S1_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S0S1_NAME_TXT$</text>
+                </g>
+                <g id="slot2" transform="translate(440,1)">
+                  <!-- Slot 1 -->
+                  <text x="75" y="20" text-anchor="middle" font-family="arial" font-size="20" fill="black">Slot 2</text>
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S0S2_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S0S2_NAME_TXT$</text>
+                </g>
+                <g id="slot3" transform="translate(600,1)">
+                  <!-- Slot 1 -->
+                  <text x="75" y="20" text-anchor="middle" font-family="arial" font-size="20" fill="black">Slot 3</text>
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S0S3_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S0S3_NAME_TXT$</text>
+                </g>
+                <text x="755" y="62" font-family="arial" font-size="20" fill="black">$ADC2.S0_TIMES$ us</text>
+                </g>
+                <g id="seq1" transform="translate(1,60)">
+                <text x="1" y="62" font-family="arial" font-size="20" fill="black">Sequence 1</text>
+                <g id="slot0" transform="translate(120,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S1S0_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S1S0_NAME_TXT$</text>
+                </g>
+                <g id="slot1" transform="translate(280,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S1S1_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S1S1_NAME_TXT$</text>
+                </g>
+                <g id="slot2" transform="translate(440,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S1S2_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S1S2_NAME_TXT$</text>
+                </g>
+                <g id="slot3" transform="translate(600,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S1S3_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S1S3_NAME_TXT$</text>
+                </g>
+                <text x="755" y="62" font-family="arial" font-size="20" fill="black">$ADC2.S1_TIMES$ us</text>
+                </g>
+                <g id="seq2" transform="translate(1,120)">
+                <text x="1" y="62" font-family="arial" font-size="20" fill="black">Sequence 2</text>
+                <g id="slot0" transform="translate(120,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S2S0_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S2S0_NAME_TXT$</text>
+                </g>
+                <g id="slot1" transform="translate(280,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S2S1_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S2S1_NAME_TXT$</text>
+                </g>
+                <g id="slot2" transform="translate(440,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S2S2_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S2S2_NAME_TXT$</text>
+                </g>
+                <g id="slot3" transform="translate(600,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S2S3_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S2S3_NAME_TXT$</text>
+                </g>
+                <text x="755" y="62" font-family="arial" font-size="20" fill="black">$ADC2.S2_TIMES$ us</text>
+                </g>
+                <g id="seq3" transform="translate(1,180)">
+                <text x="1" y="62" font-family="arial" font-size="20" fill="black">Sequence 3</text>
+                <g id="slot0" transform="translate(120,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S3S0_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S3S0_NAME_TXT$</text>
+                </g>
+                <g id="slot1" transform="translate(280,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S3S1_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S3S1_NAME_TXT$</text>
+                </g>
+                <g id="slot2" transform="translate(440,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.GREEN_COLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">Channel $ADC2.S3S2_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.BLACK_COLOR$">$ADC2.S3S2_NAME_TXT$</text>
+                </g>
+                <g id="slot3" transform="translate(600,1)">
+                  <!-- rounded box -->
+                  <rect x="0" y="30" width="150" height="50" rx="5" ry="5" fill="#$ADC2.S3S3_BOXCOLOR$" style="stroke:black;stroke-width:1;opacity:1.0"/>
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.S3S3_COLOR$">Channel $ADC2.S3S3_CH$</text>
+                  <text x="75" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#$ADC2.S3S3_COLOR$">$ADC2.S3S3_NAME_TXT$</text>
+                </g>
+                <text x="755" y="62" font-family="arial" font-size="20" fill="black">$ADC2.S3_TIMES$ us</text>
+                </g>
+              </svg>
+              </svgembed>
+            </groupcontainer>
+            <groupcontainer label="Channel Diagram" define="ADC2.ADDIAGRAM" size="-1;1000" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" visible="true" stretch="2">
+              <edit define="ADC2.STC_TXT"                svd="0" default="---"         header="" visible="false"/>
+              <edit define="ADC2.FILT_TXT"               svd="0" default="1/2"         header="" visible="false"/>
+              <edit define="ADC2.CMP_MODE_TXT"           svd="0" default="---"         header="" visible="false"/>
+              <edit define="ADC2.CMP_UTH_TXT"            svd="0" default="---"         header="" visible="false"/>
+              <edit define="ADC2.CMP_LTH_TXT"            svd="0" default="---"         header="" visible="false"/>
+              <edit define="ADC2.CH_NAME"                svd="0" default="VS (3..35V)" header="" visible="false"/>
+              <edit define="ADC2.CHCLS_CTRY"             svd="0" default="n/a"         header="" visible="false"/>
+              <edit define="ADC2.RES_NO"                 svd="0" default="0"           header="" visible="false"/>
+              <var  define="ADC2.FILT_NO"                svd="0" default="0"           header=""/>
+              <var  define="ADC2.CMP_NO"                 svd="0" default="0"           header=""/>
+              <var  define="ADC2.CHCLS_NO"               svd="0" default="0"           header=""/>
+              <var  define="ADC2.USE_CALIBx"             svd="0" default="0"           header=""/>
+              <var  define="ADC2.USE_FILTx"              svd="0" default="0"           header=""/>
+              <var  define="ADC2.USE_CMPx"               svd="0" default="0"           header=""/>
+              <var  define="ADC2.CMP_SRCx"               svd="0" default="0"           header=""/>
+              <var  define="ADC2.INBOX_WIDTH"            svd="0" default="160"         header=""/>
+              <var  define="ADC2.BOX_XPOS"               svd="0" default="200"         header=""/>
+              <math define="ADC2.INBOX_WIDTH_HALFE"      svd="0" visible="false"       header="" formula="ADC2.INBOX_WIDTH/2"/>
+              <math define="ADC2.INBOX_WIDTH_HALFE_p5"   svd="0" visible="false"       header="" formula="ADC2.INBOX_WIDTH_HALFE+5"/>
+              <math define="ADC2.INBOX_WIDTH_HALFE_m5"   svd="0" visible="false"       header="" formula="ADC2.INBOX_WIDTH_HALFE-5"/>
+              <math define="ADC2.INBOX_XPOS"             svd="0" visible="false"       header="" formula="ADC2.BOX_XPOS-100+(350-ADC2.INBOX_WIDTH)/2"/>
+              <math define="ADC2.AD_CAL_LINK_XPOS"       svd="0" visible="false"       header="" formula="ADC2.USE_CALIBx==1?ADC2.BOX_XPOS:1000"/>
+              <math define="ADC2.AD_RES_LINK_XPOS"       svd="0" visible="false"       header="" formula="ADC2.USE_CALIBx==0?ADC2.BOX_XPOS:1000"/>
+              <math define="ADC2.CAL_RES_LINK_XPOS"      svd="0" visible="false"       header="" formula="ADC2.USE_FILTx==0?ADC2.BOX_XPOS:1000"/>
+              <math define="ADC2.CAL_RES_FILT_LINK_XPOS" svd="0" visible="false"       header="" formula="ADC2.USE_FILTx==1?ADC2.BOX_XPOS-100:1000"/>
+              <math define="ADC2.DEAD_CMP_LINK_XPOS"     svd="0" visible="false"       header="" formula="((ADC2.USE_FILTx.^1)+ADC2.USE_CMPx+ADC2.CMP_SRCx)==3?ADC2.BOX_XPOS:1000"/>
+              <math define="ADC2.RES_CMP_LINK_XPOS"      svd="0" visible="false"       header="" formula="((ADC2.USE_FILTx.^1)+ADC2.USE_CMPx+(ADC2.CMP_SRCx.^1))==3?ADC2.BOX_XPOS:1000"/>
+              <math define="ADC2.RES_FILT_CMP_LINK_XPOS" svd="0" visible="false"       header="" formula="(ADC2.USE_FILTx+ADC2.USE_CMPx+ADC2.CMP_SRCx)==3?ADC2.BOX_XPOS-100:1000"/>
+              <math define="ADC2.FILT_RES_CMP_LINK_XPOS" svd="0" visible="false"       header="" formula="(ADC2.USE_FILTx+ADC2.USE_CMPx+(ADC2.CMP_SRCx.^1))==3?ADC2.BOX_XPOS-100:1000"/>
+              <math define="ADC2.CAL_XPOS"               svd="0" visible="false"       header="" formula="ADC2.USE_CALIBx==1?ADC2.BOX_XPOS:1000"/>
+              <math define="ADC2.FILT_XPOS"              svd="0" visible="false"       header="" formula="ADC2.USE_FILTx==1?ADC2.BOX_XPOS+100:1000"/>
+              <math define="ADC2.RES_XPOS"               svd="0" visible="false"       header="" formula="ADC2.USE_FILTx==1?ADC2.BOX_XPOS-99:ADC2.BOX_XPOS"/>
+              <math define="ADC2.CMP_XPOS"               svd="0" visible="false"       header="" formula="ADC2.USE_CMPx==1?ADC2.BOX_XPOS:1000"/>
+              <math define="ADC2.TIF_XPOS"               svd="0" visible="false"       header="" formula="ADC2.USE_FILTx==1?55:1000"/>
+              <math define="ADC2.TIC_XPOS"               svd="0" visible="false"       header="" formula="ADC2.USE_CMPx==1?30:1000"/>
+              <svgembed define="ADC2.ADBlock" passive="1">
+                <svg viewBox="0 0 700 1000">
+                <rect width="700" height="1000" style="fill:#ffffff;stroke-width:0.30644634" />
+                <g id="headline" transform="translate($ADC2.BOX_XPOS$,1)">
+                  <text x="75" y="50" text-anchor="middle" font-family="arial" font-size="40" fill="black">Channel $ADC2.RES_NO$</text>
+                </g>
+                <g id="inbox" transform="translate($ADC2.INBOX_XPOS$,101)">
+                  <!-- rounded box -->
+                  <rect x="0" y="0" width="$ADC2.INBOX_WIDTH$" height="100" rx="50" ry="50" style="fill:#ABD9E4;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- analog input inside rounded box -->
+                  <text x="$ADC2.INBOX_WIDTH_HALFE$" y="58" text-anchor="middle" font-family="arial" font-size="25" fill="black">$ADC2.CH_NAME$</text>
+                  <!-- vertical connection line to next box  -->
+                  <line x1="$ADC2.INBOX_WIDTH_HALFE$" y1="100" x2="$ADC2.INBOX_WIDTH_HALFE$" y2="150" style="stroke:black;stroke-width:1" />
+                  <!-- down pointing arrow at vertical connection line to next box  -->
+                  <path d="M$ADC2.INBOX_WIDTH_HALFE$ 150 L$ADC2.INBOX_WIDTH_HALFE_p5$ 140 L$ADC2.INBOX_WIDTH_HALFE_m5$ 140 Z" />
+                </g>
+                <g id="ad_box" transform="translate($ADC2.BOX_XPOS$,251)">
+                  <!-- square box -->
+                  <rect x="25" y="0" width="100" height="100" style="fill:#fffff0;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- diagonal line inside square box -->
+                  <line x1="25" y1="100" x2="125" y2="0" style="stroke:black;stroke-width:1" />
+                  <!-- 'A' text inside square box -->
+                  <text x="40" y="35" font-family="arial" font-size="25" fill="black">A</text>
+                  <!-- 'D' text inside square box -->
+                  <text x="95" y="80" font-family="arial" font-size="25" fill="black">D</text>
+
+                  <!-- rectangled box Channel Class -->
+                  <rect x="175" y="0" width="150" height="100" style="fill:#D67EB1;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- horizontal line on the right side of the box -->
+                  <line x1="125" y1="50" x2="175" y2="50" style="stroke:black;stroke-width:1" />
+                  <!-- arrow pointing to the box -->
+                  <path d="M125 50 L135 55 L135 45 Z" style="stroke:black;fill:black"/>
+                  <!-- 'Ch. Class x' -->
+                  <text x="250" y="23" text-anchor="middle" font-family="arial" font-size="20" fill="black">Conv. Class $ADC2.CHCLS_NO$</text>
+                  <!-- 'Ch. Class x' category -->
+                  <text x="250" y="40" text-anchor="middle" font-family="arial" font-size="17" fill="black">$ADC2.CHCLS_CTRY$</text>
+                  <!-- 'STC feature -->
+                  <rect x="226" y="50" width="40" height="20" rx="5" ry="5" style="fill:#fffff0;stroke:black;stroke-width:1;opacity:1.0" />
+                  <text x="246" y="65" text-anchor="middle" font-family="arial" font-size="15" fill="black">$ADC2.STC_TXT$</text>
+                </g>
+                <g id="ad_cal_link" transform="translate($ADC2.AD_CAL_LINK_XPOS$,351)">
+                  <!-- vertical connection line to next box  -->
+                  <line x1="75" y1="0" x2="75" y2="50" style="stroke:black;stroke-width:1" />
+                  <!-- down pointing arrow at vertical connection line to next box  -->
+                  <path d="M75 50 L80 40 L70 40 Z" />
+                </g>
+                <g id="ad_res_link" transform="translate($ADC2.AD_RES_LINK_XPOS$,351)">
+                  <!-- vertical connection line to next box  -->
+                  <line x1="75" y1="0" x2="75" y2="150" style="stroke:black;stroke-width:1" />
+                </g>
+                <g id="cal_box" transform="translate($ADC2.CAL_XPOS$,401)">
+                  <!-- rectangled box -->
+                  <rect x="0" y="0" width="150" height="100" style="fill:#CED9A4;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- 'Calibration' text inside rectangled box -->
+                  <text x="75" y="60" text-anchor="middle" font-family="arial" font-size="25" fill="black">Calibration</text>
+                  <!-- upper horizontal line on the right side of the box -->
+                  <line x1="150" y1="33" x2="240" y2="33" style="stroke:blue;stroke-width:1" />
+                  <!-- upper arrow pointing to the box -->
+                  <path d="M150 33 L160 38 L160 28 Z" style="stroke:#0000ff;fill:#0000ff"/>
+                  <!-- 'gain' text above line -->
+                  <text x="165" y="30" font-family="arial" font-size="18" fill="blue">gain=preconfigured</text>
+                  <!-- lower horizontal line on the right side of the box -->
+                  <line x1="150" y1="66" x2="240" y2="66" style="stroke:blue;stroke-width:1" />
+                  <!-- lower arrow pointing to the box -->
+                  <path d="M150 66 L160 71 L160 61 Z" style="stroke:#0000ff;fill:#0000ff"/>
+                  <!-- 'offs' text above line -->
+                  <text x="165" y="63" font-family="arial" font-size="18" fill="blue">offs=preconfigured</text>
+                </g>
+                <g id="cal_res_link" transform="translate($ADC2.CAL_RES_LINK_XPOS$,501)">
+                  <line x1="75" y1="0" x2="75" y2="50" style="stroke:black;stroke-width:1" />
+                  <path d="M75 50 L80 40 L70 40 Z" style="stroke:black;fill:black;stroke-width:1"/>
+                </g>
+                <g id="cal_res_filt_link" transform="translate($ADC2.CAL_RES_FILT_LINK_XPOS$,501)">
+                  <line x1="175" y1="0"  x2="175" y2="25" style="stroke:black;stroke-width:1" />
+                  <line x1="75"  y1="25" x2="275" y2="25" style="stroke:black;stroke-width:1" />
+                  <line x1="75"  y1="25" x2="75"  y2="50" style="stroke:black;stroke-width:1" />
+                  <line x1="275" y1="25" x2="275" y2="50" style="stroke:black;stroke-width:1" />
+                  <path d="M75 50 L80 40 L70 40 Z" style="stroke:black;stroke-width:1"/>
+                  <path d="M275 50 L280 40 L270 40 Z" style="stroke:black;stroke-width:1"/>
+                </g>
+                <g id="filt_box" transform="translate($ADC2.FILT_XPOS$,551)">
+                  <!-- rectangled box -->
+                  <rect x="0" y="0" width="150" height="100" style="fill:#FFE054;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- 'Calibration' text inside rectangled box -->
+                  <text x="47" y="35" font-family="arial" font-size="25" fill="black">Filter</text>
+                  <!-- 'Channel x' text inside rectangled box -->
+                  <text x="30" y="55" font-family="arial" font-size="20" fill="black">Channel $ADC2.FILT_NO$</text>
+                  <!-- 'Filter Coefficient feature -->
+                  <rect x="55" y="65" width="40" height="20" rx="5" ry="5" style="fill:#fffff0;stroke:black;stroke-width:1;opacity:1.0" />
+                  <text x="75" y="80" text-anchor="middle" font-family="arial" font-size="15" fill="black">$ADC2.FILT_TXT$</text>
+                  <!-- vertical connection line to next box  -->
+                  <line x1="75" y1="100" x2="75" y2="150" style="stroke:black;stroke-width:1" />
+                  <!-- down pointing arrow at vertical connection line to next box  -->
+                  <path d="M75 150 L80 140 L70 140 Z" />
+                  <!-- rounded box FILTRESx -->
+                  <rect x="0" y="150" width="150" height="100" rx="50" ry="50" style="fill:#FFE054;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- 'RESx' text inside rounded box -->
+                  <text x="75" y="210" text-anchor="middle" font-family="arial" font-size="25" fill="black">FILTRES$ADC2.FILT_NO$</text>
+                </g>
+                <g id="res_box" transform="translate($ADC2.RES_XPOS$,551)">
+                  <!-- rounded box -->
+                  <rect x="0" y="0" width="150" height="100" rx="50" ry="50" style="fill:#ABD9E4;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- 'RESx' text inside rounded box -->
+                  <text x="75" y="60" text-anchor="middle" font-family="arial" font-size="25" fill="black">RES$ADC2.RES_NO$</text>
+                </g>
+                <g id="dead_cmp_link" transform="translate($ADC2.DEAD_CMP_LINK_XPOS$,801)">
+                  <line x1="70" y1="20" x2="80" y2="30" style="stroke:red;stroke-width:3" />
+                  <line x1="80" y1="20" x2="70" y2="30" style="stroke:red;stroke-width:3" />
+                  <line x1="75" y1="25" x2="75" y2="50" style="stroke:black;stroke-width:1" />
+                  <path d="M75 50 L80 40 L70 40 Z" style="stroke:black;fill:black;stroke-width:1"/>
+                  <text x="85" y="32" font-family="arial" font-size="20" fill="red">Filtered ADC value, really?</text>
+                </g>
+                <g id="res_cmp_link" transform="translate($ADC2.RES_CMP_LINK_XPOS$,651)">
+                  <line x1="75" y1="0" x2="75" y2="200" style="stroke:black;stroke-width:1" />
+                  <path d="M75 200 L80 190 L70 190 Z" style="stroke:black;fill:black;stroke-width:1"/>
+                </g>
+                <g id="res_filt_cmp_link" transform="translate($ADC2.RES_FILT_CMP_LINK_XPOS$,801)">
+                  <line x1="275" y1="0" x2="275" y2="25" style="stroke:black;stroke-width:1" />
+                  <line x1="175" y1="25" x2="275" y2="25" style="stroke:black;stroke-width:1" />
+                  <line x1="175" y1="25"  x2="175" y2="50" style="stroke:black;stroke-width:1" />
+                  <path d="M175 50 L180 40 L170 40 Z" style="stroke:black;stroke-width:1"/>
+                </g>
+                <g id="filt_res_cmp_link" transform="translate($ADC2.FILT_RES_CMP_LINK_XPOS$,651)">
+                  <line x1="75"  y1="0" x2="75"  y2="175" style="stroke:black;stroke-width:1" />
+                  <line x1="75"  y1="175" x2="175" y2="175" style="stroke:black;stroke-width:1" />
+                  <line x1="175" y1="175"  x2="175" y2="200" style="stroke:black;stroke-width:1" />
+                  <path d="M175 200 L180 190 L170 190 Z" style="stroke:black;stroke-width:1"/>
+                </g>
+                <g id="cmp_box" transform="translate($ADC2.CMP_XPOS$,851)">
+                  <!-- rectangled box -->
+                  <rect x="0" y="0" width="150" height="100" style="fill:#F5B38A;stroke:black;stroke-width:1;opacity:1.0" />
+                  <!-- 'Calibration' text inside rectangled box -->
+                  <text x="75" y="35" text-anchor="middle" font-family="arial" font-size="25" fill="black">Compare</text>
+                  <!-- 'Channel x' text inside rectangled box -->
+                  <text x="75" y="55" text-anchor="middle" font-family="arial" font-size="20" fill="black">Channel $ADC2.CMP_NO$</text>
+                  <!-- Compare Mode feature -->
+                  <rect x="5" y="65" width="50" height="20" rx="5" ry="5" style="fill:#fffff0;stroke:black;stroke-width:1;opacity:1.0" />
+                  <text x="30" y="80" text-anchor="middle" font-family="arial" font-size="15" fill="black">$ADC2.CMP_MODE_TXT$</text>
+                  <!-- Upper Th. Value -->
+                  <rect x="60" y="65" width="40" height="20" rx="5" ry="5" style="fill:#fffff0;stroke:black;stroke-width:1;opacity:1.0" />
+                  <text x="80" y="80" text-anchor="middle" font-family="arial" font-size="15" fill="black">$ADC2.CMP_UTH_TXT$</text>
+                  <!-- Lower Th. Value -->
+                  <rect x="105" y="65" width="40" height="20" rx="5" ry="5" style="fill:#fffff0;stroke:black;stroke-width:1;opacity:1.0" />
+                  <text x="125" y="80" text-anchor="middle" font-family="arial" font-size="15" fill="black">$ADC2.CMP_LTH_TXT$</text>
+                </g>
+                <g id="time_kernel" transform="translate(105,101)">
+                  <!-- top border horizontal line -->
+                  <line x1="0" y1="50" x2="10" y2="50" style="stroke:black;stroke-width:1" />
+                  <!-- top arrow -->
+                  <path d="M5 50 L0 60 L10 60 Z" />
+                  <!-- vertical line -->
+                  <line x1="5" y1="50" x2="5" y2="250" style="stroke:black;stroke-width:1" />
+                  <!-- bottom arrow -->
+                  <path d="M5 250 L0 240 L10 240 Z" />
+                  <!-- bottom border horizontal line -->
+                  <line x1="0" y1="250" x2="10" y2="250" style="stroke:black;stroke-width:1" />
+                  <text x="0" y="00" font-family="arial" font-size="18" transform="rotate(270 100,100)" fill="blue">$ADC2.TIME_KERNEL$ us</text>
+                </g>
+                <g id="time_input_res" transform="translate(80,101)">
+                  <!-- top border horizontal line -->
+                  <line x1="0" y1="50" x2="10" y2="50" style="stroke:black;stroke-width:1" />
+                  <!-- top arrow -->
+                  <path d="M5 50 L0 60 L10 60 Z" />
+                  <!-- vertical line -->
+                  <line x1="5" y1="50" x2="5" y2="500" style="stroke:black;stroke-width:1" />
+                  <!-- bottom arrow -->
+                  <path d="M5 500 L0 490 L10 490 Z" />
+                  <!-- bottom border horizontal line -->
+                  <line x1="0" y1="500" x2="10" y2="500" style="stroke:black;stroke-width:1" />
+                  <text x="0" y="00" font-family="arial" font-size="18" transform="rotate(270 160,160)" fill="blue">$ADC2.TIME_IN2RES$ us</text>
+                </g>
+                <g id="time_input_filtres" transform="translate($ADC2.TIF_XPOS$,101)">
+                  <!-- top border horizontal line -->
+                  <line x1="0" y1="50" x2="10" y2="50" style="stroke:black;stroke-width:1" />
+                  <!-- top arrow -->
+                  <path d="M5 50 L0 60 L10 60 Z" />
+                  <!-- vertical line -->
+                  <line x1="5" y1="50" x2="5" y2="650" style="stroke:black;stroke-width:1" />
+                  <!-- bottom arrow -->
+                  <path d="M5 650 L0 640 L10 640 Z" />
+                  <!-- bottom border horizontal line -->
+                  <line x1="0" y1="650" x2="10" y2="650" style="stroke:black;stroke-width:1" />
+                  <text x="0" y="0" font-family="arial" font-size="18" transform="rotate(270 310,310)" fill="blue">$ADC2.TIME_IN2FILT$ us</text>
+                </g>
+                <g id="time_input_cmp" transform="translate($ADC2.TIC_XPOS$,101)">
+                  <!-- top border horizontal line -->
+                  <line x1="0" y1="50" x2="10" y2="50" style="stroke:black;stroke-width:1" />
+                  <!-- top arrow -->
+                  <path d="M5 50 L0 60 L10 60 Z" />
+                  <!-- vertical line -->
+                  <line x1="5" y1="50" x2="5" y2="850" style="stroke:black;stroke-width:1" />
+                  <!-- bottom arrow -->
+                  <path d="M5 850 L0 840 L10 840 Z" />
+                  <!-- bottom border horizontal line -->
+                  <line x1="0" y1="850" x2="10" y2="850" style="stroke:black;stroke-width:1" />
+                  <text x="0" y="0" font-family="arial" font-size="18" transform="rotate(270 410,410)" fill="blue">$ADC2.TIME_IN2CMP$ us</text>
+                </g>
+                </svg>
+              </svgembed>
+            </groupcontainer>
+          </verticalcontainer>
+        </groupcontainer>
+      </verticalcontainer>
+      <groupcontainer label="Timers" visible="false">
+        <timer visible="false" define="ADC2.TIM_INIT" svd="0" interval="1" singleShot="1" run="1">
+          <action event="changed" cmd="runScript" data="python:adc2.py"/>
+        </timer>
+      </groupcontainer>
+    </header>
+  </horizontalcontainer>
+</ifxmlcfg>

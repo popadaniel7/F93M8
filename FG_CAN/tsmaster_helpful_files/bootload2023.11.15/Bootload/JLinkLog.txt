@@ -1,0 +1,66 @@
+T7764 000:008.192   SEGGER J-Link V7.82 Log File
+T7764 000:008.317   DLL Compiled: Oct 13 2022 13:32:51
+T7764 000:008.339   Logging started @ 2023-10-10 01:38
+T7764 000:008.360 - 8.370ms
+T7764 000:008.387 JLINK_SetWarnOutHandler(...)
+T7764 000:008.410 - 0.032ms
+T7764 000:008.432 JLINK_OpenEx(...)
+T7764 000:010.351   Firmware: J-Link Lite-XMC4200 Rev.1 compiled Mar  1 2019 11:28:26
+T7764 000:010.685   Firmware: J-Link Lite-XMC4200 Rev.1 compiled Mar  1 2019 11:28:26
+T7764 000:012.602   Hardware: V1.00
+T7764 000:012.641   S/N: 591114279
+T7764 000:012.672   OEM: SEGGER
+T7764 000:012.703   Feature(s): None
+T7764 000:013.784   TELNET listener socket opened on port 19021
+T7764 000:014.041   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T7764 000:014.177   WEBSRV Webserver running on local port 19080
+T7764 000:035.549 - 27.152ms returns "O.K."
+T7764 000:035.634 JLINK_GetEmuCaps()
+T7764 000:035.662 - 0.041ms returns 0xB8EA5A33
+T7764 000:035.695 JLINK_TIF_GetAvailable(...)
+T7764 000:035.929 - 0.256ms
+T7764 000:035.972 JLINK_SetErrorOutHandler(...)
+T7764 000:035.999 - 0.039ms
+T7764 000:036.057 JLINK_ExecCommand("ProjectFile = "C:\Users\Lxp20\Desktop\temp\bootload2023.09.01\Bootload\JLinkSettings.ini"", ...). 
+T7764 000:045.183 - 9.150ms returns 0x00
+T7764 000:049.546 JLINK_ExecCommand("Device = TLE9893_2QKW62S", ...). 
+T7764 000:053.156   Device "TLE9893" selected.
+T7764 000:053.682 - 4.094ms returns 0x00
+T7764 000:053.711 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T7764 000:053.736 - 0.012ms returns 0x01
+T7764 000:053.758 JLINK_GetHardwareVersion()
+T7764 000:053.780 - 0.031ms returns 10000
+T7764 000:053.804 JLINK_GetDLLVersion()
+T7764 000:053.825 - 0.030ms returns 78200
+T7764 000:053.846 JLINK_GetOEMString(...)
+T7764 000:053.868 JLINK_GetFirmwareString(...)
+T7764 000:053.889 - 0.031ms
+T7764 000:062.567 JLINK_GetDLLVersion()
+T7764 000:062.615 - 0.059ms returns 78200
+T7764 000:062.638 JLINK_GetCompileDateTime()
+T7764 000:062.659 - 0.031ms
+T7764 000:067.268 JLINK_GetFirmwareString(...)
+T7764 000:067.311 - 0.054ms
+T7764 000:070.189 JLINK_GetHardwareVersion()
+T7764 000:070.220 - 0.042ms returns 10000
+T7764 000:073.055 JLINK_GetSN()
+T7764 000:073.087 - 0.043ms returns 591114279
+T7764 000:075.864 JLINK_GetOEMString(...)
+T7764 000:079.223 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T7764 000:079.818 - 0.615ms returns 0x00
+T7764 000:079.853 JLINK_HasError()
+T7764 000:079.890 JLINK_SetSpeed(5000)
+T7764 000:079.980 - 0.104ms
+T7764 000:080.008 JLINK_GetId()
+T7764 000:083.020   InitTarget() start
+T7764 000:083.068    J-Link Script File: Executing InitTarget()
+T7764 000:645.394   InitTarget() end
+T7764 000:648.726   Connect failed. Resetting via Reset pin and trying again.
+T7764 000:713.783   InitTarget() start
+T7764 000:713.837    J-Link Script File: Executing InitTarget()
+T7764 001:275.215   InitTarget() end
+T7764 001:275.278 - 1195.282ms returns 0x00000000
+T7764 003:018.768 JLINK_Close()
+T7764 003:035.886 - 17.169ms
+T7764 003:035.953   
+T7764 003:035.979   Closed

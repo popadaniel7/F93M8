@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_uart_mode.xml                                                     -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-21, BG:   EP-541: Added 'none' entry to solve conflicts with   -->
+<!--                           multiple lockons                                     -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!-- V0.1.2: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project               -->
+<!-- V0.1.3: 2020-11-25, BG:   EP-618: Corrected wrong lockon for output pin        -->
+<!-- V0.2.0: 2020-11-25, BG:   EP-622: Restructure module with Python script        -->
+<!-- V0.2.1: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!-- V0.2.2: 2020-12-28, JO:   EP-657: Removed (*) note from P1.1 at UART1 Output   -->
+<!-- V0.2.3: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.3.0: 2021-03-09, JO:   EP-734: Updated CW minimal version to 2.6.3,         -->
+<!--                           Added usage of setdefine feature that was introduced -->
+<!--                           in Config Wizard version 2.6.3                       -->
+<!-- V0.3.1: 2021-07-05, BG:   EP-854: Removed wrong start condition for P1.1 in    -->
+<!--                           UART1 output selection                               -->
+<!-- V0.3.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Mode Definition -->
+<!-- IDX: UART0, UART1 -->
+
+<ifxmlcfg version="2.6.3">
+  <checksum>ae73c54f2f1c6acd7e206e7c5bbc742c6bf93668f33c1e75d3cccbee56ddf8d4</checksum>
+  <version label="V0.3.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Mode Definition" uielement="branch">
+
+    <!-- BAUDRATE GENERATOR -->
+    <groupcontainer label="Baudrate Generator Settings" define="CONT_$IDX$_BR_SETTINGS" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <radio define="$IDX$.BR_CONFIG" svd="0" header="temp_defines.h" default="0">
+          <radiobutton label="Automatic Configuration" lockon="$IDX$.BR_CONFIG_EDIT=0"/>
+          <horizontalcontainer define="CONT_$IDX$_BR_AUTO">
+            <text label="Baudrate Value"/>
+            <combo define="$IDX$.BR_VAL_AUTO" default="label=19200 Baud" svd="0" header="temp_defines.h">
+              <item label="2400 Baud" value="2400"/>
+              <item label="4800 Baud" value="4800"/>
+              <item label="9600 Baud" value="9600"/>
+              <item label="19200 Baud" value="19200"/>
+              <item label="20000 Baud" value="20000"/>
+              <item label="115200 Baud" value="115200"/>
+              <item label="250400 Baud" value="250400"/>
+            </combo>
+          </horizontalcontainer>
+          <radiobutton label="Manual Configuration" lockon="$IDX$.BR_CONFIG_EDIT=1"/>
+          <horizontalcontainer define="CONT_$IDX$_BR_MAN">
+            <text label="Baudrate Value"/>
+            <spinbox define="$IDX$.BR_VAL_MAN" suffix=" Baud" default="19200" svd="0" range="2400;250400" header="temp_defines.h"/>
+          </horizontalcontainer>
+        </radio>
+        <!-- Only for the python script to be able to connect with the radiobutton -->
+        <edit define="$IDX$.BR_CONFIG_EDIT" visible="false" svd="0" header="temp_defines.h"/>
+
+        <horizontalcontainer>
+          <text label="Effective Baudrate [Baud]"/>
+          <math define="$IDX$_EFFBR" svd="0" header="temp_defines.h" default="0"/>
+        </horizontalcontainer>
+        
+        <horizontalcontainer>
+          <text label="Deviation Error [%]"/>
+          <math define="$IDX$_DEVIATION" svd="0" header="temp_defines.h" default="0"/>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <!-- RECEPTION -->
+    <groupcontainer label="Reception Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="206;217;164">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Input Selection -->
+        <horizontalcontainer>
+          <text label="Input Selection"/>
+        <combo define="$IDX$_UART0.INSEL_RXDSEL" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=0"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="CANTRX.RXD"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_UART1.INSEL_RXDSEL" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=0"/>
+            <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=0"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="MON.MON10"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Enable Receiver -->
+        <horizontalcontainer>
+          <text label="Enable Receiver of Serial Port"/>
+          <checkbox define="$IDX$.SCON.REN" header="uart_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <!-- Receiver Mode -->
+        <horizontalcontainer>
+          <text label="Receiver Mode"/>
+          <combo define="$IDX$.SCON.RMOD" header="uart_defines.h" default="label=RXBUF is not updated if IS.RI = 1">
+            <item label="RXBUF is not updated if IS.RI = 1" override="value1"/>
+            <item label="RXBUF is updated if IS.RI = 1" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <!-- TRANSMISSION -->
+    <groupcontainer label="Transmission Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Transmit Start Trigger Selection -->
+        <horizontalcontainer>
+          <text label="Transmit Start Trigger Selection"/>
+          <combo define="$IDX$.SCON.TXENSEL" header="uart_defines.h" default="label=Write to TXBUF">
+            <item label="Write to TXBUF" override="value1"/>
+            <item label="Write to TXSTART" override="value2"/>
+            <item label="TX Start Event on Rising Edge" override="value3"/>
+            <item hide="value4"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- TX Start Event Input -->
+        <horizontalcontainer define="CONT_$IDX$_TXSTARTINP">
+          <text label="Transmit Start Input Selection"/>
+        <combo define="$IDX$_UART0.INSEL_TXEVSEL" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=0" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="SCU.INP1_IRQ1"/>
+            <item label="CCU7.SR3"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_UART1.INSEL_TXEVSEL" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=0"/>
+            <item label="SCU.INP1_IRQ1"/>
+            <item label="CCU7.SR3"/>
+            <item label="SCU.INP2_IRQ1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- TX Data Inverter -->
+        <horizontalcontainer>
+          <text label="Enable TXD Inversion"/>
+          <checkbox define="$IDX$.SCON.TXINV" header="uart_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <!-- Output Selection -->
+        <horizontalcontainer>
+          <text label="Output Selection"/>
+        <combo define="$IDX$_UART0.OUTPUT_TXDSEL" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=1;GPIO.P0_ALTSEL0.ALTSEL1=1"/>
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=1;GPIO.P0_ALTSEL0.ALTSEL3=6"/>
+            <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=1;GPIO.P0_ALTSEL0.ALTSEL7=5" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=4" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="CANTRX.TXDB" lockon="CANTRX.CTRL_RXD_OUT_SEL=5"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$_UART1.OUTPUT_TXDSEL" svd="0" header="temp_defines.h" default="label=none">
+            <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=1;GPIO.P0_ALTSEL0.ALTSEL2=1"/>
+            <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=4" startcond="UC_FEATURE_64PIN==1"/>
+            <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=1;GPIO.P1_ALTSEL0.ALTSEL1=3"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Enable Break/Sync Detection -->
+        <horizontalcontainer>
+          <text label="Enable Break/Sync Detection"/>
+          <checkbox define="$IDX$.LINCON.BREN" header="uart_defines.h" default="0"/>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <groupcontainer label="Interrupt" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Receive Interrupt -->
+        <horizontalcontainer>
+          <text label="Receive Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$.RI_INT_EN" svd="0" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_RINODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX$_RI" header="isr_defines.h">
+            <item label="UART_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="UART_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_RIEN">
+          <text label="Enable Receive Interrupt"/>
+          <checkbox define="$IDX$.IEN.RIEN" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_RICB">
+          <text label="Callback"/>
+          <edit define="$IDX$.RI_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="405;-1"/>
+        </horizontalcontainer>
+
+        <!-- Transmit Interrupt -->
+        <horizontalcontainer>
+          <text label="Transmit Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$.TI_INT_EN" svd="0" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_TINODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX$_TI" header="isr_defines.h">
+            <item label="UART_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="UART_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_TIEN">
+          <text label="Enable Transmit Interrupt"/>
+          <checkbox define="$IDX$.IEN.TIEN" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_TICB">
+          <text label="Callback"/>
+          <edit define="$IDX$.TI_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="405;-1"/>
+        </horizontalcontainer>
+
+        <!-- End of Sync Interrupt -->
+        <horizontalcontainer define="CONT_$IDX$_ENEOS">
+          <text label="End Of Sync Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$.EOS_INT_EN" svd="0" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_EOSNODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX_LIN$_EOFSYN" header="isr_defines.h">
+            <item label="UART_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="UART_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_EOSEN">
+          <text label="Enable End of Sync Interrupt"/>
+          <checkbox define="$IDX$.IEN.EOFSYNEN" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_EOSCB">
+          <text label="Callback"/>
+          <edit define="$IDX$.EOS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="405;-1"/>
+        </horizontalcontainer>
+
+        <!-- Sync Error Interrupt -->
+        <horizontalcontainer define="CONT_$IDX$_ENSYNCERR">
+          <text label="Sync Error Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+          <checkbox define="$IDX$.SYNCERR_INT_EN" svd="0" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_SYNCERRNODE">
+          <text label="Node Selection"/>
+          <combo define="SCU.INP5.INP_$IDX_LIN$_ERRSYN" header="isr_defines.h">
+            <item label="UART_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN22=1"/>
+            <item label="UART_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN23=1"/>
+          </combo>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_SYNCERREN">
+          <text label="Enable Sync Error Interrupt"/>
+          <checkbox define="$IDX$.IEN.ERRSYNEN" header="isr_defines.h" default="0"/>
+        </horizontalcontainer>
+
+        <horizontalcontainer define="CONT_$IDX$_SYNCERRCB">
+          <text label="Callback"/>
+          <edit define="$IDX$.SYNCERR_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="405;-1"/>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+  </verticalcontainer>          
+</ifxmlcfg>
+

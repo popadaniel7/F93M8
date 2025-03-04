@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_t2x_mode.xml                                                      -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-21, BG:   EP-541: Added 'none' entry to solve conflicts with   -->
+<!--                           multiple lockons                                     -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>a337c319e83702be9c2b4d9f5210346809afad0a742bfca7f2c770158c1a4a81</checksum>
+  <version label="V0.1.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Mode Definition" uielement="branch" define="$IDX$_DEF_MODE" svd="0">
+    <groupcontainer label="Clock Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Clock Selection -->
+        <horizontalcontainer define="CONT_$IDX$_CLK">
+          <text label="Clock Selection"/>
+          <combo label="Clock Prescaler" define="$IDX$.CON_C_T2" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="Timer"/>
+            <item label="Counter"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Prescaler -> only in Timer -->
+        <horizontalcontainer define="CONT_$IDX$_PS">
+          <text label="Clock Prescaler"/>
+          <combo label="Clock Prescaler" define="$IDX$.MOD_T2PRE" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="Not Selected, per default fSYS / 12"/>
+            <item label="fSYS / 1"/>
+            <item label="fSYS / 2"/>
+            <item label="fSYS / 4"/>
+            <item label="fSYS / 8"/>
+            <item label="fSYS / 16"/>
+            <item label="fSYS / 32"/>
+            <item label="fSYS / 64"/>
+            <item label="fSYS / 128"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Counter Input -> only in Counter -->
+        <horizontalcontainer define="CONT_$IDX$_CNTIN">
+          <text label="Counter Input"/>
+          <!-- Timer 20 -->
+        <combo label="Counter Input" define="$IDX$.T20_CON_T2INSEL" default="label=none" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR2=0"/>
+            <item label="P2.8" lockon="GPIO.P2_INDIS.INDIS8=0"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+          <!-- Timer 21 -->
+        <combo label="Counter Input" define="$IDX$.T21_CON_T2INSEL" default="label=none" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=0"/>
+            <item label="P0.8" lockon="GPIO.P0_DIR.DIR8=0"/>
+            <item label="P1.4" lockon="GPIO.P1_DIR.DIR4=0"/>
+            <item label="P2.9" lockon="GPIO.P2_INDIS.INDIS9=0"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <groupcontainer label="External Event" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="206;217;164">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Enable External Event -->
+        <horizontalcontainer>
+          <text label="Enable External Event"/>
+          <checkbox define="$IDX$.CON_EXEN2" svd="0" header="temp_defines.h">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- External Input -> only if enabled -->
+        <horizontalcontainer define="CONT_$IDX$_EXTIN">
+          <text label="External Input"/>
+          <!-- Timer 20 -->
+        <combo label="External Input" define="$IDX$.T20_CON_T2EXINSEL" default="label=none" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=0"/>
+            <item label="P0.8" lockon="GPIO.P0_DIR.DIR8=0"/>
+            <item label="P1.4" lockon="GPIO.P1_DIR.DIR4=0"/>
+            <item label="CANTRX.RXD"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+          <!-- Timer 21 -->
+        <combo label="External Input" define="$IDX$.T21_CON_T2EXINSEL" default="label=none" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=0"/>
+            <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=0"/>
+            <item label="P2.8" lockon="GPIO.P2_INDIS.INDIS8=0"/>
+            <item label="MON.MON10"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Edge Selection at External Input -> only if enabled -->
+        <horizontalcontainer define="CONT_$IDX$_EDGEEXT">
+          <text label="Edge Selection at External Input"/>
+          <combo label="Edge Selection at External Input" define="$IDX$.MOD_EDGESEL" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="On the falling edge of $IDX$EX"/>
+            <item label="On the rising edge of $IDX$EX"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Enable External Start -->
+        <horizontalcontainer define="CONT_$IDX$_ENEXTSTART">
+          <text label="Enable External Start"/>
+          <checkbox define="$IDX$.MOD_T2RHEN" svd="0" header="">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Edge Selection at External Input for External Start -> only if enabled -->
+        <horizontalcontainer define="CONT_$IDX$_EDGEEXTSTART">
+          <text label="Edge Selection for an External Start"/>
+          <combo label="Edge Selection for an External Start" define="$IDX$.MOD_T2REGS" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="On the falling edge of $IDX$EX"/>
+            <item label="On the rising edge of $IDX$EX"/>
+          </combo>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <groupcontainer label="Interrupt" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Interrupt TF2 C-code enable -->
+        <horizontalcontainer define="CONT_$IDX$_TF2INTEN">
+          <text label="Overflow/Underflow Interrupt"/>
+          <checkbox define="$IDX$_TF2INTEN" svd="0" header="temp_defines.h">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Interrupt TF2 bit enable + callback -->
+        <horizontalcontainer define="CONT_$IDX$_TF2EN">
+          <text label="Enable Underflow/Overflow Interrupt"/>
+          <checkbox define="$IDX$.CON1_TF2EN" svd="0" default="0" header="temp_defines.h">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Interrupt TF2 callback -->
+        <horizontalcontainer define="CONT_$IDX$_TF2CB">
+          <text label="Callback"/>
+          <edit define="$IDX$.TF2_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+
+        <!-- Interrupt EXF2 C-code enable -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2INTEN">
+          <text label="External Interrupt"/>
+          <checkbox define="$IDX$_EXF2INTEN" svd="0" header="temp_defines.h">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Interrupt EXF2 bit enable -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2EN">
+          <text label="Enable External Interrupt"/>
+          <checkbox define="$IDX$.CON1_EXF2EN" svd="0" default="0" header="temp_defines.h">
+            <action event="checked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+            <action event="unchecked" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </checkbox>
+        </horizontalcontainer>
+
+        <!-- Interrupt EXF2 callback -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2CB">
+          <text label="Callback"/>
+          <edit define="$IDX$.EXF2_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+
+        <!-- External Flag EXF2 output -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2OUTPUT">
+          <text label="External Flag Output"/>
+        <combo label="External Flag Output" define="$IDX$.T20_EXF2_OUTPUT" default="label=none" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.10" lockon="GPIO.P0_DIR.DIR10=1;GPIO.P0_ALTSEL1.ALTSEL10=1"/>
+          <item label="none" value="0xFF"/>
+       </combo>
+        <combo label="External Flag Output" define="$IDX$.T21_EXF2_OUTPUT" default="label=none" svd="0" header="temp_defines.h" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=1;GPIO.P0_ALTSEL0.ALTSEL0=1"/>
+            <item label="P1.4" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+    <groupcontainer label="Timer Register" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+
+        <!-- Timer Register -->
+        <horizontalcontainer>
+          <text label="Timer Register"/>
+          <spinbox label="Value" define="$IDX$.CNT_REGVAL" svd="0" header="temp_defines.h" default="1" range="0;32768" size="135;-1"/>
+          <combo define="$IDX$_CNTUNIT" svd="0" header="" size="100;-1">
+            <item label="ticks"/>
+            <item label="us"/>
+          </combo>
+          <math label="Timer Value" unit="ticks" define="$IDX$_CNTREGVAL" svd="0" header="temp_defines.h" format="%04X" formula="($IDX$_CNTUNIT==0)?((0x10000-$IDX$.CNT_REGVAL):floor(0x10000-($IDX$.CNT_REGVAL*f$IDX$/1000000)))" size="150;-1"/>
+        </horizontalcontainer>
+
+        <!-- Reload/Capture Register -->
+        <horizontalcontainer>
+          <text label="Reload/Capture Register"/>
+          <spinbox label="Value" define="$IDX$.RC_REGVAL" svd="0" header="temp_defines.h" default="1" range="0;32768" size="135;-1"/>
+          <combo define="$IDX$_RCUNIT" svd="0" header="" size="100;-1">
+            <item label="ticks"/>
+            <item label="us"/>
+          </combo>
+          <math label="Timer Value" unit="ticks" define="$IDX$_RCREGVAL" svd="0" header="temp_defines.h" format="%04X" formula="($IDX$_RCUNIT==0)?((0x10000-$IDX$.RC_REGVAL):floor(0x10000-($IDX$.RC_REGVAL*f$IDX$/1000000)))" size="150;-1"/>
+        </horizontalcontainer>
+
+      </verticalcontainer>
+    </groupcontainer>
+
+  </verticalcontainer>  
+</ifxmlcfg>

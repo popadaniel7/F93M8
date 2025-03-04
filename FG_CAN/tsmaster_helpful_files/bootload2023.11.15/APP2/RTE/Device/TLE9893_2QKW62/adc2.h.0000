@@ -1,0 +1,2890 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+/**
+ * \file   adc2.h
+ *
+ * \brief  ADC2 low level access library
+ *
+ * \version  V0.3.7
+ * \date   04. Nov 2020
+ *
+ * \note
+ */
+
+/** \addtogroup ADC2_api
+ *  @{
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+**                                                                            **
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** JO           Julia Ott                                                     **
+** BG           Blandine Guillot                                              **
+** DM           Daniel Mysliwitz                                              **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2019-10-28, DM:   Initial version                                  **
+** V0.2.0: 2020-04-28, BG:   Updated revision history format                  **
+** V0.3.0: 2020-09-04, BG:   Added first functions                            **
+** V0.3.1: 2020-10-02, BG:   Removed ADC2_setEndOfConvFailIntSts              **
+** V0.3.2: 2020-10-06, BG:   EP-492: Removed MISRA 2012 errors                **
+** V0.3.3: 2020-10-16, JO:   EP-523: Updated parameter names                  **
+** V0.3.4: 2020-10-23, BG:   EP-539: Considered the enable checkbox in CW in  **
+**                           the initialization function                      **
+** V0.3.5: 2020-10-23, BG:   Corrected check of return value in               **
+**                           ADC2_getChResult_mV and ADC2_getChFiltResult_mV  **
+** V0.3.6: 2020-10-27, BG:   EP-560: Enabled VAREF in the initialization      **
+**                           EP-560: Renamed split compare low/up bits        **
+** V0.3.7: 2020-11-04, JO:   EP-556: Removed functions that are related to    **
+**                           ADC EOC Fail Interrupt                           **
+*******************************************************************************/
+
+#ifndef _ADC2_H
+#define _ADC2_H
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "types.h"
+#include "tle989x.h"
+#include "tle_variants.h"
+#include "adc2_defines.h"
+
+/*******************************************************************************
+**                        Global Constant Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Global Macro Declarations                         **
+*******************************************************************************/
+
+/** \brief ADC2 number of digital channels */
+#define ADC2_DCH_CNT (15u)
+
+/** \brief ADC2 number of analog inputs */
+#define ADC2_AI_CNT (15u)
+
+/** \brief ADC2 number of filter channels */
+#define ADC2_FILT_CNT (8u)
+
+/** \brief ADC2 number of sequencer channels */
+#define ADC2_SEQ_CNT (8u)
+
+/** \brief ADC2 number of channel slots per sequencer channels */
+#define ADC2_SLOT_CNT (4u)
+
+/** \brief ADC2 filter channel disabled */
+#define ADC2_FILT_CH_DIS (4u)
+
+/** \brief ADC2 all digital channel mask, 9..0 */
+#define ADC2_ALL_DCH_MSK (0xfffffu)
+
+/** \brief ADC2 all sequence status mask, 11..0 */
+#define ADC2_ALL_SQSTS_MSK (0xfffu)
+
+/** \brief ADC2 all filter status mask, 3..0 */
+#define ADC2_ALL_FILTSTS_MSK (0xfu)
+
+/** \brief ADC2 all compare status mask, 23..16, 7..0 */
+#define ADC2_ALL_CMPSTS_MSK (0xff00ffu)
+
+/** \brief ADC2 reference voltage 5.0V */
+#define ADC2_VREF_5000mV (5000u)
+
+/** \brief ADC2 resolution mask (12bit) incl. two bit shift due to calibration */
+#define ADC2_MAX_RESOLUTION (0xfffu)
+
+/** \brief ADC2 attenuator type 0 (12/256) */
+#define ADC2_ATT_TYPE0 (12u)
+
+/** \brief ADC2 attenuator type 1 (10/256) */
+#define ADC2_ATT_TYPE1 (10u)
+
+/** \brief ADC2 attenuator type 2 (6/256) */
+#define ADC2_ATT_TYPE2 (6u)
+
+/** \brief ADC2 attenuator type 3 (38/256) */
+#define ADC2_ATT_TYPE3 (38u)
+
+/** \brief ADC2 attenuator type 4 (58/256) */
+#define ADC2_ATT_TYPE4 (58u)
+
+/** \brief ADC2 attenuator denominator (256) */
+#define ADC2_ATT_DENOM (256u)
+
+/** \brief ADC2 digital channel selection macro, channel 0 */
+#define ADC2_DCH0 (0u)
+/** \brief ADC2 digital channel selection macro, channel 1 */
+#define ADC2_DCH1 (1u)
+/** \brief ADC2 digital channel selection macro, channel 2 */
+#define ADC2_DCH2 (2u)
+/** \brief ADC2 digital channel selection macro, channel 3 */
+#define ADC2_DCH3 (3u)
+/** \brief ADC2 digital channel selection macro, channel 4 */
+#define ADC2_DCH4 (4u)
+/** \brief ADC2 digital channel selection macro, channel 5 */
+#define ADC2_DCH5 (5u)
+/** \brief ADC2 digital channel selection macro, channel 6 */
+#define ADC2_DCH6 (6u)
+/** \brief ADC2 digital channel selection macro, channel 7 */
+#define ADC2_DCH7 (7u)
+/** \brief ADC2 digital channel selection macro, channel 8 */
+#define ADC2_DCH8 (8u)
+/** \brief ADC2 digital channel selection macro, channel 9 */
+#define ADC2_DCH9 (9u)
+/** \brief ADC2 digital channel selection macro, channel 10 */
+#define ADC2_DCH10 (10u)
+/** \brief ADC2 digital channel selection macro, channel 11 */
+#define ADC2_DCH11 (11u)
+/** \brief ADC2 digital channel selection macro, channel 12 */
+#define ADC2_DCH12 (12u)
+/** \brief ADC2 digital channel selection macro, channel 13 */
+#define ADC2_DCH13 (13u)
+/** \brief ADC2 digital channel selection macro, channel 14 */
+#define ADC2_DCH14 (14u)
+
+/** \brief ADC2 sequencer channel selection macro, sequencer channel 0 */
+#define ADC2_SEQ0 (0u)
+/** \brief ADC2 sequencer channel selection macro, sequencer channel 1 */
+#define ADC2_SEQ1 (1u)
+/** \brief ADC2 sequencer channel selection macro, sequencer channel 2 */
+#define ADC2_SEQ2 (2u)
+/** \brief ADC2 sequencer channel selection macro, sequencer channel 3 */
+#define ADC2_SEQ3 (3u)
+
+/** \brief ADC2 sequencer slot selection, slot 0 */
+#define ADC2_SEQ_SLOT0 (0u)
+/** \brief ADC2 sequencer slot selection, slot 1 */
+#define ADC2_SEQ_SLOT1 (1u)
+/** \brief ADC2 sequencer slot selection, slot 2 */
+#define ADC2_SEQ_SLOT2 (2u)
+/** \brief ADC2 sequencer slot selection, slot 3 */
+#define ADC2_SEQ_SLOT3 (3u)
+
+/** \brief ADC2 software trigger selection */
+#define ADC2_SW_TRIGGER (0u)
+
+/*******************************************************************************
+**                          Global Type Declarations                          **
+*******************************************************************************/
+
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wpadded"
+#endif
+
+typedef union
+{
+  uint32_t reg;                   /*!< Channel Configuration Register                          */
+
+  struct
+  {
+    uint32_t            : 8;
+    uint32_t CHREP      : 4;      /*!< [11..8] Channel Repetition                              */
+    uint32_t            : 4;
+    uint32_t FILSEL     : 3;      /*!< [18..16] Filter Selection                               */
+    uint32_t CMPSEL     : 3;      /*!< [21..19] Compare Selection                              */
+    uint32_t CLASSEL    : 2;      /*!< [23..22] Conversion Class Selection                     */
+  } bit;
+} tADC2_CHCFGx;
+
+typedef union
+{
+  uint32_t reg;                   /*!< Sequence Configuration Register                         */
+
+  struct
+  {
+    uint32_t SLOTS      : 3;      /*!< [2..0] Number of used Slots in Sequence                 */
+    uint32_t            : 1;
+    uint32_t SQREP      : 2;      /*!< [5..4] Sequence repetition                              */
+    uint32_t            : 2;
+    uint32_t TRGSEL     : 2;      /*!< [9..8] Trigger Select                                   */
+    uint32_t            : 4;
+    uint32_t TRGSW      : 1;      /*!< [14..14] Software Trigger Bit                           */
+  } bit;
+} tADC2_SQCFGx;
+
+typedef union
+{
+  uint32_t reg;                   /*!< Channel Configuration Register                          */
+
+  struct
+  {
+    uint32_t            : 1;
+    uint32_t STC        : 4;      /*!< [7..4] Sample Time config                               */
+  } bit;
+} tADC2_CONVCFGx;
+
+typedef union
+{
+  uint32_t reg;                   /*!< Compare Channel x Control Register                      */
+
+  struct
+  {
+    uint32_t LOWER      : 8;      /*!< [7..0] Lower Compare Value                              */
+    uint32_t INP_SEL    : 1;      /*!< [8..8] Input selection for the comparator unit          */
+    uint32_t            : 3;
+    uint32_t HYST_LO    : 2;      /*!< [13..12] Hysteresis set for lower compare threshold     */
+    uint32_t            : 2;
+    uint32_t UPPER      : 8;      /*!< [23..16] Upper Compare Value                            */
+    uint32_t BLANK_TIME : 3;      /*!< [26..24] Blank Time configuration                       */
+    uint32_t RST_BLANK_TIME : 1;  /*!< [27..27] Restart Blank time                             */
+    uint32_t HYST_UP    : 2;      /*!< [29..28] Hysteresis setting for upper compare threshold */
+    uint32_t MODE       : 2;      /*!< [31..30] Compare Mode                                   */
+  } bit;
+} tADC2_CMPCFGx;
+
+typedef union
+{
+  uint32_t reg;                   /*!< SQ Channel Slot Register                                */
+
+  struct
+  {
+    uint32_t CHSEL0     : 4;      /*!< [3..0] Channel Select                                   */
+    uint32_t            : 4;
+    uint32_t CHSEL1     : 4;      /*!< [11..8] Channel Select                                  */
+    uint32_t            : 4;
+    uint32_t CHSEL2     : 4;      /*!< [19..16] Channel Select                                 */
+    uint32_t            : 4;
+    uint32_t CHSEL3     : 4;      /*!< [27..24] Channel Select                                 */
+  } bit;
+} tADC2_SQSLOTx;
+
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+  #pragma clang diagnostic pop
+#endif
+
+/*******************************************************************************
+**                         Global Function Declarations                       **
+*******************************************************************************/
+
+sint8 ADC2_init(void);
+sint8 ADC2_getChResult(uint16 *u16p_digValue, uint8 u8_channel);
+sint8 ADC2_getChResult_mV(uint16 *u16p_digValue_mV, uint8 u8_channel);
+sint8 ADC2_getChFiltResult(uint16 *u16p_filtDigValue, uint8 u8_channel);
+sint8 ADC2_getChFiltResult_mV(uint16 *u16p_filtDigValue_mV, uint8 u8_channel);
+sint8 ADC2_getSeqResult(uint16 *u16p_DigValue, uint8 u8_seqIdx, uint8 u8_slotIdx);
+sint8 ADC2_getSeqResult_mV(uint16 *u16p_digValue_mV, uint8 u8_seqIdx, uint8 u8_slotIdx);
+sint8 ADC2_startSequence(uint8 u8_seqIdx);
+uint8 ADC2_getEndOfConvSts(uint8 u8_seqIdx, uint8 u8_slotIdx);
+INLINE void ADC2_enPower(void);
+INLINE void ADC2_disPower(void);
+INLINE void ADC2_enSuspend(void);
+INLINE void ADC2_disSuspend(void);
+INLINE void ADC2_setSuspendMode(uint8 u8_susMode);
+INLINE uint8 ADC2_getSuspendMode(void);
+INLINE uint8 ADC2_getSuspendSts(void);
+INLINE void ADC2_setSeq0Config(tADC2_SQCFGx e_value);
+INLINE void ADC2_setSeq1Config(tADC2_SQCFGx e_value);
+INLINE void ADC2_setSeq1Slot0(uint8 u8_value);
+INLINE void ADC2_setSeq2Config(tADC2_SQCFGx e_value);
+INLINE void ADC2_setSeq3Config(tADC2_SQCFGx e_value);
+INLINE uint8 ADC2_getSeq0IntSts(void);
+INLINE uint8 ADC2_getSeq1IntSts(void);
+INLINE uint8 ADC2_getSeq2IntSts(void);
+INLINE uint8 ADC2_getSeq3IntSts(void);
+INLINE uint8 ADC2_getCurrSeq(void);
+INLINE void ADC2_clrSeq0IntSts(void);
+INLINE void ADC2_clrSeq1IntSts(void);
+INLINE void ADC2_clrSeq2IntSts(void);
+INLINE void ADC2_clrSeq3IntSts(void);
+INLINE void ADC2_setCh0Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh1Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh2Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh3Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh4Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh5Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh6Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh7Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh8Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh9Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh10Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh11Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh12Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh13Config(tADC2_CHCFGx e_value);
+INLINE void ADC2_setCh14Config(tADC2_CHCFGx e_value);
+INLINE uint8 ADC2_getCh0EndOfConvSts(void);
+INLINE uint8 ADC2_getCh1EndOfConvSts(void);
+INLINE uint8 ADC2_getCh2EndOfConvSts(void);
+INLINE uint8 ADC2_getCh3EndOfConvSts(void);
+INLINE uint8 ADC2_getCh4EndOfConvSts(void);
+INLINE uint8 ADC2_getCh5EndOfConvSts(void);
+INLINE uint8 ADC2_getCh6EndOfConvSts(void);
+INLINE uint8 ADC2_getCh7EndOfConvSts(void);
+INLINE uint8 ADC2_getCh8EndOfConvSts(void);
+INLINE uint8 ADC2_getCh9EndOfConvSts(void);
+INLINE uint8 ADC2_getCh10EndOfConvSts(void);
+INLINE uint8 ADC2_getCh11EndOfConvSts(void);
+INLINE uint8 ADC2_getCh12EndOfConvSts(void);
+INLINE uint8 ADC2_getCh13EndOfConvSts(void);
+INLINE uint8 ADC2_getCh14EndOfConvSts(void);
+INLINE uint8 ADC2_getCurrChannel(void);
+INLINE void ADC2_clrCh0EndOfConvSts(void);
+INLINE void ADC2_clrCh1EndOfConvSts(void);
+INLINE void ADC2_clrCh2EndOfConvSts(void);
+INLINE void ADC2_clrCh3EndOfConvSts(void);
+INLINE void ADC2_clrCh4EndOfConvSts(void);
+INLINE void ADC2_clrCh5EndOfConvSts(void);
+INLINE void ADC2_clrCh6EndOfConvSts(void);
+INLINE void ADC2_clrCh7EndOfConvSts(void);
+INLINE void ADC2_clrCh8EndOfConvSts(void);
+INLINE void ADC2_clrCh9EndOfConvSts(void);
+INLINE void ADC2_clrCh10EndOfConvSts(void);
+INLINE void ADC2_clrCh11EndOfConvSts(void);
+INLINE void ADC2_clrCh12EndOfConvSts(void);
+INLINE void ADC2_clrCh13EndOfConvSts(void);
+INLINE void ADC2_clrCh14EndOfConvSts(void);
+INLINE void ADC2_setConvClass0Config(tADC2_CONVCFGx e_value);
+INLINE void ADC2_setConvClass1Config(tADC2_CONVCFGx e_value);
+INLINE void ADC2_setConvClass2Config(tADC2_CONVCFGx e_value);
+INLINE void ADC2_setConvClass3Config(tADC2_CONVCFGx e_value);
+INLINE uint16 ADC2_getFilt0Res(void);
+INLINE uint16 ADC2_getFilt1Res(void);
+INLINE uint16 ADC2_getFilt2Res(void);
+INLINE uint16 ADC2_getFilt3Res(void);
+INLINE uint16 ADC2_getFilt4Res(void);
+INLINE uint16 ADC2_getFilt5Res(void);
+INLINE uint16 ADC2_getFilt6Res(void);
+INLINE uint16 ADC2_getFilt7Res(void);
+INLINE uint8 ADC2_getFilt0Sts(void);
+INLINE uint8 ADC2_getFilt1Sts(void);
+INLINE uint8 ADC2_getFilt2Sts(void);
+INLINE uint8 ADC2_getFilt3Sts(void);
+INLINE uint8 ADC2_getFilt4Sts(void);
+INLINE uint8 ADC2_getFilt5Sts(void);
+INLINE uint8 ADC2_getFilt6Sts(void);
+INLINE uint8 ADC2_getFilt7Sts(void);
+INLINE void ADC2_clrFilt0Sts(void);
+INLINE void ADC2_clrFilt1Sts(void);
+INLINE void ADC2_clrFilt2Sts(void);
+INLINE void ADC2_clrFilt3Sts(void);
+INLINE void ADC2_clrFilt4Sts(void);
+INLINE void ADC2_clrFilt5Sts(void);
+INLINE void ADC2_clrFilt6Sts(void);
+INLINE void ADC2_clrFilt7Sts(void);
+INLINE uint16 ADC2_getCh0Result(void);
+INLINE uint8 ADC2_getCh0ResultValidSts(void);
+INLINE uint16 ADC2_getCh1Result(void);
+INLINE uint8 ADC2_getCh1ResultValidSts(void);
+INLINE uint16 ADC2_getCh2Result(void);
+INLINE uint8 ADC2_getCh2ResultValidSts(void);
+INLINE uint16 ADC2_getCh3Result(void);
+INLINE uint8 ADC2_getCh3ResultValidSts(void);
+INLINE uint16 ADC2_getCh4Result(void);
+INLINE uint8 ADC2_getCh4ResultValidSts(void);
+INLINE uint16 ADC2_getCh5Result(void);
+INLINE uint8 ADC2_getCh5ResultValidSts(void);
+INLINE uint16 ADC2_getCh6Result(void);
+INLINE uint8 ADC2_getCh6ResultValidSts(void);
+INLINE uint16 ADC2_getCh7Result(void);
+INLINE uint8 ADC2_getCh7ResultValidSts(void);
+INLINE uint16 ADC2_getCh8Result(void);
+INLINE uint8 ADC2_getCh8ResultValidSts(void);
+INLINE uint16 ADC2_getCh9Result(void);
+INLINE uint8 ADC2_getCh9ResultValidSts(void);
+INLINE uint16 ADC2_getCh10Result(void);
+INLINE uint8 ADC2_getCh10ResultValidSts(void);
+INLINE uint16 ADC2_getCh11Result(void);
+INLINE uint8 ADC2_getCh11ResultValidSts(void);
+INLINE uint16 ADC2_getCh12Result(void);
+INLINE uint8 ADC2_getCh12ResultValidSts(void);
+INLINE uint16 ADC2_getCh13Result(void);
+INLINE uint8 ADC2_getCh13ResultValidSts(void);
+INLINE uint16 ADC2_getCh14Result(void);
+INLINE uint8 ADC2_getCh14ResultValidSts(void);
+INLINE void ADC2_setCmp0Config(tADC2_CMPCFGx e_value);
+INLINE void ADC2_setCmp1Config(tADC2_CMPCFGx e_value);
+INLINE void ADC2_setCmp2Config(tADC2_CMPCFGx e_value);
+INLINE void ADC2_setCmp3Config(tADC2_CMPCFGx e_value);
+INLINE void ADC2_setCmp4Config(tADC2_CMPCFGx e_value);
+INLINE void ADC2_setCmp5Config(tADC2_CMPCFGx e_value);
+INLINE void ADC2_setCmp6Config(tADC2_CMPCFGx e_value);
+INLINE void ADC2_setCmp7Config(tADC2_CMPCFGx e_value);
+INLINE uint8 ADC2_getCmp0UpIntSts(void);
+INLINE uint8 ADC2_getCmp1UpIntSts(void);
+INLINE uint8 ADC2_getCmp2UpIntSts(void);
+INLINE uint8 ADC2_getCmp3UpIntSts(void);
+INLINE uint8 ADC2_getCmp4UpIntSts(void);
+INLINE uint8 ADC2_getCmp5UpIntSts(void);
+INLINE uint8 ADC2_getCmp6UpIntSts(void);
+INLINE uint8 ADC2_getCmp7UpIntSts(void);
+INLINE uint8 ADC2_getCmp0UpThSts(void);
+INLINE uint8 ADC2_getCmp1UpThSts(void);
+INLINE uint8 ADC2_getCmp2UpThSts(void);
+INLINE uint8 ADC2_getCmp3UpThSts(void);
+INLINE uint8 ADC2_getCmp4UpThSts(void);
+INLINE uint8 ADC2_getCmp5UpThSts(void);
+INLINE uint8 ADC2_getCmp6UpThSts(void);
+INLINE uint8 ADC2_getCmp7UpThSts(void);
+INLINE uint8 ADC2_getCmp0LoIntSts(void);
+INLINE uint8 ADC2_getCmp1LoIntSts(void);
+INLINE uint8 ADC2_getCmp2LoIntSts(void);
+INLINE uint8 ADC2_getCmp3LoIntSts(void);
+INLINE uint8 ADC2_getCmp4LoIntSts(void);
+INLINE uint8 ADC2_getCmp5LoIntSts(void);
+INLINE uint8 ADC2_getCmp6LoIntSts(void);
+INLINE uint8 ADC2_getCmp7LoIntSts(void);
+INLINE uint8 ADC2_getCmp0LoThSts(void);
+INLINE uint8 ADC2_getCmp1LoThSts(void);
+INLINE uint8 ADC2_getCmp2LoThSts(void);
+INLINE uint8 ADC2_getCmp3LoThSts(void);
+INLINE uint8 ADC2_getCmp4LoThSts(void);
+INLINE uint8 ADC2_getCmp5LoThSts(void);
+INLINE uint8 ADC2_getCmp6LoThSts(void);
+INLINE uint8 ADC2_getCmp7LoThSts(void);
+INLINE void ADC2_clrCmp0UpIntSts(void);
+INLINE void ADC2_clrCmp1UpIntSts(void);
+INLINE void ADC2_clrCmp2UpIntSts(void);
+INLINE void ADC2_clrCmp3UpIntSts(void);
+INLINE void ADC2_clrCmp4UpIntSts(void);
+INLINE void ADC2_clrCmp5UpIntSts(void);
+INLINE void ADC2_clrCmp6UpIntSts(void);
+INLINE void ADC2_clrCmp7UpIntSts(void);
+INLINE void ADC2_clrCmp0UpThSts(void);
+INLINE void ADC2_clrCmp1UpThSts(void);
+INLINE void ADC2_clrCmp2UpThSts(void);
+INLINE void ADC2_clrCmp3UpThSts(void);
+INLINE void ADC2_clrCmp4UpThSts(void);
+INLINE void ADC2_clrCmp5UpThSts(void);
+INLINE void ADC2_clrCmp6UpThSts(void);
+INLINE void ADC2_clrCmp7UpThSts(void);
+INLINE void ADC2_clrCmp0LoIntSts(void);
+INLINE void ADC2_clrCmp1LoIntSts(void);
+INLINE void ADC2_clrCmp2LoIntSts(void);
+INLINE void ADC2_clrCmp3LoIntSts(void);
+INLINE void ADC2_clrCmp4LoIntSts(void);
+INLINE void ADC2_clrCmp5LoIntSts(void);
+INLINE void ADC2_clrCmp6LoIntSts(void);
+INLINE void ADC2_clrCmp7LoIntSts(void);
+INLINE void ADC2_clrCmp0LoThSts(void);
+INLINE void ADC2_clrCmp1LoThSts(void);
+INLINE void ADC2_clrCmp2LoThSts(void);
+INLINE void ADC2_clrCmp3LoThSts(void);
+INLINE void ADC2_clrCmp4LoThSts(void);
+INLINE void ADC2_clrCmp5LoThSts(void);
+INLINE void ADC2_clrCmp6LoThSts(void);
+INLINE void ADC2_clrCmp7LoThSts(void);
+INLINE void ADC2_enCmp0UpInt(void);
+INLINE void ADC2_disCmp0UpInt(void);
+INLINE void ADC2_enCmp1UpInt(void);
+INLINE void ADC2_disCmp1UpInt(void);
+INLINE void ADC2_enCmp2UpInt(void);
+INLINE void ADC2_disCmp2UpInt(void);
+INLINE void ADC2_enCmp3UpInt(void);
+INLINE void ADC2_disCmp3UpInt(void);
+INLINE void ADC2_enCmp4UpInt(void);
+INLINE void ADC2_disCmp4UpInt(void);
+INLINE void ADC2_enCmp5UpInt(void);
+INLINE void ADC2_disCmp5UpInt(void);
+INLINE void ADC2_enCmp6UpInt(void);
+INLINE void ADC2_disCmp6UpInt(void);
+INLINE void ADC2_enCmp7UpInt(void);
+INLINE void ADC2_disCmp7UpInt(void);
+INLINE void ADC2_enCmp0LoInt(void);
+INLINE void ADC2_disCmp0LoInt(void);
+INLINE void ADC2_enCmp1LoInt(void);
+INLINE void ADC2_disCmp1LoInt(void);
+INLINE void ADC2_enCmp2LoInt(void);
+INLINE void ADC2_disCmp2LoInt(void);
+INLINE void ADC2_enCmp3LoInt(void);
+INLINE void ADC2_disCmp3LoInt(void);
+INLINE void ADC2_enCmp4LoInt(void);
+INLINE void ADC2_disCmp4LoInt(void);
+INLINE void ADC2_enCmp5LoInt(void);
+INLINE void ADC2_disCmp5LoInt(void);
+INLINE void ADC2_enCmp6LoInt(void);
+INLINE void ADC2_disCmp6LoInt(void);
+INLINE void ADC2_enCmp7LoInt(void);
+INLINE void ADC2_disCmp7LoInt(void);
+INLINE void ADC2_enSeq0Int(void);
+INLINE void ADC2_disSeq0Int(void);
+INLINE void ADC2_enSeq1Int(void);
+INLINE void ADC2_disSeq1Int(void);
+INLINE void ADC2_enSeq2Int(void);
+INLINE void ADC2_disSeq2Int(void);
+INLINE void ADC2_enSeq3Int(void);
+INLINE void ADC2_disSeq3Int(void);
+INLINE void ADC2_enCh0Int(void);
+INLINE void ADC2_disCh0Int(void);
+INLINE void ADC2_enCh1Int(void);
+INLINE void ADC2_disCh1Int(void);
+INLINE void ADC2_enCh2Int(void);
+INLINE void ADC2_disCh2Int(void);
+INLINE void ADC2_enCh3Int(void);
+INLINE void ADC2_disCh3Int(void);
+INLINE void ADC2_enCh4Int(void);
+INLINE void ADC2_disCh4Int(void);
+INLINE void ADC2_enCh5Int(void);
+INLINE void ADC2_disCh5Int(void);
+INLINE void ADC2_enCh6Int(void);
+INLINE void ADC2_disCh6Int(void);
+INLINE void ADC2_enCh7Int(void);
+INLINE void ADC2_disCh7Int(void);
+INLINE void ADC2_enCh8Int(void);
+INLINE void ADC2_disCh8Int(void);
+INLINE void ADC2_enCh9Int(void);
+INLINE void ADC2_disCh9Int(void);
+INLINE void ADC2_enCh10Int(void);
+INLINE void ADC2_disCh10Int(void);
+INLINE void ADC2_enCh11Int(void);
+INLINE void ADC2_disCh11Int(void);
+INLINE void ADC2_enCh12Int(void);
+INLINE void ADC2_disCh12Int(void);
+INLINE void ADC2_enCh13Int(void);
+INLINE void ADC2_disCh13Int(void);
+INLINE void ADC2_enCh14Int(void);
+INLINE void ADC2_disCh14Int(void);
+
+/*******************************************************************************
+**                       Deprecated Function Declarations                     **
+*******************************************************************************/
+
+/** \brief Set Channel 0 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh0IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 1 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh1IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 2 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh2IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 3 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh3IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 4 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh4IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 5 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh5IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 6 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh6IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 7 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh7IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 8 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh8IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 9 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh9IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 10 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh10IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 11 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh11IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 12 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh12IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 13 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh13IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Channel 14 Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCh14IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp0LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp1LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp2LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp3LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp4LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp5LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp6LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Lo Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp7LoIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp0UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp1UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp2UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp3UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp4UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp5UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp6UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Compare Up Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setCmp7UpIntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Sequence Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setSeq0IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Sequence Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setSeq1IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Sequence Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setSeq2IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/** \brief Set Sequence Interrupt Node Pointer
+ * \warning Do not change this at runtime, use the ConfigWizard to configure this feature!
+ */
+void ADC2_setSeq3IntNodePtr(void) __attribute__((deprecated("Do not change this at runtime, use the ConfigWizard to configure this feature!")));
+
+/*******************************************************************************
+**                      Global Inline Function Definitions                    **
+*******************************************************************************/
+
+/** \brief Enable ADC2 Module
+ */
+INLINE void ADC2_enPower(void)
+{
+  ADC2->GLOBCONF.bit.EN = (uint8)1;
+}
+
+/** \brief Disable ADC2 Module
+ */
+INLINE void ADC2_disPower(void)
+{
+  ADC2->GLOBCONF.bit.EN = (uint8)0;
+}
+
+/** \brief Enable ADC2 Suspend
+ */
+INLINE void ADC2_enSuspend(void)
+{
+  ADC2->SUSCTR.bit.SUSEN = (uint8)1;
+}
+
+/** \brief Disable ADC2 Suspend
+ */
+INLINE void ADC2_disSuspend(void)
+{
+  ADC2->SUSCTR.bit.SUSEN = (uint8)0;
+}
+
+/** \brief Set Suspend Mode
+ *
+ * \param u8_susMode Suspend mode
+ */
+INLINE void ADC2_setSuspendMode(uint8 u8_susMode)
+{
+  ADC2->SUSCTR.bit.SUSMOD = u8_susMode;
+}
+
+/** \brief Get Suspend Mode
+ *
+ * \return uint8 Suspend Mode
+ */
+INLINE uint8 ADC2_getSuspendMode(void)
+{
+  return (uint8)ADC2->SUSCTR.bit.SUSMOD;
+}
+
+/** \brief Get Suspend Mode Status
+ *
+ * \return uint8 Suspend Mode Status
+ */
+INLINE uint8 ADC2_getSuspendSts(void)
+{
+  return (uint8)ADC2->SUSSTAT.bit.STAT;
+}
+
+/** \brief Set Sequence 0 configuration
+ *
+ * \param e_value Sequence 0 configuration
+ */
+INLINE void ADC2_setSeq0Config(tADC2_SQCFGx e_value)
+{
+  ADC2->SQCFG0.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Sequence 1 configuration
+ *
+ * \param e_value Sequence 1 configuration
+ */
+INLINE void ADC2_setSeq1Config(tADC2_SQCFGx e_value)
+{
+  ADC2->SQCFG1.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel Select for Sequence 1 Slot 0
+ *
+ * \param e_value Channel 13 or 14 for Sequence 1 Slot 0
+ */
+INLINE void ADC2_setSeq1Slot0(uint8 e_value)
+{
+  ADC2->SQSLOT1.bit.CHSEL0 = e_value;
+}
+
+/** \brief Set Sequence 2 configuration
+ *
+ * \param e_value Sequence 2 configuration
+ */
+INLINE void ADC2_setSeq2Config(tADC2_SQCFGx e_value)
+{
+  ADC2->SQCFG2.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Sequence 3 configuration
+ *
+ * \param e_value Sequence 3 configuration
+ */
+INLINE void ADC2_setSeq3Config(tADC2_SQCFGx e_value)
+{
+  ADC2->SQCFG3.reg = (uint32)e_value.reg;
+}
+
+/** \brief Get Sequence 0 Interrupt Status
+ *
+ * \return uint8 Sequence 0 Interrupt Status
+ */
+INLINE uint8 ADC2_getSeq0IntSts(void)
+{
+  return (uint8)ADC2->SQSTAT.bit.SQ0;
+}
+
+/** \brief Get Sequence 1 Interrupt Status
+ *
+ * \return uint8 Sequence 1 Interrupt Status
+ */
+INLINE uint8 ADC2_getSeq1IntSts(void)
+{
+  return (uint8)ADC2->SQSTAT.bit.SQ1;
+}
+
+/** \brief Get Sequence 2 Interrupt Status
+ *
+ * \return uint8 Sequence 2 Interrupt Status
+ */
+INLINE uint8 ADC2_getSeq2IntSts(void)
+{
+  return (uint8)ADC2->SQSTAT.bit.SQ2;
+}
+
+/** \brief Get Sequence 3 Interrupt Status
+ *
+ * \return uint8 Sequence 3 Interrupt Status
+ */
+INLINE uint8 ADC2_getSeq3IntSts(void)
+{
+  return (uint8)ADC2->SQSTAT.bit.SQ3;
+}
+
+/** \brief Get Actual Sequence processed
+ *
+ * \return uint8 Actual Sequence processed
+ */
+INLINE uint8 ADC2_getCurrSeq(void)
+{
+  return (uint8)ADC2->SQSTAT.bit.SQNUM;
+}
+
+/** \brief Clear Sequence 0 Interrupt Status
+ */
+INLINE void ADC2_clrSeq0IntSts(void)
+{
+  ADC2->SQSTATCLR.bit.SQ0CLR = (uint8)1;
+}
+
+/** \brief Clear Sequence 1 Interrupt Status
+ */
+INLINE void ADC2_clrSeq1IntSts(void)
+{
+  ADC2->SQSTATCLR.bit.SQ1CLR = (uint8)1;
+}
+
+/** \brief Clear Sequence 2 Interrupt Status
+ */
+INLINE void ADC2_clrSeq2IntSts(void)
+{
+  ADC2->SQSTATCLR.bit.SQ2CLR = (uint8)1;
+}
+
+/** \brief Clear Sequence 3 Interrupt Status
+ */
+INLINE void ADC2_clrSeq3IntSts(void)
+{
+  ADC2->SQSTATCLR.bit.SQ3CLR = (uint8)1;
+}
+
+/** \brief Set Channel 0 configuration
+ *
+ * \param e_value Channel 0 configuration
+ */
+INLINE void ADC2_setCh0Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG0.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 1 configuration
+ *
+ * \param e_value Channel 1 configuration
+ */
+INLINE void ADC2_setCh1Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG1.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 2 configuration
+ *
+ * \param e_value Channel 2 configuration
+ */
+INLINE void ADC2_setCh2Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG2.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 3 configuration
+ *
+ * \param e_value Channel 3 configuration
+ */
+INLINE void ADC2_setCh3Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG3.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 4 configuration
+ *
+ * \param e_value Channel 4 configuration
+ */
+INLINE void ADC2_setCh4Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG4.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 5 configuration
+ *
+ * \param e_value Channel 5 configuration
+ */
+INLINE void ADC2_setCh5Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG5.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 6 configuration
+ *
+ * \param e_value Channel 6 configuration
+ */
+INLINE void ADC2_setCh6Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG6.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 7 configuration
+ *
+ * \param e_value Channel 7 configuration
+ */
+INLINE void ADC2_setCh7Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG7.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 8 configuration
+ *
+ * \param e_value Channel 8 configuration
+ */
+INLINE void ADC2_setCh8Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG8.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 9 configuration
+ *
+ * \param e_value Channel 9 configuration
+ */
+INLINE void ADC2_setCh9Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG9.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 10 configuration
+ *
+ * \param e_value Channel 10 configuration
+ */
+INLINE void ADC2_setCh10Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG10.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 11 configuration
+ *
+ * \param e_value Channel 11 configuration
+ */
+INLINE void ADC2_setCh11Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG11.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 12 configuration
+ *
+ * \param e_value Channel 12 configuration
+ */
+INLINE void ADC2_setCh12Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG12.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 13 configuration
+ *
+ * \param e_value Channel 13 configuration
+ */
+INLINE void ADC2_setCh13Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG13.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Channel 14 configuration
+ *
+ * \param e_value Channel 14 configuration
+ */
+INLINE void ADC2_setCh14Config(tADC2_CHCFGx e_value)
+{
+  ADC2->CHCFG14.reg = (uint32)e_value.reg;
+}
+
+/** \brief Get Channel 0 End Of Conversion Status
+ *
+ * \return uint8 Channel 0 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh0EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH0;
+}
+
+/** \brief Get Channel 1 End Of Conversion Status
+ *
+ * \return uint8 Channel 1 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh1EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH1;
+}
+
+/** \brief Get Channel 2 End Of Conversion Status
+ *
+ * \return uint8 Channel 2 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh2EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH2;
+}
+
+/** \brief Get Channel 3 End Of Conversion Status
+ *
+ * \return uint8 Channel 3 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh3EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH3;
+}
+
+/** \brief Get Channel 4 End Of Conversion Status
+ *
+ * \return uint8 Channel 4 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh4EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH4;
+}
+
+/** \brief Get Channel 5 End Of Conversion Status
+ *
+ * \return uint8 Channel 5 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh5EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH5;
+}
+
+/** \brief Get Channel 6 End Of Conversion Status
+ *
+ * \return uint8 Channel 6 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh6EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH6;
+}
+
+/** \brief Get Channel 7 End Of Conversion Status
+ *
+ * \return uint8 Channel 7 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh7EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH7;
+}
+
+/** \brief Get Channel 8 End Of Conversion Status
+ *
+ * \return uint8 Channel 8 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh8EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH8;
+}
+
+/** \brief Get Channel 9 End Of Conversion Status
+ *
+ * \return uint8 Channel 9 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh9EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH9;
+}
+
+/** \brief Get Channel 10 End Of Conversion Status
+ *
+ * \return uint8 Channel 10 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh10EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH10;
+}
+
+/** \brief Get Channel 11 End Of Conversion Status
+ *
+ * \return uint8 Channel 11 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh11EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH11;
+}
+
+/** \brief Get Channel 12 End Of Conversion Status
+ *
+ * \return uint8 Channel 12 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh12EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH12;
+}
+
+/** \brief Get Channel 13 End Of Conversion Status
+ *
+ * \return uint8 Channel 13 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh13EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH13;
+}
+
+/** \brief Get Channel 14 End Of Conversion Status
+ *
+ * \return uint8 Channel 14 End Of Conversion Status
+ */
+INLINE uint8 ADC2_getCh14EndOfConvSts(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CH14;
+}
+
+/** \brief Get current channel under conversion
+ *
+ * \return uint8 Current channel under conversion
+ */
+INLINE uint8 ADC2_getCurrChannel(void)
+{
+  return (uint8)ADC2->CHSTAT.bit.CHNUM;
+}
+
+/** \brief Clear Channel 0 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh0EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH0CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 1 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh1EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH1CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 2 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh2EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH2CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 3 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh3EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH3CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 4 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh4EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH4CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 5 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh5EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH5CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 6 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh6EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH6CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 7 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh7EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH7CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 8 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh8EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH8CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 9 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh9EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH9CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 10 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh10EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH10CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 11 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh11EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH11CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 12 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh12EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH12CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 13 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh13EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH13CLR = (uint8)1;
+}
+
+/** \brief Clear Channel 14 End Of Conversion Status
+ */
+INLINE void ADC2_clrCh14EndOfConvSts(void)
+{
+  ADC2->CHSTATCLR.bit.CH14CLR = (uint8)1;
+}
+
+/** \brief Set Conversion Class 0
+ *
+ * \param e_value Conversion Class 0
+ */
+INLINE void ADC2_setConvClass0Config(tADC2_CONVCFGx e_value)
+{
+  ADC2->CONVCFG0.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Conversion Class 1
+ *
+ * \param e_value Conversion Class 1
+ */
+INLINE void ADC2_setConvClass1Config(tADC2_CONVCFGx e_value)
+{
+  ADC2->CONVCFG1.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Conversion Class 2
+ *
+ * \param e_value Conversion Class 2
+ */
+INLINE void ADC2_setConvClass2Config(tADC2_CONVCFGx e_value)
+{
+  ADC2->CONVCFG2.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Conversion Class 3
+ *
+ * \param e_value Conversion Class 3
+ */
+INLINE void ADC2_setConvClass3Config(tADC2_CONVCFGx e_value)
+{
+  ADC2->CONVCFG3.reg = (uint32)e_value.reg;
+}
+
+/** \brief Get Result Value Filter 0
+ *
+ * \return uint16 Result Value Filter 0
+ */
+INLINE uint16 ADC2_getFilt0Res(void)
+{
+  return (uint16)ADC2->FIL0.bit.FILRESULT;
+}
+
+/** \brief Get Result Value Filter 1
+ *
+ * \return uint16 Result Value Filter 1
+ */
+INLINE uint16 ADC2_getFilt1Res(void)
+{
+  return (uint16)ADC2->FIL1.bit.FILRESULT;
+}
+
+/** \brief Get Result Value Filter 2
+ *
+ * \return uint16 Result Value Filter 2
+ */
+INLINE uint16 ADC2_getFilt2Res(void)
+{
+  return (uint16)ADC2->FIL2.bit.FILRESULT;
+}
+
+/** \brief Get Result Value Filter 3
+ *
+ * \return uint16 Result Value Filter 3
+ */
+INLINE uint16 ADC2_getFilt3Res(void)
+{
+  return (uint16)ADC2->FIL3.bit.FILRESULT;
+}
+
+/** \brief Get Result Value Filter 4
+ *
+ * \return uint16 Result Value Filter 4
+ */
+INLINE uint16 ADC2_getFilt4Res(void)
+{
+  return (uint16)ADC2->FIL4.bit.FILRESULT;
+}
+
+/** \brief Get Result Value Filter 5
+ *
+ * \return uint16 Result Value Filter 5
+ */
+INLINE uint16 ADC2_getFilt5Res(void)
+{
+  return (uint16)ADC2->FIL5.bit.FILRESULT;
+}
+
+/** \brief Get Result Value Filter 6
+ *
+ * \return uint16 Result Value Filter 6
+ */
+INLINE uint16 ADC2_getFilt6Res(void)
+{
+  return (uint16)ADC2->FIL6.bit.FILRESULT;
+}
+
+/** \brief Get Result Value Filter 7
+ *
+ * \return uint16 Result Value Filter 7
+ */
+INLINE uint16 ADC2_getFilt7Res(void)
+{
+  return (uint16)ADC2->FIL7.bit.FILRESULT;
+}
+
+/** \brief Get Filter 0 Event Status
+ *
+ * \return uint8 Filter 0 Event Status
+ */
+INLINE uint8 ADC2_getFilt0Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL0;
+}
+
+/** \brief Get Filter 1 Event Status
+ *
+ * \return uint8 Filter 1 Event Status
+ */
+INLINE uint8 ADC2_getFilt1Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL1;
+}
+
+/** \brief Get Filter 2 Event Status
+ *
+ * \return uint8 Filter 2 Event Status
+ */
+INLINE uint8 ADC2_getFilt2Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL2;
+}
+
+/** \brief Get Filter 3 Event Status
+ *
+ * \return uint8 Filter 3 Event Status
+ */
+INLINE uint8 ADC2_getFilt3Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL3;
+}
+
+/** \brief Get Filter 4 Event Status
+ *
+ * \return uint8 Filter 4 Event Status
+ */
+INLINE uint8 ADC2_getFilt4Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL4;
+}
+
+/** \brief Get Filter 5 Event Status
+ *
+ * \return uint8 Filter 5 Event Status
+ */
+INLINE uint8 ADC2_getFilt5Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL5;
+}
+
+/** \brief Get Filter 6 Event Status
+ *
+ * \return uint8 Filter 6 Event Status
+ */
+INLINE uint8 ADC2_getFilt6Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL6;
+}
+
+/** \brief Get Filter 7 Event Status
+ *
+ * \return uint8 Filter 7 Event Status
+ */
+INLINE uint8 ADC2_getFilt7Sts(void)
+{
+  return (uint8)ADC2->FILSTAT.bit.FIL7;
+}
+
+/** \brief Clear Filter 0 Event Status
+ */
+INLINE void ADC2_clrFilt0Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL0CLR = (uint8)1;
+}
+
+/** \brief Clear Filter 1 Event Status
+ */
+INLINE void ADC2_clrFilt1Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL1CLR = (uint8)1;
+}
+
+/** \brief Clear Filter 2 Event Status
+ */
+INLINE void ADC2_clrFilt2Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL2CLR = (uint8)1;
+}
+
+/** \brief Clear Filter 3 Event Status
+ */
+INLINE void ADC2_clrFilt3Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL3CLR = (uint8)1;
+}
+
+/** \brief Clear Filter 4 Event Status
+ */
+INLINE void ADC2_clrFilt4Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL4CLR = (uint8)1;
+}
+
+/** \brief Clear Filter 5 Event Status
+ */
+INLINE void ADC2_clrFilt5Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL5CLR = (uint8)1;
+}
+
+/** \brief Clear Filter 6 Event Status
+ */
+INLINE void ADC2_clrFilt6Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL6CLR = (uint8)1;
+}
+
+/** \brief Clear Filter 7 Event Status
+ */
+INLINE void ADC2_clrFilt7Sts(void)
+{
+  ADC2->FILSTATCLR.bit.FIL7CLR = (uint8)1;
+}
+
+/** \brief Get Channel 0 Result Value
+ *
+ * \return uint16 Channel 0 Result Value
+ */
+INLINE uint16 ADC2_getCh0Result(void)
+{
+  return (uint16)ADC2->RES0.bit.RESULT;
+}
+
+/** \brief Get Channel 0 Result Valid Status
+ *
+ * \return uint8 Channel 0 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh0ResultValidSts(void)
+{
+  return (uint8)ADC2->RES0.bit.VALID;
+}
+
+/** \brief Get Channel 1 Result Value
+ *
+ * \return uint16 Channel 1 Result Value
+ */
+INLINE uint16 ADC2_getCh1Result(void)
+{
+  return (uint16)ADC2->RES1.bit.RESULT;
+}
+
+/** \brief Get Channel 1 Result Valid Status
+ *
+ * \return uint8 Channel 1 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh1ResultValidSts(void)
+{
+  return (uint8)ADC2->RES1.bit.VALID;
+}
+
+/** \brief Get Channel 2 Result Value
+ *
+ * \return uint16 Channel 2 Result Value
+ */
+INLINE uint16 ADC2_getCh2Result(void)
+{
+  return (uint16)ADC2->RES2.bit.RESULT;
+}
+
+/** \brief Get Channel 2 Result Valid Status
+ *
+ * \return uint8 Channel 2 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh2ResultValidSts(void)
+{
+  return (uint8)ADC2->RES2.bit.VALID;
+}
+
+/** \brief Get Channel 3 Result Value
+ *
+ * \return uint16 Channel 3 Result Value
+ */
+INLINE uint16 ADC2_getCh3Result(void)
+{
+  return (uint16)ADC2->RES3.bit.RESULT;
+}
+
+/** \brief Get Channel 3 Result Valid Status
+ *
+ * \return uint8 Channel 3 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh3ResultValidSts(void)
+{
+  return (uint8)ADC2->RES3.bit.VALID;
+}
+
+/** \brief Get Channel 4 Result Value
+ *
+ * \return uint16 Channel 4 Result Value
+ */
+INLINE uint16 ADC2_getCh4Result(void)
+{
+  return (uint16)ADC2->RES4.bit.RESULT;
+}
+
+/** \brief Get Channel 4 Result Valid Status
+ *
+ * \return uint8 Channel 4 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh4ResultValidSts(void)
+{
+  return (uint8)ADC2->RES4.bit.VALID;
+}
+
+/** \brief Get Channel 5 Result Value
+ *
+ * \return uint16 Channel 5 Result Value
+ */
+INLINE uint16 ADC2_getCh5Result(void)
+{
+  return (uint16)ADC2->RES5.bit.RESULT;
+}
+
+/** \brief Get Channel 5 Result Valid Status
+ *
+ * \return uint8 Channel 5 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh5ResultValidSts(void)
+{
+  return (uint8)ADC2->RES5.bit.VALID;
+}
+
+/** \brief Get Channel 6 Result Value
+ *
+ * \return uint16 Channel 6 Result Value
+ */
+INLINE uint16 ADC2_getCh6Result(void)
+{
+  return (uint16)ADC2->RES6.bit.RESULT;
+}
+
+/** \brief Get Channel 6 Result Valid Status
+ *
+ * \return uint8 Channel 6 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh6ResultValidSts(void)
+{
+  return (uint8)ADC2->RES6.bit.VALID;
+}
+
+/** \brief Get Channel 7 Result Value
+ *
+ * \return uint16 Channel 7 Result Value
+ */
+INLINE uint16 ADC2_getCh7Result(void)
+{
+  return (uint16)ADC2->RES7.bit.RESULT;
+}
+
+/** \brief Get Channel 7 Result Valid Status
+ *
+ * \return uint8 Channel 7 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh7ResultValidSts(void)
+{
+  return (uint8)ADC2->RES7.bit.VALID;
+}
+
+/** \brief Get Channel 8 Result Value
+ *
+ * \return uint16 Channel 8 Result Value
+ */
+INLINE uint16 ADC2_getCh8Result(void)
+{
+  return (uint16)ADC2->RES8.bit.RESULT;
+}
+
+/** \brief Get Channel 8 Result Valid Status
+ *
+ * \return uint8 Channel 8 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh8ResultValidSts(void)
+{
+  return (uint8)ADC2->RES8.bit.VALID;
+}
+
+/** \brief Get Channel 9 Result Value
+ *
+ * \return uint16 Channel 9 Result Value
+ */
+INLINE uint16 ADC2_getCh9Result(void)
+{
+  return (uint16)ADC2->RES9.bit.RESULT;
+}
+
+/** \brief Get Channel 9 Result Valid Status
+ *
+ * \return uint8 Channel 9 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh9ResultValidSts(void)
+{
+  return (uint8)ADC2->RES9.bit.VALID;
+}
+
+/** \brief Get Channel 10 Result Value
+ *
+ * \return uint16 Channel 10 Result Value
+ */
+INLINE uint16 ADC2_getCh10Result(void)
+{
+  return (uint16)ADC2->RES10.bit.RESULT;
+}
+
+/** \brief Get Channel 10 Result Valid Status
+ *
+ * \return uint8 Channel 10 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh10ResultValidSts(void)
+{
+  return (uint8)ADC2->RES10.bit.VALID;
+}
+
+/** \brief Get Channel 11 Result Value
+ *
+ * \return uint16 Channel 11 Result Value
+ */
+INLINE uint16 ADC2_getCh11Result(void)
+{
+  return (uint16)ADC2->RES11.bit.RESULT;
+}
+
+/** \brief Get Channel 11 Result Valid Status
+ *
+ * \return uint8 Channel 11 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh11ResultValidSts(void)
+{
+  return (uint8)ADC2->RES11.bit.VALID;
+}
+
+/** \brief Get Channel 12 Result Value
+ *
+ * \return uint16 Channel 12 Result Value
+ */
+INLINE uint16 ADC2_getCh12Result(void)
+{
+  return (uint16)ADC2->RES12.bit.RESULT;
+}
+
+/** \brief Get Channel 12 Result Valid Status
+ *
+ * \return uint8 Channel 12 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh12ResultValidSts(void)
+{
+  return (uint8)ADC2->RES12.bit.VALID;
+}
+
+/** \brief Get Channel 13 Result Value
+ *
+ * \return uint16 Channel 13 Result Value
+ */
+INLINE uint16 ADC2_getCh13Result(void)
+{
+  return (uint16)ADC2->RES13.bit.RESULT;
+}
+
+/** \brief Get Channel 13 Result Valid Status
+ *
+ * \return uint8 Channel 13 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh13ResultValidSts(void)
+{
+  return (uint8)ADC2->RES13.bit.VALID;
+}
+
+/** \brief Get Channel 14 Result Value
+ *
+ * \return uint16 Channel 14 Result Value
+ */
+INLINE uint16 ADC2_getCh14Result(void)
+{
+  return (uint16)ADC2->RES14.bit.RESULT;
+}
+
+/** \brief Get Channel 14 Result Valid Status
+ *
+ * \return uint8 Channel 14 Result Valid Status
+ */
+INLINE uint8 ADC2_getCh14ResultValidSts(void)
+{
+  return (uint8)ADC2->RES14.bit.VALID;
+}
+
+/** \brief Set Compare Channel 0 configuration
+ *
+ * \param e_value Compare Channel 0 configuration
+ */
+INLINE void ADC2_setCmp0Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG0.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Compare Channel 1 configuration
+ *
+ * \param e_value Compare Channel 1 configuration
+ */
+INLINE void ADC2_setCmp1Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG1.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Compare Channel 2 configuration
+ *
+ * \param e_value Compare Channel 2 configuration
+ */
+INLINE void ADC2_setCmp2Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG2.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Compare Channel 3 configuration
+ *
+ * \param e_value Compare Channel 3 configuration
+ */
+INLINE void ADC2_setCmp3Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG3.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Compare Channel 4 configuration
+ *
+ * \param e_value Compare Channel 4 configuration
+ */
+INLINE void ADC2_setCmp4Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG4.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Compare Channel 5 configuration
+ *
+ * \param e_value Compare Channel 5 configuration
+ */
+INLINE void ADC2_setCmp5Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG5.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Compare Channel 6 configuration
+ *
+ * \param e_value Compare Channel 6 configuration
+ */
+INLINE void ADC2_setCmp6Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG6.reg = (uint32)e_value.reg;
+}
+
+/** \brief Set Compare Channel 7 configuration
+ *
+ * \param e_value Compare Channel 7 configuration
+ */
+INLINE void ADC2_setCmp7Config(tADC2_CMPCFGx e_value)
+{
+  ADC2->CMPCFG7.reg = (uint32)e_value.reg;
+}
+
+/** \brief Get Compare 0 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 0 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp0UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP0_IS;
+}
+
+/** \brief Get Compare 1 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 1 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp1UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP1_IS;
+}
+
+/** \brief Get Compare 2 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 2 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp2UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP2_IS;
+}
+
+/** \brief Get Compare 3 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 3 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp3UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP3_IS;
+}
+
+/** \brief Get Compare 4 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 4 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp4UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP4_IS;
+}
+
+/** \brief Get Compare 5 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 5 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp5UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP5_IS;
+}
+
+/** \brief Get Compare 6 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 6 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp6UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP6_IS;
+}
+
+/** \brief Get Compare 7 Upper Threshold Interrupt Status
+ *
+ * \return uint8 Compare 7 Upper Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp7UpIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP7_IS;
+}
+
+/** \brief Get Compare 0 Upper Threshold Status
+ *
+ * \return uint8 Compare 0 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp0UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP0_STS;
+}
+
+/** \brief Get Compare 1 Upper Threshold Status
+ *
+ * \return uint8 Compare 1 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp1UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP1_STS;
+}
+
+/** \brief Get Compare 2 Upper Threshold Status
+ *
+ * \return uint8 Compare 2 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp2UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP2_STS;
+}
+
+/** \brief Get Compare 3 Upper Threshold Status
+ *
+ * \return uint8 Compare 3 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp3UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP3_STS;
+}
+
+/** \brief Get Compare 4 Upper Threshold Status
+ *
+ * \return uint8 Compare 4 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp4UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP4_STS;
+}
+
+/** \brief Get Compare 5 Upper Threshold Status
+ *
+ * \return uint8 Compare 5 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp5UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP5_STS;
+}
+
+/** \brief Get Compare 6 Upper Threshold Status
+ *
+ * \return uint8 Compare 6 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp6UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP6_STS;
+}
+
+/** \brief Get Compare 7 Upper Threshold Status
+ *
+ * \return uint8 Compare 7 Upper Threshold Status
+ */
+INLINE uint8 ADC2_getCmp7UpThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_UP7_STS;
+}
+
+/** \brief Get Compare 0 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 0 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp0LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO0_IS;
+}
+
+/** \brief Get Compare 1 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 1 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp1LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO1_IS;
+}
+
+/** \brief Get Compare 2 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 2 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp2LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO2_IS;
+}
+
+/** \brief Get Compare 3 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 3 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp3LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO3_IS;
+}
+
+/** \brief Get Compare 4 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 4 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp4LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO4_IS;
+}
+
+/** \brief Get Compare 5 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 5 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp5LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO5_IS;
+}
+
+/** \brief Get Compare 6 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 6 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp6LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO6_IS;
+}
+
+/** \brief Get Compare 7 Lower Threshold Interrupt Status
+ *
+ * \return uint8 Compare 7 Lower Threshold Interrupt Status
+ */
+INLINE uint8 ADC2_getCmp7LoIntSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO7_IS;
+}
+
+/** \brief Get Compare 0 Lower Threshold Status
+ *
+ * \return uint8 Compare 0 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp0LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO0_STS;
+}
+
+/** \brief Get Compare 1 Lower Threshold Status
+ *
+ * \return uint8 Compare 1 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp1LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO1_STS;
+}
+
+/** \brief Get Compare 2 Lower Threshold Status
+ *
+ * \return uint8 Compare 2 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp2LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO2_STS;
+}
+
+/** \brief Get Compare 3 Lower Threshold Status
+ *
+ * \return uint8 Compare 3 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp3LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO3_STS;
+}
+
+/** \brief Get Compare 4 Lower Threshold Status
+ *
+ * \return uint8 Compare 4 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp4LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO4_STS;
+}
+
+/** \brief Get Compare 5 Lower Threshold Status
+ *
+ * \return uint8 Compare 5 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp5LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO5_STS;
+}
+
+/** \brief Get Compare 6 Lower Threshold Status
+ *
+ * \return uint8 Compare 6 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp6LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO6_STS;
+}
+
+/** \brief Get Compare 7 Lower Threshold Status
+ *
+ * \return uint8 Compare 7 Lower Threshold Status
+ */
+INLINE uint8 ADC2_getCmp7LoThSts(void)
+{
+  return (uint8)ADC2->CMPSTAT.bit.CMP_LO7_STS;
+}
+
+/** \brief Clear Compare 0 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp0UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP0_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 1 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp1UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP1_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 2 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp2UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP2_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 3 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp3UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP3_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 4 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp4UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP4_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 5 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp5UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP5_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 6 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp6UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP6_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 7 Upper Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp7UpIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP7_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 0 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp0UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP0_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 1 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp1UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP1_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 2 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp2UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP2_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 3 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp3UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP3_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 4 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp4UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP4_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 5 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp5UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP5_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 6 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp6UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP6_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 7 Upper Threshold Status
+ */
+INLINE void ADC2_clrCmp7UpThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_UP7_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 0 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp0LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO0_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 1 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp1LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO1_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 2 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp2LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO2_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 3 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp3LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO3_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 4 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp4LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO4_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 5 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp5LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO5_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 6 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp6LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO6_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 7 Lower Threshold Interrupt Status
+ */
+INLINE void ADC2_clrCmp7LoIntSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO7_ISCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 0 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp0LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO0_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 1 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp1LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO1_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 2 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp2LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO2_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 3 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp3LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO3_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 4 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp4LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO4_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 5 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp5LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO5_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 6 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp6LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO6_STSCLR = (uint8)1;
+}
+
+/** \brief Clear Compare 7 Lower Threshold Status
+ */
+INLINE void ADC2_clrCmp7LoThSts(void)
+{
+  ADC2->CMPSTATCLR.bit.CMP_LO7_STSCLR = (uint8)1;
+}
+
+/** \brief Enable Compare 0 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp0UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP0 = (uint8)1;
+}
+
+/** \brief Disable Compare 0 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp0UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP0 = (uint8)0;
+}
+
+/** \brief Enable Compare 1 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp1UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP1 = (uint8)1;
+}
+
+/** \brief Disable Compare 1 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp1UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP1 = (uint8)0;
+}
+
+/** \brief Enable Compare 2 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp2UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP2 = (uint8)1;
+}
+
+/** \brief Disable Compare 2 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp2UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP2 = (uint8)0;
+}
+
+/** \brief Enable Compare 3 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp3UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP3 = (uint8)1;
+}
+
+/** \brief Disable Compare 3 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp3UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP3 = (uint8)0;
+}
+
+/** \brief Enable Compare 4 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp4UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP4 = (uint8)1;
+}
+
+/** \brief Disable Compare 4 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp4UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP4 = (uint8)0;
+}
+
+/** \brief Enable Compare 5 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp5UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP5 = (uint8)1;
+}
+
+/** \brief Disable Compare 5 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp5UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP5 = (uint8)0;
+}
+
+/** \brief Enable Compare 6 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp6UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP6 = (uint8)1;
+}
+
+/** \brief Disable Compare 6 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp6UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP6 = (uint8)0;
+}
+
+/** \brief Enable Compare 7 Upper Threshold Interrupt
+ */
+INLINE void ADC2_enCmp7UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP7 = (uint8)1;
+}
+
+/** \brief Disable Compare 7 Upper Threshold Interrupt
+ */
+INLINE void ADC2_disCmp7UpInt(void)
+{
+  ADC2->IEN1.bit.IEN_UP7 = (uint8)0;
+}
+
+/** \brief Enable Compare 0 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp0LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO0 = (uint8)1;
+}
+
+/** \brief Disable Compare 0 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp0LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO0 = (uint8)0;
+}
+
+/** \brief Enable Compare 1 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp1LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO1 = (uint8)1;
+}
+
+/** \brief Disable Compare 1 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp1LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO1 = (uint8)0;
+}
+
+/** \brief Enable Compare 2 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp2LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO2 = (uint8)1;
+}
+
+/** \brief Disable Compare 2 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp2LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO2 = (uint8)0;
+}
+
+/** \brief Enable Compare 3 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp3LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO3 = (uint8)1;
+}
+
+/** \brief Disable Compare 3 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp3LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO3 = (uint8)0;
+}
+
+/** \brief Enable Compare 4 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp4LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO4 = (uint8)1;
+}
+
+/** \brief Disable Compare 4 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp4LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO4 = (uint8)0;
+}
+
+/** \brief Enable Compare 5 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp5LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO5 = (uint8)1;
+}
+
+/** \brief Disable Compare 5 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp5LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO5 = (uint8)0;
+}
+
+/** \brief Enable Compare 6 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp6LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO6 = (uint8)1;
+}
+
+/** \brief Disable Compare 6 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp6LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO6 = (uint8)0;
+}
+
+/** \brief Enable Compare 7 Lower Threshold Interrupt
+ */
+INLINE void ADC2_enCmp7LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO7 = (uint8)1;
+}
+
+/** \brief Disable Compare 7 Lower Threshold Interrupt
+ */
+INLINE void ADC2_disCmp7LoInt(void)
+{
+  ADC2->IEN1.bit.IEN_LO7 = (uint8)0;
+}
+
+/** \brief Enable Sequence 0 Interrupt
+ */
+INLINE void ADC2_enSeq0Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ0 = (uint8)1;
+}
+
+/** \brief Disable Sequence 0 Interrupt
+ */
+INLINE void ADC2_disSeq0Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ0 = (uint8)0;
+}
+
+/** \brief Enable Sequence 1 Interrupt
+ */
+INLINE void ADC2_enSeq1Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ1 = (uint8)1;
+}
+
+/** \brief Disable Sequence 1 Interrupt
+ */
+INLINE void ADC2_disSeq1Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ1 = (uint8)0;
+}
+
+/** \brief Enable Sequence 2 Interrupt
+ */
+INLINE void ADC2_enSeq2Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ2 = (uint8)1;
+}
+
+/** \brief Disable Sequence 2 Interrupt
+ */
+INLINE void ADC2_disSeq2Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ2 = (uint8)0;
+}
+
+/** \brief Enable Sequence 3 Interrupt
+ */
+INLINE void ADC2_enSeq3Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ3 = (uint8)1;
+}
+
+/** \brief Disable Sequence 3 Interrupt
+ */
+INLINE void ADC2_disSeq3Int(void)
+{
+  ADC2->IEN1.bit.IEN_SQ3 = (uint8)0;
+}
+
+/** \brief Enable Channel 0 Interrupt
+ */
+INLINE void ADC2_enCh0Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH0 = (uint8)1;
+}
+
+/** \brief Disable Channel 0 Interrupt
+ */
+INLINE void ADC2_disCh0Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH0 = (uint8)0;
+}
+
+/** \brief Enable Channel 1 Interrupt
+ */
+INLINE void ADC2_enCh1Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH1 = (uint8)1;
+}
+
+/** \brief Disable Channel 1 Interrupt
+ */
+INLINE void ADC2_disCh1Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH1 = (uint8)0;
+}
+
+/** \brief Enable Channel 2 Interrupt
+ */
+INLINE void ADC2_enCh2Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH2 = (uint8)1;
+}
+
+/** \brief Disable Channel 2 Interrupt
+ */
+INLINE void ADC2_disCh2Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH2 = (uint8)0;
+}
+
+/** \brief Enable Channel 3 Interrupt
+ */
+INLINE void ADC2_enCh3Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH3 = (uint8)1;
+}
+
+/** \brief Disable Channel 3 Interrupt
+ */
+INLINE void ADC2_disCh3Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH3 = (uint8)0;
+}
+
+/** \brief Enable Channel 4 Interrupt
+ */
+INLINE void ADC2_enCh4Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH4 = (uint8)1;
+}
+
+/** \brief Disable Channel 4 Interrupt
+ */
+INLINE void ADC2_disCh4Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH4 = (uint8)0;
+}
+
+/** \brief Enable Channel 5 Interrupt
+ */
+INLINE void ADC2_enCh5Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH5 = (uint8)1;
+}
+
+/** \brief Disable Channel 5 Interrupt
+ */
+INLINE void ADC2_disCh5Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH5 = (uint8)0;
+}
+
+/** \brief Enable Channel 6 Interrupt
+ */
+INLINE void ADC2_enCh6Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH6 = (uint8)1;
+}
+
+/** \brief Disable Channel 6 Interrupt
+ */
+INLINE void ADC2_disCh6Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH6 = (uint8)0;
+}
+
+/** \brief Enable Channel 7 Interrupt
+ */
+INLINE void ADC2_enCh7Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH7 = (uint8)1;
+}
+
+/** \brief Disable Channel 7 Interrupt
+ */
+INLINE void ADC2_disCh7Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH7 = (uint8)0;
+}
+
+/** \brief Enable Channel 8 Interrupt
+ */
+INLINE void ADC2_enCh8Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH8 = (uint8)1;
+}
+
+/** \brief Disable Channel 8 Interrupt
+ */
+INLINE void ADC2_disCh8Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH8 = (uint8)0;
+}
+
+/** \brief Enable Channel 9 Interrupt
+ */
+INLINE void ADC2_enCh9Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH9 = (uint8)1;
+}
+
+/** \brief Disable Channel 9 Interrupt
+ */
+INLINE void ADC2_disCh9Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH9 = (uint8)0;
+}
+
+/** \brief Enable Channel 10 Interrupt
+ */
+INLINE void ADC2_enCh10Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH10 = (uint8)1;
+}
+
+/** \brief Disable Channel 10 Interrupt
+ */
+INLINE void ADC2_disCh10Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH10 = (uint8)0;
+}
+
+/** \brief Enable Channel 11 Interrupt
+ */
+INLINE void ADC2_enCh11Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH11 = (uint8)1;
+}
+
+/** \brief Disable Channel 11 Interrupt
+ */
+INLINE void ADC2_disCh11Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH11 = (uint8)0;
+}
+
+/** \brief Enable Channel 12 Interrupt
+ */
+INLINE void ADC2_enCh12Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH12 = (uint8)1;
+}
+
+/** \brief Disable Channel 12 Interrupt
+ */
+INLINE void ADC2_disCh12Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH12 = (uint8)0;
+}
+
+/** \brief Enable Channel 13 Interrupt
+ */
+INLINE void ADC2_enCh13Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH13 = (uint8)1;
+}
+
+/** \brief Disable Channel 13 Interrupt
+ */
+INLINE void ADC2_disCh13Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH13 = (uint8)0;
+}
+
+/** \brief Enable Channel 14 Interrupt
+ */
+INLINE void ADC2_enCh14Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH14 = (uint8)1;
+}
+
+/** \brief Disable Channel 14 Interrupt
+ */
+INLINE void ADC2_disCh14Int(void)
+{
+  ADC2->IEN0.bit.IEN_CH14 = (uint8)0;
+}
+
+#endif /* _ADC2_H */

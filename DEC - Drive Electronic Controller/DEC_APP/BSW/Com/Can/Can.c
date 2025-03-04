@@ -256,17 +256,23 @@ void Can_Init(void)
  */
 bool Can_Tx(McmcanType message)
 {
-    if(message.txMsg.messageId == 0u)
-    {
-        __debug();
-    }
-
     return IfxCan_Can_sendMessage(&message.canDstNode, &message.txMsg, (uint32*)message.txData);
 }
 
-
+extern uint8 SysMgr_Core0OnIdlePowerDown;
+extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
 void Can_Rx(void)
 {
+    if(1u == SysMgr_Core0OnIdlePowerDown)
+    {
+        SysMgr_Core0OnIdlePowerDown = 0u;
+        McuSm_PerformResetHook(0xEFEFU, 0u);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
     if(1u == Can_DedBuff)
     {
         IfxCan_Node_clearInterruptFlag(g_mcmcan.canDstNode.node, IfxCan_Interrupt_messageStoredToDedicatedRxBuffer);

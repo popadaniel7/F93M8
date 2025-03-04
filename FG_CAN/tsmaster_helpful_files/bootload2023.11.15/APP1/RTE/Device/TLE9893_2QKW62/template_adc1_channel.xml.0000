@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_adc1_channel.xml                                                  -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!--********************************************************************************-->
+
+<!-- Channel Template -->
+<!-- Parameters: -->
+<!--   IDX, range 0..19 -->
+<!--   INTREGIDX, range 0..1 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>b30b8134c59154912473d8183d4231a3f0348299aa8294f7046484df03a2c5af</checksum>
+  <version label="V0.1.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <treecontainer label="Channel $IDX$" headerlabels="Item;Value;" desc="Channel $IDX$ Config" columnwidths="200;250" selectsetdef="ADC1.TIM_CHCFG.run=1">
+    <header file="adc1_defines.h">
+      <var define="ADC1.ATTENUATOR$IDX$"    svd="0" default="102"   header="temp_defines.h"/>
+      <var define="ADC1.TEXTWIDTH$IDX$"     svd="0" default="160"   header="temp_defines.h"/>
+      <var define="ADC1.FILT0_USE$IDX$"     svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.FILT1_USE$IDX$"     svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.FILT2_USE$IDX$"     svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.FILT3_USE$IDX$"     svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.CMP0_USE$IDX$"      svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.CMP1_USE$IDX$"      svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.CMP2_USE$IDX$"      svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.CMP3_USE$IDX$"      svd="0" default="0"     header="temp_defines.h"/>
+      <var define="ADC1.CONV_TICKS_CH$IDX$" svd="0" defaul="0"      header="temp_defines.h"/>
+      <var define="ADC1.CONFIGURED$IDX$"    svd="0" default="0"     header="temp_defines.h"/>
+      <math define="ADC1.ALLTICKS_CH$IDX$"  svd="0" visible="false" header="temp_defines.h" formula="ADC1.CONV_TICKS_CH$IDX$+ADC1.CONV_TICKS_CH$IDX$*ADC1.CHCFG$IDX$.CHREP"/>
+      <timer visible="false" define="ADC1.TIM_CH$IDX$" svd="0" interval="1" singleShot="1" run="0" header="">
+        <action event="changed" cmd="setDef" data="ADC1.CH_NAME=ADC1.CHCFG$IDX$.INSEL.label"/>
+        <action event="changed" cmd="setDef" data="ADC1.RES_NO=$IDX$"/>
+        <action event="changed" cmd="setDef" data="ADC1.CHCLS_NO=ADC1.CHCFG$IDX$.CLASSEL"/>
+        <action event="changed" cmd="setDef" data="ADC1.FILT_NO=ADC1.CHCFG$IDX$.FILSEL"/>
+        <action event="changed" cmd="setDef" data="ADC1.CMP_NO=ADC1.CHCFG$IDX$.CMPSEL"/>
+        <action event="changed" cmd="setDef" data="ADC1.INBOX_WIDTH=ADC1.TEXTWIDTH$IDX$"/>
+        <action event="changed" cmd="setDef" data="ADC1.CHREPx=ADC1.CHCFG$IDX$.CHREP"/>
+        <action event="changed" cmd="setDef" data="ADC1.CONFIGURED$IDX$=1"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==0"   event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=0                 ;ADC1.CALIBCONT_NA.visible=1;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==1"   event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI1;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=1;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==2"   event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=0                 ;ADC1.CALIBCONT_NA.visible=1;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==3"   event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI3;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=1;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==5"   event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI5;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=1;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==7"   event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI7;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=1;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==9"   event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI9;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=1;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==10"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=0                 ;ADC1.CALIBCONT_NA.visible=1;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==11"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI11;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=1;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==12"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=0                  ;ADC1.CALIBCONT_NA.visible=1;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==13"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI13;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=1;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==14"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=0                  ;ADC1.CALIBCONT_NA.visible=1;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==15"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI15;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=1;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==16"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI16;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=1;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==17"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI17;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=1;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==18"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI18;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=1;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==19"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI19;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=1;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==20"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI20;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=1;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==21"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI21;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=1;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==22"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI22;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=1;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==23"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI23;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=1;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==24"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI24;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=1;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==25"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI25;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=1;ADC1.CALIBCONT_AI26.visible=0"/>
+        <action cond="ADC1.CHCFG$IDX$.INSEL==26"  event="changed" cmd="setDef" data="ADC1.USE_CALIB$IDX$=ADC1.USE_CALIB_AI26;ADC1.CALIBCONT_NA.visible=0;ADC1.CALIBCONT_AI1.visible=0;ADC1.CALIBCONT_AI3.visible=0;ADC1.CALIBCONT_AI5.visible=0;ADC1.CALIBCONT_AI7.visible=0;ADC1.CALIBCONT_AI9.visible=0;ADC1.CALIBCONT_AI11.visible=0;ADC1.CALIBCONT_AI13.visible=0;ADC1.CALIBCONT_AI15.visible=0;ADC1.CALIBCONT_AI16.visible=0;ADC1.CALIBCONT_AI17.visible=0;ADC1.CALIBCONT_AI18.visible=0;ADC1.CALIBCONT_AI19.visible=0;ADC1.CALIBCONT_AI20.visible=0;ADC1.CALIBCONT_AI21.visible=0;ADC1.CALIBCONT_AI22.visible=0;ADC1.CALIBCONT_AI23.visible=0;ADC1.CALIBCONT_AI24.visible=0;ADC1.CALIBCONT_AI25.visible=0;ADC1.CALIBCONT_AI26.visible=1"/>
+        <action cond="ADC1.CHCFG$IDX$.CMPSEL==0"  event="changed" cmd="setDef" data="ADC1.CMP_SRCx=ADC1.CMPCFG0.INP_SEL;ADC1.CMP_MODE_TXT=ADC1.CMP0_MODE_TXT;ADC1.CMP_UTH_TXT=ADC1.UPPER_TH0;ADC1.CMP_LTH_TXT=ADC1.LOWER_TH0"/>
+        <action cond="ADC1.CHCFG$IDX$.CMPSEL==1"  event="changed" cmd="setDef" data="ADC1.CMP_SRCx=ADC1.CMPCFG1.INP_SEL;ADC1.CMP_MODE_TXT=ADC1.CMP1_MODE_TXT;ADC1.CMP_UTH_TXT=ADC1.UPPER_TH1;ADC1.CMP_LTH_TXT=ADC1.LOWER_TH1"/>
+        <action cond="ADC1.CHCFG$IDX$.CMPSEL==2"  event="changed" cmd="setDef" data="ADC1.CMP_SRCx=ADC1.CMPCFG2.INP_SEL;ADC1.CMP_MODE_TXT=ADC1.CMP2_MODE_TXT;ADC1.CMP_UTH_TXT=ADC1.UPPER_TH2;ADC1.CMP_LTH_TXT=ADC1.LOWER_TH2"/>
+        <action cond="ADC1.CHCFG$IDX$.CMPSEL==3"  event="changed" cmd="setDef" data="ADC1.CMP_SRCx=ADC1.CMPCFG3.INP_SEL;ADC1.CMP_MODE_TXT=ADC1.CMP3_MODE_TXT;ADC1.CMP_UTH_TXT=ADC1.UPPER_TH3;ADC1.CMP_LTH_TXT=ADC1.LOWER_TH3"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==0" event="changed" cmd="setDef" data="ADC1.CHCLS_CTRY=ADC1.CONVCFG0_CTRY"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==1" event="changed" cmd="setDef" data="ADC1.CHCLS_CTRY=ADC1.CONVCFG1_CTRY"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==2" event="changed" cmd="setDef" data="ADC1.CHCLS_CTRY=ADC1.CONVCFG2_CTRY"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==3" event="changed" cmd="setDef" data="ADC1.CHCLS_CTRY=ADC1.CONVCFG3_CTRY"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==0" event="changed" cmd="setDef" data="ADC1.CONV_TICKS_CHx=ADC1.CONV0_TICKS;ADC1.CONV_TICKS_CH$IDX$=ADC1.CONV0_TICKS;ADC1.TCOS_TXT=ADC1.CONV0_TCOS_TXT;ADC1.STC_TXT=ADC1.CONVCFG0.STC.label"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==1" event="changed" cmd="setDef" data="ADC1.CONV_TICKS_CHx=ADC1.CONV1_TICKS;ADC1.CONV_TICKS_CH$IDX$=ADC1.CONV1_TICKS;ADC1.TCOS_TXT=ADC1.CONV1_TCOS_TXT;ADC1.STC_TXT=ADC1.CONVCFG1.STC.label"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==2" event="changed" cmd="setDef" data="ADC1.CONV_TICKS_CHx=ADC1.CONV2_TICKS;ADC1.CONV_TICKS_CH$IDX$=ADC1.CONV2_TICKS;ADC1.TCOS_TXT=ADC1.CONV2_TCOS_TXT;ADC1.STC_TXT=ADC1.CONVCFG2.STC.label"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==3" event="changed" cmd="setDef" data="ADC1.CONV_TICKS_CHx=ADC1.CONV3_TICKS;ADC1.CONV_TICKS_CH$IDX$=ADC1.CONV3_TICKS;ADC1.TCOS_TXT=ADC1.CONV3_TCOS_TXT;ADC1.STC_TXT=ADC1.CONVCFG3.STC.label"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==0" event="changed" cmd="setDef" data="ADC1.BWD_TXT=ADC1.CONV0_BWD_TXT;ADC1.PC_TXT=ADC1.CONV0_PC_TXT;ADC1.SESP_TXT=ADC1.CONV0_SESP_TXT;ADC1.MSBD_TXT=ADC1.CONV0_MSBD_TXT"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==1" event="changed" cmd="setDef" data="ADC1.BWD_TXT=ADC1.CONV1_BWD_TXT;ADC1.PC_TXT=ADC1.CONV1_PC_TXT;ADC1.SESP_TXT=ADC1.CONV1_SESP_TXT;ADC1.MSBD_TXT=ADC1.CONV1_MSBD_TXT"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==2" event="changed" cmd="setDef" data="ADC1.BWD_TXT=ADC1.CONV2_BWD_TXT;ADC1.PC_TXT=ADC1.CONV2_PC_TXT;ADC1.SESP_TXT=ADC1.CONV2_SESP_TXT;ADC1.MSBD_TXT=ADC1.CONV2_MSBD_TXT"/>
+        <action cond="ADC1.CHCFG$IDX$.CLASSEL==3" event="changed" cmd="setDef" data="ADC1.BWD_TXT=ADC1.CONV3_BWD_TXT;ADC1.PC_TXT=ADC1.CONV3_PC_TXT;ADC1.SESP_TXT=ADC1.CONV3_SESP_TXT;ADC1.MSBD_TXT=ADC1.CONV3_MSBD_TXT"/>
+        <action cond="ADC1.CHCFG$IDX$.FILSEL==0"  event="changed" cmd="setDef" data="ADC1.FILT_TXT=ADC1.FILT0_TXT"/>
+        <action cond="ADC1.CHCFG$IDX$.FILSEL==1"  event="changed" cmd="setDef" data="ADC1.FILT_TXT=ADC1.FILT1_TXT"/>
+        <action cond="ADC1.CHCFG$IDX$.FILSEL==2"  event="changed" cmd="setDef" data="ADC1.FILT_TXT=ADC1.FILT2_TXT"/>
+        <action cond="ADC1.CHCFG$IDX$.FILSEL==3"  event="changed" cmd="setDef" data="ADC1.FILT_TXT=ADC1.FILT3_TXT"/>
+        <action event="changed" cmd="setDef" data="ADC1.TIM_UPDATE_GFX.run=1"/>
+      </timer>
+      <combo label="Input Selection" define="ADC1.CHCFG$IDX$.INSEL" setdef="ADC1.TIM_CHCFG.run=1">
+        <item label="VS (3..25V)"           value="0"  override="value1"  setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE0;ADC1.TEXTWIDTH$IDX$=160"/>
+        <item label="VS (3..35V)"           value="1"  override="value2"  setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=160"/>
+        <item label="VDH (3..25V)"          value="2"  override="value3"  setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE0;ADC1.TEXTWIDTH$IDX$=160"/>
+        <item label="VDH (3..35V)"          value="3"  override="value4"  setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=160"/>
+        <item label="SH1 (Motor Contact 1)" value="5"  override="value6"  setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=260"/>
+        <item label="SH2 (Motor Contact 2)" value="7"  override="value8"  setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=260"/>
+        <item label="SH3 (Motor Contact 3)" value="9"  override="value10" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=260"/>
+        <item label="MON1 (3..25V)"         value="10" override="value11" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE0;ADC1.TEXTWIDTH$IDX$=180"/>
+        <item label="MON1 (3..35V)"         value="11" override="value12" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=180"/>
+        <item label="MON2 (3..25V)"         value="12" override="value13" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE0;ADC1.TEXTWIDTH$IDX$=180"/>
+        <item label="MON2 (3..35V)"         value="13" override="value14" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=180"/>
+        <item label="MON3 (3..25V)"         value="14" override="value15" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE0;ADC1.TEXTWIDTH$IDX$=180"/>
+        <item label="MON3 (3..35V)"         value="15" override="value16" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE1;ADC1.TEXTWIDTH$IDX$=180"/>
+        <item label="Ref. Volt. 1.2V"       value="16" override="value17" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=190"/>
+        <item label="VDDEXT"                value="17" override="value18" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160"/>
+        <item label="CSA"                   value="18" override="value19" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160"/>
+        <item label="P2.0"                  value="19" override="value20" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS0=1"/>
+        <item label="P2.1"                  value="20" override="value21" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS1=1"/>
+        <item label="P2.2"                  value="26" override="value27" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS2=1"/>
+        <item label="P2.3"                  value="22" override="value23" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS3=1"/>
+        <item label="P2.4"                  value="23" override="value24" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS4=1"/>
+        <item label="P2.5"                  value="24" override="value25" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS5=1"/>
+        <item label="P2.6"                  value="25" override="value26" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS6=1"/>
+        <item label="P2.7"                  value="21" override="value22" setdef="ADC1.ATTENUATOR$IDX$=ADC1.ATT_TYPE2;ADC1.TEXTWIDTH$IDX$=160" lockon="GPIO.P2_INDIS.INDIS7=1"/>
+        <item hide="value5"/>
+        <item hide="value7"/>
+        <item hide="value9"/>
+        <item hide="value28"/>
+        <item hide="value29"/>
+        <item hide="value30"/>
+        <item hide="value31"/>
+        <item hide="value32"/>
+        <item hide="value33"/>
+      </combo>
+      <combo label="Convertion Class Selection" define="ADC1.CHCFG$IDX$.CLASSEL" default="label=Conversion Class 0" setdef="ADC1.TIM_CHCFG.run=1">
+        <item label="Conversion Class 0" value="0" override="value1"/>
+        <item label="Conversion Class 1" value="1" override="value2"/>
+        <item label="Conversion Class 2" value="2" override="value3"/>
+        <item label="Conversion Class 3" value="3" override="value4"/>
+      </combo>
+      <spinbox label="Channel Repetition [0..15]" define="ADC1.CHCFG$IDX$.CHREP" range="0;15" step="1">
+        <action event="changed" cmd="setDef" data="ADC1.TIM_CHCFG.run=1"/>
+      </spinbox>
+      <combo label="Filter Channel Selection" define="ADC1.CHCFG$IDX$.FILSEL" default="label=none" setdef="ADC1.TIM_CHCFG.run=1">
+        <item label="Filter Channel 0" value="0" override="value1">
+          <action cond="ADC1.FILT0_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Filter 0 already in use!)"/>
+          <action cond="ADC1.FILT0_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.FILSEL.label=none"/>
+          <action cond="ADC1.FILT0_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.FILT0_USE$IDX$=0"/>
+          <action cond="ADC1.FILT0_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_FILT$IDX$=1;ADC1.FILT0_USE$IDX$=1;ADC1.FILT0_USED_BY=ADC1.RES_NO;ADC1.FILT0_USED_BY_TXT=ADC1.RES_NO"/>
+          <action event="selected" cmd="runScript" data="Unlock(ADC1.CMPCFG0.INP_SEL=0)"/>
+        </item>
+        <item label="Filter Channel 1" value="1" override="value2">
+          <action cond="ADC1.FILT1_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Filter 1 already in use!)"/>
+          <action cond="ADC1.FILT1_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.FILSEL.label=none"/>
+          <action cond="ADC1.FILT1_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.FILT1_USE$IDX$=0"/>
+          <action cond="ADC1.FILT1_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_FILT$IDX$=1;ADC1.FILT1_USE$IDX$=1;ADC1.FILT1_USED_BY=ADC1.RES_NO;ADC1.FILT1_USED_BY_TXT=ADC1.RES_NO"/>
+        </item>
+        <item label="Filter Channel 2" value="2" override="value3">
+          <action cond="ADC1.FILT2_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Filter 2 already in use!)"/>
+          <action cond="ADC1.FILT2_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.FILSEL.label=none"/>
+          <action cond="ADC1.FILT2_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.FILT2_USE$IDX$=0"/>
+          <action cond="ADC1.FILT2_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_FILT$IDX$=1;ADC1.FILT2_USE$IDX$=1;ADC1.FILT2_USED_BY=ADC1.RES_NO;ADC1.FILT2_USED_BY_TXT=ADC1.RES_NO"/>
+        </item>
+        <item label="Filter Channel 3" value="3" override="value4">
+          <action cond="ADC1.FILT3_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Filter 3 already in use!)"/>
+          <action cond="ADC1.FILT3_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.FILSEL.label=none"/>
+          <action cond="ADC1.FILT3_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.FILT3_USE$IDX$=0"/>
+          <action cond="ADC1.FILT3_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_FILT$IDX$=1;ADC1.FILT3_USE$IDX$=1;ADC1.FILT3_USED_BY=ADC1.RES_NO;ADC1.FILT3_USED_BY_TXT=ADC1.RES_NO"/>
+        </item>
+        <item label="none" value="4" override="value5">
+          <action cond="ADC1.FILT0_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.FILT0_USED_BY_TXT=available;ADC1.FILT0_USED_BY=255"/>
+          <action cond="ADC1.FILT1_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.FILT1_USED_BY_TXT=available;ADC1.FILT1_USED_BY=255"/>
+          <action cond="ADC1.FILT2_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.FILT2_USED_BY_TXT=available;ADC1.FILT2_USED_BY=255"/>
+          <action cond="ADC1.FILT3_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.FILT3_USED_BY_TXT=available;ADC1.FILT3_USED_BY=255"/>
+          <action event="selected" cmd="setDef" data="ADC1.USE_FILT$IDX$=0"/>
+        </item>
+        <item hide="value6"/>
+        <item hide="value7"/>
+        <item hide="value8"/>
+      </combo>
+      <combo label="Compare Channel Selection" define="ADC1.CHCFG$IDX$.CMPSEL" default="label=none" setdef="ADC1.TIM_CHCFG.run=1">
+        <item label="Compare Channel 0" value="0" override="value1">
+          <action cond="ADC1.CMP0_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Compare Channel 0 already in use!)"/>
+          <action cond="ADC1.CMP0_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.CMPSEL.label=none"/>
+          <action cond="ADC1.CMP0_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.CMP0_USE$IDX$=0"/>
+          <action cond="ADC1.CMP0_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_CMP$IDX$=1;ADC1.CMP0_USE$IDX$=1;ADC1.CMP0_USED_BY=ADC1.RES_NO"/>
+          <action cond="ADC1.CHCFG$IDX$.FILSEL==4" event="selected" cmd="runScript" data="Lock(ADC1.CMPCFG0.INP_SEL=0)"/>
+        </item>
+        <item label="Compare Channel 1" value="1" override="value2">
+          <action cond="ADC1.CMP1_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Compare Channel 1 already in use!)"/>
+          <action cond="ADC1.CMP1_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.CMPSEL.label=none"/>
+          <action cond="ADC1.CMP1_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.CMP1_USE$IDX$=0"/>
+          <action cond="ADC1.CMP1_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_CMP$IDX$=1;ADC1.CMP1_USE$IDX$=1;ADC1.CMP1_USED_BY=ADC1.RES_NO"/>
+          <action cond="ADC1.CHCFG$IDX$.FILSEL==4" event="selected" cmd="runScript" data="Lock(ADC1.CMPCFG1.INP_SEL=0)"/>
+        </item>
+        <item label="Compare Channel 2" value="2" override="value3">
+          <action cond="ADC1.CMP2_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Compare Channel 2 already in use!)"/>
+          <action cond="ADC1.CMP2_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.CMPSEL.label=none"/>
+          <action cond="ADC1.CMP2_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.CMP2_USE$IDX$=0"/>
+          <action cond="ADC1.CMP2_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_CMP$IDX$=1;ADC1.CMP2_USE$IDX$=1;ADC1.CMP2_USED_BY=ADC1.RES_NO"/>
+          <action cond="ADC1.CHCFG$IDX$.FILSEL==4" event="selected" cmd="runScript" data="Lock(ADC1.CMPCFG2.INP_SEL=0)"/>
+        </item>
+        <item label="Compare Channel 3" value="3" override="value4">
+          <action cond="ADC1.CMP3_USE_CNT==1" event="selected" cmd="runScript" data="MessageBox(Compare Channel 3 already in use!)"/>
+          <action cond="ADC1.CMP3_USE_CNT==1" event="selected"  cmd="setDef" data="ADC1.CHCFG$IDX$.CMPSEL.label=none"/>
+          <action cond="ADC1.CMP3_USE_CNT==1" event="unselected" cmd="setDef" data="ADC1.CMP3_USE$IDX$=0"/>
+          <action cond="ADC1.CMP3_USE_CNT==0" event="selected" cmd="setDef" data="ADC1.USE_CMP$IDX$=1;ADC1.CMP3_USE$IDX$=1;ADC1.CMP3_USED_BY=ADC1.RES_NO"/>
+          <action cond="ADC1.CHCFG$IDX$.FILSEL==4" event="selected" cmd="runScript" data="Lock(ADC1.CMPCFG3.INP_SEL=0)"/>
+        </item>
+        <item label="none" value="4" override="value5">
+          <action cond="ADC1.CMP0_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.CMP0_TXT=available;ADC1.CMP0_USED_BY=255"/>
+          <action cond="ADC1.CMP1_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.CMP1_TXT=available;ADC1.CMP1_USED_BY=255"/>
+          <action cond="ADC1.CMP2_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.CMP2_TXT=available;ADC1.CMP2_USED_BY=255"/>
+          <action cond="ADC1.CMP3_USED_BY==$IDX$" event="selected" cmd="setDef" data="ADC1.CMP3_TXT=available;ADC1.CMP3_USED_BY=255"/>
+          <action event="selected" cmd="setDef" data="ADC1.USE_CMP$IDX$=0"/>
+        </item>
+        <item hide="value6"/>
+        <item hide="value7"/>
+        <item hide="value8"/>
+      </combo>
+      <checkbox label="Interrupt Enable" define="ADC1.CH$IDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+        <checkbox label="Enable Interrupt" define="ADC1.IEN0.IEN_CH$IDX$" header="isr_defines.h"/>
+        <combo label="Node Selection" define="ADC1.INP$INTREGIDX$.INP_CH$IDX$" header="isr_defines.h">
+          <item label="IRQ14" override="value1" lockon="CPU.NVIC_ISER.IRQEN14=1"/>
+          <item label="IRQ15" override="value2" lockon="CPU.NVIC_ISER.IRQEN15=1"/>
+          <item label="IRQ16" override="value3" lockon="CPU.NVIC_ISER.IRQEN16=1"/>
+          <item label="IRQ17" override="value4" lockon="CPU.NVIC_ISER.IRQEN17=1"/>
+        </combo>
+        <edit label="Callback" define="ADC1.CH$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+      </checkbox>
+    </header>
+  </treecontainer>
+</ifxmlcfg>

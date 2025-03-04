@@ -7,13 +7,14 @@ __at(0x1600) uint8 Scr_WakeupReason;
 __at(0x1601) uint8 Scr_Counter;
 __at(0x1602) uint8 Scr_IsrCounter1;
 __at(0x1603) uint8 Scr_IsrCounter2;
+__at(0x1604) uint8 Scr_InitCnt;
 
 void Scr_WCAN_Interrupt(void) __interrupt (ECAN);
 void Scr_NMIECC_Interrupt(void) __interrupt (NMIRAMECC);
 
 void main()
 {
-    Scr_Counter++;
+    Scr_InitCnt++;
     /////////////////////////////////////////////////////////////////////////////
     // Setup WCAN as wakeup source
     /////////////////////////////////////////////////////////////////////////////
@@ -21,9 +22,14 @@ void main()
     // Set pads to input mode, pull-up enable
     SCR_IO_PAGE = 0x1;
     // Pull-up control before enable
-    SCR_P00_IOCR2 = 0x20 ; // WCANRXDG(P33.02)
+    //SCR_P00_IOCR7 = 0x2 ; // WCANRXDG(P33.07)
+    //SCR_P00_IOCR6 = 0x10 ; // WCANRXDG(P33.06)
+
     SCR_IO_PAGE = 0x2;
-    SCR_P00_PDISC = 0x04 ; // WCANRXDG(P33.02)
+    SCR_P00_PDISC = 0x00 ; // WCANRXDG(P33.07)
+
+
+
     SCR_SCU_PAGE = 0x1;
     SCR_SCU_RSTCON = 0x1 ; // Disable WDT and ECC reset
     SCR_SCU_STDBYWKP = 0x4; // Select WCAN as wakeup source
@@ -69,11 +75,11 @@ void main()
     SCR_WCAN_ID0_CTRL = 0x00;
     SCR_WCAN_ID1_CTRL = 0x00;
     SCR_WCAN_ID2_CTRL = 0x00;//0x6f ;
-    SCR_WCAN_ID3_CTRL = 0x00;//0x6f ; // RTR=0 ; IDE = 0
-    SCR_WCAN_MASK_ID0_CTRL = 0xFF ;
-    SCR_WCAN_MASK_ID1_CTRL = 0xFF ;
-    SCR_WCAN_MASK_ID2_CTRL = 0xFF ;
-    SCR_WCAN_MASK_ID3_CTRL = 0xFF ;
+    SCR_WCAN_ID3_CTRL = 0x10;//0x6f ; // RTR=0 ; IDE = 0
+    SCR_WCAN_MASK_ID0_CTRL = 0 ;
+    SCR_WCAN_MASK_ID1_CTRL = 0 ;
+//    SCR_WCAN_MASK_ID2_CTRL = 0xFF ;
+//    SCR_WCAN_MASK_ID3_CTRL = 0xFF ;
     SCR_WCAN_PAGE = 0x3 ;
     SCR_WCAN_DATA7_CTRL = 0 ; // Data Frame = 0x01 23 45 67 89 ab cd ef (byte8...byte1)
     SCR_WCAN_DATA6_CTRL = 0 ;
@@ -88,16 +94,16 @@ void main()
      ********************************************/
     SCR_WCAN_PAGE = 0x0 ;
     SCR_WCAN_CFG |= ((0<<3)|(1<<2)|(0<<0)); //set CCE=0, SELWK_EN=1, WCAN_EN=0
-    Scr_Counter++;
+    Scr_InitCnt++;
     /********************************************
      * 8. Wait until INTESTAT0.SWKACK = 1
      ********************************************/
     SCR_WCAN_PAGE = 0x1 ;
-    while ((SCR_WCAN_INTESTAT0 & 0x1) != 0x1) {Scr_Counter++; } ; // selective wake up enable protocol handle is activated
+    while ((SCR_WCAN_INTESTAT0 & 0x1) != 0x1) {Scr_InitCnt++; } ; // selective wake up enable protocol handle is activated
 
     while(1)
     {
-        //Scr_Counter++;
+        Scr_Counter++;
     }
 }
 

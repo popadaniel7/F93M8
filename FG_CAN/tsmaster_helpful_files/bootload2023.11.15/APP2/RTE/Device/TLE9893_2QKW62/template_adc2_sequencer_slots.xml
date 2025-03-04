@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_adc2_sequencer_slots.xml                                          -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-10-23, DM:   Initial version                                      -->
+<!-- V0.0.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Sequencer Slot Template -->
+<!-- Parameters: -->
+<!--   SQIDX, range 0..3 -->
+<!--   SLIDX, range 0..3 -->
+<ifxmlcfg version="2.6.2">
+  <checksum>591664fee61e76546fc36f9440ff04166d8defd1d2d2abc68f0380f03f147da3</checksum>
+  <version label="V0.0.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <var define="ADC2.S$SQIDX$S$SLIDX$_CH" svd="0" default="0" header="temp_defines.h"/>
+  <var define="ADC2.S$SQIDX$S$SLIDX$_CHSEL" svd="0" default="0" header="temp_defines.h"/>
+  <var define="ADC2.S$SQIDX$S$SLIDX$_TICKS" svd="0" default="0" header="temp_defines.h"/>
+  <edit define="ADC2.S$SQIDX$S$SLIDX$_NAME_TXT" visible="false" svd="0" default="(not configured yet)" header=""/>
+  <combo label="Slots" define="ADC2.SQSLOT$SQIDX$_CHSEL$SLIDX$_user" svd="0" default="label=Channel 13 selected" header="temp_defines.h">
+    <item label="Channel 0 selected" value="0"/>
+    <item label="Channel 1 selected" value="1"/>
+    <item label="Channel 2 selected" value="2"/>
+    <item label="Channel 3 selected" value="3"/>
+    <item label="Channel 4 selected" value="4"/>
+    <item label="Channel 5 selected" value="5"/>
+    <item label="Channel 6 selected" value="6"/>
+    <item label="Channel 7 selected" value="7"/>
+    <item label="Channel 8 selected" value="8"/>
+    <item label="Channel 9 selected" value="9"/>
+    <item label="Channel 10 selected" value="10"/>
+    <item label="Channel 11 selected" value="11"/>
+    <item label="Channel 12 selected" value="12"/>
+    <item label="Channel 13 selected" value="13"/>
+    <item label="Channel 14 selected" value="14"/>
+    <item label="none" value="15"/>
+  </combo>
+  <math visible="false" define="ADC2.SQSLOT$SQIDX$.CHSEL$SLIDX$" formula="ADC2.SQSLOT$SQIDX$_CHSEL$SLIDX$_user==15?0:ADC2.SQSLOT$SQIDX$_CHSEL$SLIDX$_user" header="adc2_defines.h"/>
+</ifxmlcfg>

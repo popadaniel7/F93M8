@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_adc1_channel.xml                                                  -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!-- V0.1.2: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project, otherwise    -->
+<!--                           hide the entries                                     -->
+<!-- V0.1.3: 2020-11-18, JO:   EP-609: Resorted items in Input Selection            -->
+<!-- V0.1.4: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!-- V0.2.0: 2020-12-16, BG:   EP-647: Restructured module with Python              -->
+<!--                           Renamed "Channel Repetition" into "Number of         -->
+<!--                           Measurements"                                        -->
+<!-- V0.2.1: 2021-03-04, BG:   EP-727: Added startcond for MON2 and MON3 as inputs  -->
+<!--                           (only available in 64 pins variants)                 -->
+<!-- V0.3.0: 2021-03-09, JO:   EP-734: Updated CW minimal version to 2.6.3,         -->
+<!--                           Added usage of setdefine feature that was introduced -->
+<!--                           in Config Wizard version 2.6.3                       -->
+<!-- V0.3.1: 2021-03-23, BG:   EP-750: Moved attenuator definition from xml to      -->
+<!--                           the Python script                                    -->
+<!-- V0.3.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Channel Template -->
+<!-- Parameters: -->
+<!--   IDX, range 0..19 -->
+<!--   INTREGIDX, range 0..1 -->
+
+<ifxmlcfg version="2.6.3">
+  <checksum>d339ba046f13e5125da495b97efbd36003d07ee96bea9432c7e89284c5c85730</checksum>
+  <version label="V0.3.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <treecontainer label="Channel $IDX$" headerlabels="Item;Value;" desc="Channel $IDX$ Config" columnwidths="250;300;1">
+    <header file="adc1_defines.h">
+      <var define="ADC1.ATTENUATOR$IDX$" svd="0" header="temp_defines.h"/>
+      <combo label="Input Selection" define="ADC1.CHCFG$IDX$.INSEL">
+        <item label="VS (3..25V)"           value="0"  override="value1" />
+        <item label="VS (3..35V)"           value="1"  override="value2" />
+        <item label="VDH (3..25V)"          value="2"  override="value3" />
+        <item label="VDH (3..35V)"          value="3"  override="value4" />
+        <item label="SH1 (Motor Contact 1)" value="5"  override="value6" />
+        <item label="SH2 (Motor Contact 2)" value="7"  override="value8" />
+        <item label="SH3 (Motor Contact 3)" value="9"  override="value10"/>
+        <item label="MON1 (3..25V)"         value="10" override="value11"/>
+        <item label="MON1 (3..35V)"         value="11" override="value12"/>
+        <item label="MON2 (3..25V) (*)"     value="12" override="value13" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="MON2 (3..25V) (*)"     value="12" hide="value13"     startcond="UC_FEATURE_64PIN==0"/>
+        <item label="MON2 (3..35V) (*)"     value="13" override="value14" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="MON2 (3..35V) (*)"     value="13" hide="value14"     startcond="UC_FEATURE_64PIN==0"/>
+        <item label="MON3 (3..25V) (*)"     value="14" override="value15" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="MON3 (3..25V) (*)"     value="14" hide="value15"     startcond="UC_FEATURE_64PIN==0"/>
+        <item label="MON3 (3..35V) (*)"     value="15" override="value16" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="MON3 (3..35V) (*)"     value="15" hide="value16"     startcond="UC_FEATURE_64PIN==0"/>
+        <item label="Ref. Volt. 1.2V"       value="16" override="value17"/>
+        <item label="VDDEXT"                value="17" override="value18"/>
+        <item label="CSA"                   value="18" override="value19"/>
+        <item label="P2.0"                  value="19" override="value20" lockon="GPIO.P2_INDIS.INDIS0=1"/>
+        <item label="P2.1"                  value="20" override="value21" lockon="GPIO.P2_INDIS.INDIS1=1"/>
+        <item label="P2.7 (*)"              value="21" override="value22" lockon="GPIO.P2_INDIS.INDIS7=1" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="P2.7 (*)"              value="21" hide="value22"                                     startcond="UC_FEATURE_64PIN==0"/>
+        <item label="P2.3"                  value="22" override="value23" lockon="GPIO.P2_INDIS.INDIS3=1"/>
+        <item label="P2.4"                  value="23" override="value24" lockon="GPIO.P2_INDIS.INDIS4=1"/>
+        <item label="P2.5"                  value="24" override="value25" lockon="GPIO.P2_INDIS.INDIS5=1"/>
+        <item label="P2.6"                  value="25" override="value26" lockon="GPIO.P2_INDIS.INDIS6=1"/>
+        <item label="P2.2"                  value="26" override="value27" lockon="GPIO.P2_INDIS.INDIS2=1"/>
+        <item hide="value5"/>
+        <item hide="value7"/>
+        <item hide="value9"/>
+        <item hide="value28"/>
+        <item hide="value29"/>
+        <item hide="value30"/>
+        <item hide="value31"/>
+        <item hide="value32"/>
+        <item hide="value33"/>
+      </combo>
+      <combo label="Conversion Class Selection" define="ADC1.CHCFG$IDX$.CLASSEL" default="label=Conversion Class 0">
+        <item label="Conversion Class 0" value="0" override="value1"/>
+        <item label="Conversion Class 1" value="1" override="value2"/>
+        <item label="Conversion Class 2" value="2" override="value3"/>
+        <item label="Conversion Class 3" value="3" override="value4"/>
+      </combo>
+      <spinbox label="Number of Measurements [1..16]" define="ADC1.CHCFG$IDX$_REPCH" svd="0" range="1;16" step="1"/>
+      <math visible="false" define="ADC1.CHCFG$IDX$.CHREP" formula="ADC1.CHCFG$IDX$_REPCH-1"/>
+      <combo label="Filter Channel Selection" define="ADC1.CHCFG$IDX$.FILSEL" default="label=none">
+        <item label="Filter Channel 0" value="0" override="value1"/>
+        <item label="Filter Channel 1" value="1" override="value2"/>
+        <item label="Filter Channel 2" value="2" override="value3"/>
+        <item label="Filter Channel 3" value="3" override="value4"/>
+        <item label="none" value="4" override="value5"/>
+        <item hide="value6"/>
+        <item hide="value7"/>
+        <item hide="value8"/>
+      </combo>
+      <combo label="Compare Channel Selection" define="ADC1.CHCFG$IDX$.CMPSEL" default="label=none">
+        <item label="Compare Channel 0" value="0" override="value1"/>
+        <item label="Compare Channel 1" value="1" override="value2"/>
+        <item label="Compare Channel 2" value="2" override="value3"/>
+        <item label="Compare Channel 3" value="3" override="value4"/>
+        <item label="none" value="4" override="value5"/>
+        <item hide="value6"/>
+        <item hide="value7"/>
+        <item hide="value8"/>
+      </combo>
+      <checkbox label="Interrupt" define="ADC1.CH$IDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+        <checkbox label="Enable Interrupt" define="ADC1.IEN0.IEN_CH$IDX$" header="isr_defines.h"/>
+        <combo label="Node Selection" define="ADC1.INP$INTREGIDX$.INP_CH$IDX$" header="isr_defines.h">
+          <item label="ADC1_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN14=1"/>
+          <item label="ADC1_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN15=1"/>
+          <item label="ADC1_INP2_NVIC_IRQn" override="value3" lockon="CPU.NVIC_ISER.IRQEN16=1"/>
+          <item label="ADC1_INP3_NVIC_IRQn" override="value4" lockon="CPU.NVIC_ISER.IRQEN17=1"/>
+        </combo>
+        <edit label="Callback" define="ADC1.CH$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+      </checkbox>
+    </header>
+  </treecontainer>
+</ifxmlcfg>

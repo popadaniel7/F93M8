@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_sdadc_interrupt.xml                                               -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>98ecb50e84f0db7ccde6b12c840e399b1c9bca671dd4a5780a5b6d1f0ff79855</checksum>
+  <version label="V0.1.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <branch label="Channel $IDX$">
+    <combo label="Node Selection" define="SCU.INP3.INP_SDADC$IDX$" header="isr_defines.h">
+      <item label="BEMF_SDADC_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN18=1"/>
+      <item label="BEMF_SDADC_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN19=1"/>
+    </combo>
+    <checkbox label="Result" define="SDADC.RES$IDX$_INT_EN" setDef="SDADC_UPDATE_CH$IDX$.run=1" setDefInv="SDADC_UPDATE_CH$IDX$.run=1" uielement="branch" svd="0" header="isr_defines.h">      
+      <checkbox label="Enable Interrupt" define="SDADC.IEN.RES$IDX$_EN" header="isr_defines.h">
+        <action event="checked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+        <action event="unchecked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+      </checkbox>
+      <edit label="Callback" define="SDADC.RES$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+      <combo label="Node Selection" define="SDADC.INP.RES$IDX$_INP" header="isr_defines.h">
+        <item label="IRQ0" override="value1" lockon="SCU.INP3.INP_SDADC$IDX$=0"/>
+        <item label="IRQ1" override="value2" lockon="SCU.INP3.INP_SDADC$IDX$=1"/>
+      </combo>
+    </checkbox> 
+    <checkbox label="Upper Compare Threshold" define="SDADC.CMP$IDX$_UP_INT_EN" setDef="SDADC_UPDATE_CH$IDX$.run=1" setDefInv="SDADC_UPDATE_CH$IDX$.run=1" uielement="branch" svd="0" header="isr_defines.h">      
+      <checkbox label="Enable Interrupt" define="SDADC.IEN.CMP$IDX$_UP_EN" header="isr_defines.h">
+        <action event="checked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+        <action event="unchecked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+      </checkbox>
+      <edit label="Callback" define="SDADC.CMP$IDX$_UP_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+      <combo label="Node Selection" define="SDADC.INP.CMP$IDX$_UP_INP" header="isr_defines.h">
+        <item label="IRQ0" override="value1" lockon="SCU.INP3.INP_SDADC$IDX$=0"/>
+        <item label="IRQ1" override="value2" lockon="SCU.INP3.INP_SDADC$IDX$=1"/>
+      </combo>
+    </checkbox> 
+    <checkbox label="Lower Compare Threshold" define="SDADC.CMP$IDX$_LO_INT_EN" setDef="SDADC_UPDATE_CH$IDX$.run=1" setDefInv="SDADC_UPDATE_CH$IDX$.run=1" uielement="branch" svd="0" header="isr_defines.h">      
+      <checkbox label="Enable Interrupt" define="SDADC.IEN.CMP$IDX$_LO_EN" header="isr_defines.h">
+        <action event="checked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+        <action event="unchecked" cmd="setDef" data="SDADC_UPDATE_CH$IDX$.run=1"/>
+      </checkbox>
+      <edit label="Callback" define="SDADC.CMP$IDX$_LO_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+      <combo label="Node Selection" define="SDADC.INP.CMP$IDX$_LO_INP" header="isr_defines.h">
+        <item label="IRQ0" override="value1" lockon="SCU.INP3.INP_SDADC$IDX$=0"/>
+        <item label="IRQ1" override="value2" lockon="SCU.INP3.INP_SDADC$IDX$=1"/>
+      </combo>
+    </checkbox>
+  </branch>
+</ifxmlcfg>

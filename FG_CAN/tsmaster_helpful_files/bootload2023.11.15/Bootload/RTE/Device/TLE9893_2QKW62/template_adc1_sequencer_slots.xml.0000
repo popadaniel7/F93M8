@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_adc1_sequencer_slots.xml                                          -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<!-- Sequencer Slot Template -->
+<!-- Parameters: -->
+<!--   SQIDX, range 0..3 -->
+<!--   SLIDX, range 0..3 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>f8673b0a624b6472292faa48fc14a4d48d6c8abf6e2ca6e6950c4cf15682906d</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <groupcontainer>
+    <combo define="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$" default="label=Channel 0 selected" setdef="ADC1.TIM_SQ_UPDATE.run=1" header="adc1_defines.h"/>
+    <timer define="ADC1.TIM_SQ$SQIDX$SL$SLIDX$" visible="false" svd="0" interval="1" singleShot="1" run="0" header="">
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==0.*ADC1.CONFIGURED0==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG0.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==1.*ADC1.CONFIGURED1==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG1.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==2.*ADC1.CONFIGURED2==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG2.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==3.*ADC1.CONFIGURED3==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG3.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==4.*ADC1.CONFIGURED4==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG4.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==5.*ADC1.CONFIGURED5==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG5.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==6.*ADC1.CONFIGURED6==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG6.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==7.*ADC1.CONFIGURED7==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG7.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==8.*ADC1.CONFIGURED8==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG8.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==9.*ADC1.CONFIGURED9==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG9.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==10.*ADC1.CONFIGURED10==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG10.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==11.*ADC1.CONFIGURED11==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG11.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==12.*ADC1.CONFIGURED12==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG12.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==13.*ADC1.CONFIGURED13==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG13.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==14.*ADC1.CONFIGURED14==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG14.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==15.*ADC1.CONFIGURED15==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG15.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==16.*ADC1.CONFIGURED16==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG16.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==17.*ADC1.CONFIGURED17==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG17.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==18.*ADC1.CONFIGURED18==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG18.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==19.*ADC1.CONFIGURED19==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=ADC1.CHCFG19.INSEL.label"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==0.*ADC1.CONFIGURED0==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH0;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG0.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==1.*ADC1.CONFIGURED1==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH1;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG1.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==2.*ADC1.CONFIGURED2==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH2;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG2.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==3.*ADC1.CONFIGURED3==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH3;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG3.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==4.*ADC1.CONFIGURED4==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH4;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG4.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==5.*ADC1.CONFIGURED5==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH5;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG5.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==6.*ADC1.CONFIGURED6==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH6;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG6.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==7.*ADC1.CONFIGURED7==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH7;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG7.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==8.*ADC1.CONFIGURED8==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH8;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG8.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==9.*ADC1.CONFIGURED9==1"   event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH9;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG9.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==10.*ADC1.CONFIGURED10==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH10;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG10.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==11.*ADC1.CONFIGURED11==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH11;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG11.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==12.*ADC1.CONFIGURED12==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH12;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG12.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==13.*ADC1.CONFIGURED13==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH13;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG13.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==14.*ADC1.CONFIGURED14==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH14;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG14.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==15.*ADC1.CONFIGURED15==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH15;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG15.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==16.*ADC1.CONFIGURED16==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH16;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG16.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==17.*ADC1.CONFIGURED17==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH17;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG17.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==18.*ADC1.CONFIGURED18==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH18;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG18.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==19.*ADC1.CONFIGURED19==1" event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_TICKS=ADC1.ALLTICKS_CH19;ADC1.S$SQIDX$S$SLIDX$_CHSEL=ADC1.CHCFG19.INSEL;ADC1.S$SQIDX$S$SLIDX$_BOXCOLOR=ADC1.GREEN"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==0"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=0"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==1"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=1"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==2"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=2"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==3"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=3"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==4"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=4"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==5"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=5"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==6"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=6"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==7"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=7"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==8"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=8"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==9"                        event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=9"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==10"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=10"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==11"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=11"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==12"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=12"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==13"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=13"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==14"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=14"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==15"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=15"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==16"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=16"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==17"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=17"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==18"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=18"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==19"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=19"/>
+      <action cond="ADC1.SQSLOT$SQIDX$.CHSEL$SLIDX$==20"                       event="changed" cmd="setDef" data="ADC1.S$SQIDX$S$SLIDX$_CH=255;ADC1.S$SQIDX$S$SLIDX$_TICKS=0;ADC1.S$SQIDX$S$SLIDX$_NAME_TXT=---"/>
+      <action event="changed" cmd="setDef" data="ADC1.SQGFX_UPDATE2=ADC1.SQGFX_UPDATE"/>
+      <action event="changed" cmd="setDef" data="ADC1.SQBlock.update=1"/>
+    </timer>
+  </groupcontainer>
+</ifxmlcfg>

@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file icw_ocn_dma.xml                                                            -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version (interrupts only)                    -->
+<!-- V0.0.2: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.0.3: 2021-05-07, BG:   EP-685: Added DMA support                            -->
+<!-- V0.0.4: 2021-10-19, JO:   EP-963: Added 'Additional notes'                     -->
+<!-- V0.0.5: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!-- V0.0.6: 2022-06-22, JO:   EP-1146: Added Enable DMA Master                     -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.6.2">
+  <checksum>a0467fe319eee701a6787bfe4d2036b95112057a795775100f4d8bbfd1a37060</checksum>
+  <version label="V0.0.6"/>
+  <verticalcontainer label="DMA">
+    <header file="dma_defines.h">
+      <timer visible="false" define="DMA_INIT" svd="0" interval="1" singleShot="1" run="1" header="">
+        <action event="changed" cmd="setDef" data="DMA_UPDATE.run=1"/>
+      </timer>
+      <timer visible="false" define="DMA_UPDATE" svd="0" interval="1" singleShot="1" run="0" header="">
+        <!-- DMA Channel 0 -->
+        <action cond="DMA.CH0_MODULE==0" event="changed" cmd="setDef" data="DMA.CH0_EVENT_CONT.visible=0;DMA.CH0_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH0_MODULE==1" event="changed" cmd="setDef" data="DMA.CH0_EVENT_CONT.visible=1;DMA.CH0_CFG_CONT.visible=1;DMA.CH0_EVENT_CCU7.visible=1;DMA.CH0_EVENT_GPT12.visible=0;DMA.CH0_EVENT_SSC0.visible=0;DMA.CH0_EVENT_UART0.visible=0;DMA.CH0_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH0_MODULE==2" event="changed" cmd="setDef" data="DMA.CH0_EVENT_CONT.visible=1;DMA.CH0_CFG_CONT.visible=1;DMA.CH0_EVENT_CCU7.visible=0;DMA.CH0_EVENT_GPT12.visible=1;DMA.CH0_EVENT_SSC0.visible=0;DMA.CH0_EVENT_UART0.visible=0;DMA.CH0_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH0_MODULE==3" event="changed" cmd="setDef" data="DMA.CH0_EVENT_CONT.visible=1;DMA.CH0_CFG_CONT.visible=1;DMA.CH0_EVENT_CCU7.visible=0;DMA.CH0_EVENT_GPT12.visible=0;DMA.CH0_EVENT_SSC0.visible=1;DMA.CH0_EVENT_UART0.visible=0;DMA.CH0_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH0_MODULE==4" event="changed" cmd="setDef" data="DMA.CH0_EVENT_CONT.visible=1;DMA.CH0_CFG_CONT.visible=1;DMA.CH0_EVENT_CCU7.visible=0;DMA.CH0_EVENT_GPT12.visible=0;DMA.CH0_EVENT_SSC0.visible=0;DMA.CH0_EVENT_UART0.visible=1;DMA.CH0_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH0_MODULE==5" event="changed" cmd="setDef" data="DMA.CH0_EVENT_CONT.visible=1;DMA.CH0_CFG_CONT.visible=1;DMA.CH0_EVENT_CCU7.visible=0;DMA.CH0_EVENT_GPT12.visible=0;DMA.CH0_EVENT_SSC0.visible=0;DMA.CH0_EVENT_UART0.visible=0;DMA.CH0_EVENT_MULTICAN.visible=1"/>
+        <!-- DMA Channel 1 -->
+        <action cond="DMA.CH1_MODULE==0" event="changed" cmd="setDef" data="DMA.CH1_EVENT_CONT.visible=0;DMA.CH1_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH1_MODULE==1" event="changed" cmd="setDef" data="DMA.CH1_EVENT_CONT.visible=1;DMA.CH1_CFG_CONT.visible=1;DMA.CH1_EVENT_CCU7.visible=1;DMA.CH1_EVENT_GPT12.visible=0;DMA.CH1_EVENT_SSC0.visible=0;DMA.CH1_EVENT_UART0.visible=0;DMA.CH1_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH1_MODULE==2" event="changed" cmd="setDef" data="DMA.CH1_EVENT_CONT.visible=1;DMA.CH1_CFG_CONT.visible=1;DMA.CH1_EVENT_CCU7.visible=0;DMA.CH1_EVENT_GPT12.visible=1;DMA.CH1_EVENT_SSC0.visible=0;DMA.CH1_EVENT_UART0.visible=0;DMA.CH1_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH1_MODULE==3" event="changed" cmd="setDef" data="DMA.CH1_EVENT_CONT.visible=1;DMA.CH1_CFG_CONT.visible=1;DMA.CH1_EVENT_CCU7.visible=0;DMA.CH1_EVENT_GPT12.visible=0;DMA.CH1_EVENT_SSC0.visible=1;DMA.CH1_EVENT_UART0.visible=0;DMA.CH1_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH1_MODULE==4" event="changed" cmd="setDef" data="DMA.CH1_EVENT_CONT.visible=1;DMA.CH1_CFG_CONT.visible=1;DMA.CH1_EVENT_CCU7.visible=0;DMA.CH1_EVENT_GPT12.visible=0;DMA.CH1_EVENT_SSC0.visible=0;DMA.CH1_EVENT_UART0.visible=1;DMA.CH1_EVENT_MULTICAN.visible=0"/>
+        <action cond="DMA.CH1_MODULE==5" event="changed" cmd="setDef" data="DMA.CH1_EVENT_CONT.visible=1;DMA.CH1_CFG_CONT.visible=1;DMA.CH1_EVENT_CCU7.visible=0;DMA.CH1_EVENT_GPT12.visible=0;DMA.CH1_EVENT_SSC0.visible=0;DMA.CH1_EVENT_UART0.visible=0;DMA.CH1_EVENT_MULTICAN.visible=1"/>
+        <!-- DMA Channel 2 -->
+        <action cond="DMA.CH2_MODULE==0" event="changed" cmd="setDef" data="DMA.CH2_EVENT_CONT.visible=0;DMA.CH2_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH2_MODULE==1" event="changed" cmd="setDef" data="DMA.CH2_EVENT_CONT.visible=1;DMA.CH2_CFG_CONT.visible=1;DMA.CH2_EVENT_CCU7.visible=1;DMA.CH2_EVENT_ADC1.visible=0;DMA.CH2_EVENT_SDADC.visible=0;DMA.CH2_EVENT_GPT12.visible=0;DMA.CH2_EVENT_SSC0.visible=0;DMA.CH2_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH2_MODULE==2" event="changed" cmd="setDef" data="DMA.CH2_EVENT_CONT.visible=1;DMA.CH2_CFG_CONT.visible=1;DMA.CH2_EVENT_CCU7.visible=0;DMA.CH2_EVENT_ADC1.visible=1;DMA.CH2_EVENT_SDADC.visible=0;DMA.CH2_EVENT_GPT12.visible=0;DMA.CH2_EVENT_SSC0.visible=0;DMA.CH2_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH2_MODULE==3" event="changed" cmd="setDef" data="DMA.CH2_EVENT_CONT.visible=1;DMA.CH2_CFG_CONT.visible=1;DMA.CH2_EVENT_CCU7.visible=0;DMA.CH2_EVENT_ADC1.visible=0;DMA.CH2_EVENT_SDADC.visible=1;DMA.CH2_EVENT_GPT12.visible=0;DMA.CH2_EVENT_SSC0.visible=0;DMA.CH2_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH2_MODULE==4" event="changed" cmd="setDef" data="DMA.CH2_EVENT_CONT.visible=1;DMA.CH2_CFG_CONT.visible=1;DMA.CH2_EVENT_CCU7.visible=0;DMA.CH2_EVENT_ADC1.visible=0;DMA.CH2_EVENT_SDADC.visible=0;DMA.CH2_EVENT_GPT12.visible=1;DMA.CH2_EVENT_SSC0.visible=0;DMA.CH2_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH2_MODULE==5" event="changed" cmd="setDef" data="DMA.CH2_EVENT_CONT.visible=1;DMA.CH2_CFG_CONT.visible=1;DMA.CH2_EVENT_CCU7.visible=0;DMA.CH2_EVENT_ADC1.visible=0;DMA.CH2_EVENT_SDADC.visible=0;DMA.CH2_EVENT_GPT12.visible=0;DMA.CH2_EVENT_SSC0.visible=1;DMA.CH2_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH2_MODULE==6" event="changed" cmd="setDef" data="DMA.CH2_EVENT_CONT.visible=1;DMA.CH2_CFG_CONT.visible=1;DMA.CH2_EVENT_CCU7.visible=0;DMA.CH2_EVENT_ADC1.visible=0;DMA.CH2_EVENT_SDADC.visible=0;DMA.CH2_EVENT_GPT12.visible=0;DMA.CH2_EVENT_SSC0.visible=0;DMA.CH2_EVENT_UART0.visible=1"/>
+        <!-- DMA Channel 3 -->
+        <action cond="DMA.CH3_MODULE==0" event="changed" cmd="setDef" data="DMA.CH3_EVENT_CONT.visible=0;DMA.CH3_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH3_MODULE==1" event="changed" cmd="setDef" data="DMA.CH3_EVENT_CONT.visible=1;DMA.CH3_CFG_CONT.visible=1;DMA.CH3_EVENT_CCU7.visible=1;DMA.CH3_EVENT_ADC1.visible=0;DMA.CH3_EVENT_SDADC.visible=0;DMA.CH3_EVENT_GPT12.visible=0;DMA.CH3_EVENT_SSC0.visible=0;DMA.CH3_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH3_MODULE==2" event="changed" cmd="setDef" data="DMA.CH3_EVENT_CONT.visible=1;DMA.CH3_CFG_CONT.visible=1;DMA.CH3_EVENT_CCU7.visible=0;DMA.CH3_EVENT_ADC1.visible=1;DMA.CH3_EVENT_SDADC.visible=0;DMA.CH3_EVENT_GPT12.visible=0;DMA.CH3_EVENT_SSC0.visible=0;DMA.CH3_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH3_MODULE==3" event="changed" cmd="setDef" data="DMA.CH3_EVENT_CONT.visible=1;DMA.CH3_CFG_CONT.visible=1;DMA.CH3_EVENT_CCU7.visible=0;DMA.CH3_EVENT_ADC1.visible=0;DMA.CH3_EVENT_SDADC.visible=1;DMA.CH3_EVENT_GPT12.visible=0;DMA.CH3_EVENT_SSC0.visible=0;DMA.CH3_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH3_MODULE==4" event="changed" cmd="setDef" data="DMA.CH3_EVENT_CONT.visible=1;DMA.CH3_CFG_CONT.visible=1;DMA.CH3_EVENT_CCU7.visible=0;DMA.CH3_EVENT_ADC1.visible=0;DMA.CH3_EVENT_SDADC.visible=0;DMA.CH3_EVENT_GPT12.visible=1;DMA.CH3_EVENT_SSC0.visible=0;DMA.CH3_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH3_MODULE==5" event="changed" cmd="setDef" data="DMA.CH3_EVENT_CONT.visible=1;DMA.CH3_CFG_CONT.visible=1;DMA.CH3_EVENT_CCU7.visible=0;DMA.CH3_EVENT_ADC1.visible=0;DMA.CH3_EVENT_SDADC.visible=0;DMA.CH3_EVENT_GPT12.visible=0;DMA.CH3_EVENT_SSC0.visible=1;DMA.CH3_EVENT_UART0.visible=0"/>
+        <action cond="DMA.CH3_MODULE==6" event="changed" cmd="setDef" data="DMA.CH3_EVENT_CONT.visible=1;DMA.CH3_CFG_CONT.visible=1;DMA.CH3_EVENT_CCU7.visible=0;DMA.CH3_EVENT_ADC1.visible=0;DMA.CH3_EVENT_SDADC.visible=0;DMA.CH3_EVENT_GPT12.visible=0;DMA.CH3_EVENT_SSC0.visible=0;DMA.CH3_EVENT_UART0.visible=1"/>
+        <!-- DMA Channel 4 -->
+        <action cond="DMA.CH4_MODULE==0" event="changed" cmd="setDef" data="DMA.CH4_EVENT_CONT.visible=0;DMA.CH4_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH4_MODULE==1" event="changed" cmd="setDef" data="DMA.CH4_EVENT_CONT.visible=1;DMA.CH4_CFG_CONT.visible=1;DMA.CH4_EVENT_CCU7.visible=1;DMA.CH4_EVENT_ADC1.visible=0;DMA.CH4_EVENT_SDADC.visible=0;DMA.CH4_EVENT_GPT12.visible=0;DMA.CH4_EVENT_SSC1.visible=0;DMA.CH4_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH4_MODULE==2" event="changed" cmd="setDef" data="DMA.CH4_EVENT_CONT.visible=1;DMA.CH4_CFG_CONT.visible=1;DMA.CH4_EVENT_CCU7.visible=0;DMA.CH4_EVENT_ADC1.visible=1;DMA.CH4_EVENT_SDADC.visible=0;DMA.CH4_EVENT_GPT12.visible=0;DMA.CH4_EVENT_SSC1.visible=0;DMA.CH4_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH4_MODULE==3" event="changed" cmd="setDef" data="DMA.CH4_EVENT_CONT.visible=1;DMA.CH4_CFG_CONT.visible=1;DMA.CH4_EVENT_CCU7.visible=0;DMA.CH4_EVENT_ADC1.visible=0;DMA.CH4_EVENT_SDADC.visible=1;DMA.CH4_EVENT_GPT12.visible=0;DMA.CH4_EVENT_SSC1.visible=0;DMA.CH4_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH4_MODULE==4" event="changed" cmd="setDef" data="DMA.CH4_EVENT_CONT.visible=1;DMA.CH4_CFG_CONT.visible=1;DMA.CH4_EVENT_CCU7.visible=0;DMA.CH4_EVENT_ADC1.visible=0;DMA.CH4_EVENT_SDADC.visible=0;DMA.CH4_EVENT_GPT12.visible=1;DMA.CH4_EVENT_SSC1.visible=0;DMA.CH4_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH4_MODULE==5" event="changed" cmd="setDef" data="DMA.CH4_EVENT_CONT.visible=1;DMA.CH4_CFG_CONT.visible=1;DMA.CH4_EVENT_CCU7.visible=0;DMA.CH4_EVENT_ADC1.visible=0;DMA.CH4_EVENT_SDADC.visible=0;DMA.CH4_EVENT_GPT12.visible=0;DMA.CH4_EVENT_SSC1.visible=1;DMA.CH4_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH4_MODULE==6" event="changed" cmd="setDef" data="DMA.CH4_EVENT_CONT.visible=1;DMA.CH4_CFG_CONT.visible=1;DMA.CH4_EVENT_CCU7.visible=0;DMA.CH4_EVENT_ADC1.visible=0;DMA.CH4_EVENT_SDADC.visible=0;DMA.CH4_EVENT_GPT12.visible=0;DMA.CH4_EVENT_SSC1.visible=0;DMA.CH4_EVENT_UART1.visible=1"/>
+        <!-- DMA Channel 5 -->
+        <action cond="DMA.CH5_MODULE==0" event="changed" cmd="setDef" data="DMA.CH5_EVENT_CONT.visible=0;DMA.CH5_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH5_MODULE==1" event="changed" cmd="setDef" data="DMA.CH5_EVENT_CONT.visible=1;DMA.CH5_CFG_CONT.visible=1;DMA.CH5_EVENT_CCU7.visible=1;DMA.CH5_EVENT_ADC1.visible=0;DMA.CH5_EVENT_SDADC.visible=0;DMA.CH5_EVENT_GPT12.visible=0;DMA.CH5_EVENT_SSC1.visible=0;DMA.CH5_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH5_MODULE==2" event="changed" cmd="setDef" data="DMA.CH5_EVENT_CONT.visible=1;DMA.CH5_CFG_CONT.visible=1;DMA.CH5_EVENT_CCU7.visible=0;DMA.CH5_EVENT_ADC1.visible=1;DMA.CH5_EVENT_SDADC.visible=0;DMA.CH5_EVENT_GPT12.visible=0;DMA.CH5_EVENT_SSC1.visible=0;DMA.CH5_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH5_MODULE==3" event="changed" cmd="setDef" data="DMA.CH5_EVENT_CONT.visible=1;DMA.CH5_CFG_CONT.visible=1;DMA.CH5_EVENT_CCU7.visible=0;DMA.CH5_EVENT_ADC1.visible=0;DMA.CH5_EVENT_SDADC.visible=1;DMA.CH5_EVENT_GPT12.visible=0;DMA.CH5_EVENT_SSC1.visible=0;DMA.CH5_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH5_MODULE==4" event="changed" cmd="setDef" data="DMA.CH5_EVENT_CONT.visible=1;DMA.CH5_CFG_CONT.visible=1;DMA.CH5_EVENT_CCU7.visible=0;DMA.CH5_EVENT_ADC1.visible=0;DMA.CH5_EVENT_SDADC.visible=0;DMA.CH5_EVENT_GPT12.visible=1;DMA.CH5_EVENT_SSC1.visible=0;DMA.CH5_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH5_MODULE==5" event="changed" cmd="setDef" data="DMA.CH5_EVENT_CONT.visible=1;DMA.CH5_CFG_CONT.visible=1;DMA.CH5_EVENT_CCU7.visible=0;DMA.CH5_EVENT_ADC1.visible=0;DMA.CH5_EVENT_SDADC.visible=0;DMA.CH5_EVENT_GPT12.visible=0;DMA.CH5_EVENT_SSC1.visible=1;DMA.CH5_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH5_MODULE==6" event="changed" cmd="setDef" data="DMA.CH5_EVENT_CONT.visible=1;DMA.CH5_CFG_CONT.visible=1;DMA.CH5_EVENT_CCU7.visible=0;DMA.CH5_EVENT_ADC1.visible=0;DMA.CH5_EVENT_SDADC.visible=0;DMA.CH5_EVENT_GPT12.visible=0;DMA.CH5_EVENT_SSC1.visible=0;DMA.CH5_EVENT_UART1.visible=1"/>
+        <!-- DMA Channel 6 -->
+        <action cond="DMA.CH6_MODULE==0" event="changed" cmd="setDef" data="DMA.CH6_EVENT_CONT.visible=0;DMA.CH6_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH6_MODULE==1" event="changed" cmd="setDef" data="DMA.CH6_EVENT_CONT.visible=1;DMA.CH6_CFG_CONT.visible=1;DMA.CH6_EVENT_ADC1.visible=1;DMA.CH6_EVENT_SDADC.visible=0;DMA.CH6_EVENT_T20.visible=0;DMA.CH6_EVENT_SSC1.visible=0;DMA.CH6_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH6_MODULE==2" event="changed" cmd="setDef" data="DMA.CH6_EVENT_CONT.visible=1;DMA.CH6_CFG_CONT.visible=1;DMA.CH6_EVENT_ADC1.visible=0;DMA.CH6_EVENT_SDADC.visible=1;DMA.CH6_EVENT_T20.visible=0;DMA.CH6_EVENT_SSC1.visible=0;DMA.CH6_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH6_MODULE==3" event="changed" cmd="setDef" data="DMA.CH6_EVENT_CONT.visible=1;DMA.CH6_CFG_CONT.visible=1;DMA.CH6_EVENT_ADC1.visible=0;DMA.CH6_EVENT_SDADC.visible=0;DMA.CH6_EVENT_T20.visible=1;DMA.CH6_EVENT_SSC1.visible=0;DMA.CH6_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH6_MODULE==4" event="changed" cmd="setDef" data="DMA.CH6_EVENT_CONT.visible=1;DMA.CH6_CFG_CONT.visible=1;DMA.CH6_EVENT_ADC1.visible=0;DMA.CH6_EVENT_SDADC.visible=0;DMA.CH6_EVENT_T20.visible=0;DMA.CH6_EVENT_SSC1.visible=1;DMA.CH6_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH6_MODULE==5" event="changed" cmd="setDef" data="DMA.CH6_EVENT_CONT.visible=1;DMA.CH6_CFG_CONT.visible=1;DMA.CH6_EVENT_ADC1.visible=0;DMA.CH6_EVENT_SDADC.visible=0;DMA.CH6_EVENT_T20.visible=0;DMA.CH6_EVENT_SSC1.visible=0;DMA.CH6_EVENT_UART1.visible=1"/>
+        <!-- DMA Channel 7 -->
+        <action cond="DMA.CH7_MODULE==0" event="changed" cmd="setDef" data="DMA.CH7_EVENT_CONT.visible=0;DMA.CH7_CFG_CONT.visible=0"/>
+        <action cond="DMA.CH7_MODULE==1" event="changed" cmd="setDef" data="DMA.CH7_EVENT_CONT.visible=1;DMA.CH7_CFG_CONT.visible=1;DMA.CH7_EVENT_ADC1.visible=1;DMA.CH7_EVENT_SDADC.visible=0;DMA.CH7_EVENT_T21.visible=0;DMA.CH7_EVENT_SSC1.visible=0;DMA.CH7_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH7_MODULE==2" event="changed" cmd="setDef" data="DMA.CH7_EVENT_CONT.visible=1;DMA.CH7_CFG_CONT.visible=1;DMA.CH7_EVENT_ADC1.visible=0;DMA.CH7_EVENT_SDADC.visible=1;DMA.CH7_EVENT_T21.visible=0;DMA.CH7_EVENT_SSC1.visible=0;DMA.CH7_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH7_MODULE==3" event="changed" cmd="setDef" data="DMA.CH7_EVENT_CONT.visible=1;DMA.CH7_CFG_CONT.visible=1;DMA.CH7_EVENT_ADC1.visible=0;DMA.CH7_EVENT_SDADC.visible=0;DMA.CH7_EVENT_T21.visible=1;DMA.CH7_EVENT_SSC1.visible=0;DMA.CH7_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH7_MODULE==4" event="changed" cmd="setDef" data="DMA.CH7_EVENT_CONT.visible=1;DMA.CH7_CFG_CONT.visible=1;DMA.CH7_EVENT_ADC1.visible=0;DMA.CH7_EVENT_SDADC.visible=0;DMA.CH7_EVENT_T21.visible=0;DMA.CH7_EVENT_SSC1.visible=1;DMA.CH7_EVENT_UART1.visible=0"/>
+        <action cond="DMA.CH7_MODULE==5" event="changed" cmd="setDef" data="DMA.CH7_EVENT_CONT.visible=1;DMA.CH7_CFG_CONT.visible=1;DMA.CH7_EVENT_ADC1.visible=0;DMA.CH7_EVENT_SDADC.visible=0;DMA.CH7_EVENT_T21.visible=0;DMA.CH7_EVENT_SSC1.visible=0;DMA.CH7_EVENT_UART1.visible=1"/>
+      </timer>
+      <!-- DMA ENABLE -->
+      <checkbox label="Enable DMA" define="DMA.GLOBCONF_EN" svd="0" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+        <action event="checked" cmd="setDef" data="DMA_TOP.enabled=1"/>
+        <action event="unchecked" cmd="setDef" data="DMA_TOP.enabled=0"/>
+      </checkbox>
+      <text label="Additional notes:"/>
+      <text label="- The DMA implementation of the LLD reserves the last 1KB of User Data in DSRAM for the DMA control structure!"/>
+      <text label="- The DMA can not operate on PSRAM --> make sure variables used by the DMA are placed correctly!"/>
+      <text label="- In order to use the DMA, either the checkbox 'Enable DMA Master' in 'General Settings' has to be checked, or the function 'DMA_enMaster' has to be called!"/>
+      <groupcontainer define="DMA_TOP">
+        <verticalcontainer>
+          <verticalcontainer visible="false">
+            <header file="scu_defines.h">
+            <spinbox define="SCU.DMAP_CCU7.T12CM70" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T12CM71" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T12CM72" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T12PM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T12ZM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T13CM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T13PM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T13ZM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T14CM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T14PM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T15CM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T15PM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T16CM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.T16PM" default="0"/>
+            <spinbox define="SCU.DMAP_CCU7.CHE" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES0" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES1" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES2" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES3" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES4" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES5" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES6" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_RES7" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_SQ0" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_SQ1" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_CMPLO" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.ADC1_CMPHI" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.SDADC_RES0" default="0"/>
+            <spinbox define="SCU.DMAP_ADC.SDADC_RES1" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.T2OV" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.T21OV" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.GPT12T2" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.GPT12T3" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.GPT12T4" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.GPT12T5" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.GPT12T6" default="0"/>
+            <spinbox define="SCU.DMAP_TIM.GPT12CR" default="0"/>
+            <spinbox define="SCU.DMAP_COM.SSC0_RIR" default="0"/>
+            <spinbox define="SCU.DMAP_COM.SSC0_TIR" default="0"/>
+            <spinbox define="SCU.DMAP_COM.SSC1_RIR" default="0"/>
+            <spinbox define="SCU.DMAP_COM.SSC1_TIR" default="0"/>
+            <spinbox define="SCU.DMAP_COM.UART0_RI" default="0"/>
+            <spinbox define="SCU.DMAP_COM.UART0_TI" default="0"/>
+            <spinbox define="SCU.DMAP_COM.UART1_RI" default="0"/>
+            <spinbox define="SCU.DMAP_COM.UART1_TI" default="0"/>
+            <spinbox define="SCU.DMAP_COM.CAN_IR0" default="0"/>
+            <spinbox define="SCU.DMAP_COM.CAN_IR1" default="0"/>
+            </header>
+          </verticalcontainer>
+          <groupcontainer label="General Settings" size="-1;170" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+            <treecontainer label="General Settings" headerlabels="Item;Value;" columnwidths="250;300;1">
+              <checkbox label="Enable DMA Master" define="DMA.DMA_CFG.MASTER_ENABLE" header="dma_defines.h"/>
+              <checkbox label="Error Interrupt" define="DMA.ERROR_INT_EN" svd="0" header="isr_defines.h" uielement="branch" expand="1">
+                <checkbox label="Enable Interrupt" define="SCU.DMAIEN.DMATRERREN" header="isr_defines.h"/>
+                <combo label="Node Selection" define="SCU.INP7.INP_DMATRERR" header="isr_defines.h">
+                  <item label="DMA_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN29=1"/>
+                  <item label="DMA_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN30=1"/>
+                </combo>
+                <edit label="Callback" define="DMA.ERROR_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+              </checkbox>
+            </treecontainer>
+          </groupcontainer>
+          <horizontalcontainer>
+            <!-- Timer to check if an event is selected -->
+            <timer visible="false" define="DMA.CHECK_EVENT" interval="0" singleShot="1" run="0" header="">
+              <action cond="(DMA.CH0_MODULE!=0).*(DMA.CH0_EVENT_CCU7==0).*(DMA.CH0_EVENT_GPT12==0).*(DMA.CH0_EVENT_SSC0==0).*(DMA.CH0_EVENT_UART0==0).*(DMA.CH0_EVENT_MULTICAN==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 0!)"/>
+              <action cond="(DMA.CH1_MODULE!=0).*(DMA.CH1_EVENT_CCU7==0).*(DMA.CH1_EVENT_GPT12==0).*(DMA.CH1_EVENT_SSC0==0).*(DMA.CH1_EVENT_UART0==0).*(DMA.CH1_EVENT_MULTICAN==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 1!)"/>
+              <action cond="(DMA.CH2_MODULE!=0).*(DMA.CH2_EVENT_CCU7==0).*(DMA.CH2_EVENT_ADC1==0).*(DMA.CH2_EVENT_SDADC==0).*(DMA.CH2_EVENT_GPT12==0).*(DMA.CH2_EVENT_SSC0==0).*(DMA.CH2_EVENT_UART0==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 2!)"/>
+              <action cond="(DMA.CH3_MODULE!=0).*(DMA.CH3_EVENT_CCU7==0).*(DMA.CH3_EVENT_ADC1==0).*(DMA.CH3_EVENT_SDADC==0).*(DMA.CH3_EVENT_GPT12==0).*(DMA.CH3_EVENT_SSC0==0).*(DMA.CH3_EVENT_UART0==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 3!)"/>
+              <action cond="(DMA.CH4_MODULE!=0).*(DMA.CH4_EVENT_CCU7==0).*(DMA.CH4_EVENT_ADC1==0).*(DMA.CH4_EVENT_SDADC==0).*(DMA.CH4_EVENT_GPT12==0).*(DMA.CH4_EVENT_SSC1==0).*(DMA.CH4_EVENT_UART1==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 4!)"/>
+              <action cond="(DMA.CH5_MODULE!=0).*(DMA.CH5_EVENT_CCU7==0).*(DMA.CH5_EVENT_ADC1==0).*(DMA.CH5_EVENT_SDADC==0).*(DMA.CH5_EVENT_GPT12==0).*(DMA.CH5_EVENT_SSC1==0).*(DMA.CH5_EVENT_UART1==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 5!)"/>
+              <action cond="(DMA.CH6_MODULE!=0).*(DMA.CH6_EVENT_ADC1==0).*(DMA.CH6_EVENT_SDADC==0).*(DMA.CH6_EVENT_T20==0).*(DMA.CH6_EVENT_SSC1==0).*(DMA.CH6_EVENT_UART1==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 6!)"/>
+              <action cond="(DMA.CH7_MODULE!=0).*(DMA.CH7_EVENT_ADC1==0).*(DMA.CH7_EVENT_SDADC==0).*(DMA.CH7_EVENT_T21==0).*(DMA.CH7_EVENT_SSC1==0).*(DMA.CH7_EVENT_UART1==0)" event="changed" cmd="runScript" data="MessageBox(Please select en event for Channel 7!)"/>
+            </timer>
+            <groupcontainer label="Channel 0" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="146;130;133">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH0_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CCU7"/>
+                    <item label="GPT12"/>
+                    <item label="SSC0"/>
+                    <item label="UART0"/>
+                    <item label="MultiCAN"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH0_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH0_EVENT_CCU7" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T12 Cmp Match 70A" lockon="SCU.DMAP_CCU7.T12CM70=1"/>
+                    <item label="T12 Cmp Match 72A" lockon="SCU.DMAP_CCU7.T12CM72=1"/>
+                    <item label="T12 Zero Match" lockon="SCU.DMAP_CCU7.T12ZM=1"/>
+                    <item label="T13 Period Match" lockon="SCU.DMAP_CCU7.T13PM=1"/>
+                    <item label="T14 Cmp Match" lockon="SCU.DMAP_CCU7.T14CM=1"/>
+                    <item label="T15 Cmp Match" lockon="SCU.DMAP_CCU7.T15CM=1"/>
+                    <item label="T16 Cmp Match" lockon="SCU.DMAP_CCU7.T16CM=1"/>
+                    <item label="CHE" lockon="SCU.DMAP_CCU7.CHE=1"/>
+                  </combo>
+                  <combo define="DMA.CH0_EVENT_GPT12" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="GPT1T2" lockon="SCU.DMAP_TIM.GPT12T2=1"/>
+                  </combo>
+                  <combo define="DMA.CH0_EVENT_SSC0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="TIR0" lockon="SCU.DMAP_COM.SSC0_TIR=1"/>
+                  </combo>
+                  <combo define="DMA.CH0_EVENT_UART0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RI" lockon="SCU.DMAP_COM.UART0_RI=1"/>
+                  </combo>
+                  <combo define="DMA.CH0_EVENT_MULTICAN" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CAN_IR0" lockon="SCU.DMAP_COM.CAN_IR0=1"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="0">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+            <groupcontainer label="Channel 1" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="240;127;60">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH1_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CCU7"/>
+                    <item label="GPT12"/>
+                    <item label="SSC0"/>
+                    <item label="UART0"/>
+                    <item label="MultiCAN"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH1_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH1_EVENT_CCU7" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T12 Cmp Match 71A" lockon="SCU.DMAP_CCU7.T12CM71=1"/>
+                    <item label="T12 Period Match" lockon="SCU.DMAP_CCU7.T12PM=1"/>
+                    <item label="T13 Cmp Match" lockon="SCU.DMAP_CCU7.T13CM=1"/>
+                    <item label="T13 Zero Match" lockon="SCU.DMAP_CCU7.T13ZM=1"/>
+                    <item label="T14 Period Match" lockon="SCU.DMAP_CCU7.T14PM=1"/>
+                    <item label="T15 Period Match" lockon="SCU.DMAP_CCU7.T15PM=1"/>
+                    <item label="T16 Period Match" lockon="SCU.DMAP_CCU7.T16PM=1"/>
+                  </combo>
+                  <combo define="DMA.CH1_EVENT_GPT12" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="GPT1T3" lockon="SCU.DMAP_TIM.GPT12T3=1"/>
+                  </combo>
+                  <combo define="DMA.CH1_EVENT_SSC0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RIR0" lockon="SCU.DMAP_COM.SSC0_RIR=1"/>
+                  </combo>
+                  <combo define="DMA.CH1_EVENT_UART0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="TI" lockon="SCU.DMAP_COM.UART0_TI=1"/>
+                  </combo>
+                  <combo define="DMA.CH1_EVENT_MULTICAN" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CAN_IR1" lockon="SCU.DMAP_COM.CAN_IR1=1"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="1">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+            <groupcontainer label="Channel 2" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="155;195;183">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH2_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CCU7"/>
+                    <item label="ADC1"/>
+                    <item label="SDADC"/>
+                    <item label="GPT12"/>
+                    <item label="SSC0"/>
+                    <item label="UART0"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH2_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH2_EVENT_CCU7" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T12 Cmp Match 70A" lockon="SCU.DMAP_CCU7.T12CM70=2"/>
+                    <item label="T12 Cmp Match 72A" lockon="SCU.DMAP_CCU7.T12CM72=2"/>
+                    <item label="T12 Zero Match" lockon="SCU.DMAP_CCU7.T12ZM=2"/>
+                    <item label="T13 Period Match" lockon="SCU.DMAP_CCU7.T13PM=2"/>
+                    <item label="T14 Cmp Match" lockon="SCU.DMAP_CCU7.T14CM=2"/>
+                    <item label="T15 Cmp Match" lockon="SCU.DMAP_CCU7.T15CM=2"/>
+                    <item label="T16 Cmp Match" lockon="SCU.DMAP_CCU7.T16CM=2"/>
+                    <item label="CHE" lockon="SCU.DMAP_CCU7.CHE=2"/>
+                  </combo>
+                  <combo define="DMA.CH2_EVENT_ADC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Channel 0" lockon="SCU.DMAP_ADC.ADC1_RES0=1"/>
+                    <item label="Channel 2" lockon="SCU.DMAP_ADC.ADC1_RES2=1"/>
+                    <item label="Channel 4" lockon="SCU.DMAP_ADC.ADC1_RES4=1"/>
+                    <item label="Channel 6" lockon="SCU.DMAP_ADC.ADC1_RES6=1"/>
+                    <item label="Sequence 0" lockon="SCU.DMAP_ADC.ADC1_SQ0=1"/>
+                    <item label="Cmp Low 0" lockon="SCU.DMAP_ADC.ADC1_CMPLO=1"/>
+                  </combo>
+                  <combo define="DMA.CH2_EVENT_SDADC" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Result 0" lockon="SCU.DMAP_ADC.SDADC_RES0=1"/>
+                  </combo>
+                  <combo define="DMA.CH2_EVENT_GPT12" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="GPT1T4" lockon="SCU.DMAP_TIM.GPT12T4=1"/>
+                  </combo>
+                  <combo define="DMA.CH2_EVENT_SSC0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>>
+                    <item label="TIR0" lockon="SCU.DMAP_COM.SSC0_TIR=2"/>
+                  </combo>
+                  <combo define="DMA.CH2_EVENT_UART0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RI" lockon="SCU.DMAP_COM.UART0_RI=2"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="2">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+            <groupcontainer label="Channel 3" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="129;33;97">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH3_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CCU7"/>
+                    <item label="ADC1"/>
+                    <item label="SDADC"/>
+                    <item label="GPT12"/>
+                    <item label="SSC0"/>
+                    <item label="UART0"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH3_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH3_EVENT_CCU7" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T12 Cmp Match 71A" lockon="SCU.DMAP_CCU7.T12CM71=2"/>
+                    <item label="T12 Period Match" lockon="SCU.DMAP_CCU7.T12PM=2"/>
+                    <item label="T13 Cmp Match" lockon="SCU.DMAP_CCU7.T13CM=2"/>
+                    <item label="T13 Zero Match" lockon="SCU.DMAP_CCU7.T13ZM=2"/>
+                    <item label="T14 Period Match" lockon="SCU.DMAP_CCU7.T14PM=2"/>
+                    <item label="T15 Period Match" lockon="SCU.DMAP_CCU7.T15PM=2"/>
+                    <item label="T16 Period Match" lockon="SCU.DMAP_CCU7.T16PM=2"/>
+                  </combo>
+                  <combo define="DMA.CH3_EVENT_ADC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Channel 1" lockon="SCU.DMAP_ADC.ADC1_RES1=1"/>
+                    <item label="Channel 3" lockon="SCU.DMAP_ADC.ADC1_RES3=1"/>
+                    <item label="Channel 5" lockon="SCU.DMAP_ADC.ADC1_RES5=1"/>
+                    <item label="Channel 7" lockon="SCU.DMAP_ADC.ADC1_RES7=1"/>
+                    <item label="Sequence 1" lockon="SCU.DMAP_ADC.ADC1_SQ1=1"/>
+                    <item label="Cmp Up 0" lockon="SCU.DMAP_ADC.ADC1_CMPHI=1"/>
+                  </combo>
+                  <combo define="DMA.CH3_EVENT_SDADC" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Result 1" lockon="SCU.DMAP_ADC.SDADC_RES1=1"/>
+                  </combo>
+                  <combo define="DMA.CH3_EVENT_GPT12" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="GPT2T5" lockon="SCU.DMAP_TIM.GPT12T5=1"/>
+                  </combo>
+                  <combo define="DMA.CH3_EVENT_SSC0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RIR0" lockon="SCU.DMAP_COM.SSC0_RIR=2"/>
+                  </combo>
+                  <combo define="DMA.CH3_EVENT_UART0" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="TI" lockon="SCU.DMAP_COM.UART0_TI=2"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="3">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <groupcontainer label="Channel 4" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;55;122">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH4_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CCU7"/>
+                    <item label="ADC1"/>
+                    <item label="SDADC"/>
+                    <item label="GPT12"/>
+                    <item label="SSC1"/>
+                    <item label="UART1"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH4_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH4_EVENT_CCU7" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T12 Cmp Match 70A" lockon="SCU.DMAP_CCU7.T12CM70=3"/>
+                    <item label="T12 Cmp Match 72A" lockon="SCU.DMAP_CCU7.T12CM72=3"/>
+                    <item label="T12 Zero Match" lockon="SCU.DMAP_CCU7.T12ZM=3"/>
+                    <item label="T13 Period Match" lockon="SCU.DMAP_CCU7.T13PM=3"/>
+                    <item label="T14 Cmp Match" lockon="SCU.DMAP_CCU7.T14CM=3"/>
+                    <item label="T15 Cmp Match" lockon="SCU.DMAP_CCU7.T15CM=3"/>
+                    <item label="T16 Cmp Match" lockon="SCU.DMAP_CCU7.T16CM=3"/>
+                    <item label="CHE" lockon="SCU.DMAP_CCU7.CHE=3"/>
+                  </combo>
+                  <combo define="DMA.CH4_EVENT_ADC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Channel 0" lockon="SCU.DMAP_ADC.ADC1_RES0=2"/>
+                    <item label="Channel 2" lockon="SCU.DMAP_ADC.ADC1_RES2=2"/>
+                    <item label="Channel 4" lockon="SCU.DMAP_ADC.ADC1_RES4=2"/>
+                    <item label="Channel 6" lockon="SCU.DMAP_ADC.ADC1_RES6=2"/>
+                    <item label="Sequence 0" lockon="SCU.DMAP_ADC.ADC1_SQ0=2"/>
+                    <item label="Cmp Low 0" lockon="SCU.DMAP_ADC.ADC1_CMPLO=2"/>
+                  </combo>
+                  <combo define="DMA.CH4_EVENT_SDADC" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Result 0" lockon="SCU.DMAP_ADC.SDADC_RES0=2"/>
+                  </combo>
+                  <combo define="DMA.CH4_EVENT_GPT12" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="GPT2T6" lockon="SCU.DMAP_TIM.GPT12T6=1"/>
+                  </combo>
+                  <combo define="DMA.CH4_EVENT_SSC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="TIR1" lockon="SCU.DMAP_COM.SSC1_TIR=1"/>
+                  </combo>
+                  <combo define="DMA.CH4_EVENT_UART1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RI" lockon="SCU.DMAP_COM.UART1_RI=1"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="4">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+            <groupcontainer label="Channel 5" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="174;192;103">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH5_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="CCU7"/>
+                    <item label="ADC1"/>
+                    <item label="SDADC"/>
+                    <item label="GPT12"/>
+                    <item label="SSC1"/>
+                    <item label="UART1"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH5_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH5_EVENT_CCU7" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T12 Cmp Match 71A" lockon="SCU.DMAP_CCU7.T12CM71=3"/>
+                    <item label="T12 Period Match" lockon="SCU.DMAP_CCU7.T12PM=3"/>
+                    <item label="T13 Cmp Match" lockon="SCU.DMAP_CCU7.T13CM=3"/>
+                    <item label="T13 Zero Match" lockon="SCU.DMAP_CCU7.T13ZM=3"/>
+                    <item label="T14 Period Match" lockon="SCU.DMAP_CCU7.T14PM=3"/>
+                    <item label="T15 Period Match" lockon="SCU.DMAP_CCU7.T15PM=3"/>
+                    <item label="T16 Period Match" lockon="SCU.DMAP_CCU7.T16PM=3"/>
+                  </combo>
+                  <combo define="DMA.CH5_EVENT_ADC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Channel 1" lockon="SCU.DMAP_ADC.ADC1_RES1=2"/>
+                    <item label="Channel 3" lockon="SCU.DMAP_ADC.ADC1_RES3=2"/>
+                    <item label="Channel 5" lockon="SCU.DMAP_ADC.ADC1_RES5=2"/>
+                    <item label="Channel 7" lockon="SCU.DMAP_ADC.ADC1_RES7=2"/>
+                    <item label="Sequence 1" lockon="SCU.DMAP_ADC.ADC1_SQ1=2"/>
+                    <item label="Cmp Up 0" lockon="SCU.DMAP_ADC.ADC1_CMPHI=2"/>
+                  </combo>
+                  <combo define="DMA.CH5_EVENT_SDADC" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Result 1" lockon="SCU.DMAP_ADC.SDADC_RES1=2"/>
+                  </combo>
+                  <combo define="DMA.CH5_EVENT_GPT12" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="GPT2CR" lockon="SCU.DMAP_TIM.GPT12CR=1"/>
+                  </combo>
+                  <combo define="DMA.CH5_EVENT_SSC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RIR1" lockon="SCU.DMAP_COM.SSC1_RIR=1"/>
+                  </combo>
+                  <combo define="DMA.CH5_EVENT_UART1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="TI" lockon="SCU.DMAP_COM.UART1_TI=1"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="5">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+            <groupcontainer label="Channel 6" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="0;93;169">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH6_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="ADC1"/>
+                    <item label="SDADC"/>
+                    <item label="Timer20"/>
+                    <item label="SSC1"/>
+                    <item label="UART1"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH6_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH6_EVENT_ADC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Channel 0" lockon="SCU.DMAP_ADC.ADC1_RES0=3"/>
+                    <item label="Channel 2" lockon="SCU.DMAP_ADC.ADC1_RES2=3"/>
+                    <item label="Channel 4" lockon="SCU.DMAP_ADC.ADC1_RES4=3"/>
+                    <item label="Channel 6" lockon="SCU.DMAP_ADC.ADC1_RES6=3"/>
+                    <item label="Sequence 0" lockon="SCU.DMAP_ADC.ADC1_SQ0=3"/>
+                    <item label="Cmp Low 0" lockon="SCU.DMAP_ADC.ADC1_CMPLO=3"/>
+                  </combo>
+                  <combo define="DMA.CH6_EVENT_SDADC" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Result 0" lockon="SCU.DMAP_ADC.SDADC_RES0=3"/>
+                  </combo>
+                  <combo define="DMA.CH6_EVENT_T20" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T20F" lockon="SCU.DMAP_TIM.T2OV=1"/>
+                  </combo>
+                  <combo define="DMA.CH6_EVENT_SSC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="TIR1" lockon="SCU.DMAP_COM.SSC1_TIR=2"/>
+                  </combo>
+                  <combo define="DMA.CH6_EVENT_UART1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RI" lockon="SCU.DMAP_COM.UART1_RI=2"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="6">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+            <groupcontainer label="Channel 7" size="470;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Module"/>
+                  <combo define="DMA.CH7_MODULE" svd="0" default="label=None" setDef="DMA_UPDATE.run=1;DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="ADC1"/>
+                    <item label="SDADC"/>
+                    <item label="Timer21"/>
+                    <item label="SSC1"/>
+                    <item label="UART1"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer define="DMA.CH7_EVENT_CONT">
+                  <text label="Trigger Event"/>
+                  <combo define="DMA.CH7_EVENT_ADC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Channel 1" lockon="SCU.DMAP_ADC.ADC1_RES1=3"/>
+                    <item label="Channel 3" lockon="SCU.DMAP_ADC.ADC1_RES3=3"/>
+                    <item label="Channel 5" lockon="SCU.DMAP_ADC.ADC1_RES5=3"/>
+                    <item label="Channel 7" lockon="SCU.DMAP_ADC.ADC1_RES7=3"/>
+                    <item label="Sequence 1" lockon="SCU.DMAP_ADC.ADC1_SQ1=3"/>
+                    <item label="Cmp Up 0" lockon="SCU.DMAP_ADC.ADC1_CMPHI=3"/>
+                  </combo>
+                  <combo define="DMA.CH7_EVENT_SDADC" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="Result 1" lockon="SCU.DMAP_ADC.SDADC_RES1=3"/>
+                  </combo>
+                  <combo define="DMA.CH7_EVENT_T21" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="T21F" lockon="SCU.DMAP_TIM.T21OV=1"/>
+                  </combo>
+                  <combo define="DMA.CH7_EVENT_SSC1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="RIR1" lockon="SCU.DMAP_COM.SSC1_RIR=2"/>
+                  </combo>
+                  <combo define="DMA.CH7_EVENT_UART1" svd="0" default="label=None" setDef="DMA.CHECK_EVENT.run=1">
+                    <item label="None"/>
+                    <item label="TI" lockon="SCU.DMAP_COM.UART1_TI=2"/>
+                  </combo>
+                </horizontalcontainer>
+                <include IDX="7">template_dma_mode.xml</include>
+              </verticalcontainer>
+            </groupcontainer>
+          </horizontalcontainer>
+        </verticalcontainer>
+      </groupcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>

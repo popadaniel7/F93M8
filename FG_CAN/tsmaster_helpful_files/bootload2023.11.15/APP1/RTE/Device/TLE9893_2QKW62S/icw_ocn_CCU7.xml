@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_CCU7.xml                                                           -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-21, JO:   EP-467: Corrected update of T13/T14/T15/T16 graphs   -->
+<!-- V0.0.3: 2020-09-25, JO:   EP-474: Added option to show/hide T12 graph          -->
+<!--                           Added formulas for fFDIVx as comment                 -->
+<!-- V0.1.0: 2020-10-14, JO:   EP-469: modified XML so that ccu7_calc.py runs when  -->
+<!--                           required, not continuously in background             -->
+<!-- V0.1.1: 2020-10-28, JO:   EP-555: Moved Deadtime input selection to modulation -->
+<!--                           configuration section, restructured modulation cfg.  -->
+<!-- V0.1.2: 2020-11-06, JO:   EP-555: Added support for 'T13 modulates ...' to     -->
+<!--                           graph                                                -->
+<!-- V0.1.3: 2020-11-13, JO:   EP-591: Corrected calculation of deadtime registers  -->
+<!--                           in CCU6 compatible mode                              -->
+<!-- V0.1.4: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project               -->
+<!-- V0.2.0: 2020-12-03, BG:   EP-599: Added startcond and cond for devices with or -->
+<!--                           without SDADC                                        -->
+<!-- V0.2.1: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!-- V0.2.2: 2021-01-01, JO:   EP-593: Adapted range of Deadtime input fields       -->
+<!--                           depending on the Deadtime Clock                      -->
+<!--                           Updated fFDIV0/1 input                               -->
+<!-- V0.2.3: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.3.0: 2021-03-09, JO:   EP-734: Updated CW minimal version to 2.6.3,         -->
+<!--                           Added usage of setdefine feature that was introduced -->
+<!--                           in Config Wizard version 2.6.3                       -->
+<!-- V0.3.1: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!-- V0.3.2: 2022-05-05, JO:   EP-836: Added condition for setting CCU7_MAX_DT_US   -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.3">
+  <checksum>b9a5aca0181e7da7fbb18c2053706bbaed6046f12c00703bb453c33c0c5e7c03</checksum>
+  <version label="V0.3.2"/>
+
+  <verticalcontainer label="CCU7" desc="Capture Compare Unit 7"> 
+    <header file="ccu7_defines.h">
+
+      <checkbox label="Enable CCU7" define="CCU7_EN" svd="0" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+        <action event="checked"   cmd="setDef" data="CCU7_MODULE.enabled=1"/>
+        <action event="unchecked" cmd="setDef" data="CCU7_MODULE.enabled=0"/>
+      </checkbox>
+
+      <horizontalcontainer define="CCU7_MODULE">
+
+        <verticalcontainer label="left">
+          <groupcontainer label="Timer, Clock" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228">
+            <tabcontainer>
+              <!-- T12 -->
+              <include TIMER_IDX="T12" TCTR2_REGISTER_IDX="" TCTR2_FIELD_IDX="2">
+                template_ccu7_t12.xml</include> 
+
+              <!-- T13 -->
+              <include TIMER_IDX="T13" CMPVAL_IDX="C73" TCTR2_REGISTER_IDX="" TCTR2_FIELD_IDX="3" T1xTEC_0="SR[0]" T1xTEC_1="T12_CM_70" T1xTEC_2="T12_CM_71" T1xTEC_3="T12_CM_72" T1xTEC_4="Any Compare Event (T12_CM_7x)" T1xTEC_5="T12_PM" T1xTEC_6="T12_ZM and CDIR = 0" T1xTEC_7="Any Hall State Change">
+                template_ccu7_t13.xml</include> 
+
+              <!-- T14 -->
+              <include TIMER_IDX="T14" CMPVAL_IDX="C74" TCTR2_REGISTER_IDX="4" TCTR2_FIELD_IDX="x" T1xTEC_0="SR[1]" T1xTEC_1="T12_CM_70" T1xTEC_2="T12_CM_70B" T1xTEC_3="T15_CM_75" T1xTEC_4="T16_CM_76" T1xTEC_5="T12_PM" T1xTEC_6="T12_ZM and CDIR = 0" T1xTEC_7="T13_PM">
+                template_ccu7_t141516.xml</include> 
+
+              <!-- T15 -->
+              <include TIMER_IDX="T15" CMPVAL_IDX="C75" TCTR2_REGISTER_IDX="5" TCTR2_FIELD_IDX="x" T1xTEC_0="SR[2]" T1xTEC_1="T12_CM_71" T1xTEC_2="T12_CM_71B" T1xTEC_3="T14_CM_74" T1xTEC_4="T16_CM_76" T1xTEC_5="T12_PM" T1xTEC_6="T12_ZM and CDIR = 0" T1xTEC_7="T14_PM">
+                template_ccu7_t141516.xml</include> 
+
+              <!-- T16 -->
+              <include TIMER_IDX="T16" CMPVAL_IDX="C76" TCTR2_REGISTER_IDX="6" TCTR2_FIELD_IDX="x" T1xTEC_0="SR[3]" T1xTEC_1="T12_CM_72" T1xTEC_2="T12_CM_72B" T1xTEC_3="T14_CM_74" T1xTEC_4="T15_CM_75" T1xTEC_5="T12_PM" T1xTEC_6="T12_ZM and CDIR = 0" T1xTEC_7="T15_PM">
+                template_ccu7_t141516.xml</include> 
+
+              <!-- CCU7 Clock Settings -->
+              <treecontainer label="CCU7 Clock" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <!-- fPWM -->
+                <math label="fCCU7" define="CCU7_FCCU7" svd="0" formula="SCU_fCCU7_MHz" unit="MHz"/>
+
+                <!-- fFDIV0 -->
+                <branch label="fFDIV0">
+                  <!-- FDIV0 Mode Selection is fixed to 0B (8by8) -->
+                  <text label="fFDIV0 = fPER * P / Q"/> 
+                  <math label="FDIV0 Setting fixed to 0 (8by8)" define="CCU7.T_CLK_CTRL.FDIV0_SEL" formula="0"/>
+                  <spinbox label="P" define="CCU7_T_FDIV0_P" svd="0" header="temp_defines.h" default="0" range="0;255"/>
+                  <spinbox label="Q" define="CCU7_T_FDIV0_Q" svd="0" header="temp_defines.h" default="0" range="0;255"/>
+                  <math label="Fractional Divider fDIV0" visible="false" define="CCU7.T_FDIV0.PQ" formula="CCU7_T_FDIV0_P*256 + CCU7_T_FDIV0_Q"/>
+                  <math label="CCU7 Clock 0" unit="MHz" define="CCU7_FDIV0_CLK" svd="0" formula="CCU7_T_FDIV0_Q==0?CCU7_FCCU7:CCU7_FCCU7*CCU7_T_FDIV0_P/CCU7_T_FDIV0_Q">
+                    <action event="changed" cond="CCU7_FDIV0_CLK&lt;60" cmd="setDef" data="CCU7_FDIV0_CLK_ERROR=0"/>
+                    <action event="changed" cond="CCU7_FDIV0_CLK==60" cmd="setDef" data="CCU7_FDIV0_CLK_ERROR=0"/>
+                    <action event="changed" cond="CCU7_FDIV0_CLK&gt;60" cmd="setDef" data="CCU7_FDIV0_CLK_ERROR=1"/>
+                  </math>
+                </branch>
+
+                <!-- fFDIV1 -->
+                <branch label="fFDIV1">
+                  <!-- FDIV1 Mode Selection is fixed to 0B (8by8) -->
+                  <text label="fFDIV1 = fPER * P / Q"/> 
+                  <math label="FDIV1 Setting fixed to 0 (8by8)" define="CCU7.T_CLK_CTRL.FDIV1_SEL" formula="0"/>
+                  <spinbox label="P" define="CCU7_T_FDIV1_P" svd="0" header="temp_defines.h" default="0" range="0;255"/>
+                  <spinbox label="Q" define="CCU7_T_FDIV1_Q" svd="0" header="temp_defines.h" default="0" range="0;255"/>
+                  <math label="Fractional Divider fDIV1" visible="false" define="CCU7.T_FDIV1.PQ" formula="CCU7_T_FDIV1_P*256 + CCU7_T_FDIV1_Q"/>
+                  <math label="CCU7 Clock 1" unit="MHz" define="CCU7_FDIV1_CLK" svd="0" formula="CCU7_T_FDIV1_Q==0?CCU7_FCCU7:CCU7_FCCU7*CCU7_T_FDIV1_P/CCU7_T_FDIV1_Q">
+                    <action event="changed" cond="CCU7_FDIV1_CLK&lt;60" cmd="setDef" data="CCU7_FDIV1_CLK_ERROR=0"/>
+                    <action event="changed" cond="CCU7_FDIV1_CLK==60" cmd="setDef" data="CCU7_FDIV1_CLK_ERROR=0"/>
+                    <action event="changed" cond="CCU7_FDIV1_CLK&gt;60" cmd="setDef" data="CCU7_FDIV1_CLK_ERROR=1"/>
+                  </math>
+                </branch>
+
+                <combo label="Add. 1/256 prescaler for T14, T15, and T16" define="CCU7.TCTR1.T1xPRE">
+                  <item label="Add. 1/256 prescaler disabled" override="value1" lockon="CCU7_T14_ADDPRESC=0;CCU7_T15_ADDPRESC=0;CCU7_T16_ADDPRESC=0"/>
+                  <item label="Add. 1/256 prescaler enabled" override="value2" lockon="CCU7_T14_ADDPRESC=1;CCU7_T15_ADDPRESC=1;CCU7_T16_ADDPRESC=1"/>
+                </combo>
+              </treecontainer>
+            </tabcontainer>
+            
+            <treecontainer label="Clock value update" headerlabels="Item;Value;" columnwidths="250;250;1" visible="false">
+              <text label="Needed because py can't connect to maths directly"/>
+              <edit label="T12 CLK" define="CCU7_T12_CLK_EDIT" svd="0"/>
+              <edit label="T13 CLK" define="CCU7_T13_CLK_EDIT" svd="0"/>
+              <edit label="T14 CLK" define="CCU7_T14_CLK_EDIT" svd="0"/>
+              <edit label="T15 CLK" define="CCU7_T15_CLK_EDIT" svd="0"/>
+              <edit label="T16 CLK" define="CCU7_T16_CLK_EDIT" svd="0"/>
+            </treecontainer>    
+              
+            <verticalcontainer visible="false" label="Clock error variables">
+              <!-- combos needed to raise messagebox in case of clock error -->
+              <combo label="CCU7_FDIV0_CLK_ERROR" define="CCU7_FDIV0_CLK_ERROR" header="temp_defines.h" svd="0">
+                <item value="0" label="no error">
+                </item>
+                <item value="1" label="clock error">
+                  <action event="selected" cmd="runScript" data="MessageBox(Clock can not be more than 60MHz! Please make sure Q is always larger than P.)"/>
+                </item>
+              </combo>
+              <combo label="CCU7_FDIV1_CLK_ERROR" define="CCU7_FDIV1_CLK_ERROR" header="temp_defines.h" svd="0">
+                <item value="0" label="no error">
+                </item>
+                <item value="1" label="clock error">
+                  <action event="selected" cmd="runScript" data="MessageBox(Clock can not be more than 60MHz! Please make sure Q is always larger than P.)"/>
+                </item>
+              </combo>
+            </verticalcontainer>
+
+          </groupcontainer>
+
+          <!-- Deadtime Configuration -->
+          <groupcontainer label="Deadtime Configuration" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="206;217;164"  size="-1;400">
+              <treecontainer label="Deadtime Configuration" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <combo label="Clock Select" define="CCU7.T_CLK_CTRL.DT_CLK_SEL">
+                  <item label="fCCU7: No prescaler selected" override="value1"/>
+                  <item label="fFDIV0: Clock from Fractional Divider 0" override="value2"/>
+                  <item label="fFDIV1: Clock from Fractional Divider 1" override="value3"/>
+                </combo>
+                
+                <math label="Deadtime Clock" unit="MHz" define="CCU7_DT_CLK_MHz" svd="0" formula="CCU7.T_CLK_CTRL.DT_CLK_SEL==0?CCU7_FCCU7:(CCU7.T_CLK_CTRL.DT_CLK_SEL==1?CCU7_FDIV0_CLK:CCU7_FDIV1_CLK)"/>
+                <math label="Deadtime Clock ok" define="CCU7_DT_CLK_OK" svd="0" visible="false" formula="((CCU7_DT_CLK_MHz==0).+((1/CCU7_DT_CLK_MHz)==0)?0:1)"/>
+                <math label="Max. Deadtime (based on Deadtime Clock) [us]" define="CCU7_MAX_DT_US" svd="0" formula="CCU7_DT_CLK_OK==1?(255/(CCU7_DT_CLK_MHz)):(1000)">
+                  <action event="changed" cmd="setDef" data="CCU7_DEADTIME_ALL.min=0.0;CCU7_DEADTIME_ALL.max=CCU7_MAX_DT_US"/>
+                  <action event="changed" cmd="setDef" data="CCU7_CH0_DEADTIME_CC7.min=0.0;CCU7_CH0_DEADTIME_CC7.max=CCU7_MAX_DT_US"/>
+                  <action event="changed" cmd="setDef" data="CCU7_CH0_DEADTIME_COUT7.min=0.0;CCU7_CH0_DEADTIME_COUT7.max=CCU7_MAX_DT_US"/>
+                  <action event="changed" cmd="setDef" data="CCU7_CH1_DEADTIME_CC7.min=0.0;CCU7_CH1_DEADTIME_CC7.max=CCU7_MAX_DT_US"/>
+                  <action event="changed" cmd="setDef" data="CCU7_CH1_DEADTIME_COUT7.min=0.0;CCU7_CH1_DEADTIME_COUT7.max=CCU7_MAX_DT_US"/>
+                  <action event="changed" cmd="setDef" data="CCU7_CH2_DEADTIME_CC7.min=0.0;CCU7_CH2_DEADTIME_CC7.max=CCU7_MAX_DT_US"/>
+                  <action event="changed" cmd="setDef" data="CCU7_CH2_DEADTIME_COUT7.min=0.0;CCU7_CH2_DEADTIME_COUT7.max=CCU7_MAX_DT_US"/>
+                </math>
+                
+                <radio label="Deadtime option" define="CCU7_DTSEL_OPTION" svd="0" header="temp_defines.h" default="1">
+                  <radiobutton label="General Deadtime for all Signals" value="0" uielement="branch">
+                    <checkbox label="Enable Deadtime for all Channels" define="CCU7_T12DTC_DTE_ALL" svd="0" header="temp_defines.h" uielement="branch" lockon="CCU7.T12DTC.DTE0=CCU7_T12DTC_DTE_ALL;CCU7.T12DTC.DTE1=CCU7_T12DTC_DTE_ALL;CCU7.T12DTC.DTE2=CCU7_T12DTC_DTE_ALL">
+                      <doublespinbox label="Deadtime value [us]" define="CCU7_DEADTIME_ALL" svd="0" header="temp_defines.h">
+                        <action event="changed" cmd="setDef" data="CCU7_CH0_DEADTIME_CC7=CCU7_DEADTIME_ALL;CCU7_CH0_DEADTIME_COUT7=CCU7_DEADTIME_ALL"/>
+                        <action event="changed" cmd="setDef" data="CCU7_CH1_DEADTIME_CC7=CCU7_DEADTIME_ALL;CCU7_CH1_DEADTIME_COUT7=CCU7_DEADTIME_ALL"/>
+                        <action event="changed" cmd="setDef" data="CCU7_CH2_DEADTIME_CC7=CCU7_DEADTIME_ALL;CCU7_CH2_DEADTIME_COUT7=CCU7_DEADTIME_ALL"/>
+                      </doublespinbox>
+                      <math label="Deadtime value in ticks" define="CCU7_DEADTIME_ALL_TICKS" svd="0" header="temp_defines.h" formula="trunc(CCU7_DT_CLK_MHz*CCU7_DEADTIME_ALL)"/>              
+                    </checkbox>   
+                  </radiobutton>
+                  <radiobutton label="Individual Deadtime" value="1" uielement="branch">
+                    <checkbox label="Enable Deadtime for Channel 0" define="CCU7.T12DTC.DTE0" uielement="branch">
+                      <doublespinbox label="Deadtime for CC70 [us]" define="CCU7_CH0_DEADTIME_CC7" svd="0" header="temp_defines.h"/>
+                      <math label="Deadtime for CC70x in ticks" define="CCU7.T12DT0_VAL.DTM_RISE" formula="CCU7_DTSEL_OPTION==0?(CCU7_DT_CLK_MHz*CCU7_DEADTIME_ALL):(CCU7_DT_CLK_MHz*CCU7_CH0_DEADTIME_CC7)"/>
+                      <doublespinbox label="Deadtime for COUT70 [us]" define="CCU7_CH0_DEADTIME_COUT7" svd="0" header="temp_defines.h"/>
+                      <math label="Deadtime for COUT70x in ticks" define="CCU7.T12DT0_VAL.DTM_FALL" formula="CCU7_DTSEL_OPTION==0?(CCU7_DT_CLK_MHz*CCU7_DEADTIME_ALL):(CCU7_DT_CLK_MHz*CCU7_CH0_DEADTIME_COUT7)"/>
+                    </checkbox>            
+                    <checkbox label="Enable Deadtime for Channel 1" define="CCU7.T12DTC.DTE1" uielement="branch">
+                      <doublespinbox label="Deadtime for CC71 [us]" define="CCU7_CH1_DEADTIME_CC7" svd="0" header="temp_defines.h"/>
+                      <math label="Deadtime for CC71x in ticks" define="CCU7.T12DT1_VAL.DTM_RISE" formula="CCU7_DTSEL_OPTION==0?(CCU7_DT_CLK_MHz*CCU7_DEADTIME_ALL):(CCU7_DT_CLK_MHz*CCU7_CH1_DEADTIME_CC7)"/>
+                      <doublespinbox label="Deadtime for COUT71 [us]" define="CCU7_CH1_DEADTIME_COUT7" svd="0" header="temp_defines.h"/>
+                      <math label="Deadtime for COUT71x in ticks" define="CCU7.T12DT1_VAL.DTM_FALL" formula="CCU7_DTSEL_OPTION==0?(CCU7_DT_CLK_MHz*CCU7_DEADTIME_ALL):(CCU7_DT_CLK_MHz*CCU7_CH1_DEADTIME_COUT7)"/>
+                    </checkbox>            
+                    <checkbox label="Enable Deadtime for Channel 2" define="CCU7.T12DTC.DTE2" uielement="branch">
+                      <doublespinbox label="Deadtime for CC72 [us]" define="CCU7_CH2_DEADTIME_CC7" svd="0" header="temp_defines.h"/>
+                      <math label="Deadtime for CC72x in ticks" define="CCU7.T12DT2_VAL.DTM_RISE" formula="CCU7_DTSEL_OPTION==0?(CCU7_DT_CLK_MHz*CCU7_DEADTIME_ALL):(CCU7_DT_CLK_MHz*CCU7_CH2_DEADTIME_CC7)"/>
+                      <doublespinbox label="Deadtime for COUT72 [us]" define="CCU7_CH2_DEADTIME_COUT7" svd="0" header="temp_defines.h"/>
+                      <math label="Deadtime for COUT72x in ticks" define="CCU7.T12DT2_VAL.DTM_FALL" formula="CCU7_DTSEL_OPTION==0?(CCU7_DT_CLK_MHz*CCU7_DEADTIME_ALL):(CCU7_DT_CLK_MHz*CCU7_CH2_DEADTIME_COUT7)"/>
+                    </checkbox>                    
+                  </radiobutton>
+                </radio>
+
+              </treecontainer>
+          </groupcontainer>
+
+        </verticalcontainer>
+
+        <verticalcontainer label="mid" size="-1;1000">
+          <groupcontainer label="Modulation Configuration" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177">
+            <verticalcontainer>
+              <horizontalcontainer stretch="2">
+                <text size="82;-1" label="   Signal"/>
+                <text size="220;-1" label="Modulated by Deadtime Channel/T13..."/>
+                <text size="95;-1" label="Passive State"/>
+                <text size="90;-1" label="Passive Level"/>
+                <text size="90;-1" label="Invert Signal"/>
+              </horizontalcontainer>
+              
+              <groupcontainer><verticalcontainer>
+                <horizontalcontainer label="dtinsel0" stretch="2">
+                  <text size="75;-1" label="DT Ch0 Input"/>
+                  <combo size="120;-1" define="CCU7.T12DTINSEL.DTINSEL0">
+                    <item override="value1" label="CC70A State Bit"/>
+                    <item override="value2" label="C70A/B State Bit"/>
+                    <item override="value3" label="T14 Run Bit"/>
+                    <item override="value4" label="T14 State Bit"/>
+                  </combo>
+                </horizontalcontainer>                <horizontalcontainer stretch="2">
+                  <text     size="75;-1" label="CC70"/>
+                  <checkbox size="120;-1" label="DT Ch0" define="CCU7.MODCTR.T12MODEN_CC70"/>
+                  <checkbox size="90;-1" label="T13" define="CCU7.MODCTR.T13MODEN_CC70"/>
+                  <combo    size="95;-1" label="Passive State Select" define="CCU7.CMPSTAT.CC70PS" default="label=before Cmp">
+                    <item label="before Cmp" override="value1"/>
+                    <item label="after Cmp" override="value2"/>
+                  </combo>
+                  <combo    size="90;-1" label="Passive State Level" define="CCU7.PSLR.PSL_CC70" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo>
+                  <text     size="22;-1" label="n/a"/>
+                </horizontalcontainer>
+                <horizontalcontainer stretch="2">
+                  <text     size="75;-1" label="COUT70"/>
+                  <checkbox size="120;-1" label="DT Ch0" define="CCU7.MODCTR.T12MODEN_COUT70"/>
+                  <checkbox size="90;-1" label="T13" define="CCU7.MODCTR.T13MODEN_COUT70"/>
+                  <combo    size="95;-1" label="Passive State Select" define="CCU7.CMPSTAT.COUT70PS" default="label=after Cmp">
+                    <item label="before Cmp" override="value1"/>
+                    <item label="after Cmp" override="value2"/>
+                  </combo>
+                  <combo    size="90;-1" label="Passive State Level" define="CCU7.PSLR.PSL_COUT70" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo>
+                  <text     size="22;-1" label="n/a"/>
+                </horizontalcontainer>
+              </verticalcontainer></groupcontainer>
+              
+              <groupcontainer><verticalcontainer>
+                <horizontalcontainer label="dtinsel1" stretch="2">
+                  <text size="75;-1" label="DT Ch1 Input"/>
+                  <combo size="120;-1" define="CCU7.T12DTINSEL.DTINSEL1">
+                    <item override="value1" label="CC71A State Bit"/>
+                    <item override="value2" label="C71A/B State Bit"/>
+                    <item override="value3" label="T15 Run Bit"/>
+                    <item override="value4" label="T15 State Bit"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer stretch="2">
+                  <text     size="75;-1" label="CC71"/>
+                  <checkbox size="120;-1" label="DT Ch1" define="CCU7.MODCTR.T12MODEN_CC71"/>
+                  <checkbox size="90;-1" label="T13" define="CCU7.MODCTR.T13MODEN_CC71"/>
+                  <combo    size="95;-1" label="Passive State Select" define="CCU7.CMPSTAT.CC71PS" default="label=before Cmp">
+                    <item label="before Cmp" override="value1"/>
+                    <item label="after Cmp" override="value2"/>
+                  </combo>
+                  <combo    size="90;-1" label="Passive State Level" define="CCU7.PSLR.PSL_CC71" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo>
+                  <text     size="22;-1" label="n/a"/>
+                </horizontalcontainer>
+                <horizontalcontainer stretch="2">
+                  <text     size="75;-1" label="COUT71"/>
+                  <checkbox size="120;-1" label="DT Ch1" define="CCU7.MODCTR.T12MODEN_COUT71"/>
+                  <checkbox size="90;-1" label="T13" define="CCU7.MODCTR.T13MODEN_COUT71"/>
+                  <combo    size="95;-1" label="Passive State Select" define="CCU7.CMPSTAT.COUT71PS" default="label=after Cmp">
+                    <item label="before Cmp" override="value1"/>
+                    <item label="after Cmp" override="value2"/>
+                  </combo>
+                  <combo    size="90;-1" label="Passive State Level" define="CCU7.PSLR.PSL_COUT71" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo> 
+                  <text     size="22;-1" label="n/a"/>
+                </horizontalcontainer>
+
+              </verticalcontainer></groupcontainer>
+              
+              <groupcontainer><verticalcontainer>
+                <horizontalcontainer label="dtinsel2" stretch="2">
+                  <text size="75;-1" label="DT Ch2 Input"/>
+                  <combo size="120;-1" define="CCU7.T12DTINSEL.DTINSEL2">
+                    <item override="value1" label="CC72A State Bit"/>
+                    <item override="value2" label="C72A/B State Bit"/>
+                    <item override="value3" label="T16 Run Bit"/>
+                    <item override="value4" label="T16 State Bit"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer stretch="2">
+                  <text     size="75;-1" label="CC72"/>
+                  <checkbox size="120;-1" label="DT Ch2" define="CCU7.MODCTR.T12MODEN_CC72"/>
+                  <checkbox size="90;-1" label="T13" define="CCU7.MODCTR.T13MODEN_CC72"/>
+                  <combo    size="95;-1" label="Passive State Select" define="CCU7.CMPSTAT.CC72PS" default="label=before Cmp">
+                    <item label="before Cmp" override="value1"/>
+                    <item label="after Cmp" override="value2"/>
+                  </combo>
+                  <combo    size="90;-1" label="Passive State Level" define="CCU7.PSLR.PSL_CC72" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo>
+                  <text     size="22;-1" label="n/a"/>
+                </horizontalcontainer>
+                <horizontalcontainer stretch="2">
+                  <text     size="75;-1" label="COUT72"/>
+                  <checkbox size="120;-1" label="DT Ch2" define="CCU7.MODCTR.T12MODEN_COUT72"/>
+                  <checkbox size="90;-1" label="T13" define="CCU7.MODCTR.T13MODEN_COUT72"/>
+                  <combo    size="95;-1" label="Passive State Select" define="CCU7.CMPSTAT.COUT72PS" default="label=after Cmp">
+                    <item label="before Cmp" override="value1"/>
+                    <item label="after Cmp" override="value2"/>
+                  </combo>
+                  <combo    size="90;-1" label="Passive State Level" define="CCU7.PSLR.PSL_COUT72" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo>
+                  <text     size="22;-1" label="n/a"/>
+                </horizontalcontainer>
+              </verticalcontainer></groupcontainer>
+              
+              <groupcontainer><verticalcontainer>
+                <horizontalcontainer stretch="2">
+                  <text     size="75;-1" label="COUT73"/>
+                  <text     size="120;-1" label="n/a"/>
+                  <checkbox size="90;-1" label="T13" define="CCU7.MODCTR.ECT13O"/>
+                  <combo    size="95;-1" label="Passive State Select" define="CCU7.CMPSTAT.COUT73PS" default="label=after Cmp">
+                    <item label="before Cmp" override="value1"/>
+                    <item label="after Cmp" override="value2"/>
+                  </combo>
+                  <combo    size="90;-1" label="Passive State Level" define="CCU7.PSLR.PSL73" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo> 
+                  <checkbox size="22;-1" define="CCU7.CMPSTAT.T13IM"/>
+                </horizontalcontainer>
+              </verticalcontainer></groupcontainer>
+            </verticalcontainer>
+          </groupcontainer>
+
+          <groupcontainer label="Pin Select, Hall, Trap, MCM Configuration, Debugging" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+            <groupcontainer visible="false">
+              <!-- locked by combo elements below, needed to offer 'none' option -->
+              <!-- Inputs: Channels -->
+              <combo label="ISCC70" define="CCU7.PISEL0.ISCC70"/> 
+              <combo label="ISCC71" define="CCU7.PISEL0.ISCC71"/> 
+              <combo label="ISCC72" define="CCU7.PISEL0.ISCC72"/> 
+              <combo label="ISTRP" define="CCU7.PISEL0.ISTRP"/> 
+              <combo label="ISPOS0" define="CCU7.PISEL0.ISPOS0"/> 
+              <combo label="ISPOS1" define="CCU7.PISEL0.ISPOS1"/> 
+              <combo label="ISPOS2" define="CCU7.PISEL0.ISPOS2"/> 
+              <!-- Inputs: Timer -->
+              <combo label="T12EXT" define="CCU7.PISEL2.T12EXT"/>             
+              <combo label="IST12HR" define="CCU7.PISEL0.IST12HR"/>
+              <combo label="T13EXT" define="CCU7.PISEL2.T13EXT"/> 
+              <combo label="IST13HR" define="CCU7.PISEL2.IST13HR"/> 
+              <combo label="T1xEXT" define="CCU7.PISEL24.T1xEXT"/> 
+              <combo label="IST1xHR" define="CCU7.PISEL24.IST1xHR"/> 
+              <combo label="T1xEXT" define="CCU7.PISEL25.T1xEXT"/> 
+              <combo label="IST1xHR" define="CCU7.PISEL25.IST1xHR"/> 
+              <combo label="T1xEXT" define="CCU7.PISEL26.T1xEXT"/> 
+              <combo label="IST1xHR" define="CCU7.PISEL26.IST1xHR"/> 
+            </groupcontainer>
+
+            <tabcontainer>
+              <!-- Pin Select -->
+              <treecontainer label="Pin Select" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <branch label="Inputs" expand="1">
+                  <branch label="Channels">
+                    <combo label="CC70" define="CCU7_ISCC70" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.ISCC70 -->
+                      <item label="P1.2" lockon="CCU7.PISEL0.ISCC70=0;GPIO.P1_DIR.DIR2=0"/>
+                      <item label="P2.2" lockon="CCU7.PISEL0.ISCC70=1"/>
+                      <item label="P0.4 (*)" lockon="CCU7.PISEL0.ISCC70=2;GPIO.P0_DIR.DIR4=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="SDADC.CMP0" lockon="CCU7.PISEL0.ISCC70=3" startcond="UC_FEATURE_SDADC==1"/>
+                      <item label="none" value="0xFF"/>
+                    </combo>
+
+                    <combo label="CC71" define="CCU7_ISCC71" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.ISCC71 -->
+                      <item label="P1.0" lockon="CCU7.PISEL0.ISCC71=0;GPIO.P1_DIR.DIR0=0"/>
+                      <item label="P2.3" lockon="CCU7.PISEL0.ISCC71=1"/>
+                      <item label="P0.6 (*)" lockon="CCU7.PISEL0.ISCC71=2;GPIO.P0_DIR.DIR6=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="SDADC.CMP1" lockon="CCU7.PISEL0.ISCC71=3" startcond="UC_FEATURE_SDADC==1"/>
+                      <item label="none" value="0xFF"/>
+                    </combo>
+
+                    <combo label="CC72" define="CCU7_ISCC72" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.ISCC72 -->
+                      <item label="P0.1" lockon="CCU7.PISEL0.ISCC72=0;GPIO.P0_DIR.DIR1=0"/>
+                      <item label="P2.4" lockon="CCU7.PISEL0.ISCC72=1"/>
+                      <item label="P2.9 (*)" lockon="CCU7.PISEL0.ISCC72=2;GPIO.P0_DIR.DIR9=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="none" value="0xFF"/>
+                    </combo>
+
+                    <combo label="CTRAP" define="CCU7_ISTRP" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.ISTRP -->
+                      <item label="P1.1" lockon="CCU7.PISEL0.ISTRP=0;GPIO.P1_DIR.DIR1=0"/>
+                      <item label="P2.6" lockon="CCU7.PISEL0.ISTRP=1"/>
+                      <item label="ADC1.CMP0" lockon="CCU7.PISEL0.ISTRP=2"/>
+                      <item label="CSC.OUT" lockon="CCU7.PISEL0.ISTRP=3"/>
+                      <item label="none" value="0xFF"/>
+                    </combo>
+
+                    <combo label="CCPOS0" define="CCU7_ISPOS0" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.ISPOS0 -->
+                      <item label="P1.2" lockon="CCU7.PISEL0.ISPOS0=0;GPIO.P1_DIR.DIR2=0"/>
+                      <item label="P2.3" lockon="CCU7.PISEL0.ISPOS0=1"/>
+                      <item label="P2.7 (*)" lockon="CCU7.PISEL0.ISPOS0=2" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="BEMFC.PH1_ZC_STS" lockon="CCU7.PISEL0.ISPOS0=3"/>
+                      <item label="none" value="0xFF"/>
+                    </combo>
+
+                    <combo label="CCPOS1" define="CCU7_ISPOS1" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.ISPOS1=0 -->
+                      <item label="P1.1" lockon="CCU7.PISEL0.ISPOS1=0;GPIO.P1_DIR.DIR1=0"/>
+                      <item label="P2.4" lockon="CCU7.PISEL0.ISPOS1=1"/>
+                      <item label="P2.8 (*)" lockon="CCU7.PISEL0.ISPOS1=2" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="BEMFC.PH2_ZC_STS" lockon="CCU7.PISEL0.ISPOS1=3"/>
+                      <item label="none" value="0xFF"/>
+                    </combo>
+
+                    <combo label="CCPOS2" define="CCU7_ISPOS2" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.ISPOS2 -->
+                      <item label="P1.0" lockon="CCU7.PISEL0.ISPOS2=0;GPIO.P1_DIR.DIR0=0"/>
+                      <item label="P2.2" lockon="CCU7.PISEL0.ISPOS2=1"/>
+                      <item label="P2.9 (*)" lockon="CCU7.PISEL0.ISPOS2=2" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="BEMFC.PH3_ZC_STS" lockon="CCU7.PISEL0.ISPOS2=3"/>
+                      <item label="none" value="0xFF"/> 
+                    </combo>
+
+                  </branch>
+                  <branch label="Timer">
+                    <combo label="T12HR" define="CCU7_IST12HR" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL0.IST12HR and CCU7.PISEL2.T12EXT --> 
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.0" lockon="CCU7.PISEL0.IST12HR=0;CCU7.PISEL2.T12EXT=0;GPIO.P0_DIR.DIR0=0"/>
+                      <item label="P2.0" lockon="CCU7.PISEL0.IST12HR=1;CCU7.PISEL2.T12EXT=0"/>
+                      <item label="GPT12.T2IRQ" lockon="CCU7.PISEL0.IST12HR=2;CCU7.PISEL2.T12EXT=0"/>
+                      <item label="GPT12.T3OUT" lockon="CCU7.PISEL0.IST12HR=3;CCU7.PISEL2.T12EXT=0"/> 
+                      <item label="GPT12.T6OUT" lockon="CCU7.PISEL0.IST12HR=0;CCU7.PISEL2.T12EXT=1"/>
+                    </combo>
+                    <combo label="T13HR" define="CCU7_IST13HR" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL2.IST13HR and CCU7.PISEL2.T13EXT--> 
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.2" lockon="CCU7.PISEL2.IST13HR=0;CCU7.PISEL2.T13EXT=0;GPIO.P0_DIR.DIR2=0"/>
+                      <item label="P2.1" lockon="CCU7.PISEL2.IST13HR=1;CCU7.PISEL2.T13EXT=0"/>
+                      <item label="GPT12.T2IRQ" lockon="CCU7.PISEL2.IST13HR=2;CCU7.PISEL2.T13EXT=0"/>
+                    </combo>
+                    <combo label="T14HR" define="CCU7_IST14HR" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL24.IST1xHR and CCU7.PISEL24.T1xEXT--> 
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.4 (*)" lockon="CCU7.PISEL24.IST1xHR=0;CCU7.PISEL24.T1xEXT=0;GPIO.P0_DIR.DIR4=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="P0.7 (*)" lockon="CCU7.PISEL24.IST1xHR=1;CCU7.PISEL24.T1xEXT=0;GPIO.P0_DIR.DIR7=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="GPT12.T2IRQ" lockon="CCU7.PISEL24.IST1xHR=2;CCU7.PISEL24.T1xEXT=0"/>
+                    </combo>     
+                    <combo label="T15HR" define="CCU7_IST15HR" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL25.IST1xHR and CCU7.PISEL25.T1xEXT--> 
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.5 (*)" lockon="CCU7.PISEL25.IST1xHR=0;CCU7.PISEL25.T1xEXT=0;GPIO.P0_DIR.DIR5=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="P0.8 (*)" lockon="CCU7.PISEL25.IST1xHR=1;CCU7.PISEL25.T1xEXT=0;GPIO.P0_DIR.DIR8=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="GPT12.T2IRQ" lockon="CCU7.PISEL25.IST1xHR=2;CCU7.PISEL25.T1xEXT=0"/>
+                      <item hide="value4"/>
+                    </combo>    
+                    <combo label="T16HR" define="CCU7_IST16HR" svd="0" header="temp_defines.h" default="label=none">
+                      <!-- locks CCU7.PISEL26.IST1xHR and CCU7.PISEL26.T1xEXT--> 
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.6 (*)" lockon="CCU7.PISEL26.IST1xHR=0;CCU7.PISEL26.T1xEXT=0;GPIO.P0_DIR.DIR6=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="P0.9 (*)" lockon="CCU7.PISEL26.IST1xHR=1;CCU7.PISEL26.T1xEXT=0;GPIO.P0_DIR.DIR9=0" startcond="UC_FEATURE_64PIN==1"/>
+                      <item label="GPT12.T2IRQ" lockon="CCU7.PISEL26.IST1xHR=2;CCU7.PISEL26.T1xEXT=0"/>
+                      <item hide="value4"/>
+                    </combo>
+
+                    <combo label="T12 Counting Input" define="CCU7.PISEL2.ISCNT12">
+                      <item override="value1" label="T12 prescaler"/>
+                      <item override="value2" label="TCTR4.T12CNT"/>
+                      <item override="value3" label="Rising edge on T12HR"/>
+                      <item override="value4" label="Falling edge on T12HR"/>
+                    </combo>
+                    <combo label="T13 Counting Input" define="CCU7.PISEL2.ISCNT13">
+                      <item override="value1" label="T13 prescaler"/>
+                      <item override="value2" label="TCTR4.T13CNT"/>
+                      <item override="value3" label="Rising edge on T13HR"/>
+                      <item override="value4" label="Falling edge on T13HR"/>                    
+                    </combo>
+                    <combo label="T14 Counting Input" define="CCU7.PISEL24.ISCNT1x">
+                      <item override="value1" label="T14 prescaler"/>
+                      <item override="value2" label="TCTR44.T1xCNT"/>
+                      <item override="value3" label="Rising edge on T14HR"/>
+                      <item override="value4" label="Falling edge on T14HR"/>                         
+                    </combo>
+                    <combo label="T15 Counting Input" define="CCU7.PISEL25.ISCNT1x">
+                      <item override="value1" label="T15 prescaler"/>
+                      <item override="value2" label="TCTR45.T1xCNT"/>
+                      <item override="value3" label="Rising edge on T15HR"/>
+                      <item override="value4" label="Falling edge on T15HR"/>                         
+                    </combo>
+                    <combo label="T16 Counting Input" define="CCU7.PISEL26.ISCNT1x">
+                      <item override="value1" label="T16 prescaler"/>
+                      <item override="value2" label="TCTR46.T1xCNT"/>
+                      <item override="value3" label="Rising edge on T16HR"/>
+                      <item override="value4" label="Falling edge on T16HR"/>                         
+                    </combo>
+                  </branch>
+                </branch>
+
+                <branch label="Outputs" expand="1">
+                  <branch label="Channels">
+                    <combo label="CC70" define="CCU7_CC70_OUT" svd="0" header="temp_defines.h" default="label=none">
+                      <item label="none" value="0xFF"/>
+                      <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=1;GPIO.P1_ALTSEL0.ALTSEL2=2"/>
+                      <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=1" startcond="UC_FEATURE_64PIN==1"/>
+                    </combo>
+
+                    <combo label="COUT70" define="CCU7_COUT70_OUT" svd="0" header="temp_defines.h" default="label=none">
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=1;GPIO.P0_ALTSEL0.ALTSEL3=3"/>
+                      <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=1;GPIO.P0_ALTSEL0.ALTSEL5=1" startcond="UC_FEATURE_64PIN==1"/>                      
+                    </combo>
+
+                    <combo label="CC71" define="CCU7_CC71_OUT" svd="0" header="temp_defines.h" default="label=none">
+                      <item label="none" value="0xFF"/>
+                      <item label="P1.0" lockon="GPIO.P1_DIR.DIR0=1;GPIO.P1_ALTSEL0.ALTSEL0=2"/>
+                      <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=1;GPIO.P0_ALTSEL0.ALTSEL6=1" startcond="UC_FEATURE_64PIN==1"/>
+                    </combo>
+
+                    <combo label="COUT71" define="CCU7_COUT71_OUT" svd="0" header="temp_defines.h" default="label=none">
+                      <item label="none" value="0xFF"/>
+                      <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=1;GPIO.P1_ALTSEL0.ALTSEL1=2"/>
+                      <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=1;GPIO.P0_ALTSEL0.ALTSEL7=1" startcond="UC_FEATURE_64PIN==1"/>
+                    </combo>
+
+                    <combo label="CC72" define="CCU7_CC72_OUT" svd="0" header="temp_defines.h" default="label=none">
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=1;GPIO.P0_ALTSEL0.ALTSEL0=1"/>
+                      <item label="P0.9 (*)" lockon="GPIO.P0_DIR.DIR9=1;GPIO.P0_ALTSEL1.ALTSEL9=1" startcond="UC_FEATURE_64PIN==1"/>   
+                    </combo>
+
+                    <combo label="COUT72" define="CCU7_COUT72_OUT" svd="0" header="temp_defines.h" default="label=none">
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.10" lockon="GPIO.P0_DIR.DIR10=1;GPIO.P0_ALTSEL1.ALTSEL10=6"/>
+                      <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=1;GPIO.P0_ALTSEL1.ALTSEL8=1" startcond="UC_FEATURE_64PIN==1"/>   
+                    </combo>
+
+                    <combo label="COUT73" define="CCU7_COUT73_OUT" svd="0" header="temp_defines.h" default="label=none">
+                      <item label="none" value="0xFF"/>
+                      <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=1;GPIO.P0_ALTSEL0.ALTSEL1=7"/>
+                      <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=1;GPIO.P0_ALTSEL0.ALTSEL2=6"/>    
+                      <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=2" startcond="UC_FEATURE_64PIN==1"/>    
+                    </combo>
+
+                  </branch>
+                </branch>
+
+                <text label="Connection to BDRV needs to be "/>  
+                <text label="selected in BDRV Tab!"/>  
+              </treecontainer>
+
+              <!-- Hall Configuration -->
+              <treecontainer label="Hall" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <combo label="HALL Synchronization" define="CCU7.T12MSEL.HSYNC">
+                </combo>
+                <checkbox label="Delay Bypass" define="CCU7.T12MSEL.DBYP"/>
+                <checkbox label="Enable Idle Mode in case of Wrong HALL Event" define="CCU7.IEN.ENIDLE" header="isr_defines.h"/>
+              </treecontainer>
+
+              <!-- Trap Control -->
+              <treecontainer label="Trap Control" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <checkbox label="Trap Pin Enable" define="CCU7.TRPCTR.TRPPEN" uielement="branch">       
+                  <combo label="Trap Mode" define="CCU7.TRPCTR[1:0]">
+                    <item value="0" label="Trap state left on Timer12 zero match"/>
+                    <item value="1" label="Trap state left on Timer13 zero match"/>
+                    <item value="3" label="Trap state left immediately"/>
+                  </combo>
+                  <combo label="Trap Mode 2" define="CCU7.TRPCTR.TRPM2">
+                    <item override="value1" label="Trap state left on /CTRAP input inactive"/>
+                    <item override="value2" label="Trap state left on TRPF reset by SW and /CTRAP input inactive"/>
+                  </combo>
+                  <branch label="In trap condition, switch...">
+                    <checkbox label="...CC70 to passive state" define="CCU7.TRPCTR.TRPEN[0]"/>
+                    <checkbox label="...COUT70 to passive state" define="CCU7.TRPCTR.TRPEN[1]"/>
+                    <checkbox label="...CC71 to passive state" define="CCU7.TRPCTR.TRPEN[2]"/>
+                    <checkbox label="...COUT71 to passive state" define="CCU7.TRPCTR.TRPEN[3]"/>
+                    <checkbox label="...CC72 to passive state" define="CCU7.TRPCTR.TRPEN[4]"/>
+                    <checkbox label="...COUT72 to passive state" define="CCU7.TRPCTR.TRPEN[5]"/>
+                    <checkbox label="...T13 PWM output to passive state " define="CCU7.TRPCTR.TRPEN13"/>
+                  </branch>
+                </checkbox>
+              </treecontainer>
+
+              <!-- Multi-Channel Mode -->
+              <treecontainer label="Multi-Channel Mode" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <checkbox label="Multi-Channel Configuration" define="CCU7.MODCTR.MCMEN" uielement="branch">
+                  <combo label="Switching Selection" define="CCU7.MCMCTR.SWSEL">
+                    <item override="value1" label="No action"/>
+                    <item override="value2" label="Correct HALL pattern detected"/>
+                    <item override="value3" label="Timer13 period match"/>
+                    <item override="value4" label="Timer12 one match"/>
+                    <item override="value5" label="Timer12 Channel 1 compare match"/>
+                    <item override="value6" label="Timer12 period match"/>
+                  </combo>
+                  <combo label="Switching Synchronization" define="CCU7.MCMCTR.SWSYN">
+                    <item override="value1" label="Direct trigger of shadow transfer"/>
+                    <item override="value2" label="Timer13 zero match triggers shadow transfer"/>
+                    <item override="value3" label="Timer12 zero match triggers shadow transfer"/>
+                    <item hide="value4"/>
+                  </combo>
+                  <checkbox label="Shadow transfer for Timer12 up counting" define="CCU7.MCMCTR.STE12U"/>
+                  <checkbox label="Shadow transfer for Timer12 down counting" define="CCU7.MCMCTR.STE12D"/>
+                  <checkbox label="Shadow transfer for Timer13 up counting" define="CCU7.MCMCTR.STE13U"/>
+                </checkbox>
+              </treecontainer>
+
+              <!-- Debugging behavior -->
+              <treecontainer label="Debug Behavior" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <combo label="Suspend Behavior" define="CCU7.OCS.SUS">
+                  <item label="Will not suspend" override="value1"/>
+                  <item label="Hard suspend" override="value2"/>
+                  <item label="Soft suspend (Mode=0)" override="value3"/>
+                  <item label="Soft suspend (Mode=1)" override="value4"/>
+                  <item hide="value5"/>
+                </combo>
+                <math visible="false" label="CCU7.OCS.SUS_P" formula="1"/>
+                <math visible="false" label="CCU7.OCS.SUS_P" formula="1"/>
+                <branch label="Select modules to suspend in Debug Mode">
+                  <checkbox label="T12" define="CCU7.KSCSR.SB0"/>
+                  <checkbox label="T13" define="CCU7.KSCSR.SB1"/>
+                  <checkbox label="T14" define="CCU7.KSCSR.SB2"/>
+                  <checkbox label="T15" define="CCU7.KSCSR.SB3"/>
+                  <checkbox label="T16" define="CCU7.KSCSR.SB4"/>
+                  <checkbox label="Hall Logic" define="CCU7.KSCSR.SB5"/>
+                  <checkbox label="Trap Logic" define="CCU7.KSCSR.SB6"/>
+                </branch>
+              </treecontainer>
+
+              <!-- Input Monitoring -->
+              <treecontainer label="Input Monitoring" headerlabels="Item;Value;" columnwidths="250;250;1">
+                <checkbox define="CCU7.LI.CCPOS0EN" label="Enable Lost Indicator for input CCPOS0"/>
+                <checkbox define="CCU7.LI.CCPOS1EN" label="Enable Lost Indicator for input CCPOS1"/>
+                <checkbox define="CCU7.LI.CCPOS2EN" label="Enable Lost Indicator for input CCPOS2"/>
+                <checkbox define="CCU7.LI.CC70INEN" label="Enable Lost Indicator for input CC70IN"/>
+                <checkbox define="CCU7.LI.CC71INEN" label="Enable Lost Indicator for input CC71IN"/>
+                <checkbox define="CCU7.LI.CC72INEN" label="Enable Lost Indicator for input CC72IN"/>
+                <checkbox define="CCU7.LI.CTRAPEN" label="Enable Lost Indicator for input CTRAP"/>
+                <checkbox define="CCU7.LI.T12HREN" label="Enable Lost Indicator for input T12HR"/>
+                <checkbox define="CCU7.LI.T13HREN" label="Enable Lost Indicator for input T13HR"/>
+              </treecontainer>
+
+            </tabcontainer>
+          </groupcontainer>
+
+          <groupcontainer label="Interrupts" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="245;179;138">
+            <header file="isr_defines.h">
+              <tabcontainer>
+                <treecontainer label="Timer" headerlabels="Item;Value;" columnwidths="250;250;1">
+                  <branch label="T12">
+                    <combo label="Node Selection" define="CCU7.INP.INPT12">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Timer12 One-Match" define="CCU7_T12_OM_INT_EN" uielement="branch" svd="0">
+                      <text label="Only available when T12 is in center-aligned mode"/>
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENT12OM"/>
+                      <edit label="Callback" define="CCU7_T12_OM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Timer12 Period-Match" define="CCU7_T12_PM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENT12PM"/>
+                      <edit label="Callback" define="CCU7_T12_PM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                  </branch>
+
+                  <branch label="T13">
+                    <combo label="Node Selection" define="CCU7.INP.INPT13">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Timer13 Compare-Match" define="CCU7_T13_CM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENT13CM"/>
+                      <edit label="Callback" define="CCU7_T13_CM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Timer13 Period-Match" define="CCU7_T13_PM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENT13PM"/>
+                      <edit label="Callback" define="CCU7_T13_PM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>  
+                  </branch>
+
+                  <branch label="T14">
+                    <combo label="Node Selection" define="CCU7.INP_2.INPT14">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Timer14 Compare-Match" define="CCU7_T14_CM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENT14CM"/>
+                      <edit label="Callback" define="CCU7_T14_CM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Timer14 Period-Match" define="CCU7_T14_PM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENT14PM"/>
+                      <edit label="Callback" define="CCU7_T14_PM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                  </branch>
+
+                  <branch label="T15">
+                    <combo label="Node Selection" define="CCU7.INP_2.INPT15">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Timer15 Compare-Match" define="CCU7_T15_CM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENT15CM"/>
+                      <edit label="Callback" define="CCU7_T15_CM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Timer15 Period-Match" define="CCU7_T15_PM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENT15PM"/>
+                      <edit label="Callback" define="CCU7_T15_PM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                  </branch>
+
+                  <branch label="T16">
+                    <combo label="Node Selection" define="CCU7.INP_2.INPT16">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Timer16 Compare-Match" define="CCU7_T16_CM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENT16CM"/>
+                      <edit label="Callback" define="CCU7_T16_CM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Timer16 Period-Match" define="CCU7_T16_PM_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENT16PM"/>
+                      <edit label="Callback" define="CCU7_T16_PM_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                  </branch>
+                </treecontainer>
+
+                <treecontainer label="Compare Match Interrupts" headerlabels="Item;Value;" columnwidths="250;250;1">
+                  <branch label="CC70A">
+                    <combo label="Node Selection" define="CCU7.INP.INPCC70">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Capture, Compare-Match Rising Edge" define="CCU7_CC70A_CM_R_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENCC70R"/>
+                      <edit label="Callback" define="CCU7_CC70A_CM_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Capture, Compare-Match Falling Edge" define="CCU7_CC70A_CM_F_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENCC70F"/>
+                      <edit label="Callback" define="CCU7_CC70A_CM_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>            
+                  </branch>
+
+                  <branch label="C70B">
+                    <combo label="Node Selection" define="CCU7.INP_2.INPCC70B">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Capture, Compare-Match Rising Edge " define="CCU7_C70B_CM_R_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENCC70BR"/>
+                      <edit label="Callback" define="CCU7_C70B_CM_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Capture, Compare-Match Falling Edge" define="CCU7_C70B_CM_F_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENCC70BF"/>
+                      <edit label="Callback" define="CCU7_C70B_CM_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>            
+                  </branch>
+
+                  <branch label="CC71A">
+                    <combo label="Node Selection" define="CCU7.INP.INPCC71">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Capture, Compare-Match Rising Edge" define="CCU7_CC71A_CM_R_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENCC71R"/>
+                      <edit label="Callback" define="CCU7_CC71A_CM_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Capture, Compare-Match Falling Edge" define="CCU7_CC71A_CM_F_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENCC71F"/>
+                      <edit label="Callback" define="CCU7_CC71A_CM_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>            
+                  </branch>
+
+                  <branch label="C71B">
+                    <combo label="Node Selection" define="CCU7.INP_2.INPCC71B">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Capture, Compare-Match Rising Edge " define="CCU7_C71B_CM_R_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENCC71BR"/>
+                      <edit label="Callback" define="CCU7_C71B_CM_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Capture, Compare-Match Falling Edge" define="CCU7_C71B_CM_F_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENCC71BF"/>
+                      <edit label="Callback" define="CCU7_C71B_CM_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>            
+                  </branch>
+
+                  <branch label="CC72A">
+                    <combo label="Node Selection" define="CCU7.INP.INPCC72">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Capture, Compare-Match Rising Edge" define="CCU7_CC72A_CM_R_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENCC72R"/>
+                      <edit label="Callback" define="CCU7_CC72A_CM_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Capture, Compare-Match Falling Edge" define="CCU7_CC72A_CM_F_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENCC72F"/>
+                      <edit label="Callback" define="CCU7_CC72A_CM_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>            
+                  </branch>
+
+                  <branch label="C72B">
+                    <combo label="Node Selection" define="CCU7.INP_2.INPCC72B">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Capture, Compare-Match Rising Edge " define="CCU7_C72B_CM_R_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENCC72BR"/>
+                      <edit label="Callback" define="CCU7_C72B_CM_R_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                    <checkbox label="Capture, Compare-Match Falling Edge" define="CCU7_C72B_CM_F_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN_2.ENCC72BF"/>
+                      <edit label="Callback" define="CCU7_C72B_CM_F_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>            
+                  </branch>
+                </treecontainer>
+
+                <treecontainer label="Other Interrupts" headerlabels="Item;Value;" columnwidths="250;250;1">
+                  <branch label="Correct Hall Event">
+                    <combo label="Node Selection" define="CCU7.INP.INPCHE">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Correct Hall Event" define="CCU7_CORRECT_HALL_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENCHE"/>
+                      <edit label="Callback" define="CCU7_CORRECT_HALL_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                  </branch>                  
+                  <branch label="Wrong Hall Event">                  
+                    <combo label="Node Selection" define="CCU7.INP.INPERR">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Wrong Hall Event" define="CCU7_WRONG_HALL_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENWHE"/>
+                      <edit label="Callback" define="CCU7_WRONG_HALL_CALLBACK" svd="0" default="place_your_function_callback_here"/>            
+                    </checkbox>         
+                  </branch>
+
+                  <branch label="Multi-Channel Mode Shadow Transfer">    
+                    <math label="Node Selection (same as Correct Hall Event)" define="CCU7_INP_INPSTR" svd="0" formula="CCU7.INP.INPCHE"/>
+                    <checkbox label="Multi-Channel Mode Shadow Transfer" define="CCU7_MCM_STR_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENSTR"/>
+                      <edit label="Callback" define="CCU7_MCM_STR_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>              
+                  </branch>          
+
+                  <branch label="Trap Control">              
+                    <math label="Node Selection (same as Wrong Hall Event)" define="CCU7_INP_INPTRAP" svd="0" formula="CCU7.INP.INPERR"/>
+                    <checkbox label="Trap Control" define="CCU7_TRAP_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.IEN.ENTRPF" uielement="branch"/>
+                      <edit label="Callback" define="CCU7_TRAP_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                  </branch>
+
+                  <branch label="Input Monitoring">
+                    <combo label="Node Selection" define="CCU7.LI.INPLBE" header="ccu7_defines.h">
+                      <item override="value1" label="CCU7_INP0_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN2=1"/>
+                      <item override="value2" label="CCU7_INP1_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN3=1"/>
+                      <item override="value3" label="CCU7_INP2_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN4=1"/>
+                      <item override="value4" label="CCU7_INP3_NVIC_IRQn" lockon="CPU.NVIC_ISER.IRQEN5=1"/>
+                    </combo>
+                    <checkbox label="Lost Bit Event" define="CCU7_LI_INT_EN" uielement="branch" svd="0">
+                      <checkbox label="Interrupt Enable" define="CCU7.LI.LBEEN" header="ccu7_defines.h"/>
+                      <edit label="Callback" define="CCU7_LI_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                    </checkbox>
+                  </branch>                  
+                </treecontainer>
+
+                <treecontainer label="Gating" headerlabels="Item;Value;" columnwidths="250;250;1">
+                  <combo label="Gating SR0" define="CCU7.IGT.GT0"/>
+                  <combo label="Gating SR1" define="CCU7.IGT.GT1"/>
+                  <combo label="Gating SR2" define="CCU7.IGT.GT2"/>
+                  <combo label="Gating SR3" define="CCU7.IGT.GT3"/>
+                </treecontainer>
+
+              </tabcontainer>
+            </header>
+          </groupcontainer>
+        </verticalcontainer>
+
+        <verticalcontainer label="right" visible="true" stretch="2">
+
+          <verticalcontainer label="Timer/Cmp Val Summary">
+
+            <include TIMER_IDX="T12" TIMER_REGISTER="CCU7.T12PR.T12PV" TIMER_MODE="CCU7.TCTR0.CTM">
+              template_ccu7_sum_t1x.xml</include>
+            <include TIMER_IDX="T12" TIMER_PERVAL="CCU7_T12_PERIOD" CMPVAL_IDX="CC70A" CMPVAL_INPUT="CCU7_CC70A_CMPVAL" CMPVAL_UNIT="CCU7_CC70A_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.CC70SR.CCS">
+            template_ccu7_sum_cmpval.xml</include>
+            <include TIMER_IDX="T12" TIMER_PERVAL="CCU7_T12_PERIOD" CMPVAL_IDX="C70B" CMPVAL_INPUT="CCU7_C70B_CMPVAL" CMPVAL_UNIT="CCU7_C70B_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.CC70BSR.CS">
+              template_ccu7_sum_cmpval.xml</include>
+            <include TIMER_IDX="T12" TIMER_PERVAL="CCU7_T12_PERIOD" CMPVAL_IDX="CC71A" CMPVAL_INPUT="CCU7_CC71A_CMPVAL" CMPVAL_UNIT="CCU7_CC71A_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.CC71SR.CCS">
+              template_ccu7_sum_cmpval.xml</include>
+            <include TIMER_IDX="T12" TIMER_PERVAL="CCU7_T12_PERIOD" CMPVAL_IDX="C71B" CMPVAL_INPUT="CCU7_C71B_CMPVAL" CMPVAL_UNIT="CCU7_C71B_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.CC71BSR.CS">
+              template_ccu7_sum_cmpval.xml</include>
+            <include TIMER_IDX="T12" TIMER_PERVAL="CCU7_T12_PERIOD" CMPVAL_IDX="CC72A" CMPVAL_INPUT="CCU7_CC72A_CMPVAL" CMPVAL_UNIT="CCU7_CC72A_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.CC72SR.CCS">
+              template_ccu7_sum_cmpval.xml</include>
+            <include TIMER_IDX="T12" TIMER_PERVAL="CCU7_T12_PERIOD" CMPVAL_IDX="C72B" CMPVAL_INPUT="CCU7_C72B_CMPVAL" CMPVAL_UNIT="CCU7_C72B_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.CC72BSR.CS">
+              template_ccu7_sum_cmpval.xml</include>
+
+
+            <include TIMER_IDX="T13" TIMER_REGISTER="CCU7.T13PR.T1xPV" TIMER_MODE="CCU7_T13_CA_MODE">
+              template_ccu7_sum_t1x.xml</include>
+            <include TIMER_IDX="T13" TIMER_PERVAL="CCU7_T13_PERIOD" CMPVAL_IDX="C73" CMPVAL_INPUT="CCU7_C73_CMPVAL" CMPVAL_UNIT="CCU7_C73_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.C73SR.CCS">
+              template_ccu7_sum_cmpval.xml</include>
+
+            <include TIMER_IDX="T14" TIMER_REGISTER="CCU7.T14PR.T1xPV" TIMER_MODE="CCU7_T14_CA_MODE">
+              template_ccu7_sum_t1x.xml</include>
+            <include TIMER_IDX="T14" TIMER_PERVAL="CCU7_T14_PERIOD" CMPVAL_IDX="C74" CMPVAL_INPUT="CCU7_C74_CMPVAL" CMPVAL_UNIT="CCU7_C74_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.C74SR.CCS">
+              template_ccu7_sum_cmpval.xml</include>
+
+            <include TIMER_IDX="T15" TIMER_REGISTER="CCU7.T15PR.T1xPV" TIMER_MODE="CCU7_T15_CA_MODE">
+              template_ccu7_sum_t1x.xml</include>
+            <include TIMER_IDX="T15" TIMER_PERVAL="CCU7_T15_PERIOD" CMPVAL_IDX="C75" CMPVAL_INPUT="CCU7_C75_CMPVAL" CMPVAL_UNIT="CCU7_C75_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.C75SR.CCS">
+              template_ccu7_sum_cmpval.xml</include>
+
+            <include TIMER_IDX="T16" TIMER_REGISTER="CCU7.T16PR.T1xPV" TIMER_MODE="CCU7_T16_CA_MODE">
+              template_ccu7_sum_t1x.xml</include>
+            <include TIMER_IDX="T16" TIMER_PERVAL="CCU7_T16_PERIOD" CMPVAL_IDX="C76" CMPVAL_INPUT="CCU7_C76_CMPVAL" CMPVAL_UNIT="CCU7_C76_CMPVAL_UNIT" CMPVAL_REGISTER="CCU7.C76SR.CCS">
+              template_ccu7_sum_cmpval.xml</include>
+          </verticalcontainer> 
+
+          <verticalcontainer>
+            <groupcontainer label="Timer behavior">
+              <verticalcontainer>
+
+                <!-- T12 --> 
+                <text label="T12 graph"/>
+                <groupcontainer define="CCU7_TIMER_GRAPH_T12_SHOW" svd="0" visible="true">
+                  <svgembed define="timer_graph_t12" passive="1" header="">
+                    <svg width="500" height="100">
+                      <!--g transform="translate(0, 0)"--> 
+                      <rect width="500" height="100" style="fill:#fffde6;stroke-width:0"/>
+                      <text x="10" y="10" font-family="arial" font-size="10" fill="black">T12</text>
+                      <text x="10" y="20" font-family="arial" font-size="10" fill="red">CC70A</text>
+                      <text x="10" y="30" font-family="arial" font-size="10" fill="pink">C70B</text>
+                      <text x="10" y="40" font-family="arial" font-size="10" fill="green">CC71A</text>
+                      <text x="10" y="50" font-family="arial" font-size="10" fill="lightgreen">C71B</text>
+                      <text x="10" y="60" font-family="arial" font-size="10" fill="blue">CC72A</text>
+                      <text x="10" y="70" font-family="arial" font-size="10" fill="lightblue">C72B</text>
+
+                      <g transform="translate($CCU7_GRAPH_T12_OFFSET_x$, $CCU7_GRAPH_T12_OFFSET_y$)">
+                        <text text-anchor="end" x="$CCU7_GRAPH_T12_TRIGSEL_TEXT_x$" y="$CCU7_GRAPH_T12_TRIGSEL_TEXT_y$" font-family="arial" font-size="10" fill="black">$CCU7_GRAPH_T12_TRIGSEL_TEXT$</text>
+                        <line x1="$CCU7_GRAPH_T12_UP_BEG_x$" y1="$CCU7_GRAPH_T12_UP_BEG_y$" x2="$CCU7_GRAPH_T12_UP_END_x$" y2="$CCU7_GRAPH_T12_UP_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T12_DOWN_BEG_x$" y1="$CCU7_GRAPH_T12_DOWN_BEG_y$" x2="$CCU7_GRAPH_T12_DOWN_END_x$" y2="$CCU7_GRAPH_T12_DOWN_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T12_DUMMY_BEG_x$" y1="$CCU7_GRAPH_T12_DUMMY_BEG_y$" x2="$CCU7_GRAPH_T12_DUMMY_END_x$" y2="$CCU7_GRAPH_T12_DUMMY_END_y$" style="stroke:black;stroke-width:1"/>
+
+                        <line x1="$CCU7_GRAPH_T12_NEWPER_BEG_x$" y1="$CCU7_GRAPH_T12_NEWPER_BEG_y$" x2="$CCU7_GRAPH_T12_NEWPER_END_x$" y2="$CCU7_GRAPH_T12_NEWPER_END_y$" style="stroke:black;stroke-width:1"/>
+                        <circle cx="$CCU7_GRAPH_T12_DOT1_x$" cy="$CCU7_GRAPH_T12_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T12_DOT2_x$" cy="$CCU7_GRAPH_T12_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T12_DOT3_x$" cy="$CCU7_GRAPH_T12_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+
+                        <circle cx="$CCU7_GRAPH_CC70A_UP_x$" cy="$CCU7_GRAPH_CC70A_UP_y$" r="4" stroke-width="0" fill="red"/>
+                        <circle cx="$CCU7_GRAPH_CC70A_DOWN_x$" cy="$CCU7_GRAPH_CC70A_DOWN_y$" r="4" stroke-width="0" fill="red"/>
+                        <circle cx="$CCU7_GRAPH_C70B_UP_x$" cy="$CCU7_GRAPH_C70B_UP_y$" r="4" stroke-width="0" fill="pink"/>
+                        <circle cx="$CCU7_GRAPH_C70B_DOWN_x$" cy="$CCU7_GRAPH_C70B_DOWN_y$" r="4" stroke-width="0" fill="pink"/>
+                        <circle cx="$CCU7_GRAPH_CC71A_UP_x$" cy="$CCU7_GRAPH_CC71A_UP_y$" r="4" stroke-width="0" fill="green"/>
+                        <circle cx="$CCU7_GRAPH_CC71A_DOWN_x$" cy="$CCU7_GRAPH_CC71A_DOWN_y$" r="4" stroke-width="0" fill="green"/>
+                        <circle cx="$CCU7_GRAPH_C71B_UP_x$" cy="$CCU7_GRAPH_C71B_UP_y$" r="4" stroke-width="0" fill="lightgreen"/>
+                        <circle cx="$CCU7_GRAPH_C71B_DOWN_x$" cy="$CCU7_GRAPH_C71B_DOWN_y$" r="4" stroke-width="0" fill="lightgreen"/>
+                        <circle cx="$CCU7_GRAPH_CC72A_UP_x$" cy="$CCU7_GRAPH_CC72A_UP_y$" r="4" stroke-width="0" fill="blue"/>
+                        <circle cx="$CCU7_GRAPH_CC72A_DOWN_x$" cy="$CCU7_GRAPH_CC72A_DOWN_y$" r="4" stroke-width="0" fill="blue"/>
+                        <circle cx="$CCU7_GRAPH_C72B_UP_x$" cy="$CCU7_GRAPH_C72B_UP_y$" r="4" stroke-width="0" fill="lightblue"/>
+                        <circle cx="$CCU7_GRAPH_C72B_DOWN_x$" cy="$CCU7_GRAPH_C72B_DOWN_y$" r="4" stroke-width="0" fill="lightblue"/>
+
+                        <line x1="$CCU7_GRAPH_T12_ARROW_BEG_x$" y1="$CCU7_GRAPH_T12_ARROW_BEG_y$" x2="$CCU7_GRAPH_T12_ARROW_END_x$" y2="$CCU7_GRAPH_T12_ARROW_END_y$" style="stroke:grey;stroke-width:1"/>
+                        <g transform="translate($CCU7_GRAPH_T12_ARROW_END_x$,$CCU7_GRAPH_T12_ARROW_END_y$)">
+                          <path d="M0 0 L-10 -5 L-10 5 Z" style="fill:grey"/>
+                        </g>
+                        <text x="$CCU7_GRAPH_T12_ARROW_BEG_x$" y="$CCU7_GRAPH_T12_ARROW_LABEL_y$" font-family="arial" font-size="10" fill="grey">$CCU7_T12_PERIOD_FULL$ tick(s)</text>  
+                      </g>                      
+                      <!--/g-->
+                    </svg>
+                  </svgembed>
+                </groupcontainer>
+                <!-- T13 -->
+                <checkbox label="Show T13 graph" define="CCU7_TIMER_GRAPH_T13_UPDATE" svd="0" header="temp_defines.h" setdef="CCU7_TIMER_GRAPH_T13_SHOW.visible=1;timer_graph_t13.update=1" setdefinv="CCU7_TIMER_GRAPH_T13_SHOW.visible=0;timer_graph_t13.update=0"/>
+                <groupcontainer define="CCU7_TIMER_GRAPH_T13_SHOW" svd="0" visible="false">
+                  <svgembed define="timer_graph_t13" passive="1" header="">
+                    <svg width="500" height="100">
+                      <!--g transform="translate(0, 100)"--> 
+                      <rect width="500" height="100" style="fill:#fffde6;stroke-width:0"/>
+                      <text x="10" y="60" font-family="arial" font-size="10" fill="black">T13</text>
+                      <text x="10" y="70" font-family="arial" font-size="10" fill="red">C73</text>
+
+                      <g transform="translate($CCU7_GRAPH_T13_OFFSET_x$, $CCU7_GRAPH_T13_OFFSET_y$)">
+                        <text text-anchor="end" x="-7" y="0" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T13_TRIGSEL_TEXT$</text>
+                        <text text-anchor="end" x="-7" y="10" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T13_T12_CNTDIR_TEXT$</text>
+                        <line x1="$CCU7_GRAPH_T13_UP_BEG_x$" y1="$CCU7_GRAPH_T13_UP_BEG_y$" x2="$CCU7_GRAPH_T13_UP_END_x$" y2="$CCU7_GRAPH_T13_UP_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T13_DOWN_BEG_x$" y1="$CCU7_GRAPH_T13_DOWN_BEG_y$" x2="$CCU7_GRAPH_T13_DOWN_END_x$" y2="$CCU7_GRAPH_T13_DOWN_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T13_DUMMY_BEG_x$" y1="$CCU7_GRAPH_T13_DUMMY_BEG_y$" x2="$CCU7_GRAPH_T13_DUMMY_END_x$" y2="$CCU7_GRAPH_T13_DUMMY_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T13_NEWPER_BEG_x$" y1="$CCU7_GRAPH_T13_NEWPER_BEG_y$" x2="$CCU7_GRAPH_T13_NEWPER_END_x$" y2="$CCU7_GRAPH_T13_NEWPER_END_y$" style="stroke:black;stroke-width:1"/>
+                        <circle cx="$CCU7_GRAPH_T13_DOT1_x$" cy="$CCU7_GRAPH_T13_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T13_DOT2_x$" cy="$CCU7_GRAPH_T13_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T13_DOT3_x$" cy="$CCU7_GRAPH_T13_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+
+                        <circle cx="$CCU7_GRAPH_C73_UP_x$" cy="$CCU7_GRAPH_C73_UP_y$" r="4" stroke-width="0" fill="red"/>
+
+                        <line x1="$CCU7_GRAPH_T13_ARROW_BEG_x$" y1="$CCU7_GRAPH_T13_ARROW_BEG_y$" x2="$CCU7_GRAPH_T13_ARROW_END_x$" y2="$CCU7_GRAPH_T13_ARROW_END_y$" style="stroke:grey;stroke-width:1"/>
+                        <g transform="translate($CCU7_GRAPH_T13_ARROW_END_x$,$CCU7_GRAPH_T13_ARROW_END_y$)">
+                          <path d="M0 0 L-10 -5 L-10 5 Z" style="fill:grey"/>
+                        </g>   
+                        <text x="$CCU7_GRAPH_T13_ARROW_BEG_x$" y="$CCU7_GRAPH_T13_ARROW_LABEL_y$" font-family="arial" font-size="10" fill="grey">$CCU7_T13_PERIOD_FULL$ tick(s)</text>  
+                      </g>
+                      <!--/g-->
+                    </svg>
+                  </svgembed>
+                </groupcontainer>
+                <!-- T14 -->
+                <checkbox label="Show T14 graph" define="CCU7_TIMER_GRAPH_T14_UPDATE" svd="0" header="temp_defines.h" setdef="CCU7_TIMER_GRAPH_T14_SHOW.visible=1;timer_graph_t14.update=1" setdefinv="CCU7_TIMER_GRAPH_T14_SHOW.visible=0;timer_graph_t14.update=0"/>
+                <groupcontainer define="CCU7_TIMER_GRAPH_T14_SHOW" svd="0" visible="false">
+                  <svgembed define="timer_graph_t14" passive="1" header="">
+                    <svg width="500" height="100">
+                      <!--g transform="translate(0, 200)"--> 
+                      <rect width="500" height="100" style="fill:#fffde6;stroke-width:0"/>
+                      <text x="10" y="60" font-family="arial" font-size="10" fill="black">T14</text>
+                      <text x="10" y="70" font-family="arial" font-size="10" fill="red">C74</text>
+
+                      <g transform="translate($CCU7_GRAPH_T14_OFFSET_x$, $CCU7_GRAPH_T14_OFFSET_y$)">
+                        <text text-anchor="end" x="-7" y="0" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T14_TRIGSEL_TEXT$</text>
+                        <text text-anchor="end" x="-7" y="10" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T14_T12_CNTDIR_TEXT$</text>
+                        <line x1="$CCU7_GRAPH_T14_UP_BEG_x$" y1="$CCU7_GRAPH_T14_UP_BEG_y$" x2="$CCU7_GRAPH_T14_UP_END_x$" y2="$CCU7_GRAPH_T14_UP_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T14_DOWN_BEG_x$" y1="$CCU7_GRAPH_T14_DOWN_BEG_y$" x2="$CCU7_GRAPH_T14_DOWN_END_x$" y2="$CCU7_GRAPH_T14_DOWN_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T14_DUMMY_BEG_x$" y1="$CCU7_GRAPH_T14_DUMMY_BEG_y$" x2="$CCU7_GRAPH_T14_DUMMY_END_x$" y2="$CCU7_GRAPH_T14_DUMMY_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T14_NEWPER_BEG_x$" y1="$CCU7_GRAPH_T14_NEWPER_BEG_y$" x2="$CCU7_GRAPH_T14_NEWPER_END_x$" y2="$CCU7_GRAPH_T14_NEWPER_END_y$" style="stroke:black;stroke-width:1"/>
+                        <circle cx="$CCU7_GRAPH_T14_DOT1_x$" cy="$CCU7_GRAPH_T14_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T14_DOT2_x$" cy="$CCU7_GRAPH_T14_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T14_DOT3_x$" cy="$CCU7_GRAPH_T14_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+
+                        <circle cx="$CCU7_GRAPH_C74_UP_x$" cy="$CCU7_GRAPH_C74_UP_y$" r="4" stroke-width="0" fill="red"/>
+
+                        <line x1="$CCU7_GRAPH_T14_ARROW_BEG_x$" y1="$CCU7_GRAPH_T14_ARROW_BEG_y$" x2="$CCU7_GRAPH_T14_ARROW_END_x$" y2="$CCU7_GRAPH_T14_ARROW_END_y$" style="stroke:grey;stroke-width:1"/>
+                        <g transform="translate($CCU7_GRAPH_T14_ARROW_END_x$,$CCU7_GRAPH_T14_ARROW_END_y$)">
+                          <path d="M0 0 L-10 -5 L-10 5 Z" style="fill:grey"/>
+                        </g>   
+                        <text x="$CCU7_GRAPH_T14_ARROW_BEG_x$" y="$CCU7_GRAPH_T14_ARROW_LABEL_y$" font-family="arial" font-size="10" fill="grey">$CCU7_T14_PERIOD_FULL$ tick(s)</text>  
+                      </g>
+                      <!--/g-->
+                    </svg>
+                  </svgembed>
+                </groupcontainer>
+                <!-- T15 -->
+                <checkbox label="Show T15 graph" define="CCU7_TIMER_GRAPH_T15_UPDATE" svd="0" header="temp_defines.h" setdef="CCU7_TIMER_GRAPH_T15_SHOW.visible=1;timer_graph_t15.update=1" setdefinv="CCU7_TIMER_GRAPH_T15_SHOW.visible=0;timer_graph_t15.update=0"/>
+                <groupcontainer define="CCU7_TIMER_GRAPH_T15_SHOW" svd="0" visible="false">
+                  <svgembed define="timer_graph_t15" passive="1" header="">
+                    <svg width="500" height="100">
+                      <!--g transform="translate(0, 300)"--> 
+                      <rect width="500" height="100" style="fill:#fffde6;stroke-width:0"/>
+                      <text x="10" y="60" font-family="arial" font-size="10" fill="black">T15</text>
+                      <text x="10" y="70" font-family="arial" font-size="10" fill="red">C75</text>
+
+                      <g transform="translate($CCU7_GRAPH_T15_OFFSET_x$, $CCU7_GRAPH_T15_OFFSET_y$)">
+                        <text text-anchor="end" x="-7" y="0" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T15_TRIGSEL_TEXT$</text>
+                        <text text-anchor="end" x="-7" y="10" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T15_T12_CNTDIR_TEXT$</text>
+                        <line x1="$CCU7_GRAPH_T15_UP_BEG_x$" y1="$CCU7_GRAPH_T15_UP_BEG_y$" x2="$CCU7_GRAPH_T15_UP_END_x$" y2="$CCU7_GRAPH_T15_UP_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T15_DOWN_BEG_x$" y1="$CCU7_GRAPH_T15_DOWN_BEG_y$" x2="$CCU7_GRAPH_T15_DOWN_END_x$" y2="$CCU7_GRAPH_T15_DOWN_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T15_DUMMY_BEG_x$" y1="$CCU7_GRAPH_T15_DUMMY_BEG_y$" x2="$CCU7_GRAPH_T15_DUMMY_END_x$" y2="$CCU7_GRAPH_T15_DUMMY_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T15_NEWPER_BEG_x$" y1="$CCU7_GRAPH_T15_NEWPER_BEG_y$" x2="$CCU7_GRAPH_T15_NEWPER_END_x$" y2="$CCU7_GRAPH_T15_NEWPER_END_y$" style="stroke:black;stroke-width:1"/>
+                        <circle cx="$CCU7_GRAPH_T15_DOT1_x$" cy="$CCU7_GRAPH_T15_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T15_DOT2_x$" cy="$CCU7_GRAPH_T15_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T15_DOT3_x$" cy="$CCU7_GRAPH_T15_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+
+                        <circle cx="$CCU7_GRAPH_C75_UP_x$" cy="$CCU7_GRAPH_C75_UP_y$" r="4" stroke-width="0" fill="red"/>
+
+                        <line x1="$CCU7_GRAPH_T15_ARROW_BEG_x$" y1="$CCU7_GRAPH_T15_ARROW_BEG_y$" x2="$CCU7_GRAPH_T15_ARROW_END_x$" y2="$CCU7_GRAPH_T15_ARROW_END_y$" style="stroke:grey;stroke-width:1"/>
+                        <g transform="translate($CCU7_GRAPH_T15_ARROW_END_x$,$CCU7_GRAPH_T15_ARROW_END_y$)">
+                          <path d="M0 0 L-10 -5 L-10 5 Z" style="fill:grey"/>
+                        </g>   
+                        <text x="$CCU7_GRAPH_T15_ARROW_BEG_x$" y="$CCU7_GRAPH_T15_ARROW_LABEL_y$" font-family="arial" font-size="10" fill="grey">$CCU7_T15_PERIOD_FULL$ tick(s)</text>  
+                      </g>
+                      <!--/g-->
+                    </svg>
+                  </svgembed>
+                </groupcontainer>
+                <!-- T16 -->
+                <checkbox label="Show T16 graph" define="CCU7_TIMER_GRAPH_T16_UPDATE" svd="0" header="temp_defines.h" setdef="CCU7_TIMER_GRAPH_T16_SHOW.visible=1;timer_graph_t16.update=1" setdefinv="CCU7_TIMER_GRAPH_T16_SHOW.visible=0;timer_graph_t16.update=0"/>
+                <groupcontainer define="CCU7_TIMER_GRAPH_T16_SHOW" svd="0" visible="false">
+                  <svgembed define="timer_graph_t16" passive="1" header="">
+                    <svg width="500" height="100">
+                      <!--g transform="translate(0, 400)"--> 
+                      <rect width="500" height="100" style="fill:#fffde6;stroke-width:0"/>
+                      <text x="10" y="60" font-family="arial" font-size="10" fill="black">T16</text>
+                      <text x="10" y="70" font-family="arial" font-size="10" fill="red">C76</text>
+
+                      <g transform="translate($CCU7_GRAPH_T16_OFFSET_x$, $CCU7_GRAPH_T16_OFFSET_y$)">
+                        <text text-anchor="end" x="-7" y="0" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T16_TRIGSEL_TEXT$</text>
+                        <text text-anchor="end" x="-7" y="10" font-family="arial" font-size="8" fill="black">$CCU7_GRAPH_T16_T12_CNTDIR_TEXT$</text>
+                        <line x1="$CCU7_GRAPH_T16_UP_BEG_x$" y1="$CCU7_GRAPH_T16_UP_BEG_y$" x2="$CCU7_GRAPH_T16_UP_END_x$" y2="$CCU7_GRAPH_T16_UP_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T16_DOWN_BEG_x$" y1="$CCU7_GRAPH_T16_DOWN_BEG_y$" x2="$CCU7_GRAPH_T16_DOWN_END_x$" y2="$CCU7_GRAPH_T16_DOWN_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T16_DUMMY_BEG_x$" y1="$CCU7_GRAPH_T16_DUMMY_BEG_y$" x2="$CCU7_GRAPH_T16_DUMMY_END_x$" y2="$CCU7_GRAPH_T16_DUMMY_END_y$" style="stroke:black;stroke-width:1"/>
+                        <line x1="$CCU7_GRAPH_T16_NEWPER_BEG_x$" y1="$CCU7_GRAPH_T16_NEWPER_BEG_y$" x2="$CCU7_GRAPH_T16_NEWPER_END_x$" y2="$CCU7_GRAPH_T16_NEWPER_END_y$" style="stroke:black;stroke-width:1"/>
+                        <circle cx="$CCU7_GRAPH_T16_DOT1_x$" cy="$CCU7_GRAPH_T16_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T16_DOT2_x$" cy="$CCU7_GRAPH_T16_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+                        <circle cx="$CCU7_GRAPH_T16_DOT3_x$" cy="$CCU7_GRAPH_T16_DOTs_y$" r="1" stroke-width="0" fill="black"/>
+
+                        <circle cx="$CCU7_GRAPH_C76_UP_x$" cy="$CCU7_GRAPH_C76_UP_y$" r="4" stroke-width="0" fill="red"/>
+
+                        <line x1="$CCU7_GRAPH_T16_ARROW_BEG_x$" y1="$CCU7_GRAPH_T16_ARROW_BEG_y$" x2="$CCU7_GRAPH_T16_ARROW_END_x$" y2="$CCU7_GRAPH_T16_ARROW_END_y$" style="stroke:grey;stroke-width:1"/>
+                        <g transform="translate($CCU7_GRAPH_T16_ARROW_END_x$,$CCU7_GRAPH_T16_ARROW_END_y$)">
+                          <path d="M0 0 L-10 -5 L-10 5 Z" style="fill:grey"/>
+                        </g>   
+                        <text x="$CCU7_GRAPH_T16_ARROW_BEG_x$" y="$CCU7_GRAPH_T16_ARROW_LABEL_y$" font-family="arial" font-size="10" fill="grey">$CCU7_T16_PERIOD_FULL$ tick(s)</text>  
+                      </g>
+                      <!--/g-->
+
+                    </svg>
+                  </svgembed>
+                </groupcontainer>
+              </verticalcontainer>
+            </groupcontainer>
+
+            <groupcontainer label="CCU7 Output signals">
+              <verticalcontainer>
+                <!-- CC70, COUT70-->
+                <include CC7x="CC70" COUT7x="COUT70" Channel="Ch0">template_ccu7_deadtime_graph.xml</include>
+                
+                <!-- CC71, COUT71 -->
+                <include CC7x="CC71" COUT7x="COUT71" Channel="Ch1">template_ccu7_deadtime_graph.xml</include>
+                
+                <!-- CC72, COUT72 -->
+                <include CC7x="CC72" COUT7x="COUT72" Channel="Ch2">template_ccu7_deadtime_graph.xml</include>
+                
+              </verticalcontainer>
+            </groupcontainer>
+          </verticalcontainer>
+        </verticalcontainer>
+      </horizontalcontainer>  
+    </header>    
+  </verticalcontainer>  
+</ifxmlcfg>

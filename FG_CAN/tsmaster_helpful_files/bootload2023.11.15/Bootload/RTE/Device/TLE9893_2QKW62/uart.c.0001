@@ -1,0 +1,384 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "uart.h"
+
+/*******************************************************************************
+**                        Private Constant Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Private Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Variable Definitions                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Function Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+/** \brief Initialize UART0
+ *
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 UART0_init(void)
+{
+  sint8 s8_returnCode;
+  s8_returnCode = ERR_LOG_SUCCESS;
+  
+  /* Violation: Boolean within 'if' always evaluates to False [MISRA Rule 14.3]*/
+  if (UART0_GLOBCONF_EN == 1u)
+  {
+    UART0->INSEL.reg = (uint32) UART0_INSEL;
+    UART0->SCON.reg = (uint32) UART0_SCON;
+    UART0->IEN.reg = (uint32) UART0_IEN;
+    UART0->BCON.reg = (uint32) UART0_BCON;
+  }
+  else
+  {
+    s8_returnCode = ERR_LOG_CODE_MODULE_DISABLED_IN_CW;
+  }
+  
+  return s8_returnCode;
+}
+
+
+/** \brief Initialize UART1
+ *
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 UART1_init(void)
+{
+  sint8 s8_returnCode;
+  s8_returnCode = ERR_LOG_SUCCESS;
+
+  /* Violation: Boolean within 'if' always evaluates to False [MISRA Rule 14.3]*/
+  if (UART1_GLOBCONF_EN == 1u)
+  {
+    UART1->INSEL.reg = (uint32) UART1_INSEL;
+    UART1->SCON.reg = (uint32) UART1_SCON;
+    UART1->IEN.reg = (uint32) UART1_IEN;
+    UART1->BCON.reg = (uint32) UART1_BCON;
+  }
+  else
+  {
+    s8_returnCode = ERR_LOG_CODE_MODULE_DISABLED_IN_CW;
+  }
+  
+  return s8_returnCode;
+}
+
+/** \brief Get the baudrate for UART0
+ *
+ * \return uint32 UART0 baudrate
+ */
+uint32 UART0_getBaudrate(void)
+{
+  return (uint32)(SCU_fUART_MHz * 1000000 / (16 * UART0->BCON.bit.BR_PRE * (UART0->BCON.bit.BG_BR_VALUE + (UART0->BCON.bit.BG_FD_SEL / 32))));
+}
+
+
+/** \brief Set the baudrate for UART0
+ *
+ * \param u32_baudrate baudrate
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 UART0_setBaudrate(uint32 u32_baudrate)
+{
+  sint8 s8_returnCode;
+  uint32 u32_maxBaudrate;
+  
+  uint8 i;
+  uint8 u8_deviation;
+  uint8 u8_indexFlagSign;
+  uint8 u8_flagSign;
+  uint8 u8_flag;
+  sint8 s8_pre;
+  uint8 u8_prescaler;
+  uint16 u16_reloadVal;
+  uint32 u32_calcBR;
+  uint32 u32_minBR;
+  uint32 u32_maxBR;
+
+  u8_deviation = 1u;
+  u8_indexFlagSign = 0u;
+  u8_flagSign = 0u;
+  u8_flag = 0u;
+  s8_pre = (sint8)5;
+  u8_prescaler = 32u;
+  u16_reloadVal = 1u;
+
+  s8_returnCode = ERR_LOG_SUCCESS;
+    
+  u32_maxBaudrate = (uint32)(SCU_fUART_MHz * 1000000 / 16);
+
+  if (u32_baudrate <= u32_maxBaudrate)
+  {
+    /* While loop on prescaler value to find the reload value/fractional divider */
+    /* At each iteration the prescaler is divided by 2 */
+    while (u8_prescaler > 0u)
+    {
+      /* According to UM, Baudrate = fUART / (16 * prescaler * (reloadVal + fracDiv/32)) */
+      u16_reloadVal = (uint16)((uint32)SCU_fUART_MHz * 1000000u / (16u * u8_prescaler * u32_baudrate));
+      if ((u16_reloadVal <= 2047u) && (u16_reloadVal > 0u))
+      {
+        for (i = 0; i <= 32; i++)
+        {
+          u32_calcBR = SCU_fUART_MHz * 1000000u / (16u * u8_prescaler * (u16_reloadVal + i / 32u));
+          u32_minBR = u32_baudrate * (1u - (u8_deviation / 10000u));
+          u32_maxBR = u32_baudrate * (1u + (u8_deviation / 10000u));
+          if ((u32_calcBR >= u32_minBR) && (u32_calcBR <= u32_maxBR))
+          {
+            /* Set u8_flag */
+            u8_flag = 1u;
+            /* Disable baudrate generator */
+            UART0->BCON.bit.BR_R = 0u;
+            /* Set prescaler, fractional divider and reload value */
+            UART0->BCON.bit.BR_PRE = (uint8)s8_pre;
+            if (i == 32)
+            {
+              UART0->BCON.bit.BG_FD_SEL = 0u;
+              UART0->BCON.bit.BG_BR_VALUE = u16_reloadVal + 1u;
+            }
+            else
+            {
+              UART0->BCON.bit.BG_FD_SEL = i;
+              UART0->BCON.bit.BG_BR_VALUE = u16_reloadVal;
+            }
+            /* Enable baudrate generator */
+            UART0->BCON.bit.BR_R = 1u;
+            break;
+          }
+        }
+        if (u8_flag == 0u)
+        {
+          /* At each iteration the prescaler is divided by 2 */
+          u8_prescaler /= 2u;
+          /* At each iteration the prescaler value is decremented by 1 */
+          s8_pre -= (sint8)1;
+          if (s8_pre < (sint8)0)
+          {
+            if (u8_flagSign == 0u)
+            {
+              u8_deviation = u8_deviation + u8_indexFlagSign;
+              u8_flagSign = 1u;
+            }
+            else
+            {
+              u8_deviation = u8_deviation - u8_indexFlagSign;
+              u8_flagSign = 0;
+            }
+            u8_indexFlagSign += 1u;
+            /* Reinitialization of variables */
+            s8_pre = (sint8)5;
+            u8_prescaler = 32u;
+            u16_reloadVal = 0u;
+          }
+        }
+      }
+    }
+  }
+  else
+  {
+    s8_returnCode = ERR_LOG_CODE_PARAM_OUT_OF_RANGE;
+  }
+
+  return s8_returnCode;
+}
+
+/** \brief Get the baudrate for UART1
+ *
+ * \return uint32 UART1 baudrate
+ */
+uint32 UART1_getBaudrate(void)
+{
+  return (uint32)(SCU_fUART_MHz * 1000000 / (16 * UART1->BCON.bit.BR_PRE * (UART1->BCON.bit.BG_BR_VALUE + (UART1->BCON.bit.BG_FD_SEL / 32))));
+}
+
+
+/** \brief Set the baudrate for UART1
+ *
+ * \param u32_baudrate baudrate
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 UART1_setBaudrate(uint32 u32_baudrate)
+{
+  sint8 s8_returnCode;
+  uint32 u32_maxBaudrate;
+  
+  uint8 i;
+  uint8 u8_deviation;
+  uint8 u8_indexFlagSign;
+  uint8 u8_flagSign;
+  uint8 u8_flag;
+  sint8 s8_pre;
+  uint8 u8_prescaler;
+  uint16 u16_reloadVal;
+  uint32 u32_calcBR;
+  uint32 u32_minBR;
+  uint32 u32_maxBR;
+
+  u8_deviation = 1u;
+  u8_indexFlagSign = 0u;
+  u8_flagSign = 0u;
+  u8_flag = 0u;
+  s8_pre = (sint8)5;
+  u8_prescaler = 32u;
+  u16_reloadVal = 1u;
+
+  s8_returnCode = ERR_LOG_SUCCESS;
+    
+  u32_maxBaudrate = (uint32)(SCU_fUART_MHz * 1000000 / 16);
+
+  if (u32_baudrate <= u32_maxBaudrate)
+  {
+    /* While loop on prescaler value to find the reload value/fractional divider */
+    /* At each iteration the prescaler is divided by 2 */
+    while (u8_prescaler > 0u)
+    {
+      /* According to UM, Baudrate = fUART / (16 * prescaler * (reloadVal + fracDiv/32)) */
+      u16_reloadVal = (uint16)((uint32)SCU_fUART_MHz * 1000000u / (16u * u8_prescaler * u32_baudrate));
+      if ((u16_reloadVal <= 2047u) && (u16_reloadVal > 0u))
+      {
+        for (i = 0; i <= 32; i++)
+        {
+          u32_calcBR = SCU_fUART_MHz * 1000000u / (16u * u8_prescaler * (u16_reloadVal + i / 32u));
+          u32_minBR = u32_baudrate * (1u - (u8_deviation / 10000u));
+          u32_maxBR = u32_baudrate * (1u + (u8_deviation / 10000u));
+          if ((u32_calcBR >= u32_minBR) && (u32_calcBR <= u32_maxBR))
+          {
+            /* Set u8_flag */
+            u8_flag = 1u;
+            /* Disable baudrate generator */
+            UART1->BCON.bit.BR_R = 0u;
+            /* Set prescaler, fractional divider and reload value */
+            UART1->BCON.bit.BR_PRE = (uint8)s8_pre;
+            if (i == 32)
+            {
+              UART1->BCON.bit.BG_FD_SEL = 0u;
+              UART1->BCON.bit.BG_BR_VALUE = u16_reloadVal + 1u;
+            }
+            else
+            {
+              UART1->BCON.bit.BG_FD_SEL = i;
+              UART1->BCON.bit.BG_BR_VALUE = u16_reloadVal;
+            }
+            /* Enable baudrate generator */
+            UART1->BCON.bit.BR_R = 1u;
+            break;
+          }
+        }
+        if (u8_flag == 0u)
+        {
+          /* At each iteration the prescaler is divided by 2 */
+          u8_prescaler /= 2u;
+          /* At each iteration the prescaler value is decremented by 1 */
+          s8_pre -= (sint8)1;
+          if (s8_pre < (sint8)0)
+          {
+            if (u8_flagSign == 0u)
+            {
+              u8_deviation = u8_deviation + u8_indexFlagSign;
+              u8_flagSign = 1u;
+            }
+            else
+            {
+              u8_deviation = u8_deviation - u8_indexFlagSign;
+              u8_flagSign = 0;
+            }
+            u8_indexFlagSign += 1u;
+            /* Reinitialization of variables */
+            s8_pre = (sint8)5;
+            u8_prescaler = 32u;
+            u16_reloadVal = 0u;
+          }
+        }
+      }
+    }
+  }
+  else
+  {
+    s8_returnCode = ERR_LOG_CODE_PARAM_OUT_OF_RANGE;
+  }
+
+  return s8_returnCode;
+}
+
+/*******************************************************************************
+**                       Deprecated Function Definitions                      **
+*******************************************************************************/
+
+void UART0_setTXIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void UART0_setRXIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void UART0_setSyncErrIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void UART0_setEOFIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void UART1_setTXIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void UART1_setRXIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void UART1_setSyncErrIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void UART1_setEOFIntSts(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file icw_ocn.xml                                                                -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-23, DM:   EP-464: Added ADC2 module                            -->
+<!-- V0.1.0: 2020-10-23, JO:   EP-482: Include the module XMLs as template to avoid -->
+<!--                           checksum error due to Config Wizard bug              -->
+<!-- V0.1.1: 2020-11-06, JO:   EP-555: Run calc_ccu7.py at startup in case CCU7 is  -->
+<!--                           enabled                                              -->
+<!-- V0.2.0: 2020-11-12, JO:   EP-587: Include the pin overview based on the device -->
+<!--                           selected in the uVision project                      -->
+<!-- V0.3.0: 2020-12-03, BG:   EP-599: Added startcond and cond for devices with or -->
+<!--                           without SDADC                                        -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.5.0">
+  <checksum>9ec4f884b8e7e171f7d36f30c0e0102f16508adde31dc7f71875fa117b60fd01</checksum>
+  <version label="V0.3.0"/>
+  <svd file="TLE989x.svd"/>
+  
+  <!-- 64 pin devices: TLE9893QKW62S, TLE9893_2QKW62, TLE9893_2QKW62S, TLE9893_2QKW62S_internal -->
+  <pinmapping startcond="device==TLE9893QKW62S" file="tle989x_64.pin"/>
+  <pinmapping startcond="device==TLE9893_2QKW62" file="tle989x_64.pin"/>
+  <pinmapping startcond="device==TLE9893_2QKW62S" file="tle989x_64.pin"/>
+  <pinmapping startcond="device==TLE9893_2QKW62S_internal" file="tle989x_64.pin"/>
+  
+  <!-- 48 pin devices: TLE9883QTA62, TLE9891QTA61, TLE9893QTW62, TLE9881_2QTW60, TLE9883_2QTW62S, TLE9891_2QTW60, TLE9891_2QTW61, TLE9893_2QTA62, TLE9893_2QTW62S, TLE9893_2QTA62S -->
+  <pinmapping startcond="device==TLE9883QTA62" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9891QTA61" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9893QTW62" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9881_2QTW60" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9883_2QTW62S" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9891_2QTW60" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9891_2QTW61" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9893_2QTA62" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9893_2QTW62S" file="tle989x_48.pin"/>
+  <pinmapping startcond="device==TLE9893_2QTA62S" file="tle989x_48.pin"/>
+  
+  <usesPython/>
+  <tooltipconfig value="0x0FFF"/>
+  
+  <tabcontainer resize="1">
+  
+    <timer visible="false" define="OCN_INIT" svd="0" interval="1" singleShot="1" run="1">
+      <action event="changed" cmd="setDef" data="BEMF_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="BDRV_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="GPT12_INIT.run=1"/>
+      <!-- If no SDADC, the following defines must be set to 0 to bypass the conditions in the pin mapping -->
+      <action cond="UC_FEATURE_SDADC==0" event="changed" cmd="setDef" data="SDADC.INSEL.DIN0SEL=0;SDADC.INSEL.DIN1SEL=0;SDADC.INSEL.IN0NSEL=0;SDADC.INSEL.IN1NSEL=0;SDADC.INSEL.IN0PSEL=0;SDADC.INSEL.IN1PSEL=0"/>
+      <!-- If SDADC, the module is initialized -->
+      <action cond="UC_FEATURE_SDADC==1" event="changed" cmd="setDef" data="SDADC_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="PMU_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="SSC_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="T2X_INIT.run=1"/>
+      <action event="changed" cmd="setDef" data="UART_INIT.run=1"/>
+      <action event="changed" cond="CCU7_EN==0" cmd="setDef" data="CCU7_MODULE.enabled=0"/>
+      <action event="changed" cmd="runScript" data="python:ccu7_calc.py"/>
+    </timer>
+    
+    <verticalcontainer label="Pin Overview">
+    
+      <!-- FEATURE 48 OR 64 PINS -->
+      <verticalcontainer visible="false">
+        <edit label="Device name" define="device" visible="true" svd="0"/>
+        
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9881_2QTW60"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9883_2QTW62S"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9883QTA62"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9891QTA61"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9891_2QTW60"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9891_2QTW61"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9893QTW62"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9893_2QTA62"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9893_2QTW62S"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="0" startcond="device==TLE9893_2QTA62S"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="1" startcond="device==TLE9893QKW62S"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="1" startcond="device==TLE9893_2QKW62"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="1" startcond="device==TLE9893_2QKW62S"/>
+        <math define="UC_FEATURE_64_PIN_temp" svd="0" formula="1" startcond="device==TLE9893_2QKW62S_internal"/>
+        
+        <math define="UC_FEATURE_64_PIN" svd="0" formula="UC_FEATURE_64_PIN_temp"/>
+        <!-- Note: This (also without the temp math) works for include (e.g. GPIO), but not for items in combos! -->
+        <!-- the items with the condition are not shown at all, also not for the 64 pin device -->
+      </verticalcontainer>
+      
+      <!-- FEATURE WITH OR WITHOUT SDADC -->
+      <horizontalcontainer visible="false" startcond="device==TLE9883QTA62">
+        <var define="SDADC.INSEL.DIN0SEL"/>
+        <var define="SDADC.INSEL.DIN1SEL"/>
+        <var define="SDADC.INSEL.IN0NSEL"/>
+        <var define="SDADC.INSEL.IN1NSEL"/>
+        <var define="SDADC.INSEL.IN0PSEL"/>
+        <var define="SDADC.INSEL.IN1PSEL"/>
+      </horizontalcontainer>
+      <horizontalcontainer visible="false" startcond="device==TLE9891QTA61">
+        <var define="SDADC.INSEL.DIN0SEL"/>
+        <var define="SDADC.INSEL.DIN1SEL"/>
+        <var define="SDADC.INSEL.IN0NSEL"/>
+        <var define="SDADC.INSEL.IN1NSEL"/>
+        <var define="SDADC.INSEL.IN0PSEL"/>
+        <var define="SDADC.INSEL.IN1PSEL"/>
+      </horizontalcontainer>
+      <horizontalcontainer visible="false" startcond="device==TLE9893QKW62S">
+        <var define="SDADC.INSEL.DIN0SEL"/>
+        <var define="SDADC.INSEL.DIN1SEL"/>
+        <var define="SDADC.INSEL.IN0NSEL"/>
+        <var define="SDADC.INSEL.IN1NSEL"/>
+        <var define="SDADC.INSEL.IN0PSEL"/>
+        <var define="SDADC.INSEL.IN1PSEL"/>
+      </horizontalcontainer>
+      <horizontalcontainer visible="false" startcond="device==TLE9893QTW62">
+        <var define="SDADC.INSEL.DIN0SEL"/>
+        <var define="SDADC.INSEL.DIN1SEL"/>
+        <var define="SDADC.INSEL.IN0NSEL"/>
+        <var define="SDADC.INSEL.IN1NSEL"/>
+        <var define="SDADC.INSEL.IN0PSEL"/>
+        <var define="SDADC.INSEL.IN1PSEL"/>
+      </horizontalcontainer>
+      <verticalcontainer visible="false">
+        <!-- With or without SDADC -->
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="0" startcond="device==TLE9883QTA62"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="0" startcond="device==TLE9891QTA61"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="0" startcond="device==TLE9893QKW62S"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="0" startcond="device==TLE9893QTW62"/>
+        
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9881_2QTW60"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9883_2QTW62S"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9891_2QTW60"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9891_2QTW61"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9893_2QKW62"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9893_2QKW62S"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9893_2QKW62S_internal"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9893_2QTA62"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9893_2QTW62S"/>
+        <math define="UC_FEATURE_SDADC_temp" svd="0" formula="1" startcond="device==TLE9893_2QTA62S"/>
+        
+        <math define="UC_FEATURE_SDADC" svd="0" formula="UC_FEATURE_SDADC_temp"/>
+      </verticalcontainer>
+      
+      <pinmapper label="Pinmapper" define="pinmapper"/>
+    </verticalcontainer>
+    
+    <include BestTeam="SEV">icw_ocn_bsl.xml</include>
+    <include BestTeam="SEV">icw_ocn_scu.xml</include>
+    <include BestTeam="SEV">icw_ocn_pmu.xml</include>
+    <include BestTeam="SEV">icw_ocn_interrupt.xml</include>
+    <include BestTeam="SEV">icw_ocn_gpio.xml</include>
+    <include BestTeam="SEV">icw_ocn_mon.xml</include>
+    <include BestTeam="SEV">icw_ocn_adc1.xml</include>
+    <include BestTeam="SEV">icw_ocn_csacsc.xml</include>
+    <include BestTeam="SEV">icw_ocn_adc2.xml</include>
+    <include startcond="device==TLE9881_2QTW60"           SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9883_2QTW62S"          SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9891_2QTW60"           SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9891_2QTW61"           SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9893_2QKW62"           SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9893_2QKW62S"          SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9893_2QKW62S_internal" SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9893_2QTA62"           SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9893_2QTW62S"          SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include startcond="device==TLE9893_2QTA62S"          SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include SDK="NoBugs">icw_ocn_ccu7.xml</include>
+    <include SDK="NoBugs">icw_ocn_bdrv.xml</include>
+    <include SDK="NoBugs">icw_ocn_bemf.xml</include>
+    <include SDK="NoBugs">icw_ocn_cantrx.xml</include>
+    <include SDK="NoBugs">icw_ocn_gpt12.xml</include>
+    <include SDK="NoBugs">icw_ocn_ssc.xml</include>
+    <include SDK="NoBugs">icw_ocn_timer2x.xml</include>
+    <include SDK="NoBugs">icw_ocn_uartx.xml</include>
+    <include SDK="NoBugs">icw_ocn_dma.xml</include>
+    
+  </tabcontainer>
+</ifxmlcfg>

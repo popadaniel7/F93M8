@@ -8,7 +8,7 @@ typedef struct
     uint32          crc_result;
 } fceCrc;
 
-extern fceCrc g_fceCrc; /* Structure to store information */
+extern fceCrc g_fceCrc2; /* Structure to store information */
 
 extern void Crc_Init(void);
 extern uint32 Crc_Calculate(uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);

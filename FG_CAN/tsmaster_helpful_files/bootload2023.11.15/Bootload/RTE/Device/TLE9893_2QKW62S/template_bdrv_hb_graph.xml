@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_bdrv_hb_graph.xml                                                         -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2021-02-15, BG:   Initial version                                      -->
+<!-- V0.0.2: 2021-11-08, BG:   EP-790: Updated text for active and free-wheeling    -->
+<!--                           currents and timings                                 -->
+<!-- V0.0.3: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- HB_IDX: Half-bridge index -->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>03afe3af727e3a5d7b21d49a252c70f8b9003595d66b9b4f4dfbce878af1665e</checksum>
+  <version label="V0.0.3"/>
+  <svd file="TLE989x.svd"/>
+    <verticalcontainer label="BDRV_Variables" visible="false">
+      <edit label="BDRV_chrg_col1" define="BDRV.HB$HB_IDX$_CHRG_COL1" svd="0" header=""/>
+      <edit label="BDRV_chrg_col2" define="BDRV.HB$HB_IDX$_CHRG_COL2" svd="0" header=""/>
+      <edit label="BDRV_chrg_col3" define="BDRV.HB$HB_IDX$_CHRG_COL3" svd="0" header=""/>
+      <edit label="BDRV_chrg_col4" define="BDRV.HB$HB_IDX$_CHRG_COL4" svd="0" header=""/>
+      <edit label="BDRV_chrg_col5" define="BDRV.HB$HB_IDX$_CHRG_COL5" svd="0" header=""/>
+      <edit label="BDRV_chrg_col6" define="BDRV.HB$HB_IDX$_CHRG_COL6" svd="0" header=""/>
+      <edit label="BDRV_chrg_col7" define="BDRV.HB$HB_IDX$_CHRG_COL7" svd="0" header=""/>
+      <edit label="BDRV_chrg_col8" define="BDRV.HB$HB_IDX$_CHRG_COL8" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col1" define="BDRV.HB$HB_IDX$_DISCHRG_COL1" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col2" define="BDRV.HB$HB_IDX$_DISCHRG_COL2" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col3" define="BDRV.HB$HB_IDX$_DISCHRG_COL3" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col4" define="BDRV.HB$HB_IDX$_DISCHRG_COL4" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col5" define="BDRV.HB$HB_IDX$_DISCHRG_COL5" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col6" define="BDRV.HB$HB_IDX$_DISCHRG_COL6" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col7" define="BDRV.HB$HB_IDX$_DISCHRG_COL7" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col8" define="BDRV.HB$HB_IDX$_DISCHRG_COL8" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col9" define="BDRV.HB$HB_IDX$_DISCHRG_COL9" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col10" define="BDRV.HB$HB_IDX$_DISCHRG_COL10" svd="0" header=""/>
+      <edit label="BDRV_dischrg_col11" define="BDRV.HB$HB_IDX$_DISCHRG_COL11" svd="0" header=""/>
+      <edit label="BDRV_chrg_vis_cst" define="BDRV.HB$HB_IDX$_CHRG_VIS_CST" svd="0" header=""/>
+      <edit label="BDRV_chrg_vis_seq" define="BDRV.HB$HB_IDX$_CHRG_VIS_SEQ" svd="0" header=""/>
+      <edit label="BDRV_dischrg_vis_cst" define="BDRV.HB$HB_IDX$_DISCHRG_VIS_CST" svd="0" header=""/>
+      <edit label="BDRV_dischrg_vis_seq" define="BDRV.HB$HB_IDX$_DISCHRG_VIS_SEQ" svd="0" header=""/>
+      <edit label="BDRV_chrg_vis_aseq" define="BDRV.HB$HB_IDX$_CHRG_VIS_ASEQ" svd="0" header=""/>
+      <edit label="BDRV_dischrg_vis_aseq" define="BDRV.HB$HB_IDX$_DISCHRG_VIS_ASEQ" svd="0" header=""/>
+    </verticalcontainer>
+    <svgembed define="BDRV_HB$HB_IDX$_Block">
+      <svg viewBox="0 0 1200 700">
+        <rect width="1200" height="700" style="fill:#FFFFF0;stroke-width:1"/>
+        <line x1="0" y1="0" x2="0" y2="0" style="stroke#FFFFF0;stroke-width:$BDRV_UPDATE$"/>
+        <!-- PWM Signal -->
+        <text x="190" y="40" text-anchor="end" font-family="arial" font-size="15" fill="#000000">PWM Signal</text>
+        <line x1="200" y1="50" x2="450" y2="50" style="stroke:#000000;stroke-width:1"/>
+        <text x="325" y="40" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">OFF</text>
+        <line x1="450" y1="20" x2="450" y2="50" style="stroke:#000000;stroke-width:1"/>
+        <line x1="450" y1="20" x2="750" y2="20" style="stroke:#000000;stroke-width:1"/>
+        <text x="600" y="40" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">ON</text>
+        <line x1="750" y1="20" x2="750" y2="50" style="stroke:#000000;stroke-width:1"/>
+        <line x1="750" y1="50" x2="1100" y2="50" style="stroke:#000000;stroke-width:1"/>
+        <text x="900" y="40" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">OFF</text>
+        <!-- Free-Wheeling Signal -->
+        <text x="190" y="80" text-anchor="end" font-family="arial" font-size="15" fill="#000000">Free-Wheeling Signal</text>
+        <line x1="200" y1="60" x2="300" y2="60" style="stroke:#000000;stroke-width:1"/>
+        <text x="250" y="80" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">ON</text>
+        <line x1="300" y1="60" x2="300" y2="90" style="stroke:#000000;stroke-width:1"/>
+        <line x1="300" y1="90" x2="900" y2="90" style="stroke:#000000;stroke-width:1"/>
+        <text x="600" y="80" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">OFF</text>
+        <line x1="900" y1="60" x2="900" y2="90" style="stroke:#000000;stroke-width:1"/>
+        <line x1="900" y1="60" x2="1100" y2="60" style="stroke:#000000;stroke-width:1"/>
+        <text x="975" y="80" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">ON</text>
+        
+        <g id="PWM graph">
+          <!-- Gate Current Graph -->
+          <text x="190" y="200" text-anchor="end" font-family="arial" font-size="15" fill="#000000">Active Driver</text>
+          <text x="190" y="220" text-anchor="end" font-family="arial" font-size="15" fill="#000000">Gate Current</text>
+          <line x1="200" y1="130" x2="200" y2="350" style="stroke:#000000;stroke-width:1"/>
+          <path d="M200 130 L205 140 L195 140 Z"/>
+          <text x="190" y="140" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">I</text>
+          <line x1="185" y1="250" x2="1100" y2="250" style="stroke:#000000;stroke-width:1"/>
+          <path d="M1100 250 L1090 245 L1090 255 Z"/>
+          <text x="1110" y="255" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">t</text>
+
+          <!-- Currents fixed -->
+          <line x1="220" y1="260" x2="450" y2="260" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="450" y1="250" x2="450" y2="260" style="stroke:#000000;stroke-width:2"/>
+          <line x1="450" y1="250" x2="455" y2="150" style="stroke:#FF0000;stroke-width:2"/>
+          <line x1="455" y1="150" x2="482" y2="150" style="stroke:#FF0000;stroke-width:2"/>
+
+          <line x1="577" y1="160" x2="582" y2="240" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="582" y1="240" x2="750" y2="240" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="750" y1="240" x2="750" y2="250" style="stroke:#000000;stroke-width:2"/>
+
+          <line x1="750" y1="250" x2="755" y2="350" style="stroke:#FF0000;stroke-width:2"/>
+          <line x1="755" y1="350" x2="782" y2="350" style="stroke:#FF0000;stroke-width:2"/>
+
+          <line x1="877" y1="340" x2="882" y2="260" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="882" y1="260" x2="900" y2="260" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="900" y1="260" x2="1020" y2="260" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL10$;stroke-width:2"/>
+          <line x1="1020" y1="260" x2="1080" y2="260" style="stroke:#FFCC99;stroke-width:2"/>
+          
+          <!-- Dashed lines -->
+          <line x1="450" y1="50" x2="450" y2="255" stroke="#000000" stroke-dasharray="4"/>
+          <line x1="577" y1="155" x2="577" y2="255" stroke="#000000" stroke-dasharray="4"/>
+          <line x1="750" y1="50" x2="750" y2="255" stroke="#000000" stroke-dasharray="4"/>
+          <line x1="877" y1="245" x2="877" y2="345" stroke="#000000" stroke-dasharray="4"/>
+
+          <!-- CHARGE -->
+          <!-- GATE CURRENT CONSTANT -->
+          <g visibility="$BDRV.HB$HB_IDX$_CHRG_VIS_CST$">
+            <line x1="482" y1="150" x2="575" y2="150" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL1$;stroke-width:2"/>
+            <line x1="575" y1="150" x2="577" y2="160" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL2$;stroke-width:2"/>
+            <!-- Text ICON -->
+            <line x1="513" y1="150" x2="513" y2="180" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL3$;stroke-width:1"/>
+            <path d="M513 150 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL3$"/>
+            <line x1="513" y1="220" x2="513" y2="250" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL3$;stroke-width:1"/>
+            <path d="M513 250 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL3$"/>
+            <text x="513" y="195" text-anchor="middle" transform="rotate(-90 518,195)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL1$">I1ON</text>
+            <!-- Text TCON -->
+            <line x1="450" y1="260" x2="577" y2="260" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL3$;stroke-width:1"/>
+            <path d="M450 260 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL3$"/>
+            <path d="M577 260 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL3$"/>
+            <text x="513" y="275" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL1$">T1ON</text>
+          </g>
+          <!-- GATE CURRENT SEQUENCER -->
+          <g visibility="$BDRV.HB$HB_IDX$_CHRG_VIS_SEQ$">
+            <line x1="482" y1="150" x2="486" y2="220" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL4$;stroke-width:2"/>
+            <line x1="486" y1="220" x2="507" y2="220" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL4$;stroke-width:2"/>
+            <line x1="507" y1="220" x2="513" y2="210" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL5$;stroke-width:2"/>
+            <line x1="513" y1="210" x2="557" y2="210" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL5$;stroke-width:2"/>
+            <line x1="557" y1="210" x2="560" y2="160" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL6$;stroke-width:2"/>
+            <line x1="560" y1="160" x2="577" y2="160" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL6$;stroke-width:2"/>
+            <!-- Dashed Lines -->
+            <line x1="482" y1="145" x2="482" y2="255" stroke="$BDRV.HB$HB_IDX$_CHRG_COL7$" stroke-dasharray="4"/>
+            <line x1="507" y1="215" x2="507" y2="255" stroke="$BDRV.HB$HB_IDX$_CHRG_COL7$" stroke-dasharray="4"/>
+            <line x1="557" y1="205" x2="557" y2="255" stroke="$BDRV.HB$HB_IDX$_CHRG_COL7$" stroke-dasharray="4"/>
+            <!-- Text I1ON -->
+            <line x1="466" y1="150" x2="466" y2="180" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M466 150 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <line x1="466" y1="220" x2="466" y2="250" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M466 250 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="466" y="195" text-anchor="middle" transform="rotate(-90 471,195)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL8$">I1ON</text>
+            <!-- Text T1ON -->
+            <line x1="450" y1="260" x2="482" y2="260" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M450 260 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <path d="M482 260 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="466" y="275" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL8$">T1ON</text>
+            <!-- Text I2ON -->
+            <line x1="494" y1="220" x2="494" y2="250" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M494 220 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <path d="M494 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="494" y="195" text-anchor="middle" transform="rotate(-90 499,195)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL4$">I2ON</text>
+            <!-- Text T2ON -->
+            <line x1="482" y1="260" x2="507" y2="260" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M482 260 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <path d="M507 260 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="494" y="275" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL4$">T2ON</text>
+            <!-- Text I3ON -->
+            <line x1="532" y1="210" x2="532" y2="250" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M532 210 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <path d="M532 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="532" y="185" text-anchor="middle" transform="rotate(-90 537,185)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL5$">I3ON</text>
+            <!-- Text T3ON -->
+            <line x1="507" y1="260" x2="557" y2="260" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M507 260 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <path d="M557 260 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="532" y="275" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL5$">T3ON</text>
+            <!-- Text I4ON -->
+            <line x1="567" y1="160" x2="567" y2="185" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M567 160 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <line x1="567" y1="225" x2="567" y2="250" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M567 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="567" y="200" text-anchor="middle" transform="rotate(-90 572,200)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL6$">I4ON</text>
+            <!-- Text T4ON -->
+            <line x1="557" y1="260" x2="577" y2="260" style="stroke:$BDRV.HB$HB_IDX$_CHRG_COL7$;stroke-width:1"/>
+            <path d="M557 260 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <path d="M577 260 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_CHRG_COL7$"/>
+            <text x="567" y="275" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_CHRG_COL6$">T4ON</text>
+          </g>
+          <!-- Text ICLMPON -->
+          <line x1="665" y1="240" x2="665" y2="250" style="stroke:#000000;stroke-width:1"/>
+          <path d="M665 240 l-3 3 l6 0 Z" fill="#000000"/>
+          <path d="M665 250 l-3 -3 l6 0 Z" fill="#000000"/>
+          <text x="665" y="200" text-anchor="middle" transform="rotate(-90 670,200)" font-family="arial" font-size="10" fill="#FFCC99">ICLMPON</text>
+
+
+          <!-- DISCHARGE -->        
+          <!-- GATE CURRENT CONSTANT -->
+          <g visibility="$BDRV.HB$HB_IDX$_DISCHRG_VIS_CST$">
+            <line x1="782" y1="350" x2="875" y2="350" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL1$;stroke-width:2"/>
+            <line x1="875" y1="350" x2="877" y2="340" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL2$;stroke-width:2"/>
+            <!-- Text ICOFF -->
+            <line x1="813" y1="350" x2="813" y2="320" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL3$;stroke-width:1"/>
+            <path d="M813 350 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL3$"/>
+            <line x1="813" y1="250" x2="813" y2="280" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL3$;stroke-width:1"/>
+            <path d="M813 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL3$"/>
+            <text x="813" y="295" text-anchor="middle" transform="rotate(-90 818,295)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL1$">I1OFF</text>
+            <!-- Text TCOFF -->
+            <line x1="750" y1="240" x2="877" y2="240" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL3$;stroke-width:1"/>
+            <path d="M750 240 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL3$"/>
+            <path d="M877 240 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL3$"/>
+            <text x="813" y="235" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL1$">T1OFF</text>
+          </g>
+          <!-- GATE CURRENT SEQUENCER -->
+          <g visibility="$BDRV.HB$HB_IDX$_DISCHRG_VIS_SEQ$">
+            <line x1="782" y1="350" x2="786" y2="290" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL4$;stroke-width:2"/>
+            <line x1="786" y1="290" x2="807" y2="290" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL4$;stroke-width:2"/>
+            <line x1="807" y1="290" x2="813" y2="280" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL5$;stroke-width:2"/>
+            <line x1="813" y1="280" x2="857" y2="280" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL5$;stroke-width:2"/>
+            <line x1="857" y1="280" x2="860" y2="340" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL6$;stroke-width:2"/>
+            <line x1="860" y1="340" x2="877" y2="340" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL6$;stroke-width:2"/>
+            <!-- Dashed Lines -->
+            <line x1="782" y1="245" x2="782" y2="355" stroke="$BDRV.HB$HB_IDX$_DISCHRG_COL7$" stroke-dasharray="4"/>
+            <line x1="807" y1="245" x2="807" y2="295" stroke="$BDRV.HB$HB_IDX$_DISCHRG_COL7$" stroke-dasharray="4"/>
+            <line x1="857" y1="245" x2="857" y2="285" stroke="$BDRV.HB$HB_IDX$_DISCHRG_COL7$" stroke-dasharray="4"/>
+            <!-- Text I1OFF -->
+            <line x1="766" y1="350" x2="766" y2="320" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M766 350 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <line x1="766" y1="250" x2="766" y2="280" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M766 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="766" y="295" text-anchor="middle" transform="rotate(-90 771,295)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL8$">I1OFF</text>
+            <!-- Text T1OFF -->
+            <line x1="750" y1="240" x2="782" y2="240" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M750 240 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <path d="M782 240 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="766" y="235" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL8$">T1OFF</text>
+            <!-- Text I2OFF -->
+            <line x1="794" y1="250" x2="794" y2="290" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M794 290 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <path d="M794 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="794" y="310" text-anchor="middle" transform="rotate(-90 799,310)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL4$">I2OFF</text>
+            <!-- Text T2OFF -->
+            <line x1="782" y1="240" x2="807" y2="240" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M782 240 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <path d="M807 240 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="794" y="235" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL4$">T2OFF</text>
+            <!-- Text I3OFF -->
+            <line x1="832" y1="250" x2="832" y2="280" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M832 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <path d="M832 280 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="832" y="295" text-anchor="middle" transform="rotate(-90 837,295)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL5$">I3OFF</text>
+            <!-- Text T3OFF -->
+            <line x1="807" y1="240" x2="857" y2="240" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M807 240 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <path d="M857 240 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="832" y="235" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL5$">T3OFF</text>
+            <!-- Text I4OFF -->
+            <line x1="867" y1="250" x2="867" y2="275" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M867 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <line x1="867" y1="315" x2="867" y2="340" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M867 340 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="867" y="290" text-anchor="middle" transform="rotate(-90 872,290)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL6$">I4OFF</text>
+            <!-- Text T4OFF -->
+            <line x1="857" y1="240" x2="877" y2="240" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL7$;stroke-width:1"/>
+            <path d="M857 240 l3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <path d="M877 240 l-3 -3 l0 6 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL7$"/>
+            <text x="867" y="235" text-anchor="middle" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL6$">T4OFF</text>
+          </g>
+
+          <!-- IHCDIS -->
+          <line x1="900" y1="260" x2="903" y2="360" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL9$;stroke-width:1"/>
+          <line x1="903" y1="360" x2="1017" y2="360" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL9$;stroke-width:1"/>
+          <line x1="1017" y1="360" x2="1020" y2="260" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL9$;stroke-width:1"/>
+          <line x1="964" y1="250" x2="964" y2="280" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL11$;stroke-width:1"/>
+          <path d="M964 250 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL11$"/>
+          <line x1="964" y1="330" x2="964" y2="360" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL11$;stroke-width:1"/>
+          <path d="M964 360 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL11$"/>
+          <text x="964" y="300" text-anchor="middle" transform="rotate(-90 969,300)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL9$">IHCDIS</text>
+          <line x1="1020" y1="245" x2="1020" y2="400" stroke="$BDRV.HB$HB_IDX$_DISCHRG_COL11$" stroke-dasharray="4"/>
+
+          <!-- Text ICLMPOFF -->
+          <line x1="1050" y1="250" x2="1050" y2="260" style="stroke:#000000;stroke-width:1"/>
+          <path d="M1050 250 l-3 3 l6 0 Z" fill="#000000"/>
+          <path d="M1050 260 l-3 -3 l6 0 Z" fill="#000000"/>
+          <text x="1050" y="290" text-anchor="middle" transform="rotate(-90 1055,290)" font-family="arial" font-size="10" fill="#FFCC99">ICLMPOFF</text>
+          
+          <g visibility="$BDRV.HB$HB_IDX$_CHRG_VIS_ASEQ$">
+            <line x1="507" y1="250" x2="507" y2="345" stroke="#000000" stroke-dasharray="4"/>
+            <line x1="450" y1="300" x2="507" y2="300" style="stroke:#000000;stroke-width:1"/>
+            <path d="M450 300 l3 -3 l0 6 z"/> 
+            <path d="M553 300 l-3 -3 l0 6 z"/> 
+            <text x="479" y="315" text-anchor="middle" font-family="arial" font-size="10" fill="#000000">ASEQ Target</text>
+            <text x="479" y="330" text-anchor="middle" font-family="arial" font-size="10" fill="#000000">turn on delay</text>
+            <text x="479" y="345" text-anchor="middle" font-family="arial" font-size="10" fill="#000000">(T1ON+T2ON)</text>
+          </g>
+          <g visibility="$BDRV.HB$HB_IDX$_DISCHRG_VIS_ASEQ$">
+            <line x1="800" y1="250" x2="800" y2="145" stroke="#000000" stroke-dasharray="4"/>
+            <line x1="750" y1="160" x2="800" y2="160" style="stroke:#000000;stroke-width:1"/>
+            <path d="M750 160 l3 -3 l0 6 z"/> 
+            <path d="M800 160 l-3 -3 l0 6 z"/> 
+            <text x="775" y="175" text-anchor="middle" font-family="arial" font-size="10" fill="#000000">ASEQ Target</text>
+            <text x="775" y="190" text-anchor="middle" font-family="arial" font-size="10" fill="#000000">turn off delay</text>
+            <text x="775" y="205" text-anchor="middle" font-family="arial" font-size="10" fill="#000000">(T1OFF+add. delay)</text>
+          </g>
+        </g>
+        
+        <g id="Free-wheeling graph">
+          <!-- Gate Current Graph -->
+          <text x="190" y="450" text-anchor="end" font-family="arial" font-size="15" fill="#000000">Free-Wheeling Driver</text>
+          <text x="190" y="470" text-anchor="end" font-family="arial" font-size="15" fill="#000000">Gate Current</text>
+          <line x1="200" y1="380" x2="200" y2="600" style="stroke:#000000;stroke-width:1"/>
+          <path d="M200 380 L205 390 L195 390 Z"/>
+          <text x="190" y="390" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">I</text>
+          <line x1="185" y1="500" x2="1100" y2="500" style="stroke:#000000;stroke-width:1"/>
+          <path d="M1100 500 L1090 495 L1090 505 Z"/>
+          <text x="1110" y="505" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">t</text>
+
+          <!-- Dashed lines -->
+          <line x1="300" y1="90" x2="300" y2="505" stroke="#000000" stroke-dasharray="4"/>
+          <line x1="420" y1="495" x2="420" y2="600" stroke="#000000" stroke-dasharray="4"/>
+          <line x1="900" y1="90" x2="900" y2="505" stroke="#000000" stroke-dasharray="4"/>
+          <line x1="1020" y1="400" x2="1020" y2="505" stroke="#000000" stroke-dasharray="4"/>
+
+          <!-- DISCHARGE -->
+          <!-- Gate Current Constant -->
+          <line x1="220" y1="490" x2="300" y2="490" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="300" y1="490" x2="300" y2="500" style="stroke:#000000;stroke-width:2"/>
+
+          <line x1="300" y1="500" x2="305" y2="600" style="stroke:#FF0000;stroke-width:2"/>
+          <line x1="305" y1="600" x2="420" y2="600" style="stroke:#FF0000;stroke-width:2"/>
+
+          <line x1="420" y1="600" x2="425" y2="510" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="425" y1="510" x2="450" y2="510" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="450" y1="510" x2="577" y2="510" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL10$;stroke-width:2"/>
+          <line x1="577" y1="510" x2="900" y2="510" style="stroke:#FFCC99;stroke-width:2"/>
+
+          <!-- Text ICOFF -->
+          <line x1="360" y1="600" x2="360" y2="570" style="stroke:#000000;stroke-width:1"/>
+          <path d="M360 600 l-3 -3 l6 0 Z" fill="#000000"/>
+          <line x1="360" y1="500" x2="360" y2="530" style="stroke:#000000;stroke-width:1"/>
+          <path d="M360 500 l-3 3 l6 0 Z" fill="#000000"/>
+          <text x="360" y="545" text-anchor="middle" transform="rotate(-90 365,545)" font-family="arial" font-size="10" fill="#FF0000">IAFOFF</text>
+
+          <!-- Text TCOFF -->
+          <line x1="300" y1="490" x2="420" y2="490" style="stroke:#000000;stroke-width:1"/>
+          <path d="M300 490 l3 -3 l0 6 Z" fill="#000000"/>
+          <path d="M420 490 l-3 -3 l0 6 Z" fill="#000000"/>
+          <text x="360" y="485" text-anchor="middle" font-family="arial" font-size="10" fill="#FF0000">TAFOFF</text>
+
+          <!-- IHCDIS -->
+          <line x1="450" y1="255" x2="450" y2="505" stroke="$BDRV.HB$HB_IDX$_DISCHRG_COL11$" stroke-dasharray="4"/>
+          <line x1="577" y1="255" x2="577" y2="505" stroke="$BDRV.HB$HB_IDX$_DISCHRG_COL11$" stroke-dasharray="4"/>
+          <line x1="450" y1="510" x2="453" y2="610" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL9$;stroke-width:1"/>
+          <line x1="453" y1="610" x2="574" y2="610" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL9$;stroke-width:1"/>
+          <line x1="574" y1="610" x2="577" y2="510" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL9$;stroke-width:1"/>
+          <line x1="514" y1="500" x2="514" y2="530" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL11$;stroke-width:1"/>
+          <path d="M514 500 l-3 3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL11$"/>
+          <line x1="514" y1="580" x2="514" y2="610" style="stroke:$BDRV.HB$HB_IDX$_DISCHRG_COL11$;stroke-width:1"/>
+          <path d="M514 610 l-3 -3 l6 0 Z" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL11$"/>
+          <text x="514" y="550" text-anchor="middle" transform="rotate(-90 519,550)" font-family="arial" font-size="10" fill="$BDRV.HB$HB_IDX$_DISCHRG_COL9$">IHCDIS</text>
+
+          <!-- Text ICLMPOFF -->
+          <line x1="665" y1="500" x2="665" y2="510" style="stroke:#000000;stroke-width:1"/>
+          <path d="M665 500 l-3 3 l6 0 Z" fill="#000000"/>
+          <path d="M665 510 l-3 -3 l6 0 Z" fill="#000000"/>
+          <text x="665" y="540" text-anchor="middle" transform="rotate(-90 670,540)" font-family="arial" font-size="10" fill="#FFCC99">ICLMPOFF</text>
+
+          <!-- CHARGE -->
+          <!-- Gate Current Constant -->
+          <line x1="900" y1="500" x2="900" y2="510" style="stroke:#000000;stroke-width:2"/>
+          <line x1="900" y1="500" x2="905" y2="400" style="stroke:#FF0000;stroke-width:2"/>
+          <line x1="905" y1="400" x2="1020" y2="400" style="stroke:#FF0000;stroke-width:2"/>
+
+          <line x1="1020" y1="400" x2="1025" y2="490" style="stroke:#FFCC99;stroke-width:2"/>
+          <line x1="1025" y1="490" x2="1080" y2="490" style="stroke:#FFCC99;stroke-width:2"/>
+
+          <!-- Text ICON -->
+          <line x1="960" y1="400" x2="960" y2="430" style="stroke:#000000;stroke-width:1"/>
+          <path d="M960 400 l-3 3 l6 0 Z" fill="#000000"/>
+          <line x1="960" y1="470" x2="960" y2="500" style="stroke:#000000;stroke-width:1"/>
+          <path d="M960 500 l-3 -3 l6 0 Z" fill="#000000"/>
+          <text x="960" y="445" text-anchor="middle" transform="rotate(-90 965,445)" font-family="arial" font-size="10" fill="#FF0000">IAFON</text>
+
+          <!-- Text TCON -->
+          <line x1="900" y1="510" x2="1020" y2="510" style="stroke:#000000;stroke-width:1"/>
+          <path d="M900 510 l3 -3 l0 6 Z" fill="#000000"/>
+          <path d="M1020 510 l-3 -3 l0 6 Z" fill="#000000"/>
+          <text x="960" y="525" text-anchor="middle" font-family="arial" font-size="10" fill="#FF0000">TAFON</text>
+
+          <!-- Text ICLMPON -->
+          <line x1="1050" y1="490" x2="1050" y2="500" style="stroke:#000000;stroke-width:1"/>
+          <path d="M1050 490 l-3 3 l6 0 Z" fill="#000000"/>
+          <path d="M1050 500 l-3 -3 l6 0 Z" fill="#000000"/>
+          <text x="1050" y="450" text-anchor="middle" transform="rotate(-90 1055,450)" font-family="arial" font-size="10" fill="#FFCC99">ICLMPON</text>
+          
+        </g>
+      </svg>
+    </svgembed>
+</ifxmlcfg>

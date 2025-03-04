@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_interrupt_overview_ccu7.xml                                       -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>8e9f7b8e94397f3c266573e3a373b841c058c1443b3b8efe9ff3973ac87856c6</checksum>
+  <version label="V0.1.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1"  stretch="2">
+    <text label="Configured Interrupts of Nodes 2, 3, 4, 5"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="CCU7_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_CCU7_T12_OM_CALLBACK=CCU7_T12_OM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T12_PM_CALLBACK=CCU7_T12_PM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T13_CM_CALLBACK=CCU7_T13_CM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T13_PM_CALLBACK=CCU7_T13_PM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T14_CM_CALLBACK=CCU7_T14_CM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T14_PM_CALLBACK=CCU7_T14_PM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T15_CM_CALLBACK=CCU7_T15_CM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T15_PM_CALLBACK=CCU7_T15_PM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T16_CM_CALLBACK=CCU7_T16_CM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_T16_PM_CALLBACK=CCU7_T16_PM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_CC70A_CM_R_CALLBACK=CCU7_CC70A_CM_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_CC70A_CM_F_CALLBACK=CCU7_CC70A_CM_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_CC71A_CM_R_CALLBACK=CCU7_CC71A_CM_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_CC71A_CM_F_CALLBACK=CCU7_CC71A_CM_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_CC72A_CM_R_CALLBACK=CCU7_CC72A_CM_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_CC72A_CM_F_CALLBACK=CCU7_CC72A_CM_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_C70B_CM_R_CALLBACK=CCU7_C70B_CM_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_C70B_CM_F_CALLBACK=CCU7_C70B_CM_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_C71B_CM_R_CALLBACK=CCU7_C71B_CM_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_C71B_CM_F_CALLBACK=CCU7_C71B_CM_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_C72B_CM_R_CALLBACK=CCU7_C72B_CM_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_C72B_CM_F_CALLBACK=CCU7_C72B_CM_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_TRAP_CALLBACK=CCU7_TRAP_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_CORRECT_HALL_CALLBACK=CCU7_CORRECT_HALL_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_WRONG_HALL_CALLBACK=CCU7_WRONG_HALL_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_MCM_STR_CALLBACK=CCU7_MCM_STR_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CCU7_LI_CALLBACK=CCU7_LI_CALLBACK"/>
+      </timer>
+      <math formula="CCU7_T12_OM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T12_OM_INT_BOX.visible=CCU7_T12_OM_INT_EN"/></math>
+      <math formula="CCU7_T12_PM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T12_PM_INT_BOX.visible=CCU7_T12_PM_INT_EN"/></math>
+      <math formula="CCU7_T13_CM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T13_CM_INT_BOX.visible=CCU7_T13_CM_INT_EN"/></math>
+      <math formula="CCU7_T13_PM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T13_PM_INT_BOX.visible=CCU7_T13_PM_INT_EN"/></math>
+      <math formula="CCU7_T14_CM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T14_CM_INT_BOX.visible=CCU7_T14_CM_INT_EN"/></math>
+      <math formula="CCU7_T14_PM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T14_PM_INT_BOX.visible=CCU7_T14_PM_INT_EN"/></math>
+      <math formula="CCU7_T15_CM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T15_CM_INT_BOX.visible=CCU7_T15_CM_INT_EN"/></math>
+      <math formula="CCU7_T15_PM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T15_PM_INT_BOX.visible=CCU7_T15_PM_INT_EN"/></math>
+      <math formula="CCU7_T16_CM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T16_CM_INT_BOX.visible=CCU7_T16_CM_INT_EN"/></math>
+      <math formula="CCU7_T16_PM_INT_EN"><action event="changed" cmd="setDef" data="CCU7_T16_PM_INT_BOX.visible=CCU7_T16_PM_INT_EN"/></math>
+      <math formula="CCU7_CC70A_CM_R_INT_EN"><action event="changed" cmd="setDef" data="CCU7_CC70A_CM_R_INT_BOX.visible=CCU7_CC70A_CM_R_INT_EN"/></math>
+      <math formula="CCU7_CC70A_CM_F_INT_EN"><action event="changed" cmd="setDef" data="CCU7_CC70A_CM_F_INT_BOX.visible=CCU7_CC70A_CM_F_INT_EN"/></math>
+      <math formula="CCU7_CC71A_CM_R_INT_EN"><action event="changed" cmd="setDef" data="CCU7_CC71A_CM_R_INT_BOX.visible=CCU7_CC71A_CM_R_INT_EN"/></math>
+      <math formula="CCU7_CC71A_CM_F_INT_EN"><action event="changed" cmd="setDef" data="CCU7_CC71A_CM_F_INT_BOX.visible=CCU7_CC71A_CM_F_INT_EN"/></math>
+      <math formula="CCU7_CC71A_CM_R_INT_EN"><action event="changed" cmd="setDef" data="CCU7_CC71A_CM_R_INT_BOX.visible=CCU7_CC71A_CM_R_INT_EN"/></math>
+      <math formula="CCU7_CC71A_CM_F_INT_EN"><action event="changed" cmd="setDef" data="CCU7_CC71A_CM_F_INT_BOX.visible=CCU7_CC71A_CM_F_INT_EN"/></math>
+      <math formula="CCU7_C70B_CM_R_INT_EN"><action event="changed" cmd="setDef" data="CCU7_C70B_CM_R_INT_BOX.visible=CCU7_C70B_CM_R_INT_EN"/></math>
+      <math formula="CCU7_C70B_CM_F_INT_EN"><action event="changed" cmd="setDef" data="CCU7_C70B_CM_F_INT_BOX.visible=CCU7_C70B_CM_F_INT_EN"/></math>
+      <math formula="CCU7_C71B_CM_R_INT_EN"><action event="changed" cmd="setDef" data="CCU7_C71B_CM_R_INT_BOX.visible=CCU7_C71B_CM_R_INT_EN"/></math>
+      <math formula="CCU7_C71B_CM_F_INT_EN"><action event="changed" cmd="setDef" data="CCU7_C71B_CM_F_INT_BOX.visible=CCU7_C71B_CM_F_INT_EN"/></math>
+      <math formula="CCU7_C72B_CM_R_INT_EN"><action event="changed" cmd="setDef" data="CCU7_C72B_CM_R_INT_BOX.visible=CCU7_C72B_CM_R_INT_EN"/></math>
+      <math formula="CCU7_C72B_CM_F_INT_EN"><action event="changed" cmd="setDef" data="CCU7_C72B_CM_F_INT_BOX.visible=CCU7_C72B_CM_F_INT_EN"/></math>
+      <math formula="CCU7_TRAP_INT_EN"><action event="changed" cmd="setDef" data="CCU7_TRAP_INT_BOX.visible=CCU7_TRAP_INT_EN"/></math>
+      <math formula="CCU7_CORRECT_HALL_INT_EN"><action event="changed" cmd="setDef" data="CCU7_CORRECT_HALL_INT_BOX.visible=CCU7_CORRECT_HALL_INT_EN"/></math>
+      <math formula="CCU7_WRONG_HALL_INT_EN"><action event="changed" cmd="setDef" data="CCU7_WRONG_HALL_INT_BOX.visible=CCU7_WRONG_HALL_INT_EN"/></math>
+      <math formula="CCU7_MCM_STR_INT_EN"><action event="changed" cmd="setDef" data="CCU7_MCM_STR_INT_BOX.visible=CCU7_MCM_STR_INT_EN"/></math>
+      <math formula="CCU7_LI_INT_EN"><action event="changed" cmd="setDef" data="CCU7_LI_INT_BOX.visible=CCU7_LI_INT_EN"/></math>
+    </verticalcontainer> <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T12_OM_INT_BOX" visible="false">
+        <text size="200;-1" label="T12 OM"/>
+        <math size="75;-1" formula="CCU7.INP.INPT12+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENT12OM"/>
+        <edit size="400;-1" define="RO_CCU7_T12_OM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T12_PM_INT_BOX" visible="false">
+        <text size="200;-1" label="T12 PM"/>
+        <math size="75;-1" formula="CCU7.INP.INPT12+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENT12PM"/>
+        <edit size="400;-1" define="RO_CCU7_T12_PM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T13_CM_INT_BOX" visible="false">
+        <text size="200;-1" label="T13 CM"/>
+        <math size="75;-1" formula="CCU7.INP.INPT13+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENT13CM"/>
+        <edit size="400;-1" define="RO_CCU7_T13_CM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T13_PM_INT_BOX" visible="false">
+        <text size="200;-1" label="T13 PM"/>
+        <math size="75;-1" formula="CCU7.INP.INPT13+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENT13PM"/>
+        <edit size="400;-1" define="RO_CCU7_T13_PM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T14_CM_INT_BOX" visible="false">
+        <text size="200;-1" label="T14 CM"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPT14+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENT14CM"/>
+        <edit size="400;-1" define="RO_CCU7_T14_CM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T14_PM_INT_BOX" visible="false">
+        <text size="200;-1" label="T14 PM"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPT14+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENT14PM"/>
+        <edit size="400;-1" define="RO_CCU7_T14_PM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T15_CM_INT_BOX" visible="false">
+        <text size="200;-1" label="T15 CM"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPT15+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENT15CM"/>
+        <edit size="400;-1" define="RO_CCU7_T15_CM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T15_PM_INT_BOX" visible="false">
+        <text size="200;-1" label="T15 PM"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPT15+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENT15PM"/>
+        <edit size="400;-1" define="RO_CCU7_T15_PM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T16_CM_INT_BOX" visible="false">
+        <text size="200;-1" label="T16 CM"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPT16+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENT16CM"/>
+        <edit size="400;-1" define="RO_CCU7_T16_CM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_T16_PM_INT_BOX" visible="false">
+        <text size="200;-1" label="T16 PM"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPT16+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENT16PM"/>
+        <edit size="400;-1" define="RO_CCU7_T16_PM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_CC70A_CM_R_INT_BOX" visible="false">
+        <text size="200;-1" label="C70A CCM R"/>
+        <math size="75;-1" formula="CCU7.INP.INPCC70+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENCC70R"/>
+        <edit size="400;-1" define="RO_CCU7_CC70A_CM_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_CC70A_CM_F_INT_BOX" visible="false">
+        <text size="200;-1" label="C70A CCM F"/>
+        <math size="75;-1" formula="CCU7.INP.INPCC70+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENCC70F"/>
+        <edit size="400;-1" define="RO_CCU7_CC70A_CM_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_CC71A_CM_R_INT_BOX" visible="false">
+        <text size="200;-1" label="C71A CCM R"/>
+        <math size="75;-1" formula="CCU7.INP.INPCC71+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENCC71R"/>
+        <edit size="400;-1" define="RO_CCU7_CC71A_CM_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_CC71A_CM_F_INT_BOX" visible="false">
+        <text size="200;-1" label="C71A CCM F"/>
+        <math size="75;-1" formula="CCU7.INP.INPCC71+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENCC71F"/>
+        <edit size="400;-1" define="RO_CCU7_CC71A_CM_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_CC71A_CM_R_INT_BOX" visible="false">
+        <text size="200;-1" label="C72A CCM R"/>
+        <math size="75;-1" formula="CCU7.INP.INPCC72+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENCC72R"/>
+        <edit size="400;-1" define="RO_CCU7_CC72A_CM_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_CC71A_CM_F_INT_BOX" visible="false">
+        <text size="200;-1" label="C72A CCM F"/>
+        <math size="75;-1" formula="CCU7.INP.INPCC72+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENCC72F"/>
+        <edit size="400;-1" define="RO_CCU7_CC72A_CM_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_C70B_CM_R_INT_BOX" visible="false">
+        <text size="200;-1" label="C70B CM R"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPCC70B+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENCC70BR"/>
+        <edit size="400;-1" define="RO_CCU7_C70B_CM_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_C70B_CM_F_INT_BOX" visible="false">
+        <text size="200;-1" label="C70B CM F"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPCC70B+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENCC70BF"/>
+        <edit size="400;-1" define="RO_CCU7_C70B_CM_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_C71B_CM_R_INT_BOX" visible="false">
+        <text size="200;-1" label="C71B CM R"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPCC71B+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENCC71BR"/>
+        <edit size="400;-1" define="RO_CCU7_C71B_CM_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_C71B_CM_F_INT_BOX" visible="false">
+        <text size="200;-1" label="C71B CM F"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPCC71B+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENCC71BF"/>
+        <edit size="400;-1" define="RO_CCU7_C71B_CM_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_C72B_CM_R_INT_BOX" visible="false">
+        <text size="200;-1" label="C72B CM R"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPCC72B+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENCC72BR"/>
+        <edit size="400;-1" define="RO_CCU7_C72B_CM_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_C72B_CM_F_INT_BOX" visible="false">
+        <text size="200;-1" label="C72B CM F"/>
+        <math size="75;-1" formula="CCU7.INP_2.INPCC72B+2"/>
+        <math size="75;-1" formula="CCU7.IEN_2.ENCC72BF"/>
+        <edit size="400;-1" define="RO_CCU7_C72B_CM_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_TRAP_INT_BOX" visible="false">
+        <text size="200;-1" label="Trap Flag"/>
+        <math size="75;-1" formula="CCU7.INP.INPERR+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENTRPF"/>
+        <edit size="400;-1" define="RO_CCU7_TRAP_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_CORRECT_HALL_INT_BOX" visible="false">
+        <text size="200;-1" label="Correct Hall Event"/>
+        <math size="75;-1" formula="CCU7.INP.INPCHE+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENCHE"/>
+        <edit size="400;-1" define="RO_CCU7_CORRECT_HALL_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_WRONG_HALL_INT_BOX" visible="false">
+        <text size="200;-1" label="Wrong Hall Event"/>
+        <math size="75;-1" formula="CCU7.INP.INPERR+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENWHE"/>
+        <edit size="400;-1" define="RO_CCU7_WRONG_HALL_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_MCM_STR_INT_BOX" visible="false">
+        <text size="200;-1" label="MCM Shadow Transfer"/>
+        <math size="75;-1" formula="CCU7.INP.INPCHE+2"/>
+        <math size="75;-1" formula="CCU7.IEN.ENSTR"/>
+        <edit size="400;-1" define="RO_CCU7_MCM_STR_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CCU7_LI_INT_BOX" visible="false">
+        <text size="200;-1" label="Lost Bit Event"/>
+        <math size="75;-1" formula="CCU7.LI.INPLBE+2"/>
+        <math size="75;-1" formula="CCU7.LI.LBEEN"/>
+        <edit size="400;-1" define="RO_CCU7_LI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer> <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>
+

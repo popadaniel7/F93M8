@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file icw_ocn_dma.xml                                                            -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2021-03-17, BG:   Initial version                                      -->
+<!-- V0.0.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!-- V0.0.3: 2022-06-22, JO:   EP-1146: Added Continuous Transfer                   -->
+<!--********************************************************************************-->
+
+<!-- IDX: DMA channel index -->
+<ifxmlcfg version="2.1.12">
+  <checksum>ec05fc6aac695ef5b07dc01627b8cbe3c2d7c5a8ef08afe787a48f13398eeef4</checksum>
+  <version label="V0.0.3"/>
+  <header file="dma_defines.h">
+    <timer visible="false" define="DMA_UPDATECH$IDX$MODE" svd="0" interval="1" singleShot="1" run="1" header="">
+      <action cond="DMA.CH$IDX$_MODE==0" event="changed" cmd="setDef" data="DMA.CH$IDX$_BASIC_CONT.enabled=1;DMA.CH$IDX$_SCTGTH_CONT.enabled=0"/>
+      <action cond="DMA.CH$IDX$_MODE==1" event="changed" cmd="setDef" data="DMA.CH$IDX$_BASIC_CONT.enabled=0;DMA.CH$IDX$_SCTGTH_CONT.enabled=1"/>
+      <action cond="DMA.CH$IDX$_INT_EN==0" event="changed" cmd="setDef" data="DMA.CH$IDX$_INT_CONT.enabled=0"/>
+      <action cond="DMA.CH$IDX$_INT_EN==1" event="changed" cmd="setDef" data="DMA.CH$IDX$_INT_CONT.enabled=1"/>
+    </timer>
+    <verticalcontainer define="DMA.CH$IDX$_CFG_CONT">
+      <radio define="DMA.CH$IDX$_MODE" svd="0" default="0">
+        <radiobutton label="Basic Mode" font="Source Sans Pro,9,0,0,100,0,0,0,0,0">
+          <action event="selected" cmd="setDef" data="DMA_UPDATECH$IDX$MODE.run=1"/>
+        </radiobutton>
+        <verticalcontainer define="DMA.CH$IDX$_BASIC_CONT">
+          <horizontalcontainer>
+            <text label="Source"/>
+            <edit define="DMA.CH$IDX$_SRC" svd="0" size="220;-1" default="Enter source reference"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="-> Declare as 'extern' in C-code"/>
+            <checkbox define="DMA.CH$IDX$_SRCEXT" svd="0" default="0"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="-> Increment"/>
+            <checkbox define="DMA.CH$IDX$_SRCINC" svd="0" default="0"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="Destination"/>
+            <edit define="DMA.CH$IDX$_DST" svd="0" size="220;-1" default="Enter destination reference"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="-> Declare as 'extern' in C-code"/>
+            <checkbox define="DMA.CH$IDX$_DSTEXT" svd="0" default="0"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="-> Increment"/>
+            <checkbox define="DMA.CH$IDX$_DSTINC" svd="0" default="0"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="Number of Transfers"/>
+            <spinbox define="DMA.CH$IDX$_NBTRANSFER" range="1;1024" default="1" svd="0"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="Transfer Size"/>
+            <combo define="DMA.CH$IDX$_SIZETRANSFER" svd="0">
+              <item label="Byte (8 bits)"/>
+              <item label="Word (16 bits)"/>
+              <item label="DWord (32 bits)"/>
+            </combo>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="Continuous Transfer"/>
+            <checkbox define="SCU.DMACTRL.DEMEN_CH$IDX$" header="scu_defines.h"/>
+          </horizontalcontainer>
+          <math visible="false" define="DMA.CH$IDX$_SRCPTROFFS" svd="0" formula="DMA.CH$IDX$_SRCINC&lt;1?0:(2^DMA.CH$IDX$_SIZETRANSFER)*(DMA.CH$IDX$_NBTRANSFER-1)"/>
+          <math visible="false" define="DMA.CH$IDX$_DSTPTROFFS" svd="0" formula="DMA.CH$IDX$_DSTINC&lt;1?0:(2^DMA.CH$IDX$_SIZETRANSFER)*(DMA.CH$IDX$_NBTRANSFER-1)"/>
+        </verticalcontainer>
+        <radiobutton label="Scatter-Gather Mode" font="Source Sans Pro,9,0,0,100,0,0,0,0,0">
+          <action event="selected" cmd="setDef" data="DMA_UPDATECH$IDX$MODE.run=1"/>
+        </radiobutton>
+        <verticalcontainer define="DMA.CH$IDX$_SCTGTH_CONT">
+          <horizontalcontainer>
+            <text label="-> Task List "/>
+            <edit define="DMA.CH$IDX$_TASKLIST" svd="0" size="220;-1" default="Enter task list reference"/>
+          </horizontalcontainer>
+          <horizontalcontainer>
+            <text label="-> Number of Tasks"/>
+            <spinbox define="DMA.CH$IDX$_NBTASK" range="0;256" default="0" svd="0"/>
+          </horizontalcontainer>
+        </verticalcontainer>
+      </radio>
+      <horizontalcontainer>
+        <text label="Interrupt" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+        <checkbox define="DMA.CH$IDX$_INT_EN" svd="0" header="isr_defines.h">
+          <action event="checked" cmd="setDef" data="DMA_UPDATECH$IDX$MODE.run=1"/>
+          <action event="unchecked" cmd="setDef" data="DMA_UPDATECH$IDX$MODE.run=1"/>
+        </checkbox>
+      </horizontalcontainer>
+      <verticalcontainer define="DMA.CH$IDX$_INT_CONT">
+        <horizontalcontainer>
+          <text label="Enable Interrupt"/>
+          <checkbox define="SCU.DMAIEN.DMACH$IDX$EN" header="isr_defines.h"/>
+        </horizontalcontainer>
+        <horizontalcontainer>
+          <text label="Node Selection"/>
+          <combo label="Node Selection" define="SCU.INP7.INP_DMACH$IDX$" header="isr_defines.h">
+            <item label="DMA_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN29=1"/>
+            <item label="DMA_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN30=1"/>
+          </combo>
+        </horizontalcontainer>
+        <horizontalcontainer>
+          <text label="Callback"/>
+          <edit label="Callback" define="DMA.CH$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="220;-1"/>
+        </horizontalcontainer>
+      </verticalcontainer>
+    </verticalcontainer>
+  </header>
+</ifxmlcfg>

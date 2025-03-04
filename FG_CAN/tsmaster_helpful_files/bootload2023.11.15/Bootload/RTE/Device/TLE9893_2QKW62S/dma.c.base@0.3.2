@@ -1,0 +1,1495 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "dma.h"
+#include "tle_variants.h"
+#include "scu_defines.h"
+
+/*******************************************************************************
+**                        Private Constant Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Private Macro Declarations                         **
+*******************************************************************************/
+
+#ifndef UNIT_TESTING_OCN
+  #if (UC_DSRAM_SIZE == 0x2000U)
+    #define DMA_BASE_ADDR 0x18003F00u
+  #elif (UC_DSRAM_SIZE == 0x5C00U)
+    #define DMA_BASE_ADDR 0x18007B00u
+  #else
+    #error RAM size not supported
+  #endif
+#else
+  /* Variable for unit testing */
+  tDMA_entry u32p_DMA_entriesForTest[8];
+  #define DMA_BASE_ADDR (uint32)(&u32p_DMA_entriesForTest)
+#endif
+
+/* Arm Compiler 6 (armclang) */
+#if (__ARMCC_VERSION > 6000000)
+  #define MAKE_STRING( string ) #string
+  #define MAKE_SECTION_NAME( part1, part2 ) MAKE_STRING( part1##part2 )
+  #define AT_ADDRESS_ZI( address ) MAKE_SECTION_NAME( .bss.ARM.__at_,address )
+#endif
+
+/* The following warnings are disabled for ARMCC v6 Compiler */
+/* Rules are only disabled for the current file */
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wmissing-variable-declarations"
+  #pragma clang diagnostic ignored "-Wunreachable-code"
+  #pragma clang diagnostic ignored "-Wpedantic"
+  #pragma clang diagnostic ignored "-Wcovered-switch-default"
+#endif
+
+/*******************************************************************************
+**                        Private Variable Definitions                        **
+*******************************************************************************/
+
+/* Channel 0 */
+#if (DMA_CH0_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch0Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH0 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH0_PRIMADDR 0x18003F00u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH0_PRIMADDR 0x18007B00u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH0_PRIMADDR)))) tDMA_entry volatile s_ch0Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F00u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B00u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch0Primary;
+  #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch0Primary;
+  #endif
+  
+  #if (DMA_CH0_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH0_SRCEXT == 1)
+      extern void DMA_CH0_SRC;
+    #endif
+    #if (DMA_CH0_DSTEXT == 1)
+      extern void DMA_CH0_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch0Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH0 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH0_ALTADDR 0x18003F80u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH0_ALTADDR 0x18007B80u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH0_ALTADDR)))) tDMA_entry volatile s_ch0Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003F80u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007B80u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch0Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch0Alternate;
+    #endif
+    #if (DMA_CH0_NBTASK == 0)
+      #error "DMA_CH0_NBTASK = 0 not meaningful"
+    #elif (DMA_CH0_NBTASK == 1)
+      extern tDMA_entry DMA_CH0_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH0_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+/* Channel 1 */
+#if (DMA_CH1_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch1Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH1 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH1_PRIMADDR 0x18003F10u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH1_PRIMADDR 0x18007B10u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH1_PRIMADDR)))) tDMA_entry volatile s_ch1Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F10u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B10u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch1Primary;
+    #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch1Primary;
+  #endif
+  
+  #if (DMA_CH1_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH1_SRCEXT == 1)
+      extern void DMA_CH1_SRC;
+    #endif
+    #if (DMA_CH1_DSTEXT == 1)
+      extern void DMA_CH1_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch1Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH1 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH1_ALTADDR 0x18003F90u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH1_ALTADDR 0x18007B90u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH1_ALTADDR)))) tDMA_entry volatile s_ch1Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003F90u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007B90u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch1Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch1Alternate;
+    #endif
+    #if (DMA_CH1_NBTASK == 0)
+      #error "DMA_CH1_NBTASK = 0 not meaningful"
+    #elif (DMA_CH1_NBTASK == 1)
+      extern tDMA_entry DMA_CH1_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH1_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+/* Channel 2 */
+#if (DMA_CH2_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch2Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH2 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH2_PRIMADDR 0x18003F20u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH2_PRIMADDR 0x18007B20u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH2_PRIMADDR)))) tDMA_entry volatile s_ch2Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F20u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B20u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch2Primary;
+    #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch2Primary;
+  #endif
+  
+  #if (DMA_CH2_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH2_SRCEXT == 1)
+      extern void DMA_CH2_SRC;
+    #endif
+    #if (DMA_CH2_DSTEXT == 1)
+      extern void DMA_CH2_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch2Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH2 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH2_ALTADDR 0x18003FA0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH2_ALTADDR 0x18007BA0u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH2_ALTADDR)))) tDMA_entry volatile s_ch2Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003FA0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007BA0u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch2Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch2Alternate;
+    #endif
+    #if (DMA_CH2_NBTASK == 0)
+      #error "DMA_CH2_NBTASK = 0 not meaningful"
+    #elif (DMA_CH2_NBTASK == 1)
+      extern tDMA_entry DMA_CH2_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH2_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+/* Channel 3 */
+#if (DMA_CH3_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch3Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH3 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH3_PRIMADDR 0x18003F30u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH3_PRIMADDR 0x18007B30u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH3_PRIMADDR)))) tDMA_entry volatile s_ch3Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F30u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B30u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch3Primary;
+    #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch3Primary;
+  #endif
+  
+  #if (DMA_CH3_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH3_SRCEXT == 1)
+      extern void DMA_CH3_SRC;
+    #endif
+    #if (DMA_CH3_DSTEXT == 1)
+      extern void DMA_CH3_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch3Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH3 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH3_ALTADDR 0x18003FB0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH3_ALTADDR 0x18007BB0u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH3_ALTADDR)))) tDMA_entry volatile s_ch3Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003FB0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007BB0u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch3Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch3Alternate;
+    #endif
+    #if (DMA_CH3_NBTASK == 0)
+      #error "DMA_CH3_NBTASK = 0 not meaningful"
+    #elif (DMA_CH3_NBTASK == 1)
+      extern tDMA_entry DMA_CH3_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH3_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+/* Channel 4 */
+#if (DMA_CH4_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch4Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH4 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH4_PRIMADDR 0x18003F40u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH4_PRIMADDR 0x18007B40u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH4_PRIMADDR)))) tDMA_entry volatile s_ch4Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F40u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B40u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch4Primary;
+    #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch4Primary;
+  #endif
+  
+  #if (DMA_CH4_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH4_SRCEXT == 1)
+      extern void DMA_CH4_SRC;
+    #endif
+    #if (DMA_CH4_DSTEXT == 1)
+      extern void DMA_CH4_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch4Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH4 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH4_ALTADDR 0x18003FC0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH4_ALTADDR 0x18007BC0u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH4_ALTADDR)))) tDMA_entry volatile s_ch4Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003FC0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007BC0u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch4Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch4Alternate;
+    #endif
+    #if (DMA_CH4_NBTASK == 0)
+      #error "DMA_CH4_NBTASK = 0 not meaningful"
+    #elif (DMA_CH4_NBTASK == 1)
+      extern tDMA_entry DMA_CH4_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH4_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+/* Channel 5 */
+#if (DMA_CH5_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch5Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH5 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH5_PRIMADDR 0x18003F50u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH5_PRIMADDR 0x18007B50u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH5_PRIMADDR)))) tDMA_entry volatile s_ch5Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F50u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B50u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch5Primary;
+    #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch5Primary;
+  #endif
+  
+  #if (DMA_CH5_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH5_SRCEXT == 1)
+      extern void DMA_CH5_SRC;
+    #endif
+    #if (DMA_CH5_DSTEXT == 1)
+      extern void DMA_CH5_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch5Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH5 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH5_ALTADDR 0x18003FD0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH5_ALTADDR 0x18007BD0u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH5_ALTADDR)))) tDMA_entry volatile s_ch5Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003FD0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007BD0u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch5Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch5Alternate;
+    #endif
+    #if (DMA_CH5_NBTASK == 0)
+      #error "DMA_CH5_NBTASK = 0 not meaningful"
+    #elif (DMA_CH5_NBTASK == 1)
+      extern tDMA_entry DMA_CH5_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH5_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+/* Channel 6 */
+#if (DMA_CH6_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch6Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH6 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH6_PRIMADDR 0x18003F60u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH6_PRIMADDR 0x18007B60u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH6_PRIMADDR)))) tDMA_entry volatile s_ch6Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F60u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B60u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch6Primary;
+    #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch6Primary;
+  #endif
+  
+  #if (DMA_CH6_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH6_SRCEXT == 1)
+      extern void DMA_CH6_SRC;
+    #endif
+    #if (DMA_CH6_DSTEXT == 1)
+      extern void DMA_CH6_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch6Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH6 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH6_ALTADDR 0x18003FE0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH6_ALTADDR 0x18007BE0u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH6_ALTADDR)))) tDMA_entry volatile s_ch6Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003FE0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007BE0u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch6Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch6Alternate;
+    #endif
+    #if (DMA_CH6_NBTASK == 0)
+      #error "DMA_CH6_NBTASK = 0 not meaningful"
+    #elif (DMA_CH6_NBTASK == 1)
+      extern tDMA_entry DMA_CH6_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH6_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+/* Channel 7 */
+#if (DMA_CH7_MODULE != 0u)
+  /* Primary Structure Address */
+  #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+    /* Arm Compiler V5 */
+    tDMA_entry volatile s_ch7Primary  __attribute__((at(DMA_BASE_ADDR + DMA_CH7 * sizeof(tDMA_entry)), used));
+  #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+    /* Arm Compiler V6 (armclang) */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #define DMA_CH7_PRIMADDR 0x18003F70u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #define DMA_CH7_PRIMADDR 0x18007B70u
+    #else
+      #error RAM size not supported
+    #endif
+    __attribute__((section(AT_ADDRESS_ZI(DMA_CH7_PRIMADDR)))) tDMA_entry volatile s_ch7Primary ;
+  #elif defined(__IAR_SYSTEMS_ICC__)
+    /* IAR compiler */
+    #if (UC_DSRAM_SIZE == 0x2000U)
+      #pragma location=0x18003F70u
+    #elif (UC_DSRAM_SIZE == 0x5C00U)
+      #pragma location=0x18007B70u
+    #else
+      #error RAM size not supported
+    #endif
+    tDMA_entry volatile s_ch7Primary;
+    #elif defined(UNIT_TESTING_OCN)
+    tDMA_entry volatile s_ch7Primary;
+  #endif
+  
+  #if (DMA_CH7_MODE == 0)
+    /* Basic Transfer */
+    #if (DMA_CH7_SRCEXT == 1)
+      extern void DMA_CH7_SRC;
+    #endif
+    #if (DMA_CH7_DSTEXT == 1)
+      extern void DMA_CH7_DST;
+    #endif
+  #else
+    /* Scather-Gatter Transfer */
+    #if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 6000000)
+      /* Arm Compiler V5 */
+      tDMA_entry volatile s_ch7Alternate  __attribute__((at((DMA_BASE_ADDR + 0x80) + DMA_CH7 * sizeof(tDMA_entry)), used));
+    #elif defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+      /* Arm Compiler V6 (armclang) */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #define DMA_CH7_ALTADDR 0x18003FF0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #define DMA_CH7_ALTADDR 0x18007BF0u
+      #else
+        #error RAM size not supported
+      #endif
+      __attribute__((section(AT_ADDRESS_ZI(DMA_CH7_ALTADDR)))) tDMA_entry volatile s_ch7Alternate ;
+    #elif defined(__IAR_SYSTEMS_ICC__)
+      /* IAR compiler */
+      #if (UC_DSRAM_SIZE == 0x2000U)
+        #pragma location=0x18003FF0u
+      #elif (UC_DSRAM_SIZE == 0x5C00U)
+        #pragma location=0x18007BF0u
+      #else
+        #error RAM size not supported
+      #endif
+      tDMA_entry volatile s_ch7Alternate;
+    #elif defined(UNIT_TESTING_OCN)
+      tDMA_entry volatile s_ch7Alternate;
+    #endif
+    #if (DMA_CH7_NBTASK == 0)
+      #error "DMA_CH7_NBTASK = 0 not meaningful"
+    #elif (DMA_CH7_NBTASK == 1)
+      extern tDMA_entry DMA_CH7_TASKLIST;
+    #else
+      extern tDMA_entry DMA_CH7_TASKLIST[];
+    #endif
+  #endif
+#endif
+
+
+/*******************************************************************************
+**                        Private Function Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+/** \brief Initialize the DMA structure in RAM and SFRs according to the ConfigWizard settings
+ *
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 DMA_init(void)
+{
+  sint8 s8_returnCode;
+  s8_returnCode = ERR_LOG_CODE_MODULE_DISABLED_IN_CW;
+
+  #if (DMA_GLOBCONF_EN == 1u)
+    s8_returnCode = ERR_LOG_SUCCESS;
+  
+    /* Set DMA structure base pointer */
+    DMA->CTRL_BASE_PTR.reg = DMA_BASE_ADDR;
+
+    /* Channel 0 */
+    #if (DMA_CH0_MODULE != 0u)
+      s_ch0Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch0Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+  
+      /* Basic Mode */
+      #if (DMA_CH0_MODE == 0u)
+        /* Primary structure */
+        s_ch0Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch0Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch0Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH0_NBTRANSFER - 1u);
+        s_ch0Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch0Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH0_SIZETRANSFER;
+        #if (DMA_CH0_SRCINC == 1u)
+          s_ch0Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH0_SIZETRANSFER;
+        #else
+          s_ch0Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch0Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH0_SIZETRANSFER;
+        #if (DMA_CH0_DSTINC == 1u)
+          s_ch0Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH0_SIZETRANSFER;
+        #else
+          s_ch0Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch0Primary.u32_srcEndPtr = (uint32)&DMA_CH0_SRC + (uint32)DMA_CH0_SRCPTROFFS;
+        s_ch0Primary.u32_dstEndPtr = (uint32)&DMA_CH0_DST + (uint32)DMA_CH0_DSTPTROFFS;
+
+      /* Scatter Gather Mode */
+      #elif (DMA_CH0_MODE == 1u)
+        /* Primary structure */
+        s_ch0Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch0Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch0Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH0_NBTASK * 4u) - 1u);
+        s_ch0Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch0Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch0Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch0Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch0Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch0Primary.u32_srcEndPtr = (uint32)&DMA_CH0_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH0_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch0Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH0 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch0Alternate.s_ctrl.reg = 0u;
+        s_ch0Alternate.u32_srcEndPtr = 0u;
+        s_ch0Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH0);
+    #endif
+
+    /* Channel 1 */
+    #if (DMA_CH1_MODULE != 0u)
+      s_ch1Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch1Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+  
+      /* Basic Mode */
+      #if (DMA_CH1_MODE == 0u)
+        /* Primary structure */
+        s_ch1Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch1Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch1Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH1_NBTRANSFER - 1u);
+        s_ch1Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch1Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH1_SIZETRANSFER;
+        #if (DMA_CH1_SRCINC == 1u)
+          s_ch1Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH1_SIZETRANSFER;
+        #else
+          s_ch1Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch1Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH1_SIZETRANSFER;
+        #if (DMA_CH1_DSTINC == 1u)
+          s_ch1Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH1_SIZETRANSFER;
+        #else
+          s_ch1Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch1Primary.u32_srcEndPtr = (uint32)&DMA_CH1_SRC + (uint32)DMA_CH1_SRCPTROFFS;
+        s_ch1Primary.u32_dstEndPtr = (uint32)&DMA_CH1_DST + (uint32)DMA_CH1_DSTPTROFFS;
+
+        /* Scatter Gather Mode */
+      #elif (DMA_CH1_MODE == 1u)
+        /* Primary structure */
+        s_ch1Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch1Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch1Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH1_NBTASK * 4u) - 1u);
+        s_ch1Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch1Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch1Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch1Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch1Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch1Primary.u32_srcEndPtr = (uint32)&DMA_CH1_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH1_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch1Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH1 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch1Alternate.s_ctrl.reg = 0u;
+        s_ch1Alternate.u32_srcEndPtr = 0u;
+        s_ch1Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH1);
+    #endif
+
+    /* Channel 2 */
+    #if (DMA_CH2_MODULE != 0u)
+      s_ch2Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch2Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+  
+      /* Basic Mode */
+      #if (DMA_CH2_MODE == 0u)
+        /* Primary structure */
+        s_ch2Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch2Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch2Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH2_NBTRANSFER - 1u);
+        s_ch2Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch2Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH2_SIZETRANSFER;
+        #if (DMA_CH2_SRCINC == 1u)
+          s_ch2Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH2_SIZETRANSFER;
+        #else
+          s_ch2Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch2Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH2_SIZETRANSFER;
+        #if (DMA_CH2_DSTINC == 1u)
+          s_ch2Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH2_SIZETRANSFER;
+        #else
+          s_ch2Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch2Primary.u32_srcEndPtr = (uint32)&DMA_CH2_SRC + (uint32)DMA_CH2_SRCPTROFFS;
+        s_ch2Primary.u32_dstEndPtr = (uint32)&DMA_CH2_DST + (uint32)DMA_CH2_DSTPTROFFS;
+
+        /* Scatter Gather Mode */
+      #elif (DMA_CH2_MODE == 1u)
+        /* Primary structure */
+        s_ch2Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch2Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch2Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH2_NBTASK * 4u) - 1u);
+        s_ch2Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch2Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch2Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch2Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch2Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch2Primary.u32_srcEndPtr = (uint32)&DMA_CH2_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH2_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch2Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH2 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch2Alternate.s_ctrl.reg = 0u;
+        s_ch2Alternate.u32_srcEndPtr = 0u;
+        s_ch2Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH2);
+    #endif
+
+    /* Channel 3 */
+    #if (DMA_CH3_MODULE != 0u)
+      s_ch3Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch3Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+      
+      /* Basic Mode */
+      #if (DMA_CH3_MODE == 0u)
+        /* Primary structure */
+        s_ch3Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch3Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch3Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH3_NBTRANSFER - 1u);
+        s_ch3Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch3Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH3_SIZETRANSFER;
+        #if (DMA_CH3_SRCINC == 1u)
+          s_ch3Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH3_SIZETRANSFER;
+        #else
+          s_ch3Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch3Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH3_SIZETRANSFER;
+        #if (DMA_CH3_DSTINC == 1u)
+          s_ch3Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH3_SIZETRANSFER;
+        #else
+          s_ch3Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch3Primary.u32_srcEndPtr = (uint32)&DMA_CH3_SRC + (uint32)DMA_CH3_SRCPTROFFS;
+        s_ch3Primary.u32_dstEndPtr = (uint32)&DMA_CH3_DST + (uint32)DMA_CH3_DSTPTROFFS;
+
+        /* Scatter Gather Mode */
+      #elif (DMA_CH3_MODE == 1u)
+        /* Primary structure */
+        s_ch3Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch3Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch3Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH3_NBTASK * 4u) - 1u);
+        s_ch3Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch3Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch3Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch3Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch3Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch3Primary.u32_srcEndPtr = (uint32)&DMA_CH3_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH3_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch3Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH3 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch3Alternate.s_ctrl.reg = 0u;
+        s_ch3Alternate.u32_srcEndPtr = 0u;
+        s_ch3Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH3);
+    #endif
+
+    /* Channel 4 */
+    #if (DMA_CH4_MODULE != 0u)
+      s_ch4Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch4Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+  
+      /* Basic Mode */
+      #if (DMA_CH4_MODE == 0u)
+        /* Primary structure */
+        s_ch4Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch4Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch4Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH4_NBTRANSFER - 1u);
+        s_ch4Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch4Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH4_SIZETRANSFER;
+        #if (DMA_CH4_SRCINC == 1u)
+          s_ch4Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH4_SIZETRANSFER;
+        #else
+          s_ch4Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch4Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH4_SIZETRANSFER;
+        #if (DMA_CH4_DSTINC == 1u)
+          s_ch4Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH4_SIZETRANSFER;
+        #else
+          s_ch4Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch4Primary.u32_srcEndPtr = (uint32)&DMA_CH4_SRC + (uint32)DMA_CH4_SRCPTROFFS;
+        s_ch4Primary.u32_dstEndPtr = (uint32)&DMA_CH4_DST + (uint32)DMA_CH4_DSTPTROFFS;
+
+        /* Scatter Gather Mode */
+      #elif (DMA_CH4_MODE == 1u)
+        /* Primary structure */
+        s_ch4Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch4Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch4Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH4_NBTASK * 4u) - 1u);
+        s_ch4Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch4Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch4Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch4Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch4Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch4Primary.u32_srcEndPtr = (uint32)&DMA_CH4_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH4_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch4Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH4 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch4Alternate.s_ctrl.reg = 0u;
+        s_ch4Alternate.u32_srcEndPtr = 0u;
+        s_ch4Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH4);
+    #endif
+
+    /* Channel 5 */
+    #if (DMA_CH5_MODULE != 0u)
+      s_ch5Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch5Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+  
+      /* Basic Mode */
+      #if (DMA_CH5_MODE == 0u)
+        /* Primary structure */
+        s_ch5Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch5Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch5Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH5_NBTRANSFER - 1u);
+        s_ch5Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch5Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH5_SIZETRANSFER;
+        #if (DMA_CH5_SRCINC == 1u)
+          s_ch5Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH5_SIZETRANSFER;
+        #else
+          s_ch5Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch5Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH5_SIZETRANSFER;
+        #if (DMA_CH5_DSTINC == 1u)
+          s_ch5Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH5_SIZETRANSFER;
+        #else
+          s_ch5Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch5Primary.u32_srcEndPtr = (uint32)&DMA_CH5_SRC + (uint32)DMA_CH5_SRCPTROFFS;
+        s_ch5Primary.u32_dstEndPtr = (uint32)&DMA_CH5_DST + (uint32)DMA_CH5_DSTPTROFFS;
+
+        /* Scatter Gather Mode */
+      #elif (DMA_CH5_MODE == 1u)
+        /* Primary structure */
+        s_ch5Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch5Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch5Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH5_NBTASK * 4u) - 1u);
+        s_ch5Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch5Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch5Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch5Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch5Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch5Primary.u32_srcEndPtr = (uint32)&DMA_CH5_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH5_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch5Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH5 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch5Alternate.s_ctrl.reg = 0u;
+        s_ch5Alternate.u32_srcEndPtr = 0u;
+        s_ch5Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH5);
+    #endif
+
+    /* Channel 6 */
+    #if (DMA_CH6_MODULE != 0u)
+      s_ch6Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch6Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+  
+      /* Basic Mode */
+      #if (DMA_CH6_MODE == 0u)
+        /* Primary structure */
+        s_ch6Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch6Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch6Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH6_NBTRANSFER - 1u);
+        s_ch6Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch6Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH6_SIZETRANSFER;
+        #if (DMA_CH6_SRCINC == 1u)
+          s_ch6Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH6_SIZETRANSFER;
+        #else
+          s_ch6Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch6Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH6_SIZETRANSFER;
+        #if (DMA_CH6_DSTINC == 1u)
+          s_ch6Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH6_SIZETRANSFER;
+        #else
+          s_ch6Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch6Primary.u32_srcEndPtr = (uint32)&DMA_CH6_SRC + (uint32)DMA_CH6_SRCPTROFFS;
+        s_ch6Primary.u32_dstEndPtr = (uint32)&DMA_CH6_DST + (uint32)DMA_CH6_DSTPTROFFS;
+
+        /* Scatter Gather Mode */
+      #elif (DMA_CH6_MODE == 1u)
+        /* Primary structure */
+        s_ch6Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch6Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch6Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH6_NBTASK * 4u) - 1u);
+        s_ch6Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch6Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch6Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch6Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch6Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch6Primary.u32_srcEndPtr = (uint32)&DMA_CH6_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH6_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch6Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH6 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch6Alternate.s_ctrl.reg = 0u;
+        s_ch6Alternate.u32_srcEndPtr = 0u;
+        s_ch6Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH6);
+    #endif
+
+    /* Channel 7 */
+    #if (DMA_CH7_MODULE != 0u)
+      s_ch7Primary.s_ctrl.bit.u32_srcProtCtrl = 7u;
+      s_ch7Primary.s_ctrl.bit.u32_dstProtCtrl = 7u;
+  
+      /* Basic Mode */
+      #if (DMA_CH7_MODE == 0u)
+        /* Primary structure */
+        s_ch7Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+        s_ch7Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch7Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(DMA_CH7_NBTRANSFER - 1u);
+        s_ch7Primary.s_ctrl.bit.u32_Rpower = 0u;
+        s_ch7Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_CH7_SIZETRANSFER;
+        #if (DMA_CH7_SRCINC == 1u)
+          s_ch7Primary.s_ctrl.bit.u32_srcInc = (uint8)DMA_CH7_SIZETRANSFER;
+        #else
+          s_ch7Primary.s_ctrl.bit.u32_srcInc = (uint8)3;
+        #endif
+        s_ch7Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_CH7_SIZETRANSFER;
+        #if (DMA_CH7_DSTINC == 1u)
+          s_ch7Primary.s_ctrl.bit.u32_dstInc = (uint8)DMA_CH7_SIZETRANSFER;
+        #else
+          s_ch7Primary.s_ctrl.bit.u32_dstInc = (uint8)3;
+        #endif
+        s_ch7Primary.u32_srcEndPtr = (uint32)&DMA_CH7_SRC + (uint32)DMA_CH7_SRCPTROFFS;
+        s_ch7Primary.u32_dstEndPtr = (uint32)&DMA_CH7_DST + (uint32)DMA_CH7_DSTPTROFFS;
+
+        /* Scatter Gather Mode */
+      #elif (DMA_CH7_MODE == 1u)
+        /* Primary structure */
+        s_ch7Primary.s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+        s_ch7Primary.s_ctrl.bit.u32_nextUseburst = 0u;
+        s_ch7Primary.s_ctrl.bit.u32_Nminus1 = (uint16)(((uint16)DMA_CH7_NBTASK * 4u) - 1u);
+        s_ch7Primary.s_ctrl.bit.u32_Rpower = 2u;
+        s_ch7Primary.s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+        s_ch7Primary.s_ctrl.bit.u32_srcInc = DMA_incrementSize_32bit;
+        s_ch7Primary.s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+        s_ch7Primary.s_ctrl.bit.u32_dstInc = DMA_incrementSize_32bit;
+        s_ch7Primary.u32_srcEndPtr = (uint32)&DMA_CH7_TASKLIST[0] + (uint32)((uint16)(((uint16)DMA_CH7_NBTASK * 4u) - 1u) * ((uint8)1u << (uint8)DMA_transferSize_32bit));
+        s_ch7Primary.u32_dstEndPtr = DMA->ALT_CTRL_BASE_PTR.reg + DMA_CH7 * sizeof(tDMA_entry) + 12u;
+        /* Alternate structure */
+        s_ch7Alternate.s_ctrl.reg = 0u;
+        s_ch7Alternate.u32_srcEndPtr = 0u;
+        s_ch7Alternate.u32_dstEndPtr = 0u;
+      #endif
+
+      /* Enable the DMA channel */
+      DMA->CHNL_ENABLE_SET.reg |= (uint32)(1u << DMA_CH7);
+    #endif
+
+    /* Set the selected channels */
+    SCU->DMAP_CCU7.reg = (uint32)SCU_DMAP_CCU7;
+    SCU->DMAP_ADC.reg = (uint32)SCU_DMAP_ADC;
+    SCU->DMAP_TIM.reg = (uint32)SCU_DMAP_TIM;
+    SCU->DMAP_COM.reg = (uint32)SCU_DMAP_COM;
+    /* Set continuous transfer setting */
+    SCU->DMACTRL.reg = SCU_DMACTRL;
+    /* Set DMA Master Enable setting */
+    #if (DMA_DMA_CFG != 0u)
+      DMA_enMaster();
+    #endif
+  #endif
+
+  return s8_returnCode;
+}
+
+/** \brief Set up a basic transfer for the desired DMA channel in the primary structure in RAM
+ *
+ * \param u8_chIdx DMA channel to be set up
+ * \param u32_srcAddr Address pointing to the source location
+ * \param u32_dstAddr Address pointing to the destination location
+ * \param u32_transferCnt Number of transfers
+ * \param e_transferSize Data width for each transfer, see \link tDMA_transferSize \endlink
+ * \param e_incrementMode incrementing scheme used for the transfer, see \link tDMA_incrementMode \endlink
+ */
+void DMA_setBasicTransfer(uint8 u8_chIdx, uint32 u32_srcAddr, uint32 u32_dstAddr, uint32 u32_transferCnt, tDMA_transferSize e_transferSize, tDMA_incrementMode e_incrementMode)
+{
+  tDMA_entry *s_entry;
+  uint32 u32_startAddress;
+  
+  u32_startAddress = u8_chIdx * sizeof(tDMA_entry) + DMA_BASE_ADDR;
+  s_entry = (tDMA_entry *)u32_startAddress;
+
+  /* Control structure */
+  s_entry->s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+  s_entry->s_ctrl.bit.u32_nextUseburst = 0u;
+  s_entry->s_ctrl.bit.u32_Nminus1 = (uint16)(u32_transferCnt - 1u);
+  s_entry->s_ctrl.bit.u32_Rpower = 0u;
+  s_entry->s_ctrl.bit.u32_srcProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_dstProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_srcSize = (uint8)e_transferSize;
+  s_entry->s_ctrl.bit.u32_dstSize = (uint8)e_transferSize;
+  
+  switch (e_incrementMode)
+  {
+    case DMA_incrementMode_noInc:
+    {
+      /* Source end pointer */
+      s_entry->u32_srcEndPtr = u32_srcAddr;
+      /* Destination end pointer */
+      s_entry->u32_dstEndPtr = u32_dstAddr;
+      /* Control structure (continued) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementMode_noInc;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementMode_noInc;
+			break;
+    }
+    
+    case DMA_incrementMode_srcInc:
+    {
+      /* Source end pointer */
+      s_entry->u32_srcEndPtr = u32_srcAddr + (u32_transferCnt - 1u) * (1u << (uint8)e_transferSize);
+      /* Destination end pointer */
+      s_entry->u32_dstEndPtr = u32_dstAddr;
+      /* Control structure (continued) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)e_transferSize;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementMode_noInc;
+			break;
+    }
+    
+    case DMA_incrementMode_dstInc:
+    {
+      /* Source end pointer */
+      s_entry->u32_srcEndPtr = u32_srcAddr;
+      /* Destination end pointer */
+      s_entry->u32_dstEndPtr = u32_dstAddr + (u32_transferCnt - 1u) * (1u << (uint8)e_transferSize);
+      /* Control structure (continued) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementMode_noInc;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)e_transferSize;
+			break;
+    }
+    
+    case DMA_incrementMode_srcDstInc:
+    {
+      /* Source end pointer */
+      s_entry->u32_srcEndPtr = u32_srcAddr + (u32_transferCnt - 1u) * (1u << (uint8)e_transferSize);
+      /* Destination end pointer */
+      s_entry->u32_dstEndPtr = u32_dstAddr + (u32_transferCnt - 1u) * (1u << (uint8)e_transferSize);
+      /* Control structure (continued) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)e_transferSize;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)e_transferSize;
+			break;
+    }
+    
+    default:
+    {
+      /* Source end pointer */
+      s_entry->u32_srcEndPtr = u32_srcAddr;
+      /* Destination end pointer */
+      s_entry->u32_dstEndPtr = u32_dstAddr;
+      /* Control structure (continued) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementMode_noInc;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementMode_noInc;
+			break;
+    }
+  }
+  
+  /* Set DMA structure base pointer */
+  DMA->CTRL_BASE_PTR.reg = DMA_BASE_ADDR;
+  /* Enable the DMA channel */
+  DMA->CHNL_ENABLE_SET.reg |= ((uint32)1u << u8_chIdx);
+}
+
+/** \brief Reset the primary structure in RAM for a given channel and rearm it
+ *
+ * \param u8_chIdx DMA channel to be reset
+ * \param u32_transferCnt Number of transfers
+ */
+void DMA_resetChannel(uint8 u8_chIdx, uint32 u32_transferCnt)
+{
+  tDMA_entry *s_entry;
+  uint32 u32_startAddress;
+  
+  u32_startAddress = u8_chIdx * sizeof(tDMA_entry) + DMA_BASE_ADDR;
+  s_entry = (tDMA_entry *)u32_startAddress;
+
+  s_entry->s_ctrl.bit.u32_Nminus1 = (uint16)(u32_transferCnt - 1u);
+  s_entry->s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_Basic;
+  DMA->CHNL_ENABLE_SET.reg |= ((uint32)1u << u8_chIdx);
+}
+
+/** \brief Set up a channel to operate in Memory Scatter-Gather mode on a given task list
+ *
+ * \param u8_chIdx DMA channel to be set up
+ * \param s_taskList Points to the task structure defined in RAM, see \link DMA_setTaskSctGth \endlink
+ * \param u32_taskCnt Number of tasks in the s_taskList
+ */
+void DMA_setMemSctGth(uint8 u8_chIdx, tDMA_entry *s_taskList, uint32 u32_taskCnt)
+{
+  tDMA_entry *s_entry;
+  uint32 u32_startAddress;
+  
+  u32_startAddress = u8_chIdx * sizeof(tDMA_entry) + DMA_BASE_ADDR;
+  s_entry = (tDMA_entry *)u32_startAddress;
+  
+  /* Source end pointer */
+  s_entry->u32_srcEndPtr = (uint32)s_taskList + (((u32_taskCnt * 4u) - 1u) * ((uint32)1u << (uint8)DMA_transferSize_32bit));
+
+  /* Destination end pointer */
+  s_entry->u32_dstEndPtr = (DMA->ALT_CTRL_BASE_PTR.reg + (u8_chIdx * sizeof(tDMA_entry))) + 12u;
+  
+  /* Control structure */
+  s_entry->s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+  s_entry->s_ctrl.bit.u32_nextUseburst = 0u;
+  s_entry->s_ctrl.bit.u32_Nminus1 = (uint16)((u32_taskCnt * 4u) - 1u);
+  s_entry->s_ctrl.bit.u32_Rpower = 2u;
+  s_entry->s_ctrl.bit.u32_srcProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_dstProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+  s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementSize_32bit;
+  s_entry->s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+  s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementSize_32bit;
+  
+  /* Set DMA structure base pointer */
+  DMA->CTRL_BASE_PTR.reg = DMA_BASE_ADDR;
+  /* Enable the DMA channel */
+  DMA->CHNL_ENABLE_SET.reg |= ((uint32)1u << u8_chIdx);
+}
+
+/** \brief Set up a channel to operate in Peripheral Scatter-Gather mode on a given task list
+ *
+ * \param u8_chIdx DMA channel to be set up
+ * \param s_taskList Points to the task structure defined in RAM, see \link DMA_setTaskSctGth \endlink
+ * \param u32_taskCnt Number of tasks in the s_taskList
+ */
+void DMA_setPerSctGth(uint8 u8_chIdx, tDMA_entry *s_taskList, uint32 u32_taskCnt)
+{
+  tDMA_entry *s_entry;
+  uint32 u32_startAddress;
+  
+  u32_startAddress = u8_chIdx * sizeof(tDMA_entry) + DMA_BASE_ADDR;
+  s_entry = (tDMA_entry *)u32_startAddress;
+  
+  /* Source end pointer */
+  s_entry->u32_srcEndPtr = (uint32)s_taskList + (((u32_taskCnt * 4u) - 1u) * ((uint32)1u << (uint8)DMA_transferSize_32bit));
+
+  /* Destination end pointer */
+  s_entry->u32_dstEndPtr = (DMA->ALT_CTRL_BASE_PTR.reg + (u8_chIdx * sizeof(tDMA_entry))) + 12u;
+  
+  /* Control structure */
+  s_entry->s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_PerSctGthPrim;
+  s_entry->s_ctrl.bit.u32_nextUseburst = 0u;
+  s_entry->s_ctrl.bit.u32_Nminus1 = (uint16)((u32_taskCnt * 4u) - 1u);
+  s_entry->s_ctrl.bit.u32_Rpower = 2u;
+  s_entry->s_ctrl.bit.u32_srcProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_dstProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+  s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementSize_32bit;
+  s_entry->s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+  s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementSize_32bit;
+  
+  /* Set DMA structure base pointer */
+  DMA->CTRL_BASE_PTR.reg = DMA_BASE_ADDR;
+  /* Enable the DMA channel */
+  DMA->CHNL_ENABLE_SET.reg |= ((uint32)1u << u8_chIdx);
+}
+
+/** \brief Set up the primary task to configure the scatter-gather mode
+ * \brief The DMA scather-gather mode can be used to perform multiple but different DMA transfers initiated with one trigger.
+ * \brief The last task can be used to self-arm this scatter-gather transfer again.
+ *
+ * \param s_primEntry Pointer to the task
+ * \param u8_chIdx DMA channel for with the task is setup
+ * \param s_taskList Pointer to the task list to be executed with this DMA transfer
+ * \param u32_taskCnt Number of tasks defined in the task list
+ *
+ * \return Pointer to the task
+ */
+tDMA_entry *DMA_setPrimaryTaskSctGth(tDMA_entry *s_primEntry, uint8 u8_chIdx, tDMA_entry *s_taskList, uint32 u32_taskCnt)
+{
+  /* Source end pointer, points to the last task in the task list */
+  s_primEntry->u32_srcEndPtr = (uint32)s_taskList + (((u32_taskCnt * 4u) - 1u) * ((uint32)1u << (uint8)DMA_transferSize_32bit));
+  
+  /* Destination pointer, points to the channel index in the alternate stucture */
+  s_primEntry->u32_dstEndPtr = (DMA->ALT_CTRL_BASE_PTR.reg + (u8_chIdx * sizeof(tDMA_entry))) + 12u;
+  
+  /* Control structure */
+  s_primEntry->s_ctrl.bit.u32_cycleCtrl = (uint8)DMA_cycleType_MemSctGthPrim;
+  s_primEntry->s_ctrl.bit.u32_nextUseburst = 0u;
+  s_primEntry->s_ctrl.bit.u32_Nminus1 = (uint16)(u32_taskCnt * 4u) - 1u;
+  s_primEntry->s_ctrl.bit.u32_Rpower = 2u;
+  s_primEntry->s_ctrl.bit.u32_srcProtCtrl = 7u;
+  s_primEntry->s_ctrl.bit.u32_dstProtCtrl = 7u;
+  s_primEntry->s_ctrl.bit.u32_srcSize = (uint8)DMA_transferSize_32bit;
+  s_primEntry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementSize_32bit;
+  s_primEntry->s_ctrl.bit.u32_dstSize = (uint8)DMA_transferSize_32bit;
+  s_primEntry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementSize_32bit;
+  
+  return (s_primEntry);
+}
+
+/** \brief Set up a task to be used in the scatter-gather mode
+ *
+ * \param s_entry pointer to the task structure \link tDMA_entry \endlink
+ * \param e_cycleType defines the type of DMA transfer to be performed, see \link tDMA_cycleType \endlink
+ * \param u8_Rpower Arbitration rate, defines after how many DMA transfers (2^u8_Rpower) the controller rearbitrates
+ * \param u32_srcAddr Address pointing to the source location
+ * \param u32_dstAddr Address pointing to the destination location
+ * \param u32_transferCnt Number of transfers
+ * \param e_transferSize Data width for each transfer, see \link tDMA_transferSize \endlink
+ * \param e_incrementMode Incrementing scheme used for the transfer, see \link tDMA_incrementMode \endlink
+ *
+ * \return Pointer to the task
+ */
+tDMA_entry *DMA_setTaskSctGth(tDMA_entry *s_entry, tDMA_cycleType e_cycleType, uint8 u8_Rpower, uint32 u32_srcAddr, uint32 u32_dstAddr, uint32 u32_transferCnt, tDMA_transferSize e_transferSize, tDMA_incrementMode e_incrementMode)
+{
+  /* Control structure */
+  s_entry->s_ctrl.bit.u32_cycleCtrl = (uint8)e_cycleType;
+  s_entry->s_ctrl.bit.u32_nextUseburst = 0;
+  s_entry->s_ctrl.bit.u32_Nminus1 = (uint16)(u32_transferCnt - 1u);
+  s_entry->s_ctrl.bit.u32_Rpower = u8_Rpower;
+  s_entry->s_ctrl.bit.u32_srcProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_dstProtCtrl = 7u;
+  s_entry->s_ctrl.bit.u32_srcSize = (uint8)e_transferSize;
+  s_entry->s_ctrl.bit.u32_dstSize = (uint8)e_transferSize;
+
+  switch (e_incrementMode)
+  {
+    case DMA_incrementMode_srcInc:
+    {
+      /* Source end pointer, points to the last task in the task list */
+      s_entry->u32_srcEndPtr = u32_srcAddr + ((u32_transferCnt - 1u) * ((uint32)1u << (uint8)e_transferSize));
+      /* Destination pointer, points to the channel index in the alternate stucture */
+      s_entry->u32_dstEndPtr = u32_dstAddr;
+      /* Control structure (end) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)e_transferSize;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementMode_noInc;
+			break;
+    }
+
+    case DMA_incrementMode_dstInc:
+    {
+      /* Source end pointer, points to the last task in the task list */
+      s_entry->u32_srcEndPtr = u32_srcAddr;
+      /* Destination pointer, points to the channel index in the alternate stucture */
+      s_entry->u32_dstEndPtr = u32_dstAddr + ((u32_transferCnt - 1u) * ((uint32)1u << (uint8)e_transferSize));
+      /* Control structure (end) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementMode_noInc;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)e_transferSize;
+			break;
+    }
+
+    case DMA_incrementMode_srcDstInc:
+    {
+      /* Source end pointer, points to the last task in the task list */
+      s_entry->u32_srcEndPtr = u32_srcAddr + ((u32_transferCnt - 1u) * ((uint32)1u << (uint8)e_transferSize));
+      /* Destination pointer, points to the channel index in the alternate stucture */
+      s_entry->u32_dstEndPtr = u32_dstAddr + ((u32_transferCnt - 1u) * ((uint32)1u << (uint8)e_transferSize));
+      /* Control structure (end) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)e_transferSize;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)e_transferSize;
+			break;
+    }
+
+    case DMA_incrementMode_noInc:
+    {
+      /* Source end pointer, points to the last task in the task list */
+      s_entry->u32_srcEndPtr = u32_srcAddr;
+      /* Destination pointer, points to the channel index in the alternate stucture */
+      s_entry->u32_dstEndPtr = u32_dstAddr;
+      /* Control structure (end) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementMode_noInc;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementMode_noInc;
+			break;
+    }
+
+    default:
+    {
+      /* Source end pointer, points to the last task in the task list */
+      s_entry->u32_srcEndPtr = u32_srcAddr;
+      /* Destination pointer, points to the channel index in the alternate stucture */
+      s_entry->u32_dstEndPtr = u32_dstAddr;
+      /* Control structure (end) */
+      s_entry->s_ctrl.bit.u32_srcInc = (uint8)DMA_incrementMode_noInc;
+      s_entry->s_ctrl.bit.u32_dstInc = (uint8)DMA_incrementMode_noInc;
+			break;
+    }
+  }
+
+  return (s_entry);
+}                        
+
+/*******************************************************************************
+**                       Deprecated Function Definitions                      **
+*******************************************************************************/
+
+void DMA_setCh0IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setCh1IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setCh2IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setCh3IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setCh4IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setCh5IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setCh6IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setCh7IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void DMA_setErrIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6000000)
+  #pragma clang diagnostic pop
+#endif

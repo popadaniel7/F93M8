@@ -1,0 +1,248 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "ccu7.h"
+
+/*******************************************************************************
+**                         Private Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Constant Definitions                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Private Type Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Variable Definitions                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Function Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+/** \brief Initialize the CCU7 module
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 CCU7_init(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  
+  if (CCU7_EN == 1)
+  {
+    /* Port */
+    CCU7->PISEL0.reg = (uint32)CCU7_PISEL0;
+    CCU7->PISEL2.reg = (uint32)CCU7_PISEL2;
+    CCU7->PISEL24.reg = (uint32)CCU7_PISEL24;
+    CCU7->PISEL25.reg = (uint32)CCU7_PISEL25;
+    CCU7->PISEL26.reg = (uint32)CCU7_PISEL26;
+    /* Clock */
+    CCU7->T_FDIV0.reg = (uint32)CCU7_T_FDIV0;
+    CCU7->T_FDIV1.reg = (uint32)CCU7_T_FDIV1;
+    CCU7->T_CLK_CTRL.reg = (uint32)CCU7_T_CLK_CTRL;
+    /* Control register */
+    CCU7->TCTR0.reg = (uint32)CCU7_TCTR0;
+    CCU7->TCTR2.reg = (uint32)CCU7_TCTR2;
+    CCU7->TCTR24.reg = (uint32)CCU7_TCTR24;
+    CCU7->TCTR25.reg = (uint32)CCU7_TCTR25;
+    CCU7->TCTR26.reg = (uint32)CCU7_TCTR26;
+    CCU7->MCMCTR.reg = (uint32)CCU7_MCMCTR;
+    CCU7->T12MSEL.reg = (uint32)CCU7_T12MSEL;
+    CCU7->TRPCTR.reg = (uint32)CCU7_TRPCTR;
+    CCU7->MODCTR.reg = (uint32)CCU7_MODCTR;
+    /* Compare status, Passive level select */
+    CCU7->CMPSTAT.reg = (uint32)CCU7_CMPSTAT;
+    CCU7->PSLR.reg = (uint32)CCU7_PSLR;
+    /* Period values */
+    CCU7->T12PR.reg = (uint32)CCU7_T12PR;
+    CCU7->T13PR.reg = (uint32)CCU7_T13PR;
+    CCU7->T14PR.reg = (uint32)CCU7_T14PR;
+    CCU7->T15PR.reg = (uint32)CCU7_T15PR;
+    CCU7->T16PR.reg = (uint32)CCU7_T16PR;
+    CCU7->TCTR1.reg = (uint32)CCU7_TCTR1;
+    /* Compare values */
+    CCU7->CC70SR.reg = (uint32)CCU7_CC70SR;
+    CCU7->CC71SR.reg = (uint32)CCU7_CC71SR;
+    CCU7->CC72SR.reg = (uint32)CCU7_CC72SR;
+    CCU7->CC70BSR.reg = (uint32)CCU7_CC70BSR;
+    CCU7->CC71BSR.reg = (uint32)CCU7_CC71BSR;
+    CCU7->CC72BSR.reg = (uint32)CCU7_CC72BSR;
+    CCU7->C73SR.reg = (uint32)CCU7_C73SR;
+    CCU7->C74SR.reg = (uint32)CCU7_C74SR;
+    CCU7->C75SR.reg = (uint32)CCU7_C75SR;
+    CCU7->C76SR.reg = (uint32)CCU7_C76SR;
+    /* Dead Time */
+    CCU7->T12DTC.reg = (uint32)CCU7_T12DTC;
+    CCU7->T12DT0_VAL.reg = (uint32)CCU7_T12DT0_VAL;
+    CCU7->T12DT1_VAL.reg = (uint32)CCU7_T12DT1_VAL;
+    CCU7->T12DT2_VAL.reg = (uint32)CCU7_T12DT2_VAL;
+    CCU7->T12DTINSEL.reg = (uint32)CCU7_T12DTINSEL;
+    /* Debug behavior */
+    CCU7->KSCSR.reg = (uint32)CCU7_KSCSR;
+    CCU7->OCS.reg = (uint32)CCU7_OCS;
+    CCU7->LI.reg = (uint32)CCU7_LI & (uint32)0x3FEu;
+    /* Set Shadow Transfer Request */
+    CCU7_setT12ShadowTransferReq();
+    CCU7_setT13ShadowTransferReq();
+    CCU7_setT14ShadowTransferReq();
+    CCU7_setT15ShadowTransferReq();
+    CCU7_setT16ShadowTransferReq();
+  }
+  else
+  {
+    e_returnCode = ERR_LOG_CODE_MODULE_DISABLED_IN_CW;
+  }
+  
+  return e_returnCode;
+}
+
+/** \brief Enable the CCU7 module by calling the CCU7_init() function
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 CCU7_enModule(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = CCU7_init();
+  return e_returnCode;
+}
+
+/** \brief Disable the CCU7 module by performing the following steps:
+ *  stop T12
+ *  stop T13, T14, T15, T16
+ *  programming the passive states to LOW
+ *  switching all CCU7 outputs to passive state
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 CCU7_disModule(void)
+{
+  /* Stop T12 */
+  CCU7_stopT12();
+  /* Stop T13, T14, T15, T16 */
+  CCU7_stopT13();
+  CCU7_stopT14();
+  CCU7_stopT15();
+  CCU7_stopT16();
+  /* Program the passive states to LOW */
+  CCU7->PSLR.bit.PSL = 0;
+  /* Switch all CCU7 outputs to passive state/disable any modulation */
+  CCU7->MODCTR.bit.T12MODEN = 0;
+  CCU7->MODCTR.bit.T13MODEN = 0;
+  return ERR_LOG_SUCCESS;
+}
+
+/*******************************************************************************
+**                        Private Function Definitions                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                       Deprecated Function Definitions                      **
+*******************************************************************************/
+
+void CCU7_setCC70AIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setCC71AIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setCC72AIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setCHEIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setErrorIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setT12IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setT13IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setC70BIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setC71BIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setC72BIntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setT14IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setT15IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+void CCU7_setT16IntNodePtr(void)
+{
+  /* Do not change this at runtime, use the ConfigWizard to configure this feature! */
+}
+
+

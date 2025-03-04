@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_t2x_timer.xml                                                     -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<!-- IDX: $IDX$, T21 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>6251185c35f2c190397a0c7699858d1802e3973735f6576dd10db5ccc2546885</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Timers" visible="false">
+
+    <timer visible="false" define="$IDX$_UPDATE_MODE" svd="0" interval="1" singleShot="1" run="0" header="">
+      <!-- $IDX$ elements visibility -->
+      <!-- Visibility of the containers defined in T2modeTemplate.xml -->
+      <action cond="$IDX$.CON_CP_RL2==0" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=0"/>
+      <action cond="$IDX$.CON_CP_RL2==1" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=1;CONT_$IDX$_CLK.visible=1;CONT_$IDX$_PS.visible=0;CONT_$IDX$_CNTIN.visible=0;CONT_$IDX$_EDGEEXT.visible=1"/>
+      <action cond="$IDX$.CON_CP_RL2==2" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=1;CONT_$IDX$_CLK.visible=0;CONT_$IDX$_PS.visible=1;CONT_$IDX$_CNTIN.visible=0;CONT_$IDX$_EDGEEXT.visible=0"/>
+      <action cond="$IDX$.CON_CP_RL2==3" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=1;CONT_$IDX$_CLK.visible=1;CONT_$IDX$_PS.visible=0;CONT_$IDX$_CNTIN.visible=0;CONT_$IDX$_EDGEEXT.visible=1"/>
+      <!-- Visibility of the elements inside the containers -->
+      <action cond="(($IDX$.CON_CP_RL2==1).+($IDX$.CON_CP_RL2==3)).*($IDX$.CON_C_T2==0)" event="changed" cmd="setDef" data="CONT_$IDX$_PS.visible=1;CONT_$IDX$_CNTIN.visible=0"/>
+      <action cond="(($IDX$.CON_CP_RL2==1).+($IDX$.CON_CP_RL2==3)).*($IDX$.CON_C_T2==1)" event="changed" cmd="setDef" data="CONT_$IDX$_PS.visible=0;CONT_$IDX$_CNTIN.visible=1;$IDX$.$IDX$_CON_T2INSEL.visible=1;T20.T21_CON_T2INSEL.visible=0;T21.T20_CON_T2INSEL.visible=0"/>
+      <action cond="$IDX$.CON_CP_RL2==2" event="changed" cmd="setDef" data="CONT_$IDX$_PS.visible=1;CONT_$IDX$_CNTIN.visible=0"/>
+      <action cond="$IDX$.CON_EXEN2==0"                         event="changed" cmd="setDef" data="CONT_$IDX$_EXTIN.enabled=0;$IDX$.$IDX$_CON_T2EXINSEL.visible=1;T20.T21_CON_T2EXINSEL.visible=0;T21.T20_CON_T2EXINSEL.visible=0;CONT_$IDX$_EDGEEXT.enabled=0;CONT_$IDX$_ENEXTSTART.enabled=0;CONT_$IDX$_EXF2INTEN.enabled=0;CONT_$IDX$_EXF2EN.enabled=0;CONT_$IDX$_EXF2CB.enabled=0;CONT_$IDX$_EXF2OUTPUT.enabled=0;$IDX$.$IDX$_EXF2_OUTPUT.visible=1;T20.T21_EXF2_OUTPUT.visible=0;T21.T20_EXF2_OUTPUT.visible=0"/>
+      <action cond="($IDX$.CON_EXEN2==1).*($IDX$_EXF2INTEN==0)" event="changed" cmd="setDef" data="CONT_$IDX$_EXTIN.enabled=1;$IDX$.$IDX$_CON_T2EXINSEL.visible=1;T20.T21_CON_T2EXINSEL.visible=0;T21.T20_CON_T2EXINSEL.visible=0;CONT_$IDX$_EDGEEXT.enabled=1;CONT_$IDX$_ENEXTSTART.enabled=1;CONT_$IDX$_EXF2INTEN.enabled=1;CONT_$IDX$_EXF2EN.enabled=0;CONT_$IDX$_EXF2CB.enabled=0;CONT_$IDX$_EXF2OUTPUT.enabled=0;$IDX$.$IDX$_EXF2_OUTPUT.visible=1;T20.T21_EXF2_OUTPUT.visible=0;T21.T20_EXF2_OUTPUT.visible=0"/>
+      <action cond="($IDX$.CON_EXEN2==1).*($IDX$_EXF2INTEN==1)" event="changed" cmd="setDef" data="CONT_$IDX$_EXTIN.enabled=1;$IDX$.$IDX$_CON_T2EXINSEL.visible=1;T20.T21_CON_T2EXINSEL.visible=0;T21.T20_CON_T2EXINSEL.visible=0;CONT_$IDX$_EDGEEXT.enabled=1;CONT_$IDX$_ENEXTSTART.enabled=1;CONT_$IDX$_EXF2INTEN.enabled=1;CONT_$IDX$_EXF2EN.enabled=1;CONT_$IDX$_EXF2CB.enabled=1;CONT_$IDX$_EXF2OUTPUT.enabled=1;$IDX$.$IDX$_EXF2_OUTPUT.visible=1;T20.T21_EXF2_OUTPUT.visible=0;T21.T20_EXF2_OUTPUT.visible=0"/>
+      <action cond="$IDX$.MOD_T2RHEN==0" event="changed" cmd="setDef" data="CONT_$IDX$_EDGEEXTSTART.enabled=0"/>
+      <action cond="$IDX$.MOD_T2RHEN==1" event="changed" cmd="setDef" data="CONT_$IDX$_EDGEEXTSTART.enabled=1"/>
+      <action cond="$IDX$_TF2INTEN==0" event="changed" cmd="setDef" data="CONT_$IDX$_TF2EN.enabled=0;CONT_$IDX$_TF2CB.enabled=0"/>
+      <action cond="$IDX$_TF2INTEN==1" event="changed" cmd="setDef" data="CONT_$IDX$_TF2EN.enabled=1;CONT_$IDX$_TF2CB.enabled=1"/>
+      <!-- Element value for graph -->
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==0)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=12"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==1)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=1"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==2)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=2"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==3)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=4"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==4)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=8"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==5)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=16"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==6)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=32"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==7)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=64"/>
+      <action cond="($IDX$.CON_C_T2==0).*($IDX$.MOD_T2PRE==8)" event="changed" cmd="setDef" data="$IDX$IN=$IDX$IN n/a;$IDX$PS=128"/>
+      <action cond="$IDX$.CON_C_T2==1" event="changed" cmd="setDef" data="$IDX$PS=12;$IDX$IN=$IDX$.$IDX$_CON_T2INSEL.label"/>
+      <action cond="$IDX$.CON_EXEN2==0" event="changed" cmd="setDef" data="$IDX$EX=$IDX$EX n/a"/>
+      <action cond="$IDX$.CON_EXEN2==1" event="changed" cmd="setDef" data="$IDX$EX=$IDX$.T20_CON_T2EXINSEL.label"/>
+
+      <action event="changed" cmd="setDef" data="$IDX$_UPDATE_GRAPH.run=1"/>
+    </timer>
+
+
+    <timer visible="false" define="$IDX$_UPDATE_GRAPH" svd="0" interval="1" singleShot="1" run="0" header="">
+      <!-- Mode 0: Not Selected -->
+      <action cond="$IDX$.CON_CP_RL2==0" event="changed" cmd="setDef" data="$IDX$_G_1=#F0F0F0;$IDX$_G_2=#FFFFFF;$IDX$_G_3=#F0F0F0;$IDX$_G_4=#FFFFFF;$IDX$_G_5=#F0F0F0;$IDX$_G_6=#F0F0F0;$IDX$_G_7=#FFFFFF;$IDX$_G_8=#F0F0F0;$IDX$_G_9=#FFFFFF;$IDX$_G_10=#F0F0F0;$IDX$_G_11=#FFFFFF;$IDX$_G_12=#F0F0F0;$IDX$_G_13=#F0F0F0;$IDX$_G_14=#FFFFFF;$IDX$_EX_1=#F0F0F0;$IDX$_EX_2=#F0F0F0;$IDX$_EX_3=#F0F0F0;$IDX$_EX_4=#F0F0F0;$IDX$_EX_5=#FFFFFF;$IDX$_EX_6=#F0F0F0;$IDX$_EX_7=#FFFFF0;$IDX$_EX_8=#F0F0F0;$IDX$_EX_9=#FFFFFF;$IDX$_EXSTART_1=#F0F0F0;$IDX$_EXSTART_2=#FFFFFF;$IDX$_EXSTART_3=#F0F0F0;$IDX$_EXSTART_4=#FFFFF0;$IDX$_INT_1=#F0F0F0;$IDX$_INT_2=#F0F0F0;$IDX$_INT_3=#F0F0F0;$IDX$_INT_4=#F0F0F0;$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_7=#FFFFF0;$IDX$_INT_8=#F0F0F0;$IDX$_INT_9=#F0F0F0;$IDX$_INT_10=#FFFFFF;$IDX$_INT_11=#F0F0F0;$IDX$_INT_12=#F0F0F0;$IDX$_INT_13=#F0F0F0;$IDX$_INT_14=#F0F0F0;$IDX$_INT_15=#F0F0F0;$IDX$_INT_16=#F0F0F0;$IDX$_INT_17=#F0F0F0;$IDX$_INT_18=#FFFFFF;$IDX$_INT_19=#F0F0F0;$IDX$_INT_20=#F0F0F0;$IDX$_INT_21=#F0F0F0;$IDX$_INT_22=#F0F0F0;VIS_$IDX$_1=visible;VIS_$IDX$_2=visible;VIS_$IDX$_3=visible;VIS_$IDX$_4=visible;VIS_$IDX$_5=visible;VIS_$IDX$_6=visible;VIS_$IDX$_7=visible;VIS_$IDX$_8=visible;VIS_$IDX$_9=visible;VIS_$IDX$_10=visible;VIS_$IDX$_11=visible;VIS_$IDX$_12=visible;VIS_$IDX$_13=visible"/>
+      <action cond="$IDX$.CON_CP_RL2!=0" event="changed" cmd="setDef" data="$IDX$_G_5=#000000;$IDX$_G_6=#000000;$IDX$_G_7=#F0F0F0"/>
+
+      <!-- Mode 1: Auto-Reload without Up/Down Count -->
+      <action cond="$IDX$.CON_CP_RL2==1" event="changed" cmd="setDef" data="$IDX$_G_8=#FFFFF0;$IDX$_G_9=#FFFFF0;$IDX$_G_10=#000000;$IDX$_G_11=#F0F0F0;$IDX$_G_12=#FFFFF0;$IDX$_G_13=#FFFFF0;$IDX$_G_14=#FFFFF0;$IDX$_INT_1=#FFFFF0;$IDX$_INT_2=#000000;$IDX$_INT_3=#000000;$IDX$_INT_4=#FFFFF0;$IDX$_INT_7=#FFFFF0;$IDX$_INT_8=#FFFFF0;$IDX$_INT_9=#FFFFF0;$IDX$_INT_10=#FFFFF0;$IDX$_INT_11=#FFFFF0;$IDX$_INT_12=#FFFFF0;$IDX$_INT_13=#FFFFF0;VIS_$IDX$_1=visible;VIS_$IDX$_4=hidden;VIS_$IDX$_7=visible;VIS_$IDX$_8=hidden;VIS_$IDX$_9=visible;VIS_$IDX$_10=hidden;VIS_$IDX$_11=visible;VIS_$IDX$_12=visible;VIS_$IDX$_13=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON_C_T2==0)" event="changed" cmd="setDef" data="$IDX$_G_1=#000000;$IDX$_G_2=#F0F0F0;$IDX$_G_3=#FFFFF0;$IDX$_G_4=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON_C_T2==1)" event="changed" cmd="setDef" data="$IDX$_G_1=#FFFFF0;$IDX$_G_2=#FFFFF0;$IDX$_G_3=#000000;$IDX$_G_4=#F0F0F0"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON_EXEN2==0)"                    event="changed" cmd="setDef" data="$IDX$_EX_1=#FFFFF0;$IDX$_EX_2=#FFFFF0;$IDX$_EX_3=#FFFFF0;$IDX$_EX_4=#FFFFF0;$IDX$_EX_5=#FFFFF0;$IDX$_EX_6=#FFFFF0;$IDX$_EX_7=#FFFFF0;$IDX$_EX_8=#FFFFF0;$IDX$_EX_9=#FFFFF0;VIS_$IDX$_2=hidden;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON_EXEN2==1).*($IDX$.MOD_EDGESEL==0)" event="changed" cmd="setDef" data="$IDX$_EX_1=#000000;$IDX$_EX_2=#000000;$IDX$_EX_3=#000000;$IDX$_EX_4=#000000;$IDX$_EX_5=#F0F0F0;$IDX$_EX_6=#FFFFF0;$IDX$_EX_7=#000000;$IDX$_EX_8=#FFFFF0;$IDX$_EX_9=#FFFFF0;VIS_$IDX$_2=hidden;VIS_$IDX$_3=visible"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON_EXEN2==1).*($IDX$.MOD_EDGESEL==1)" event="changed" cmd="setDef" data="$IDX$_EX_1=#000000;$IDX$_EX_2=#000000;$IDX$_EX_3=#000000;$IDX$_EX_4=#000000;$IDX$_EX_5=#F0F0F0;$IDX$_EX_6=#000000;$IDX$_EX_7=#FFFFF0;$IDX$_EX_8=#FFFFF0;$IDX$_EX_9=#FFFFF0;VIS_$IDX$_2=visible;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.MOD_T2RHEN==0)"                         event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#FFFFF0;$IDX$_EXSTART_2=#FFFFF0;$IDX$_EXSTART_3=#FFFFF0;$IDX$_EXSTART_4=#FFFFF0;VIS_$IDX$_5=hidden;VIS_$IDX$_6=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.MOD_T2RHEN==1).*($IDX$.MOD_T2REGS==0)" event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#000000;$IDX$_EXSTART_2=#F0F0F0;$IDX$_EXSTART_3=#FFFFF0;$IDX$_EXSTART_4=#000000;VIS_$IDX$_5=hidden;VIS_$IDX$_6=visible"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.MOD_T2RHEN==1).*($IDX$.MOD_T2REGS==1)" event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#000000;$IDX$_EXSTART_2=#F0F0F0;$IDX$_EXSTART_3=#000000;$IDX$_EXSTART_4=#FFFFF0;VIS_$IDX$_5=visible;VIS_$IDX$_6=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON1_TF2EN==0).*($IDX$.CON1_EXF2EN==0)" event="changed" cmd="setDef" data="$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_14=#FFFFF0;$IDX$_INT_15=#FFFFF0;$IDX$_INT_16=#FFFFF0;$IDX$_INT_17=#FFFFF0;$IDX$_INT_18=#FFFFF0;$IDX$_INT_19=#FFFFF0;$IDX$_INT_20=#FFFFF0;$IDX$_INT_21=#FFFFF0;$IDX$_INT_22=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON1_TF2EN==1).*($IDX$.CON1_EXF2EN==0)" event="changed" cmd="setDef" data="$IDX$_INT_5=#000000;$IDX$_INT_6=#000000;$IDX$_INT_14=#000000;$IDX$_INT_15=#000000;$IDX$_INT_16=#FFFFF0;$IDX$_INT_17=#FFFFF0;$IDX$_INT_18=#FFFFF0;$IDX$_INT_19=#FFFFF0;$IDX$_INT_20=#FFFFF0;$IDX$_INT_21=#FFFFF0;$IDX$_INT_22=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON1_TF2EN==0).*($IDX$.CON1_EXF2EN==1)" event="changed" cmd="setDef" data="$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_14=#FFFFF0;$IDX$_INT_15=#FFFFF0;$IDX$_INT_16=#FFFFF0;$IDX$_INT_17=#FFFFF0;$IDX$_INT_18=#FFFFF0;$IDX$_INT_19=#000000;$IDX$_INT_20=#FFFFF0;$IDX$_INT_21=#FFFFF0;$IDX$_INT_22=#000000"/>
+      <action cond="($IDX$.CON_CP_RL2==1).*($IDX$.CON1_TF2EN==1).*($IDX$.CON1_EXF2EN==1)" event="changed" cmd="setDef" data="$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_14=#000000;$IDX$_INT_15=#FFFFF0;$IDX$_INT_16=#000000;$IDX$_INT_17=#000000;$IDX$_INT_18=#F0F0F0;$IDX$_INT_19=#000000;$IDX$_INT_20=#000000;$IDX$_INT_21=#000000;$IDX$_INT_22=#FFFFF0"/>
+
+      <!-- Mode 2: Auto-Reload with Up/Down Count -->
+      <action cond="$IDX$.CON_CP_RL2==2" event="changed" cmd="setDef" data="$IDX$_G_8=#000000;$IDX$_G_9=#F0F0F0;$IDX$_G_10=#000000;$IDX$_G_11=#F0F0F0;$IDX$_G_12=#FFFFF0;$IDX$_G_13=#000000;$IDX$_G_14=#F0F0F0;$IDX$_EX_6=#FFFFF0;$IDX$_EX_7=#FFFFF0;$IDX$_INT_1=#000000;$IDX$_INT_2=#000000;$IDX$_INT_3=#000000;$IDX$_INT_4=#FFFFF0;$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_7=#FFFFF0;$IDX$_INT_14=#FFFFF0;$IDX$_INT_15=#FFFFF0;$IDX$_INT_16=#FFFFF0;$IDX$_INT_17=#FFFFF0;$IDX$_INT_18=#FFFFF0;$IDX$_INT_19=#FFFFF0;$IDX$_INT_20=#FFFFF0;$IDX$_INT_21=#FFFFF0;$IDX$_INT_22=#FFFFF0;VIS_$IDX$_1=hidden;VIS_$IDX$_4=visible;VIS_$IDX$_7=visible;VIS_$IDX$_8=hidden;VIS_$IDX$_9=hidden;VIS_$IDX$_10=hidden;VIS_$IDX$_11=visible;VIS_$IDX$_12=hidden;VIS_$IDX$_13=visible"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON_C_T2==0)" event="changed" cmd="setDef" data="$IDX$_G_1=#000000;$IDX$_G_2=#F0F0F0;$IDX$_G_3=#FFFFF0;$IDX$_G_4=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON_C_T2==1)" event="changed" cmd="setDef" data="$IDX$_G_1=#FFFFF0;$IDX$_G_2=#FFFFF0;$IDX$_G_3=#000000;$IDX$_G_4=#F0F0F0"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON_EXEN2==0)"                    event="changed" cmd="setDef" data="$IDX$_EX_1=#FFFFF0;$IDX$_EX_2=#FFFFF0;$IDX$_EX_3=#FFFFF0;$IDX$_EX_4=#FFFFF0;$IDX$_EX_5=#FFFFF0;$IDX$_EX_8=#FFFFF0;$IDX$_EX_9=#FFFFF0;VIS_$IDX$_2=hidden;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON_EXEN2==1).*($IDX$.MOD_EDGESEL==0)" event="changed" cmd="setDef" data="$IDX$_EX_1=#000000;$IDX$_EX_2=#000000;$IDX$_EX_3=#FFFFF0;$IDX$_EX_4=#000000;$IDX$_EX_5=#F0F0F0;$IDX$_EX_8=#000000;$IDX$_EX_9=#F0F0F0;VIS_$IDX$_2=hidden;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON_EXEN2==1).*($IDX$.MOD_EDGESEL==1)" event="changed" cmd="setDef" data="$IDX$_EX_1=#000000;$IDX$_EX_2=#000000;$IDX$_EX_3=#FFFFF0;$IDX$_EX_4=#000000;$IDX$_EX_5=#F0F0F0;$IDX$_EX_8=#000000;$IDX$_EX_9=#F0F0F0;VIS_$IDX$_2=hidden;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.MOD_T2RHEN==0)"                         event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#FFFFF0;$IDX$_EXSTART_2=#FFFFF0;$IDX$_EXSTART_3=#FFFFF0;$IDX$_EXSTART_4=#FFFFF0;VIS_$IDX$_5=hidden;VIS_$IDX$_6=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.MOD_T2RHEN==1).*($IDX$.MOD_T2REGS==0)" event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#000000;$IDX$_EXSTART_2=#F0F0F0;$IDX$_EXSTART_3=#FFFFF0;$IDX$_EXSTART_4=#000000;VIS_$IDX$_5=hidden;VIS_$IDX$_6=visible"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.MOD_T2RHEN==1).*($IDX$.MOD_T2REGS==1)" event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#000000;$IDX$_EXSTART_2=#F0F0F0;$IDX$_EXSTART_3=#000000;$IDX$_EXSTART_4=#FFFFF0;VIS_$IDX$_5=visible;VIS_$IDX$_6=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON1_TF2EN==0).*($IDX$.CON1_EXF2EN==0)" event="changed" cmd="setDef" data="$IDX$_INT_8=#FFFFF0;$IDX$_INT_9=#FFFFF0;$IDX$_INT_10=#FFFFF0;$IDX$_INT_11=#FFFFF0;$IDX$_INT_12=#FFFFF0;$IDX$_INT_13=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON1_TF2EN==1).*($IDX$.CON1_EXF2EN==0)" event="changed" cmd="setDef" data="$IDX$_INT_8=#FFFFF0;$IDX$_INT_9=#000000;$IDX$_INT_10=#F0F0F0;$IDX$_INT_11=#000000;$IDX$_INT_12=#000000;$IDX$_INT_13=#000000"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON1_TF2EN==0).*($IDX$.CON1_EXF2EN==1)" event="changed" cmd="setDef" data="$IDX$_INT_8=#000000;$IDX$_INT_9=#000000;$IDX$_INT_10=#F0F0F0;$IDX$_INT_11=#FFFFF0;$IDX$_INT_12=#FFFFF0;$IDX$_INT_13=#000000"/>
+      <action cond="($IDX$.CON_CP_RL2==2).*($IDX$.CON1_TF2EN==1).*($IDX$.CON1_EXF2EN==1)" event="changed" cmd="setDef" data="$IDX$_INT_8=#000000;$IDX$_INT_9=#000000;$IDX$_INT_10=#F0F0F0;$IDX$_INT_11=#000000;$IDX$_INT_12=#000000;$IDX$_INT_13=#000000"/>
+
+      <!-- Mode 3: Capture -->
+      <action cond="$IDX$.CON_CP_RL2==3" event="changed" cmd="setDef" data="$IDX$_G_8=#FFFFF0;$IDX$_G_9=#FFFFF0;$IDX$_G_10=#000000;$IDX$_G_11=#F0F0F0;$IDX$_G_12=#000000;$IDX$_G_13=#FFFFF0;$IDX$_G_14=#FFFFF0;$IDX$_INT_1=#FFFFF0;$IDX$_INT_3=#FFFFF0;$IDX$_INT_7=#FFFFF0;$IDX$_INT_8=#FFFFF0;$IDX$_INT_9=#FFFFF0;$IDX$_INT_10=#FFFFF0;$IDX$_INT_11=#FFFFF0;$IDX$_INT_12=#FFFFF0;$IDX$_INT_13=#FFFFF0;$IDX$_INT_14=#FFFFF0;VIS_$IDX$_1=visible;VIS_$IDX$_4=hidden;VIS_$IDX$_7=hidden;VIS_$IDX$_8=visible;VIS_$IDX$_9=visible;VIS_$IDX$_10=hidden;VIS_$IDX$_11=hidden;VIS_$IDX$_12=visible;VIS_$IDX$_13=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON_C_T2==0)" event="changed" cmd="setDef" data="$IDX$_G_1=#000000;$IDX$_G_2=#F0F0F0;$IDX$_G_3=#FFFFF0;$IDX$_G_4=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON_C_T2==1)" event="changed" cmd="setDef" data="$IDX$_G_1=#FFFFF0;$IDX$_G_2=#FFFFF0;$IDX$_G_3=#000000;$IDX$_G_4=#F0F0F0"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON_EXEN2==0)"                    event="changed" cmd="setDef" data="$IDX$_EX_1=#FFFFF0;$IDX$_EX_2=#FFFFF0;$IDX$_EX_3=#FFFFF0;$IDX$_EX_4=#FFFFF0;$IDX$_EX_5=#FFFFF0;$IDX$_EX_6=#FFFFF0;$IDX$_EX_7=#FFFFF0;$IDX$_EX_8=#FFFFF0;$IDX$_EX_9=#FFFFF0;VIS_$IDX$_2=hidden;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON_EXEN2==1).*($IDX$.MOD_EDGESEL==0)" event="changed" cmd="setDef" data="$IDX$_EX_1=#000000;$IDX$_EX_2=#000000;$IDX$_EX_3=#000000;$IDX$_EX_4=#000000;$IDX$_EX_5=#F0F0F0;$IDX$_EX_6=#FFFFF0;$IDX$_EX_7=#000000;$IDX$_EX_8=#FFFFF0;$IDX$_EX_9=#FFFFF0;VIS_$IDX$_2=hidden;VIS_$IDX$_3=visible"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON_EXEN2==1).*($IDX$.MOD_EDGESEL==1)" event="changed" cmd="setDef" data="$IDX$_EX_1=#000000;$IDX$_EX_2=#000000;$IDX$_EX_3=#000000;$IDX$_EX_4=#000000;$IDX$_EX_5=#F0F0F0;$IDX$_EX_6=#000000;$IDX$_EX_7=#FFFFF0;$IDX$_EX_8=#FFFFF0;$IDX$_EX_9=#FFFFF0;VIS_$IDX$_2=visible;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.MOD_T2RHEN==0)"                         event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#FFFFF0;$IDX$_EXSTART_2=#FFFFF0;$IDX$_EXSTART_3=#FFFFF0;$IDX$_EXSTART_4=#FFFFF0;VIS_$IDX$_5=hidden;VIS_$IDX$_6=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.MOD_T2RHEN==1).*($IDX$.MOD_T2REGS==0)" event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#000000;$IDX$_EXSTART_2=#F0F0F0;$IDX$_EXSTART_3=#FFFFF0;$IDX$_EXSTART_4=#000000;VIS_$IDX$_5=hidden;VIS_$IDX$_6=visible"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.MOD_T2RHEN==1).*($IDX$.MOD_T2REGS==1)" event="changed" cmd="setDef" data="$IDX$_EXSTART_1=#000000;$IDX$_EXSTART_2=#F0F0F0;$IDX$_EXSTART_3=#000000;$IDX$_EXSTART_4=#FFFFF0;VIS_$IDX$_5=visible;VIS_$IDX$_6=hidden"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON1_TF2EN==0).*($IDX$.CON1_EXF2EN==0)" event="changed" cmd="setDef" data="$IDX$_INT_2=#FFFFF0;$IDX$_INT_4=#FFFFF0;$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_14=#FFFFF0;$IDX$_INT_15=#FFFFF0;$IDX$_INT_16=#FFFFF0;$IDX$_INT_17=#FFFFF0;$IDX$_INT_18=#FFFFF0;$IDX$_INT_19=#FFFFF0;$IDX$_INT_20=#FFFFF0;$IDX$_INT_21=#FFFFF0;$IDX$_INT_22=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON1_TF2EN==1).*($IDX$.CON1_EXF2EN==0)" event="changed" cmd="setDef" data="$IDX$_INT_2=#000000;$IDX$_INT_4=#000000;$IDX$_INT_5=#000000;$IDX$_INT_6=#000000;$IDX$_INT_14=#000000;$IDX$_INT_15=#000000;$IDX$_INT_16=#FFFFF0;$IDX$_INT_17=#FFFFF0;$IDX$_INT_18=#FFFFF0;$IDX$_INT_19=#FFFFF0;$IDX$_INT_20=#FFFFF0;$IDX$_INT_21=#FFFFF0;$IDX$_INT_22=#FFFFF0"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON1_TF2EN==0).*($IDX$.CON1_EXF2EN==1)" event="changed" cmd="setDef" data="$IDX$_INT_2=#FFFFF0;$IDX$_INT_4=#FFFFF0;$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_14=#FFFFF0;$IDX$_INT_15=#FFFFF0;$IDX$_INT_16=#FFFFF0;$IDX$_INT_17=#FFFFF0;$IDX$_INT_18=#FFFFF0;$IDX$_INT_19=#000000;$IDX$_INT_20=#FFFFF0;$IDX$_INT_21=#FFFFF0;$IDX$_INT_22=#000000"/>
+      <action cond="($IDX$.CON_CP_RL2==3).*($IDX$.CON1_TF2EN==1).*($IDX$.CON1_EXF2EN==1)" event="changed" cmd="setDef" data="$IDX$_INT_2=#000000;$IDX$_INT_4=#000000;$IDX$_INT_5=#FFFFF0;$IDX$_INT_6=#FFFFF0;$IDX$_INT_14=#000000;$IDX$_INT_15=#FFFFF0;$IDX$_INT_16=#000000;$IDX$_INT_17=#000000;$IDX$_INT_18=#F0F0F0;$IDX$_INT_19=#000000;$IDX$_INT_20=#000000;$IDX$_INT_21=#000000;$IDX$_INT_22=#FFFFF0"/>
+
+    </timer>
+  </verticalcontainer>
+</ifxmlcfg>

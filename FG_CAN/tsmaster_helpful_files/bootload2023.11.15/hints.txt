@@ -1,0 +1,3 @@
+1. When operating flash, we must pay attention to the impact on systick interrupt, which will cause the system clock interrupt to fail to respond normally, resulting in the accumulation of delay, unable to feed the dog in the correct time window, resulting in microcontroller reset.
+
+2. Because of the first problem, the systick interrupt is changed to respond once in 120ms when designing bootload, while the systick interrupt of APP is still responded once in 1ms.

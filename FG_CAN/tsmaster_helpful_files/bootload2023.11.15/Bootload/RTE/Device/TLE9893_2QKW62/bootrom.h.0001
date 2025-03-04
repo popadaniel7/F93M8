@@ -1,0 +1,296 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+/**
+ * \file     bootrom.h
+ *
+ * \brief    BootROM low level access library
+ *
+ * \version  V0.1.3
+ * \date     27. Nov 2020
+ *
+ * \note
+ */
+
+/** \addtogroup BOOTROM_api
+ *  @{
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** DM           Daniel Mysliwitz                                              **
+** BG           Blandine Guillot                                              **
+** JO           Julia Ott                                                     **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2020-08-14, JO:   Initial version                                  **
+** V0.1.1: 2020-11-12, JO:   EP-590: Added end of group for doxygen           **
+** V0.1.2: 2020-11-27, BG:   EP-610: Corrected MISRA 2012 errors              **
+** V0.1.3: 2020-11-27, JO:   EP-624: Removed internal APIs                    **
+*******************************************************************************/
+
+#ifndef _BOOTROM_H
+#define _BOOTROM_H
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "types.h"
+
+/*******************************************************************************
+**                       Entry points into the BootROM                        **
+*******************************************************************************/
+
+#define addr_user_nvm_isr_handler                 (0xc1u)
+#define addr_user_cid_get                         (0xc7u)
+#define addr_user_ram_mbist                       (0xcdu)
+#define addr_user_nvm_udata_temp_protect_clear    (0xd9u)
+#define addr_user_nvm_ucode_temp_protect_clear    (0xdfu)
+#define addr_user_nvm_udata_temp_protect_set      (0xe5u)
+#define addr_user_nvm_ucode_temp_protect_set      (0xebu)
+#define addr_user_nvm_temp_protect_get            (0xf1u)
+#define addr_user_nvm_ecc_addr_get                (0xf7u)
+#define addr_user_nvm_ecc_check                   (0xfdu)
+#define addr_user_nvm_100tp_read                  (0x103u)
+#define addr_user_nvm_100tp_write                 (0x109u)
+#define addr_user_nvm_100tp_erase                 (0x10fu)
+#define addr_user_nvm_config_get                  (0x115u)
+#define addr_user_nvm_page_erase                  (0x11bu)
+#define addr_user_nvm_sector_erase                (0x121u)
+#define addr_user_nvm_page_write                  (0x127u)
+#define addr_user_nvm_mapram_init                 (0x12du)
+#define addr_user_nvm_mapram_recover              (0x133u)
+#define addr_user_nvm_service_algorithm           (0x139u)
+#define addr_user_crypto_aes_cmac_generate_start  (0x13fu)
+#define addr_user_crypto_aes_cmac_generate_update (0x145u)
+#define addr_user_crypto_aes_cmac_generate_finish (0x14bu)
+#define addr_user_crypto_aes_cmac_verify_start    (0x151u)
+#define addr_user_crypto_aes_cmac_verify_update   (0x157u)
+#define addr_user_crypto_aes_cmac_verify_finish   (0x15du)
+#define addr_user_crypto_aes_start                (0x163u)
+#define addr_user_crypto_aes_update               (0x169u)
+#define addr_user_crypto_aes_finish               (0x16fu)
+#define addr_user_crypto_key_write                (0x175u)
+#define addr_user_crypto_key_erase                (0x17bu)
+#define addr_user_crypto_key_verify               (0x181u)
+#define addr_user_cache_operation                 (0x1a5u)
+#define addr_user_nvm_ubsl_temp_protect_clear     (0x1c5u)
+#define addr_user_nvm_ubsl_temp_protect_set       (0x1cbu)
+
+/*******************************************************************************
+**                        Global Constant Declarations                        **
+*******************************************************************************/
+
+/** @brief 128 bits key length */
+#define USER_KEY_SIZE_128          (0x10u)
+
+/** @brief 256 bits key length */
+#define USER_KEY_SIZE_256          (0x20u)
+
+/** @brief Maximum length for a key value to read/store */
+#define USER_KEY_SIZE_MAX          (USER_KEY_SIZE_256)
+
+/** @brief encrypted key parameter size 64 bytes */
+#define USER_KEY_PARAM_SIZE        (0x40u)
+
+/** @brief cmac signature size 16 bytes */
+#define USER_CMAC_SIGNATURE_SIZE   (0x10u)
+
+/** @brief Size of key_write decryption buffer */
+#define USER_KEY_WRITE_BUFFER_SIZE (0x30u)
+
+/** @brief Maximum User key slot ID */
+#define USER_KEY_MAX_ID            (12u)
+
+/** @brief Minimum User key slot ID */
+#define USER_KEY_MIN_ID            (1u)
+
+/** @brief IFX key ID */
+#define IFX_KEY_ID                 (0u)
+
+/*******************************************************************************
+**                          Global Type Declarations                          **
+*******************************************************************************/
+
+typedef struct
+{
+  uint32_t   offset;                                           /** <@brief Byte offset inside the selected page address, where to start reading. Maximum is 127 bytes. */
+  void      *data;                                             /** <@brief Data pointer where to write data into. Pointer plus valid count must be within valid RAM range or an error code is returned */
+  uint16_t   nbyte;                                            /** <@brief Amount of data bytes to read. If nbyte is zero, there is no read operation done and an error code is returned. Maximum is 128 bytes. */
+} user_100tp_read_t;
+
+typedef struct
+{
+  uint32_t   offset;                                           /** <@brief Byte offset inside the selected page address, where to start writing. Maximum is 123 bytes. */
+  void      *data;                                             /** <@brief Data pointer where to read the data to write. Pointer plus valid count must be within valid RAM range or an error code is returned */
+  uint8_t    nbyte;                                            /** <@brief Amount of data bytes to write. If nbyte is zero, there is no write operation done and an error code is returned. Maximum is 124 bytes. */
+  uint8_t    counter;                                          /** <@brief Counter value to update internal 100TP counter (only updates if value is greater than current, otherwise is ignored) */
+} user_100tp_write_t;
+
+/** @brief Key data structure aligned with CFS page (ignored reserved bytes) */
+typedef struct
+{
+  uint8_t    key[USER_KEY_SIZE_MAX];                           /** <@brief Key value                 */
+  uint16_t   version;                                          /** <@brief New key version number    */
+  uint8_t    length;                                           /** <@brief Key size in bytes [16|32] */
+  uint8_t    protection;                                       /** <@brief Key protection            */
+} user_key_t;
+
+typedef enum
+{
+  CRYPTO_ECB_ENCRYPT    = 0,
+  CRYPTO_ECB_DECRYPT    = 1,
+  CRYPTO_CBC_ENCRYPT    = 2,
+  CRYPTO_CBC_DECRYPT    = 3
+} user_crypto_fid_t;
+
+typedef struct
+{
+  uint8_t   *buffer;                                           /** <@brief Crypto algorithm input buffer address  */
+  uint32_t   length;                                           /** <@brief Crypto algorithm input buffer length   */
+} user_crypto_inp_buf_t;
+
+typedef struct
+{
+  uint8_t   *buffer;                                           /** <@brief Crypto algorithm output buffer address */
+  uint32_t *length;                                            /** <@brief Crypto algorithm output buffer length  */
+} user_crypto_out_buf_t;
+
+typedef struct
+{
+  user_crypto_inp_buf_t inp;                                   /** <@brief Crypto algorithm input buffer          */
+  user_crypto_out_buf_t out;                                   /** <@brief Crypto algorithm output buffer         */
+} user_crypto_io_buf_t;
+
+typedef struct
+{
+  user_crypto_inp_buf_t inp;                                   /** <@brief CMAC generate input buffer             */
+  user_crypto_inp_buf_t mac;                                   /** <@brief CMAC generate output buffer            */
+} user_crypto_cmac_t;
+
+typedef struct
+{
+  void      *iv;
+  uint32_t   iv_length;
+} user_crypto_cbc_t;
+
+
+typedef struct
+{
+  uint8_t    encrypted_key_buf[USER_KEY_PARAM_SIZE];           /** <@brief Encrypted buffer with new key parameters    */
+  uint16_t   target_key_id;                                    /** <@brief Key slot ID for parameter decryption        */
+  uint16_t   encrypt_key_id;                                   /** <@brief Key slot ID used for the new key parameters */
+} user_key_write_params_t;
+
+
+typedef struct
+{
+  user_key_write_params_t params;                              /** <@brief Input parameters (signature checked) */
+  uint8_t                 signature[USER_CMAC_SIGNATURE_SIZE]; /** <@brief New key CMAC signature               */
+} user_key_write_t;
+
+typedef struct
+{
+  uint16_t   target_key_id;                                    /** <@brief Key slot ID for parameter decryption */
+  uint16_t   version;                                          /** <@brief new key version number               */
+} user_key_erase_params_t;
+
+
+typedef struct
+{
+  user_key_erase_params_t params;                              /** <@brief Input parameters (signature checked) */
+  uint8_t                 signature[USER_CMAC_SIGNATURE_SIZE]; /** <@brief CMAC signature                       */
+} user_key_erase_t;
+
+typedef struct
+{
+  void      *data;                                             /** <@brief Pointer to the data where to read the programming data. Pointer must be within valid RAM range or an error code is returned. */
+  uint32_t   nbyte;                                            /** <@brief Amount of bytes to program. Range from 1-128 bytes. */
+  uint32_t   options;                                          /** <@brief NVM programming options (e.g. @ref NVM_OPTIONS_CORR_ACT or @ref NVM_OPTIONS_NO_FAILPAGE_ERASE) */
+} user_nvm_page_write_t;
+
+/*******************************************************************************
+**                          Global Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+#define user_cid_get(value)                         ((int32_t (*)(uint32_t *))addr_user_cid_get)(value)
+#define user_ram_mbist(value1, value2)              ((int32_t (*)(uint32_t, uint32_t))addr_user_ram_mbist)(value1, value2)
+#define user_nvm_udata_temp_protect_clear(value)    ((int32_t (*)(uint32_t))addr_user_nvm_udata_temp_protect_clear)(value)
+#define user_nvm_ucode_temp_protect_clear(value)    ((int32_t (*)(uint32_t))addr_user_nvm_ucode_temp_protect_clear)(value)
+#define user_nvm_udata_temp_protect_set(value)      ((int32_t (*)(uint32_t))addr_user_nvm_udata_temp_protect_set)(value)
+#define user_nvm_ucode_temp_protect_set(value)      ((int32_t (*)(uint32_t))addr_user_nvm_ucode_temp_protect_set)(value)
+#define user_nvm_temp_protect_get(value)            ((uint32_t (*)(uint32_t))addr_user_nvm_temp_protect_get)(value)
+#define user_nvm_ecc_addr_get(value1, value2)       ((int32_t (*)(uint32_t, uint32_t *))addr_user_nvm_ecc_addr_get)(value1, value2)
+#define user_nvm_ecc_check(value)                   ((int32_t (*)(uint32_t))addr_user_nvm_ecc_check)(value)
+#define user_nvm_100tp_read(value1, value2)         ((int32_t (*)(uint32_t, user_100tp_read_t *))addr_user_nvm_100tp_read)(value1, value2)
+#define user_nvm_100tp_write(value1, value2)        ((int32_t (*)(uint32_t, user_100tp_write_t *))addr_user_nvm_100tp_write)(value1, value2)
+#define user_nvm_100tp_erase(value)                 ((int32_t (*)(uint32_t))addr_user_nvm_100tp_erase)(value)
+#define user_nvm_config_get(value1, value2, value3) (((int32_t (*)(uint32_t *, uint32_t *, uint32_t *))addr_user_nvm_config_get))(value1, value2, value3)
+#define user_nvm_page_erase(value1, value2)         ((int32_t (*)(uint32_t, uint32_t))addr_user_nvm_page_erase)(value1, value2)
+#define user_nvm_sector_erase(value1, value2)       ((int32_t (*)(uint32_t, uint32_t))addr_user_nvm_sector_erase)(value1, value2)
+#define user_nvm_write user_nvm_page_write
+#define user_nvm_page_write(value1, value2)         ((int32_t (*)(uint32_t, user_nvm_page_write_t *))addr_user_nvm_page_write)(value1, value2)
+#define user_nvm_mapram_init(value)                 ((int32_t (*)(uint32_t))addr_user_nvm_mapram_init)(value)
+#define user_nvm_mapram_recover(value)              ((int32_t (*)(uint32_t))addr_user_nvm_mapram_recover)(value)
+#define user_nvm_service_algorithm(value)           ((int32_t (*)(uint32_t))addr_user_nvm_service_algorithm)(value)
+
+/* Add Basic AES routines for checking */
+#define user_crypto_aes_cmac_generate_start(value)           ((int32_t (*)(uint32_t))addr_user_crypto_aes_cmac_generate_start)(value)
+#define user_crypto_aes_cmac_generate_update(value)          ((int32_t (*)(user_crypto_inp_buf_t *))addr_user_crypto_aes_cmac_generate_update)(value)
+#define user_crypto_aes_cmac_generate_finish(value1, value2) ((int32_t (*)(user_crypto_io_buf_t *, uint8_t))addr_user_crypto_aes_cmac_generate_finish)(value1, value2)
+#define user_crypto_aes_cmac_verify_start(value)             ((int32_t (*)(uint32_t))addr_user_crypto_aes_cmac_verify_start)(value)
+#define user_crypto_aes_cmac_verify_update(value)            ((int32_t (*)(user_crypto_inp_buf_t *))addr_user_crypto_aes_cmac_verify_update)(value)
+#define user_crypto_aes_cmac_verify_finish(value)            ((int32_t (*)(user_crypto_cmac_t *))addr_user_crypto_aes_cmac_verify_finish)(value)
+#define user_crypto_aes_start(value1, value2, value3)        ((int32_t (*)(user_crypto_fid_t, uint32_t, user_crypto_cbc_t *))addr_user_crypto_aes_start)(value1, value2, value3)
+#define user_crypto_aes_update(value)                        ((int32_t (*)(user_crypto_io_buf_t *))addr_user_crypto_aes_update)(value)
+#define user_crypto_aes_finish(value)                        ((int32_t (*)(user_crypto_io_buf_t *))addr_user_crypto_aes_finish)(value)
+#define user_crypto_key_write(value)                         ((int32_t (*)(user_key_write_t *))addr_user_crypto_key_write)(value)
+#define user_crypto_key_erase(value)                         ((int32_t (*)(user_key_erase_t *))addr_user_crypto_key_erase)(value)
+#define user_crypto_key_verify(value1, value2)               ((int32_t (*)(uint8_t, uint8_t))addr_user_crypto_key_verify)(value1, value2)
+
+/* Defined as UBSL API Table */
+#define user_nvm_ubsl_temp_protect_clear(value)     ((int32_t (*)(uint32_t))addr_user_nvm_ubsl_temp_protect_clear)(value)
+#define user_nvm_ubsl_temp_protect_set(value)       ((int32_t (*)(uint32_t))addr_user_nvm_ubsl_temp_protect_set)(value)
+
+/*******************************************************************************
+**                     Global Inline Function Definitions                     **
+*******************************************************************************/
+
+/** @}*/
+
+#endif /* _BOOTROM_H */

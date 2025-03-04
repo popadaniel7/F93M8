@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_UARTx.xml                                                          -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-21, BG:   EP-541: Updated formulas according to new item for   -->
+<!--                           the pin selection                                    -->
+<!-- V0.1.0: 2020-11-25, BG:   EP-622: Restructure module with Python script        -->
+<!-- V0.1.1: 2021-01-19, BG:   EP-660: Removed bitfield BCON.BR_R                   -->
+<!-- V0.1.2: 2021-01-27, BG:   EP-677: Corrected module enabling behavior           -->
+<!-- V0.1.3: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.4: 2021-06-02, BG:   EP-833: Added checkbox to select if STDIO is enabled -->
+<!-- V0.1.5: 2021-06-11, BG:   EP-837: Added an edit to get UART frequency from SCU -->
+<!--                           and connect to the function to update the baudrate   -->
+<!--                           in uart.py                                           -->
+<!-- V0.1.6: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.6.2">
+  <checksum>054e77f08ed32a13982bbe9ab64e31b49df76dbfb0ba1ffed4fdc44030fe19ff</checksum>
+  <version label="V0.1.6"/>
+  <svd file="tle989x.svd"/>
+  <verticalcontainer label="UART" selectsetdef="UART.FREQ_EDIT=SCU_fUART_MHz;UART0_Block.update=1;UART1_Block.update=1">
+    <header file="uart_defines.h">
+
+      <timer visible="false" define="UART_INIT" svd="0" interval="1" singleShot="1" run="1" header="">
+        <action event="changed" cmd="runScript" data="python:uart.py"/>
+      </timer>
+      <verticalcontainer visible="false">
+        <edit label="Edit for UART clock" define="UART.FREQ_EDIT" svd="0"/>
+      </verticalcontainer>
+      
+      <tabcontainer define="CONT_UARTX">
+
+        <verticalcontainer label="UART0">
+
+          <!-- UART0 ENABLE -->
+          <checkbox label="Enable UART0" define="UART0.GLOBCONF_EN" svd="0" default="0" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+            <action event="checked" cmd="setDef" data="UART0_TOP.enabled=1"/>
+            <action event="unchecked" cmd="setDef" data="UART0_TOP.enabled=0"/>
+          </checkbox>
+
+          <groupcontainer define="UART0_TOP">
+
+            <!-- UART0 MODE SELECTION -->
+            <horizontalcontainer label="UART0" define="UART0_MODESEL" svd="0">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Mode Selection"/>
+                  <combo label="Mode Selection" define="UART0_MODE" svd="0" header="temp_defines.h">
+                    <item label="Mode 1: 8-bit UART, variable baudrate"/>
+                    <item label="Mode 2: 9-bit UART, fixed baudrate"/>
+                    <item label="Mode 3: 9-bit UART, variable baudrate"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer>
+                  <text label=" Enable STDIN / STDOUT"/>
+                  <checkbox define="UART0_STD_EN" svd="0" default="0"/>
+                </horizontalcontainer>
+
+                <!-- UART0 CONFIGURATION -->
+                <groupcontainer label="UART0 Configuration">
+                  <verticalcontainer>
+
+                    <include IDX="UART0" IDX_LIN="LIN0">template_uart_mode.xml</include>
+
+                    <!-- INSEL register -->
+                    <math visible="false" define="UART0.INSEL.RXDSEL" formula="(UART0_UART0.INSEL_RXDSEL!=255)?(UART0_UART0.INSEL_RXDSEL:0)"/>
+                    <math visible="false" define="UART0.INSEL.TXEVSEL" formula="((UART0.SCON.TXENSEL==2).*(UART0_UART0.INSEL_TXEVSEL!=255))?(UART0_UART0.INSEL_TXEVSEL:0)"/>
+
+                    <!-- SCON register -->
+                    <math visible="false" define="UART0.SCON.SM0" formula="((UART0_MODE==1).+(UART0_MODE==2))?(1:0)"/>
+                    <math visible="false" define="UART0.SCON.SM1" formula="(UART0_MODE==1)?(0:1)"/>
+                    <math visible="false" define="UART0.SCON.SM2" formula=""/>
+                    
+                    <!-- BCON register -->
+                    <math visible="false" define="UART0.BCON.BR_PRE" formula="(((UART0_MODE==0).+(UART0_MODE==2)).*(UART0BRPRE==32))?(5:(((UART0_MODE==0).+(UART0_MODE==2)).*(UART0BRPRE==16))?(4:(((UART0_MODE==0).+(UART0_MODE==2)).*(UART0BRPRE==8))?(3:(((UART0_MODE==0).+(UART0_MODE==2)).*(UART0BRPRE==4))?(2:(((UART0_MODE==0).+(UART0_MODE==2)).*(UART0BRPRE==2))?(1:0)))))"/>
+                    <math visible="false" define="UART0.BCON.BG_FD_SEL" formula="((UART0_MODE==0).+(UART0_MODE==1))?(UART0FRACDIV:0)"/>
+                    <math visible="false" define="UART0.BCON.BG_BR_VALUE" formula="((UART0_MODE==0).+(UART0_MODE==2))?(UART0RELVAL:0)"/>
+
+                  </verticalcontainer>
+                </groupcontainer>
+              </verticalcontainer>
+
+              <!-- UART0 GRAPH -->
+              <include IDX="UART0">template_uart_graph.xml</include>
+
+            </horizontalcontainer>
+          </groupcontainer>
+        </verticalcontainer>
+
+        <verticalcontainer label="UART1">
+
+          <!-- UART1 ENABLE -->
+          <checkbox label="Enable UART1" define="UART1.GLOBCONF_EN" svd="0" default="0" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+            <action event="checked" cmd="setDef" data="UART1_TOP.enabled=1"/>
+            <action event="unchecked" cmd="setDef" data="UART1_TOP.enabled=0"/>
+          </checkbox>
+
+          <groupcontainer define="UART1_TOP">
+            <!-- UART1 MODE SELECTION -->
+            <horizontalcontainer label="UART1" define="UART1_MODESEL" svd="0">
+              <verticalcontainer>
+                <horizontalcontainer>
+                  <text label="Mode Selection"/>
+                  <combo label="Mode Selection" define="UART1_MODE" svd="0" header="temp_defines.h">
+                    <item label="Mode 1: 8-bit UART, variable baudrate"/>
+                    <item label="Mode 2: 9-bit UART, fixed baudrate"/>
+                    <item label="Mode 3: 9-bit UART, variable baudrate"/>
+                  </combo>
+                </horizontalcontainer>
+                <horizontalcontainer>
+                  <text label=" Enable STDIN / STDOUT"/>
+                  <checkbox define="UART1_STD_EN" svd="0" default="0"/>
+                </horizontalcontainer>
+
+                <!-- UART1 CONFIGURATION -->
+                <groupcontainer label="UART1 Configuration">
+                  <verticalcontainer>
+
+                    <include IDX="UART1" IDX_LIN="LIN1">template_uart_mode.xml</include>
+
+                    <!-- INSEL register -->
+                    <math visible="false" define="UART1.INSEL.RXDSEL" formula="(UART1_UART1.INSEL_RXDSEL!=255)?(UART1_UART1.INSEL_RXDSEL:0)"/>
+                    <math visible="false" define="UART1.INSEL.TXEVSEL" formula="((UART1.SCON.TXENSEL==2).*(UART1_UART1.INSEL_TXEVSEL!=255))?(UART1_UART1.INSEL_TXEVSEL:0)"/>
+
+                    <!-- SCON register -->
+                    <math visible="false" define="UART1.SCON.SM0" formula="((UART1_MODE==1).+(UART1_MODE==2))?(1:0)"/>
+                    <math visible="false" define="UART1.SCON.SM1" formula="(UART1_MODE==1)?(0:1)"/>
+                    <math visible="false" define="UART1.SCON.SM2" formula=""/>
+
+                    <!-- BCON register -->
+                    <math visible="false" define="UART1.BCON.BR_PRE" formula="(((UART1_MODE==0).+(UART1_MODE==2)).*(UART1BRPRE==32))?(5:(((UART1_MODE==0).+(UART1_MODE==2)).*(UART1BRPRE==16))?(4:(((UART1_MODE==0).+(UART1_MODE==2)).*(UART1BRPRE==8))?(3:(((UART1_MODE==0).+(UART1_MODE==2)).*(UART1BRPRE==4))?(2:(((UART1_MODE==0).+(UART1_MODE==2)).*(UART1BRPRE==2))?(1:0)))))"/>
+                    <math visible="false" define="UART1.BCON.BG_FD_SEL" formula="((UART1_MODE==0).+(UART1_MODE==1))?(UART1FRACDIV:0)"/>
+                    <math visible="false" define="UART1.BCON.BG_BR_VALUE" formula="((UART1_MODE==0).+(UART1_MODE==2))?(UART1RELVAL:0)"/>
+
+                  </verticalcontainer>
+                </groupcontainer>
+              </verticalcontainer>
+
+              <!-- UART1 GRAPH -->
+              <include IDX="UART1">template_uart_graph.xml</include>
+
+            </horizontalcontainer>
+          </groupcontainer>
+        </verticalcontainer>
+      </tabcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>

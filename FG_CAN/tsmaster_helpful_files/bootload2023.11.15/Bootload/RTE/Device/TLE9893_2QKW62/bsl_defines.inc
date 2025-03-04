@@ -1,0 +1,3 @@
+BSL_NAD_NAC     EQU     0xFE01FE01
+SECBOOT_KEY     EQU     0
+				END

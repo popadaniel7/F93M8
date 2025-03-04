@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_t2x_mode.xml                                                      -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-21, BG:   EP-541: Added 'none' entry to solve conflicts with   -->
+<!--                           multiple lockons                                     -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-30, BG:   EP-547: Added lockons for GPIO                       -->
+<!-- V0.1.2: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project               -->
+<!-- V0.2.0: 2020-11-25, BG:   EP-623: Restructured module with Python script       -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>475fa57da9051dbf6f10576307e09dd0d3f102d17d544f133518497953cf9ce9</checksum>
+  <version label="V0.2.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Mode Definition" uielement="branch">
+    <header file="t2x_defines.h">
+    <groupcontainer label="Clock Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+        <!-- Clock Selection -->
+        <horizontalcontainer define="CONT_$IDX$_CLK">
+          <text label="Clock Selection"/>
+          <combo label="Clock Prescaler" define="$IDX$.CON.C_T2">
+            <item label="Timer" override="value1"/>
+            <item label="Counter" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+        <!-- Prescaler -> only in Timer -->
+        <horizontalcontainer define="CONT_$IDX$_PS">
+          <text label="Clock Prescaler"/>
+          <combo label="Clock Prescaler" define="$IDX$.MOD_T2PRE_" svd="0" tooltip="Info: This combobox sets the bits T2PRE and PREN" header="temp_defines.h">
+            <item label="Not Selected, per default fPER / 12"/>
+            <item label="fPER / 1"/>
+            <item label="fPER / 2"/>
+            <item label="fPER / 4"/>
+            <item label="fPER / 8"/>
+            <item label="fPER / 16"/>
+            <item label="fPER / 32"/>
+            <item label="fPER / 64"/>
+            <item label="fPER / 128"/>
+          </combo>
+          <math visible="false" define="$IDX$.MOD.T2PRE" formula="(($IDX$.CON.C_T2==0).*($IDX$.MOD_T2PRE_!=0))?(($IDX$.MOD_T2PRE_-1):0)"/>
+          <math visible="false" define="$IDX$.MOD.PREN" formula="(($IDX$.CON.C_T2==0).*($IDX$.MOD_T2PRE_!=0))?(1:0)"/>
+        </horizontalcontainer>
+        <!-- Counter Input -> only in Counter -->
+        <horizontalcontainer define="CONT_$IDX$_CNTIN">
+          <text label="Counter Input"/>
+          <!-- Timer 20 -->
+          <combo label="Counter Input" define="$IDX$.T20_CON_T2INSEL" default="label=none" svd="0" header="temp_defines.h">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR2=0"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893QKW62S"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893_2QKW62"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="none" value="0xFF"/>
+          </combo>
+          <!-- Timer 21 -->
+          <combo label="Counter Input" define="$IDX$.T21_CON_T2INSEL" default="label=none" svd="0" header="temp_defines.h">
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=0"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893QKW62S"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893_2QKW62"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893QKW62S"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893_2QKW62"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=0" startcond="device==TLE9893QKW62S"/>
+            <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=0" startcond="device==TLE9893_2QKW62"/>
+            <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=0" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P2.9 (*)" lockon="GPIO.P2_INDIS.INDIS9=0" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="none" value="0xFF"/>
+          </combo>
+          <math visible="false" define="$IDX$.CON.T2INSEL" formula="(($IDX$.CON.C_T2==1).*($IDX$.$IDX$_CON_T2INSEL!=255))?($IDX$.$IDX$_CON_T2INSEL:0)"/>
+        </horizontalcontainer>
+      </verticalcontainer>
+    </groupcontainer>
+    <groupcontainer label="External Event" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="206;217;164">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+        <!-- Enable External Event -->
+        <horizontalcontainer>
+          <text label="Enable External Event"/>
+          <checkbox define="$IDX$.CON.EXEN2"/>
+        </horizontalcontainer>
+        <!-- External Input -> only if enabled -->
+        <horizontalcontainer define="CONT_$IDX$_EXTIN">
+          <text label="External Input"/>
+          <!-- Timer 20 -->
+          <combo label="External Input" define="$IDX$.T20_CON_T2EXINSEL" default="label=none" svd="0" header="temp_defines.h">
+            <item label="P0.3" lockon="GPIO.P0_DIR.DIR3=0"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893QKW62S"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893_2QKW62"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P0.8 (*)" lockon="GPIO.P0_DIR.DIR8=0" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893QKW62S"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893_2QKW62"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=0" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="CANTRX.RXD"/>
+            <item label="none" value="0xFF"/>
+          </combo>
+          <!-- Timer 21 -->
+          <combo label="External Input" define="$IDX$.T21_CON_T2EXINSEL" default="label=none" svd="0" header="temp_defines.h">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=0"/>
+            <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=0"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893QKW62S"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893_2QKW62"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P2.8 (*)" lockon="GPIO.P2_INDIS.INDIS8=0" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="MON.MON10"/>
+            <item label="none" value="0xFF"/>
+          </combo>
+          <math visible="false" define="$IDX$.CON.T2EXINSEL" formula="(($IDX$.CON.EXEN2==1).*($IDX$.$IDX$_CON_T2EXINSEL!=255))?($IDX$.$IDX$_CON_T2EXINSEL:0)"/>
+        </horizontalcontainer>
+        <!-- Edge Selection at External Input -> only if enabled -->
+        <horizontalcontainer define="CONT_$IDX$_EDGEEXT">
+          <text label="Edge Selection at External Input"/>
+          <combo label="Edge Selection at External Input" define="$IDX$.MOD.EDGESEL">
+            <item label="On the falling edge of $IDX$EX" override="value1"/>
+            <item label="On the rising edge of $IDX$EX" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+        <!-- Enable External Start -->
+        <horizontalcontainer define="CONT_$IDX$_ENEXTSTART">
+          <text label="Enable External Start"/>
+          <checkbox define="$IDX$.MOD.T2RHEN"/>
+        </horizontalcontainer>
+        <!-- Edge Selection at External Input for External Start -> only if enabled -->
+        <horizontalcontainer define="CONT_$IDX$_EDGEEXTSTART">
+          <text label="Edge Selection for an External Start"/>
+          <combo label="Edge Selection for an External Start" define="$IDX$.MOD.T2REGS">
+            <item label="On the falling edge of $IDX$EX" override="value1"/>
+            <item label="On the rising edge of $IDX$EX" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+      </verticalcontainer>
+    </groupcontainer>
+    <groupcontainer label="Interrupt" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+        <!-- Interrupt TF2 C-code enable -->
+        <horizontalcontainer define="CONT_$IDX$_TF2INTEN">
+          <text label="Overflow/Underflow Interrupt"/>
+          <checkbox define="$IDX$.TF2_INT_EN" lockon="CPU.NVIC_ISER.IRQEN$NODE$=1" svd="0" header="isr_defines.h"/>
+        </horizontalcontainer>
+        <!-- Interrupt TF2 bit enable + callback -->
+        <horizontalcontainer define="CONT_$IDX$_TF2EN">
+          <text label="Enable Underflow/Overflow Interrupt"/>
+          <checkbox define="$IDX$.CON1.TF2EN" default="0" header="isr_defines.h"/>
+        </horizontalcontainer>
+        <!-- Interrupt TF2 callback -->
+        <horizontalcontainer define="CONT_$IDX$_TF2CB">
+          <text label="Callback"/>
+          <edit define="$IDX$.TF2_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+        <!-- Interrupt EXF2 C-code enable -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2INTEN">
+          <text label="External Interrupt"/>
+          <checkbox define="$IDX$.EXF2_INT_EN" lockon="CPU.NVIC_ISER.IRQEN$NODE$=1" svd="0" header="isr_defines.h"/>
+        </horizontalcontainer>
+        <!-- Interrupt EXF2 bit enable -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2EN">
+          <text label="Enable External Interrupt"/>
+          <checkbox define="$IDX$.CON1.EXF2EN" default="0" header="isr_defines.h"/>
+        </horizontalcontainer>
+        <!-- Interrupt EXF2 callback -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2CB">
+          <text label="Callback"/>
+          <edit define="$IDX$.EXF2_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h" size="395;-1"/>
+        </horizontalcontainer>
+        <!-- External Flag EXF2 output -->
+        <horizontalcontainer define="CONT_$IDX$_EXF2OUTPUT">
+          <text label="External Flag Output"/>
+          <combo label="External Flag Output" define="$IDX$.T20_EXF2_OUTPUT" default="label=none" svd="0" header="temp_defines.h">
+            <item label="P0.10" lockon="GPIO.P0_DIR.DIR10=1;GPIO.P0_ALTSEL1.ALTSEL10=1"/>
+            <item label="none" value="0xFF"/>
+          </combo>
+          <combo label="External Flag Output" define="$IDX$.T21_EXF2_OUTPUT" default="label=none" svd="0" header="temp_defines.h">
+            <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=1;GPIO.P0_ALTSEL0.ALTSEL0=1"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893QKW62S"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62S"/>
+            <item label="P1.4 (*)" lockon="GPIO.P1_DIR.DIR4=1;GPIO.P1_ALTSEL0.ALTSEL4=1" startcond="device==TLE9893_2QKW62S_internal"/>
+            <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+      </verticalcontainer>
+    </groupcontainer>
+    <groupcontainer label="Timer Register" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+      <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular">
+        <!-- Timer Register -->
+        <horizontalcontainer>
+          <text label="Timer Register"/>
+          <spinbox label="Value" define="$IDX$.CNT_REGVAL" svd="0" header="temp_defines.h" default="1" range="0;32768" size="135;-1" tooltip="Info: This spinbox sets the bits T2L and T2H in register CNT"/>
+          <combo define="$IDX$_CNTUNIT" svd="0" header="" size="100;-1">
+            <item label="ticks"/>
+            <item label="us"/>
+          </combo>
+          <math label="Timer Value" unit="ticks" define="$IDX$_CNTREGVAL" svd="0" header="temp_defines.h" format="%04X" formula="($IDX$_CNTUNIT==0)?((0x10000-$IDX$.CNT_REGVAL):floor(0x10000-($IDX$.CNT_REGVAL*f$IDX$/1000000)))" size="150;-1"/>
+          <math visible="false" define="$IDX$.CNT.T2L" formula="$IDX$_CNTREGVAL.*0xFF"/>
+          <math visible="false" define="$IDX$.CNT.T2H" formula="($IDX$_CNTREGVAL/0x100).*0xFF"/>
+        </horizontalcontainer>
+        <!-- Reload/Capture Register -->
+        <horizontalcontainer>
+          <text label="Reload/Capture Register"/>
+          <spinbox label="Value" define="$IDX$.RC_REGVAL" svd="0" header="temp_defines.h" default="1" range="0;32768" size="135;-1" tooltip="Info: This spinbox sets the bits RCL2 and RCH2 in register RC"/>
+          <combo define="$IDX$_RCUNIT" svd="0" header="" size="100;-1">
+            <item label="ticks"/>
+            <item label="us"/>
+          </combo>
+          <math label="Timer Value" unit="ticks" define="$IDX$_RCREGVAL" svd="0" header="temp_defines.h" format="%04X" formula="($IDX$_RCUNIT==0)?((0x10000-$IDX$.RC_REGVAL):floor(0x10000-($IDX$.RC_REGVAL*f$IDX$/1000000)))" size="150;-1"/>
+          <math visible="false" define="$IDX$.RC.RCL2" formula="$IDX$_RCREGVAL.*0xFF"/>
+          <math visible="false" define="$IDX$.RC.RCH2" formula="($IDX$_RCREGVAL/0x100).*0xFF"/>
+        </horizontalcontainer>
+      </verticalcontainer>
+    </groupcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>

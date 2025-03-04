@@ -1,0 +1,667 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "scu.h"
+
+/*******************************************************************************
+**                        Private Constant Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Private Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Variable Definitions                        **
+*******************************************************************************/
+
+sint8 e_xtalSts;
+
+/*******************************************************************************
+**                        Private Function Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+/** \brief Initialize the SCU module
+ *
+ * \param none
+ * \return none
+ */
+void SCU_init(void)
+{
+  /* Enable CLKOUT if configured */
+  SCU->CLKSEL.reg |= (SCU_CLKSEL & SCU_CLKSEL_CLKOUTEN_Msk);
+}
+
+/** \brief Initialize the SCU clock
+ * \brief If configured in Config Wizard, the function initializes
+ * \brief - XTAL
+ * \brief - PLL0
+ * \brief - PLL1
+ * \brief In case of an XTAL error, the XTAL error status
+ * is stored in the global variable e_xtalSts
+ * \brief The function always initializes
+ * \brief - fSYS0 (for core and peripherals except UART, CAN)
+ * \brief - fSYS1 (for UART, CAN)
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_initClk(void)
+{
+  sint8 e_returnCode;
+  uint8 u8_nmi_en_temp;
+  uint32 u32_currentTime_ms;
+  uint32 u32_end_ms;
+
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Initialize Clock Sources */
+  /* XTAL (only if needed) */
+#if ((SCU_XTALCON & SCU_XTALCON_XPD_Msk) == 0)
+  e_xtalSts = ERR_LOG_SUCCESS;
+  u8_nmi_en_temp = 0;
+
+  if (SCU->NMICON.bit.NMIXTALEN == 1u)
+  {
+    SCU->NMICON.bit.NMIXTALEN = 0;
+    u8_nmi_en_temp = 1u;
+  }
+
+  /* Disable P2.0 and P2.1 input */
+  GPIO->P2_INDIS.reg |= 0x3;
+  /* Configure XTALOSC, Start XTALOSC, Start XTALWDG */
+  SCU->XTALCON.reg = SCU_XTALCON;
+  u32_end_ms = u32_globTimestamp_ms + SCU_XTAL_START_TIME_MS;
+
+  do
+  {
+    /* wait for XTAL ok */
+    u32_currentTime_ms = u32_globTimestamp_ms;
+  }
+  while ((SCU->XTALSTAT.bit.XTALFAIL == 1) && (u32_currentTime_ms < u32_end_ms));
+
+  /* Check timeout */
+  if (u32_currentTime_ms >= u32_end_ms)
+  {
+    e_returnCode = ERR_LOG_CODE_TIMEOUT;
+    e_xtalSts = SCU_checkXTALDiagnosis();
+  }
+
+  /* Clear XTAL FAIL status */
+  SCU->XTALSTATC.reg = SCU_XTALSTATC_XTAL_FAIL_STSCLR_Msk;
+  /* Clear NMIXTAL status */
+  SCU->NMISRC.reg = SCU_NMISRC_NMIXTALCLR_Msk;
+
+  /* Enable XTAL NMI if needed */
+  if (u8_nmi_en_temp == 1u)
+  {
+    SCU->NMICON.bit.NMIXTALEN = 1;
+  }
+
+#endif
+  /* PLL0 (only if needed) */
+#if (SCU_PLL0_EN == 1u)
+  /* Disable PLLx NMI */
+  u8_nmi_en_temp = 0u;
+
+  if (SCU->NMICON.bit.NMIPLL0EN == 1u)
+  {
+    SCU->NMICON.bit.NMIPLL0EN = 0;
+    u8_nmi_en_temp = 1u;
+  }
+
+  /* Configure PLLx */
+  PLL->CON0.reg = PLL_CON0 & (~PLL_CON0_PLLEN_Msk);
+  PLL->SPCTR.reg = PLL_SPCTR & ((~(uint32)PLL_SPCTR_SPEN0_Msk) & 0x0000FFFFu);
+  PLL->SPCTR.reg |= PLL_SPCTR & PLL_SPCTR_SPEN0_Msk;
+  /* Start PLLx */
+  PLL->CON0.bit.PLLEN = 1;
+
+  while (PLL->STAT.bit.LCK0 == 0u) // TODO && no timeout
+  {
+    /* wait for PLLx being locked */
+    __NOP();
+  }
+
+  /* Clear PLLx Loss of Lock status */
+  PLL->STATC.reg = PLL_STATC_PLL0_LOL_STSCLR_Msk;
+  /* Clear PLLx NMI status */
+  SCU->NMISRC.reg = SCU_NMISRC_NMIPLL0CLR_Msk;
+
+  /* Enable PLLx NMI if needed */
+  if (u8_nmi_en_temp == 1u)
+  {
+    SCU->NMICON.bit.NMIPLL0EN = 1;
+  }
+
+#endif
+  /* PLL1 (only if needed) */
+#if (SCU_PLL1_EN == 1u)
+  /* Disable PLLx NMI */
+  u8_nmi_en_temp = 0u;
+
+  if (SCU->NMICON.bit.NMIPLL1EN == 1u)
+  {
+    SCU->NMICON.bit.NMIPLL1EN = 0;
+    u8_nmi_en_temp = 1u;
+  }
+
+  /* Configure PLLx */
+  PLL->CON1.reg = PLL_CON1 & (~PLL_CON1_PLLEN_Msk);
+  PLL->SPCTR.reg = PLL_SPCTR & ((~(uint32)PLL_SPCTR_SPEN1_Msk) & 0xFFFF0000u);
+	PLL->SPCTR.reg |= PLL_SPCTR & PLL_SPCTR_SPEN1_Msk;
+  /* Start PLLx */
+  PLL->CON1.bit.PLLEN = 1;
+
+  while (PLL->STAT.bit.LCK1 == 0u)
+  {
+    /* wait for PLLx being locked */
+    __NOP();
+  }
+
+  /* Clear PLLx Loss of Lock status */
+  PLL->STATC.reg = PLL_STATC_PLL1_LOL_STSCLR_Msk;
+  /* Clear PLLx NMI status */
+  SCU->NMISRC.reg = SCU_NMISRC_NMIPLL1CLR_Msk;
+
+  /* Enable PLLx NMI if needed */
+  if (u8_nmi_en_temp == 1u)
+  {
+    SCU->NMICON.bit.NMIPLL1EN = 1;
+  }
+
+#endif
+  /* Initialize Clock tree Configuration */
+  /* Don't enable CLKOUT here, done ein SCU_init */
+  SCU->CLKSEL.reg = ((uint32)SCU_CLKSEL) & (~SCU_CLKSEL_CLKOUTEN_Msk);
+  /* Write CLKCON=0 before setting CLKCON (PRECAN/PREUART can only be written when CANCLKEN/UARTCLKEN=0 */
+  SCU->CLKEN.reg = (uint32)0u;
+  SCU->CLKCON.reg = (uint32)SCU_CLKCON;
+  SCU->CLKEN.reg = (uint32)SCU_CLKEN;
+  return e_returnCode;
+}
+
+/** \brief Check XTAL Diagnosis as describen in the User Manual
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_checkXTALDiagnosis(void)
+{
+  sint8 e_returnCode;
+  uint32 u32_gpio_p2_pud;
+  uint32 u32_gpio_p2_indis;
+
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Store register values */
+  u32_gpio_p2_pud = GPIO->P2_PUD.reg;
+  u32_gpio_p2_indis = GPIO->P2_INDIS.reg;
+  GPIO->P2_PUD.bit.PUDEN0 = 1;
+  GPIO->P2_PUD.bit.PUDEN1 = 0;
+  GPIO->P2_PUD.bit.PUDSEL0 = 1;
+  SCU_delay_us(5);
+
+  if (GPIO->P2_IN.bit.PI0 == 0u)
+  {
+    e_returnCode = ERR_LOG_ERROR;
+  }
+
+  GPIO->P2_PUD.bit.PUDSEL0 = 0;
+  SCU_delay_us(5);
+
+  if (GPIO->P2_IN.bit.PI0 == 1u)
+  {
+    e_returnCode = ERR_LOG_ERROR;
+  }
+
+  GPIO->P2_PUD.bit.PUDEN0 = 0;
+  GPIO->P2_INDIS.bit.INDIS0 = 1;
+  GPIO->P2_PUD.bit.PUDEN1 = 1;
+  GPIO->P2_INDIS.bit.INDIS1 = 0;
+  GPIO->P2_PUD.bit.PUDSEL1 = 1;
+  SCU_delay_us(5);
+
+  if (GPIO->P2_IN.bit.PI1 == 0u)
+  {
+    e_returnCode = ERR_LOG_ERROR;
+  }
+
+  GPIO->P2_PUD.bit.PUDSEL1 = 0;
+  SCU_delay_us(5);
+
+  if (GPIO->P2_IN.bit.PI1 == 1u)
+  {
+    e_returnCode = ERR_LOG_ERROR;
+  }
+
+  GPIO->P2_PUD.bit.PUDEN1 = 0;
+  GPIO->P2_INDIS.bit.INDIS1 = 1;
+  /* restore register values */
+  GPIO->P2_PUD.reg = u32_gpio_p2_pud;
+  GPIO->P2_INDIS.reg = u32_gpio_p2_indis;
+  return e_returnCode;
+}
+
+/** \brief Delays the regular program execution by a given number of Microseconds
+ * \brief the function returns if the given time has elapsed
+ * \brief Too small delay times are being falsified by execution time
+ * \brief of the function itself
+ *
+ * \warning Handle this function with care, as the watchdog will not be serviced during the delay time.
+ * \warning The user has to take care of WDT1/WDT service by himself.
+ *
+ * \param u32_time_us Delay time in Microseconds
+ *
+ * \brief <b>Example</b><br>
+ * \brief This example sets a delay of 100 us.
+ * ~~~~~~~~~~~~~~~{.c}
+ * void Example_Function(void)
+ * {
+ *     SCU_delay_us(100);
+ * }
+ * ~~~~~~~~~~~~~~~
+ */
+void SCU_delay_us(uint32 u32_time_us)
+{
+  uint32 delay_val;
+  uint32 systick_val;
+  uint32 delay_count;
+  uint32 systick_cur;
+  /* Get current systick value */
+  systick_val = SCU_getSysTickCntVal();
+
+  while (u32_time_us >= (uint32)1000)
+  {
+    /* Wait for underflow */
+    while (SCU_getSysTickCntVal() < systick_val)
+    {}
+
+    /* Wait target underflowed */
+    while (SCU_getSysTickCntVal() > systick_val)
+    {}
+
+    u32_time_us -= (uint32)1000;
+  }
+
+  delay_count = u32_time_us * (uint32)MULTIPLIER_US_TO_TICKS;
+  /* Get current systick value */
+  systick_val = SCU_getSysTickCntVal();
+
+  if ( systick_val >= delay_count)
+  {
+    delay_val = systick_val - delay_count;
+
+    /* Wait underflow with 1 countdown detection */
+    do
+    {
+      systick_cur = SCU_getSysTickCntVal();
+    }
+    while ((systick_cur > delay_val) && (systick_cur < systick_val));
+  }
+  else
+  {
+    delay_val = SCU_getSysTickRelVal() - ( delay_count - systick_val );
+
+    /* Wait for underflow */
+    while (SCU_getSysTickCntVal() < systick_val)
+    {}
+
+    /* Wait target underflowed */
+    while (SCU_getSysTickCntVal() > delay_val)
+    {}
+  }
+
+  return;
+}
+
+/** \brief Initialize the SysTick
+ * 
+ * \param u32_value SysTick Reload Value
+ */
+void SCU_initSysTick(uint32 u32_value)
+{
+  /* Program the SysTick reload value */
+  CPU->SYSTICK_RL.reg = u32_value;
+  /* Reset the SysTick current value */
+  CPU->SYSTICK_CUR.reg = 0u;
+  /* Define the SysTick timer clock as the CPU clock */
+  CPU->SYSTICK_CS.bit.CLKSOURCE = 1u;
+  /* Enable the SysTick exception request */
+  CPU->SYSTICK_CS.bit.TICKINT = 1u;
+  /* Enable the SysTick counter */
+  CPU->SYSTICK_CS.bit.ENABLE = 1u;
+}
+
+/** \brief Configure the Safe Switch-Off release sequence (SSO release sequence)
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_enSafeSwitchOffSeq(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  
+  /* Initialize the Fail-Safe Watchdog */
+  e_returnCode = PMU_initFailSafeWatchdog();
+
+  if (e_returnCode == ERR_LOG_SUCCESS)
+  {
+    /* Initialize the CSA/CSC module */
+    e_returnCode = CSACSC_init();
+
+    if (e_returnCode == ERR_LOG_SUCCESS)
+    {
+      /* Initialize the Bridge Driver module */
+      e_returnCode = BDRV_init();
+    }
+  }
+
+  return e_returnCode;
+}
+
+/** \brief Enter the Deep Sleep mode
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_enterDeepSleepMode(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Free up the pipeline */
+  __NOP();
+  __NOP();
+  __NOP();
+  /* Set send event */
+  __SEV();
+  /* Clear send event */
+  __WFE();
+  /* Enter CPU Deep Sleep */
+  __WFE();
+  return e_returnCode;
+}
+
+/** \brief Enter the Stop mode with Reset Wake-up
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_enterStopModeWithResetWakeup(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Disable RAM init test */
+  PMU->START_CONFIG.bit.CONF = (uint8)0;
+  /* Trigger command for PMU */
+  SCU->PMCON0.bit.STOP = (uint8)1;
+  /* Free up pipeline */
+  __NOP();
+  __NOP();
+  __NOP();
+  /* Set send event */
+  __SEV();
+  /* Clear send event */
+  __WFE();
+  /* Enter CPU Deep Sleep */
+  __WFE();
+  return e_returnCode;
+}
+
+/** \brief Exit the Stop mode with Reset Wake-up
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_exitStopModeWithResetWakeup(void)
+{
+  sint8 e_returnCode;
+  tPMU_wakeupSrc e_wakeupSrc;
+
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Initialize system */
+  e_returnCode = System_init();
+
+  if (e_returnCode == ERR_LOG_SUCCESS)
+  {
+    /* Check wake-up source */
+    e_wakeupSrc = PMU_getWakeupSrc();
+    /* Release Safe Switch-Off path */
+    e_returnCode = SCU_enSafeSwitchOffSeq();
+  }
+
+  return e_returnCode;
+}
+
+/** \brief Enter the Stop mode without Reset Wake-up
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_enterStopModeWithoutResetWakeup(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Select HP_CLK as system clock */
+  SCU->CLKSEL.bit.SELSYS0 = (uint8)0;
+  SCU->CLKSEL.bit.SELSYS1 = (uint8)0;
+  /* Disable XTAL_OSC */
+  SCU->XTALCON.bit.XPD = (uint8)1;
+  /* Disable all interrupts */
+  CPU->NVIC_ICER.reg = (uint32)0xFFFFFFFF;
+  /* Program GPIOs to a default state where no current is drawn */
+  GPIO->P0_DIR.reg = (uint32)0;
+  GPIO->P0_PUD.reg = (uint32)0x7FF07FF;
+  GPIO->P1_DIR.reg = (uint32)0;
+  GPIO->P1_PUD.reg = (uint32)0x1F001F;
+  GPIO->P2_PUD.reg = (uint32)0x3FF03FF;
+  /* Trigger command for PMU */
+  SCU->PMCON0.bit.STOP = (uint8)1;
+  /* Free up pipeline */
+  __NOP();
+  __NOP();
+  __NOP();
+  /* Set send event */
+  __SEV();
+  /* Clear send event */
+  __WFE();
+  /* Enter CPU Deep Sleep */
+  __WFE();
+  return e_returnCode;
+}
+
+/** \brief Exit the Stop mode without Reset Wake-up
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_exitStopModeWithoutResetWakeup(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Free up the pipeline */
+  __NOP();
+  __NOP();
+  __NOP();
+  /* Select HP_CLK as system clock */
+  SCU->CLKSEL.bit.SELSYS0 = (uint8)0;
+  SCU->CLKSEL.bit.SELSYS1 = (uint8)0;
+  /* Configure and enable XTAL_OSC */
+  /* Define XTAL hysteresis */
+  SCU->XTALCON.bit.XTALHYS = (uint8)2;
+  /* Enable XTAL hysteresis */
+  SCU->XTALCON.bit.XTALHYSEN = (uint8)1;
+  /* Power down XTAL */
+  SCU->XTALCON.bit.XPD = (uint8)0;
+  /* Enable XTAL watchdog */
+  SCU->XTALCON.bit.XWDGEN = (uint8)1;
+
+  /* Wait for stable XTAL */
+  while (SCU->XTALSTAT.bit.XTALFAIL == 1)
+  {
+    __NOP();
+  }
+
+  /* Disable all interrupts */
+  CPU->NVIC_ICER.reg = (uint32)0xFFFFFFFF;
+  /* Program GPIOs to a default state where no current is drawn */
+  GPIO->P0_DIR.reg = (uint32)0;
+  GPIO->P0_PUD.reg = (uint32)0x7FF07FF;
+  GPIO->P1_DIR.reg = (uint32)0;
+  GPIO->P1_PUD.reg = (uint32)0x1F001F;
+  GPIO->P2_PUD.reg = (uint32)0x3FF03FF;
+  /* Trigger command for PMU */
+  SCU->PMCON0.bit.STOP = (uint8)1;
+  /* Free up pipeline */
+  __NOP();
+  __NOP();
+  __NOP();
+  /* Set send event */
+  __SEV();
+  /* Clear send event */
+  __WFE();
+  /* Enter CPU Deep Sleep */
+  __WFE();
+  return e_returnCode;
+}
+
+/** \brief Enter the Sleep mode
+ *
+ * \param u8_enRAMTest Start configuration: 0(disable)/1(enable) RAM test after wake from Stop mode
+ * \param e_wakeupSrc Selected wake-up source
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_enterSleepMode(uint8 u8_enRAMTest, tPMU_wakeupSrc e_wakeupSrc)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Option: RAM init at bootup */
+  PMU->START_CONFIG.bit.CONF = u8_enRAMTest;
+  /* Configure the wake-up source */
+  e_returnCode = PMU_enWakeupSrc(e_wakeupSrc);
+
+  if (e_returnCode == ERR_LOG_SUCCESS)
+  {
+    /* Clear all wake-up status flags */
+    PMU->WAKE_STS_CLR.reg = (uint32)0xFFFFFFFF;
+    /* Disable all interrupts */
+    CPU->NVIC_ICER.reg = (uint32)0xFFFFFFFF;
+
+    /* Option: configure GPIOs to input with pull-up/pull-down arrangement
+    accordingly to avoid spikes when they are powered off slowly */
+    if ((e_wakeupSrc >= (tPMU_wakeupSrc)4) && (e_wakeupSrc <= (tPMU_wakeupSrc)9))
+    {
+      /* Still to do */
+    }
+
+    /* Option: write wake-up indicator to retention memory */
+    PMU->GPUDATA0.reg = 0;
+    /* Trigger command for PMU */
+    SCU->PMCON0.bit.SLEEP = (uint8)1;
+
+    /* Wait for Sleep entry */
+    for (;;)
+    {
+    }
+  }
+
+  return e_returnCode;
+}
+
+/** \brief Exit the Sleep mode
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_exitSleepMode(void)
+{
+  sint8 e_returnCode;
+  uint32 u32_indic0;
+  uint32 u32_indic1;
+  uint32 u32_indic2;
+  tPMU_wakeupSrc e_wakeupSrc;
+
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Initialize system */
+  e_returnCode = System_init();
+
+  if (e_returnCode == ERR_LOG_SUCCESS)
+  {
+    /* Option: check wake-up indicator */
+    u32_indic0 = PMU->GPUDATA0.reg;
+    u32_indic1 = PMU->GPUDATA1.reg;
+    u32_indic2 = PMU->GPUDATA2.reg;
+    /* Check wake-up source */
+    e_wakeupSrc = PMU_getWakeupSrc();
+    /* Release Safe Switch-Off path */
+    e_returnCode = SCU_enSafeSwitchOffSeq();
+  }
+
+  return e_returnCode;
+}
+
+/** \brief Exit the Fail-Sleep mode
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 SCU_exitFailSleepMode(void)
+{
+  sint8 e_returnCode;
+  uint32 u32_indic0;
+  uint32 u32_indic1;
+  uint32 u32_indic2;
+  tPMU_wakeupSrc e_wakeupSrc;
+
+  e_returnCode = ERR_LOG_SUCCESS;
+  /* Initialize system */
+  e_returnCode = System_init();
+
+  if (e_returnCode == ERR_LOG_SUCCESS)
+  {
+    /* Option: check wake-up indicator */
+    u32_indic0 = PMU->GPUDATA0.reg;
+    u32_indic1 = PMU->GPUDATA1.reg;
+    u32_indic2 = PMU->GPUDATA2.reg;
+    /* Check wake-up source */
+    e_wakeupSrc = PMU_getWakeupSrc();
+    /* Release Safe Switch-Off path */
+    e_returnCode = SCU_enSafeSwitchOffSeq();
+  }
+
+  return e_returnCode;
+}
+
+

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_ccu7_t12.xml                                                      -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-23, JO:   EP-469: Added xml tag and checksum                   -->
+<!-- V0.1.0: 2020-10-14, JO:   EP-469: modified XML so that ccu7_calc.py runs when  -->
+<!--                           required, not continuously in background             -->
+<!-- V0.1.1: 2020-10-28, JO:   EP-555: Expanded T12 compare values by default       -->
+<!-- V0.1.2: 2020-11-25, JO:   EP-621: Removed 40MHz locking in CCU6 compatible mode-->
+<!-- V0.1.3: 2020-12-18, JO:   EP-607: Added define CCU7_T12_CLK_HZ                 -->
+<!-- V0.1.4: 2021-01-05, JO:   EP-667: Addded svd="0" to define CCU7_T12_CLK_HZ     -->
+<!-- V0.1.5: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.6: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Parameter: -->
+<!-- TIMER_IDX: T12 -->
+<!-- TCTR2_REGISTER_IDX: '' (empty) -->
+<!-- TCTR2_FIELD_IDX: 2 -->
+<ifxmlcfg version="2.6.2">
+  <checksum>262b6af378f045268763702f5512115fba6d2cc08d37d9d397fd5e6299d27688</checksum>
+  <version label="V0.1.6"/>
+
+  <verticalcontainer label="$TIMER_IDX$">
+    <header file="ccu7_defines.h">
+      <treecontainer label="$TIMER_IDX$" headerlabels="Item;Value;" columnwidths="250;250;1">
+
+        <checkbox label="Use CCU6 compatible mode for T12/T13" define="CCU7_CCU6_COMPATIBLE_MODE" svd="0" header="temp_defines.h" lockon="CCU7_C70B_CMPVAL=0;CCU7_C70B_CMPVAL_UNIT=0;CCU7_C71B_CMPVAL=0;CCU7_C71B_CMPVAL_UNIT=0;CCU7_C72B_CMPVAL=0;CCU7_C72B_CMPVAL_UNIT=0;CCU7.T12DTINSEL.DTINSEL0=0;CCU7.T12DTINSEL.DTINSEL1=0;CCU7.T12DTINSEL.DTINSEL2=0;CCU7_DTSEL_OPTION=0"/> 
+
+        <combo label="Clock Select" define="CCU7.T_CLK_CTRL.$TIMER_IDX$_CLK_SEL">
+          <item label="fCCU7: No prescaler selected" override="value1"/>
+          <item label="fFDIV0: Clock from Fractional Divider 0" override="value2"/>
+          <item label="fFDIV1: Clock from Fractional Divider 1" override="value3"/>
+        </combo>
+
+        <checkbox label="Add. 1/256 prescaler" define="CCU7.TCTR0.$TIMER_IDX$PRE"/>
+
+        <math label="$TIMER_IDX$ Clock before prescaler" unit="MHz" define="CCU7_$TIMER_IDX$_CLK_BEFPSC" visible="false" svd="0" header="temp_defines.h" formula="CCU7.T_CLK_CTRL.$TIMER_IDX$_CLK_SEL==0?CCU7_FCCU7:(CCU7.T_CLK_CTRL.$TIMER_IDX$_CLK_SEL==1?CCU7_FDIV0_CLK:CCU7_FDIV1_CLK)"/>
+        <math label="$TIMER_IDX$ Clock" unit="MHz" define="CCU7_$TIMER_IDX$_CLK" svd="0" formula="CCU7.TCTR0.T12PRE==0?CCU7_$TIMER_IDX$_CLK_BEFPSC:CCU7_$TIMER_IDX$_CLK_BEFPSC/256">
+          <action event="changed" cmd="setDef" data="CCU7_$TIMER_IDX$_CLK_EDIT=CCU7_$TIMER_IDX$_CLK"/>
+        </math>
+        <math visible="false" label="$TIMER_IDX$ Clock" unit="Hz" define="CCU7_$TIMER_IDX$_CLK_HZ" svd="0" formula="CCU7_$TIMER_IDX$_CLK*1000000"/>
+
+        <math label="Max. Period" unit="us" define="CCU7_$TIMER_IDX$_MAX_PERIOD" svd="0" header="temp_defines.h" formula="CCU7.TCTR0.CTM==0?65535/CCU7_$TIMER_IDX$_CLK:2*65535/CCU7_$TIMER_IDX$_CLK"/>
+
+        <combo label="Operation Mode" define="CCU7.TCTR0.CTM">
+          <item label="Edge-aligned" override="value1"/>
+          <item label="Center-aligned" override="value2"/>
+        </combo>
+
+        <combo label="Single Shot" define="CCU7.TCTR2$TCTR2_REGISTER_IDX$.T1$TCTR2_FIELD_IDX$SSC">
+          <item label="Disabled" override="value1"/>
+          <item label="Enabled" override="value2"/>
+        </combo>
+
+        <combo label="Trigger External Run Select" define="CCU7.TCTR2.T12RSEL">
+          <item label="Disabled" override="value1"/>
+          <item label="On rising edge on T12HR" override="value2"/>
+          <item label="On falling edge on T12HR" override="value3"/>
+          <item label="On any edge on T12HR" override="value4"/>
+        </combo>
+
+        <include 
+            TIMER_IDX="$TIMER_IDX$"
+            PER_REGISTER="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV">
+          template_ccu7_perval_input.xml</include> 
+
+        <branch label="Capture/Compare Modes">
+          <combo label="CC70 Capture/Compare Mode" define="CCU7.T12MSEL.MSEL70" default="value=3">
+            <item value="0" label="(0b0000) Capture/Compare modes switched off"/>
+            <item value="1" label="(0b0001) Compare mode: output on CC70"/>
+            <item value="2" label="(0b0010) Compare mode: output on COUT70"/>
+            <item value="3" label="(0b0011) Compare mode: output on CC70/COUT70"/>
+            <item value="4" label="(0b0100) Capture mode: T12-&gt;CC70R/COUT70R on input CC70"/>
+            <item value="5" label="(0b0101) Capture mode: CC70SR-&gt;CC70R on rising edge CC70 input, capture T12"/>
+            <item value="6" label="(0b0110) Capture mode: CC70SR-&gt;CC70R on falling edge CC70 input, capture T12"/>
+            <item value="7" label="(0b0111) Capture mode: CC70SR-&gt; C70R on any edge CC70 input, capture T12"/>
+            <item value="8" label="(0b1000) Hall-Sensor mode"/>
+            <item value="9" label="(0b1001) Hysteresis-like control mode with dead-time generation"/>
+            <item value="10" label="(0b1010) Multi Channel Compare mode: T12-&gt;CC70R on rising edge CC70 input, T12-&gt;CC70SR on falling edge CCPOS70"/>
+            <item value="11" label="(0b1011) Multi Channel Compare mode: T12-&gt;CC70R on falling edge CC70 input, T12-&gt;CC70SR on rising edge CCPOS70"/>
+            <item value="12" label="(0b1100) Multi Channel Compare mode: T12-&gt;CC70R on rising edge CC70 input, T12-&gt;CC70SR on rising edge CCPOS70"/>
+            <item value="13" label="(0b1101) Multi Channel Compare mode: T12-&gt;CC70R on falling edge CC70 input, T12-&gt;CC70SR on falling edge CCPOS70"/>
+            <item value="14" label="(0b1110) Multi Channel Compare mode: T12-&gt;CC70R on any edge CC70 input, T12-&gt;CC70SR on any edge CCPOS70"/>
+          </combo>
+          <combo label="CC71 Capture/Compare Mode" define="CCU7.T12MSEL.MSEL71" default="value=3">
+            <item value="0" label="(0b0000) Capture/Compare modes switched off"/>
+            <item value="1" label="(0b0001) Compare mode: output on CC71"/>
+            <item value="2" label="(0b0010) Compare mode: output on COUT71"/>
+            <item value="3" label="(0b0011) Compare mode: output on CC71/COUT71"/>
+            <item value="4" label="(0b0100) Capture mode: T12-&gt;CC71R/COUT71R on input CC71"/>
+            <item value="5" label="(0b0101) Capture mode: CC71SR-&gt;CC71R on rising edge CC71 input, capture T12"/>
+            <item value="6" label="(0b0110) Capture mode: CC71SR-&gt;CC71R on falling edge CC71 input, capture T12"/>
+            <item value="7" label="(0b0111) Capture mode: CC71SR-&gt; C71R on any edge CC71 input, capture T12"/>
+            <item value="8" label="(0b1000) Hall-Sensor mode"/>
+            <item value="9" label="(0b1001) Hysteresis-like control mode with dead-time generation"/>
+            <item value="10" label="(0b1010) Multi Channel Compare mode: T12-&gt;CC71R on rising edge CC71 input, T12-&gt;CC71SR on falling edge CCPOS71"/>
+            <item value="11" label="(0b1011) Multi Channel Compare mode: T12-&gt;CC71R on falling edge CC71 input, T12-&gt;CC71SR on rising edge CCPOS71"/>
+            <item value="12" label="(0b1100) Multi Channel Compare mode: T12-&gt;CC71R on rising edge CC71 input, T12-&gt;CC71SR on rising edge CCPOS71"/>
+            <item value="13" label="(0b1101) Multi Channel Compare mode: T12-&gt;CC71R on falling edge CC71 input, T12-&gt;CC71SR on falling edge CCPOS71"/>
+            <item value="14" label="(0b1110) Multi Channel Compare mode: T12-&gt;CC71R on any edge CC71 input, T12-&gt;CC71SR on any edge CCPOS71"/>
+          </combo>
+          <combo label="CC72 Capture/Compare Mode" define="CCU7.T12MSEL.MSEL72" default="value=3">
+            <item value="0" label="(0b0000) Capture/Compare modes switched off"/>
+            <item value="1" label="(0b0001) Compare mode: output on CC72"/>
+            <item value="2" label="(0b0010) Compare mode: output on COUT72"/>
+            <item value="3" label="(0b0011) Compare mode: output on CC72/COUT72"/>
+            <item value="4" label="(0b0100) Capture mode: T12-&gt;CC72R/COUT72R on input CC72"/>
+            <item value="5" label="(0b0101) Capture mode: CC72SR-&gt;CC72R on rising edge CC72 input, capture T12"/>
+            <item value="6" label="(0b0110) Capture mode: CC72SR-&gt;CC72R on falling edge CC72 input, capture T12"/>
+            <item value="7" label="(0b0111) Capture mode: CC72SR-&gt; C72R on any edge CC72 input, capture T12"/>
+            <item value="8" label="(0b1000) Hall-Sensor mode"/>
+            <item value="9" label="(0b1001) Hysteresis-like control mode with dead-time generation"/>
+            <item value="10" label="(0b1010) Multi Channel Compare mode: T12-&gt;CC72R on rising edge CC72 input, T12-&gt;CC72SR on falling edge CCPOS72"/>
+            <item value="11" label="(0b1011) Multi Channel Compare mode: T12-&gt;CC72R on falling edge CC72 input, T12-&gt;CC72SR on rising edge CCPOS72"/>
+            <item value="12" label="(0b1100) Multi Channel Compare mode: T12-&gt;CC72R on rising edge CC72 input, T12-&gt;CC72SR on rising edge CCPOS72"/>
+            <item value="13" label="(0b1101) Multi Channel Compare mode: T12-&gt;CC72R on falling edge CC72 input, T12-&gt;CC72SR on falling edge CCPOS72"/>
+            <item value="14" label="(0b1110) Multi Channel Compare mode: T12-&gt;CC72R on any edge CC72 input, T12-&gt;CC72SR on any edge CCPOS72"/>
+          </combo>
+        </branch>
+
+        <branch label="Compare Values" expand="1">
+          <!-- CC70A -->
+          <include 
+              TIMER_IDX="$TIMER_IDX$" 
+              TIMER_REGISTER="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV"
+              CMPVAL_IDX="CC70A" 
+              CMPVAL_REGISTER="CCU7.CC70SR.CCS"
+              COLOR="red">
+            template_ccu7_cmpval_input.xml</include>
+
+          <!-- C70B -->
+          <include 
+              TIMER_IDX="$TIMER_IDX$" 
+              TIMER_REGISTER="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV"
+              CMPVAL_IDX="C70B" 
+              CMPVAL_REGISTER="CCU7.CC70BSR.CS"
+              COLOR="pink">
+            template_ccu7_cmpval_input.xml</include>
+
+          <!-- CC71A -->
+          <include 
+              TIMER_IDX="$TIMER_IDX$" 
+              TIMER_REGISTER="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV"
+              CMPVAL_IDX="CC71A" 
+              CMPVAL_REGISTER="CCU7.CC71SR.CCS"
+              COLOR="green">
+            template_ccu7_cmpval_input.xml</include>
+
+          <!-- C71B -->
+          <include 
+              TIMER_IDX="$TIMER_IDX$" 
+              TIMER_REGISTER="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV"
+              CMPVAL_IDX="C71B" 
+              CMPVAL_REGISTER="CCU7.CC71BSR.CS"
+              COLOR="lightgreen">
+            template_ccu7_cmpval_input.xml</include>
+
+          <!-- CC72A -->
+          <include 
+              TIMER_IDX="$TIMER_IDX$" 
+              TIMER_REGISTER="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV"
+              CMPVAL_IDX="CC72A" 
+              CMPVAL_REGISTER="CCU7.CC72SR.CCS"
+              COLOR="blue">
+            template_ccu7_cmpval_input.xml</include>
+
+          <!-- C72B -->
+          <include 
+              TIMER_IDX="$TIMER_IDX$" 
+              TIMER_REGISTER="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV"
+              CMPVAL_IDX="C72B" 
+              CMPVAL_REGISTER="CCU7.CC72BSR.CS"
+              COLOR="lightblue">
+            template_ccu7_cmpval_input.xml</include>
+
+        </branch>
+
+        <branch label="Register Value Summary">
+          <math label="$TIMER_IDX$ Period Register Value" define="CCU7.$TIMER_IDX$PR.$TIMER_IDX$PV" formula="CCU7_$TIMER_IDX$_PERIOD-1"/> 
+          <math label="CC70A Compare Register Value" define="CCU7.CC70SR.CCS" formula="CCU7_CC70A_CMPVAL_CALC"/>
+          <math label="C70B Compare Register Value"  define="CCU7.CC70BSR.CS" formula="CCU7_C70B_CMPVAL_CALC"/>
+          <math label="CC71A Compare Register Value" define="CCU7.CC71SR.CCS" formula="CCU7_CC71A_CMPVAL_CALC"/>
+          <math label="C71A Compare Register Value"  define="CCU7.CC71BSR.CS" formula="CCU7_C71B_CMPVAL_CALC"/>
+          <math label="CC72A Compare Register Value" define="CCU7.CC72SR.CCS" formula="CCU7_CC72A_CMPVAL_CALC"/>
+          <math label="C72B Compare Register Value"  define="CCU7.CC72BSR.CS" formula="CCU7_C72B_CMPVAL_CALC"/>
+        </branch>
+      </treecontainer> 
+    </header>
+  </verticalcontainer>
+  
+</ifxmlcfg>

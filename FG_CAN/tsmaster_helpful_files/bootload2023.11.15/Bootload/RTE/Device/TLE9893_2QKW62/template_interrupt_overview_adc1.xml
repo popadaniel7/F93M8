@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_interrupt_overview_adc1.xml                                       -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>9f29e5d86b4a0cb1a4bb2c9a37ab0269181e7037836ad42f8646e76797e2668f</checksum>
+  <version label="V0.1.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1"  stretch="2">
+    <text label="Configured Interrupts of Nodes 14, 15, 16, 17"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="ADC1_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH0_CALLBACK=ADC1.CH0_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH1_CALLBACK=ADC1.CH1_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH2_CALLBACK=ADC1.CH2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH3_CALLBACK=ADC1.CH3_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH4_CALLBACK=ADC1.CH4_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH5_CALLBACK=ADC1.CH5_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH6_CALLBACK=ADC1.CH6_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH7_CALLBACK=ADC1.CH7_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH8_CALLBACK=ADC1.CH8_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH9_CALLBACK=ADC1.CH9_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH10_CALLBACK=ADC1.CH10_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH11_CALLBACK=ADC1.CH11_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH12_CALLBACK=ADC1.CH12_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH13_CALLBACK=ADC1.CH13_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH14_CALLBACK=ADC1.CH14_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH15_CALLBACK=ADC1.CH15_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH16_CALLBACK=ADC1.CH16_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH17_CALLBACK=ADC1.CH17_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH18_CALLBACK=ADC1.CH18_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.CH19_CALLBACK=ADC1.CH19_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.SQ0_CALLBACK=ADC1.SQ0_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.SQ1_CALLBACK=ADC1.SQ1_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.SQ2_CALLBACK=ADC1.SQ2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.SQ3_CALLBACK=ADC1.SQ3_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.LOTH0_CALLBACK=ADC1.LOTH0_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.LOTH1_CALLBACK=ADC1.LOTH1_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.LOTH2_CALLBACK=ADC1.LOTH2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.LOTH3_CALLBACK=ADC1.LOTH3_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.UPTH0_CALLBACK=ADC1.UPTH0_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.UPTH1_CALLBACK=ADC1.UPTH1_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.UPTH2_CALLBACK=ADC1.UPTH2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.UPTH3_CALLBACK=ADC1.UPTH3_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.COLL0_CALLBACK=ADC1.COLL0_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.COLL1_CALLBACK=ADC1.COLL1_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.COLL2_CALLBACK=ADC1.COLL2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.COLL3_CALLBACK=ADC1.COLL3_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.WFR0_CALLBACK=ADC1.WFR0_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.WFR1_CALLBACK=ADC1.WFR1_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.WFR2_CALLBACK=ADC1.WFR2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ADC1.WFR3_CALLBACK=ADC1.WFR3_CALLBACK"/>
+      </timer>
+      <math formula="ADC1.CH0_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH0_INT_BOX.visible=ADC1.CH0_INT_EN"/></math>
+      <math formula="ADC1.CH1_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH1_INT_BOX.visible=ADC1.CH1_INT_EN"/></math>
+      <math formula="ADC1.CH2_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH2_INT_BOX.visible=ADC1.CH2_INT_EN"/></math>
+      <math formula="ADC1.CH3_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH3_INT_BOX.visible=ADC1.CH3_INT_EN"/></math>
+      <math formula="ADC1.CH4_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH4_INT_BOX.visible=ADC1.CH4_INT_EN"/></math>
+      <math formula="ADC1.CH5_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH5_INT_BOX.visible=ADC1.CH5_INT_EN"/></math>
+      <math formula="ADC1.CH6_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH6_INT_BOX.visible=ADC1.CH6_INT_EN"/></math>
+      <math formula="ADC1.CH7_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH7_INT_BOX.visible=ADC1.CH7_INT_EN"/></math>
+      <math formula="ADC1.CH8_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH8_INT_BOX.visible=ADC1.CH8_INT_EN"/></math>
+      <math formula="ADC1.CH9_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH9_INT_BOX.visible=ADC1.CH9_INT_EN"/></math>
+      <math formula="ADC1.CH10_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH10_INT_BOX.visible=ADC1.CH10_INT_EN"/></math>
+      <math formula="ADC1.CH11_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH11_INT_BOX.visible=ADC1.CH11_INT_EN"/></math>
+      <math formula="ADC1.CH12_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH12_INT_BOX.visible=ADC1.CH12_INT_EN"/></math>
+      <math formula="ADC1.CH13_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH13_INT_BOX.visible=ADC1.CH13_INT_EN"/></math>
+      <math formula="ADC1.CH14_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH14_INT_BOX.visible=ADC1.CH14_INT_EN"/></math>
+      <math formula="ADC1.CH15_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH15_INT_BOX.visible=ADC1.CH15_INT_EN"/></math>
+      <math formula="ADC1.CH16_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH16_INT_BOX.visible=ADC1.CH16_INT_EN"/></math>
+      <math formula="ADC1.CH17_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH17_INT_BOX.visible=ADC1.CH17_INT_EN"/></math>
+      <math formula="ADC1.CH18_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH18_INT_BOX.visible=ADC1.CH18_INT_EN"/></math>
+      <math formula="ADC1.CH19_INT_EN"><action event="changed" cmd="setDef" data="ADC1.CH19_INT_BOX.visible=ADC1.CH19_INT_EN"/></math>
+      <math formula="ADC1.SQ0_INT_EN"><action event="changed" cmd="setDef" data="ADC1.SQ0_INT_BOX.visible=ADC1.SQ0_INT_EN"/></math>
+      <math formula="ADC1.SQ1_INT_EN"><action event="changed" cmd="setDef" data="ADC1.SQ1_INT_BOX.visible=ADC1.SQ1_INT_EN"/></math>
+      <math formula="ADC1.SQ2_INT_EN"><action event="changed" cmd="setDef" data="ADC1.SQ2_INT_BOX.visible=ADC1.SQ2_INT_EN"/></math>
+      <math formula="ADC1.SQ3_INT_EN"><action event="changed" cmd="setDef" data="ADC1.SQ3_INT_BOX.visible=ADC1.SQ3_INT_EN"/></math>
+      <math formula="ADC1.LOTH0_INT_EN"><action event="changed" cmd="setDef" data="ADC1.LOTH0_INT_BOX.visible=ADC1.LOTH0_INT_EN"/></math>
+      <math formula="ADC1.LOTH1_INT_EN"><action event="changed" cmd="setDef" data="ADC1.LOTH1_INT_BOX.visible=ADC1.LOTH1_INT_EN"/></math>
+      <math formula="ADC1.LOTH2_INT_EN"><action event="changed" cmd="setDef" data="ADC1.LOTH2_INT_BOX.visible=ADC1.LOTH2_INT_EN"/></math>
+      <math formula="ADC1.LOTH3_INT_EN"><action event="changed" cmd="setDef" data="ADC1.LOTH3_INT_BOX.visible=ADC1.LOTH3_INT_EN"/></math>
+      <math formula="ADC1.UPTH0_INT_EN"><action event="changed" cmd="setDef" data="ADC1.UPTH0_INT_BOX.visible=ADC1.UPTH0_INT_EN"/></math>
+      <math formula="ADC1.UPTH1_INT_EN"><action event="changed" cmd="setDef" data="ADC1.UPTH1_INT_BOX.visible=ADC1.UPTH1_INT_EN"/></math>
+      <math formula="ADC1.UPTH2_INT_EN"><action event="changed" cmd="setDef" data="ADC1.UPTH2_INT_BOX.visible=ADC1.UPTH2_INT_EN"/></math>
+      <math formula="ADC1.UPTH3_INT_EN"><action event="changed" cmd="setDef" data="ADC1.UPTH3_INT_BOX.visible=ADC1.UPTH3_INT_EN"/></math>
+      <math formula="ADC1.COLL0_INT_EN"><action event="changed" cmd="setDef" data="ADC1.COLL0_INT_BOX.visible=ADC1.COLL0_INT_EN"/></math>
+      <math formula="ADC1.COLL1_INT_EN"><action event="changed" cmd="setDef" data="ADC1.COLL1_INT_BOX.visible=ADC1.COLL1_INT_EN"/></math>
+      <math formula="ADC1.COLL2_INT_EN"><action event="changed" cmd="setDef" data="ADC1.COLL2_INT_BOX.visible=ADC1.COLL2_INT_EN"/></math>
+      <math formula="ADC1.COLL3_INT_EN"><action event="changed" cmd="setDef" data="ADC1.COLL3_INT_BOX.visible=ADC1.COLL3_INT_EN"/></math>
+      <math formula="ADC1.WFR0_INT_EN"><action event="changed" cmd="setDef" data="ADC1.WFR0_INT_BOX.visible=ADC1.WFR0_INT_EN"/></math>
+      <math formula="ADC1.WFR1_INT_EN"><action event="changed" cmd="setDef" data="ADC1.WFR1_INT_BOX.visible=ADC1.WFR1_INT_EN"/></math>
+      <math formula="ADC1.WFR2_INT_EN"><action event="changed" cmd="setDef" data="ADC1.WFR2_INT_BOX.visible=ADC1.WFR2_INT_EN"/></math>
+      <math formula="ADC1.WFR3_INT_EN"><action event="changed" cmd="setDef" data="ADC1.WFR3_INT_BOX.visible=ADC1.WFR3_INT_EN"/></math>
+    </verticalcontainer> <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH0_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch0"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH0+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH0"/>
+        <edit size="400;-1" define="RO_ADC1.CH0_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH1_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch1"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH1+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH1"/>
+        <edit size="400;-1" define="RO_ADC1.CH1_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH2_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch2"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH2+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH2"/>
+        <edit size="400;-1" define="RO_ADC1.CH2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH3_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch3"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH3+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH3"/>
+        <edit size="400;-1" define="RO_ADC1.CH3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH4_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch4"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH4+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH4"/>
+        <edit size="400;-1" define="RO_ADC1.CH4_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH5_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch5"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH5+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH5"/>
+        <edit size="400;-1" define="RO_ADC1.CH5_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH6_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch6"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH6+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH6"/>
+        <edit size="400;-1" define="RO_ADC1.CH6_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH7_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch7"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH7+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH7"/>
+        <edit size="400;-1" define="RO_ADC1.CH7_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH8_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch8"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH8+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH8"/>
+        <edit size="400;-1" define="RO_ADC1.CH8_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH9_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch9"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH9+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH9"/>
+        <edit size="400;-1" define="RO_ADC1.CH9_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH10_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch10"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH10+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH10"/>
+        <edit size="400;-1" define="RO_ADC1.CH10_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH11_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch11"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH11+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH11"/>
+        <edit size="400;-1" define="RO_ADC1.CH11_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH12_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch12"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH12+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH12"/>
+        <edit size="400;-1" define="RO_ADC1.CH12_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH13_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch13"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH13+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH13"/>
+        <edit size="400;-1" define="RO_ADC1.CH13_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH14_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch14"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH14+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH14"/>
+        <edit size="400;-1" define="RO_ADC1.CH14_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH15_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch15"/>
+        <math size="75;-1" formula="ADC1.INP0.INP_CH15+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH15"/>
+        <edit size="400;-1" define="RO_ADC1.CH15_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH16_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch16"/>
+        <math size="75;-1" formula="ADC1.INP1.INP_CH16+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH16"/>
+        <edit size="400;-1" define="RO_ADC1.CH16_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH17_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch17"/>
+        <math size="75;-1" formula="ADC1.INP1.INP_CH17+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH17"/>
+        <edit size="400;-1" define="RO_ADC1.CH17_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH18_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch18"/>
+        <math size="75;-1" formula="ADC1.INP1.INP_CH18+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH18"/>
+        <edit size="400;-1" define="RO_ADC1.CH18_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.CH19_INT_BOX" visible="false">
+        <text size="200;-1" label="Ch19"/>
+        <math size="75;-1" formula="ADC1.INP1.INP_CH19+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_CH19"/>
+        <edit size="400;-1" define="RO_ADC1.CH19_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.SQ0_INT_BOX" visible="false">
+        <text size="200;-1" label="Sq0"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_SQ0+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_SQ0"/>
+        <edit size="400;-1" define="RO_ADC1.SQ0_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.SQ1_INT_BOX" visible="false">
+        <text size="200;-1" label="Sq1"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_SQ1+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_SQ1"/>
+        <edit size="400;-1" define="RO_ADC1.SQ1_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.SQ2_INT_BOX" visible="false">
+        <text size="200;-1" label="Sq2"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_SQ2+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_SQ2"/>
+        <edit size="400;-1" define="RO_ADC1.SQ2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.SQ3_INT_BOX" visible="false">
+        <text size="200;-1" label="Sq3"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_SQ3+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_SQ3"/>
+        <edit size="400;-1" define="RO_ADC1.SQ3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.LOTH0_INT_BOX" visible="false">
+        <text size="200;-1" label="LOTH0"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_LO0+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_LO0"/>
+        <edit size="400;-1" define="RO_ADC1.LOTH0_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.LOTH1_INT_BOX" visible="false">
+        <text size="200;-1" label="LOTH1"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_LO1+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_LO1"/>
+        <edit size="400;-1" define="RO_ADC1.LOTH1_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.LOTH2_INT_BOX" visible="false">
+        <text size="200;-1" label="LOTH2"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_LO2+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_LO2"/>
+        <edit size="400;-1" define="RO_ADC1.LOTH2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.LOTH3_INT_BOX" visible="false">
+        <text size="200;-1" label="LOTH3"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_LO3+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_LO3"/>
+        <edit size="400;-1" define="RO_ADC1.LOTH3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.UPTH0_INT_BOX" visible="false">
+        <text size="200;-1" label="UPTH0"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_UP0+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_UP0"/>
+        <edit size="400;-1" define="RO_ADC1.UPTH0_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.UPTH1_INT_BOX" visible="false">
+        <text size="200;-1" label="UPTH1"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_UP1+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_UP1"/>
+        <edit size="400;-1" define="RO_ADC1.UPTH1_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.UPTH2_INT_BOX" visible="false">
+        <text size="200;-1" label="UPTH2"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_UP2+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_UP2"/>
+        <edit size="400;-1" define="RO_ADC1.UPTH2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.UPTH3_INT_BOX" visible="false">
+        <text size="200;-1" label="UPTH3"/>
+        <math size="75;-1" formula="ADC1.INP2.INP_CMP_UP3+14"/>
+        <math size="75;-1" formula="ADC1.IEN0.IEN_UP3"/>
+        <edit size="400;-1" define="RO_ADC1.UPTH3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.COLL0_INT_BOX" visible="false">
+        <text size="200;-1" label="Coll0"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_COLL0+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_COLL0"/>
+        <edit size="400;-1" define="RO_ADC1.COLL0_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.COLL1_INT_BOX" visible="false">
+        <text size="200;-1" label="Coll1"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_COLL1+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_COLL1"/>
+        <edit size="400;-1" define="RO_ADC1.COLL1_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.COLL2_INT_BOX" visible="false">
+        <text size="200;-1" label="Coll2"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_COLL2+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_COLL2"/>
+        <edit size="400;-1" define="RO_ADC1.COLL2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.COLL3_INT_BOX" visible="false">
+        <text size="200;-1" label="Coll3"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_COLL3+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_COLL3"/>
+        <edit size="400;-1" define="RO_ADC1.COLL3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.WFR0_INT_BOX" visible="false">
+        <text size="200;-1" label="WFR0"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_WFR0+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_WFR0"/>
+        <edit size="400;-1" define="RO_ADC1.WFR0_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.WFR1_INT_BOX" visible="false">
+        <text size="200;-1" label="WFR1"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_WFR1+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_WFR1"/>
+        <edit size="400;-1" define="RO_ADC1.WFR1_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.WFR2_INT_BOX" visible="false">
+        <text size="200;-1" label="WFR2"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_WFR2+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_WFR2"/>
+        <edit size="400;-1" define="RO_ADC1.WFR2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ADC1.WFR3_INT_BOX" visible="false">
+        <text size="200;-1" label="WFR3"/>
+        <math size="75;-1" formula="ADC1.INP3.INP_WFR3+14"/>
+        <math size="75;-1" formula="ADC1.IEN1.IEN_WFR3"/>
+        <edit size="400;-1" define="RO_ADC1.WFR3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer> <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>
+

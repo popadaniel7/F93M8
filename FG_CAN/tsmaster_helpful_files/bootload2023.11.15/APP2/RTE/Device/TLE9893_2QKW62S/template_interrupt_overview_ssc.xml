@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_interrupt_overview_ssc.xml                                        -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.2: 2021-04-08, JO:   EP-758: Corrected display of SSC Error interrupts    -->
+<!-- V0.1.3: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>e98e8a4514dba588912272722618258a2bded1dbef887663509be6da3a50e63a</checksum>
+  <version label="V0.1.3"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1"  stretch="2">
+    <text label="Configured Interrupts of Nodes 24, 25"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="SSC_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_SSC0.TI_CALLBACK=SSC0.TI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC0.RI_CALLBACK=SSC0.RI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC0.TEI_CALLBACK=SSC0.TEI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC0.REI_CALLBACK=SSC0.REI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC0.PEI_CALLBACK=SSC0.PEI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC0.BEI_CALLBACK=SSC0.BEI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC1.TI_CALLBACK=SSC1.TI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC1.RI_CALLBACK=SSC1.RI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC1.TEI_CALLBACK=SSC1.TEI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC1.REI_CALLBACK=SSC1.REI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC1.PEI_CALLBACK=SSC1.PEI_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_SSC1.BEI_CALLBACK=SSC1.BEI_CALLBACK"/>
+      </timer>
+      <math formula="SSC0.TI_INT_EN"><action event="changed" cmd="setDef" data="SSC0.TI_INT_BOX.visible=SSC0.TI_INT_EN"/></math>
+      <math formula="SSC0.RI_INT_EN"><action event="changed" cmd="setDef" data="SSC0.RI_INT_BOX.visible=SSC0.RI_INT_EN"/></math>
+      <math formula="SSC0.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC0.ERR_INT_BOX1.visible=SSC0.ERR_INT_EN"/></math>
+      <math formula="SSC0.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC0.ERR_INT_BOX2.visible=SSC0.ERR_INT_EN"/></math>
+      <math formula="SSC0.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC0.ERR_INT_BOX3.visible=SSC0.ERR_INT_EN"/></math>
+      <math formula="SSC0.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC0.ERR_INT_BOX4.visible=SSC0.ERR_INT_EN"/></math>
+      <math formula="SSC1.TI_INT_EN"><action event="changed" cmd="setDef" data="SSC1.TI_INT_BOX.visible=SSC1.TI_INT_EN"/></math>
+      <math formula="SSC1.RI_INT_EN"><action event="changed" cmd="setDef" data="SSC1.RI_INT_BOX.visible=SSC1.RI_INT_EN"/></math>
+      <math formula="SSC1.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC1.ERR_INT_BOX1.visible=SSC1.ERR_INT_EN"/></math>
+      <math formula="SSC1.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC1.ERR_INT_BOX2.visible=SSC1.ERR_INT_EN"/></math>
+      <math formula="SSC1.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC1.ERR_INT_BOX3.visible=SSC1.ERR_INT_EN"/></math>
+      <math formula="SSC1.ERR_INT_EN"><action event="changed" cmd="setDef" data="SSC1.ERR_INT_BOX4.visible=SSC1.ERR_INT_EN"/></math>
+    </verticalcontainer> <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC0.TI_INT_BOX" visible="false">
+        <text size="200;-1" label="SSC0 Transmit"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC0_TIR+24"/>
+        <math size="75;-1" formula="SSC0.IEN.TIREN"/>
+        <edit size="400;-1" define="RO_SSC0.TI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC0.RI_INT_BOX" visible="false">
+        <text size="200;-1" label="SSC0 Receive"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC0_RIR+24"/>
+        <math size="75;-1" formula="SSC0.IEN.RIREN"/>
+        <edit size="400;-1" define="RO_SSC0.RI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC0.ERR_INT_BOX1" visible="false">
+        <text size="200;-1" label="SSC0 Transmit Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC0_EIR+24"/>
+        <math size="75;-1" formula="SSC0.IEN.TEIREN"/>
+        <edit size="400;-1" define="RO_SSC0.TEI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC0.ERR_INT_BOX2" visible="false">
+        <text size="200;-1" label="SSC0 Receive Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC0_EIR+24"/>
+        <math size="75;-1" formula="SSC0.IEN.REIREN"/>
+        <edit size="400;-1" define="RO_SSC0.REI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC0.ERR_INT_BOX3" visible="false">
+        <text size="200;-1" label="SSC0 Phase Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC0_EIR+24"/>
+        <math size="75;-1" formula="SSC0.IEN.PEIREN"/>
+        <edit size="400;-1" define="RO_SSC0.PEI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC0.ERR_INT_BOX4" visible="false">
+        <text size="200;-1" label="SSC0 Baudrate Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC0_EIR+24"/>
+        <math size="75;-1" formula="SSC0.IEN.BEIREN"/>
+        <edit size="400;-1" define="RO_SSC0.BEI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC1.TI_INT_BOX" visible="false">
+        <text size="200;-1" label="SSC1 Transmit"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC1_TIR+24"/>
+        <math size="75;-1" formula="SSC1.IEN.TIREN"/>
+        <edit size="400;-1" define="RO_SSC1.TI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC1.RI_INT_BOX" visible="false">
+        <text size="200;-1" label="SSC1 Receive"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC1_RIR+24"/>
+        <math size="75;-1" formula="SSC1.IEN.RIREN"/>
+        <edit size="400;-1" define="RO_SSC1.RI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC1.ERR_INT_BOX1" visible="false">
+        <text size="200;-1" label="SSC1 Transmit Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC1_EIR+24"/>
+        <math size="75;-1" formula="SSC1.IEN.TEIREN"/>
+        <edit size="400;-1" define="RO_SSC1.TEI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC1.ERR_INT_BOX2" visible="false">
+        <text size="200;-1" label="SSC1 Receive Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC1_EIR+24"/>
+        <math size="75;-1" formula="SSC1.IEN.REIREN"/>
+        <edit size="400;-1" define="RO_SSC1.REI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC1.ERR_INT_BOX3" visible="false">
+        <text size="200;-1" label="SSC1 Phase Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC1_EIR+24"/>
+        <math size="75;-1" formula="SSC1.IEN.PEIREN"/>
+        <edit size="400;-1" define="RO_SSC1.PEI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="SSC1.ERR_INT_BOX4" visible="false">
+        <text size="200;-1" label="SSC1 Baudrate Error"/>
+        <math size="75;-1" formula="SCU.INP6.INP_SSC1_EIR+24"/>
+        <math size="75;-1" formula="SSC1.IEN.BEIREN"/>
+        <edit size="400;-1" define="RO_SSC1.BEI_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer> <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>
+

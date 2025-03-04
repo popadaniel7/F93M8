@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_interrupt_overview_warn.xml                                       -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-11-27, BG:   EP-627: Added CANTRX and ARVG related interrupts     -->
+<!-- V0.1.2: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.3: 2021-03-15, BG:   EP-606: Added condition for 2 or 3 phase variants    -->
+<!-- V0.1.4: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>353a5ffa29376d3f62016ef419454e08e5d6dd7b6d8be62a360b16e914ab63bd</checksum>
+  <version label="V0.1.4"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1" stretch="2">
+    <text label="Configured Interrupts of Nodes 0, 1"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="WARN_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_CANTRX.BUS_TO_CALLBACK=CANTRX.BUS_TO_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANTRX.TXD_TO_CALLBACK=CANTRX.TXD_TO_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANTRX.OT_CALLBACK=CANTRX.OT_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANTRX.BUS_ACT_CALLBACK=CANTRX.BUS_ACT_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.LS1_OC_CALLBACK=BDRV.LS1_OC_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.LS1_DS_CALLBACK=BDRV.LS1_DS_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HS1_OC_CALLBACK=BDRV.HS1_OC_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HS1_DS_CALLBACK=BDRV.HS1_DS_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.LS2_OC_CALLBACK=BDRV.LS2_OC_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.LS2_DS_CALLBACK=BDRV.LS2_DS_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HS2_OC_CALLBACK=BDRV.HS2_OC_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HS2_DS_CALLBACK=BDRV.HS2_DS_CALLBACK"/>
+        <action cond="UC_FEATURE_3PHASE==1" event="changed" cmd="setDef" data="RO_BDRV.LS3_OC_CALLBACK=BDRV.LS3_OC_CALLBACK"/>
+        <action cond="UC_FEATURE_3PHASE==1" event="changed" cmd="setDef" data="RO_BDRV.LS3_DS_CALLBACK=BDRV.LS3_DS_CALLBACK"/>
+        <action cond="UC_FEATURE_3PHASE==1" event="changed" cmd="setDef" data="RO_BDRV.HS3_OC_CALLBACK=BDRV.HS3_OC_CALLBACK"/>
+        <action cond="UC_FEATURE_3PHASE==1" event="changed" cmd="setDef" data="RO_BDRV.HS3_DS_CALLBACK=BDRV.HS3_DS_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HB1_ASEQ_CALLBACK=BDRV.HB1_ASEQ_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HB2_ASEQ_CALLBACK=BDRV.HB2_ASEQ_CALLBACK"/>
+        <action cond="UC_FEATURE_3PHASE==1" event="changed" cmd="setDef" data="RO_BDRV.HB3_ASEQ_CALLBACK=BDRV.HB3_ASEQ_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.SEQ_ERR_CALLBACK=BDRV.SEQ_ERR_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HB1_ACTDRV_CALLBACK=BDRV.HB1_ACTDRV_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.HB2_ACTDRV_CALLBACK=BDRV.HB2_ACTDRV_CALLBACK"/>
+        <action cond="UC_FEATURE_3PHASE==1" event="changed" cmd="setDef" data="RO_BDRV.HB3_ACTDRV_CALLBACK=BDRV.HB3_ACTDRV_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_BDRV.VCP_LOTH2_CALLBACK=BDRV.VCP_LOTH2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CSACSC.OC_CALLBACK=CSACSC.OC_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CSACSC.PARAM_CALLBACK=CSACSC.PARAM_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_PMU.VDDP_UVWARN_CALLBACK=PMU.VDDP_UVWARN_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_PMU.VDDP_OV_CALLBACK=PMU.VDDP_OV_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_PMU.VDDC_UVWARN_CALLBACK=PMU.VDDC_UVWARN_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_PMU.VDDC_OV_CALLBACK=PMU.VDDC_OV_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_PMU.VDDEXT_UV_CALLBACK=PMU.VDDEXT_UV_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_PMU.VDDEXT_OT_CALLBACK=PMU.VDDEXT_OT_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_ARVG.VAREF_OC_CALLBACK=ARVG.VAREF_OC_CALLBACK"/>
+      </timer>
+      <math formula="CANTRX.BUS_TO_INT_EN">
+        <action event="changed" cmd="setDef" data="CANTRX.BUS_TO_INT_BOX.visible=CANTRX.BUS_TO_INT_EN"/>
+      </math>
+      <math formula="CANTRX.TXD_TO_INT_EN">
+        <action event="changed" cmd="setDef" data="CANTRX.TXD_TO_INT_BOX.visible=CANTRX.TXD_TO_INT_EN"/>
+      </math>
+      <math formula="CANTRX.OT_INT_EN">
+        <action event="changed" cmd="setDef" data="CANTRX.OT_INT_BOX.visible=CANTRX.OT_INT_EN"/>
+      </math>
+      <math formula="CANTRX.BUS_ACT_INT_EN">
+        <action event="changed" cmd="setDef" data="CANTRX.BUS_ACT_INT_BOX.visible=CANTRX.BUS_ACT_INT_EN"/>
+      </math>
+      <math formula="BDRV.LS1_OC_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.LS1_OC_INT_BOX.visible=BDRV.LS1_OC_INT_EN"/>
+      </math>
+      <math formula="BDRV.LS1_DS_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.LS1_DS_INT_BOX.visible=BDRV.LS1_DS_INT_EN"/>
+      </math>
+      <math formula="BDRV.HS1_OC_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HS1_OC_INT_BOX.visible=BDRV.HS1_OC_INT_EN"/>
+      </math>
+      <math formula="BDRV.HS1_DS_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HS1_DS_INT_BOX.visible=BDRV.HS1_DS_INT_EN"/>
+      </math>
+      <math formula="BDRV.LS2_OC_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.LS2_OC_INT_BOX.visible=BDRV.LS2_OC_INT_EN"/>
+      </math>
+      <math formula="BDRV.LS2_DS_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.LS2_DS_INT_BOX.visible=BDRV.LS2_DS_INT_EN"/>
+      </math>
+      <math formula="BDRV.HS2_OC_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HS2_OC_INT_BOX.visible=BDRV.HS2_OC_INT_EN"/>
+      </math>
+      <math formula="BDRV.HS2_DS_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HS2_DS_INT_BOX.visible=BDRV.HS2_DS_INT_EN"/>
+      </math>
+      <math startcond="UC_FEATURE_3PHASE==1" formula="BDRV.LS3_OC_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.LS3_OC_INT_BOX.visible=BDRV.LS3_OC_INT_EN"/>
+      </math>
+      <math startcond="UC_FEATURE_3PHASE==1" formula="BDRV.LS3_DS_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.LS3_DS_INT_BOX.visible=BDRV.LS3_DS_INT_EN"/>
+      </math>
+      <math startcond="UC_FEATURE_3PHASE==1" formula="BDRV.HS3_OC_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HS3_OC_INT_BOX.visible=BDRV.HS3_OC_INT_EN"/>
+      </math>
+      <math startcond="UC_FEATURE_3PHASE==1" formula="BDRV.HS3_DS_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HS3_DS_INT_BOX.visible=BDRV.HS3_DS_INT_EN"/>
+      </math>
+      <math formula="BDRV.HB1_ASEQ_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HB1_ASEQ_INT_BOX.visible=BDRV.HB1_ASEQ_INT_EN"/>
+      </math>
+      <math formula="BDRV.HB2_ASEQ_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HB2_ASEQ_INT_BOX.visible=BDRV.HB2_ASEQ_INT_EN"/>
+      </math>
+      <math startcond="UC_FEATURE_3PHASE==1" formula="BDRV.HB3_ASEQ_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HB3_ASEQ_INT_BOX.visible=BDRV.HB3_ASEQ_INT_EN"/>
+      </math>
+      <math formula="BDRV.SEQ_ERR_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.SEQ_ERR_INT_BOX.visible=BDRV.SEQ_ERR_INT_EN"/>
+      </math>
+      <math formula="BDRV.HB1_ACTDRV_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HB1_ACTDRV_INT_BOX.visible=BDRV.HB1_ACTDRV_INT_EN"/>
+      </math>
+      <math formula="BDRV.HB2_ACTDRV_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HB2_ACTDRV_INT_BOX.visible=BDRV.HB2_ACTDRV_INT_EN"/>
+      </math>
+      <math startcond="UC_FEATURE_3PHASE==1" formula="BDRV.HB3_ACTDRV_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.HB3_ACTDRV_INT_BOX.visible=BDRV.HB3_ACTDRV_INT_EN"/>
+      </math>
+      <math formula="BDRV.VCP_LOTH2_INT_EN">
+        <action event="changed" cmd="setDef" data="BDRV.VCP_LOTH2_INT_BOX.visible=BDRV.VCP_LOTH2_INT_EN"/>
+      </math>
+      <math formula="CSACSC.OC_INT_EN">
+        <action event="changed" cmd="setDef" data="CSACSC.OC_INT_BOX.visible=CSACSC.OC_INT_EN"/>
+      </math>
+      <math formula="CSACSC.PARAM_INT_EN">
+        <action event="changed" cmd="setDef" data="CSACSC.PARAM_INT_BOX.visible=CSACSC.PARAM_INT_EN"/>
+      </math>
+      <math formula="PMU.VDDP_UVWARN_INT_EN">
+        <action event="changed" cmd="setDef" data="PMU.VDDP_UVWARN_INT_BOX.visible=PMU.VDDP_UVWARN_INT_EN"/>
+      </math>
+      <math formula="PMU.VDDP_OV_INT_EN">
+        <action event="changed" cmd="setDef" data="PMU.VDDP_OV_INT_BOX.visible=PMU.VDDP_OV_INT_EN"/>
+      </math>
+      <math formula="PMU.VDDC_UVWARN_INT_EN">
+        <action event="changed" cmd="setDef" data="PMU.VDDC_UVWARN_INT_BOX.visible=PMU.VDDC_UVWARN_INT_EN"/>
+      </math>
+      <math formula="PMU.VDDC_OV_INT_EN">
+        <action event="changed" cmd="setDef" data="PMU.VDDC_OV_INT_BOX.visible=PMU.VDDC_OV_INT_EN"/>
+      </math>
+      <math formula="PMU.VDDEXT_UV_INT_EN">
+        <action event="changed" cmd="setDef" data="PMU.VDDEXT_UV_INT_BOX.visible=PMU.VDDEXT_UV_INT_EN"/>
+      </math>
+      <math formula="PMU.VDDEXT_OT_INT_EN">
+        <action event="changed" cmd="setDef" data="PMU.VDDEXT_OT_INT_BOX.visible=PMU.VDDEXT_OT_INT_EN"/>
+      </math>
+      <math formula="ARVG.VAREF_OC_INT_EN">
+        <action event="changed" cmd="setDef" data="ARVG.VAREF_OC_INT_BOX.visible=ARVG.VAREF_OC_INT_EN"/>
+      </math>
+    </verticalcontainer>
+    <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANTRX.BUS_TO_INT_BOX" visible="false">
+        <text size="200;-1" label="Bus dominant timeout"/>
+        <math size="75;-1" formula="SCU.INP0.INP_CANTX+0"/>
+        <math size="75;-1" formula="CANTRX.IRQEN.BUS_TO_IEN"/>
+        <edit size="400;-1" define="RO_CANTRX.BUS_TO_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANTRX.TXD_TO_INT_BOX" visible="false">
+        <text size="200;-1" label="TXD dominant timeout "/>
+        <math size="75;-1" formula="SCU.INP0.INP_CANTX+0"/>
+        <math size="75;-1" formula="CANTRX.IRQEN.TXD_TO_IEN"/>
+        <edit size="400;-1" define="RO_CANTRX.TXD_TO_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANTRX.OT_INT_BOX" visible="false">
+        <text size="200;-1" label="CAN Overtemperature"/>
+        <math size="75;-1" formula="SCU.INP0.INP_CANTX+0"/>
+        <math size="75;-1" formula="CANTRX.IRQEN.OT_IEN"/>
+        <edit size="400;-1" define="RO_CANTRX.OT_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANTRX.BUS_ACT_INT_BOX" visible="false">
+        <text size="200;-1" label="Bus active during CAN sleep"/>
+        <math size="75;-1" formula="SCU.INP0.INP_CANTX+0"/>
+        <math size="75;-1" formula="CANTRX.IRQEN.BUS_ACT_IEN"/>
+        <edit size="400;-1" define="RO_CANTRX.BUS_ACT_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.LS1_OC_INT_BOX" visible="false">
+        <text size="200;-1" label="External LS1 MOSFET overcurrent"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.LS1_OC_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.LS1_OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.LS1_DS_INT_BOX" visible="false">
+        <text size="200;-1" label="LS1 off-state drain source monitoring"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.LS1_DS_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.LS1_DS_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HS1_OC_INT_BOX" visible="false">
+        <text size="200;-1" label="External HS1 MOSFET overcurrent"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HS1_OC_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HS1_OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HS1_DS_INT_BOX" visible="false">
+        <text size="200;-1" label="HS1 off-state drain source monitoring"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HS1_DS_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HS1_DS_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.LS2_OC_INT_BOX" visible="false">
+        <text size="200;-1" label="External LS2 MOSFET overcurrent"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.LS2_OC_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.LS2_OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.LS2_DS_INT_BOX" visible="false">
+        <text size="200;-1" label="LS2 off-state drain source monitoring"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.LS2_DS_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.LS2_DS_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HS2_OC_INT_BOX" visible="false">
+        <text size="200;-1" label="External HS2 MOSFET overcurrent"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HS2_OC_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HS2_OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HS2_DS_INT_BOX" visible="false">
+        <text size="200;-1" label="HS2 off-state drain source monitoring"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HS2_DS_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HS2_DS_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer startcond="UC_FEATURE_3PHASE==1" define="BDRV.LS3_OC_INT_BOX" visible="false">
+        <text size="200;-1" label="External HS3 MOSFET overcurrent"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.LS3_OC_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.LS3_OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer startcond="UC_FEATURE_3PHASE==1" define="BDRV.LS3_DS_INT_BOX" visible="false">
+        <text size="200;-1" label="LS3 off-state drain source monitoring"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.LS3_DS_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.LS3_DS_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer startcond="UC_FEATURE_3PHASE==1" define="BDRV.HS3_OC_INT_BOX" visible="false">
+        <text size="200;-1" label="External HS3 MOSFET overcurrent"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HS3_OC_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HS3_OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer startcond="UC_FEATURE_3PHASE==1" define="BDRV.HS3_DS_INT_BOX" visible="false">
+        <text size="200;-1" label="HS3 off-state drain source monitoring"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HS3_DS_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HS3_DS_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB1_ASEQ_INT_BOX" visible="false">
+        <text size="200;-1" label="Half bridge 1 adaptive sequencer"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HB1_ASEQ_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HB1_ASEQ_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB2_ASEQ_INT_BOX" visible="false">
+        <text size="200;-1" label="Half bridge 2 adaptive sequencer"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HB2_ASEQ_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HB2_ASEQ_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer startcond="UC_FEATURE_3PHASE==1" define="BDRV.HB3_ASEQ_INT_BOX" visible="false">
+        <text size="200;-1" label="Half bridge 3 adaptive sequencer"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HB3_ASEQ_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HB3_ASEQ_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.SEQ_ERR_INT_BOX" visible="false">
+        <text size="200;-1" label="Driver sequence error"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.SEQ_ERR_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.SEQ_ERR_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB1_ACTDRV_INT_BOX" visible="false">
+        <text size="200;-1" label="Half bridge 1 active driver detection"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HB1_ACTDRV_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HB1_ACTDRV_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB2_ACTDRV_INT_BOX" visible="false">
+        <text size="200;-1" label="Half bridge 2 active driver detection"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HB2_ACTDRV_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HB2_ACTDRV_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer startcond="UC_FEATURE_3PHASE==1" define="BDRV.HB3_ACTDRV_INT_BOX" visible="false">
+        <text size="200;-1" label="Half bridge 3 active driver detection"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ1+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.HB3_ACTDRV_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.HB3_ACTDRV_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.VCP_LOTH2_INT_BOX" visible="false">
+        <text size="200;-1" label="Charge pump comparator low voltage"/>
+        <math size="75;-1" formula="SCU.INP0.INP_BDRV_IRQ0+0"/>
+        <math size="75;-1" formula="BDRV.IRQEN.VCP_LOTH2_IEN"/>
+        <edit size="400;-1" define="RO_BDRV.VCP_LOTH2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CSACSC.OC_INT_BOX" visible="false">
+        <text size="200;-1" label="CSC Overcurrent event"/>
+        <math size="75;-1" formula="SCU.INP0.INP_CSC+0"/>
+        <math size="75;-1" formula="CSACSC.IRQEN.CSC_OC_IEN"/>
+        <edit size="400;-1" define="RO_CSACSC.OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CSACSC.PARAM_INT_BOX" visible="false">
+        <text size="200;-1" label="CSA minimum gain or offset selection error"/>
+        <math size="75;-1" formula="SCU.INP0.INP_CSC+0"/>
+        <math size="75;-1" formula="CSACSC.IRQEN.SEL_ERR_IEN"/>
+        <edit size="400;-1" define="RO_CSACSC.PARAM_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="PMU.VDDP_UVWARN_INT_BOX" visible="false">
+        <text size="200;-1" label="PMU VDDP undervoltage warning"/>
+        <math size="75;-1" formula="SCU.INP0.INP_PMU+0"/>
+        <math size="75;-1" formula="PMU.VDDP_IRQEN.UVWARN_IEN"/>
+        <edit size="400;-1" define="RO_PMU.VDDP_UVWARN_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="PMU.VDDP_OV_INT_BOX" visible="false">
+        <text size="200;-1" label="PMU VDDP overvoltage"/>
+        <math size="75;-1" formula="SCU.INP0.INP_PMU+0"/>
+        <math size="75;-1" formula="PMU.VDDP_IRQEN.OV_IEN"/>
+        <edit size="400;-1" define="RO_PMU.VDDP_OV_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="PMU.VDDC_UVWARN_INT_BOX" visible="false">
+        <text size="200;-1" label="PMU VDDC undervoltage warning"/>
+        <math size="75;-1" formula="SCU.INP0.INP_PMU+0"/>
+        <math size="75;-1" formula="PMU.VDDC_IRQEN.UVWARN_IEN"/>
+        <edit size="400;-1" define="RO_PMU.VDDC_UVWARN_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="PMU.VDDC_OV_INT_BOX" visible="false">
+        <text size="200;-1" label="PMU VDDC overvoltage"/>
+        <math size="75;-1" formula="SCU.INP0.INP_PMU+0"/>
+        <math size="75;-1" formula="PMU.VDDC_IRQEN.OV_IEN"/>
+        <edit size="400;-1" define="RO_PMU.VDDC_OV_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="PMU.VDDEXT_UV_INT_BOX" visible="false">
+        <text size="200;-1" label="PMU VDDEXT undervoltage"/>
+        <math size="75;-1" formula="SCU.INP0.INP_PMU+0"/>
+        <math size="75;-1" formula="PMU.VDDEXT_IRQEN.UV_IEN"/>
+        <edit size="400;-1" define="RO_PMU.VDDEXT_UV_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="PMU.VDDEXT_OT_INT_BOX" visible="false">
+        <text size="200;-1" label="PMU VDDEXT overtemperature"/>
+        <math size="75;-1" formula="SCU.INP0.INP_PMU+0"/>
+        <math size="75;-1" formula="PMU.VDDEXT_IRQEN.OT_IEN"/>
+        <edit size="400;-1" define="RO_PMU.VDDEXT_OT_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="ARVG.VAREF_OC_INT_BOX" visible="false">
+        <text size="200;-1" label="ARVG (VAREF Overcurrent)"/>
+        <math size="75;-1" formula="SCU.INP0.INP_ARVG+0"/>
+        <math size="75;-1" formula="ARVG.VAREF_IEN.OC_IEN"/>
+        <edit size="400;-1" define="RO_ARVG.VAREF_OC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer>
+    <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>

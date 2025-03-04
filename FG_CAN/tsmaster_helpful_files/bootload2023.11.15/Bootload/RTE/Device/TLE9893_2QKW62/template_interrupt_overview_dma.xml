@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_interrupt_overview_dma.xml                                        -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>7dc471a2eaaf37b43b857e0ad16ed53505bafb7f6e9f3e70629de00601a6edf2</checksum>
+  <version label="V0.1.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1"  stretch="2">
+    <text label="Configured Interrupts of Nodes 29, 30"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="DMA_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_DMA.CH0_CALLBACK=DMA.CH0_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.CH1_CALLBACK=DMA.CH1_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.CH2_CALLBACK=DMA.CH2_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.CH3_CALLBACK=DMA.CH3_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.CH4_CALLBACK=DMA.CH4_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.CH5_CALLBACK=DMA.CH5_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.CH6_CALLBACK=DMA.CH6_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.CH7_CALLBACK=DMA.CH7_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_DMA.ERROR_CALLBACK=DMA.ERROR_CALLBACK"/>
+      </timer>
+      <math formula="DMA.CH0_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH0_INT_BOX.visible=DMA.CH0_INT_EN"/></math>
+      <math formula="DMA.CH1_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH1_INT_BOX.visible=DMA.CH1_INT_EN"/></math>
+      <math formula="DMA.CH2_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH2_INT_BOX.visible=DMA.CH2_INT_EN"/></math>
+      <math formula="DMA.CH3_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH3_INT_BOX.visible=DMA.CH3_INT_EN"/></math>
+      <math formula="DMA.CH4_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH4_INT_BOX.visible=DMA.CH4_INT_EN"/></math>
+      <math formula="DMA.CH5_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH5_INT_BOX.visible=DMA.CH5_INT_EN"/></math>
+      <math formula="DMA.CH6_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH6_INT_BOX.visible=DMA.CH6_INT_EN"/></math>
+      <math formula="DMA.CH7_INT_EN"><action event="changed" cmd="setDef" data="DMA.CH7_INT_BOX.visible=DMA.CH7_INT_EN"/></math>
+      <math formula="DMA.ERROR_INT_EN"><action event="changed" cmd="setDef" data="DMA.ERROR_INT_BOX.visible=DMA.ERROR_INT_EN"/></math>
+    </verticalcontainer> <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH0_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch0"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH0+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH0EN"/>
+        <edit size="400;-1" define="RO_DMA.CH0_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH1_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch1"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH1+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH1EN"/>
+        <edit size="400;-1" define="RO_DMA.CH1_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH2_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch2"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH2+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH2EN"/>
+        <edit size="400;-1" define="RO_DMA.CH2_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH3_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch3"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH3+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH3EN"/>
+        <edit size="400;-1" define="RO_DMA.CH3_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH4_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch4"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH4+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH4EN"/>
+        <edit size="400;-1" define="RO_DMA.CH4_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH5_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch5"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH5+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH5EN"/>
+        <edit size="400;-1" define="RO_DMA.CH5_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH6_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch6"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH6+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH6EN"/>
+        <edit size="400;-1" define="RO_DMA.CH6_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.CH7_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Ch7"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMACH7+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMACH7EN"/>
+        <edit size="400;-1" define="RO_DMA.CH7_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="DMA.ERROR_INT_BOX" visible="false">
+        <text size="200;-1" label="DMA Error"/>
+        <math size="75;-1" formula="SCU.INP7.INP_DMATRERR+29"/>
+        <math size="75;-1" formula="SCU.DMAIEN.DMATRERREN"/>
+        <edit size="400;-1" define="RO_DMA.ERROR_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer> <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>
+

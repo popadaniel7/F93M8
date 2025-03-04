@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_adc2_filter_fix.xml                                               -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-10-23, DM:   Initial version                                      -->
+<!-- V0.0.2: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Filter Template -->
+<!-- Parameters: -->
+<!--   FILTIDX: filter index, range 0..7 -->
+<!--   CHIDX:   channel the filter is assigned to, range 0..14 -->
+<ifxmlcfg version="2.6.2">
+  <checksum>e5e8a717bf5a2a4459c635080901fcd5aca1e121345463e1546c6463f8cf0ca4</checksum>
+  <version label="V0.0.2"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <treecontainer headerlabels="Item;Value;" label="Filter $FILTIDX$" desc="Filter Channel $FILTIDX$" columnwidths="300;300">
+    <header file="adc2_defines.h">
+      <!-- Variables -->
+      <edit label="Used by Channel" readonly="1" define="ADC2.FILT$FILTIDX$_USED_TXT" svd="0" default="$CHIDX$" header="temp_defines.h"/>
+      <!-- Configuration -->
+      <combo label="Filter Coefficient" define="ADC2.FILTCFG.COEF_A$FILTIDX$">
+        <item label="1/2" override="value1"  setdef="ADC1.FILT$FILTIDX$_TXT=1/2"/>
+        <item label="1/4" override="value2"  setdef="ADC1.FILT$FILTIDX$_TXT=1/4"/>
+        <item label="1/8" override="value3"  setdef="ADC1.FILT$FILTIDX$_TXT=1/8"/>
+        <item label="1/16" override="value4" setdef="ADC1.FILT$FILTIDX$_TXT=1/16"/>
+      </combo>
+    </header>
+  </treecontainer>
+</ifxmlcfg>

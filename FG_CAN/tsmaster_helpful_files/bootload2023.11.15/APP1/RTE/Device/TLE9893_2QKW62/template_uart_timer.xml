@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_uart_timer.xml                                                    -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<!-- Timer Definition -->
+<!-- IDX: $IDX$, T21 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>4d7c9f65fb1363fd09a7b7d04e3d10b7e6885c7652bef2fbaaf36f294c24a836</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Timers" visible="false">
+    <timer visible="false" define="$IDX$_UPDATE_MODE" svd="0" interval="1" singleShot="1" run="0" header="">
+      <!-- $IDX$ elements visibility -->
+      <action cond="$IDX$_MODE==0" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=0"/>
+      <action cond="$IDX$_MODE==1" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=1"/>
+      <action cond="$IDX$_MODE==2" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=1"/>
+      <action cond="$IDX$_MODE==3" event="changed" cmd="setDef" data="$IDX$_DEF_MODE.visible=1"/>
+      <!-- Visibility of the containers defined in UARTmodeTemplate.xml -->
+      <action cond="$IDX$_MODE==2" event="changed" cmd="setDef" data="CONT_$IDX$_BR_AUTO.enabled=0;$IDX$.BR_CONFIG.enabled=0;CONT_$IDX$_BRPRE.enabled=0;CONT_$IDX$_BRDIV.enabled=0;CONT_$IDX$_BRRELVAL.enabled=0"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BR_CONFIG==0)" event="changed" cmd="setDef" data="CONT_$IDX$_BR_AUTO.enabled=1;$IDX$.BR_CONFIG.enabled=1;CONT_$IDX$_BRPRE.enabled=0;CONT_$IDX$_BRDIV.enabled=0;CONT_$IDX$_BRRELVAL.enabled=0"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BR_CONFIG==1)" event="changed" cmd="setDef" data="CONT_$IDX$_BR_AUTO.enabled=0;$IDX$.BR_CONFIG.enabled=1;CONT_$IDX$_BRPRE.enabled=1;CONT_$IDX$_BRDIV.enabled=1;CONT_$IDX$_BRRELVAL.enabled=1"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$_RIINTEN==0)" event="changed" cmd="setDef" data="CONT_$IDX$_RINODE.enabled=0;CONT_$IDX$_RIEN.enabled=0;CONT_$IDX$_RICB.enabled=0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$_RIINTEN==1)" event="changed" cmd="setDef" data="CONT_$IDX$_RINODE.enabled=1;CONT_$IDX$_RIEN.enabled=1;CONT_$IDX$_RICB.enabled=1"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$_TIINTEN==0)" event="changed" cmd="setDef" data="CONT_$IDX$_TINODE.enabled=0;CONT_$IDX$_TIEN.enabled=0;CONT_$IDX$_TICB.enabled=0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$_TIINTEN==1)" event="changed" cmd="setDef" data="CONT_$IDX$_TINODE.enabled=1;CONT_$IDX$_TIEN.enabled=1;CONT_$IDX$_TICB.enabled=1"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_TXENSEL==2)" event="changed" cmd="setDef" data="CONT_$IDX$_TXSTARTINP.enabled=1"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_TXENSEL!=2)" event="changed" cmd="setDef" data="CONT_$IDX$_TXSTARTINP.enabled=0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==0).*($IDX$_EOSINTEN==0)" event="changed" cmd="setDef" data="CONT_$IDX$_ENEOS.enabled=0;CONT_$IDX$_EOSNODE.enabled=0;CONT_$IDX$_EOSEN.enabled=0;CONT_$IDX$_EOSCB.enabled=0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==1).*($IDX$_EOSINTEN==0)" event="changed" cmd="setDef" data="CONT_$IDX$_ENEOS.enabled=1;CONT_$IDX$_EOSNODE.enabled=0;CONT_$IDX$_EOSEN.enabled=0;CONT_$IDX$_EOSCB.enabled=0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==1).*($IDX$_EOSINTEN==1)" event="changed" cmd="setDef" data="CONT_$IDX$_ENEOS.enabled=1;CONT_$IDX$_EOSNODE.enabled=1;CONT_$IDX$_EOSEN.enabled=1;CONT_$IDX$_EOSCB.enabled=1"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==0).*($IDX$_SYNCERRINTEN==0)" event="changed" cmd="setDef" data="CONT_$IDX$_ENSYNCERR.enabled=0;CONT_$IDX$_SYNCERRNODE.enabled=0;CONT_$IDX$_SYNCERREN.enabled=0;CONT_$IDX$_SYNCERRCB.enabled=0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==1).*($IDX$_SYNCERRINTEN==0)" event="changed" cmd="setDef" data="CONT_$IDX$_ENSYNCERR.enabled=1;CONT_$IDX$_SYNCERRNODE.enabled=0;CONT_$IDX$_SYNCERREN.enabled=0;CONT_$IDX$_SYNCERRCB.enabled=0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==1).*($IDX$_SYNCERRINTEN==1)" event="changed" cmd="setDef" data="CONT_$IDX$_ENSYNCERR.enabled=1;CONT_$IDX$_SYNCERRNODE.enabled=1;CONT_$IDX$_SYNCERREN.enabled=1;CONT_$IDX$_SYNCERRCB.enabled=1"/>
+      <action cond="UART0_MODE!=0" event="changed" cmd="setDef" data="$IDX$_$IDX$.INSEL_RXDSEL.visible=1;UART0_UART1.INSEL_RXDSEL.visible=0;UART1_UART0.INSEL_RXDSEL.visible=0;$IDX$_$IDX$.INSEL_TXEVSEL.visible=1;UART0_UART1.INSEL_TXEVSEL.visible=0;UART1_UART0.INSEL_TXEVSEL.visible=0;$IDX$_$IDX$.OUTPUT_TXDSEL.visible=1;UART0_UART1.OUTPUT_TXDSEL.visible=0;UART1_UART0.OUTPUT_TXDSEL.visible=0"/>
+      <action cond="UART1_MODE!=0" event="changed" cmd="setDef" data="$IDX$_$IDX$.INSEL_RXDSEL.visible=1;UART0_UART1.INSEL_RXDSEL.visible=0;UART1_UART0.INSEL_RXDSEL.visible=0;$IDX$_$IDX$.INSEL_TXEVSEL.visible=1;UART0_UART1.INSEL_TXEVSEL.visible=0;UART1_UART0.INSEL_TXEVSEL.visible=0;$IDX$_$IDX$.OUTPUT_TXDSEL.visible=1;UART0_UART1.OUTPUT_TXDSEL.visible=0;UART1_UART0.OUTPUT_TXDSEL.visible=0"/>
+      <!-- Element value for graph -->
+      <action cond="$IDX$_MODE==0" event="changed" cmd="setDef" data="$IDX$MODE=x;$IDX$BIT=x;$IDX$BR=xxx;$IDX$BRPRE=1;$IDX$BRPRE=x;$IDX$FRACDIV=x;$IDX$RELVAL=x;$IDX$RXINP=x;$IDX$STARTTRIG=x;$IDX$TXSTARTINP=x"/>
+      <action cond="$IDX$_MODE==1" event="changed" cmd="setDef" data="$IDX$MODE=1;$IDX$BIT=8;$IDX$BR=Variable"/>
+      <action cond="$IDX$_MODE==2" event="changed" cmd="setDef" data="$IDX$MODE=2;$IDX$BIT=9;$IDX$BR=Fixed"/>
+      <action cond="$IDX$_MODE==3" event="changed" cmd="setDef" data="$IDX$MODE=3;$IDX$BIT=9;$IDX$BR=Variable"/>
+      <action cond="$IDX$_MODE==2" event="changed" cmd="setDef" data="$IDX$BRPRE=64"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BCON_BR_PRE==0)" event="changed" cmd="setDef" data="$IDX$BRPRE=1"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BCON_BR_PRE==1)" event="changed" cmd="setDef" data="$IDX$BRPRE=2"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BCON_BR_PRE==2)" event="changed" cmd="setDef" data="$IDX$BRPRE=4"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BCON_BR_PRE==3)" event="changed" cmd="setDef" data="$IDX$BRPRE=8"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BCON_BR_PRE==4)" event="changed" cmd="setDef" data="$IDX$BRPRE=16"/>
+      <action cond="(($IDX$_MODE==1).+($IDX$_MODE==3)).*($IDX$.BCON_BR_PRE==5)" event="changed" cmd="setDef" data="$IDX$BRPRE=32"/>
+      <action cond="$IDX$_MODE!=0" event="changed" cmd="setDef" data="$IDX$FRACDIV=$IDX$.BCON_BR_PRE.value"/>
+      <action cond="$IDX$_MODE!=0" event="changed" cmd="setDef" data="$IDX$RELVAL=$IDX$.BCON_BG_BR_VALUE.value"/>
+      <action cond="$IDX$_MODE!=0" event="changed" cmd="setDef" data="$IDX$RXINP=$IDX$_$IDX$.INSEL_RXDSEL.label"/>
+      <action cond="$IDX$_MODE!=0" event="changed" cmd="setDef" data="$IDX$STARTTRIG=$IDX$.SCON_TXENSEL.label"/>
+      <action cond="$IDX$_MODE!=0" event="changed" cmd="setDef" data="$IDX$TXSTARTINP=$IDX$_$IDX$.INSEL_TXEVSEL.label"/>
+      <action cond="$IDX$_MODE!=0" event="changed" cmd="setDef" data="$IDX$TXOUTPUT=$IDX$_$IDX$.OUTPUT_TXDSEL.label"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_REN==0)" event="changed" cmd="setDef" data="$IDX$ENRX=Disabled"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_REN==1)" event="changed" cmd="setDef" data="$IDX$ENRX=Enabled"/>
+      <action cond="$IDX$_MODE==1" event="changed" cmd="setDef" data="$IDX$BIT9RX=stop;$IDX$BIT9TX=1"/>
+      <action cond="($IDX$_MODE==2).+($IDX$_MODE==3)" event="changed" cmd="setDef" data="$IDX$BIT9RX=9th;$IDX$BIT9TX=9th"/>
+
+      <!-- Update colors in graph -->
+      <action event="changed" cmd="setDef" data="$IDX$_UPDATE_GRAPH.run=1"/>
+    </timer>
+
+    <timer visible="false" define="$IDX$_UPDATE_GRAPH" svd="0" interval="1" singleShot="1" run="0" header="">
+      <action cond="$IDX$_MODE==0" event="changed" cmd="setDef" data="$IDX$_1=#F0F0F0;$IDX$_2=#FFFFFF;$IDX$_3=#F0F0F0;$IDX$_4=#F0F0F0;$IDX$_5=#FFFFFF;$IDX$_6=#F0F0F0;$IDX$_7=#F0F0F0;$IDX$_8=#F0F0F0;$IDX$_9=#F0F0F0;$IDX$_10=#F0F0F0;$IDX$_11=#F0F0F0;$IDX$_12=#F0F0F0;$IDX$_13=#FFFFFF;$IDX$_14=#F0F0F0;$IDX$_15=#F0F0F0;$IDX$_16=#F0F0F0;$IDX$_17=#F0F0F0;$IDX$_18=#F0F0F0;$IDX$_19=#F0F0F0;$IDX$_20=#F0F0F0;$IDX$_21=#F0F0F0"/>
+      <action cond="$IDX$_MODE!=0" event="changed" cmd="setDef" data="$IDX$_1=#000000;$IDX$_2=#F0F0F0;$IDX$_18=#0000FF;$IDX$_21=#FF0000"/>
+      <action cond="$IDX$_MODE==2"                    event="changed" cmd="setDef" data="$IDX$_3=#000000;$IDX$_4=#FFFFF0;$IDX$_5=#FFFFF0;VIS_$IDX$_1=visible;VIS_$IDX$_2=hidden"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$_MODE!=2)" event="changed" cmd="setDef" data="$IDX$_3=#FFFFF0;$IDX$_4=#000000;$IDX$_5=#F0F0F0;VIS_$IDX$_1=hidden;VIS_$IDX$_2=visible"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.IEN_RIEN==0)" event="changed" cmd="setDef" data="$IDX$_6=#FFFFF0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.IEN_RIEN==1)" event="changed" cmd="setDef" data="$IDX$_6=#000000"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==0)" event="changed" cmd="setDef" data="$IDX$_12=#FFFFF0;$IDX$_13=#FFFFF0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.LINCON_BREN==1)" event="changed" cmd="setDef" data="$IDX$_12=#000000;$IDX$_13=#F0F0F0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_TXINV==0)" event="changed" cmd="setDef" data="$IDX$_14=#000000;$IDX$_15=#FFFFF0;VIS_$IDX$_3=hidden"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_TXINV==1)" event="changed" cmd="setDef" data="$IDX$_14=#FFFFF0;$IDX$_15=#000000;VIS_$IDX$_3=visible"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.IEN_TIEN==0)" event="changed" cmd="setDef" data="$IDX$_16=#FFFFF0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.IEN_TIEN==1)" event="changed" cmd="setDef" data="$IDX$_16=#000000"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_TXENSEL!=2)" event="changed" cmd="setDef" data="$IDX$_17=#F0F0F0"/>
+      <action cond="($IDX$_MODE!=0).*($IDX$.SCON_TXENSEL==2)" event="changed" cmd="setDef" data="$IDX$_17=#000000"/>
+      <action cond="($IDX$_MODE==1).*($IDX$.SCON_REN==0)"                  event="changed" cmd="setDef" data="$IDX$_7=#F0F0F0;$IDX$_8=#F0F0F0;$IDX$_9=#F0F0F0;$IDX$_10=#F0F0F0;$IDX$_11=#F0F0F0;$IDX$_19=#0000FF;$IDX$_20=#F0F0F0;VIS_$IDX$_4=visible;VIS_$IDX$_5=hidden"/>
+      <action cond="($IDX$_MODE==1).*($IDX$.SCON_REN==1)"                  event="changed" cmd="setDef" data="$IDX$_7=#000000;$IDX$_8=#000000;$IDX$_9=#0000FF;$IDX$_10=#0000FF;$IDX$_11=#FF0000;$IDX$_19=#0000FF;$IDX$_20=#F0F0F0;VIS_$IDX$_4=visible;VIS_$IDX$_5=hidden"/>
+      <action cond="($IDX$_MODE==2).+($IDX$_MODE==3).*($IDX$.SCON_REN==0)" event="changed" cmd="setDef" data="$IDX$_7=#F0F0F0;$IDX$_8=#F0F0F0;$IDX$_9=#F0F0F0;$IDX$_10=#F0F0F0;$IDX$_11=#F0F0F0;$IDX$_19=#F0F0F0;$IDX$_20=#0000FF;VIS_$IDX$_4=hidden;VIS_$IDX$_5=visible"/>
+      <action cond="($IDX$_MODE==2).+($IDX$_MODE==3).*($IDX$.SCON_REN==1)" event="changed" cmd="setDef" data="$IDX$_7=#000000;$IDX$_8=#000000;$IDX$_9=#0000FF;$IDX$_10=#0000FF;$IDX$_11=#FF0000;$IDX$_19=#F0F0F0;$IDX$_20=#0000FF;VIS_$IDX$_4=hidden;VIS_$IDX$_5=visible"/>
+
+    </timer>
+  </verticalcontainer>
+</ifxmlcfg>

@@ -1,0 +1,232 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+
+#include "tle989x.h"
+#include "isr.h"
+#include "isr_defines.h"
+
+
+/* Check if NVIC node 27 is enabled */
+#if ((CPU_NVIC_ISER & CPU_NVIC_ISER_IRQEN27_Msk) == (1u << CPU_NVIC_ISER_IRQEN27_Pos))
+
+/*******************************************************************************
+**                        Global Variable Definitions                         **
+*******************************************************************************/
+
+#if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+  uint8 u8_interrupt_cnt_irq27;
+#endif
+
+/*******************************************************************************
+**                        Global Function Declarations                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+void NVIC_IRQ27_Handler1(void)
+{
+  #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+    u8_interrupt_cnt_irq27 = 0;
+  #endif
+  /* CAN Node 0 Interrupt: TXOK (Transmit ok) */
+  #if (CAN_NODE0_TXOK_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_TRINP_Msk) >>  CANCONTR_CAN_NIPR0_TRINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NCR0.bit.TXIE == 1u)
+      {
+        if (CANCONTR->CAN_NSR0.bit.TXOK == 1u)
+        {
+          CAN_NODE0_TXOK_CALLBACK();
+          status=0 = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Node 0 Interrupt: RXOK (Reveice ok) */
+  #if (CAN_NODE0_RXOK_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_TRINP_Msk) >>  CANCONTR_CAN_NIPR0_TRINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NCR0.bit.TXIE == 1u)
+      {
+        if (CANCONTR->CAN_NSR0.bit.RXOK == 1u)
+        {
+          CAN_NODE0_RXOK_CALLBACK();
+           = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Node 0 Interrupt: LEC (Last Error Code) */
+  #if (CAN_NODE0_LEC_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_LECINP_Msk) >>  CANCONTR_CAN_NIPR0_LECINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NCR0.bit.LECIE == 1u)
+      {
+        if (CANCONTR->CAN_NSR0.bit.LEC == 1u)
+        {
+          CAN_NODE0_LEC_CALLBACK();
+           = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Node 0 Interrupt: EWRN (Error Warning) */
+  #if (CAN_NODE0_EWRN_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_ALINP_Msk) >>  CANCONTR_CAN_NIPR0_ALINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NCR0.bit.ALIE == 1u)
+      {
+        if (CANCONTR->CAN_NSR0.bit.EWRN == 1u)
+        {
+          CAN_NODE0_EWRN_CALLBACK();
+           = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Node 0 Interrupt: BOFF (Bus Off) */
+  #if (CAN_NODE0_BOFF_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_ALINP_Msk) >>  CANCONTR_CAN_NIPR0_ALINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NCR0.bit.ALIE == 1u)
+      {
+        if (CANCONTR->CAN_NSR0.bit.BOFF == 1u)
+        {
+          CAN_NODE0_BOFF_CALLBACK();
+           = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Node 0 Interrupt: LLE (List Length Error) */
+  #if (CAN_NODE0_LLE_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_ALINP_Msk) >>  CANCONTR_CAN_NIPR0_ALINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NCR0.bit.ALIE == 1u)
+      {
+        if (CANCONTR->CAN_NSR0.bit.LLE == 1u)
+        {
+          CAN_NODE0_LLE_CALLBACK();
+           = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Node 0 Interrupt: LOE (List Obcect Error) */
+  #if (CAN_NODE0_LOE_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_ALINP_Msk) >>  CANCONTR_CAN_NIPR0_ALINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NCR0.bit.ALIE == 1u)
+      {
+        if (CANCONTR->CAN_NSR0.bit.LOE == 1u)
+        {
+          CAN_NODE0_LOE_CALLBACK();
+           = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Node 0 Interrupt: CFCOV (CAN Frame Counter Overflow) */
+  #if (CAN_NODE0_CFCOV_INT_EN == 1)
+    #if (((CANCONTR_CAN_NIPR0 & CANCONTR_CAN_NIPR0_CFCINP_Msk) >>  CANCONTR_CAN_NIPR0_CFCINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_NFCR0.bit.CFCIE == 1u)
+      {
+        if (CANCONTR->CAN_NFCR0.bit.CFCOV == 1u)
+        {
+          CAN_NODE0_CFCOV_CALLBACK();
+           = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Message 0 Interrupt: TXPND (Message Transmitted) */
+  #if (CAN_MSG0_TXPND_INT_EN == 1)
+    #if (((CANCONTR_CAN_MOIPR0 & CANCONTR_CAN_MOIPR0_TXINP_Msk) >>  CANCONTR_CAN_MOIPR0_TXINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_MOFCRn.bit.TXIE == 1u)
+      {
+        if (CANCONTR->CAN_MOSTATn.bit.TXPND == 1u)
+        {
+          CAN_MSG0_TXPND_CALLBACK();
+          CANCONTR->CAN_MOCTRn.bit.RESTXPND = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+
+  /* CAN Message 0 Interrupt: RXPND (Message Received) */
+  #if (CAN_MSG0_RXPND_INT_EN == 1)
+    #if (((CANCONTR_CAN_MOIPR0 & CANCONTR_CAN_MOIPR0_RXINP_Msk) >>  CANCONTR_CAN_MOIPR0_RXINP_Pos) == CAN_INP_NVIC_IRQ27)
+      if (CANCONTR->CAN_MOFCRn.bit.RXIE == 1u)
+      {
+        if (CANCONTR->CAN_MOSTATn.bit.RXPND == 1u)
+        {
+          CAN_MSG0_RXPND_CALLBACK();
+          CANCONTR->CAN_MOCTRn.bit.RESRXPND = 1u;
+          #if (NVIC_IRQ27_HANDLER_INT_CHECK == 1)
+            u8_interrupt_cnt_irq27 += 1u;
+          #endif
+        }
+      }
+    #endif /* Interrupt assigned to this node */
+  #endif /* Interrupt enabled */
+}
+#endif /* ((CPU_NVIC_ISER & CPU_NVIC_ISER_IRQEN27_Msk) == 1u) */

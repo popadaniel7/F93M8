@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_ss_modecfg.xml                                                    -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-11-16, BG:   EP-594: Updated default mode with Master             -->
+<!--********************************************************************************-->
+
+<!-- Module Definition -->
+<!-- IDX: SSC0, SSC1 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>17cce85ab1ae21c038a691b90e3f4354b314a764c901968342d8c50dc778fbc0</checksum>
+  <version label="V0.1.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <!-- MODE -->
+  <groupcontainer label="Mode Settings" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228" size="500;-1">
+    <header file="ssc_defines.h">
+      <verticalcontainer>
+
+        <!-- Mode Select -->
+        <horizontalcontainer>
+          <text label="Mode Selection"/>
+          <combo define="$IDX$.CON.MS" default="label=Master Mode" setDef="SSC_CFG.run=1;$IDX$_UPDATE_MODE.run=1" size="320;-1">
+            <item label="Slave Mode" override="value1"/>
+            <item label="Master Mode" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Data to transfer: Width + Heading Control -->
+        <horizontalcontainer>
+          <text label="Data to Transfer"/>
+          <spinbox define="$IDX$.CON_BM" svd="0" header="temp_defines.h" default="2" range="2;64" suffix=" bits" size="155;-1">
+            <action event="changed" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </spinbox>
+          <combo define="$IDX$.CON.HB" default="label=LSB first" size="160;-1" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="LSB first" override="value1"/>
+            <item label="MSB first" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Clock Phase Control -->
+        <horizontalcontainer>
+          <text label="Clock Phase"/>
+          <combo define="$IDX$.CON.PH" default="label=Shift TX data on leading edge, latch on trailing edge" setDef="$IDX$_UPDATE_MODE.run=1" size="320;-1">
+            <item label="Shift TX data on leading edge, latch on trailing edge" override="value1"/>
+            <item label="Latch RX data on leading edge, shift on trailing edge" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Clock Polarity Control -->
+        <horizontalcontainer>
+          <text label="Clock Polarity"/>
+          <combo define="$IDX$.CON.PO" default="label=Low idle, leading edge is low->high" setDef="$IDX$_UPDATE_MODE.run=1" size="320;-1">
+            <item label="Low idle, leading edge is low->high" override="value1"/>
+            <item label="High idle, leading edge is high->low" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- Loop Back Control -->
+        <horizontalcontainer>
+          <text label="Loop Back Control"/>
+          <combo define="$IDX$.CON.LB" default="label=Normal operation" setDef="$IDX$_UPDATE_MODE.run=1" size="320;-1">
+            <item label="Normal operation" override="value1"/>
+            <item label="Internal loopback mode (RX to TX)" override="value2"/>
+          </combo>
+        </horizontalcontainer>
+
+        <include IDX="$IDX$">template_ssc_graph.xml</include>
+
+      </verticalcontainer>
+    </header>
+  </groupcontainer>
+</ifxmlcfg>

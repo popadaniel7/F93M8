@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_adc2_channel_user.xml                                             -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-10-23, DM:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-27, BG:   EP-560: Corrected node pointer for ISR               -->
+<!--                           EP-560: Changed the transmitted parameter for        -->
+<!--                           attenuator                                           -->
+<!-- V0.0.3: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!--********************************************************************************-->
+
+<!-- Channel Template -->
+<!-- Parameters: -->
+<!--   IDX, range 0..14 -->
+<!--   INTREGIDX, range 0..1 -->
+<!--   ATTVALUE, attenuator value -->
+<!--   CLASS, range 0..3 -->
+<ifxmlcfg version="2.1.12">
+  <checksum>9e1674499027f5fa0336fee2f80c19ee3ad9cd2491d61f510f52f441ba427657</checksum>
+  <version label="V0.0.3"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Channel $IDX$" selectsetdef="ADC2.SELECTED_CH=$IDX$">
+    <treecontainer label="Channel $IDX$" headerlabels="Item;Value;" desc="Channel $IDX$ Config" columnwidths="300;300">
+      <header file="adc2_defines.h">
+        <var define="ADC2.ATTENUATOR$IDX$" svd="0" default="$ATTVALUE$" header="temp_defines.h"/>
+        <!-- Configuration -->
+        <!-- Input Selected -->
+        <edit label="Analog Input" readonly="1" define="ADC2.CHCFG$IDX$_INSEL" svd="0" default="$CHINSEL$" header="temp_defines.h"/>
+        <!-- Calibration -->
+        <var define="ADC2.USE_CALIB_AI$IDX$" svd="0" default="0" header="temp_defines.h"/>
+        <checkbox define="ADC2.CALIB$IDX$_EN" svd="0" label="Enable Calibration">
+          <action event="checked" cmd="setDef" data="ADC2.USE_CALIB_AI$IDX$=1"/>
+          <action event="unchecked" cmd="setDef" data="ADC2.USE_CALIB_AI$IDX$=0"/>
+        </checkbox>
+        <math define="ADC2.CALEN[$IDX$]" visible="false" formula="ADC2.CALIB$IDX$_EN"/>
+        <!-- Conversion Class -->
+        <combo label="Convertion Class Selection" define="ADC2.CHCFG$IDX$.CLASSEL" default="$CLASS$">
+          <item label="Conversion Class 0" value="0" override="value1"/>
+          <item label="Conversion Class 1" value="1" override="value2"/>
+          <item label="Conversion Class 2" value="2" override="value3"/>
+          <item label="Conversion Class 3" value="3" override="value4"/>
+        </combo>
+        <!-- Channel Repetition -->
+        <spinbox label="Channel Repetition [1..16]" define="ADC2.CHCFG$IDX$_CHREP_user" svd="0" range="1;16" step="1" header="temp_defines.h"/>
+        <math visible="false" define="ADC2.CHCFG$IDX$.CHREP" formula="ADC2.CHCFG$IDX$_CHREP_user-1"/>
+        <!-- Filter Selection -->
+        <combo label="Filter Channel Selection" define="ADC2.CHCFG$IDX$_FILSEL_user" svd="0" default="label=none">
+          <item label="Filter Channel 6" value="0"/>
+          <item label="Filter Channel 7" value="1"/>
+          <item label="none" value="2"/>
+        </combo>
+        <math visible="false" define="ADC2.CHCFG$IDX$.FILSEL" formula="ADC2.CHCFG$IDX$_FILSEL_user+6"/>
+        <!-- Compare Channel Selection -->
+        <combo label="Compare Channel Selection" define="ADC2.CHCFG$IDX$_CMPSEL_user" svd="0" default="label=none">
+          <item label="Compare Channel 6" value="0"/>
+          <item label="Compare Channel 7" value="1"/>
+          <item label="none" value="2"/>
+        </combo>
+        <math visible="false" define="ADC2.CHCFG$IDX$.CMPSEL" formula="ADC2.CHCFG$IDX$_CMPSEL_user+6"/>
+        <!-- Interrupts -->
+        <checkbox label="Interrupt" define="ADC2.CH$IDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+          <checkbox label="Enable Interrupt" define="ADC2.IEN0.IEN_CH$IDX$" header="isr_defines.h"/>
+          <combo label="Node Selection" define="ADC2.INP$INTREGIDX$.INP_CH$IDX$" header="isr_defines.h">
+            <item label="ADC2_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN10=1"/>
+            <item label="ADC2_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN11=1"/>
+            <item label="NMI" override="value4"/>
+            <item hide="value3"/>
+          </combo>
+          <edit label="Callback" define="ADC2.CH$IDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+        </checkbox>
+      </header>
+    </treecontainer>
+  </verticalcontainer>
+</ifxmlcfg>

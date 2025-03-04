@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_timer2x.xml                                                        -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-21, BG:   EP-541: Updated formulas according to new item for   -->
+<!--                           the pin selection                                    -->
+<!-- V0.1.0: 2020-11-25, BG:   EP-623: Restructured module with Python script       -->
+<!-- V0.1.1: 2021-01-07, BG:   EP-666: Removed action that always unchecked module  -->
+<!--                           when opening CW                                      -->
+<!-- V0.1.2: 2021-01-27, BG:   EP-677: Corrected module enabling behavior           -->
+<!-- V0.1.3: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.4: 2021-03-17, BG:   EP-742: Renamed defines file for timer2x             -->
+<!-- V0.1.5: 2021-05-07, BG:   EP-796: Added a formula to have the timer frequency  -->
+<!--                           in Hertz (needed for calculation in timer2x.py)      -->
+<!-- V0.1.6: 2021-09-21, BG:   EP-918: Added edit to update the T2x frequency when  -->
+<!--                           the PLL frequency is modified in SCU                 -->
+<!-- V0.1.7: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.6.2">
+  <checksum>6992996f0796121fccd0daaee3cd2b44eaad358ce184bdc6fb3b21daa1ce59bf</checksum>
+  <version label="V0.1.7"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Timer 2x" selectsetdef="T2x.FREQ_EDIT=SCU_fTIMER2x_MHz">
+    <header file="timer2x_defines.h">
+
+      <timer visible="false" define="T2X_INIT" svd="0" interval="1" singleShot="1" run="1" header="">
+        <action event="changed" cmd="runScript" data="python:timer2x.py"/>
+      </timer>
+      <verticalcontainer visible="false">
+        <edit label="Edit for Timer2x clock" define="T2x.FREQ_EDIT" svd="0"/>
+      </verticalcontainer>
+
+      <tabcontainer define="CONT_T2X">
+
+        <verticalcontainer label="T20">
+
+          <!-- T20 ENABLE -->
+          <checkbox label="Enable T20" define="SCU.PMCON.T2_DIS" role="inverted" default="1" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64" header="scu_defines.h">
+            <action event="checked" cmd="setDef" data="T20_TOP.enabled=1"/>
+            <action event="unchecked" cmd="setDef" data="T20_TOP.enabled=0"/>
+          </checkbox>
+          
+          <groupcontainer define="T20_TOP">
+            <!-- T20 MODE SELECTION -->
+            <horizontalcontainer label="Timer 20" define="T20_MODESEL" svd="0">
+              <verticalcontainer>
+                <horizontalcontainer size="830;50">
+                  <text label="Mode Selection"/>
+                  <combo label="Mode Selection" define="T20.MODESEL" svd="0" header="temp_defines.h">
+                    <item label="Auto-Reload without Up/Down Count"/>
+                    <item label="Auto-Reload with Up/Down Count"/>
+                    <item label="Capture"/>
+                  </combo>
+                  <math visible="false" define="T20.CON.CP_RL2" formula="(T20.MODESEL==2)?(1:0)"/>
+                  <math visible="false" define="T20.MOD.DCEN" formula="(T20.MODESEL==1)?(1:0)"/>
+                </horizontalcontainer>
+
+                <!-- T20 CONFIGURATION -->
+                <groupcontainer label="T20 Configuration" size="830;750">
+                  <verticalcontainer>
+
+                    <include IDX="T20" NODE="9">template_t2x_mode.xml</include>
+
+                    <!-- T20 frequency in Timer mode -->
+                    <math visible="false" define="fT20" svd="0" formula="SCU_fTIMER2x_MHz/T20PS"/>
+                    <math visible="false" define="fT20_Hz" svd="0" formula="SCU_fTIMER2x_MHz*1000000/T20PS"/>
+                    <edit visible="false" define="fT20_unit" svd="0" header=""/>
+                    <math visible="false" define="fT20_scaled" format="%.2f" svd="0" formula="fT20&gt;1?(fT20:fT20*1000)" header="">
+                      <action cond="fT20&gt;1" event="changed" cmd="setDef" data="fT20_unit=MHz"/>
+                      <action cond="fT20&lt;1" event="changed" cmd="setDef" data="fT20_unit=kHz"/>
+                    </math>
+
+                  </verticalcontainer>
+                </groupcontainer>
+              </verticalcontainer>
+
+              <include IDX="T20">template_t2x_graph.xml</include>
+              <horizontalcontainer size="520;800"/><!-- Ghost container -->
+
+            </horizontalcontainer>
+          </groupcontainer>
+        </verticalcontainer>
+
+        <verticalcontainer label="T21">
+
+          <!-- T21 ENABLE -->
+          <checkbox label="Enable T21" define="SCU.PMCON.T21_DIS" role="inverted" default="1" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64" header="scu_defines.h">
+            <action event="checked" cmd="setDef" data="T21_TOP.enabled=1"/>
+            <action event="unchecked" cmd="setDef" data="T21_TOP.enabled=0"/>
+          </checkbox>
+
+          <groupcontainer define="T21_TOP">
+            <!-- T21 MODE SELECTION -->
+            <horizontalcontainer label="Timer 21" define="T21_MODESEL" svd="0">
+              <verticalcontainer>
+                <horizontalcontainer size="830;50">
+                  <text label="Mode Selection"/>
+                  <combo label="Mode Selection" define="T21.MODESEL" svd="0" header="temp_defines.h">
+                    <item label="Auto-Reload without Up/Down Count"/>
+                    <item label="Auto-Reload with Up/Down Count"/>
+                    <item label="Capture"/>
+                  </combo>
+                  <math visible="false" define="T21.CON.CP_RL2" formula="(T21.MODESEL==2)?(1:0)"/>
+                  <math visible="false" define="T21.MOD.DCEN" formula="(T21.MODESEL==1)?(1:0)"/>
+                </horizontalcontainer>
+
+                <!-- T21 CONFIGURATION -->
+                <groupcontainer label="T21 Configuration" size="830;750">
+                  <verticalcontainer>
+
+                    <include IDX="T21" NODE="31">template_t2x_mode.xml</include>
+
+                    <!-- T21 frequency in Timer mode -->
+                    <math visible="false" define="fT21" svd="0" formula="SCU_fTIMER2x_MHz/T21PS"/>
+                    <math visible="false" define="fT21_Hz" svd="0" formula="SCU_fTIMER2x_MHz*1000000/T21PS"/>
+                    <edit visible="false" define="fT21_unit" svd="0" header=""/>
+                    <math visible="false" define="fT21_scaled" format="%.2f" svd="0" formula="fT21&gt;1?(fT21:fT21*1000)" header="">
+                      <action cond="fT21&gt;1" event="changed" cmd="setDef" data="fT21_unit=MHz"/>
+                      <action cond="fT21&lt;1" event="changed" cmd="setDef" data="fT21_unit=kHz"/>
+                    </math>
+
+                  </verticalcontainer>
+                </groupcontainer>
+              </verticalcontainer>
+
+              <include IDX="T21">template_t2x_graph.xml</include>
+              <horizontalcontainer size="520;800"/><!-- Ghost container -->
+
+            </horizontalcontainer>
+          </groupcontainer>
+        </verticalcontainer>
+      </tabcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>

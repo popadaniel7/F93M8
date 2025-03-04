@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_ssc_transmitctrl.xml                                              -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-11, BG:   EP-542: Corrected typo in item name for the Transmit -->
+<!--                           Start Trigger                                        -->
+<!--                           EP-541: Added 'none' entry to solve conflicts with   -->
+<!--                           multiple lockons                                     -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<!-- Module Definition -->
+<!-- IDX: SSC0, SSC1 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>d068a148f45942d3f916b8327ba4e819aa4db5bbf0cb3d7403f9930a1d684d12</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <!-- TRANSMIT CONTROL IN MASTER MODE -->
+  <groupcontainer define="CONT_$IDX$_TXCTRL" label="Transmit Control in Master Mode" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84" size="500;-1">
+    <header file="ssc_defines.h">
+      <verticalcontainer>
+
+        <!-- Transmit Start -->
+        <!-- Transmit Start Trigger -->
+        <horizontalcontainer>
+          <text label="Transmit Start Trigger"/>
+          <combo define="$IDX$.CON_MSTXENSEL" svd="0" header="temp_defines.h" default="label=Write to TB0" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="Write to TB0"/>
+          <item label="Write to MSTXSTART"/>
+            <item label="TXEV rising edge"/>
+          </combo>
+        </horizontalcontainer>
+        <!-- TX Start Event Input-->
+        <horizontalcontainer>
+          <text label="TX Start Event Input"/>
+        <combo define="$IDX$.INSEL_TXEVSEL_M0" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=0"/>
+            <item label="SCU.INP1_IRQ1"/>
+            <item label="CCU7.SR3"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        <combo define="$IDX$.INSEL_TXEVSEL_M1" svd="0" header="temp_defines.h" default="label=none" setDef="$IDX$_UPDATE_MODE.run=1">
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=0"/>
+            <item label="SCU.INP1_IRQ1"/>
+            <item label="CCU7.SR3"/>
+            <item label="SCU.INP2_IRQ1"/>
+          <item label="none" value="0xFF"/>
+          </combo>
+        </horizontalcontainer>
+
+        <!-- In case Chip Select is enabled -->
+
+        <!-- CS Low Time at Transmission Start -->
+        <horizontalcontainer define="CONT_$IDX$_CSLOWSTART">
+          <text label="Low Time at Transmission Start [7;63]"/>
+          <spinbox define="$IDX$.CSTIM_ST" svd="0" header="temp_defines.h" default="7" range="7;63" suffix=" SSC clock cycles">
+            <action event="changed" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </spinbox>
+        </horizontalcontainer>
+        <!-- CS Low Time at Transmission Start - Register Value -->
+        <!--horizontalcontainer define="CONT_$IDX$_CSLOWSTART_REG">
+          <text label="Register Value:"/>
+          <math define="$IDX$_CSLOWSTART_REG" svd="0" header="temp_defines.h" format="%02X" formula="$IDX$_CSLOWSTART"/>
+        </horizontalcontainer-->
+
+        <!-- CS Low Time at Transmission End -->
+        <horizontalcontainer define="CONT_$IDX$_CSLOWEND">
+          <text label="Low Time at Transmission End [2;64]"/>
+          <spinbox define="$IDX$.CSTIM_END" svd="0" header="temp_defines.h" default="2" range="2;64" suffix=" SSC clock cycles">
+            <action event="changed" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </spinbox>
+        </horizontalcontainer>
+        <!-- CS Low Time at Transmission End - Register Value -->
+        <!--horizontalcontainer define="CONT_$IDX$_CSLOWEND_REG">
+          <text label="Register Value:"/>
+          <math define="$IDX$_CSLOWEND_REG" svd="0" header="temp_defines.h" format="%02X" formula="$IDX$_CSLOWEND"/>
+        </horizontalcontainer-->
+
+        <!-- Min CS High Time after Transmission -->
+        <horizontalcontainer define="CONT_$IDX$_MINCSHIGH">
+          <text label="Low Time at Transmission End [3;64]"/>
+          <spinbox define="$IDX$.CSTIM_HIGH" svd="0" header="temp_defines.h" default="3" range="3;64" suffix=" SSC clock cycles">
+            <action event="changed" cmd="setDef" data="$IDX$_UPDATE_MODE.run=1"/>
+          </spinbox>
+        </horizontalcontainer>
+        <!-- Min CS High Time after Transmission - Register Value -->
+        <!--horizontalcontainer define="CONT_$IDX$_MINCSHIGH_REG">
+          <text label="Register Value:"/>
+          <math define="$IDX$_MINCSHIGH_REG" svd="0" header="temp_defines.h" format="%02X" formula="$IDX$_MINCSHIGH"/>
+        </horizontalcontainer-->
+      </verticalcontainer>
+    </header>
+  </groupcontainer>
+</ifxmlcfg>
+

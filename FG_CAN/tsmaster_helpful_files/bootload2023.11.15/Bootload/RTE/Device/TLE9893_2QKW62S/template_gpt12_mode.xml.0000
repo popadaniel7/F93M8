@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_gpt12_mode.xml                                                    -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-10-27, BG:   EP-552: Added lockons for inputs/outputs             -->
+<!--                           EP-552: Added 'none' entry for pin selection         -->
+<!-- V0.1.2: 2020-11-16, JO:   EP-587: Added note '64pin only' to pin selection,    -->
+<!--                           Show GPIOs of 64pin variant only in case a 64pin     -->
+<!--                           variant is selected in uVision project               -->
+<!-- V0.2.0: 2020-12-03, BG:   EP-599: Added startcond and cond for devices with or -->
+<!--                           without SDADC                                        -->
+<!-- V0.2.1: 2021-02-03, BG:   EP-683: Corrected formula of the count register to   -->
+<!--                           take into account the count direction and the unit   -->
+<!-- V0.2.2: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.2.3: 2021-02-08, JO:   EP-693: Adapted range of GPT12.$IDX$_VAL depending   -->
+<!--                           depending on the selected unit and on the clock      -->
+<!-- V0.3.0: 2021-03-09, JO:   EP-734: Updated CW minimal version to 2.6.3,         -->
+<!--                           Added usage of setdefine feature that was introduced -->
+<!--                           in Config Wizard version 2.6.3                       -->
+<!-- V0.3.1: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.3">
+  <checksum>b8113a3ae1a04c13fc2d9d115be1a7ecd1488b3166bc9027cba34763d805d120</checksum>
+  <version label="V0.3.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer label="Mode Definition" uielement="branch" define="$IDX$_DEF_MODE">
+    <!-- Input Selection -> only for CAPREL -->
+    <horizontalcontainer define="CONT_$IDX$_INPCAPREL">
+      <text label="Input"/>
+      <!-- CAPREL -->
+      <combo label="Input Select" define="GPT12_$IDX$.T5CON_CT3" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="CAPIN"/>
+        <item label="T3IN and/or T3EUD"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Input Edge Selection -> only for Incremental Mode -->
+    <horizontalcontainer define="CONT_$IDX$_INCINPSEL">
+      <text label="Input Edge Selection"/>
+      <combo label="Input Select" define="GPT12.$IDX$CON_$IDX$I_INC" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="$IDX$IN"/>
+        <item label="$IDX$EUD"/>
+        <item label="$IDX$IN/$IDX$EUD"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Input Selection -> not for Timer Mode -->
+    <horizontalcontainer define="CONT_$IDX$_INPUT">
+      <text label="Input Selection"/>
+      <!-- T2 -->
+      <combo label="Input Select" define="GPT12_T2.PISEL_IS$IDX$IN_OTL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=0"/>
+        <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="T3OTL"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <combo label="Input Select" define="GPT12_T2.PISEL_IS$IDX$IN" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=0"/>
+        <item label="P0.5 (*)" lockon="GPIO.P0_DIR.DIR5=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T3 -->
+      <combo label="Input Selection" define="GPT12_T3.PISEL_IS$IDX$IN" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P1.0" lockon="GPIO.P1_DIR.DIR0=0"/>
+        <item label="P2.2" lockon="GPIO.P2_INDIS.INDIS2=1"/>
+        <item label="SDADC.CMP0" startcond="UC_FEATURE_SDADC==1"/>
+        <item label="BEMFC.PH1_ZC_STS"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T4 -->
+      <combo label="Input Selection" define="GPT12_T4.PISEL_IS$IDX$IN_OTL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=0"/>
+        <item label="CANTRX.RXD"/>
+        <item label="CCU7.C74ST"/>
+        <item label="CCU7.SR3"/>
+        <item label="T3OTL"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <combo label="Input Selection" define="GPT12_T4.PISEL_IS$IDX$IN" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P1.2" lockon="GPIO.P1_DIR.DIR2=0"/>
+        <item label="CANTRX.RXD"/>
+        <item label="CCU7.C74ST"/>
+        <item label="CCU7.SR3"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T5 -->
+      <combo label="Input Select" define="GPT12_T5.PISEL_IS$IDX$IN_OTL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="T6OTL"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <combo label="Input Select" define="GPT12_T5.PISEL_IS$IDX$IN" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P0.6 (*)" lockon="GPIO.P0_DIR.DIR6=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T6 -->
+      <combo label="Input Selection" define="GPT12_T6.PISEL_IS$IDX$IN" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="P0.9 (*)" lockon="GPIO.P0_DIR.DIR9=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- CAP -->
+      <combo label="Input Selection" define="GPT12_CAPREL.PISEL_IS$IDX$IN" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=0"/>
+        <item label="BEMFC.PHZC_TRIG"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Input Selection -->
+    <horizontalcontainer define="CONT_$IDX$_INPEUD">
+      <text label="External Input Selection"/>
+      <!-- T2 -->
+      <combo label="Pin" define="GPT12_T2.PISEL_IS$IDX$EUD" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=0"/>
+        <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T3 -->
+      <combo label="Pin" define="GPT12_T3.PISEL_IS$IDX$EUD" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=0"/>
+        <item label="P2.4" lockon="GPIO.P2_INDIS.INDIS4=1"/>
+        <item label="SDADC.CMP1" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="BEMFC.PH2_ZC_STS"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T4 -->
+      <combo label="Pin" define="GPT12_T4.PISEL_IS$IDX$EUD" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P2.0" lockon="GPIO.P2_INDIS.INDIS0=1"/>
+        <item label="P2.1" lockon="GPIO.P2_INDIS.INDIS1=1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T5 -->
+      <combo label="Pin" define="GPT12_T5.PISEL_IS$IDX$EUD" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T6 -->
+      <combo label="Pin" define="GPT12_T6.PISEL_IS$IDX$EUD" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=0"/>
+        <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Capture Transition for CAPREL -->
+    <horizontalcontainer define="CONT_$IDX$_CAPTRANS">
+      <text label="Capture Transition"/>
+      <!-- CAPIN -->
+      <combo label="Capture Transition" define="GPT12_CAPREL.T5CON_CI_$IDX$TRANS" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="On Rising Edge of CAPIN"/>
+        <item label="On Falling Edge of CAPIN"/>
+        <item label="On Rising and Falling Edge of CAPIN"/>
+      </combo>
+      <!-- T3IN/T3EUD -->
+      <combo label="Capture Transition" define="GPT12_T3.T5CON_CI_$IDX$TRANS" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="On Rising or Falling Edge of T3IN"/>
+        <item label="On Rising or Falling Edge of T3EUD"/>
+        <item label="On Rising and Falling Edge of T3IN or T3EUD"/>
+      </combo>
+    </horizontalcontainer>  
+
+    <!-- Transition for T2/T3/T4/T5/T6 -> only for Counter, Incremental and Reload/Capture modes -->
+    <horizontalcontainer define="CONT_$IDX$_TRANS">
+      <text label="Input Edge Selection"/>
+      <combo label="Input Edge Selection" define="GPT12.$IDX$CON_$IDX$I_INTRANS" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="On Rising Edge of $IDX$IN"/>
+        <item label="On Falling Edge of $IDX$IN"/>
+        <item label="On Rising and Falling Edge of $IDX$IN"/>
+      </combo>
+      <combo label="Input Edge Selection" define="GPT12.$IDX$CON_$IDX$I_OTLTRANS" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="On Rising Edge of $CORE_IDX$OTL"/>
+        <item label="On Falling Edge of $CORE_IDX$OTL"/>
+        <item label="On Rising and Falling Edge of $CORE_IDX$OTL"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Individual Prescaler -> only for Timer and Gated Timer modes -->
+    <horizontalcontainer define="CONT_$IDX$_IPS">
+      <text label="Individual Prescaler"/>
+      <combo label="Individual Prescaler" define="GPT12.$IDX$CON_$IDX$I" svd="0" setDef="GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="Block Prescaler / 1"/>
+        <item label="Block Prescaler / 2"/>
+        <item label="Block Prescaler / 4"/>
+        <item label="Block Prescaler / 8"/>
+        <item label="Block Prescaler / 16"/>
+        <item label="Block Prescaler / 32"/>
+        <item label="Block Prescaler / 64"/>
+        <item label="Block Prescaler / 128"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Remote control by T3R or T6R -> only for auxiliary timers -->
+    <horizontalcontainer define="CONT_$IDX$_RC">
+      <text label="Remote Control by $CORE_IDX$R"/>
+      <!-- For T2 -->
+      <checkbox define="GPT12_T2.$IDX$CON_$IDX$RC" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h"/>
+      <!-- For T2 -->
+      <checkbox define="GPT12_T4.$IDX$CON_$IDX$RC" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h"/>
+      <!-- For T5 -->
+      <checkbox define="GPT12_T5.$IDX$CON_$IDX$RC" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h"/>
+    </horizontalcontainer>
+
+    <!-- Counting Control and Direction -->
+    <horizontalcontainer define="CONT_$IDX$_CTRLDIR">
+      <text label="Direction Control Input"/>
+      <!-- T2 -->
+      <combo label="Pin" define="GPT12.$IDX$CON_$IDX$UDE" svd="0" setDef="GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="$IDX$UD"/>
+        <item label="$IDX$EUD"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Up/down Direction -->
+    <horizontalcontainer define="CONT_$IDX$_UPDOWN">
+      <text label="Up/Down Direction Control"/>
+      <combo label="Pin" define="GPT12.$IDX$CON_$IDX$UD" svd="0" setDef="GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="Up"/>
+        <item label="Down"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- External Direction Control -->
+    <horizontalcontainer define="CONT_$IDX$_EXTDIR">
+      <text label="External Direction Control"/>
+      <!-- T2 -->
+      <combo label="Pin" define="GPT12_T2.PISEL_IS$IDX$EUD_DIRCTRL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P0.2" lockon="GPIO.P0_DIR.DIR2=0"/>
+        <item label="P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T3 -->
+      <combo label="Pin" define="GPT12_T3.PISEL_IS$IDX$EUD_DIRCTRL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=0"/>
+        <item label="P2.4" lockon="GPIO.P2_INDIS.INDIS4=1"/>
+        <item label="SDADC.CMP1" startcond="UC_FEATURE_SDADC==1"/>
+        <item label="BEMFC.PH2_ZC_STS"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T4 -->
+      <combo label="Pin" define="GPT12_T4.PISEL_IS$IDX$EUD_DIRCTRL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="P2.0" lockon="GPIO.P2_INDIS.INDIS0=1"/>
+        <item label="P2.1" lockon="GPIO.P2_INDIS.INDIS1=1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T5 -->
+      <combo label="Pin" define="GPT12_T5.PISEL_IS$IDX$EUD_DIRCTRL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+      <!-- T6 -->
+      <combo label="Pin" define="GPT12_T6.PISEL_IS$IDX$EUD_DIRCTRL" default="label=none" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="P0.0" lockon="GPIO.P0_DIR.DIR0=0"/>
+        <item label="P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=0" startcond="UC_FEATURE_64PIN==1"/>
+        <item label="none" value="0xFF"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- Overflow/Underflow Toggle Latch -> only for T3 and T6 -->
+    <horizontalcontainer define="CONT_$IDX$_OTL">
+      <text label="Overflow/Underflow Toggle Latch"/>
+      <checkbox define="GPT12.$CORE_IDX$CON_$IDX$OTL" svd="0" header="temp_defines.h">
+        <action event="checked" cmd="setDef" data="$CORE_IDX$LATCH=1;GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1"/>
+        <action cond="GPT12_T2.PISEL_IST2IN_OTL==2" event="unchecked" cmd="setDef" data="GPT12_T2.PISEL_IST2IN_OTL=0"/>
+        <action cond="GPT12_T4.PISEL_IST4IN_OTL==4" event="unchecked" cmd="setDef" data="GPT12_T4.PISEL_IST4IN_OTL=0"/>
+        <action event="unchecked" cmd="setDef" data="$CORE_IDX$LATCH=0;GPT12_UPDATE_MODE1.run=1;GPT12_UPDATE_MODE2.run=1"/>
+      </checkbox>
+    </horizontalcontainer>
+
+    <!-- Over-/Underflow Output -> only for T3 and T6 -->
+    <horizontalcontainer define="CONT_$IDX$_OUT">
+      <text label="Overflow/Underflow Output"/>
+      <!-- T3 -->
+      <combo label="Status" define="GPT12_T3.$CORE_IDX$CON_$IDX$OE" svd="0" setDef="GPT12_UPDATE_MODE1.run=1" header="temp_defines.h">
+        <item label="Disabled, T3OUT outputs a high level">
+          <action event="selected" cmd="setDef" data="T3OUT=T3OUT n/a"/>
+        </item>
+        <item label="Enabled, T3OUT outputs the state of T3OTL on P0.2" lockon="GPIO.P0_DIR.DIR2=1;GPIO.P0_ALTSEL0.ALTSEL2=2">
+          <action event="selected" cmd="setDef" data="T3OUT=P0.2"/>
+        </item>
+        <item label="Enabled, T3OUT outputs the state of T3OTL on P1.1" lockon="GPIO.P1_DIR.DIR1=1;GPIO.P1_ALTSEL0.ALTSEL1=4">
+          <action event="selected" cmd="setDef" data="T3OUT=P1.1"/>
+        </item>
+        <item label="Enabled, T3OUT outputs the state of T3OTL on P0.4 (*)" lockon="GPIO.P0_DIR.DIR4=1;GPIO.P0_ALTSEL0.ALTSEL4=5" startcond="UC_FEATURE_64PIN==1">
+          <action event="selected" cmd="setDef" data="T3OUT=P0.4"/>
+        </item>
+        <item label="Enabled, T3OUT outputs the state of T3OTL on CCU7.T12HRD" lockon="CCU7_IST12HR=4"/>
+        <item label="Enabled, T3OUT outputs the state of T3OTL on CANTRX.TXDC"/>
+      </combo>
+      <!-- T6 -->
+      <combo label="Status" define="GPT12_T6.$CORE_IDX$CON_$IDX$OE" svd="0" setDef="GPT12_UPDATE_MODE2.run=1" header="temp_defines.h">
+        <item label="Disabled, T6OUT outputs a high level">
+          <action event="selected" cmd="setDef" data="T6OUT=T6OUT n/a"/>
+        </item>
+        <item label="Enabled, T6OUT outputs the state of T6OTL on P0.1" lockon="GPIO.P0_DIR.DIR1=1;GPIO.P0_ALTSEL0.ALTSEL1=2">
+          <action event="selected" cmd="setDef" data="T6OUT=P0.1"/>
+        </item>
+        <item label="Enabled, T6OUT outputs the state of T6OTL on P0.7 (*)" lockon="GPIO.P0_DIR.DIR7=1;GPIO.P0_ALTSEL0.ALTSEL7=6" startcond="UC_FEATURE_64PIN==1">
+          <action event="selected" cmd="setDef" data="T6OUT=P0.7"/>
+        </item>
+        <item label="Enabled, T6OUT outputs the state of T6OTL on P1.0" lockon="GPIO.P1_DIR.DIR0=1;GPIO.P1_ALTSEL0.ALTSEL0=3">
+          <action event="selected" cmd="setDef" data="T6OUT=P1.0"/>
+        </item>
+        <item label="Enabled, T6OUT outputs the state of T6OTL on P1.3 (*)" lockon="GPIO.P1_DIR.DIR3=1;GPIO.P1_ALTSEL0.ALTSEL3=5" startcond="UC_FEATURE_64PIN==1">
+          <action event="selected" cmd="setDef" data="T6OUT=P1.3"/>
+        </item>
+        <item label="Enabled, T6OUT outputs the state of T6OTL on CCU7.T12HRE" lockon="CCU7_IST12HR=5"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- T2/T4 Interrupt Enable -->
+    <horizontalcontainer define="CONT_$IDX$_INTEN">
+      <text label="Interrupt Enable"/>
+      <checkbox define="$IDX$_INT_EN" svd="0" header="temp_defines.h"/>
+    </horizontalcontainer>
+
+    <!-- Clearing T2/T3 on falling edge of T4 -->
+    <horizontalcontainer define="CONT_$IDX$_FALLEDGECLR">
+      <text label="Clear on Falling Edge"/>
+      <combo label="Clear on Falling Edge" define="GPT12.$IDX$CON_CLRTxEN" svd="0" header="temp_defines.h">
+        <item label="Disabled"/>
+        <item label="A falling edge on T4EUD clears T2"/>
+        <item label="A falling edge on T4IN clears T3"/>
+        <item label="A falling edge on T4EUD and T4IN clears T2 and T3"/>
+      </combo>
+    </horizontalcontainer>
+
+    <!-- In case of Capture from CAPREL -->
+    <horizontalcontainer define="CONT_$IDX$_CAPT">
+      <text label="In Case of Capture"/>
+    </horizontalcontainer>
+
+    <!-- Clear Timer on a capture event -> only for T6 and T5 -->
+    <horizontalcontainer define="CONT_$IDX$_CLRTMR">
+      <!-- Capture/Reload -->
+      <text label="-> Clear $IDX$ on a Capture Event"/>
+      <checkbox define="GPT12.$IDX$CON_$IDX$CLR" svd="0" header="temp_defines.h">
+        <action event="checked" cmd="setDef" data="GPT12_UPDATE_MODE2.run=1"/>
+        <action event="unchecked" cmd="setDef" data="GPT12_UPDATE_MODE2.run=1"/>
+      </checkbox>
+    </horizontalcontainer>
+
+    <!-- IDX Register -->
+    <horizontalcontainer define="CONT_$IDX$_REG">
+      <text label="$IDX$ Register"/>
+      <spinbox label="Value" define="GPT12.$IDX$_VAL" svd="0" default="0" range="0;65535" size="140;-1" header="temp_defines.h"/>
+      <combo define="$IDX$_UNIT" svd="0" size="100;-1">
+        <item label="ticks"/>
+        <item label="us"/>
+      </combo>
+      <math visible="false" label="GPT12.$IDX$_VAL_MAX" define="GPT12.$IDX$_VAL_MAX" svd="0" formula="$IDX$_UNIT==0?(65535):(65535*1000000/f$IDX$)" header="temp_defines.h">
+        <action event="changed" cmd="setDef" data="GPT12.$IDX$_VAL.max=GPT12.$IDX$_VAL_MAX"/>
+      </math>
+      <text label="" size="50;-1"/>
+      <math label="Timer Value" unit=" ticks" define="GPT12.$IDX$_REGVAL" svd="0" format="%04X" formula="GPT12.$IDX$.$IDX$" size="127;-1" header="temp_defines.h"/>
+    </horizontalcontainer>
+
+  </verticalcontainer>          
+</ifxmlcfg>
+

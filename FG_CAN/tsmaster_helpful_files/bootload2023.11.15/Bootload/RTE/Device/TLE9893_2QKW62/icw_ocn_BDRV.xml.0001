@@ -1,0 +1,1336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_BDRV.xml                                                           -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-28, BG:   EP-478: Updated dithering frequencies with default   -->
+<!--                           values and changed comma to decimal point in combobox-->
+<!-- V0.0.3: 2020-10-16, BG:   EP-528: Updated display of overcurrent shutdown      -->
+<!--                           for LSx/HSx                                          -->
+<!-- V0.0.4: 2020-10-21, BG:   EP-539: Enabled the module per default               -->
+<!-- V0.0.5: 2020-11-09, BG:   EP-577: Updated element display for the CP and the   -->
+<!--                           Control and Diagnosis containers                     -->
+<!--                           EP-577: Added checkbox to have HB2/HB3 same as HB1   -->
+<!-- V0.0.6: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>5d6491e518c831a0b854b8ce18079d8436be981e43f010c3525469dc517d47d2</checksum>
+  <version label="V0.0.6"/>
+  <svd file="TLE989x.svd"/>
+  <verticalcontainer label="BDRV" desc="Bridge Driver">
+    <header file="bdrv_defines.h">
+
+      <timer visible="false" define="BDRV_INIT" svd="0" interval="1" singleShot="1" run="0" header="">
+        <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+      </timer>
+
+      <timer visible="false" define="BDRV_UPDATE" svd="0" interval="1" singleShot="1" run="0" header="">
+        <!-- Charge Pump -->
+        <action cond="BDRV.CP_CTRL.VCP_LOWSRC_SEL==0" event="changed" cmd="setDef" data="BDRV.CP_CTRL.CPLOW_TFILT_SEL.enabled=0"/>
+        <action cond="BDRV.CP_CTRL.VCP_LOWSRC_SEL==1" event="changed" cmd="setDef" data="BDRV.CP_CTRL.CPLOW_TFILT_SEL.enabled=1"/>
+        <!-- Half-bridges -->
+        <action cond="(BDRV.CTRL2.HB1ONSEQCNF==0).*(BDRV.CTRL2.HB2ONSEQCNF==0).*(BDRV.CTRL2.HB3ONSEQCNF==0)" event="changed" cmd="setDef" data="BDRV_T2CHRGSEQ.visible=0;BDRV_I2CHRGSEQ.visible=0;BDRV_T3CHRGSEQ.visible=0;BDRV_I3CHRGSEQ.visible=0;BDRV_T4CHRGSEQ.visible=0;BDRV_I4CHRGSEQ.visible=0;BDRV_T2DISCHRGSEQ.visible=0;BDRV_I2DISCHRGSEQ.visible=0;BDRV_T3DISCHRGSEQ.visible=0;BDRV_I3DISCHRGSEQ.visible=0;BDRV_T4DISCHRGSEQ.visible=0;BDRV_I4DISCHRGSEQ.visible=0;BDRV.TCHRGCONST_TXT.visible=1;BDRV.ICHRGCONST_TXT.visible=1;BDRV.TCHRGSEQ_TXT.visible=0;BDRV.ICHRGSEQ_TXT.visible=0;BDRV.TDISCHRGCONST_TXT.visible=1;BDRV.IDISCHRGCONST_TXT.visible=1;BDRV.TDISCHRGSEQ_TXT.visible=0;BDRV.IDISCHRGSEQ_TXT.visible=0"/>
+        <action cond="(BDRV.CTRL2.HB1ONSEQCNF==1).+(BDRV.CTRL2.HB2ONSEQCNF==1).+(BDRV.CTRL2.HB3ONSEQCNF==1)" event="changed" cmd="setDef" data="BDRV_T2CHRGSEQ.visible=1;BDRV_I2CHRGSEQ.visible=1;BDRV_T3CHRGSEQ.visible=1;BDRV_I3CHRGSEQ.visible=1;BDRV_T4CHRGSEQ.visible=1;BDRV_I4CHRGSEQ.visible=1;BDRV_T2DISCHRGSEQ.visible=1;BDRV_I2DISCHRGSEQ.visible=1;BDRV_T3DISCHRGSEQ.visible=1;BDRV_I3DISCHRGSEQ.visible=1;BDRV_T4DISCHRGSEQ.visible=1;BDRV_I4DISCHRGSEQ.visible=1;BDRV.TCHRGCONST_TXT.visible=0;BDRV.ICHRGCONST_TXT.visible=0;BDRV.TCHRGSEQ_TXT.visible=1;BDRV.ICHRGSEQ_TXT.visible=1;BDRV.TDISCHRGCONST_TXT.visible=0;BDRV.IDISCHRGCONST_TXT.visible=0;BDRV.TDISCHRGSEQ_TXT.visible=1;BDRV.IDISCHRGSEQ_TXT.visible=1"/>
+        <action cond="BDRV.CTRL2.HB1ONSEQCNF==0" event="changed" cmd="setDef" data="BDRV_HB1TCHRGCONST.visible=1;BDRV_HB1T1CHRGSEQ.visible=0;BDRV_HB1ICHRGCONST.visible=1;BDRV_HB1I1CHRGSEQ.visible=0;BDRV_HB1T2CHRGSEQ.visible=0;BDRV_HB1T2CHRGSEQ_GHOST.visible=1;BDRV_HB1I2CHRGSEQ.visible=0;BDRV_HB1I2CHRGSEQ_GHOST.visible=1;BDRV_HB1T3CHRGSEQ.visible=0;BDRV_HB1T3CHRGSEQ_GHOST.visible=1;BDRV_HB1I3CHRGSEQ.visible=0;BDRV_HB1I3CHRGSEQ_GHOST.visible=1;BDRV_HB1T4CHRGSEQ.visible=0;BDRV_HB1T4CHRGSEQ_GHOST.visible=1;BDRV_HB1I4CHRGSEQ.visible=0;BDRV_HB1I4CHRGSEQ_GHOST.visible=1;BDRV_HB1TDISCHRGCONST.visible=1;BDRV_HB1T1DISCHRGSEQ.visible=0;BDRV_HB1IDISCHRGCONST.visible=1;BDRV_HB1I1DISCHRGSEQ.visible=0;BDRV_HB1T2DISCHRGSEQ.visible=0;BDRV_HB1T2DISCHRGSEQ_GHOST.visible=1;BDRV_HB1I2DISCHRGSEQ.visible=0;BDRV_HB1I2DISCHRGSEQ_GHOST.visible=1;BDRV_HB1T3DISCHRGSEQ.visible=0;BDRV_HB1T3DISCHRGSEQ_GHOST.visible=1;BDRV_HB1I3DISCHRGSEQ.visible=0;BDRV_HB1I3DISCHRGSEQ_GHOST.visible=1;BDRV_HB1T4DISCHRGSEQ.visible=0;BDRV_HB1T4DISCHRGSEQ_GHOST.visible=1;BDRV_HB1I4DISCHRGSEQ.visible=0;BDRV_HB1I4DISCHRGSEQ_GHOST.visible=1"/>
+        <action cond="BDRV.CTRL2.HB1ONSEQCNF==1" event="changed" cmd="setDef" data="BDRV_HB1TCHRGCONST.visible=0;BDRV_HB1T1CHRGSEQ.visible=1;BDRV_HB1ICHRGCONST.visible=0;BDRV_HB1I1CHRGSEQ.visible=1;BDRV_HB1T2CHRGSEQ.visible=1;BDRV_HB1T2CHRGSEQ_GHOST.visible=0;BDRV_HB1I2CHRGSEQ.visible=1;BDRV_HB1I2CHRGSEQ_GHOST.visible=0;BDRV_HB1T3CHRGSEQ.visible=1;BDRV_HB1T3CHRGSEQ_GHOST.visible=0;BDRV_HB1I3CHRGSEQ.visible=1;BDRV_HB1I3CHRGSEQ_GHOST.visible=0;BDRV_HB1T4CHRGSEQ.visible=1;BDRV_HB1T4CHRGSEQ_GHOST.visible=0;BDRV_HB1I4CHRGSEQ.visible=1;BDRV_HB1I4CHRGSEQ_GHOST.visible=0;BDRV_HB1TDISCHRGCONST.visible=0;BDRV_HB1T1DISCHRGSEQ.visible=1;BDRV_HB1IDISCHRGCONST.visible=0;BDRV_HB1I1DISCHRGSEQ.visible=1;BDRV_HB1T2DISCHRGSEQ.visible=1;BDRV_HB1T2DISCHRGSEQ_GHOST.visible=0;BDRV_HB1I2DISCHRGSEQ.visible=1;BDRV_HB1I2DISCHRGSEQ_GHOST.visible=0;BDRV_HB1T3DISCHRGSEQ.visible=1;BDRV_HB1T3DISCHRGSEQ_GHOST.visible=0;BDRV_HB1I3DISCHRGSEQ.visible=1;BDRV_HB1I3DISCHRGSEQ_GHOST.visible=0;BDRV_HB1T4DISCHRGSEQ.visible=1;BDRV_HB1T4DISCHRGSEQ_GHOST.visible=0;BDRV_HB1I4DISCHRGSEQ.visible=1;BDRV_HB1I4DISCHRGSEQ_GHOST.visible=0"/>
+        <action cond="BDRV.CTRL2.HB2ONSEQCNF==0" event="changed" cmd="setDef" data="BDRV_HB2TCHRGCONST.visible=1;BDRV_HB2T1CHRGSEQ.visible=0;BDRV_HB2ICHRGCONST.visible=1;BDRV_HB2I1CHRGSEQ.visible=0;BDRV_HB2T2CHRGSEQ.visible=0;BDRV_HB2T2CHRGSEQ_GHOST.visible=1;BDRV_HB2I2CHRGSEQ.visible=0;BDRV_HB2I2CHRGSEQ_GHOST.visible=1;BDRV_HB2T3CHRGSEQ.visible=0;BDRV_HB2T3CHRGSEQ_GHOST.visible=1;BDRV_HB2I3CHRGSEQ.visible=0;BDRV_HB2I3CHRGSEQ_GHOST.visible=1;BDRV_HB2T4CHRGSEQ.visible=0;BDRV_HB2T4CHRGSEQ_GHOST.visible=1;BDRV_HB2I4CHRGSEQ.visible=0;BDRV_HB2I4CHRGSEQ_GHOST.visible=1;BDRV_HB2TDISCHRGCONST.visible=1;BDRV_HB2T1DISCHRGSEQ.visible=0;BDRV_HB2IDISCHRGCONST.visible=1;BDRV_HB2I1DISCHRGSEQ.visible=0;BDRV_HB2T2DISCHRGSEQ.visible=0;BDRV_HB2T2DISCHRGSEQ_GHOST.visible=1;BDRV_HB2I2DISCHRGSEQ.visible=0;BDRV_HB2I2DISCHRGSEQ_GHOST.visible=1;BDRV_HB2T3DISCHRGSEQ.visible=0;BDRV_HB2T3DISCHRGSEQ_GHOST.visible=1;BDRV_HB2I3DISCHRGSEQ.visible=0;BDRV_HB2I3DISCHRGSEQ_GHOST.visible=1;BDRV_HB2T4DISCHRGSEQ.visible=0;BDRV_HB2T4DISCHRGSEQ_GHOST.visible=1;BDRV_HB2I4DISCHRGSEQ.visible=0;BDRV_HB2I4DISCHRGSEQ_GHOST.visible=1"/>
+        <action cond="BDRV.CTRL2.HB2ONSEQCNF==1" event="changed" cmd="setDef" data="BDRV_HB2TCHRGCONST.visible=0;BDRV_HB2T1CHRGSEQ.visible=1;BDRV_HB2ICHRGCONST.visible=0;BDRV_HB2I1CHRGSEQ.visible=1;BDRV_HB2T2CHRGSEQ.visible=1;BDRV_HB2T2CHRGSEQ_GHOST.visible=0;BDRV_HB2I2CHRGSEQ.visible=1;BDRV_HB2I2CHRGSEQ_GHOST.visible=0;BDRV_HB2T3CHRGSEQ.visible=1;BDRV_HB2T3CHRGSEQ_GHOST.visible=0;BDRV_HB2I3CHRGSEQ.visible=1;BDRV_HB2I3CHRGSEQ_GHOST.visible=0;BDRV_HB2T4CHRGSEQ.visible=1;BDRV_HB2T4CHRGSEQ_GHOST.visible=0;BDRV_HB2I4CHRGSEQ.visible=1;BDRV_HB2I4CHRGSEQ_GHOST.visible=0;BDRV_HB2TDISCHRGCONST.visible=0;BDRV_HB2T1DISCHRGSEQ.visible=1;BDRV_HB2IDISCHRGCONST.visible=0;BDRV_HB2I1DISCHRGSEQ.visible=1;BDRV_HB2T2DISCHRGSEQ.visible=1;BDRV_HB2T2DISCHRGSEQ_GHOST.visible=0;BDRV_HB2I2DISCHRGSEQ.visible=1;BDRV_HB2I2DISCHRGSEQ_GHOST.visible=0;BDRV_HB2T3DISCHRGSEQ.visible=1;BDRV_HB2T3DISCHRGSEQ_GHOST.visible=0;BDRV_HB2I3DISCHRGSEQ.visible=1;BDRV_HB2I3DISCHRGSEQ_GHOST.visible=0;BDRV_HB2T4DISCHRGSEQ.visible=1;BDRV_HB2T4DISCHRGSEQ_GHOST.visible=0;BDRV_HB2I4DISCHRGSEQ.visible=1;BDRV_HB2I4DISCHRGSEQ_GHOST.visible=0"/>
+        <action cond="BDRV.CTRL2.HB3ONSEQCNF==0" event="changed" cmd="setDef" data="BDRV_HB3TCHRGCONST.visible=1;BDRV_HB3T1CHRGSEQ.visible=0;BDRV_HB3ICHRGCONST.visible=1;BDRV_HB3I1CHRGSEQ.visible=0;BDRV_HB3T2CHRGSEQ.visible=0;BDRV_HB3T2CHRGSEQ_GHOST.visible=1;BDRV_HB3I2CHRGSEQ.visible=0;BDRV_HB3I2CHRGSEQ_GHOST.visible=1;BDRV_HB3T3CHRGSEQ.visible=0;BDRV_HB3T3CHRGSEQ_GHOST.visible=1;BDRV_HB3I3CHRGSEQ.visible=0;BDRV_HB3I3CHRGSEQ_GHOST.visible=1;BDRV_HB3T4CHRGSEQ.visible=0;BDRV_HB3T4CHRGSEQ_GHOST.visible=1;BDRV_HB3I4CHRGSEQ.visible=0;BDRV_HB3I4CHRGSEQ_GHOST.visible=1;BDRV_HB3TDISCHRGCONST.visible=1;BDRV_HB3T1DISCHRGSEQ.visible=0;BDRV_HB3IDISCHRGCONST.visible=1;BDRV_HB3I1DISCHRGSEQ.visible=0;BDRV_HB3T2DISCHRGSEQ.visible=0;BDRV_HB3T2DISCHRGSEQ_GHOST.visible=1;BDRV_HB3I2DISCHRGSEQ.visible=0;BDRV_HB3I2DISCHRGSEQ_GHOST.visible=1;BDRV_HB3T3DISCHRGSEQ.visible=0;BDRV_HB3T3DISCHRGSEQ_GHOST.visible=1;BDRV_HB3I3DISCHRGSEQ.visible=0;BDRV_HB3I3DISCHRGSEQ_GHOST.visible=1;BDRV_HB3T4DISCHRGSEQ.visible=0;BDRV_HB3T4DISCHRGSEQ_GHOST.visible=1;BDRV_HB3I4DISCHRGSEQ.visible=0;BDRV_HB3I4DISCHRGSEQ_GHOST.visible=1"/>
+        <action cond="BDRV.CTRL2.HB3ONSEQCNF==1" event="changed" cmd="setDef" data="BDRV_HB3TCHRGCONST.visible=0;BDRV_HB3T1CHRGSEQ.visible=1;BDRV_HB3ICHRGCONST.visible=0;BDRV_HB3I1CHRGSEQ.visible=1;BDRV_HB3T2CHRGSEQ.visible=1;BDRV_HB3T2CHRGSEQ_GHOST.visible=0;BDRV_HB3I2CHRGSEQ.visible=1;BDRV_HB3I2CHRGSEQ_GHOST.visible=0;BDRV_HB3T3CHRGSEQ.visible=1;BDRV_HB3T3CHRGSEQ_GHOST.visible=0;BDRV_HB3I3CHRGSEQ.visible=1;BDRV_HB3I3CHRGSEQ_GHOST.visible=0;BDRV_HB3T4CHRGSEQ.visible=1;BDRV_HB3T4CHRGSEQ_GHOST.visible=0;BDRV_HB3I4CHRGSEQ.visible=1;BDRV_HB3I4CHRGSEQ_GHOST.visible=0;BDRV_HB3TDISCHRGCONST.visible=0;BDRV_HB3T1DISCHRGSEQ.visible=1;BDRV_HB3IDISCHRGCONST.visible=0;BDRV_HB3I1DISCHRGSEQ.visible=1;BDRV_HB3T2DISCHRGSEQ.visible=1;BDRV_HB3T2DISCHRGSEQ_GHOST.visible=0;BDRV_HB3I2DISCHRGSEQ.visible=1;BDRV_HB3I2DISCHRGSEQ_GHOST.visible=0;BDRV_HB3T3DISCHRGSEQ.visible=1;BDRV_HB3T3DISCHRGSEQ_GHOST.visible=0;BDRV_HB3I3DISCHRGSEQ.visible=1;BDRV_HB3I3DISCHRGSEQ_GHOST.visible=0;BDRV_HB3T4DISCHRGSEQ.visible=1;BDRV_HB3T4DISCHRGSEQ_GHOST.visible=0;BDRV_HB3I4DISCHRGSEQ.visible=1;BDRV_HB3I4DISCHRGSEQ_GHOST.visible=0"/>
+        <action cond="BDRV.ASEQC.HB1ASMONEN==0" event="changed" cmd="setDef" data="BDRV_CHRGMINMAX.enabled=0;BDRV_HB1CHRGPH12T.enabled=0;BDRV_HB1CHRGPH1I.enabled=0"/>
+        <action cond="BDRV.ASEQC.HB1ASMONEN==1" event="changed" cmd="setDef" data="BDRV_CHRGMINMAX.enabled=1;BDRV_HB1CHRGPH12T.enabled=1;BDRV_HB1CHRGPH1I.enabled=1"/>
+        <action cond="BDRV.ASEQC.HB2ASMONEN==0" event="changed" cmd="setDef" data="BDRV_CHRGMINMAX.enabled=0;BDRV_HB2CHRGPH12T.enabled=0;BDRV_HB2CHRGPH1I.enabled=0"/>
+        <action cond="BDRV.ASEQC.HB2ASMONEN==1" event="changed" cmd="setDef" data="BDRV_CHRGMINMAX.enabled=1;BDRV_HB2CHRGPH12T.enabled=1;BDRV_HB2CHRGPH1I.enabled=1"/>
+        <action cond="BDRV.ASEQC.HB3ASMONEN==0" event="changed" cmd="setDef" data="BDRV_CHRGMINMAX.enabled=0;BDRV_HB3CHRGPH12T.enabled=0;BDRV_HB3CHRGPH1I.enabled=0"/>
+        <action cond="BDRV.ASEQC.HB3ASMONEN==1" event="changed" cmd="setDef" data="BDRV_CHRGMINMAX.enabled=1;BDRV_HB3CHRGPH12T.enabled=1;BDRV_HB3CHRGPH1I.enabled=1"/>
+        <action cond="BDRV.ASEQC.HB1ASMOFFEN==0" event="changed" cmd="setDef" data="BDRV_DISCHRGMINMAX.enabled=0;BDRV_HB1DISCHRGPH1T.enabled=0;BDRV_HB1DISCHRGPH1I.enabled=0;BDRV_HB1DISCHRGPH1TDELAY.enabled=0"/>
+        <action cond="BDRV.ASEQC.HB1ASMOFFEN==1" event="changed" cmd="setDef" data="BDRV_DISCHRGMINMAX.enabled=1;BDRV_HB1DISCHRGPH1T.enabled=1;BDRV_HB1DISCHRGPH1I.enabled=1;BDRV_HB1DISCHRGPH1TDELAY.enabled=1"/>
+        <action cond="BDRV.ASEQC.HB2ASMOFFEN==0" event="changed" cmd="setDef" data="BDRV_DISCHRGMINMAX.enabled=0;BDRV_HB2DISCHRGPH1T.enabled=0;BDRV_HB2DISCHRGPH1I.enabled=0;BDRV_HB2DISCHRGPH1TDELAY.enabled=0"/>
+        <action cond="BDRV.ASEQC.HB2ASMOFFEN==1" event="changed" cmd="setDef" data="BDRV_DISCHRGMINMAX.enabled=1;BDRV_HB2DISCHRGPH1T.enabled=1;BDRV_HB2DISCHRGPH1I.enabled=1;BDRV_HB2DISCHRGPH1TDELAY.enabled=1"/>
+        <action cond="BDRV.ASEQC.HB3ASMOFFEN==0" event="changed" cmd="setDef" data="BDRV_DISCHRGMINMAX.enabled=0;BDRV_HB3DISCHRGPH1T.enabled=0;BDRV_HB3DISCHRGPH1I.enabled=0;BDRV_HB3DISCHRGPH1TDELAY.enabled=0"/>
+        <action cond="BDRV.ASEQC.HB3ASMOFFEN==1" event="changed" cmd="setDef" data="BDRV_DISCHRGMINMAX.enabled=1;BDRV_HB3DISCHRGPH1T.enabled=1;BDRV_HB3DISCHRGPH1I.enabled=1;BDRV_HB3DISCHRGPH1TDELAY.enabled=1"/>
+        <action cond="BDRV.HB2_CFG==1" event="changed" cmd="setDef" data="BDRV.CTRL2.HB2ONSEQCNF=BDRV.CTRL2.HB1ONSEQCNF;BDRV.LS2CONSTIC_LS2_ICON=BDRV.LS1CONSTIC_LS1_ICON;BDRV.HS2CONSTIC_HS2_ICON=BDRV.HS1CONSTIC_HS1_ICON;BDRV.LS2SEQONIC_LS2_I1ON=BDRV.LS1SEQONIC_LS1_I1ON;BDRV.LS2SEQONIC_LS2_I2ON=BDRV.LS1SEQONIC_LS1_I2ON;BDRV.LS2SEQONIC_LS2_I3ON=BDRV.LS1SEQONIC_LS1_I3ON;BDRV.LS2SEQONIC_LS2_I4ON=BDRV.LS1SEQONIC_LS1_I4ON;BDRV.HS2SEQONIC_HS2_I1ON=BDRV.HS1SEQONIC_HS1_I1ON;BDRV.HS2SEQONIC_HS2_I2ON=BDRV.HS1SEQONIC_HS1_I2ON;BDRV.HS2SEQONIC_HS2_I3ON=BDRV.HS1SEQONIC_HS1_I3ON;BDRV.HS2SEQONIC_HS2_I4ON=BDRV.HS1SEQONIC_HS1_I4ON"/>
+        <action cond="BDRV.HB2_CFG==1" event="changed" cmd="setDef" data="BDRV.LS2CONSTIC_LS2_ICOFF=BDRV.LS1CONSTIC_LS1_ICOFF;BDRV.HS2CONSTIC_HS2_ICOFF=BDRV.HS1CONSTIC_HS1_ICOFF;BDRV.LS2SEQOFFIC_LS2_I1OFF=BDRV.LS1SEQOFFIC_LS1_I1OFF;BDRV.LS2SEQOFFIC_LS2_I2OFF=BDRV.LS1SEQOFFIC_LS1_I2OFF;BDRV.LS2SEQOFFIC_LS2_I3OFF=BDRV.LS1SEQOFFIC_LS1_I3OFF;BDRV.LS2SEQOFFIC_LS2_I4OFF=BDRV.LS1SEQOFFIC_LS1_I4OFF;BDRV.HS2SEQOFFIC_HS2_I1OFF=BDRV.HS1SEQOFFIC_HS1_I1OFF;BDRV.HS2SEQOFFIC_HS2_I2OFF=BDRV.HS1SEQOFFIC_HS1_I2OFF;BDRV.HS2SEQOFFIC_HS2_I3OFF=BDRV.HS1SEQOFFIC_HS1_I3OFF;BDRV.HS2SEQOFFIC_HS2_I4OFF=BDRV.HS1SEQOFFIC_HS1_I4OFF"/>
+        <action cond="BDRV.HB2_CFG==1" event="changed" cmd="setDef" data="BDRV.LS2CONSTTC_LS2_TCON=BDRV.LS1CONSTTC_LS1_TCON;BDRV.HS2CONSTTC_HS2_TCON=BDRV.HS1CONSTTC_HS1_TCON;BDRV.LS2SEQONTC_LS2_T1ON=BDRV.LS1SEQONTC_LS1_T1ON;BDRV.LS2SEQONTC_LS2_T2ON=BDRV.LS1SEQONTC_LS1_T2ON;BDRV.LS2SEQONTC_LS2_T3ON=BDRV.LS1SEQONTC_LS1_T3ON;BDRV.LS2SEQONTC_LS2_T4ON=BDRV.LS1SEQONTC_LS1_T4ON;BDRV.HS2SEQONTC_HS2_T1ON=BDRV.HS1SEQONTC_HS1_T1ON;BDRV.HS2SEQONTC_HS2_T2ON=BDRV.HS1SEQONTC_HS1_T2ON;BDRV.HS2SEQONTC_HS2_T3ON=BDRV.HS1SEQONTC_HS1_T3ON;BDRV.HS2SEQONTC_HS2_T4ON=BDRV.HS1SEQONTC_HS1_T4ON"/>
+        <action cond="BDRV.HB2_CFG==1" event="changed" cmd="setDef" data="BDRV.LS2CONSTTC_LS2_TCOFF=BDRV.LS1CONSTTC_LS1_TCOFF;BDRV.HS2CONSTTC_HS2_TCOFF=BDRV.HS1CONSTTC_HS1_TCOFF;BDRV.LS2SEQOFFTC_LS2_T1OFF=BDRV.LS1SEQOFFTC_LS1_T1OFF;BDRV.LS2SEQOFFTC_LS2_T2OFF=BDRV.LS1SEQOFFTC_LS1_T2OFF;BDRV.LS2SEQOFFTC_LS2_T3OFF=BDRV.LS1SEQOFFTC_LS1_T3OFF;BDRV.LS2SEQOFFTC_LS2_T4OFF=BDRV.LS1SEQOFFTC_LS1_T4OFF;BDRV.HS2SEQOFFTC_HS2_T1OFF=BDRV.HS1SEQOFFTC_HS1_T1OFF;BDRV.HS2SEQOFFTC_HS2_T2OFF=BDRV.HS1SEQOFFTC_HS1_T2OFF;BDRV.HS2SEQOFFTC_HS2_T3OFF=BDRV.HS1SEQOFFTC_HS1_T3OFF;BDRV.HS2SEQOFFTC_HS2_T4OFF=BDRV.HS1SEQOFFTC_HS1_T4OFF"/>
+        <action cond="BDRV.HB2_CFG==1" event="changed" cmd="setDef" data="BDRV.HB2IGATECLMPC_HB2_ICLMPON=BDRV.HB1IGATECLMPC_HB1_ICLMPON;BDRV.HB2IGATECLMPC_HB2_ICLMPOFF=BDRV.HB1IGATECLMPC_HB1_ICLMPOFF"/>
+        <action cond="BDRV.HB2_CFG==1" event="changed" cmd="setDef" data="BDRV.ASEQC.HB2ASMONEN=BDRV.ASEQC.HB1ASMONEN;BDRV.ASEQC.HB2ASMOFFEN=BDRV.ASEQC.HB1ASMOFFEN;BDRV.ASEQOFFADDDLY_LS2T1OFFADDDLY=BDRV.ASEQOFFADDDLY_LS1T1OFFADDDLY;BDRV.ASEQOFFADDDLY_HS2T1OFFADDDLY=BDRV.ASEQOFFADDDLY_HS1T1OFFADDDLY;BDRV.ASEQC.HB2ONHYSTEN=BDRV.ASEQC.HB1ONHYSTEN;BDRV.ASEQC.HB2OFFHYSTEN=BDRV.ASEQC.HB1OFFHYSTEN"/>
+        <action cond="BDRV.HB3_CFG==1" event="changed" cmd="setDef" data="BDRV.CTRL2.HB3ONSEQCNF=BDRV.CTRL2.HB1ONSEQCNF;BDRV.LS3CONSTIC_LS3_ICON=BDRV.LS1CONSTIC_LS1_ICON;BDRV.HS3CONSTIC_HS3_ICON=BDRV.HS1CONSTIC_HS1_ICON;BDRV.LS3SEQONIC_LS3_I1ON=BDRV.LS1SEQONIC_LS1_I1ON;BDRV.LS3SEQONIC_LS3_I2ON=BDRV.LS1SEQONIC_LS1_I2ON;BDRV.LS3SEQONIC_LS3_I3ON=BDRV.LS1SEQONIC_LS1_I3ON;BDRV.LS3SEQONIC_LS3_I4ON=BDRV.LS1SEQONIC_LS1_I4ON;BDRV.HS3SEQONIC_HS3_I1ON=BDRV.HS1SEQONIC_HS1_I1ON;BDRV.HS3SEQONIC_HS3_I2ON=BDRV.HS1SEQONIC_HS1_I2ON;BDRV.HS3SEQONIC_HS3_I3ON=BDRV.HS1SEQONIC_HS1_I3ON;BDRV.HS3SEQONIC_HS3_I4ON=BDRV.HS1SEQONIC_HS1_I4ON"/>
+        <action cond="BDRV.HB3_CFG==1" event="changed" cmd="setDef" data="BDRV.LS3CONSTIC_LS3_ICOFF=BDRV.LS1CONSTIC_LS1_ICOFF;BDRV.HS3CONSTIC_HS3_ICOFF=BDRV.HS1CONSTIC_HS1_ICOFF;BDRV.LS3SEQOFFIC_LS3_I1OFF=BDRV.LS1SEQOFFIC_LS1_I1OFF;BDRV.LS3SEQOFFIC_LS3_I2OFF=BDRV.LS1SEQOFFIC_LS1_I2OFF;BDRV.LS3SEQOFFIC_LS3_I3OFF=BDRV.LS1SEQOFFIC_LS1_I3OFF;BDRV.LS3SEQOFFIC_LS3_I4OFF=BDRV.LS1SEQOFFIC_LS1_I4OFF;BDRV.HS3SEQOFFIC_HS3_I1OFF=BDRV.HS1SEQOFFIC_HS1_I1OFF;BDRV.HS3SEQOFFIC_HS3_I2OFF=BDRV.HS1SEQOFFIC_HS1_I2OFF;BDRV.HS3SEQOFFIC_HS3_I3OFF=BDRV.HS1SEQOFFIC_HS1_I3OFF;BDRV.HS3SEQOFFIC_HS3_I4OFF=BDRV.HS1SEQOFFIC_HS1_I4OFF"/>
+        <action cond="BDRV.HB3_CFG==1" event="changed" cmd="setDef" data="BDRV.LS3CONSTTC_LS3_TCON=BDRV.LS1CONSTTC_LS1_TCON;BDRV.HS3CONSTTC_HS3_TCON=BDRV.HS1CONSTTC_HS1_TCON;BDRV.LS3SEQONTC_LS3_T1ON=BDRV.LS1SEQONTC_LS1_T1ON;BDRV.LS3SEQONTC_LS3_T2ON=BDRV.LS1SEQONTC_LS1_T2ON;BDRV.LS3SEQONTC_LS3_T3ON=BDRV.LS1SEQONTC_LS1_T3ON;BDRV.LS3SEQONTC_LS3_T4ON=BDRV.LS1SEQONTC_LS1_T4ON;BDRV.HS3SEQONTC_HS3_T1ON=BDRV.HS1SEQONTC_HS1_T1ON;BDRV.HS3SEQONTC_HS3_T2ON=BDRV.HS1SEQONTC_HS1_T2ON;BDRV.HS3SEQONTC_HS3_T3ON=BDRV.HS1SEQONTC_HS1_T3ON;BDRV.HS3SEQONTC_HS3_T4ON=BDRV.HS1SEQONTC_HS1_T4ON"/>
+        <action cond="BDRV.HB3_CFG==1" event="changed" cmd="setDef" data="BDRV.LS3CONSTTC_LS3_TCOFF=BDRV.LS1CONSTTC_LS1_TCOFF;BDRV.HS3CONSTTC_HS3_TCOFF=BDRV.HS1CONSTTC_HS1_TCOFF;BDRV.LS3SEQOFFTC_LS3_T1OFF=BDRV.LS1SEQOFFTC_LS1_T1OFF;BDRV.LS3SEQOFFTC_LS3_T2OFF=BDRV.LS1SEQOFFTC_LS1_T2OFF;BDRV.LS3SEQOFFTC_LS3_T3OFF=BDRV.LS1SEQOFFTC_LS1_T3OFF;BDRV.LS3SEQOFFTC_LS3_T4OFF=BDRV.LS1SEQOFFTC_LS1_T4OFF;BDRV.HS3SEQOFFTC_HS3_T1OFF=BDRV.HS1SEQOFFTC_HS1_T1OFF;BDRV.HS3SEQOFFTC_HS3_T2OFF=BDRV.HS1SEQOFFTC_HS1_T2OFF;BDRV.HS3SEQOFFTC_HS3_T3OFF=BDRV.HS1SEQOFFTC_HS1_T3OFF;BDRV.HS3SEQOFFTC_HS3_T4OFF=BDRV.HS1SEQOFFTC_HS1_T4OFF"/>
+        <action cond="BDRV.HB3_CFG==1" event="changed" cmd="setDef" data="BDRV.HB3IGATECLMPC_HB3_ICLMPON=BDRV.HB1IGATECLMPC_HB1_ICLMPON;BDRV.HB3IGATECLMPC_HB3_ICLMPOFF=BDRV.HB1IGATECLMPC_HB1_ICLMPOFF"/>
+        <action cond="BDRV.HB3_CFG==1" event="changed" cmd="setDef" data="BDRV.ASEQC.HB3ASMONEN=BDRV.ASEQC.HB1ASMONEN;BDRV.ASEQC.HB3ASMOFFEN=BDRV.ASEQC.HB1ASMOFFEN;BDRV.ASEQOFFADDDLY_LS3T1OFFADDDLY=BDRV.ASEQOFFADDDLY_LS1T1OFFADDDLY;BDRV.ASEQOFFADDDLY_HS3T1OFFADDDLY=BDRV.ASEQOFFADDDLY_HS1T1OFFADDDLY;BDRV.ASEQC.HB3ONHYSTEN=BDRV.ASEQC.HB1ONHYSTEN;BDRV.ASEQC.HB3OFFHYSTEN=BDRV.ASEQC.HB1OFFHYSTEN"/>
+        <!-- Graph -->
+        <action cond="(BDRV.CTRL2.HB1ONSEQCNF==0).*(BDRV.CTRL2.HB2ONSEQCNF==0).*(BDRV.CTRL2.HB3ONSEQCNF==0)" event="changed" cmd="setDef" data="BDRV_COL1=#FF0000;BDRV_COL2=#FFCC99;BDRV_COL3=#FF00BB;BDRV_COL4=#0099CC;BDRV_COL5=#000000;BDRV_COL6=#FFFFF0;BDRV_COL7=#FFFFF0;BDRV_COL8=#FFFFF0;BDRV_COL9=#FFFFF0;BDRV_COL10=#FFFFF0;BDRV_COL11=#FFFFF0;BDRV_COL12=#FFFFF0;BDRV_COL13=#FFFFF0;BDRV_COL14=#FFFFF0;BDRV_VIS_CST=visible;BDRV_VIS_SEQ=hidden"/>
+        <action cond="(BDRV.CTRL2.HB1ONSEQCNF==1).+(BDRV.CTRL2.HB2ONSEQCNF==1).+(BDRV.CTRL2.HB3ONSEQCNF==1)" event="changed" cmd="setDef" data="BDRV_COL1=#FFFFF0;BDRV_COL2=#FFFFF0;BDRV_COL3=#FFFFF0;BDRV_COL4=#FFFFF0;BDRV_COL5=#FFFFF0;BDRV_COL6=#FFF333;BDRV_COL7=#00FF00;BDRV_COL8=#0000FF;BDRV_COL9=#00FFBB;BDRV_COL10=#006600;BDRV_COL11=#FF8800;BDRV_COL12=#000000;BDRV_COL13=#FF0000;BDRV_COL14=#FF00BB;BDRV_VIS_CST=hidden;BDRV_VIS_SEQ=visible"/>
+      </timer>
+
+      <!-- BDRV ENABLE -->
+      <checkbox label="Enable BDRV" define="BDRV.GLOBCONF_EN" default="1" svd="0" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+        <action event="checked" cmd="setDef" data="BDRV_TOP.enabled=1"/>
+        <action event="unchecked" cmd="setDef" data="BDRV_TOP.enabled=0"/>
+      </checkbox>
+
+      <!-- BDRV CONFIG -->
+      <horizontalcontainer define="BDRV_TOP">
+        <verticalcontainer>
+          <!-- Charge Pump -->
+          <groupcontainer label="Charge Pump" size="670;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="174;192;103">
+            <treecontainer headerlabels="Item;Value;" label="Charge Pump Settings" columnwidths="320;150" font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+              <checkbox define="BDRV.CP_CTRL.CP_EN" label="Enable Charge Pump" default="0" uielement="branch" expand="1">
+                <branch label="CP Mode" expand="1">
+                  <combo label="Mode Select" define="BDRV.CP_CTRL.CP_1STAGE" default="label=2 stages enabled">
+                    <item label="2 stages enabled" override="value1"/>
+                    <item label="1 stage enabled" override="value2"/>
+                  </combo>
+                  <combo label="Switch between modes depending on Vsd" define="BDRV.CP_CTRL.CP_STG_AUTO" default="label=Fixed stage mode as set in 'Mode Select'">
+                    <item label="Fixed stage mode as set in 'Mode Select'" override="value1"/>
+                    <item label="Automatic stage selection enabled" override="value2"/>
+                  </combo>
+                </branch>
+                <checkbox label="CP Clock" define="BDRV.CP_CLK_CTRL.CPCLK_EN" default="1" uielement="branch" expand="1">
+                  <math visible="true" label="CP Clock derived from MI_CLK" unit="MHz" define="BDRV.CP_CLK_SRC" formula="SCU_fMI_MHz" svd="0" header="temp_defines.h"/>
+                  <spinbox label="Upper Dither Freq. [kHz]" define="BDRV.UP_DITH_FREQ" svd="0" default="268" header="temp_defines.h"/>
+                  <math label="Upper Dither Freq. (eff.)" unit="kHz" define="BDRV.UP_DITH" svd="0" formula="(SCU_fMI_MHz*1000000/((BDRV.CP_CLK_CTRL.F_CP*32)+BDRV.CP_CLK_CTRL.DITH_UPPER))/1000" header="temp_defines.h"/>
+                  <spinbox label="Lower Dither Freq. [kHz]" define="BDRV.LO_DITH_FREQ" svd="0" default="231" header="temp_defines.h"/>
+                  <math label="Lower Dither Freq. (eff.)" unit="kHz" define="BDRV.LO_DITH" svd="0" formula="(SCU_fMI_MHz*1000000/((BDRV.CP_CLK_CTRL.F_CP*32)+BDRV.CP_CLK_CTRL.DITH_LOWER))/1000" header="temp_defines.h"/>
+                  <branch label="Register Values">
+                    <math label="F_CP (max. 0x3)" define="BDRV.CP_CLK_CTRL.F_CP" format="%1X" formula="trunc((SCU_fMI_MHz*1000000/(BDRV.UP_DITH_FREQ*1000))/32)"/>
+                    <math label="DITH_UPPER (max. 0x1F)" define="BDRV.CP_CLK_CTRL.DITH_UPPER" format="%02X" formula="(SCU_fMI_MHz*1000000/(BDRV.UP_DITH_FREQ*1000)).*31"/>
+                    <math label="DITH_LOWER (max. 0x1F)" define="BDRV.CP_CLK_CTRL.DITH_LOWER" format="%02X" formula="(SCU_fMI_MHz*1000000/(BDRV.LO_DITH_FREQ*1000)).*31"/>
+                  </branch>
+                </checkbox>
+                <branch label="CP Settings if Disabled" expand="1">
+                  <combo label="CP Clock if Disabled" define="BDRV.CP_CLK_CTRL.CPCLKDIS_SET" default="label=Low">
+                    <item label="Low" override="value1"/>
+                    <item label="High" override="value2"/>
+                  </combo>
+                </branch>
+                <combo label="CP Output Voltage Comparator Falling Threshold" define="BDRV.CP_CTRL.VCP_LOWTH2" default="label=7,5V" uielement="branch">
+                  <item label="7,5V" override="value1"/>
+                  <item label="9,5V" override="value2"/>
+                </combo>
+                <checkbox define="BDRV.CP_CTRL.CP_RDY_EN" label="Enable Bridge Driver when CP Ready" default="0"/>
+              </checkbox>
+            </treecontainer>
+          </groupcontainer>
+
+          <!-- Control and Diagnosis -->
+          <groupcontainer label="Control and Diagnosis" size="670;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="245;179;138">
+            <treecontainer headerlabels="Item;Value;" label="Control and Diagnosis" columnwidths="320;150" font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+              <checkbox define="BDRV.PROT_CTRL.DRVx_VCPLO_SDEN" label="Enable Driver Shutdown on CP Undervoltage" default="1" role="inverted"/>
+              <branch label="Enable Driver Discharge on..." expand="1">
+                <checkbox define="BDRV.PROT_CTRL.DRVx_VCPLO_DIS" label="... CP Undervoltage" default="1" role="inverted" uielement="branch">
+                  <combo label="CP Undervoltage Detection Source" define="BDRV.CP_CTRL.VCP_LOWSRC_SEL" default="label=ADC2" setDef="BDRV_UPDATE.run=1">
+                    <item label="ADC2" override="value1"/>
+                    <item label="CP Voltage comparator" override="value2"/>
+                  </combo>
+                  <combo label="CP Undervoltage Filter Time" define="BDRV.CP_CTRL.CPLOW_TFILT_SEL" default="label=4us">
+                    <item label="4us" override="value1"/>
+                    <item label="8us" override="value2"/>
+                    <item label="16us" override="value3"/>
+                    <item label="32us" override="value4"/>
+                  </combo>
+                </checkbox>
+                <checkbox define="BDRV.PROT_CTRL.DRVx_VCPUP_DIS" label="... CP Overvoltage" default="1" role="inverted"/>
+                <checkbox define="BDRV.PROT_CTRL.DRVx_VSDLO_DIS" label="... VSD Undervoltage" default="1" role="inverted"/>
+                <checkbox define="BDRV.PROT_CTRL.DRVx_VSDUP_DIS" label="... VSD Overvoltage" default="1" role="inverted"/>
+              </branch>
+              <checkbox label="Enable Cross-Current Protection" define="BDRV.CTRL2.DRV_CCP_DIS" role="inverted" uielement="branch">
+                <combo label="Minimum CCP Time [us]" define="BDRV.CTRL2.DRV_CCP_TIMSEL" default="label=0.2us">
+                  <item label="0.2us" override="value1"/>
+                  <item label="0.4us" override="value2"/>
+                  <item label="0.8us" override="value3"/>
+                  <item label="1.6us" override="value4"/>
+                  <item label="3.2us" override="value5"/>
+                  <item label="6.4us" override="value6"/>
+                  <item label="12.8us" override="value7"/>
+                </combo>
+              </checkbox>
+              <branch label="Enable High-Current Discharge for ...">
+                <checkbox label="LS1" define="BDRV.PROT_CTRL.LS1DRV_HCDISCHG_DIS" role="inverted"/>
+                <checkbox label="HS1" define="BDRV.PROT_CTRL.HS1DRV_HCDISCHG_DIS" role="inverted"/>
+                <checkbox label="LS2" define="BDRV.PROT_CTRL.LS2DRV_HCDISCHG_DIS" role="inverted"/>
+                <checkbox label="HS2" define="BDRV.PROT_CTRL.HS2DRV_HCDISCHG_DIS" role="inverted"/>
+                <checkbox label="LS3" define="BDRV.PROT_CTRL.LS3DRV_HCDISCHG_DIS" role="inverted"/>
+                <checkbox label="HS3" define="BDRV.PROT_CTRL.HS3DRV_HCDISCHG_DIS" role="inverted"/>
+              </branch>
+              <branch label="Overcurrent Shutdown for ...">
+                <combo label="LS1" define="BDRV.LS1_OC_SEL" svd="0" default="label=Global shutdown in case of overcurrent in LS1" tooltip="Info: This combobox sets the bits LS1DRV_OCSDN_DIS and LS1_OC_SEL." header="temp_defines.h">
+                  <item label="No shutdown in case of overcurrent"/>
+                  <item label="Global shutdown in case of overcurrent in LS1"/>
+                  <item label="LS1 shutdown in case of overcurrent in LS1"/>
+                </combo>
+                <math visible="false" define="BDRV.PROT_CTRL.LS1DRV_OCSDN_DIS" formula="(BDRV.LS1_OC_SEL==0)?(1:0)"/>
+                <math visible="false" define="BDRV.CTRL1.LS1_OC_SEL" formula="(BDRV.LS1_OC_SEL==2)?(1:0)"/>
+                <combo label="HS1" define="BDRV.HS1_OC_SEL" svd="0" default="label=Global shutdown in case of overcurrent in HS1" tooltip="Info: This combobox sets the bits HS1DRV_OCSDN_DIS and HS1_OC_SEL." header="temp_defines.h">
+                  <item label="No shutdown in case of overcurrent"/>
+                  <item label="Global shutdown in case of overcurrent in HS1"/>
+                  <item label="HS1 shutdown in case of overcurrent in HS1"/>
+                </combo>
+                <math visible="false" define="BDRV.PROT_CTRL.HS1DRV_OCSDN_DIS" formula="(BDRV.HS1_OC_SEL==0)?(1:0)"/>
+                <math visible="false" define="BDRV.CTRL1.HS1_OC_SEL" formula="(BDRV.HS1_OC_SEL==2)?(1:0)"/>
+                <combo label="LS2" define="BDRV.LS2_OC_SEL" svd="0" default="label=Global shutdown in case of overcurrent in LS2" tooltip="Info: This combobox sets the bits LS2DRV_OCSDN_DIS and LS2_OC_SEL." header="temp_defines.h">
+                  <item label="No shutdown in case of overcurrent"/>
+                  <item label="Global shutdown in case of overcurrent in LS2"/>
+                  <item label="LS2 shutdown in case of overcurrent in LS2"/>
+                </combo>
+                <math visible="false" define="BDRV.PROT_CTRL.LS2DRV_OCSDN_DIS" formula="(BDRV.LS2_OC_SEL==0)?(1:0)"/>
+                <math visible="false" define="BDRV.CTRL1.LS2_OC_SEL" formula="(BDRV.LS2_OC_SEL==2)?(1:0)"/>
+                <combo label="HS2" define="BDRV.HS2_OC_SEL" svd="0" default="label=Global shutdown in case of overcurrent in HS2" tooltip="Info: This combobox sets the bits HS2DRV_OCSDN_DIS and HS2_OC_SEL." header="temp_defines.h">
+                  <item label="No shutdown in case of overcurrent"/>
+                  <item label="Global shutdown in case of overcurrent in HS2"/>
+                  <item label="HS2 shutdown in case of overcurrent in HS2"/>
+                </combo>
+                <math visible="false" define="BDRV.PROT_CTRL.HS2DRV_OCSDN_DIS" formula="(BDRV.HS2_OC_SEL==0)?(1:0)"/>
+                <math visible="false" define="BDRV.CTRL1.HS2_OC_SEL" formula="(BDRV.HS2_OC_SEL==2)?(1:0)"/>
+                <combo label="LS3" define="BDRV.LS3_OC_SEL" svd="0" default="label=Global shutdown in case of overcurrent in LS3" tooltip="Info: This combobox sets the bits LS3DRV_OCSDN_DIS and LS3_OC_SEL." header="temp_defines.h">
+                  <item label="No shutdown in case of overcurrent"/>
+                  <item label="Global shutdown in case of overcurrent in LS3"/>
+                  <item label="LS3 shutdown in case of overcurrent in LS3"/>
+                </combo>
+                <math visible="false" define="BDRV.PROT_CTRL.LS3DRV_OCSDN_DIS" formula="(BDRV.LS3_OC_SEL==0)?(1:0)"/>
+                <math visible="false" define="BDRV.CTRL1.LS3_OC_SEL" formula="(BDRV.LS3_OC_SEL==2)?(1:0)"/>
+                <combo label="HS3" define="BDRV.HS3_OC_SEL" svd="0" default="label=Global shutdown in case of overcurrent in HS3" tooltip="Info: This combobox sets the bits HS3DRV_OCSDN_DIS and HS3_OC_SEL." header="temp_defines.h">
+                  <item label="No shutdown in case of overcurrent"/>
+                  <item label="Global shutdown in case of overcurrent in HS3"/>
+                  <item label="HS3 shutdown in case of overcurrent in HS3"/>
+                </combo>
+                <math visible="false" define="BDRV.PROT_CTRL.HS3DRV_OCSDN_DIS" formula="(BDRV.HS3_OC_SEL==0)?(1:0)"/>
+                <math visible="false" define="BDRV.CTRL1.HS3_OC_SEL" formula="(BDRV.HS3_OC_SEL==2)?(1:0)"/>
+              </branch>
+              <branch label="Drain-Source Monitoring">
+                <combo label="Voltage Threshold" define="BDRV.CTRL2.DSMONVTH" default="label=0,25V">
+                  <item label="0,125V" override="value1"/>
+                  <item label="0,25V" override="value2"/>
+                  <item label="0,5V" override="value3"/>
+                  <item label="0,75V" override="value4"/>
+                  <item label="1V" override="value5"/>
+                  <item label="1,25V" override="value6"/>
+                  <item label="1,5V" override="value7"/>
+                  <item label="1,75V" override="value8"/>
+                </combo>
+                <combo label="Filter Time for LS" define="BDRV.CTRL2.LSDRV_DS_TFILT_SEL" default="label=1us">
+                  <item label="1us" override="value1"/>
+                  <item label="2us" override="value2"/>
+                  <item label="4us" override="value3"/>
+                  <item label="8us" override="value4"/>
+                </combo>
+                <combo label="Filter Time for HS" define="BDRV.CTRL2.HSDRV_DS_TFILT_SEL" default="label=1us">
+                  <item label="1us" override="value1"/>
+                  <item label="2us" override="value2"/>
+                  <item label="4us" override="value3"/>
+                  <item label="8us" override="value4"/>
+                </combo>
+                <combo label="Blanking Time for LS/HS" define="BDRV.CTRL2.LS_HS_BT_TFILT_SEL" default="label=1us">
+                  <item label="1us" override="value1"/>
+                  <item label="2us" override="value2"/>
+                  <item label="4us" override="value3"/>
+                  <item label="8us" override="value4"/>
+                </combo>
+              </branch>
+              <branch label="Adaptive Sequencer Error Counter">
+                <branch label="Half-Bridge 1">
+                  <combo label="T1OFF Error Counter" define="BDRV.ASEQERRCNT.HB1T1OFFERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                  <combo label="T12ON Error Counter" define="BDRV.ASEQERRCNT.HB1T12ONERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                  <combo label="Measurement Failure Error Counter" define="BDRV.ASEQERRCNT.HB1MFERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                </branch>
+                <branch label="Half-Bridge 2">
+                  <combo label="T1OFF Error Counter" define="BDRV.ASEQERRCNT.HB2T1OFFERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                  <combo label="T12ON Error Counter" define="BDRV.ASEQERRCNT.HB2T12ONERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                  <combo label="Measurement Failure Error Counter" define="BDRV.ASEQERRCNT.HB2MFERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                </branch>
+                <branch label="Half-Bridge 3">
+                  <combo label="T1OFF Error Counter" define="BDRV.ASEQERRCNT.HB3T1OFFERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                  <combo label="T12ON Error Counter" define="BDRV.ASEQERRCNT.HB3T12ONERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                  <combo label="Measurement Failure Error Counter" define="BDRV.ASEQERRCNT.HB3MFERRCNT" default="label=2 Events, Error flag is set after 2 consecutive events">
+                    <item label="2 Events, Error flag is set after 2 consecutive events" override="value1"/>
+                    <item label="4 Events, Error flag is set after 4 consecutive events" override="value2"/>
+                    <item label="8 Events, Error flag is set after 8 consecutive events" override="value3"/>
+                    <item label="15 Events, Error flag is set after 15 consecutive events" override="value4"/>
+                  </combo>
+                </branch>
+              </branch>
+            </treecontainer>
+          </groupcontainer>
+
+          <!-- Interrupts -->
+          <groupcontainer label="Interrupts" size="670;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;55;122">
+            <treecontainer headerlabels="Item;Value;" label="Interrupts" columnwidths="320;150" font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+              <branch label="Active Driver Detection" expand="1">
+                <combo label="Node Selection" define="SCU.INP0.INP_BDRV_IRQ0" header="isr_defines.h">
+                  <item label="WARN_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN0=1"/>
+                  <item label="WARN_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN1=1"/>
+                </combo>
+                <branch label="Active Driver Detection for ...">
+                  <checkbox label="Half-Bridge 1" define="BDRV.HB1_ACTDRV_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HB1_ACTDRV_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HB1_ACTDRV_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="Half-Bridge 2" define="BDRV.HB2_ACTDRV_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HB2_ACTDRV_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HB2_ACTDRV_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="Half-Bridge 3" define="BDRV.HB3_ACTDRV_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HB3_ACTDRV_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HB3_ACTDRV_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>                   
+                </branch>
+              </branch>
+              <branch label="CP and Half-Bridges" expand="1">
+                <combo label="Node Selection" define="SCU.INP0.INP_BDRV_IRQ1" header="isr_defines.h">
+                  <item label="WARN_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN0=1"/>
+                  <item label="WARN_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN1=1"/>
+                </combo>
+                <checkbox label="CP Comparator Undervoltage" define="BDRV.VCP_LOTH2_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                  <checkbox label="Enable Interrupt" define="BDRV.IRQEN.VCP_LOTH2_IEN" header="isr_defines.h"/>
+                  <edit label="Callback" define="BDRV.VCP_LOTH2_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                </checkbox>
+                <branch label="External MOSFET Overcurrent for ...">
+                  <checkbox label="LS1" define="BDRV.LS1_OC_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.LS1_OC_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.LS1_OC_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="HS1" define="BDRV.HS1_OC_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HS1_OC_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HS1_OC_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="LS2" define="BDRV.LS2_OC_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.LS2_OC_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.LS2_OC_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="HS2" define="BDRV.HS2_OC_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HS2_OC_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HS2_OC_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="LS3" define="BDRV.LS3_OC_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.LS3_OC_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.LS3_OC_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="HS3" define="BDRV.HS3_OC_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HS3_OC_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HS3_OC_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                </branch>
+                <branch label="Off-State Drain-Source Monitoring for ...">
+                  <checkbox label="LS1" define="BDRV.LS1_DS_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.LS1_DS_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.LS1_DS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="HS1" define="BDRV.HS1_DS_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HS1_DS_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HS1_DS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="LS2" define="BDRV.LS2_DS_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.LS2_DS_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.LS2_DS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="HS2" define="BDRV.HS2_DS_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HS2_DS_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HS2_DS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="LS3" define="BDRV.LS3_DS_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.LS3_DS_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.LS3_DS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="HS3" define="BDRV.HS3_DS_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HS3_DS_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HS3_DS_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                </branch>
+                <branch label="Adaptive Sequencer for ...">
+                  <checkbox label="Half-Bridge 1" define="BDRV.HB1_ASEQ_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HB1_ASEQ_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HB1_ASEQ_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="Half-Bridge 2" define="BDRV.HB2_ASEQ_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HB2_ASEQ_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HB2_ASEQ_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                  <checkbox label="Half-Bridge 3" define="BDRV.HB3_ASEQ_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                    <checkbox label="Enable Interrupt" define="BDRV.IRQEN.HB3_ASEQ_IEN" header="isr_defines.h"/>
+                    <edit label="Callback" define="BDRV.HB3_ASEQ_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                  </checkbox>
+                </branch>
+                <checkbox label="Driver Sequence Error" define="BDRV.SEQ_ERR_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+                  <checkbox label="Enable Interrupt" define="BDRV.IRQEN.SEQ_ERR_IEN" header="isr_defines.h"/>
+                  <edit label="Callback" define="BDRV.SEQ_ERR_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+                </checkbox>
+              </branch>
+            </treecontainer>
+          </groupcontainer>
+        </verticalcontainer>
+        <verticalcontainer>
+
+          <!-- BDRV Graph -->
+          <groupcontainer label="BDRV Graph" define="BDRV" pos="0;0" size="1200;-1">
+            <verticalcontainer label="BDRV_Variables" visible="false">
+              <edit label="BDRV_col1" define="BDRV_COL1" svd="0" header=""/>
+              <edit label="BDRV_col2" define="BDRV_COL2" svd="0" header=""/>
+              <edit label="BDRV_col3" define="BDRV_COL3" svd="0" header=""/>
+              <edit label="BDRV_col4" define="BDRV_COL4" svd="0" header=""/>
+              <edit label="BDRV_col5" define="BDRV_COL5" svd="0" header=""/>
+              <edit label="BDRV_col6" define="BDRV_COL6" svd="0" header=""/>
+              <edit label="BDRV_col7" define="BDRV_COL7" svd="0" header=""/>
+              <edit label="BDRV_col8" define="BDRV_COL8" svd="0" header=""/>
+              <edit label="BDRV_col9" define="BDRV_COL9" svd="0" header=""/>
+              <edit label="BDRV_col10" define="BDRV_COL10" svd="0" header=""/>
+              <edit label="BDRV_col11" define="BDRV_COL11" svd="0" header=""/>
+              <edit label="BDRV_col12" define="BDRV_COL12" svd="0" header=""/>
+              <edit label="BDRV_col13" define="BDRV_COL13" svd="0" header=""/>
+              <edit label="BDRV_col14" define="BDRV_COL14" svd="0" header=""/>
+              <edit label="BDRV_vis_cst" define="BDRV_VIS_CST" svd="0" header=""/>
+              <edit label="BDRV_vis_seq" define="BDRV_VIS_SEQ" svd="0" header=""/>
+            </verticalcontainer>
+            <svgembed define="BDRV_Block">
+              <svg viewBox="0 0 1200 300">
+                <rect width="1200" height="300" style="fill:#FFFFF0;stroke-width:0.30644634"/>
+                <line x1="0" y1="0" x2="0" y2="0" style="stroke#FFFFF0;stroke-width:$BDRV_UPDATE$"/>
+                <!-- Control Signal -->
+                <text x="130" y="40" text-anchor="middle" font-family="arial" font-size="15" fill="#000000">Control Signal</text>
+                <line x1="200" y1="50" x2="290" y2="50" style="stroke:#000000;stroke-width:1"/>
+                <text x="245" y="40" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">OFF</text>
+                <line x1="290" y1="20" x2="290" y2="50" style="stroke:#000000;stroke-width:1"/>
+                <line x1="290" y1="20" x2="650" y2="20" style="stroke:#000000;stroke-width:1"/>
+                <text x="470" y="40" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">ON</text>
+                <line x1="650" y1="20" x2="650" y2="50" style="stroke:#000000;stroke-width:1"/>
+                <line x1="650" y1="50" x2="1010" y2="50" style="stroke:#000000;stroke-width:1"/>
+                <text x="830" y="40" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">OFF</text>
+                <line x1="1010" y1="20" x2="1010" y2="50" style="stroke:#000000;stroke-width:1"/>
+                <line x1="1010" y1="20" x2="1100" y2="20" style="stroke:#000000;stroke-width:1"/>
+                <text x="1055" y="40" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">OFF</text>
+
+                <!-- Gate Current Graph -->
+                <text x="150" y="130" text-anchor="middle" font-family="arial" font-size="15" fill="#000000">Gate</text>
+                <text x="150" y="150" text-anchor="middle" font-family="arial" font-size="15" fill="#000000">Current</text>
+
+                <line x1="200" y1="60" x2="200" y2="280" style="stroke:#000000;stroke-width:1"/>
+                <path d="M200 60 L205 70 L195 70 Z"/>
+                <text x="190" y="70" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">I</text>
+                <line x1="185" y1="180" x2="1100" y2="180" style="stroke:#000000;stroke-width:1"/>
+                <path d="M1100 180 L1090 175 L1090 185 Z"/>
+                <text x="1110" y="185" text-anchor="middle" font-family="arial" font-size="14" fill="#000000">t</text>
+
+                <!-- Gate Current Constant -->
+                <line x1="354" y1="80" x2="537" y2="80" style="stroke:$BDRV_COL1$;stroke-width:2" visibility="$BDRV_VIS_CST$"/>
+                <line x1="537" y1="80" x2="539" y2="90" style="stroke:$BDRV_COL2$;stroke-width:2" visibility="$BDRV_VIS_CST$"/>
+                <line x1="724" y1="280" x2="907" y2="280" style="stroke:$BDRV_COL3$;stroke-width:2" visibility="$BDRV_VIS_CST$"/>
+                <line x1="907" y1="280" x2="909" y2="270" style="stroke:$BDRV_COL4$;stroke-width:2" visibility="$BDRV_VIS_CST$"/>
+
+                <line x1="440" y1="80" x2="440" y2="110" style="stroke:$BDRV_COL5$;stroke-width:1" visibility="$BDRV_VIS_CST$"/>
+                <path d="M440 80 L437 83 L443 83 Z" fill="$BDRV_COL5$" visibility="$BDRV_VIS_CST$"/>
+                <line x1="440" y1="150" x2="440" y2="180" style="stroke:$BDRV_COL5$;stroke-width:1" visibility="$BDRV_VIS_CST$"/>
+                <path d="M440 180 L437 177 L443 177 Z" fill="$BDRV_COL5$" visibility="$BDRV_VIS_CST$"/>
+                <text x="440" y="125" text-anchor="middle" transform="rotate(-90 445,125)" font-family="arial" font-size="12" fill="$BDRV_COL1$" visibility="$BDRV_VIS_CST$">ICON</text>
+
+                <line x1="290" y1="190" x2="537" y2="190" style="stroke:$BDRV_COL5$;stroke-width:1" visibility="$BDRV_VIS_CST$"/>
+                <path d="M290 190 L293 187 L293 193 Z" fill="$BDRV_COL5$" visibility="$BDRV_VIS_CST$"/>
+                <path d="M537 190 L534 187 L534 193 Z" fill="$BDRV_COL5$" visibility="$BDRV_VIS_CST$"/>
+                <text x="414" y="205" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL1$" visibility="$BDRV_VIS_CST$">TCON</text>
+
+                <line x1="815" y1="280" x2="815" y2="250" style="stroke:$BDRV_COL5$;stroke-width:1" visibility="$BDRV_VIS_CST$"/>
+                <path d="M815 280 L812 277 L818 277 Z" fill="$BDRV_COL5$" visibility="$BDRV_VIS_CST$"/>
+                <line x1="815" y1="180" x2="815" y2="210" style="stroke:$BDRV_COL5$;stroke-width:1" visibility="$BDRV_VIS_CST$"/>
+                <path d="M815 180 L812 183 L818 183 Z" fill="$BDRV_COL5$"/>
+                <text x="815" y="225" text-anchor="middle" transform="rotate(-90 820,225)" font-family="arial" font-size="12" fill="$BDRV_COL3$" visibility="$BDRV_VIS_CST$">ICOFF</text>
+
+                <line x1="650" y1="170" x2="907" y2="170" style="stroke:$BDRV_COL5$;stroke-width:1" visibility="$BDRV_VIS_CST$"/>
+                <path d="M650 170 L653 167 L653 173 Z" fill="$BDRV_COL5$" visibility="$BDRV_VIS_CST$"/>
+                <path d="M907 170 L904 167 L904 173 Z" fill="$BDRV_COL5$" visibility="$BDRV_VIS_CST$"/>
+                <text x="780" y="165" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL3$" visibility="$BDRV_VIS_CST$">TCOFF</text>
+
+                <!-- Gate Current Sequencer -->
+                <line x1="200" y1="180" x2="290" y2="180" style="stroke:#000000;stroke-width:2"/>
+                <line x1="290" y1="180" x2="305" y2="180" style="stroke:#FF0000;stroke-width:2"/>
+                <line x1="305" y1="180" x2="317" y2="80" style="stroke:#FF0000;stroke-width:2"/>
+                <line x1="317" y1="80" x2="354" y2="80" style="stroke:#FF0000;stroke-width:2"/>
+                <line x1="354" y1="80" x2="366" y2="150" style="stroke:$BDRV_COL6$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="366" y1="150" x2="403" y2="150" style="stroke:$BDRV_COL6$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="403" y1="150" x2="416" y2="140" style="stroke:$BDRV_COL7$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="416" y1="140" x2="502" y2="140" style="stroke:$BDRV_COL7$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="502" y1="140" x2="514" y2="90" style="stroke:$BDRV_COL8$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="514" y1="90" x2="539" y2="90" style="stroke:$BDRV_COL8$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="539" y1="90" x2="551" y2="170" style="stroke:#FFCC99;stroke-width:2"/>
+                <line x1="551" y1="170" x2="650" y2="170" style="stroke:#FFCC99;stroke-width:2"/>
+                <line x1="650" y1="170" x2="650" y2="180" style="stroke:#000000;stroke-width:2"/>
+                <line x1="650" y1="180" x2="675" y2="180" style="stroke:#FF00BB;stroke-width:2"/>
+                <line x1="675" y1="180" x2="687" y2="280" style="stroke:#FF00BB;stroke-width:2"/>
+                <line x1="687" y1="280" x2="724" y2="280" style="stroke:#FF00BB;stroke-width:2"/>
+                <line x1="724" y1="280" x2="736" y2="220" style="stroke:$BDRV_COL9$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="736" y1="220" x2="823" y2="220" style="stroke:$BDRV_COL9$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="823" y1="220" x2="835" y2="210" style="stroke:$BDRV_COL10$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="835" y1="210" x2="872" y2="210" style="stroke:$BDRV_COL10$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="872" y1="210" x2="884" y2="270" style="stroke:$BDRV_COL11$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="884" y1="270" x2="909" y2="270" style="stroke:$BDRV_COL11$;stroke-width:2" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="909" y1="270" x2="921" y2="190" style="stroke:#0099CC;stroke-width:2"/>
+                <line x1="921" y1="190" x2="1010" y2="190" style="stroke:#0099CC;stroke-width:2"/>
+                <line x1="1010" y1="190" x2="1010" y2="180" style="stroke:#000000;stroke-width:2"/>
+
+                <!-- Dashed Lines -->
+                <line x1="290" y1="50" x2="290" y2="185" stroke="#000000" stroke-dasharray="4"/>
+                <line x1="354" y1="75" x2="354" y2="185" stroke="$BDRV_COL12$" stroke-dasharray="4" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="403" y1="145" x2="403" y2="185" stroke="$BDRV_COL12$" stroke-dasharray="4" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="502" y1="135" x2="502" y2="185" stroke="$BDRV_COL12$" stroke-dasharray="4" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="539" y1="85" x2="539" y2="185" stroke="#000000" stroke-dasharray="4"/>
+                <line x1="650" y1="50" x2="650" y2="185" stroke="#000000" stroke-dasharray="4"/>
+                <line x1="724" y1="175" x2="724" y2="285" stroke="$BDRV_COL12$" stroke-dasharray="4" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="823" y1="175" x2="823" y2="225" stroke="$BDRV_COL12$" stroke-dasharray="4" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="872" y1="175" x2="872" y2="215" stroke="$BDRV_COL12$" stroke-dasharray="4" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="909" y1="175" x2="909" y2="275" stroke="#000000" stroke-dasharray="4"/>
+                <line x1="1010" y1="50" x2="1010" y2="195" stroke="#000000" stroke-dasharray="4"/>
+
+                <!-- Text-related elements -->
+                <line x1="330" y1="80" x2="330" y2="110" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M330 80 L327 83 L333 83 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="330" y1="150" x2="330" y2="180" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M330 180 L327 177 L333 177 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="330" y="125" text-anchor="middle" transform="rotate(-90 335,125)" font-family="arial" font-size="12" fill="$BDRV_COL13$" visibility="$BDRV_VIS_SEQ$">I1ON</text>
+
+                <line x1="290" y1="190" x2="354" y2="190" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M290 190 L293 187 L293 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M354 190 L351 187 L351 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="322" y="205" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL13$" visibility="$BDRV_VIS_SEQ$">T1ON</text>
+
+                <line x1="380" y1="150" x2="380" y2="180" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M380 150 L377 153 L383 153 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M380 180 L377 177 L383 177 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="380" y="125" text-anchor="middle" transform="rotate(-90 380,125)" font-family="arial" font-size="12" fill="$BDRV_COL6$" visibility="$BDRV_VIS_SEQ$">I2ON</text>
+
+                <line x1="354" y1="190" x2="403" y2="190" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M354 190 L357 187 L357 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M403 190 L400 187 L400 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="379" y="205" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL6$" visibility="$BDRV_VIS_SEQ$">T2ON</text>
+
+                <line x1="455" y1="140" x2="455" y2="180" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M455 140 L452 143 L458 143 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M455 180 L452 177 L458 177 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="455" y="115" text-anchor="middle" transform="rotate(-90 460,115)" font-family="arial" font-size="12" fill="$BDRV_COL7$" visibility="$BDRV_VIS_SEQ$">I3ON</text>
+
+                <line x1="403" y1="190" x2="502" y2="190" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M403 190 L406 187 L406 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M502 190 L499 187 L499 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="453" y="205" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL7$" visibility="$BDRV_VIS_SEQ$">T3ON</text>
+
+                <line x1="520" y1="90" x2="520" y2="115" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M520 90 L517 93 L523 93 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="520" y1="155" x2="520" y2="180" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M520 180 L517 177 L523 177 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="520" y="130" text-anchor="middle" transform="rotate(-90 525,130)" font-family="arial" font-size="12" fill="$BDRV_COL8$" visibility="$BDRV_VIS_SEQ$">I4ON</text>
+
+                <line x1="502" y1="190" x2="539" y2="190" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M502 190 L505 187 L505 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M539 190 L536 187 L536 193 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="520" y="205" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL8$">T4ON</text>
+
+                <line x1="595" y1="170" x2="595" y2="180" style="stroke:#000000;stroke-width:1"/>
+                <path d="M595 170 L592 173 L598 173 Z" fill="#000000"/>
+                <path d="M595 180 L592 177 L598 177 Z" fill="#000000"/>
+                <text x="595" y="130" text-anchor="middle" transform="rotate(-90 600,130)" font-family="arial" font-size="12" fill="#FFCC99">ICLMPON</text>
+
+                <line x1="700" y1="280" x2="700" y2="250" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M700 280 L697 277 L703 277 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="700" y1="180" x2="700" y2="210" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M700 180 L697 183 L703 183 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="700" y="225" text-anchor="middle" transform="rotate(-90 705,225)" font-family="arial" font-size="12" fill="$BDRV_COL14$" visibility="$BDRV_VIS_SEQ$">I1OFF</text>
+
+                <line x1="650" y1="170" x2="724" y2="170" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M650 170 L653 167 L653 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M724 170 L721 167 L721 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="687" y="165" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL14$" visibility="$BDRV_VIS_SEQ$">T1OFF</text>
+
+                <line x1="775" y1="180" x2="775" y2="220" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M775 220 L772 217 L778 217 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M775 180 L772 183 L778 183 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="775" y="240" text-anchor="middle" transform="rotate(-90 780,240)" font-family="arial" font-size="12" fill="$BDRV_COL9$" visibility="$BDRV_VIS_SEQ$">I2OFF</text>
+
+                <line x1="724" y1="170" x2="823" y2="170" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M724 170 L727 167 L727 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M823 170 L821 167 L821 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="774" y="165" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL9$" visibility="$BDRV_VIS_SEQ$">T2OFF</text>
+
+                <line x1="850" y1="180" x2="850" y2="210" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M850 180 L847 183 L853 183 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M850 210 L847 207 L853 207 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="850" y="225" text-anchor="middle" transform="rotate(-90 855,225)" font-family="arial" font-size="12" fill="$BDRV_COL10$" visibility="$BDRV_VIS_SEQ$">I3OFF</text>
+
+                <line x1="823" y1="170" x2="872" y2="170" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M823 170 L826 167 L826 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M872 170 L869 167 L869 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="848" y="165" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL10$" visibility="$BDRV_VIS_SEQ$">T3OFF</text>
+
+                <line x1="890" y1="180" x2="890" y2="205" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M890 180 L887 183 L893 183 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <line x1="890" y1="245" x2="890" y2="270" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M890 270 L887 267 L893 267 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="890" y="220" text-anchor="middle" transform="rotate(-90 895,220)" font-family="arial" font-size="12" fill="$BDRV_COL11$" visibility="$BDRV_VIS_SEQ$">I4OFF</text>
+
+                <line x1="872" y1="170" x2="909" y2="170" style="stroke:$BDRV_COL12$;stroke-width:1" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M872 170 L875 167 L875 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <path d="M909 170 L906 167 L906 173 Z" fill="$BDRV_COL12$" visibility="$BDRV_VIS_SEQ$"/>
+                <text x="890" y="165" text-anchor="middle" font-family="arial" font-size="12" fill="$BDRV_COL11$" visibility="$BDRV_VIS_SEQ$">T4OFF</text>
+
+                <line x1="960" y1="180" x2="960" y2="190" style="stroke:#000000;stroke-width:1"/>
+                <path d="M960 180 L957 183 L963 183 Z" fill="#000000"/>
+                <path d="M960 190 L957 187 L963 187 Z" fill="#000000"/>
+                <text x="960" y="220" text-anchor="middle" transform="rotate(-90 965,220)" font-family="arial" font-size="12" fill="#0099CC">ICLMPOFF</text>
+              </svg>
+            </svgembed>
+          </groupcontainer>
+
+          <!-- Half-bridges -->
+          <groupcontainer label="Half-Bridges" size="1200;-1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="255;224;84">
+            <verticalcontainer font="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0,Regular" color="255;255;255">
+              <horizontalcontainer>
+                <text size="250;-1"/>
+                <text label="Half-bridge 1" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="300;-1"/>
+                <text label="Half-bridge 2" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="150;-1"/>
+                <checkbox label="Same as HB1" define="BDRV.HB2_CFG" svd="0" header="temp_defines.h" default="0" size="150;-1" setDef="BDRV_UPDATE.run=1"/>
+                <text label="Half-bridge 3" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="150;-1"/>
+                <checkbox label="Same as HB1" define="BDRV.HB3_CFG" svd="0" header="temp_defines.h" default="0" size="150;-1" setDef="BDRV_UPDATE.run=1"/>
+              </horizontalcontainer>
+              <horizontalline/>
+              <horizontalcontainer>
+                <text label="PWM Source for HS" size="250;-1"/>
+                <combo label="Source selection for HS1" define="BDRV.PWMSRCSEL.HS1_SRC_SEL" default="label=CC70" size="300;-1">
+                  <item label="CC70" override="value1"/>
+                  <item label="CC71" override="value2"/>
+                  <item label="CC72" override="value3"/>
+                  <item label="COUT70" override="value5"/>
+                  <item label="COUT71" override="value6"/>
+                  <item label="COUT72" override="value7"/>
+                </combo>
+                <combo label="Source selection for HS2" define="BDRV.PWMSRCSEL.HS2_SRC_SEL" default="label=CC71" size="300;-1">
+                  <item label="CC70" override="value1"/>
+                  <item label="CC71" override="value2"/>
+                  <item label="CC72" override="value3"/>
+                  <item label="COUT70" override="value5"/>
+                  <item label="COUT71" override="value6"/>
+                  <item label="COUT72" override="value7"/>
+                </combo>
+                <combo label="Source selection for HS3" define="BDRV.PWMSRCSEL.HS3_SRC_SEL" default="label=CC72" size="300;-1">
+                  <item label="CC70" override="value1"/>
+                  <item label="CC71" override="value2"/>
+                  <item label="CC72" override="value3"/>
+                  <item label="COUT70" override="value5"/>
+                  <item label="COUT71" override="value6"/>
+                  <item label="COUT72" override="value7"/>
+                </combo>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="PWM Source for LS" size="250;-1"/>
+                <combo label="Source selection for LS1" define="BDRV.PWMSRCSEL.LS1_SRC_SEL" default="label=COUT70" size="300;-1">
+                  <item label="CC70" override="value1"/>
+                  <item label="CC71" override="value2"/>
+                  <item label="CC72" override="value3"/>
+                  <item label="COUT70" override="value5"/>
+                  <item label="COUT71" override="value6"/>
+                  <item label="COUT72" override="value7"/>
+                </combo>
+                <combo label="Source selection for LS2" define="BDRV.PWMSRCSEL.LS2_SRC_SEL" default="label=COUT71" size="300;-1">
+                  <item label="CC70" override="value1"/>
+                  <item label="CC71" override="value2"/>
+                  <item label="CC72" override="value3"/>
+                  <item label="COUT70" override="value5"/>
+                  <item label="COUT71" override="value6"/>
+                  <item label="COUT72" override="value7"/>
+                </combo>
+                <combo label="Source selection for LS3" define="BDRV.PWMSRCSEL.LS3_SRC_SEL" default="label=COUT72" size="300;-1">
+                  <item label="CC70" override="value1"/>
+                  <item label="CC71" override="value2"/>
+                  <item label="CC72" override="value3"/>
+                  <item label="COUT70" override="value5"/>
+                  <item label="COUT71" override="value6"/>
+                  <item label="COUT72" override="value7"/>
+                </combo>
+              </horizontalcontainer>
+              <horizontalline/>
+              <horizontalcontainer>
+                <text label="Enable High-Current Discharge with SSO" size="250;-1"/>
+                <checkbox define="BDRV.HCDIS.HCDIS_SSO" default="1"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="High-Current Discharge [5mA - 350 mA]" size="250;-1"/>
+                <spinbox label="Current Setting for all drivers [5mA - 350 mA]" define="BDRV.HCDIS_IHCDIS" default="350" range="5;350" svd="0" size="100;-1" header="temp_defines.h"/>
+                <text label="Register:" size="100;-1"/>
+                <math label="Register" define="BDRV.HCDIS.IHCDIS" format="%1X" formula="round(63*((BDRV.HCDIS_IHCDIS-5)/345)^0.671)" size="100;-1"/>
+                <math label="Current Setting for all drivers [5mA - 350 mA]" define="BDRV.HCDIS_IHCDIS_HB2" formula="BDRV.HCDIS_IHCDIS" svd="0" size="300;-1" header="temp_defines.h"/>
+                <math label="Current Setting for all drivers [5mA - 350 mA]" define="BDRV.HCDIS_IHCDIS_HB3" formula="BDRV.HCDIS_IHCDIS" svd="0" size="300;-1" header="temp_defines.h"/>
+              </horizontalcontainer>
+              <horizontalline/>
+              <horizontalcontainer>
+                <text label="Enable AutoDetect of Active/Free-wheeling" size="250;-1"/>
+                <checkbox define="BDRV.CTRL2.ACTDRV_DET_EN" default="1"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="Switch-on Configuration" size="250;-1"/>
+                <combo label="Switch-on Configuration" define="BDRV.CTRL2.HB1ONSEQCNF" default="label=CONST, Driver operate with constant current" size="300;-1" setDef="BDRV_UPDATE.run=1">
+                  <item label="CONST, Driver operate with constant current" override="value1"/>
+                  <item label="SEQ, Sequencer is enabled" override="value2"/>
+                </combo>
+                <combo label="Switch-on Configuration" define="BDRV.CTRL2.HB2ONSEQCNF" default="label=CONST, Driver operate with constant current" size="300;-1" setDef="BDRV_UPDATE.run=1">
+                  <item label="CONST, Driver operate with constant current" override="value1"/>
+                  <item label="SEQ, Sequencer is enabled" override="value2"/>
+                </combo>
+                <combo label="Switch-on Configuration" define="BDRV.CTRL2.HB3ONSEQCNF" default="label=CONST, Driver operate with constant current" size="300;-1" setDef="BDRV_UPDATE.run=1">
+                  <item label="CONST, Driver operate with constant current" override="value1"/>
+                  <item label="SEQ, Sequencer is enabled" override="value2"/>
+                </combo>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="Sequencer Mapping" size="250;-1"/>
+                <combo label="Sequencer Mapping" define="BDRV.SEQMAP.HB1_SEQMAP" default="label=LS1, Sequencer is mapped to low-side driver" size="300;-1">
+                  <item label="LS1, Sequencer is mapped to low-side driver" override="value1"/>
+                  <item label="HS1, Sequencer is mapped to high-side driver" override="value2"/>
+                </combo>
+                <combo label="Sequencer Mapping" define="BDRV.SEQMAP.HB2_SEQMAP" default="label=LS2, Sequencer is mapped to low-side driver" size="300;-1">
+                  <item label="LS2, Sequencer is mapped to low-side driver" override="value1"/>
+                  <item label="HS2, Sequencer is mapped to high-side driver" override="value2"/>
+                </combo>
+                <combo label="Sequencer Mapping" define="BDRV.SEQMAP.HB3_SEQMAP" default="label=LS3, Sequencer is mapped to low-side driver" size="300;-1">
+                  <item label="LS3, Sequencer is mapped to low-side driver" override="value1"/>
+                  <item label="HS3, Sequencer is mapped to high-side driver" override="value2"/>
+                </combo>
+              </horizontalcontainer>
+              <horizontalline/>
+              <horizontalcontainer>
+                <text label="Charge Settings" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="250;-1"/>
+                <text label="Low Side 1" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="High Side 1" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="Low Side 2" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="High Side 2" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="Low Side 3" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="High Side 3" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF0000"/>             
+                  </svg>
+                </svgembed>
+                <horizontalcontainer define="BDRV.TCHRGCONST_TXT">
+                  <text label="TCON [50ns - 12.8us]" size="250;-1"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV.TCHRGSEQ_TXT">
+                  <text label="T1ON [50ns - 3.2us]" size="250;-1"/>
+                </horizontalcontainer>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON">template_bdrv_timingsConst.xml</include>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="1" DEFAULT="350">template_bdrv_timingsSeq.xml</include>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON">template_bdrv_timingsConst.xml</include>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="1" DEFAULT="350">template_bdrv_timingsSeq.xml</include>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON">template_bdrv_timingsConst.xml</include>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="1" DEFAULT="350">template_bdrv_timingsSeq.xml</include>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF0000"/>             
+                  </svg>
+                </svgembed>
+                <horizontalcontainer define="BDRV.ICHRGCONST_TXT">
+                  <text label="ICON [5mA - 350mA]" size="250;-1"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV.ICHRGSEQ_TXT">
+                  <text label="I1ON [5mA - 350mA]" size="250;-1"/>
+                </horizontalcontainer>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON">template_bdrv_currentsConst.xml</include>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="1" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON">template_bdrv_currentsConst.xml</include>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="1" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON">template_bdrv_currentsConst.xml</include>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="1" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_T2CHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FFF333"/>             
+                  </svg>
+                </svgembed>                
+                <text label="T2ON [50ns - 3.2us]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="2" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1T2CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="2" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2T2CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="2" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3T2CHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_I2CHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FFF333"/>             
+                  </svg>
+                </svgembed>                
+                <text label="I2ON [5mA - 350mA]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="2" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1I2CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="2" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2I2CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="2" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3I2CHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_T3CHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#00FF00"/>             
+                  </svg>
+                </svgembed>                
+                <text label="T3ON [50ns - 3.2us]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="3" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1T3CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="3" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2T3CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="3" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3T3CHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_I3CHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#00FF00"/>             
+                  </svg>
+                </svgembed>                
+                <text label="I3ON [5mA - 350mA]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="3" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1I3CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="3" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2I3CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="3" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3I3CHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_T4CHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#0000FF"/>             
+                  </svg>
+                </svgembed>                
+                <text label="T4ON [50ns - 3.2us]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="4" DEFAULT="250">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1T4CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="4" DEFAULT="250">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2T4CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="4" DEFAULT="250">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3T4CHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_I4CHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#0000FF"/>             
+                  </svg>
+                </svgembed>                
+                <text label="I4ON [5mA - 350mA]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="CHRG" ONOFF="ON" PHASE="4" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1I4CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="CHRG" ONOFF="ON" PHASE="4" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2I4CHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="CHRG" ONOFF="ON" PHASE="4" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3I4CHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <!--horizontalline/-->
+              <horizontalcontainer>
+                <text label="Discharge Settings" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="250;-1"/>
+                <text label="Low Side 1" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="High Side 1" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="Low Side 2" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="High Side 2" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="Low Side 3" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+                <text label="High Side 3" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="145;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF00BB"/>             
+                  </svg>
+                </svgembed>                
+                <horizontalcontainer define="BDRV.TDISCHRGCONST_TXT">
+                  <text label="TCOFF [50ns - 12.8us]" size="250;-1"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV.TDISCHRGSEQ_TXT">
+                  <text label="T1OFF [50ns - 3.2us]" size="250;-1"/>
+                </horizontalcontainer>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF">template_bdrv_timingsConst.xml</include>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF" PHASE="1" DEFAULT="350">template_bdrv_timingsSeq.xml</include>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF">template_bdrv_timingsConst.xml</include>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF" PHASE="1" DEFAULT="350">template_bdrv_timingsSeq.xml</include>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF">template_bdrv_timingsConst.xml</include>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF" PHASE="1" DEFAULT="350">template_bdrv_timingsSeq.xml</include>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF00BB"/>             
+                  </svg>
+                </svgembed>                
+                <horizontalcontainer define="BDRV.IDISCHRGCONST_TXT">
+                  <text label="ICOFF [5mA - 350mA]" size="250;-1"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV.IDISCHRGSEQ_TXT">
+                  <text label="I1OFF [50ns - 3.2us]" size="250;-1"/>
+                </horizontalcontainer>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF">template_bdrv_currentsConst.xml</include>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF" PHASE="1" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF">template_bdrv_currentsConst.xml</include>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF" PHASE="1" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF">template_bdrv_currentsConst.xml</include>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF" PHASE="1" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_T2DISCHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#00FFBB"/>             
+                  </svg>
+                </svgembed>                
+                <text label="T2OFF [50ns - 3.2us]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF" PHASE="2" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1T2DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF" PHASE="2" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2T2DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF" PHASE="2" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3T2DISCHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_I2DISCHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#00FFBB"/>             
+                  </svg>
+                </svgembed>                
+                <text label="I2OFF [5mA - 350mA]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF" PHASE="2" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1I2DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF" PHASE="2" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2I2DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF" PHASE="2" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3I2DISCHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_T3DISCHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#006600"/>             
+                  </svg>
+                </svgembed>                
+                <text label="T3OFF [50ns - 3.2us]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF" PHASE="3" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1T3DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF" PHASE="3" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2T3DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF" PHASE="3" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3T3DISCHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_I3DISCHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#006600"/>             
+                  </svg>
+                </svgembed>                
+                <text label="I3OFF [5mA - 350mA]" size="250;-1"/>
+                <include HB_IDX="1" CYCLE="DISCHRG" ONOFF="OFF" PHASE="3" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB1I3DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="2" CYCLE="DISCHRG" ONOFF="OFF" PHASE="3" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB2I3DISCHRGSEQ_GHOST" size="300;-1"/>
+                <include HB_IDX="3" CYCLE="DISCHRG" ONOFF="OFF" PHASE="3" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+                <horizontalcontainer define="BDRV_HB3I3DISCHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_T4DISCHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF8800"/>             
+                  </svg>
+                </svgembed>                
+                <text label="T4OFF [50ns - 3.2us]" size="250;-1"/>
+                <horizontalcontainer define="BDRV_HB1T4DISCHRGSEQ" size="300;-1">
+                  <spinbox label="Phase 4 - Time [50ns - 3.2us]" define="BDRV.SEQOFFT4I4_T4OFF_HB1" default="300" range="50;3200" step="50" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.SEQOFFT4I4.T4OFF" format="%1X" formula="round((BDRV.SEQOFFT4I4_T4OFF_HB1/50)-1)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB1T4DISCHRGSEQ_GHOST" size="300;-1"/>
+                <horizontalcontainer define="BDRV_HB2T4DISCHRGSEQ" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Phase 4 - Time [50ns - 3.2us]" define="BDRV.SEQOFFT4I4_T4OFF_HB2" unit="ns" formula="BDRV.SEQOFFT4I4_T4OFF_HB1" svd="0" size="215;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB2T4DISCHRGSEQ_GHOST" size="300;-1"/>
+                <horizontalcontainer define="BDRV_HB3T4DISCHRGSEQ" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Phase 4 - Time [50ns - 3.2us]" define="BDRV.SEQOFFT4I4_T4OFF_HB3" unit="ns" formula="BDRV.SEQOFFT4I4_T4OFF_HB1" svd="0" size="215;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB3T4DISCHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_I4DISCHRGSEQ">
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF8800"/>             
+                  </svg>
+                </svgembed>                
+                <text label="I4OFF [5mA - 350mA]" size="250;-1"/>
+                <horizontalcontainer define="BDRV_HB1I4DISCHRGSEQ" size="300;-1">
+                  <spinbox label="Phase 4 - Current [5mA - 350mA]" define="BDRV.SEQOFFT4I4_I4OFF" default="131" range="5;350" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.SEQOFFT4I4.I4OFF" format="%1X" formula="round(63*((BDRV.SEQOFFT4I4_I4OFF-5)/345)^0.671)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB1I4DISCHRGSEQ_GHOST" size="300;-1"/>
+                <horizontalcontainer define="BDRV_HB2I4DISCHRGSEQ" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Phase 4 - Current [5mA - 350mA]" define="BDRV.SEQOFFT4I4_I4OFF_HB2" unit="mA" formula="BDRV.SEQOFFT4I4_I4OFF" svd="0" size="215;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB2I4DISCHRGSEQ_GHOST" size="300;-1"/>
+                <horizontalcontainer define="BDRV_HB3I4DISCHRGSEQ" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Phase 4 - Current [5mA - 350mA]" define="BDRV.SEQOFFT4I4_I4OFF_HB3" unit="mA" formula="BDRV.SEQOFFT4I4_I4OFF" svd="0" size="215;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB3I4DISCHRGSEQ_GHOST" size="300;-1"/>
+              </horizontalcontainer>
+              <horizontalline/>
+              <horizontalcontainer>
+                <text label="Clamping Settings" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FFCC99"/>             
+                  </svg>
+                </svgembed>
+                <text label="ICLMPON [5mA - 350mA]" size="250;-1"/>
+                <spinbox label="For Charge [5mA - 350mA]" define="BDRV.HB1IGATECLMPC_HB1_ICLMPON" default="11" range="5;350" svd="0" size="85;-1" header="temp_defines.h">
+                  <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </spinbox>
+                <text label="Register:" size="100;-1"/>
+                <math label="Register Value" define="BDRV.HB1IGATECLMPC.HB1_ICLMPON" format="%1X" formula="round(63*((BDRV.HB1IGATECLMPC_HB1_ICLMPON-5)/345)^0.671)" size="100;-1"/>
+                <spinbox label="For Charge [5mA - 350mA]" define="BDRV.HB2IGATECLMPC_HB2_ICLMPON" default="11" range="5;350" svd="0" size="85;-1" header="temp_defines.h">
+                  <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </spinbox>
+                <text label="Register:" size="100;-1"/>
+                <math label="Register Value" define="BDRV.HB2IGATECLMPC.HB2_ICLMPON" format="%1X" formula="round(63*((BDRV.HB2IGATECLMPC_HB2_ICLMPON-5)/345)^0.671)" size="100;-1"/>
+                <spinbox label="For Charge [5mA - 350mA]" define="BDRV.HB3IGATECLMPC_HB3_ICLMPON" default="11" range="5;350" svd="0" size="85;-1" header="temp_defines.h">
+                  <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </spinbox>
+                <text label="Register:" size="100;-1"/>
+                <math label="Register Value" define="BDRV.HB3IGATECLMPC.HB3_ICLMPON" format="%1X" formula="round(63*((BDRV.HB3IGATECLMPC_HB3_ICLMPON-5)/345)^0.671)" size="100;-1"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <svgembed>
+                  <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/> 
+                    <circle cx="5" cy="5" r="4" stroke-width="0" fill="#0099CC"/>             
+                  </svg>
+                </svgembed>
+                <text label="ICLMPOFF [5mA - 350mA]" size="250;-1"/>
+                <spinbox label="For Discharge [5mA - 350mA]" define="BDRV.HB1IGATECLMPC_HB1_ICLMPOFF" default="11" range="5;350" svd="0" size="85;-1" header="temp_defines.h">
+                  <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </spinbox>
+                <text label="Register:" size="100;-1"/>
+                <math label="Register Value" define="BDRV.HB1IGATECLMPC.HB1_ICLMPOFF" format="%1X" formula="round(63*((BDRV.HB1IGATECLMPC_HB1_ICLMPOFF-5)/345)^0.671)" size="100;-1"/>
+                <spinbox label="For Discharge [5mA - 350mA]" define="BDRV.HB2IGATECLMPC_HB2_ICLMPOFF" default="11" range="5;350" svd="0" size="85;-1" header="temp_defines.h">
+                  <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </spinbox>
+                <text label="Register:" size="100;-1"/>
+                <math label="Register Value" define="BDRV.HB2IGATECLMPC.HB2_ICLMPOFF" format="%1X" formula="round(63*((BDRV.HB2IGATECLMPC_HB2_ICLMPOFF-5)/345)^0.671)" size="100;-1"/>
+                <spinbox label="For Discharge [5mA - 350mA]" define="BDRV.HB3IGATECLMPC_HB3_ICLMPOFF" default="11" range="5;350" svd="0" size="85;-1" header="temp_defines.h">
+                  <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </spinbox>
+                <text label="Register:" size="100;-1"/>
+                <math label="Register Value" define="BDRV.HB3IGATECLMPC.HB3_ICLMPOFF" format="%1X" formula="round(63*((BDRV.HB3IGATECLMPC_HB3_ICLMPOFF-5)/345)^0.671)" size="100;-1"/>
+              </horizontalcontainer>
+              <horizontalline/>
+              <horizontalcontainer>
+                <text label="Adaptive Sequencer for Charge" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="250;-1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB1ASMONEN" size="300;-1">
+                  <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </checkbox>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB2ASMONEN" size="300;-1">
+                  <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </checkbox>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB3ASMONEN" size="300;-1">
+                  <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </checkbox>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_CHRGMINMAX">
+                <text size="250;-1"/>
+                <text label="Min" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Max" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Min" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Max" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Min" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Max" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="Phases 1 and 2 - Time [50ns - 12.8us]" size="250;-1"/>
+                <horizontalcontainer define="BDRV_HB1CHRGPH12T" size="300;-1">
+                  <spinbox label="Minimum" define="BDRV.ASEQONTMIN_T12ONMIN" default="100" range="50;12800" step="50" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQONTMIN.T12ONMIN" format="%1X" formula="round((BDRV.ASEQONTMIN_T12ONMIN/50)-1)"/>
+                  <spinbox label="Maximum" define="BDRV.ASEQONTMAX_T12ONMAX" default="2050" range="50;12800" step="50" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQONTMAX.T12ONMAX" format="%1X" formula="round((BDRV.ASEQONTMAX_T12ONMAX/50)-1)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB2CHRGPH12T" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Minimum" define="BDRV.ASEQONTMIN_T12ONMIN_HB2" unit="ns" formula="BDRV.ASEQONTMIN_T12ONMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Maximum" define="BDRV.ASEQONTMAX_T12ONMAX_HB2" unit="ns" formula="BDRV.ASEQONTMAX_T12ONMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB3CHRGPH12T" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Minimum" define="BDRV.ASEQONTMIN_T12ONMIN_HB3" unit="ns" formula="BDRV.ASEQONTMIN_T12ONMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Maximum" define="BDRV.ASEQONTMAX_T12ONMAX_HB3" unit="ns" formula="BDRV.ASEQONTMAX_T12ONMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="Phase 1 - Current [5mA - 350mA]" size="250;-1"/>
+                <horizontalcontainer define="BDRV_HB1CHRGPH1I" size="300;-1">
+                  <spinbox label="Minimum" define="BDRV.ASEQONIMIN_I1ONMIN" default="16" range="5;350" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQONIMIN.I1ONMIN" format="%1X" formula="round(63*((BDRV.ASEQONIMIN_I1ONMIN-5)/345)^0.671)"/>
+                  <spinbox label="Maximum" define="BDRV.ASEQONIMAX_I1ONMAX" default="287" range="5;350" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQONIMAX.I1ONMAX" format="%1X" formula="round(63*((BDRV.ASEQONIMAX_I1ONMAX-5)/345)^0.671)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB2CHRGPH1I" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Minimum" define="BDRV.ASEQONIMIN_I1ONMIN_HB2" unit="mA" formula="BDRV.ASEQONIMIN_I1ONMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Maximum" define="BDRV.ASEQONIMAX_I1ONMAX_HB2" unit="mA" formula="BDRV.ASEQONIMAX_I1ONMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB3CHRGPH1I" size="300;-1">
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Minimum" define="BDRV.ASEQONIMIN_I1ONMIN_HB3" unit="mA" formula="BDRV.ASEQONIMIN_I1ONMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1," size="80;-1"/>
+                  <math label="Maximum" define="BDRV.ASEQONIMAX_I1ONMAX_HB3" unit="mA" formula="BDRV.ASEQONIMAX_I1ONMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+              </horizontalcontainer>
+              <!--horizontalline/-->
+              <horizontalcontainer>
+                <text label="Adaptive Sequencer for Discharge" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="250;-1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB1ASMOFFEN" size="300;-1">
+                  <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </checkbox>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB2ASMOFFEN" size="300;-1">
+                  <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </checkbox>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB3ASMOFFEN" size="300;-1">
+                  <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                </checkbox>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_DISCHRGMINMAX">
+                <text size="250;-1"/>
+                <text label="Min" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Max" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Min" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Max" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Min" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+                <text label="Max" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="Phase 1 - Time [50ns - 12.8us]" size="250;-1"/>
+                <horizontalcontainer define="BDRV_HB1DISCHRGPH1T" size="300;-1">
+                  <spinbox label="Minimum" define="BDRV.ASEQOFFTMIN_T1OFFMIN" default="100" range="50;12800" step="50" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFTMIN.T1OFFMIN" format="%1X" formula="round((BDRV.ASEQOFFTMIN_T1OFFMIN/50)-1)"/>
+                  <spinbox label="Maximum" define="BDRV.ASEQOFFTMAX_T1OFFMAX" default="2050" range="50;12800" step="50" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFTMAX.T1OFFMAX" format="%1X" formula="round((BDRV.ASEQOFFTMAX_T1OFFMAX/50)-1)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB2DISCHRGPH1T" size="300;-1">
+                  <text label="Same as HB1,"/>
+                  <math label="Minimum" define="BDRV.ASEQOFFTMIN_T1OFFMIN_HB2" unit="ns" formula="BDRV.ASEQOFFTMIN_T1OFFMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1,"/>
+                  <math label="Maximum" define="BDRV.ASEQOFFTMAX_T1OFFMAX_HB2" unit="ns" formula="BDRV.ASEQOFFTMAX_T1OFFMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB3DISCHRGPH1T" size="300;-1">
+                  <text label="Same as HB1,"/>
+                  <math label="Minimum" define="BDRV.ASEQOFFTMIN_T1OFFMIN_HB3" unit="ns" formula="BDRV.ASEQOFFTMIN_T1OFFMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1,"/>
+                  <math label="Maximum" define="BDRV.ASEQOFFTMAX_T1OFFMAX_HB3" unit="ns" formula="BDRV.ASEQOFFTMAX_T1OFFMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+              </horizontalcontainer>
+              <horizontalcontainer define="BDRV_DISCHRGPH12I">
+                <text label="Phase 1 - Current [5mA - 350mA]" size="250;-1"/>
+                <horizontalcontainer define="BDRV_HB1DISCHRGPH1I" size="300;-1">
+                  <spinbox label="Minimum" define="BDRV.ASEQOFFIMIN_I1OFFMIN" default="16" range="5;350" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFIMIN.I1OFFMIN" format="%1X" formula="round(63*((BDRV.ASEQOFFIMIN_I1OFFMIN-5)/345)^0.671)"/>
+                  <spinbox label="Maximum" define="BDRV.ASEQOFFIMAX_I1OFFMAX" default="287" range="5;350" svd="0" size="60;-1" header="temp_defines.h"/>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFIMAX.I1OFFMAX" format="%1X" formula="round(63*((BDRV.ASEQOFFIMAX_I1OFFMAX-5)/345)^0.671)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB2DISCHRGPH1I" size="300;-1">
+                  <text label="Same as HB1,"/>
+                  <math label="Minimum" define="BDRV.ASEQOFFIMIN_I1OFFMIN_HB2" unit="mA" formula="BDRV.ASEQOFFIMIN_I1OFFMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1,"/>
+                  <math label="Maximum" define="BDRV.ASEQOFFIMAX_I1OFFMAX_HB2" unit="mA" formula="BDRV.ASEQOFFIMAX_I1OFFMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB3DISCHRGPH1I" size="300;-1">
+                  <text label="Same as HB1,"/>
+                  <math label="Minimum" define="BDRV.ASEQOFFIMIN_I1OFFMIN_HB3" unit="mA" formula="BDRV.ASEQOFFIMIN_I1OFFMIN" svd="0" size="62;-1" header="temp_defines.h"/>
+                  <text label="Same as HB1,"/>
+                  <math label="Maximum" define="BDRV.ASEQOFFIMAX_I1OFFMAX_HB3" unit="mA" formula="BDRV.ASEQOFFIMAX_I1OFFMAX" svd="0" size="62;-1" header="temp_defines.h"/>
+                </horizontalcontainer>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="Phase 1 - Additional Delay [0 - 750ns]" size="250;-1"/>
+                <horizontalcontainer define="BDRV_HB1DISCHRGPH1TDELAY" size="300;-1">
+                  <spinbox label="Low Side 1" define="BDRV.ASEQOFFADDDLY_LS1T1OFFADDDLY" default="50" range="0;750" step="50" svd="0" size="60;-1" header="temp_defines.h">
+                    <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  </spinbox>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFADDDLY.LS1T1OFFADDDLY" format="%1X" formula="round(BDRV.ASEQOFFADDDLY_LS1T1OFFADDDLY/50)"/>
+                  <spinbox label="High Side 1" define="BDRV.ASEQOFFADDDLY_HS1T1OFFADDDLY" default="0" range="0;750" step="50" svd="0" size="60;-1" header="temp_defines.h">
+                    <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  </spinbox>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFADDDLY.HS1T1OFFADDDLY" format="%1X" formula="round(BDRV.ASEQOFFADDDLY_HS1T1OFFADDDLY/50)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB2DISCHRGPH1TDELAY" size="300;-1">
+                  <spinbox label="Low Side 2" define="BDRV.ASEQOFFADDDLY_LS2T1OFFADDDLY" default="0" range="0;750" step="50" svd="0" size="60;-1" header="temp_defines.h">
+                    <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  </spinbox>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFADDDLY.LS2T1OFFADDDLY" format="%1X" formula="round(BDRV.ASEQOFFADDDLY_LS2T1OFFADDDLY/50)"/>
+                  <spinbox label="High Side 2" define="BDRV.ASEQOFFADDDLY_HS2T1OFFADDDLY" default="0" range="0;750" step="50" svd="0" size="60;-1" header="temp_defines.h">
+                    <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  </spinbox>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFADDDLY.HS2T1OFFADDDLY" format="%1X" formula="round(BDRV.ASEQOFFADDDLY_HS2T1OFFADDDLY/50)"/>
+                </horizontalcontainer>
+                <horizontalcontainer define="BDRV_HB3DISCHRGPH1TDELAY" size="300;-1">
+                  <spinbox label="Low Side 3" define="BDRV.ASEQOFFADDDLY_LS3T1OFFADDDLY" default="0" range="0;750" step="50" svd="0" size="60;-1" header="temp_defines.h">
+                    <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  </spinbox>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFADDDLY.LS3T1OFFADDDLY" format="%1X" formula="round(BDRV.ASEQOFFADDDLY_LS3T1OFFADDDLY/50)"/>
+                  <spinbox label="High Side 3" define="BDRV.ASEQOFFADDDLY_HS3T1OFFADDDLY" default="0" range="0;750" step="50" svd="0" size="60;-1" header="temp_defines.h">
+                    <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+                  </spinbox>
+                  <text label="Reg:" size="25;-1"/>
+                  <math label="Register Value" define="BDRV.ASEQOFFADDDLY.HS3T1OFFADDDLY" format="%1X" formula="round(BDRV.ASEQOFFADDDLY_HS3T1OFFADDDLY/50)"/>
+                </horizontalcontainer>
+              </horizontalcontainer>
+              <horizontalline/>
+              <horizontalcontainer>
+                <text label="Optimizer Hysteresis" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="For Charge" size="250;-1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB1ONHYSTEN" size="300;-1" setDef="BDRV_UPDATE.run=1" setDefInv="BDRV_UPDATE.run=1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB2ONHYSTEN" size="300;-1" setDef="BDRV_UPDATE.run=1" setDefInv="BDRV_UPDATE.run=1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB3ONHYSTEN" size="300;-1" setDef="BDRV_UPDATE.run=1" setDefInv="BDRV_UPDATE.run=1"/>
+              </horizontalcontainer>
+              <horizontalcontainer>
+                <text label="For Discharge" size="250;-1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB1OFFHYSTEN" size="300;-1" setDef="BDRV_UPDATE.run=1" setDefInv="BDRV_UPDATE.run=1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB2OFFHYSTEN" size="300;-1" setDef="BDRV_UPDATE.run=1" setDefInv="BDRV_UPDATE.run=1"/>
+                <checkbox label="Enable" define="BDRV.ASEQC.HB3OFFHYSTEN" size="300;-1" setDef="BDRV_UPDATE.run=1" setDefInv="BDRV_UPDATE.run=1"/>
+              </horizontalcontainer>
+            </verticalcontainer>
+          </groupcontainer>
+
+
+        </verticalcontainer>
+      </horizontalcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>

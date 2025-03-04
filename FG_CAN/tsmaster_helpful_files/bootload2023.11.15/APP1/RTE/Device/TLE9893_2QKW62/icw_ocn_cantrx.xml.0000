@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_cantrx.xml                                                         -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-11-27, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>3deba6789a18420235752de49120756abf7103af36fb77cfef8b7381317346aa</checksum>
+  <version label="V0.0.2"/>
+  <svd file="TLE989x.svd"/>
+  <verticalcontainer label="CANTRX">
+    <header file="cantrx_defines.h">
+      <checkbox label="Enable CANTRX" define="CANTRX.CTRL.EN" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+        <action event="checked" cmd="setDef" data="CANTRX.TOP.enabled=1"/>
+        <action event="unchecked" cmd="setDef" data="CANTRX.TOP.enabled=0"/>
+      </checkbox>
+      <groupcontainer define="CANTRX.TOP">
+        <treecontainer headerlabels="Item;Value;" columnwidths="400;250;1">
+
+          <combo label="CAN Mode Control" define="CANTRX.CTRL.MODE" default="label=Sleep mode">
+            <item hide="value3"/>
+          </combo>
+          
+          <checkbox label="Enable TXD Dominant Timeout" define="CANTRX.CTRL.EN_TXD_TO" default="1"/>
+          
+          <checkbox label="Enable tsilence Counter" define="CANTRX.CTRL.TSIL_EN" default="1"/>
+          
+          <combo label="TXD Input Selection" define="CANTRX.CTRL.TXD_IN_SEL" default="label=MULTICAN.TXDC">
+            <item label="MULTICAN.TXDC" override="value1"/>
+            <item label="UART0.TXD" override="value2"/>
+            <item label="GPT12.T3OUT" override="value3"/>
+            <item label="P0.3"  override="value4" lockon="GPIO.P0_DIR.DIR3=0"/>
+          </combo>
+          
+          <combo label="RXD Output Selection" define="CANTRX.CTRL_RXD_OUT_SEL" svd="0" default="label=MULTICAN.RXDCA" header="temp_defines.h">
+            <item label="MULTICAN.RXDCA"/>
+            <item label="P0.1" lockon="GPIO.P0_DIR.DIR1=1;GPIO.P0_ALTSEL0.ALTSEL1=4"/>
+            <item label="P1.1" lockon="GPIO.P1_DIR.DIR1=1;GPIO.P1_ALTSEL0.ALTSEL1=5"/>
+            <item label="T20.T2EXD" lockon="T20.T20_CON_T2EXINSEL.label=CANTRX.RXD"/>
+            <item label="GPT12.T4INB" lockon="GPT12_T4.PISEL_IST4IN_OTL=1;GPT12_T4.PISEL_IST4IN=1"/>
+            <item label="UART0.RXDD" lockon="UART0_UART0.INSEL_RXDSEL.label=CANTRX.RXD"/>
+          </combo>
+          
+          <branch label="Interrupts" expand="1">
+            <combo label="Node Selection" define="SCU.INP0.INP_CANTX" header="isr_defines.h">
+              <item label="WARN_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN0=1"/>
+              <item label="WARN_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN1=1"/>
+            </combo>
+            
+            <checkbox label="Bus Dominant Timeout" define="CANTRX.BUS_TO_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+              <checkbox label="Enable Interrupt" define="CANTRX.IRQEN.BUS_TO_IEN" header="isr_defines.h"/>
+              <edit label="Callback" define="CANTRX.BUS_TO_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+            </checkbox> 
+            <checkbox label="TXD Dominant Timeout" define="CANTRX.TXD_TO_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+              <checkbox label="Enable Interrupt" define="CANTRX.IRQEN.TXD_TO_IEN" header="isr_defines.h"/>
+              <edit label="Callback" define="CANTRX.TXD_TO_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+            </checkbox> 
+            <checkbox label="CAN Overtemperature" define="CANTRX.OT_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+              <checkbox label="Enable Interrupt" define="CANTRX.IRQEN.OT_IEN" header="isr_defines.h"/>
+              <edit label="Callback" define="CANTRX.OT_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+            </checkbox> 
+            <checkbox label="Bus Active During CAN Sleep" define="CANTRX.BUS_ACT_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+              <checkbox label="Enable Interrupt" define="CANTRX.IRQEN.BUS_ACT_IEN" header="isr_defines.h"/>
+              <edit label="Callback" define="CANTRX.BUS_ACT_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+            </checkbox>
+            
+          </branch>
+            
+        </treecontainer>
+      </groupcontainer>
+    </header>
+  </verticalcontainer>
+
+</ifxmlcfg>

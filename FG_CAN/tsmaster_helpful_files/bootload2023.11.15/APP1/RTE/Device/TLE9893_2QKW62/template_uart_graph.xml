@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_uart_graph.xml                                                    -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2020-11-25, BG:   EP-622: Updated displayed frequency name and value   -->
+<!--********************************************************************************-->
+
+<!-- Graph Definition -->
+<!-- IDX: UART0, UART1 -->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>d1c65337b724ec8096e44abf5092ce73fb2644d16e360d1b3f6ee90043f7066d</checksum>
+  <version label="V0.1.1"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <groupcontainer label="$IDX$ Diagram" define="$IDX$_GRAPH" pos="0;0">
+    <verticalcontainer visible="false">
+      <!-- Edits for text -->
+      <edit visible="false" define="$IDX$MODE" svd="0" header=""/>
+      <edit visible="false" define="$IDX$BIT" svd="0" header=""/>
+      <edit visible="false" define="$IDX$BR" svd="0" header=""/>
+      <edit visible="false" define="$IDX$EFFBR" svd="0" header=""/>
+      <edit visible="false" define="$IDX$BRPRE" svd="0" header=""/>
+      <edit visible="false" define="$IDX$FRACDIV" svd="0" header=""/>
+      <edit visible="false" define="$IDX$RELVAL" svd="0" header=""/>
+      <edit visible="false" define="$IDX$RXINP" svd="0" header=""/>
+      <edit visible="false" define="$IDX$STARTTRIG" svd="0" header=""/>
+      <edit visible="false" define="$IDX$TXSTARTINP" svd="0" header=""/>
+      <edit visible="false" define="$IDX$TXOUTPUT" svd="0" header=""/>
+      <edit visible="false" define="$IDX$ENRX" svd="0" header=""/>
+      <edit visible="false" define="$IDX$BIT9TX" svd="0" header=""/>
+      <edit visible="false" define="$IDX$BIT9RX" svd="0" header=""/>
+      <edit visible="false" define="$IDX$_xMSB" svd="0" header=""/>
+
+      <!-- Edits for colors -->
+      <edit visible="false" label="$IDX$_1" define="$IDX$_1" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_2" define="$IDX$_2" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_3" define="$IDX$_3" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_4" define="$IDX$_4" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_5" define="$IDX$_5" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_6" define="$IDX$_6" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_7" define="$IDX$_7" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_8" define="$IDX$_8" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_9" define="$IDX$_9" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_10" define="$IDX$_10" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_11" define="$IDX$_11" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_12" define="$IDX$_12" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_13" define="$IDX$_13" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_14" define="$IDX$_14" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_15" define="$IDX$_15" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_16" define="$IDX$_16" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_17" define="$IDX$_17" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_18" define="$IDX$_18" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_19" define="$IDX$_19" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_20" define="$IDX$_20" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_21" define="$IDX$_21" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_22" define="$IDX$_22" svd="0" header=""/>
+      <edit visible="false" label="$IDX$_23" define="$IDX$_23" svd="0" header=""/>
+      <edit visible="false" label="VIS_$IDX$_1" define="VIS_$IDX$_1" svd="0" header=""/>
+      <edit visible="false" label="VIS_$IDX$_2" define="VIS_$IDX$_2" svd="0" header=""/>
+      <edit visible="false" label="VIS_$IDX$_3" define="VIS_$IDX$_3" svd="0" header=""/>
+      <edit visible="false" label="VIS_$IDX$_4" define="VIS_$IDX$_4" svd="0" header=""/>
+      <edit visible="false" label="VIS_$IDX$_5" define="VIS_$IDX$_5" svd="0" header=""/>
+      <edit visible="false" label="VIS_$IDX$_6" define="VIS_$IDX$_6" svd="0" header=""/>
+      <edit visible="false" label="VIS_$IDX$_7" define="VIS_$IDX$_7" svd="0" header=""/>
+    </verticalcontainer>
+
+    <svgembed define="$IDX$_Block" passive="1">
+      <svg viewBox="0 0 1000 1000">
+        <rect width="1000" height="1000" style="fill:#FFFFF0;stroke-width:0.30644634"/>
+        <g id="$IDX$" transform="scale(1.5 1.5)">
+
+          <!-- CLOCK -->
+          <text x="175" y="20" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_1$">fPER = $SCU_fUART_MHz$ MHz</text>
+          <!-- Line from F_SYS to Divider block -->
+          <rect x="172" y="22" width="6" height="6" style="fill:$$IDX$_1$;stroke-width:1" /> 
+          <line x1="175" y1="25" x2="175" y2="50" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <path d="M175 50 L170 40 L180 40 Z" style="fill:$$IDX$_1$"/>
+          <!-- Line from Prescaler to UART block -->
+          <line x1="175" y1="100" x2="175" y2="220" style="stroke:$$IDX$_3$;stroke-width:1" visibility="$VIS_$IDX$_1$"/>
+          <path d="M175 220 L170 210 L180 210 Z" style="fill:$$IDX$_3$"/>
+          <!-- Divider -->
+          <text x="175" y="65" text-anchor="middle" font-family="arial" font-size="11" font-weight="bold" fill="$$IDX$_1$">Prescaler</text>
+          <rect x="155" y="70" width="40" height="30" style="fill:$$IDX$_2$;stroke:$$IDX$_1$;stroke-width:1;opacity:1.0" />
+          <text x="175" y="90" text-anchor="middle" font-family="arial" font-size="14" fill="$$IDX$_1$">/ $$IDX$BRPRE$</text>
+          <!-- BR Reload Value -->
+          <text x="80" y="105" text-anchor="middle" font-family="arial" font-size="11" font-weight="bold" fill="$$IDX$_4$">Reload Value</text>
+          <rect x="40" y="110" width="80" height="25" style="fill:$$IDX$_5$;stroke:$$IDX$_4$;stroke-width:1;opacity:1.0" />
+          <text x="80" y="125" text-anchor="middle" font-family="arial" font-size="14" fill="$$IDX$_4$">$$IDX$RELVAL$</text>
+          <!-- Fractional Divider -->
+          <text x="80" y="155" text-anchor="middle" font-family="arial" font-size="11" font-weight="bold" fill="$$IDX$_4$">Frac. Divider</text>
+          <rect x="40" y="160" width="80" height="25" style="fill:$$IDX$_5$;stroke:$$IDX$_4$;stroke-width:1;opacity:1.0" />
+          <text x="80" y="175" text-anchor="middle" font-family="arial" font-size="14" fill="$$IDX$_4$">n = $$IDX$FRACDIV$</text>
+          <!-- Cercle to connect -->
+          <circle cx="175" cy="148" r="14" style="fill:$$IDX$_5$;stroke:$$IDX$_4$;stroke-width:1;opacity:1.0" visibility="$VIS_$IDX$_2$"/>
+          <line x1="165" y1="138" x2="185" y2="158" style="stroke:$$IDX$_4$;stroke-width:1" visibility="$VIS_$IDX$_2$"/>
+          <line x1="165" y1="158" x2="185" y2="138" style="stroke:$$IDX$_4$;stroke-width:1" visibility="$VIS_$IDX$_2$"/>
+          <text x="195" y="152" text-anchor="start" font-family="arial" font-size="13" fill="$$IDX$_1$">BR = $$IDX$EFFBR$ Baud</text>
+          <!-- Lines from BR-related blocks to Circle -->
+          <line x1="175" y1="100" x2="175" y2="134" style="stroke:$$IDX$_4$;stroke-width:1" visibility="$VIS_$IDX$_2$"/>
+          <path d="M175 134 L170 124 L180 124 Z" style="fill:$$IDX$_4$" visibility="$VIS_$IDX$_2$"/>
+          <line x1="120" y1="122" x2="130" y2="122" style="stroke:$$IDX$_4$;stroke-width:1" />
+          <line x1="130" y1="122" x2="165" y2="138" style="stroke:$$IDX$_4$;stroke-width:1" />
+          <path d="M165 138 L155 138 L159 130 Z" style="fill:$$IDX$_4$"/>
+          <line x1="120" y1="172" x2="130" y2="172" style="stroke:$$IDX$_4$;stroke-width:1" />
+          <line x1="130" y1="172" x2="165" y2="158" style="stroke:$$IDX$_4$;stroke-width:1" />
+          <path d="M165 158 L155 158 L159 166 Z" style="fill:$$IDX$_4$"/>
+          <!-- Line from Circle to UART block -->
+          <line x1="175" y1="162" x2="175" y2="220" style="stroke:$$IDX$_4$;stroke-width:1" visibility="$VIS_$IDX$_2$"/>
+          <path d="M175 220 L170 210 L180 210 Z" style="fill:$$IDX$_4$" visibility="$VIS_$IDX$_2$"/>
+
+          <!-- UART BLOCK -->
+          <line x1="20" y1="220" x2="20" y2="660" style="stroke:$$IDX$_1$;stroke-width:1" stroke-dasharray="4" />
+          <line x1="20" y1="660" x2="335" y2="660" style="stroke:$$IDX$_1$;stroke-width:1" stroke-dasharray="4" />
+          <line x1="335" y1="220" x2="335" y2="660" style="stroke:$$IDX$_1$;stroke-width:1" stroke-dasharray="4" />
+          <line x1="20" y1="220" x2="335" y2="220" style="stroke:$$IDX$_1$;stroke-width:1" stroke-dasharray="4" />
+          <text x="175" y="250" text-anchor="middle" font-family="arial" font-size="15" font-weight="bold" fill="$$IDX$_1$">Mode $$IDX$MODE$: $$IDX$BIT$-bit UART, $$IDX$BR$ Baudrate</text>
+
+          <!-- RECEPTION BLOCK -->
+          <!-- Block -->
+          <text x="40" y="295" text-anchor="start" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_1$">RECEPTION</text>
+          <rect x="40" y="300" width="275" height="130" style="fill:$$IDX$_2$;stroke:$$IDX$_1$;stroke-width:1;opacity:1.0" />
+          <!-- Receiver Enable -->
+          <rect x="55" y="320" width="10" height="10" style="fill:none;stroke:$$IDX$_1$;stroke-width:1;opacity:1.0" />
+          <line x1="56" y1="321" x2="64" y2="329" style="stroke:$$IDX$_7$;stroke-width:1" />
+          <line x1="56" y1="329" x2="64" y2="321" style="stroke:$$IDX$_7$;stroke-width:1" />
+          <text x="80" y="330" text-anchor="start" font-family="arial" font-size="12" fill="$$IDX$_1$">Serial Reception $$IDX$ENRX$</text>
+          <!-- Shift left -->
+          <!--line x1="250" y1="380" x2="300" y2="380" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <path d="M250 380 L260 375 L260 385 Z" style="fill:$$IDX$_8$"/>
+          <text x="275" y="395" text-anchor="middle" font-family="arial" font-size="12" fill="$$IDX$_8$">left shift</text-->
+          <text x="55" y="395" text-anchor="start" font-family="arial" font-size="12" fill="$$IDX$_8$">RXBUF</text>
+          <!-- RB8 bitfield -->
+          <text x="125" y="375" transform="translate($$IDX$_xMSB$ 0)" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_8$">MSB</text>
+          <rect x="115" y="380" width="20" height="20" style="fill:$$IDX$_2$;stroke:$$IDX$_9$;stroke-width:1;opacity:1.0" />
+          <text x="125" y="420" text-anchor="middle" font-family="arial" font-size="11" fill="$$IDX$_9$">RB8</text>
+          <text x="125" y="395" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_22$" visibility="$VIS_$IDX$_6$">1</text>
+          <text x="125" y="390" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_23$" visibility="$VIS_$IDX$_7$">$$IDX$BIT9RX$</text>
+          <text x="125" y="398" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_23$" visibility="$VIS_$IDX$_7$">bit</text>
+          <!-- TXDATA bitfield -->
+          <rect x="136" y="380" width="159" height="20" style="fill:$$IDX$_2$;stroke:$$IDX$_11$;stroke-width:1;opacity:1.0" />
+          <line x1="155" y1="380" x2="155" y2="400" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <line x1="175" y1="380" x2="175" y2="400" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <line x1="195" y1="380" x2="195" y2="400" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <line x1="215" y1="380" x2="215" y2="400" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <line x1="235" y1="380" x2="235" y2="400" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <line x1="255" y1="380" x2="255" y2="400" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <text x="285" y="375" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_8$">LSB</text>
+          <line x1="275" y1="380" x2="275" y2="400" style="stroke:$$IDX$_8$;stroke-width:1" />
+          <text x="225" y="420" text-anchor="middle" font-family="arial" font-size="11" fill="$$IDX$_11$">RXDATA</text>
+          <!-- Line from Reception block to LIN block -->
+          <line x1="315" y1="335" x2="485" y2="335" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <path d="M315 335 L325 330 L325 340 Z" style="fill:$$IDX$_1$"/>
+          <text x="400" y="330" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_1$">RXD - $$IDX$RXINP$</text>
+          <!-- Interrupt -->
+          <line x1="315" y1="385" x2="415" y2="385" style="stroke:$$IDX$_6$;stroke-width:1" />
+          <path d="M415 385 L405 380 L405 390 Z" style="fill:$$IDX$_6$"/>
+          <text x="425" y="390" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_6$">RI</text>
+
+          <!-- TRANSMISSION BLOCK -->
+          <!-- Block -->
+          <text x="40" y="495" text-anchor="start" font-family="arial" font-size="12" font-style="italic" fill="$$IDX$_1$">TRANSMISSION</text>
+          <rect x="40" y="500" width="275" height="130" style="fill:$$IDX$_2$;stroke:$$IDX$_1$;stroke-width:1;opacity:1.0" />
+          <!-- Transmit Start -->
+          <text x="55" y="520" text-anchor="start" font-family="arial" font-size="12" fill="$$IDX$_1$">Transmit Start: </text>
+          <text x="150" y="520" text-anchor="start" font-family="arial" font-size="12" fill="$$IDX$_1$">$$IDX$STARTTRIG$</text>
+          <!-- Transmit Start Input Selection -->
+          <text x="55" y="545" text-anchor="start" font-family="arial" font-size="12" fill="$$IDX$_17$">Transmit Start Input Selection: </text>
+          <text x="220" y="545" text-anchor="start" font-family="arial" font-size="12" fill="$$IDX$_17$">$$IDX$TXSTARTINP$</text>
+          <!-- TB8 bitfield -->
+          <text x="125" y="575" transform="translate($$IDX$_xMSB$ 0)" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_1$">MSB</text>
+          <rect x="115" y="580" width="20" height="20" style="fill:$$IDX$_2$;stroke:$$IDX$_18$;stroke-width:1;opacity:1.0" />
+          <text x="125" y="620" text-anchor="middle" font-family="arial" font-size="11" fill="$$IDX$_18$">TB8</text>
+          <text x="125" y="595" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_19$" visibility="$VIS_$IDX$_4$">1</text>
+          <text x="125" y="590" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_20$" visibility="$VIS_$IDX$_5$">$$IDX$BIT9TX$</text>
+          <text x="125" y="597" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_20$" visibility="$VIS_$IDX$_5$">bit</text>
+          <!-- TXDATA bitfield -->
+          <rect x="136" y="580" width="159" height="20" style="fill:$$IDX$_2$;stroke:$$IDX$_21$;stroke-width:1;opacity:1.0" />
+          <line x1="155" y1="580" x2="155" y2="600" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <line x1="175" y1="580" x2="175" y2="600" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <line x1="195" y1="580" x2="195" y2="600" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <line x1="215" y1="580" x2="215" y2="600" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <line x1="235" y1="580" x2="235" y2="600" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <line x1="255" y1="580" x2="255" y2="600" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <text x="285" y="575" text-anchor="middle" font-family="arial" font-size="9" fill="$$IDX$_1$">LSB</text>
+          <line x1="275" y1="580" x2="275" y2="600" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <text x="225" y="620" text-anchor="middle" font-family="arial" font-size="11" fill="$$IDX$_21$">TXDATA</text>
+          <!-- Shift right -->
+          <text x="55" y="595" text-anchor="start" font-family="arial" font-size="12" fill="$$IDX$_1$">TXBUF</text>
+          <!--line x1="250" y1="580" x2="300" y2="580" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <path d="M300 580 L290 575 L290 585 Z" style="fill:$$IDX$_1$"/>
+          <text x="275" y="595" text-anchor="middle" font-family="arial" font-size="11" fill="$$IDX$_1$">right shift</text-->
+          <!-- Line from Reception block to LIN block -->
+          <text x="400" y="520" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_1$">TXD - $$IDX$TXOUTPUT$</text>
+          <line x1="315" y1="540" x2="390" y2="540" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <line x1="390" y1="540" x2="419" y2="540" style="stroke:$$IDX$_14$;stroke-width:1" />
+          <line x1="419" y1="540" x2="485" y2="540" style="stroke:$$IDX$_1$;stroke-width:1" />
+          <circle cx="417" cy="540" r="3" style="fill:none;stroke:$$IDX$_15$;stroke-width:1;opacity:1.0" visibility="$VIS_$IDX$_3$"/>
+          <polyline points="415,540 390,530 390,550 415,540" style="fill:none;stroke:$$IDX$_15$;stroke-width:1" visibility="$VIS_$IDX$_3$"/>
+          <path d="M485 540 L475 535 L475 545 Z" style="fill:$$IDX$_1$"/>
+          <!-- Interrupt -->
+          <line x1="315" y1="580" x2="415" y2="580" style="stroke:$$IDX$_16$;stroke-width:1" />
+          <path d="M415 580 L405 575 L405 585 Z" style="fill:$$IDX$_16$"/>
+          <text x="425" y="585" text-anchor="middle" font-family="arial" font-size="13" fill="$$IDX$_16$">TI</text>
+
+          <!-- LIN BLOCK -->
+          <line x1="485" y1="220" x2="485" y2="660" style="stroke:$$IDX$_12$;stroke-width:1" stroke-dasharray="4" />
+          <line x1="485" y1="660" x2="550" y2="660" style="stroke:$$IDX$_12$;stroke-width:1" stroke-dasharray="4" />
+          <line x1="550" y1="220" x2="550" y2="660" style="stroke:$$IDX$_12$;stroke-width:1" stroke-dasharray="4" />
+          <line x1="485" y1="220" x2="550" y2="220" style="stroke:$$IDX$_12$;stroke-width:1" stroke-dasharray="4" />
+          <text x="517" y="440" text-anchor="middle" font-family="arial" font-size="16" font-weight="bold" fill="$$IDX$_12$">LIN</text>
+        </g>
+      </svg>
+    </svgembed>
+  </groupcontainer>
+</ifxmlcfg>

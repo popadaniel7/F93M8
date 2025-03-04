@@ -1,0 +1,398 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+/**
+ * \file     tle_variants.h
+ *
+ * \brief    Device specific memory layout defines and features
+ *
+ * \version  V0.3.2
+ * \date     27. Nov 2020
+ *
+ * \note
+ */
+
+/*******************************************************************************
+**                             Author(s) Identity                             **
+********************************************************************************
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** DM           Daniel Mysliwitz                                              **
+** BG           Blandine Guillot                                              **
+** JO           Julia Ott                                                     **
+*******************************************************************************/
+
+/*******************************************************************************
+**                          Revision Control History                          **
+********************************************************************************
+** V0.1.0: 2019-10-28, DM:   Initial version                                  **
+** V0.2.0: 2020-08-11, JO:   Added devices TLE9881_2QTW60, TLE9883_2QTW62S,   **
+**                           TLE9883QTA62, TLE9891QTA61, TLE9891_2QTW60,      **
+**                           TLE9891_2QTW61, TLE9893QTW62, TLE9893QKW62S,     **
+**                           TLE9893_2QTA62, TLE9893_2QKW62, TLE9893_2QTW62S, **
+**                           TLE9893_2QTA62S, TLE9893_2QKW62S                 **
+** V0.3.0: 2020-08-17, BG:   Removed unnecessary series definitions           **
+** V0.3.1: 2020-11-12, JO:   EP-587: Added UC_FEATURE_48PIN/UC_FEATURE_64PIN  **
+** V0.3.2: 2020-11-27, BG:   EP-610: Corrected MISRA 2012 errors              **
+*******************************************************************************/
+
+#ifndef _TLE_VARIANTS_H
+#define _TLE_VARIANTS_H
+
+/* Family definitions  */
+#define TLE98      (98)
+
+/* Series definitions  */
+#define TLE988     (988)
+#define TLE989     (989)
+
+/* Device definitions  */
+#define TLE9891    (9891)
+#define TLE9893    (9893)
+#define TLE9897    (9897)
+#define TLE9899    (9899)
+
+/* Package definitions */
+#define BGA144     (1)
+#define LQFP144    (2)
+#define LQFP100    (3)
+#define BGA64      (4)
+#define LQFP64     (5)
+#define VQFN48     (6)
+#define TSSOP38    (7)
+#define TSSOP28    (8)
+#define TSSOP16    (9)
+#define VQFN24     (10)
+#define VQFN40     (11)
+#define TQFP48     (12)
+
+/* TLE988x/TLE989x devices */
+/* supported features:  */
+/* UC_FEATURE_CRYPTO_LIB */
+/* UC_FEATURE_DATAFLASH */
+/* UC_FEATURE_SDADC */
+/* UC_FEATURE_48PIN or UC_FEATURE_64PIN */
+
+/* TLE988x devices */
+/* TLE9881_2QTW60:  48pin, 15K RAM, 120K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN2.0, SDADC */
+#if defined(TLE9881_2QTW60)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x3C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (120U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_48PIN
+
+  /* TLE9883_2QTW62S: 48pin, 31K RAM, 248K Flash1 (8K Crypto-Lib in Flash1), 24K Flash0 (8k Data Flash in Flash0), CAN FD, SDADC */
+#elif defined(TLE9883_2QTW62S)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x3C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_CRYPTO_LIB
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_48PIN
+
+  /* TLE9883QTA62: 48pin, 31K RAM, 248K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN FD, No SDADC */
+#elif defined(TLE9883QTA62)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_48PIN
+
+  /* TLE989x devices */
+  /* TLE9891QTA61: 48pin, 15K RAM, 120K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN2.0, No SDADC */
+#elif defined(TLE9891QTA61)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x3C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (120U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_48PIN
+
+  /* TLE9891_2QTW60: 48pin, 15K RAM, 120K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN2.0, SDADC */
+#elif defined(TLE9891_2QTW60)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x3C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (120U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_48PIN
+
+  /* TLE9891_2QTW61: 48pin, 15K RAM, 120K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN2.0, SDADC */
+#elif defined(TLE9891_2QTW61)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x3C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (120U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_48PIN
+
+  /* TLE9893QTW62: 48pin, 31K RAM, 248K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN FD, No SDADC */
+#elif defined(TLE9893QTW62)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_48PIN
+
+  /* TLE9893QKW62S: 64pin, 31K RAM, 248K Flash1 (8K Crypto-Lib in Flash1), 24K Flash0 (8k Data Flash in Flash0), CAN FD, No SDADC */
+#elif defined(TLE9893QKW62S)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      LQFP64
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_CRYPTO_LIB
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_64PIN
+
+  /* TLE9893_2QTA62: 48pin, 31K RAM, 248K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN FD, SDADC */
+#elif defined(TLE9893_2QTA62)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_48PIN
+
+  /* TLE9893_2QKW62: 64pin, 31K RAM, 248K Flash1 (no Crypto-Lib), 24K Flash0 (8k Data Flash in Flash0), CAN FD, SDADC */
+#elif defined(TLE9893_2QKW62)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      LQFP64
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_64PIN
+
+  /* TLE9893_2QTW62S: 48pin, 31K RAM, 248K Flash1 (8K Crypto-Lib in Flash1), 24K Flash0 (8k Data Flash in Flash0), CAN FD, SDADC */
+#elif defined(TLE9893_2QTW62S)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_CRYPTO_LIB
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_48PIN
+
+  /* TLE9893_2QTA62S: 48pin, 31K RAM, 248K Flash1 (8K Crypto-Lib in Flash1), 24K Flash0 (8k Data Flash in Flash0), CAN FD, SDADC */
+#elif defined(TLE9893_2QTA62S)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      TQFP48
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_CRYPTO_LIB
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_48PIN
+
+  /* TLE9893_2QKW62S: 64pin, 31K RAM, 248K Flash1 (8K Crypto-Lib in Flash1), 24K Flash0 (8k Data Flash in Flash0), CAN FD, SDADC */
+#elif defined(TLE9893_2QKW62S)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      LQFP64
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_CRYPTO_LIB
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_64PIN
+
+  /* TLE9893_2QKW62S_internal: 64pin, 31K RAM, 248K Flash1 (8K Crypto-Lib in Flash1), 24K Flash0 (8k Data Flash in Flash0), CAN FD, SDADC */
+#elif defined(TLE9893_2QKW62S_internal)
+  #define UC_FAMILY       TLE98
+  #define UC_SERIES       TLE989
+  #define UC_DEVICE       TLE9893
+  #define UC_PACKAGE      LQFP64
+  /* RAM */
+  #define UC_RAM_START    (0x18000400U)
+  #define UC_RAM_SIZE     (0x7C00U)
+  /* Flash */
+  #define UC_FLASH0_START (0x11000000U)
+  #define UC_FLASH0_SIZE  (24U)
+  #define UC_FLASH1_START (0x12002000U)
+  #define UC_FLASH1_SIZE  (248U)
+  /* Features */
+  #define UC_FEATURE_CRYPTO_LIB
+  #define UC_FEATURE_DATAFLASH
+  #define UC_FEATURE_SDADC
+  #define UC_FEATURE_64PIN
+
+#else
+  #error "tle_device.h: device not supported"
+#endif
+
+/*******************************************************************************
+**                   Definition of first page in FLASH0                       **
+*******************************************************************************/
+#define UC_SNAC_START   ".ARM.__at_0x11000000"
+
+
+#if (UC_SERIES == 989)
+  #include "tle989x.h"
+#endif
+#include "types.h"
+
+INLINE bool PtrRangeCheck(const void *ptr)
+{
+  bool b_res;
+  b_res = false;
+
+  /* check is input pointer resides inside the RAM */
+  if (((uint32)ptr >= UC_RAM_START) && ((uint32)ptr < (UC_RAM_START + UC_RAM_SIZE)))
+  {
+    b_res = true;
+  }
+
+  return (b_res);
+}
+#endif

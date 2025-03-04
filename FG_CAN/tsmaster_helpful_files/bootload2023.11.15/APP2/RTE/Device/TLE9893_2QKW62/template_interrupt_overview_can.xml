@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_interrupt_overview_can.xml                                        -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!-- V0.1.1: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.1.2: 2021-08-18, BG:   EP-691: Updated names to comply with svd from v0.4.5 -->
+<!-- V0.1.3: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>90c7811cebae6fc1f9405c7f3e291f09fc6d798e4060fe8dc195a11b9425acea</checksum>
+  <version label="V0.1.3"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1"  stretch="2">
+  <text label="Configured Interrupts of Nodes 26, 27, 28"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="CAN_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_TXOK_CALLBACK=CANNODE_NODE0_TXOK_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_RXOK_CALLBACK=CANNODE_NODE0_RXOK_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_LEC_CALLBACK=CANNODE_NODE0_LEC_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_EWRN_CALLBACK=CANNODE_NODE0_EWRN_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_BOFF_CALLBACK=CANNODE_NODE0_BOFF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_LLE_CALLBACK=CANNODE_NODE0_LLE_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_LOE_CALLBACK=CANNODE_NODE0_LOE_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANNODE_NODE0_CFCOV_CALLBACK=CANNODE_NODE0_CFCOV_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG0_TXPND_CALLBACK=CANMSGOBJ0_MSG0_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG0_RXPND_CALLBACK=CANMSGOBJ0_MSG0_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG0_TXOVF_CALLBACK=CANMSGOBJ0_MSG0_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG0_RXOVF_CALLBACK=CANMSGOBJ0_MSG0_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG1_TXPND_CALLBACK=CANMSGOBJ0_MSG1_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG1_RXPND_CALLBACK=CANMSGOBJ0_MSG1_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG1_TXOVF_CALLBACK=CANMSGOBJ0_MSG1_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG1_RXOVF_CALLBACK=CANMSGOBJ0_MSG1_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG2_TXPND_CALLBACK=CANMSGOBJ0_MSG2_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG2_RXPND_CALLBACK=CANMSGOBJ0_MSG2_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG2_TXOVF_CALLBACK=CANMSGOBJ0_MSG2_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG2_RXOVF_CALLBACK=CANMSGOBJ0_MSG2_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG3_TXPND_CALLBACK=CANMSGOBJ0_MSG3_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG3_RXPND_CALLBACK=CANMSGOBJ0_MSG3_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG3_TXOVF_CALLBACK=CANMSGOBJ0_MSG3_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG3_RXOVF_CALLBACK=CANMSGOBJ0_MSG3_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG4_TXPND_CALLBACK=CANMSGOBJ0_MSG4_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG4_RXPND_CALLBACK=CANMSGOBJ0_MSG4_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG4_TXOVF_CALLBACK=CANMSGOBJ0_MSG4_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG4_RXOVF_CALLBACK=CANMSGOBJ0_MSG4_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG5_TXPND_CALLBACK=CANMSGOBJ0_MSG5_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG5_RXPND_CALLBACK=CANMSGOBJ0_MSG5_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG5_TXOVF_CALLBACK=CANMSGOBJ0_MSG5_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG5_RXOVF_CALLBACK=CANMSGOBJ0_MSG5_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG6_TXPND_CALLBACK=CANMSGOBJ0_MSG6_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG6_RXPND_CALLBACK=CANMSGOBJ0_MSG6_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG6_TXOVF_CALLBACK=CANMSGOBJ0_MSG6_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG6_RXOVF_CALLBACK=CANMSGOBJ0_MSG6_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG7_TXPND_CALLBACK=CANMSGOBJ0_MSG7_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG7_RXPND_CALLBACK=CANMSGOBJ0_MSG7_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG7_TXOVF_CALLBACK=CANMSGOBJ0_MSG7_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG7_RXOVF_CALLBACK=CANMSGOBJ0_MSG7_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG8_TXPND_CALLBACK=CANMSGOBJ0_MSG8_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG8_RXPND_CALLBACK=CANMSGOBJ0_MSG8_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG8_TXOVF_CALLBACK=CANMSGOBJ0_MSG8_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG8_RXOVF_CALLBACK=CANMSGOBJ0_MSG8_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG9_TXPND_CALLBACK=CANMSGOBJ0_MSG9_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG9_RXPND_CALLBACK=CANMSGOBJ0_MSG9_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG9_TXOVF_CALLBACK=CANMSGOBJ0_MSG9_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG9_RXOVF_CALLBACK=CANMSGOBJ0_MSG9_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG10_TXPND_CALLBACK=CANMSGOBJ0_MSG10_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG10_RXPND_CALLBACK=CANMSGOBJ0_MSG10_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG10_TXOVF_CALLBACK=CANMSGOBJ0_MSG10_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG10_RXOVF_CALLBACK=CANMSGOBJ0_MSG10_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG11_TXPND_CALLBACK=CANMSGOBJ0_MSG11_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG11_RXPND_CALLBACK=CANMSGOBJ0_MSG11_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG11_TXOVF_CALLBACK=CANMSGOBJ0_MSG11_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG11_RXOVF_CALLBACK=CANMSGOBJ0_MSG11_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG12_TXPND_CALLBACK=CANMSGOBJ0_MSG12_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG12_RXPND_CALLBACK=CANMSGOBJ0_MSG12_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG12_TXOVF_CALLBACK=CANMSGOBJ0_MSG12_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG12_RXOVF_CALLBACK=CANMSGOBJ0_MSG12_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG13_TXPND_CALLBACK=CANMSGOBJ0_MSG13_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG13_RXPND_CALLBACK=CANMSGOBJ0_MSG13_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG13_TXOVF_CALLBACK=CANMSGOBJ0_MSG13_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG13_RXOVF_CALLBACK=CANMSGOBJ0_MSG13_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG14_TXPND_CALLBACK=CANMSGOBJ0_MSG14_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG14_RXPND_CALLBACK=CANMSGOBJ0_MSG14_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG14_TXOVF_CALLBACK=CANMSGOBJ0_MSG14_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG14_RXOVF_CALLBACK=CANMSGOBJ0_MSG14_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG15_TXPND_CALLBACK=CANMSGOBJ0_MSG15_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG15_RXPND_CALLBACK=CANMSGOBJ0_MSG15_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG15_TXOVF_CALLBACK=CANMSGOBJ0_MSG15_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG15_RXOVF_CALLBACK=CANMSGOBJ0_MSG15_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG16_TXPND_CALLBACK=CANMSGOBJ0_MSG16_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG16_RXPND_CALLBACK=CANMSGOBJ0_MSG16_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG16_TXOVF_CALLBACK=CANMSGOBJ0_MSG16_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG16_RXOVF_CALLBACK=CANMSGOBJ0_MSG16_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG17_TXPND_CALLBACK=CANMSGOBJ0_MSG17_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG17_RXPND_CALLBACK=CANMSGOBJ0_MSG17_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG17_TXOVF_CALLBACK=CANMSGOBJ0_MSG17_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG17_RXOVF_CALLBACK=CANMSGOBJ0_MSG17_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG18_TXPND_CALLBACK=CANMSGOBJ0_MSG18_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG18_RXPND_CALLBACK=CANMSGOBJ0_MSG18_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG18_TXOVF_CALLBACK=CANMSGOBJ0_MSG18_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG18_RXOVF_CALLBACK=CANMSGOBJ0_MSG18_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG19_TXPND_CALLBACK=CANMSGOBJ0_MSG19_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG19_RXPND_CALLBACK=CANMSGOBJ0_MSG19_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG19_TXOVF_CALLBACK=CANMSGOBJ0_MSG19_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG19_RXOVF_CALLBACK=CANMSGOBJ0_MSG19_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG20_TXPND_CALLBACK=CANMSGOBJ0_MSG20_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG20_RXPND_CALLBACK=CANMSGOBJ0_MSG20_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG20_TXOVF_CALLBACK=CANMSGOBJ0_MSG20_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG20_RXOVF_CALLBACK=CANMSGOBJ0_MSG20_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG21_TXPND_CALLBACK=CANMSGOBJ0_MSG21_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG21_RXPND_CALLBACK=CANMSGOBJ0_MSG21_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG21_TXOVF_CALLBACK=CANMSGOBJ0_MSG21_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG21_RXOVF_CALLBACK=CANMSGOBJ0_MSG21_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG22_TXPND_CALLBACK=CANMSGOBJ0_MSG22_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG22_RXPND_CALLBACK=CANMSGOBJ0_MSG22_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG22_TXOVF_CALLBACK=CANMSGOBJ0_MSG22_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG22_RXOVF_CALLBACK=CANMSGOBJ0_MSG22_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG23_TXPND_CALLBACK=CANMSGOBJ0_MSG23_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG23_RXPND_CALLBACK=CANMSGOBJ0_MSG23_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG23_TXOVF_CALLBACK=CANMSGOBJ0_MSG23_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG23_RXOVF_CALLBACK=CANMSGOBJ0_MSG23_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG24_TXPND_CALLBACK=CANMSGOBJ0_MSG24_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG24_RXPND_CALLBACK=CANMSGOBJ0_MSG24_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG24_TXOVF_CALLBACK=CANMSGOBJ0_MSG24_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG24_RXOVF_CALLBACK=CANMSGOBJ0_MSG24_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG25_TXPND_CALLBACK=CANMSGOBJ0_MSG25_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG25_RXPND_CALLBACK=CANMSGOBJ0_MSG25_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG25_TXOVF_CALLBACK=CANMSGOBJ0_MSG25_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG25_RXOVF_CALLBACK=CANMSGOBJ0_MSG25_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG26_TXPND_CALLBACK=CANMSGOBJ0_MSG26_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG26_RXPND_CALLBACK=CANMSGOBJ0_MSG26_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG26_TXOVF_CALLBACK=CANMSGOBJ0_MSG26_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG26_RXOVF_CALLBACK=CANMSGOBJ0_MSG26_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG27_TXPND_CALLBACK=CANMSGOBJ0_MSG27_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG27_RXPND_CALLBACK=CANMSGOBJ0_MSG27_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG27_TXOVF_CALLBACK=CANMSGOBJ0_MSG27_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG27_RXOVF_CALLBACK=CANMSGOBJ0_MSG27_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG28_TXPND_CALLBACK=CANMSGOBJ0_MSG28_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG28_RXPND_CALLBACK=CANMSGOBJ0_MSG28_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG28_TXOVF_CALLBACK=CANMSGOBJ0_MSG28_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG28_RXOVF_CALLBACK=CANMSGOBJ0_MSG28_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG29_TXPND_CALLBACK=CANMSGOBJ0_MSG29_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG29_RXPND_CALLBACK=CANMSGOBJ0_MSG29_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG29_TXOVF_CALLBACK=CANMSGOBJ0_MSG29_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG29_RXOVF_CALLBACK=CANMSGOBJ0_MSG29_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG30_TXPND_CALLBACK=CANMSGOBJ0_MSG30_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG30_RXPND_CALLBACK=CANMSGOBJ0_MSG30_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG30_TXOVF_CALLBACK=CANMSGOBJ0_MSG30_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG30_RXOVF_CALLBACK=CANMSGOBJ0_MSG30_RXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG31_TXPND_CALLBACK=CANMSGOBJ0_MSG31_TXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG31_RXPND_CALLBACK=CANMSGOBJ0_MSG31_RXPND_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG31_TXOVF_CALLBACK=CANMSGOBJ0_MSG31_TXOVF_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_CANMSGOBJ0_MSG31_RXOVF_CALLBACK=CANMSGOBJ0_MSG31_RXOVF_CALLBACK"/>
+      </timer>
+      <math formula="CANNODE_NODE0_TXOK_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_TXOK_INT_BOX.visible=CANNODE_NODE0_TXOK_INT_EN"/></math>
+      <math formula="CANNODE_NODE0_RXOK_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_RXOK_INT_BOX.visible=CANNODE_NODE0_RXOK_INT_EN"/></math>
+      <math formula="CANNODE_NODE0_LEC_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_LEC_INT_BOX.visible=CANNODE_NODE0_LEC_INT_EN"/></math>
+      <math formula="CANNODE_NODE0_EWRN_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_EWRN_INT_BOX.visible=CANNODE_NODE0_EWRN_INT_EN"/></math>
+      <math formula="CANNODE_NODE0_BOFF_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_BOFF_INT_BOX.visible=CANNODE_NODE0_BOFF_INT_EN"/></math>
+      <math formula="CANNODE_NODE0_LLE_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_LLE_INT_BOX.visible=CANNODE_NODE0_LLE_INT_EN"/></math>
+      <math formula="CANNODE_NODE0_LOE_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_LOE_INT_BOX.visible=CANNODE_NODE0_LOE_INT_EN"/></math>
+      <math formula="CANNODE_NODE0_CFCOV_INT_EN"><action event="changed" cmd="setDef" data="CANNODE_NODE0_CFCOV_INT_BOX.visible=CANNODE_NODE0_CFCOV_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG0_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG0_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG0_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG0_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG0_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG0_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG0_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG0_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG0_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG0_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG0_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG0_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG1_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG1_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG1_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG1_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG1_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG1_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG1_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG1_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG1_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG1_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG1_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG1_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG2_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG2_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG2_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG2_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG2_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG2_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG2_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG2_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG2_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG2_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG2_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG2_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG3_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG3_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG3_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG3_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG3_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG3_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG3_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG3_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG3_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG3_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG3_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG3_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG4_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG4_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG4_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG4_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG4_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG4_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG4_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG4_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG4_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG4_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG4_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG4_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG5_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG5_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG5_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG5_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG5_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG5_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG5_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG5_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG5_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG5_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG5_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG5_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG6_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG6_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG6_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG6_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG6_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG6_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG6_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG6_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG6_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG6_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG6_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG6_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG7_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG7_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG7_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG7_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG7_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG7_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG7_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG7_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG7_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG7_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG7_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG7_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG8_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG8_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG8_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG8_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG8_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG8_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG8_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG8_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG8_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG8_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG8_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG8_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG9_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG9_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG9_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG9_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG9_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG9_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG9_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG9_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG9_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG9_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG9_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG9_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG10_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG10_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG10_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG10_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG10_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG10_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG10_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG10_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG10_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG10_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG10_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG10_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG11_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG11_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG11_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG11_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG11_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG11_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG11_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG11_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG11_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG11_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG11_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG11_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG12_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG12_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG12_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG12_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG12_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG12_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG12_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG12_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG12_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG12_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG12_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG12_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG13_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG13_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG13_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG13_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG13_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG13_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG13_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG13_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG13_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG13_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG13_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG13_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG14_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG14_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG14_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG14_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG14_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG14_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG14_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG14_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG14_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG14_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG14_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG14_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG15_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG15_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG15_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG15_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG15_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG15_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG15_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG15_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG15_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG15_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG15_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG15_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG16_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG16_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG16_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG16_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG16_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG16_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG16_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG16_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG16_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG16_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG16_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG16_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG17_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG17_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG17_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG17_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG17_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG17_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG17_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG17_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG17_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG17_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG17_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG17_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG18_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG18_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG18_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG18_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG18_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG18_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG18_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG18_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG18_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG18_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG18_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG18_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG19_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG19_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG19_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG19_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG19_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG19_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG19_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG19_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG19_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG19_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG19_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG19_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG20_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG20_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG20_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG20_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG20_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG20_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG20_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG20_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG20_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG20_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG20_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG20_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG21_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG21_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG21_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG21_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG21_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG21_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG21_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG21_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG21_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG21_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG21_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG21_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG22_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG22_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG22_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG22_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG22_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG22_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG22_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG22_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG22_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG22_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG22_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG22_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG23_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG23_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG23_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG23_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG23_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG23_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG23_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG23_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG23_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG23_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG23_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG23_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG24_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG24_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG24_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG24_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG24_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG24_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG24_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG24_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG24_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG24_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG24_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG24_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG25_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG25_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG25_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG25_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG25_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG25_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG25_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG25_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG25_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG25_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG25_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG25_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG26_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG26_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG26_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG26_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG26_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG26_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG26_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG26_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG26_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG26_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG26_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG26_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG27_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG27_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG27_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG27_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG27_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG27_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG27_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG27_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG27_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG27_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG27_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG27_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG28_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG28_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG28_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG28_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG28_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG28_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG28_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG28_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG28_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG28_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG28_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG28_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG29_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG29_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG29_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG29_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG29_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG29_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG29_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG29_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG29_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG29_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG29_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG29_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG30_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG30_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG30_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG30_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG30_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG30_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG30_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG30_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG30_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG30_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG30_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG30_RXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG31_TXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG31_TXPND_INT_BOX.visible=CANMSGOBJ0_MSG31_TXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG31_RXPND_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG31_RXPND_INT_BOX.visible=CANMSGOBJ0_MSG31_RXPND_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG31_TXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG31_TXOVF_INT_BOX.visible=CANMSGOBJ0_MSG31_TXOVF_INT_EN"/></math>
+      <math formula="CANMSGOBJ0_MSG31_RXOVF_INT_EN"><action event="changed" cmd="setDef" data="CANMSGOBJ0_MSG31_RXOVF_INT_BOX.visible=CANMSGOBJ0_MSG31_RXOVF_INT_EN"/></math>
+    </verticalcontainer> <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_TXOK_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 Successful Transmission"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_TRINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NCR0.TRIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_TXOK_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_RXOK_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 Successful Reception"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_TRINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NCR0.TRIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_RXOK_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_LEC_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 Last Error Code"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_LECINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NCR0.LECIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_LEC_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_EWRN_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 Error Warning"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_ALINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NCR0.ALIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_EWRN_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_BOFF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 Bus Off"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_ALINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NCR0.ALIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_BOFF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_LLE_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 List Length Error"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_ALINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NCR0.ALIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_LLE_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_LOE_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 List Object Error"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_ALINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NCR0.ALIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_LOE_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANNODE_NODE0_CFCOV_INT_BOX" visible="false">
+        <text size="200;-1" label="CANNODE Node 0 CAN Frame Counter Overflow"/>
+        <math size="75;-1" formula="CANNODE.CAN.NIPR0_CFCINP+26"/>
+        <math size="75;-1" formula="CANNODE.CAN_NFCR0.CFCIE"/>
+        <edit size="400;-1" define="RO_CANNODE_NODE0_CFCOV_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG0_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 0 Transmitted"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR0_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR0.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG0_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG0_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 0 Received"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR0_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR0.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG0_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG0_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 0 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR0_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR0.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG0_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG0_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 0 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR0_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR0.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG0_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG1_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 1 Transmitted"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR1_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR1.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG1_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG1_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 1 Received"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR1_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR1.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG1_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG1_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 1 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR1_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR1.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG1_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG1_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 1 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR1_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR1.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG1_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG2_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 2 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR2_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR2.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG2_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG2_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 2 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR2_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR2.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG2_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG2_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 2 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR2_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR2.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG2_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG2_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 2 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR2_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR2.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG2_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG3_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 3 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR3_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR3.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG3_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG3_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 3 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR3_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR3.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG3_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG3_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 3 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR3_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR3.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG3_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG3_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 3 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR3_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR3.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG3_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG4_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 4 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR4_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR4.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG4_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG4_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 4 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR4_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR4.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG4_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG4_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 4 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR4_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR4.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG4_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG4_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 4 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR4_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR4.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG4_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG5_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 5 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR5_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR5.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG5_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG5_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 5 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR5_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR5.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG5_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG5_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 5 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR5_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR5.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG5_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG5_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 5 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR5_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR5.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG5_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG6_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 6 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR6_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR6.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG6_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG6_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 6 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR6_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR6.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG6_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG6_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 6 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR6_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR6.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG6_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG6_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 6 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR6_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR6.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG6_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG7_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 7 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR7_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR7.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG7_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG7_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 7 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR7_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR7.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG7_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG7_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 7 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR7_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR7.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG7_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG7_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 7 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR7_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR7.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG7_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG8_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 8 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR8_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR8.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG8_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG8_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 8 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR8_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR8.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG8_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG8_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 8 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR8_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR8.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG8_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG8_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 8 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR8_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR8.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG8_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG9_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 9 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR9_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR9.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG9_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG9_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 9 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR9_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR9.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG9_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG9_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 9 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR9_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR9.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG9_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG9_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 9 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR9_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR9.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG9_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG10_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 10 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR10_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR10.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG10_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG10_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 10 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR10_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR10.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG10_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG10_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 10 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR10_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR10.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG10_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG10_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 10 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR10_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR10.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG10_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG11_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 11 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR11_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR11.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG11_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG11_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 11 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR11_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR11.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG11_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG11_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 11 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR11_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR11.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG11_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG11_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 11 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR11_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR11.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG11_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG12_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 12 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR12_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR12.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG12_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG12_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 12 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR12_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR12.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG12_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG12_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 12 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR12_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR12.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG12_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG12_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 12 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR12_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR12.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG12_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG13_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 13 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR13_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR13.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG13_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG13_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 13 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR13_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR13.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG13_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG13_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 13 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR13_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR13.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG13_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG13_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 13 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR13_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR13.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG13_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG14_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 14 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR14_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR14.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG14_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG14_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 14 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR14_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR14.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG14_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG14_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 14 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR14_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR14.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG14_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG14_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 14 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR14_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR14.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG14_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG15_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 15 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR15_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR15.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG15_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG15_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 15 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR15_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR15.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG15_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG15_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 15 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR15_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR15.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG15_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG15_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 15 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR15_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR15.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG15_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG16_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 16 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR16_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR16.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG16_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG16_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 16 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR16_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR16.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG16_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG16_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 16 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR16_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR16.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG16_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG16_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 16 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR16_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR16.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG16_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG17_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 17 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR17_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR17.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG17_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG17_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 17 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR17_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR17.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG17_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG17_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 17 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR17_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR17.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG17_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG17_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 17 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR17_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR17.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG17_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG18_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 18 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR18_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR18.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG18_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG18_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 18 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR18_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR18.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG18_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG18_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 18 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR18_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR18.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG18_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG18_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 18 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR18_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR18.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG18_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG19_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 19 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR19_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR19.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG19_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG19_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 19 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR19_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR19.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG19_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG19_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 19 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR19_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR19.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG19_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG19_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 19 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR19_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR19.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG19_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG20_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 20 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR20_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR20.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG20_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG20_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 20 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR20_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR20.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG20_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG20_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 20 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR20_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR20.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG20_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG20_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 20 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR20_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR20.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG20_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG21_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 21 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR21_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR21.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG21_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG21_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 21 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR21_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR21.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG21_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG21_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 21 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR21_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR21.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG21_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG21_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 21 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR21_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR21.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG21_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG22_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 22 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR22_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR22.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG22_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG22_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 22 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR22_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR22.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG22_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG22_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 22 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR22_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR22.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG22_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG22_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 22 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR22_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR22.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG22_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG23_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 23 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR23_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR23.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG23_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG23_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 23 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR23_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR23.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG23_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG23_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 23 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR23_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR23.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG23_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG23_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 23 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR23_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR23.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG23_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG24_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 24 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR24_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR24.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG24_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG24_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 24 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR24_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR24.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG24_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG24_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 24 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR24_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR24.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG24_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG24_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 24 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR24_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR24.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG24_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG25_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 25 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR25_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR25.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG25_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG25_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 25 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR25_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR25.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG25_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG25_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 25 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR25_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR25.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG25_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG25_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 25 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR25_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR25.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG25_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG26_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 26 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR26_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR26.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG26_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG26_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 26 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR26_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR26.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG26_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG26_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 26 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR26_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR26.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG26_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG26_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 26 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR26_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR26.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG26_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG27_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 27 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR27_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR27.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG27_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG27_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 27 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR27_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR27.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG27_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG27_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 27 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR27_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR27.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG27_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG27_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 27 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR27_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR27.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG27_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG28_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 28 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR28_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR28.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG28_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG28_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 28 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR28_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR28.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG28_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG28_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 28 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR28_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR28.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG28_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG28_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 28 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR28_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR28.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG28_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG29_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 29 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR29_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR29.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG29_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG29_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 29 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR29_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR29.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG29_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG29_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 29 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR29_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR29.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG29_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG29_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 29 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR29_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR29.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG29_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG30_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 30 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR30_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR30.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG30_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG30_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 30 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR30_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR30.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG30_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG30_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 30 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR30_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR30.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG30_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG30_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 30 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR30_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR30.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG30_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG31_TXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 31 Transmitted   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR31_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR31.TXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG31_TXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG31_RXPND_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 31 Received   "/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR31_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR31.RXIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG31_RXPND_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG31_TXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 31 Transmit FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR31_RXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR31.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG31_TXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="CANMSGOBJ0_MSG31_RXOVF_INT_BOX" visible="false">
+        <text size="200;-1" label="CANMSGOBJ0 Message 31 Receive FIFO Buffer Full"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN.MOIPR31_TXINP+26"/>
+        <math size="75;-1" formula="CANMSGOBJ0.CAN_MOFCR31.OVIE"/>
+        <edit size="400;-1" define="RO_CANMSGOBJ0_MSG31_RXOVF_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer> <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>            
+

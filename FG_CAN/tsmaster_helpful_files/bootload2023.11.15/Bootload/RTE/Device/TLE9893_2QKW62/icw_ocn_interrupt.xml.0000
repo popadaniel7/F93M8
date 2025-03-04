@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_interrupt.xml                                                      -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-07, JO:   Corrected interrupt overview by setting all          -->
+<!--                           *_FILL_INT_OVERVIEW timer to run at tab change       -->
+<!-- V0.0.3: 2020-10-16, JO:   EP-517: Changed from register access to bitfield     -->
+<!--                           access for the external interrupts                   -->
+<!-- V0.1.0: 2020-10-19, JO:   EP-524: Added define CPU_SYSTICK_RL_RELOAD_HP40_CLK  -->
+<!--                           to set SysTick interval to 1ms when using HP40_CLK   -->
+<!-- V0.1.1: 2020-10-27, JO:   EP-554: Added Interrrupt overview for ADC2           -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>d398261beead4654f03277dd29b50156c74351d09c8d785f2260044ca117909a</checksum>
+  <version label="V0.1.1"/>
+
+  <horizontalcontainer label="Interrupt" selectsetdef="Timer_FillIntOverview.run=1" unselectsetdef="Timer_FillIntOverview.run=1">
+    <timer visible="false" define="Timer_FillIntOverview" interval="1" singleShot="1" run="0">
+      <action event="changed" cmd="setDef" data="ADC1_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="ADC2_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="BEMF_SDADC_FILL_INT_OVERVIEW.run=1"/>
+      <!--action event="changed" cmd="setDef" data="CAN_FILL_INT_OVERVIEW.run=1"/-->
+      <action event="changed" cmd="setDef" data="CCU7_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="DMA_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="EXTINT_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="GPT12_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="MEMCTRL_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="MON_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="SSC_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="T20_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="T21_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="UART_FILL_INT_OVERVIEW.run=1"/>
+      <action event="changed" cmd="setDef" data="WARN_FILL_INT_OVERVIEW.run=1"/>
+    </timer>
+    <var define="HP40_CLK_MHz" default="40"/>
+    <header file="isr_defines.h">
+      <verticalcontainer label="left">
+
+        <horizontalcontainer>
+          <groupcontainer label="NMI">
+            <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+
+              <branch label="Clock Error NMIs">
+                <checkbox label="XTAL Watchdog Fail" define="SCU.NMICON_NMIXTALEN_NMI_EN" uielement="branch" svd="0">
+                  <editbox label="Note" define="SCU.NOTE" read-only="1" svd="0" default="XTAL Watchdog needs to be enabled!" size="-1;60" header=""/>
+                  <checkbox label="Interrupt Enable" define="SCU.NMICON.NMIXTALEN"/>
+                  <edit label="Callback" define="SCU.NMICON_NMIXTALEN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="PLL0 Loss of Lock" define="SCU.NMICON_NMIPLL0EN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="SCU.NMICON.NMIPLL0EN"/>
+                  <edit label="Callback" define="SCU.NMICON_NMIPLL0EN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="PLL1 Loss of Lock" define="SCU.NMICON_NMIPLL1EN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="SCU.NMICON.NMIPLL1EN"/>
+                  <edit label="Callback" define="SCU.NMICON_NMIPLL1EN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+              </branch>
+
+              <branch label="Memory Error NMIs">
+                <checkbox label="DSRAM Double Bit ECC Error" define="MEMCTRL.NMICON_NMIDSEN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMIDSEN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMIDSEN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="PSRAM Double Bit ECC Error" define="MEMCTRL.NMICON_NMIPSEN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMIPSEN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMIPSEN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="Cache Data RAM Double Bit ECC Error" define="MEMCTRL.NMICON_NMICDEN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMICDEN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMICDEN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="NVM0 Double Bit ECC Error NMI Enable" define="MEMCTRL.NMICON_NMINVM0EN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMINVM0EN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMINVM0EN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="NVM1 Double Bit ECC Error" define="MEMCTRL.NMICON_NMINVM1EN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMINVM1EN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMINVM1EN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="NVM0 MAP Error" define="MEMCTRL.NMICON_NMIMAP0EN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMIMAP0EN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMIMAP0EN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="NVM1 MAP Error" define="MEMCTRL.NMICON_NMIMAP1EN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMIMAP1EN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMIMAP1EN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="Watchdog Timer" define="MEMCTRL.NMICON_NMIWDTEN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMIWDTEN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMIWDTEN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="Stack Overflow" define="MEMCTRL.NMICON_NMISTOFEN_NMI_EN" uielement="branch" svd="0">
+                  <checkbox label="Interrupt Enable" define="MEMCTRL.NMICON.NMISTOFEN"/>
+                  <edit label="Callback" define="MEMCTRL.NMICON_NMISTOFEN_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <math label="NVM0 Operation Complete" define="MEMCTRL.NVM0_OP_COMPLETE_INT_EN" formula="1" svd="0" visible="false"/>
+                <math label="Interrupt Enable" define="MEMCTRL.IEN.NVM0OPCIEN" formula="1" visible="false"/>
+                <math label="NVM1 Operation Complete" define="MEMCTRL.NVM1_OP_COMPLETE_INT_EN" formula="1" svd="0" visible="false"/>
+                <math label="Interrupt Enable" define="MEMCTRL.IEN.NVM1OPCIEN" formula="1" visible="false"/>
+              </branch>
+
+            </treecontainer>
+          </groupcontainer>
+
+          <groupcontainer label="Core Exceptions">
+            <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+              <checkbox label="HardFault Callback" define="CPU.HARDFAULT_EN" svd="0" uielement="branch">
+                <edit label="Callback" define="CPU.HARDFAULT_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+              </checkbox>
+              <checkbox label="MemManage Callback" define="CPU.MEMMANAGE_EN" svd="0" uielement="branch">
+                <edit label="Callback" define="CPU.MEMMANAGE_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+              </checkbox>
+              <checkbox label="BusFault Callback" define="CPU.BUSFAULT_EN" svd="0" uielement="branch">
+                <edit label="Callback" define="CPU.BUSFAULT_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+              </checkbox>
+              <checkbox label="UsageFault Callback" define="CPU.USAGEFAULT_EN" svd="0" uielement="branch">
+                <edit label="Callback" define="CPU.USAGEFAULT_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+              </checkbox>
+              <checkbox label="SysTick Callback" define="CPU.SYSTICK_EN" svd="0" uielement="branch">
+                <edit label="Callback" define="CPU.SYSTICK_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                <text label="SysTick interval is 1ms"/>
+              </checkbox>
+              <!-- Set SysTick Reload value to 1ms -->
+              <!--math visible="true" define="CPU.SYSTICK_RL.RELOAD" formula="SCU_fCPU_MHz*1000"/-->
+              <math visible="true" label="SysTick reload Value" define="CPU.SYSTICK_RL.RELOAD" formula="fSYS_MHz*1000"/>
+              <math visible="false" label="SysTick reload Value at HP40_Clk" define="CPU_SYSTICK_RL_RELOAD_HP40_CLK" svd="0" formula="HP40_CLK_MHz*1000"/>
+              <checkbox label="PendSV Handler" define="CPU.PENDSV_EN" svd="0" uielement="branch">
+                <edit label="Callback" define="CPU.PENDSV_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+              </checkbox>              </treecontainer>
+
+          </groupcontainer>
+
+          <groupcontainer label="External Interrupts">
+            <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+
+              <branch label="EXTINT0">
+                <combo label="Node Selection" define="SCU.INP4.INP_EXINT0">
+                  <item label="IRQ20" override="value1" lockon="CPU.NVIC_ISER.IRQEN20=1"/>
+                  <item label="IRQ21" override="value2" lockon="CPU.NVIC_ISER.IRQEN21=1"/>
+                </combo>
+                <combo label="Pin Select" define="SCU.EXTCON.EXTINT0INSEL"/>
+                <math visible="false" define="SCU.EXTIEN.EXTINT0EN" formula="SCU.EXTCON.EXTINT0IEV[0] .+ SCU.EXTCON.EXTINT0IEV[1]"/>
+                <checkbox label="Trigger Rising Edge" define="SCU.EXTINT0_RISING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT0IEV[0]"/>
+                  <edit label="Rising Edge Callback" define="SCU.EXTINT0_RISING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="Trigger Falling Edge" define="SCU.EXTINT0_FALLING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT0IEV[1]"/>
+                  <edit label="Falling Edge Callback" define="SCU.EXTINT0_FALLING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+              </branch>
+
+              <branch label="EXTINT1">
+                <combo label="Node Selection" define="SCU.INP4.INP_EXINT1">
+                  <item label="IRQ20" override="value1" lockon="CPU.NVIC_ISER.IRQEN20=1"/>
+                  <item label="IRQ21" override="value2" lockon="CPU.NVIC_ISER.IRQEN21=1"/>
+                </combo>                
+                <combo label="Pin Select" define="SCU.EXTCON.EXTINT1INSEL"/>
+                <math visible="false" define="SCU.EXTIEN.EXTINT1EN" formula="SCU.EXTCON.EXTINT1IEV[0] .+ SCU.EXTCON.EXTINT1IEV[1]"/>
+                <checkbox label="Trigger Rising Edge" define="SCU.EXTINT1_RISING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT1IEV[0]"/>
+                  <edit label="Rising Edge Callback" define="SCU.EXTINT1_RISING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="Trigger Falling Edge" define="SCU.EXTINT1_FALLING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT1IEV[1]"/>
+                  <edit label="Falling Edge Callback" define="SCU.EXTINT1_FALLING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+              </branch>
+
+
+              <branch label="EXTINT2">
+                <combo label="Node Selection" define="SCU.INP4.INP_EXINT2">
+                  <item label="IRQ20" override="value1" lockon="CPU.NVIC_ISER.IRQEN20=1"/>
+                  <item label="IRQ21" override="value2" lockon="CPU.NVIC_ISER.IRQEN21=1"/>
+                </combo>
+                <combo label="Pin Select" define="SCU.EXTCON.EXTINT2INSEL"/>
+                <math visible="false" define="SCU.EXTIEN.EXTINT2EN" formula="SCU.EXTCON.EXTINT2IEV[0] .+ SCU.EXTCON.EXTINT2IEV[1]"/>
+                <checkbox label="Trigger Rising Edge" define="SCU.EXTINT2_RISING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT2IEV[0]"/>
+                  <edit label="Rising Edge Callback" define="SCU.EXTINT2_RISING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="Trigger Falling Edge" define="SCU.EXTINT2_FALLING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT2IEV[1]"/>
+                  <edit label="Falling Edge Callback" define="SCU.EXTINT2_FALLING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+              </branch>
+
+
+              <branch label="EXTINT3">
+                <combo label="Node Selection" define="SCU.INP4.INP_EXINT3">
+                  <item label="IRQ20" override="value1" lockon="CPU.NVIC_ISER.IRQEN20=1"/>
+                  <item label="IRQ21" override="value2" lockon="CPU.NVIC_ISER.IRQEN21=1"/>
+                </combo>
+                <combo label="Pin Select" define="SCU.EXTCON.EXTINT3INSEL"/>
+                <math visible="false" define="SCU.EXTIEN.EXTINT3EN" formula="SCU.EXTCON.EXTINT3IEV[0] .+ SCU.EXTCON.EXTINT3IEV[1]"/>
+                <checkbox label="Trigger Rising Edge" define="SCU.EXTINT3_RISING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT3IEV[0]"/>
+                  <edit label="Rising Edge Callback" define="SCU.EXTINT3_RISING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+                <checkbox label="Trigger Falling Edge" define="SCU.EXTINT3_FALLING_INT_EN" svd="0" uielement="branch">
+                  <checkbox label="Enable Interrupt" define="SCU.EXTCON.EXTINT3IEV[1]"/>
+                  <edit label="Falling Edge Callback" define="SCU.EXTINT3_FALLING_CALLBACK" svd="0" default="place_your_function_callback_here"/>
+                </checkbox>
+              </branch>
+            </treecontainer>
+
+          </groupcontainer>
+        </horizontalcontainer>
+
+        <groupcontainer label="NVIC Configuration">
+          <tabcontainer>
+            <horizontalcontainer label="PMU, BDRV, CSC, ARVG">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 0"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN0"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR0.PRI_N0"/><checkbox label="Add ISR check" define="NVIC_IRQ0_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 1"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN1"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR0.PRI_N1"/><checkbox label="Add ISR check" define="NVIC_IRQ1_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_warn.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="CCU7">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 2"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN2"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR0.PRI_N2"/><checkbox label="Add ISR check" define="NVIC_IRQ2_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 3"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN3"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR0.PRI_N3"/><checkbox label="Add ISR check" define="NVIC_IRQ3_HANDLER_INT_CHECK" svd="0"/></branch>
+
+                <branch label="Node 4"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN4"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR1.PRI_N4"/><checkbox label="Add ISR check" define="NVIC_IRQ4_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 5"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN5"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR1.PRI_N5"/><checkbox label="Add ISR check" define="NVIC_IRQ5_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_ccu7.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="MEMCTRL">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 6"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN6"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR1.PRI_N6"/><checkbox label="Add ISR check" define="NVIC_IRQ6_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_memctrl.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="GPT12">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 7"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN7"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR1.PRI_N7"/><checkbox label="Add ISR check" define="NVIC_IRQ7_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 8"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN8"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR2.PRI_N8"/><checkbox label="Add ISR check" define="NVIC_IRQ8_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_gpt12.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="Timer20">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 9"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN9"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR2.PRI_N9"/><checkbox label="Add ISR check" define="NVIC_IRQ9_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_t20.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="ADC2">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 10"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN10"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR2.PRI_N10"/><checkbox label="Add ISR check" define="NVIC_IRQ10_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 11"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN11"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR2.PRI_N11"/><checkbox label="Add ISR check" define="NVIC_IRQ11_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_adc2.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="MON">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 12"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN12"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR3.PRI_N12"/><checkbox label="Add ISR check" define="NVIC_IRQ12_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 13"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN13"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR3.PRI_N13"/><checkbox label="Add ISR check" define="NVIC_IRQ13_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_mon.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="ADC1">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 14"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN14"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR3.PRI_N14"/><checkbox label="Add ISR check" define="NVIC_IRQ14_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 15"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN15"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR3.PRI_N15"/><checkbox label="Add ISR check" define="NVIC_IRQ15_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 16"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN16"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR4.PRI_N16"/><checkbox label="Add ISR check" define="NVIC_IRQ16_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 17"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN17"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR4.PRI_N17"/><checkbox label="Add ISR check" define="NVIC_IRQ17_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_adc1.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="BEMF, SDADC">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 18"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN18"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR4.PRI_N18"/><checkbox label="Add ISR check" define="NVIC_IRQ18_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 19"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN19"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR4.PRI_N19"/><checkbox label="Add ISR check" define="NVIC_IRQ19_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_bemf_sdadc.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="EXTINT">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 20"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN20"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR5.PRI_N20"/><checkbox label="Add ISR check" define="NVIC_IRQ20_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 21"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN21"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR5.PRI_N21"/><checkbox label="Add ISR check" define="NVIC_IRQ21_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_extint.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="UART0/1, LIN">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 22"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN22"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR5.PRI_N22"/><checkbox label="Add ISR check" define="NVIC_IRQ22_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 23"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN23"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR5.PRI_N23"/><checkbox label="Add ISR check" define="NVIC_IRQ23_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_uart.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="SSC0/1">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 24"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN24"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR6.PRI_N24"/><checkbox label="Add ISR check" define="NVIC_IRQ24_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 25"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN25"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR6.PRI_N25"/><checkbox label="Add ISR check" define="NVIC_IRQ25_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_ssc.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="MultiCAN">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 26"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN26"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR6.PRI_N26"/><checkbox label="Add ISR check" define="NVIC_IRQ26_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 27"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN27"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR6.PRI_N27"/><checkbox label="Add ISR check" define="NVIC_IRQ27_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 28"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN28"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR7.PRI_N28"/><checkbox label="Add ISR check" define="NVIC_IRQ28_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <!--include DUMMY="DUMMY">template_interrupt_overview_can.xml</include-->
+            </horizontalcontainer>
+
+            <horizontalcontainer label="DMA">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 29"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN29"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR7.PRI_N29"/><checkbox label="Add ISR check" define="NVIC_IRQ29_HANDLER_INT_CHECK" svd="0"/></branch>
+                <branch label="Node 30"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN30"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR7.PRI_N30"/><checkbox label="Add ISR check" define="NVIC_IRQ30_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_dma.xml</include>
+            </horizontalcontainer>
+
+            <horizontalcontainer label="Timer21">
+              <treecontainer headerlabels="Item;Value;" columnwidths="200;250;1">
+                <branch label="Node 31"><checkbox label="Enable Node" define="CPU.NVIC_ISER.IRQEN31"/><spinbox label="Priority [0(high) ...31(low)]" define="CPU.NVIC_IPR7.PRI_N31"/><checkbox label="Add ISR check" define="NVIC_IRQ31_HANDLER_INT_CHECK" svd="0"/></branch>
+              </treecontainer>
+              <include DUMMY="DUMMY">template_interrupt_overview_t21.xml</include>
+            </horizontalcontainer>
+          </tabcontainer>
+        </groupcontainer>
+      </verticalcontainer>
+    </header>
+  </horizontalcontainer>
+
+</ifxmlcfg>

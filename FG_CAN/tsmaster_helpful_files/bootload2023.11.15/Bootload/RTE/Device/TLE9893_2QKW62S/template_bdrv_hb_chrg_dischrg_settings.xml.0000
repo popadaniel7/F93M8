@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_bdrv_hb_chrg_dischrg_settings.xml                                 -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2021-02-15, BG:   Initial version                                      -->
+<!-- V0.0.2: 2021-04-21, BG:   EP-774: Switched High Side and Low Side spinboxes    -->
+<!--                           for Phase 1, Additional Delay                        -->
+<!-- V0.0.3: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!-- V0.0.4: 2021-12-01, BG:   EP-985: Put math formulas into temp_defines.h        -->
+<!--********************************************************************************-->
+
+<!-- HB_IDX: Half-bridge index -->
+<!-- CYCLE: Charge or Discharge -->
+<!-- CYCLE_TXT: CHARGE or DISCHARGE as text -->
+<!-- ON_OFF: On or OFF -->
+<ifxmlcfg version="2.6.2">
+  <checksum>84f02ae81de04cf83a4b9ca7396f3271c5b17a17b4bcd78079d72ad4fe538ca6</checksum>
+  <version label="V0.0.4"/>
+  <svd file="TLE989x.svd"/>
+  <groupcontainer label="$CYCLE_TXT$" font="Source Sans Pro,10,0,0,100,0,0,0,0,0" color="255;255;255" size="-1;640">
+    <verticalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_$CYCLE$_WOACTIVE_CONT">
+        <text size="200;-1"/>
+        <text label="High Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+        <text label="Low Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_$CYCLE$_ACTIVE_CONT">
+        <text label="Active MOSFET" font="Source Sans Pro,9,0,0,25,1,0,0,0,0" size="200;-1"/>
+        <text label="High Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+        <text label="Low Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_T1$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF0000"/>
+            </svg>
+          </svgembed>
+          <text label="T1$ON_OFF$ [50ns - 3.2us]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="1" DEFAULT="350">template_bdrv_timingsSeq.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_I1$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF0000"/>
+            </svg>
+          </svgembed>
+          <text label="I1$ON_OFF$ [5mA - 350mA]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="1" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_T2$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FFF333"/>
+            </svg>
+          </svgembed>
+          <text label="T2$ON_OFF$ [50ns - 3.2us]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="2" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_I2$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FFF333"/>
+            </svg>
+          </svgembed>
+          <text label="I2$ON_OFF$ [5mA - 350mA]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="2" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_T3$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#00FF00"/>
+            </svg>
+          </svgembed>
+          <text label="T3$ON_OFF$ [50ns - 3.2us]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="3" DEFAULT="300">template_bdrv_timingsSeq.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_I3$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#00FF00"/>
+            </svg>
+          </svgembed>
+          <text label="I3$ON_OFF$ [5mA - 350mA]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="3" DEFAULT="19">template_bdrv_currentsSeq.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_T4$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#0000FF"/>
+            </svg>
+          </svgembed>
+          <text label="T4$ON_OFF$ [50ns - 3.2us]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="4" DEFAULT="250">template_bdrv_timingsSeq.xml</include>
+        <horizontalcontainer define="BDRV.HB$HB_IDX$_T4$CYCLE$SEQ_OFF" size="350;-1">
+          <spinbox label="Phase 4 - Time [50ns - 3.2us]" define="BDRV.HB$HB_IDX$_SEQ$ON_OFF$T4I4_T4$ON_OFF$" default="300" range="50;3200" step="50" svd="0" size="70;-1" header="temp_defines.h"/>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.HB$HB_IDX$_SEQ$ON_OFF$T4I4_T4$ON_OFF$_REG" svd="0" format="%1X" formula="round((BDRV.HB$HB_IDX$_SEQ$ON_OFF$T4I4_T4$ON_OFF$/50)-1)" header="temp_defines.h"/>
+        </horizontalcontainer>
+        <horizontalcontainer define="BDRV.HB$HB_IDX$_T4$CYCLE$SEQ_OFF_TXT">
+          <text label="Same for all half-bridges"/>
+        </horizontalcontainer>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_I4$CYCLE$SEQ_MAINCONT">
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#0000FF"/>
+            </svg>
+          </svgembed>
+          <text label="I4$ON_OFF$ [5mA - 350mA]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$" PHASE="4" DEFAULT="131">template_bdrv_currentsSeq.xml</include>
+        <horizontalcontainer define="BDRV.HB$HB_IDX$_I4$CYCLE$SEQ_OFF" size="350;-1">
+          <spinbox label="Phase 4 - Current [5mA - 350mA]" define="BDRV.HB$HB_IDX$_SEQ$ON_OFF$T4I4_I4$ON_OFF$" default="131" range="5;350" svd="0" size="70;-1" header="temp_defines.h"/>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.HB$HB_IDX$_SEQ$ON_OFF$T4I4_I4$ON_OFF$_REG" svd="0" format="%1X" formula="round(63*((BDRV.HB$HB_IDX$_SEQ$ON_OFF$T4I4_I4$ON_OFF$-5)/345)^0.671)" header="temp_defines.h"/>
+        </horizontalcontainer>
+        <horizontalcontainer define="BDRV.HB$HB_IDX$_I4$CYCLE$SEQ_OFF_TXT">
+          <text label="Same for all half-bridges"/>
+        </horizontalcontainer>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_$CYCLE$_WOFREEWHEELING_CONT">
+        <text  size="200;-1"/>
+        <text label="High Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+        <text label="Low Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_$CYCLE$_FREEWHEELING_CONT">
+        <text label="Free-wheeling MOSFET" font="Source Sans Pro,9,0,0,0,1,0,0,0,0" size="200;-1"/>
+        <text label="High Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+        <text label="Low Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+      </horizontalcontainer>
+      <horizontalcontainer>
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF0000"/>
+            </svg>
+          </svgembed>
+          <text label="TC$ON_OFF$ [50ns - 12.8us]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$">template_bdrv_timingsConst.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer>
+        <horizontalcontainer size="200;-1">
+          <svgembed>
+            <svg width="10" height="10">
+              <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+              <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FF0000"/>
+            </svg>
+          </svgembed>
+          <text label="IC$ON_OFF$ [5mA - 350mA]" size="180;-1"/>
+        </horizontalcontainer>
+        <include HB_IDX="$HB_IDX$" CYCLE="$CYCLE$" ONOFF="$ON_OFF$">template_bdrv_currentsConst.xml</include>
+      </horizontalcontainer>
+      <horizontalcontainer>
+        <text label="Clamping Current" font="Source Sans Pro,9,0,0,25,1,0,0,0,0" size="200;-1"/>
+        <text size="400;-1"/>
+      </horizontalcontainer>
+      <horizontalcontainer>
+        <svgembed size="15;-1">
+          <svg width="10" height="10">
+            <rect width="10" height="10" style="fill:#ffffff;stroke-width:0"/>
+            <circle cx="5" cy="5" r="4" stroke-width="0" fill="#FFCC99"/>
+          </svg>
+        </svgembed>
+        <text label="ICLMP$ON_OFF$ [5mA - 350mA]" size="180;-1"/>
+        <spinbox label="For $CYCLE_TXT$ [5mA - 350mA]" define="BDRV.HB$HB_IDX$IGATECLMPC_HB$HB_IDX$_ICLMP$ON_OFF$" default="11" range="5;350" svd="0" size="70;-1" header="temp_defines.h">
+          <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+        </spinbox>
+        <text label="Reg:" size="35;-1"/>
+        <math label="Register Value" define="BDRV.HB$HB_IDX$IGATECLMPC.HB$HB_IDX$_ICLMP$ON_OFF$" format="%1X" formula="round(63*((BDRV.HB$HB_IDX$IGATECLMPC_HB$HB_IDX$_ICLMP$ON_OFF$-5)/345)^0.671)"/>
+        <text size="200;-1"/>
+      </horizontalcontainer>
+      <horizontalline/>
+      <horizontalcontainer>
+        <text label="Adaptive Sequencer" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="200;-1"/>
+        <checkbox label="Enable" define="BDRV.ASEQC.HB$HB_IDX$ASM$ON_OFF$EN" size="400;-1">
+          <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+        </checkbox>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_ASEQ_$CYCLE$MINMAX_CONT">
+        <text size="200;-1"/>
+        <text label="Min" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+        <text label="Max" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_ASEQ_$CYCLE$PHASE12T_CONT">
+        <text label="Phases 1/2 - Time [50ns - 12.8us]" size="200;-1"/>
+        <horizontalcontainer define="BDRV_HB$HB_IDX$$CYCLE$PH12T" size="350;-1">
+          <spinbox label="Minimum" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$TMIN_T12$ON_OFF$MIN" default="100" range="50;12800" step="50" svd="0" size="70;-1" header="temp_defines.h"/>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$TMIN_T12$ON_OFF$MIN_REG" svd="0" format="%1X" formula="round((BDRV.HB$HB_IDX$_ASEQ$ON_OFF$TMIN_T12$ON_OFF$MIN/50)-1)" header="temp_defines.h"/>
+          <spinbox label="Maximum" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$TMAX_T12$ON_OFF$MAX" default="2050" range="50;12800" step="50" svd="0" size="70;-1" header="temp_defines.h"/>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$TMAX_T12$ON_OFF$MAX_REG" svd="0" format="%1X" formula="round((BDRV.HB$HB_IDX$_ASEQ$ON_OFF$TMAX_T12$ON_OFF$MAX/50)-1)" header="temp_defines.h"/>
+        </horizontalcontainer>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_ASEQ_$CYCLE$PHASE1I_CONT">
+        <text label="Phase 1 - Current [5mA - 350mA]" size="200;-1"/>
+        <horizontalcontainer define="BDRV_HB$HB_IDX$CYCLE$PH1I" size="350;-1">
+          <spinbox label="Minimum" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$IMIN_I1$ON_OFF$MIN" default="16" range="5;350" svd="0" size="70;-1" header="temp_defines.h"/>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$IMIN_I1$ON_OFF$MIN_REG" svd="0" format="%1X" formula="round(63*((BDRV.HB$HB_IDX$_ASEQ$ON_OFF$IMIN_I1$ON_OFF$MIN-5)/345)^0.671)" header="temp_defines.h"/>
+          <spinbox label="Maximum" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$IMAX_I1$ON_OFF$MAX" default="287" range="5;350" svd="0" size="70;-1" header="temp_defines.h"/>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.HB$HB_IDX$_ASEQ$ON_OFF$IMAX_I1$ON_OFF$MAX_REG" svd="0" format="%1X" formula="round(63*((BDRV.HB$HB_IDX$_ASEQ$ON_OFF$IMAX_I1$ON_OFF$MAX-5)/345)^0.671)" header="temp_defines.h"/>
+        </horizontalcontainer>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_ASEQ_$CYCLE$HSLS_CONT">
+        <text size="200;-1"/>
+        <text label="High Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+        <text label="Low Side $HB_IDX$" font="Source Sans Pro,9,0,0,100,0,0,0,0,0"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="BDRV.HB$HB_IDX$_ASEQ_$CYCLE$PHASE1DELAY_CONT">
+        <text label="Phase 1 - Add. Delay [0 - 750ns]" size="200;-1"/>
+        <horizontalcontainer define="BDRV_HB$HB_IDX$$CYCLE$PH1TDELAY" size="350;-1">
+          <spinbox label="High Side 1" define="BDRV.ASEQ$ON_OFF$ADDDLY_HS$HB_IDX$T1$ON_OFF$ADDDLY" default="0" range="0;750" step="50" svd="0" size="70;-1" header="temp_defines.h">
+            <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          </spinbox>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.ASEQ$ON_OFF$ADDDLY_HS$HB_IDX$T1$ON_OFF$ADDDLY_MATH" svd="0" format="%1X" formula="round(BDRV.ASEQ$ON_OFF$ADDDLY_HS$HB_IDX$T1$ON_OFF$ADDDLY/50)" header="temp_defines.h"/>
+          <spinbox label="Low Side 1" define="BDRV.ASEQ$ON_OFF$ADDDLY_LS$HB_IDX$T1$ON_OFF$ADDDLY" default="0" range="0;750" step="50" svd="0" size="70;-1" header="temp_defines.h">
+            <action event="changed" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          </spinbox>
+          <text label="Reg:" size="35;-1"/>
+          <math label="Register Value" define="BDRV.ASEQ$ON_OFF$ADDDLY_LS$HB_IDX$T1$ON_OFF$ADDDLY_MATH" svd="0" format="%1X" formula="round(BDRV.ASEQ$ON_OFF$ADDDLY_LS$HB_IDX$T1$ON_OFF$ADDDLY/50)" header="temp_defines.h"/>
+        </horizontalcontainer>
+      </horizontalcontainer>
+      <horizontalline/>
+      <horizontalcontainer>
+        <text label="Optimizer Hysteresis" font="Source Sans Pro,9,0,0,100,0,0,0,0,0" size="200;-1"/>
+        <checkbox label="Enable" define="BDRV.ASEQC.HB$HB_IDX$$ON_OFF$HYSTEN" size="400;-1">
+          <action event="checked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+          <action event="unchecked" cmd="setDef" data="BDRV_UPDATE.run=1"/>
+        </checkbox>
+      </horizontalcontainer>
+    </verticalcontainer>
+  </groupcontainer>
+</ifxmlcfg>

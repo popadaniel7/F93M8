@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file icw_ocn.xml                                                                -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-23, DM:   EP-464: Added ADC2 module                            -->
+<!-- V0.1.0: 2020-10-23, JO:   EP-482: Include the module XMLs as template to avoid -->
+<!--                           checksum error due to Config Wizard bug              -->
+<!-- V0.1.1: 2020-11-06, JO:   EP-555: Run calc_ccu7.py at startup in case CCU7 is  -->
+<!--                           enabled                                              -->
+<!-- V0.2.0: 2020-11-12, JO:   EP-587: Include the pin overview based on the device -->
+<!--                           selected in the uVision project                      -->
+<!-- V0.3.0: 2020-12-03, BG:   EP-599: Added startcond and cond for devices with or -->
+<!--                           without SDADC                                        -->
+<!-- V0.3.1: 2021-01-26, BG:   EP-678: Added a note to explain the asterisk for the -->
+<!--                           64-pin variants                                      -->
+<!-- V0.3.2: 2021-01-27, BG:   EP-677: Corrected module enabling behavior           -->
+<!-- V0.3.3: 2021-02-03, JO:   EP-684: Added label for top container                -->
+<!-- V0.3.4: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.4.0: 2021-03-09, JO:   EP-734: Updated CW minimal version to 2.6.3,         -->
+<!--                           Added usage of setdefine feature that was introduced -->
+<!--                           in Config Wizard version 2.6.3                       -->
+<!-- V0.4.1: 2021-03-15, BG:   EP-606: Added condition for 2 or 3 phase variants    -->
+<!-- V0.4.2: 2021-03-17, BG:   EP-746: Removed unofficial devices                   -->
+<!-- V0.4.3: 2021-04-09, JO:   EP-746: Run bsl_defines_inc_save_handler.py          -->
+<!--                           at startup                                           -->
+<!-- V0.4.4: 2021-05-21, BG:   EP-685: Added DMA in the OCN_INIT timer              -->
+<!-- V0.4.5: 2021-11-02, JO:   EP-972: Added element unsignedsuffix to have all     -->
+<!--                           defines as unsigned values (U suffix)                -->
+<!-- V0.4.6: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.3">
+  <checksum>9c22f10f78df59de3155fdfc07819c5ab7a7c3d3d2e189ad2a0dc73fefbeaf09</checksum>
+  <version label="V0.4.6"/>
+  <svd file="TLE989x.svd"/>
+  
+  <!-- UC_FEATURE_* defines for usage in startcond -->
+  <!-- by default everything set to 0, set to 1 on demand --> 
+  <!-- sorted by device as in tle_variants.h -->
+  <!-- default - everything set to zero --> 
+  <setdefine value="0" define="UC_FEATURE_CRYPTO_LIB"/>
+  <setdefine value="0" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="0" define="UC_FEATURE_SDADC"/>
+  <setdefine value="0" define="UC_FEATURE_48PIN"/>
+  <setdefine value="0" define="UC_FEATURE_64PIN"/>
+  <setdefine value="0" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9881_2QTW60 -->
+  <setdefine value="1" startcond="device==TLE9881_2QTW60" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9881_2QTW60" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9881_2QTW60" define="UC_FEATURE_48PIN"/>
+  <!-- TLE9883_2QTW62S -->
+  <setdefine value="1" startcond="device==TLE9883_2QTW62S" define="UC_FEATURE_CRYPTO_LIB"/>
+  <setdefine value="1" startcond="device==TLE9883_2QTW62S" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9883_2QTW62S" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9883_2QTW62S" define="UC_FEATURE_48PIN"/>
+  <!-- TLE9883QTA62 -->
+  <setdefine value="1" startcond="device==TLE9883QTA62" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9883QTA62" define="UC_FEATURE_48PIN"/>
+  <!-- TLE9891QTA61 -->
+  <setdefine value="1" startcond="device==TLE9891QTA61" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9891QTA61" define="UC_FEATURE_48PIN"/>
+  <setdefine value="1" startcond="device==TLE9891QTA61" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9891_2QTW60 -->
+  <setdefine value="1" startcond="device==TLE9891_2QTW60" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9891_2QTW60" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9891_2QTW60" define="UC_FEATURE_48PIN"/>
+  <setdefine value="1" startcond="device==TLE9891_2QTW60" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9891_2QTW61 -->
+  <setdefine value="1" startcond="device==TLE9891_2QTW61" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9891_2QTW61" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9891_2QTW61" define="UC_FEATURE_48PIN"/>
+  <setdefine value="1" startcond="device==TLE9891_2QTW61" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9893_2QTA62 -->
+  <setdefine value="1" startcond="device==TLE9893_2QTA62" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTA62" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTA62" define="UC_FEATURE_48PIN"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTA62" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9893_2QTW62S -->
+  <setdefine value="1" startcond="device==TLE9893_2QTW62S" define="UC_FEATURE_CRYPTO_LIB"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTW62S" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTW62S" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTW62S" define="UC_FEATURE_48PIN"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTW62S" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9893_2QTA62S -->
+  <setdefine value="1" startcond="device==TLE9893_2QTA62S" define="UC_FEATURE_CRYPTO_LIB"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTA62S" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTA62S" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTA62S" define="UC_FEATURE_48PIN"/>
+  <setdefine value="1" startcond="device==TLE9893_2QTA62S" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9893QKW62S -->
+  <setdefine value="1" startcond="device==TLE9893QKW62S" define="UC_FEATURE_CRYPTO_LIB"/>
+  <setdefine value="1" startcond="device==TLE9893QKW62S" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9893QKW62S" define="UC_FEATURE_64PIN"/>
+  <setdefine value="1" startcond="device==TLE9893QKW62S" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9893_2QKW62S -->
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S" define="UC_FEATURE_CRYPTO_LIB"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S" define="UC_FEATURE_64PIN"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S" define="UC_FEATURE_3PHASE"/>
+  <!-- TLE9893_2QKW62S_internal -->
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S_internal" define="UC_FEATURE_CRYPTO_LIB"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S_internal" define="UC_FEATURE_DATAFLASH"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S_internal" define="UC_FEATURE_SDADC"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S_internal" define="UC_FEATURE_64PIN"/>
+  <setdefine value="1" startcond="device==TLE9893_2QKW62S_internal" define="UC_FEATURE_3PHASE"/>
+    
+  <!-- 64 pin devices: TLE9893QKW62S, TLE9893_2QKW62S, TLE9893_2QKW62S_internal -->
+  <pinmapping startcond="UC_FEATURE_64PIN==1" file="tle989x_64.pin"/>
+  
+  <!-- 48 pin devices: TLE9883QTA62, TLE9891QTA61, TLE9881_2QTW60, TLE9883_2QTW62S, TLE9891_2QTW60, TLE9891_2QTW61, TLE9893_2QTA62, TLE9893_2QTW62S, TLE9893_2QTA62S -->
+  <pinmapping startcond="UC_FEATURE_48PIN==1" file="tle989x_48.pin"/>
+  
+  <usesPython/>
+  <unsignedsuffix value="1"/>
+  <tooltipconfig value="0x0FFF"/>
+  
+  <tabcontainer resize="1" label="TLE988x/9x">
+  
+    <timer visible="false" define="OCN_INIT" svd="0" interval="1" singleShot="1" run="1">
+      <!-- If no SDADC, the following defines must be set to 0 to bypass the conditions in the pin mapping -->
+      <action scond="UC_FEATURE_SDADC==0" event="changed" cmd="setDef" data="SDADC.INSEL.DIN0SEL=0;SDADC.INSEL.DIN1SEL=0;SDADC.INSEL.IN0NSEL=0;SDADC.INSEL.IN1NSEL=0;SDADC.INSEL.IN0PSEL=0;SDADC.INSEL.IN1PSEL=0"/>
+      <!-- If SDADC, the module is initialized -->
+      <action cond="UC_FEATURE_SDADC==1" event="changed" cmd="setDef" data="SDADC_INIT.run=1"/>
+      <!-- Disabling modules containers when not used -->
+      <action event="changed" cond="CCU7_EN==0" cmd="setDef" data="CCU7_MODULE.enabled=0"/>
+      <action event="changed" cond="BEMFC.GLOBCONF_EN==0" cmd="setDef" data="BEMFC_TOP.enabled=0"/>
+      <action event="changed" cond="CANTRX.CTRL.EN==0" cmd="setDef" data="CANTRX_TOP.enabled=0"/>
+      <action event="changed" cond="SCU.PMCON.GPT12_DIS==1" cmd="setDef" data="GPT12_TOP.enabled=0"/>
+      <action event="changed" cond="SCU.PMCON.SSC0_DIS==1" cmd="setDef" data="SSC0_TOP.enabled=0"/>
+      <action event="changed" cond="SCU.PMCON.SSC1_DIS==1" cmd="setDef" data="SSC1_TOP.enabled=0"/>
+      <action event="changed" cond="SCU.PMCON.T2_DIS==1" cmd="setDef" data="T20_TOP.enabled=0"/>
+      <action event="changed" cond="SCU.PMCON.T21_DIS==1" cmd="setDef" data="T21_TOP.enabled=0"/>
+      <action event="changed" cond="UART0.GLOBCONF_EN==0" cmd="setDef" data="UART0_TOP.enabled=0"/>
+      <action event="changed" cond="UART1.GLOBCONF_EN==0" cmd="setDef" data="UART1_TOP.enabled=0"/>
+      <action event="changed" cond="DMA.GLOBCONF_EN==0" cmd="setDef" data="DMA_TOP.enabled=0"/>
+      <!-- Running python scripts -->
+      <action event="changed" cmd="runScript" data="python:ccu7_calc.py"/>
+      <action event="changed" cmd="runScript" data="python:bsl_defines_inc_save_handler.py"/>
+      <action cond="UC_FEATURE_48PIN==1" event="changed" cmd="setDef" data="OCN.X_NOTE_GPIO=2000;OCN.NOTE_GPIO.update=1"/>
+      <action cond="UC_FEATURE_64PIN==1" event="changed" cmd="setDef" data="OCN.X_NOTE_GPIO=30;OCN.NOTE_GPIO.update=1"/>
+    </timer>
+
+    <verticalcontainer label="Pin Overview">
+      <edit define="OCN.X_NOTE_GPIO" visible="false" svd="0"/>
+      <svgembed define="OCN.NOTE_GPIO" passive="1">
+        <svg viewBox="0 0 1000 50">
+          <rect width="1000" height="50" style="fill:#ffffff;stroke-width:1"/>
+          <text x="$OCN.X_NOTE_GPIO$" y="30" text-anchor="start" font-family="arial" font-size="18" font-weight="bold" fill="black">NOTE: The pins designated with an asterisk (*) are available only in the 64-pin variants.</text>
+        </svg>
+      </svgembed>
+ 
+      <!-- UC_FEATURE maths -->
+      <verticalcontainer visible="false">
+        <edit label="Device name" define="device" visible="true" svd="0"/>
+        <!-- setdefine can be used in startcond, but not in cond -->
+        <!-- To use them in cond, e.g. for an action, a math with exactly the same name and value is created -->
+        <math label="math for UC_FEATURE_CRYPTO_LIB" define="UC_FEATURE_CRYPTO_LIB" svd="0" formula="0" startcond="UC_FEATURE_CRYPTO_LIB==0"/>
+        <math label="math for UC_FEATURE_CRYPTO_LIB" define="UC_FEATURE_CRYPTO_LIB" svd="0" formula="1" startcond="UC_FEATURE_CRYPTO_LIB==1"/>
+        <math label="math for UC_FEATURE_DATAFLASH"  define="UC_FEATURE_DATAFLASH"  svd="0" formula="0" startcond="UC_FEATURE_DATAFLASH==0"/>
+        <math label="math for UC_FEATURE_DATAFLASH"  define="UC_FEATURE_DATAFLASH"  svd="0" formula="1" startcond="UC_FEATURE_DATAFLASH==1"/>
+        <math label="math for UC_FEATURE_SDADC"      define="UC_FEATURE_SDADC"      svd="0" formula="0" startcond="UC_FEATURE_SDADC==0"/>
+        <math label="math for UC_FEATURE_SDADC"      define="UC_FEATURE_SDADC"      svd="0" formula="1" startcond="UC_FEATURE_SDADC==1"/>
+        <math label="math for UC_FEATURE_48PIN"      define="UC_FEATURE_48PIN"      svd="0" formula="0" startcond="UC_FEATURE_48PIN==0"/>
+        <math label="math for UC_FEATURE_48PIN"      define="UC_FEATURE_48PIN"      svd="0" formula="1" startcond="UC_FEATURE_48PIN==1"/>
+        <math label="math for UC_FEATURE_64PIN"      define="UC_FEATURE_64PIN"      svd="0" formula="0" startcond="UC_FEATURE_64PIN==0"/>
+        <math label="math for UC_FEATURE_64PIN"      define="UC_FEATURE_64PIN"      svd="0" formula="1" startcond="UC_FEATURE_64PIN==1"/>
+        <math label="math for UC_FEATURE_3PHASE"     define="UC_FEATURE_3PHASE"     svd="0" formula="0" startcond="UC_FEATURE_3PHASE==0"/>
+        <math label="math for UC_FEATURE_3PHASE"     define="UC_FEATURE_3PHASE"     svd="0" formula="1" startcond="UC_FEATURE_3PHASE==1"/>
+      </verticalcontainer>
+      
+      <!-- FEATURE WITH OR WITHOUT SDADC -->
+      <horizontalcontainer visible="false" startcond="UC_FEATURE_SDADC==0">
+        <var define="SDADC.INSEL.DIN0SEL"/>
+        <var define="SDADC.INSEL.DIN1SEL"/>
+        <var define="SDADC.INSEL.IN0NSEL"/>
+        <var define="SDADC.INSEL.IN1NSEL"/>
+        <var define="SDADC.INSEL.IN0PSEL"/>
+        <var define="SDADC.INSEL.IN1PSEL"/>
+      </horizontalcontainer>
+      <!-- FEATURE WITH OR WITHOUT 3 PHASE -->
+      <horizontalcontainer visible="false" startcond="UC_FEATURE_3PHASE==0">
+        <var define="BDRV.ASEQC.HB3ASMONEN"/>
+        <var define="BDRV.ASEQC.HB3ASMOFFEN"/>
+        <var define="BDRV.CTRL2.HB3OFFSEQCNF"/>
+        <var define="BDRV.CTRL2.HB3ONSEQCNF"/>
+      </horizontalcontainer>
+      
+      <pinmapper label="Pinmapper" define="pinmapper"/>
+    </verticalcontainer>
+    
+    <include BestTeam="SEV">icw_ocn_bsl.xml</include>
+    <include BestTeam="SEV">icw_ocn_scu.xml</include>
+    <include BestTeam="SEV">icw_ocn_pmu.xml</include>
+    <include BestTeam="SEV">icw_ocn_interrupt.xml</include>
+    <include BestTeam="SEV">icw_ocn_gpio.xml</include>
+    <include BestTeam="SEV">icw_ocn_mon.xml</include>
+    <include BestTeam="SEV">icw_ocn_adc1.xml</include>
+    <include BestTeam="SEV">icw_ocn_csacsc.xml</include>
+    <include BestTeam="SEV">icw_ocn_adc2.xml</include>
+    <include startcond="UC_FEATURE_SDADC==1" SDK="NoBugs">icw_ocn_sdadc.xml</include>
+    <include SDK="NoBugs">icw_ocn_ccu7.xml</include>
+    <include SDK="NoBugs">icw_ocn_bdrv.xml</include>
+    <include SDK="NoBugs">icw_ocn_bemf.xml</include>
+    <include SDK="NoBugs">icw_ocn_cantrx.xml</include>
+    <include SDK="NoBugs">icw_ocn_gpt12.xml</include>
+    <include SDK="NoBugs">icw_ocn_ssc.xml</include>
+    <include SDK="NoBugs">icw_ocn_timer2x.xml</include>
+    <include SDK="NoBugs">icw_ocn_uartx.xml</include>
+    <include SDK="NoBugs">icw_ocn_dma.xml</include>
+    
+  </tabcontainer>
+</ifxmlcfg>

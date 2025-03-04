@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_sdadc.xml                                                          -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, BG:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-21, BG:   EP-539: Saved the enable checkbox status in          -->
+<!--                           sdadc_defines.h                                      -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>e25191b751ce15e291308f13d525bdd365f68e4581a357a88978748be1cdd6a3</checksum>
+  <version label="V0.0.2"/>
+  <svd file="tle989x.svd"/>
+
+  <verticalcontainer label="SDADC">
+    <header file="sdadc_defines.h">
+
+      <timer visible="false" define="SDADC_INIT" svd="0" interval="1" singleShot="1" run="0" header="">
+        <action event="changed" cmd="setDef" data="SDADC_UPDATE.run=1;SDADC_UPDATE_CH0.run=1;SDADC_UPDATE_CH1.run=1"/>
+        <action event="changed" cmd="setDef" data="SDADC_TOP.enabled=0"/>
+      </timer>
+      <include IDX="0">template_sdadc_timers.xml</include>
+      <include IDX="1">template_sdadc_timers.xml</include>
+
+      <timer visible="false" define="SDADC_UPDATE" svd="0" interval="1" singleShot="1" run="0" header="">
+        <!-- Visibility of the containers -->
+        <action event="changed" cmd="setDef" data="SDADC.INSEL_IN0PSEL_0.visible=1;SDADC.INSEL_IN1PSEL_0.visible=0;SDADC.INSEL_IN0PSEL_1.visible=0;SDADC.INSEL_IN1PSEL_1.visible=1"/>
+        <action event="changed" cmd="setDef" data="SDADC.INSEL_IN0NSEL_0.visible=1;SDADC.INSEL_IN1NSEL_0.visible=0;SDADC.INSEL_IN0NSEL_1.visible=0;SDADC.INSEL_IN1NSEL_1.visible=1"/>
+        <action event="changed" cmd="setDef" data="SDADC.INSEL_DIN0SEL_0.visible=1;SDADC.INSEL_DIN1SEL_0.visible=0;SDADC.INSEL_DIN0SEL_1.visible=0;SDADC.INSEL_DIN1SEL_1.visible=1"/>
+        <action event="changed" cmd="setDef" data="SDADC.ALTSEL_DOUT0_0.visible=1;SDADC.ALTSEL_DOUT1_0.visible=0;SDADC.ALTSEL_DOUT0_1.visible=0;SDADC.ALTSEL_DOUT1_1.visible=1"/>
+        <action event="changed" cmd="setDef" data="SDADC.INSEL_TRG0SEL_0.visible=1;SDADC.INSEL_TRG1SEL_0.visible=0;SDADC.INSEL_TRG0SEL_1.visible=0;SDADC.INSEL_TRG1SEL_1.visible=1"/>
+        <!-- Edit value for graph -->
+        <action cond="SDADC.CFG0.PRE==0" event="changed" cmd="setDef" data="SDADC_PRE=1"/>
+        <action cond="SDADC.CFG0.PRE==1" event="changed" cmd="setDef" data="SDADC_PRE=2"/>
+        <action cond="SDADC.CFG0.PRE==2" event="changed" cmd="setDef" data="SDADC_PRE=3"/>
+        <action cond="SDADC.CFG0.PRE==3" event="changed" cmd="setDef" data="SDADC_PRE=4"/>
+        <action cond="SDADC.CFG0.PRE==4" event="changed" cmd="setDef" data="SDADC_PRE=5"/>
+        <action cond="SDADC.CFG0.PRE==5" event="changed" cmd="setDef" data="SDADC_PRE=6"/>
+        <action cond="SDADC.CFG0.PRE==6" event="changed" cmd="setDef" data="SDADC_PRE=7"/>
+        <action cond="SDADC.CFG0.PRE==7" event="changed" cmd="setDef" data="SDADC_PRE=8"/>
+        <action event="changed" cmd="setDef" data="SDADC_Block.update=1"/>
+      </timer>
+
+      <!-- SDADC ENABLE -->
+      <checkbox label="Enable SDADC" define="SDADC.GLOBCONF_EN" svd="0" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+        <action event="checked" cmd="setDef" data="SDADC_TOP.enabled=1"/>
+        <action event="unchecked" cmd="setDef" data="SDADC_TOP.enabled=0"/>
+      </checkbox>
+
+      <groupcontainer define="SDADC_TOP">
+        <verticalcontainer>
+
+          <horizontalcontainer>
+            <groupcontainer label="Clock Settings" size="620;300" font="Source Sans Pro,12,0,0,100,0,0,0,0,0">
+              <treecontainer headerlabels="Item;Value;" columnwidths="275;260;1" font="MS Shell Dlg 2,9,-1,5,50,0,0,0,0,0,Regular">
+                <combo label="Prescaler for Modulator and CIC Clock" define="SDADC.CFG0.PRE" default="label=fSDADC / 1" setDef="SDADC_UPDATE.run=1">
+                  <item label="fSDADC / 1" override="value1"/>
+                  <item label="fSDADC / 2" override="value2"/>
+                  <item label="fSDADC / 3" override="value3"/>
+                  <item label="fSDADC / 4" override="value4"/>
+                  <item label="fSDADC / 5" override="value5"/>
+                  <item label="fSDADC / 6" override="value6"/>
+                  <item label="fSDADC / 7" override="value7"/>
+                  <item label="fSDADC / 8" override="value8"/>
+                </combo>
+                <math visible="false" define="fSDADC" svd="0" formula="SCU_fSDADC_MHz/SDADC_PRE" header="temp_defines.h"/>
+                <checkbox label="Enable Dithering of SDADC Clock for Channels 0/1" define="SDADC.CFG0.DITHEREN" uielement="branch">
+                  <doublespinbox label="Dither Voltage Selection [V]" define="SDADC.DITHCFG_DITH_VOLT_SEL" svd="0" default="0" range="0;0.1875" step="0.0125" header="temp_defines.h"/>
+                  <math visible="false" define="SDADC.DITHCFG.DITH_VOLT_SEL" formula="round(SDADC.DITHCFG_DITH_VOLT_SEL/0.0125)"/>
+                </checkbox>
+                <combo label="Clock Output Mapping in case of External (De)Modulator" define="SDADC.ALTSEL.MCLK" default="label=MCLK output is off">
+                  <item label="MCLK output is off" override="value1"/>
+                  <item label="MCLK output is connected to MCLK0" override="value2"/>
+                  <item label="MCLK output is connected to MCLK1" override="value3"/>
+                </combo> 
+              </treecontainer>
+            </groupcontainer>
+
+            <groupcontainer label="Interrupts" size="620;300" font="Source Sans Pro,12,0,0,100,0,0,0,0,0">
+              <treecontainer headerlabels="Item;Value;" columnwidths="275;260;1" font="MS Shell Dlg 2,9,-1,5,50,0,0,0,0,0,Regular">
+                <include IDX="0">template_sdadc_interrupt.xml</include>
+                <include IDX="1">template_sdadc_interrupt.xml</include>
+              </treecontainer>
+            </groupcontainer>
+          </horizontalcontainer>
+
+          <horizontalcontainer>
+            <include IDX="0">template_sdadc_channel.xml</include>
+            <include IDX="1">template_sdadc_channel.xml</include>
+          </horizontalcontainer>
+
+          <horizontalcontainer visible="false">
+            <!-- ALTSEL register -->
+            <math visible="false" define="SDADC.ALTSEL.DOUT0" formula="SDADC.ALTSEL_DOUT0_0"/>
+            <math visible="false" define="SDADC.ALTSEL.DOUT1" formula="SDADC.ALTSEL_DOUT1_1"/>
+            <!-- INSEL register -->
+            <math visible="false" define="SDADC.INSEL.IN0PSEL" formula="SDADC.INSEL_IN0PSEL_0"/>
+            <math visible="false" define="SDADC.INSEL.IN0NSEL" formula="SDADC.INSEL_IN0NSEL_0"/>
+            <math visible="false" define="SDADC.INSEL.DIN0SEL" formula="SDADC.INSEL_DIN0SEL_0"/>
+            <math visible="false" define="SDADC.INSEL.TRG0SEL" formula="SDADC.INSEL_TRG0SEL_0"/>
+            <math visible="false" define="SDADC.INSEL.IN1PSEL" formula="SDADC.INSEL_IN1PSEL_1"/>
+            <math visible="false" define="SDADC.INSEL.IN1NSEL" formula="SDADC.INSEL_IN1NSEL_1"/>
+            <math visible="false" define="SDADC.INSEL.DIN1SEL" formula="SDADC.INSEL_DIN1SEL_1"/>
+            <math visible="false" define="SDADC.INSEL.TRG1SEL" formula="SDADC.INSEL_TRG1SEL_1"/>
+          </horizontalcontainer>
+        </verticalcontainer> 
+
+        <groupcontainer label="SDADC Diagram" font="Source Sans Pro,12,0,0,100,0,0,0,0,0">
+          <groupcontainer visible="false">
+            <!-- Inputs for graph -->
+
+            <edit label="sdadc_pre" define="SDADC_PRE" svd="0" header=""/>
+            <edit label="in0psel" define="IN0PSEL" svd="0" header=""/>
+            <edit label="in0nsel" define="IN0NSEL" svd="0" header=""/>
+            <edit label="in1psel" define="IN1PSEL" svd="0" header=""/>
+            <edit label="in1nsel" define="IN1NSEL" svd="0" header=""/>
+            <edit label="decfact0" define="DECFACT0" svd="0" header=""/>
+            <edit label="decfact1" define="DECFACT1" svd="0" header=""/>
+            <edit label="lsh0" define="LSH0" svd="0" header=""/>
+            <edit label="lsh1" define="LSH1" svd="0" header=""/>
+            <edit label="up0" define="UP0" svd="0" header=""/>
+            <edit label="up1" define="UP1" svd="0" header=""/>
+            <edit label="lo0" define="LO0" svd="0" header=""/>
+            <edit label="lo1" define="LO1" svd="0" header=""/>
+            <edit label="hystup0" define="HYSTUP0" svd="0" header=""/>
+            <edit label="hystup1" define="HYSTUP1" svd="0" header=""/>
+            <edit label="hystlo0" define="HYSTLO0" svd="0" header=""/>
+            <edit label="hystlo1" define="HYSTLO1" svd="0" header=""/>
+            <edit label="din0sel" define="DIN0SEL" svd="0" header=""/>
+            <edit label="din1sel" define="DIN1SEL" svd="0" header=""/>
+            <edit label="dout0" define="DOUT0" svd="0" header=""/>
+            <edit label="dout1" define="DOUT1" svd="0" header=""/>
+            <edit label="trig0" define="TRIG0" svd="0" header=""/>
+            <edit label="trig1" define="TRIG1" svd="0" header=""/>
+            <!-- Colors for graph -->
+            <edit label="sdadc_0_1" define="SDADC_0_1" svd="0" header=""/>
+            <edit label="sdadc_0_2" define="SDADC_0_2" svd="0" header=""/>
+            <edit label="sdadc_0_3" define="SDADC_0_3" svd="0" header=""/>
+            <edit label="sdadc_0_4" define="SDADC_0_4" svd="0" header=""/>
+            <edit label="sdadc_0_5" define="SDADC_0_5" svd="0" header=""/>
+            <edit label="sdadc_0_6" define="SDADC_0_6" svd="0" header=""/>
+            <edit label="sdadc_0_7" define="SDADC_0_7" svd="0" header=""/>
+            <edit label="sdadc_0_8" define="SDADC_0_8" svd="0" header=""/>
+            <edit label="sdadc_0_9" define="SDADC_0_9" svd="0" header=""/>
+            <edit label="sdadc_0_10" define="SDADC_0_10" svd="0" header=""/>
+            <edit label="sdadc_0_11" define="SDADC_0_11" svd="0" header=""/>
+            <edit label="sdadc_0_12" define="SDADC_0_12" svd="0" header=""/>
+            <edit label="sdadc_0_13" define="SDADC_0_13" svd="0" header=""/>
+            <edit label="sdadc_0_14" define="SDADC_0_14" svd="0" header=""/>
+            <edit label="sdadc_0_15" define="SDADC_0_15" svd="0" header=""/>
+            <edit label="sdadc_1_1" define="SDADC_1_1" svd="0" header=""/>
+            <edit label="sdadc_1_2" define="SDADC_1_2" svd="0" header=""/>
+            <edit label="sdadc_1_3" define="SDADC_1_3" svd="0" header=""/>
+            <edit label="sdadc_1_4" define="SDADC_1_4" svd="0" header=""/>
+            <edit label="sdadc_1_5" define="SDADC_1_5" svd="0" header=""/>
+            <edit label="sdadc_1_6" define="SDADC_1_6" svd="0" header=""/>
+            <edit label="sdadc_1_7" define="SDADC_1_7" svd="0" header=""/>
+            <edit label="sdadc_1_8" define="SDADC_1_8" svd="0" header=""/>
+            <edit label="sdadc_1_9" define="SDADC_1_9" svd="0" header=""/>
+            <edit label="sdadc_1_10" define="SDADC_1_10" svd="0" header=""/>
+            <edit label="sdadc_1_11" define="SDADC_1_11" svd="0" header=""/>
+            <edit label="sdadc_1_12" define="SDADC_1_12" svd="0" header=""/>
+            <edit label="sdadc_1_13" define="SDADC_1_13" svd="0" header=""/>
+            <edit label="sdadc_1_14" define="SDADC_1_14" svd="0" header=""/>
+            <edit label="sdadc_1_15" define="SDADC_1_15" svd="0" header=""/>
+            <edit label="vis_sdadc_0_1" define="VIS_SDADC_0_1" svd="0" header=""/>
+            <edit label="vis_sdadc_0_2" define="VIS_SDADC_0_2" svd="0" header=""/>
+            <edit label="vis_sdadc_0_3" define="VIS_SDADC_0_3" svd="0" header=""/>
+            <edit label="vis_sdadc_1_1" define="VIS_SDADC_1_1" svd="0" header=""/>
+            <edit label="vis_sdadc_1_2" define="VIS_SDADC_1_2" svd="0" header=""/>
+            <edit label="vis_sdadc_1_3" define="VIS_SDADC_1_3" svd="0" header=""/>
+          </groupcontainer>
+
+          <svgembed define="SDADC_Block" passive="1">
+            <svg viewBox="0 0 600 1050">
+              <rect width="600" height="1050" style="fill:#FFFFF0;stroke-width:0.30644634"/>
+              <!-- Clock -->
+              <text x="300" y="30" fill="black" text-anchor="middle" font-size="14">fPER</text>
+              <line x1="300" y1="35" x2="300" y2="65" style="stroke:black;stroke-width:1"/>
+              <path d="M300 65 L295 55 L305 55 Z" fill="black"/>
+              <text x="300" y="77" font-weight="bold" fill="black" text-anchor="middle" font-size="12">Prescaler</text>
+              <rect x="280" y="80" width="40" height="30" style="fill:none;stroke-width:1;stroke:black"/>
+              <text x="300" y="100" fill="black" text-anchor="middle" font-size="16">/ $SDADC_PRE$</text>
+              <line x1="300" y1="110" x2="300" y2="150" style="stroke:black;stroke-width:1"/>
+              <line x1="220" y1="150" x2="300" y2="150" style="stroke:$SDADC_0_1$;stroke-width:1"/>
+              <line x1="300" y1="150" x2="380" y2="150" style="stroke:$SDADC_1_1$;stroke-width:1"/>
+              <text x="300" y="170" fill="black" text-anchor="middle" font-size="14">fSDADC = $fSDADC$ MHz</text>
+              <line x1="220" y1="150" x2="220" y2="300" style="stroke:$SDADC_0_1$;stroke-width:1"/>
+              <path d="M220 300 L215 290 L225 290 Z" fill="$SDADC_0_2$" visibility="$VIS_SDADC_0_2$"/>
+              <line x1="380" y1="150" x2="380" y2="300" style="stroke:$SDADC_1_1$;stroke-width:1"/>
+              <path d="M380 300 L375 290 L385 290 Z" fill="$SDADC_1_2$" visibility="$VIS_SDADC_1_2$"/>
+
+              <!-- Channel 0 -->
+              <text x="20" y="180" font-weight="bold" fill="$SDADC_0_1$" text-anchor="start" font-size="18">CHANNEL 0</text>
+              <rect x="20" y="190" width="270" height="840" style="fill:none;stroke-width:3;stroke-dasharray:10;stroke:$SDADC_0_1$"/>
+              <!-- Inputs -->
+              <text x="80" y="220" fill="$SDADC_0_2$" text-anchor="middle" font-size="14">Positive</text>
+              <text x="80" y="240" fill="$SDADC_0_2$" text-anchor="middle" font-size="14">$IN0PSEL$</text>
+              <line x1="80" y1="250" x2="80" y2="300" style="stroke:$SDADC_0_2$;stroke-width:1"/>
+              <path d="M80 300 L75 290 L85 290 Z" fill="$SDADC_0_2$"/>
+              <text x="150" y="220" fill="$SDADC_0_2$" text-anchor="middle" font-size="14">Negative</text>
+              <text x="150" y="240" fill="$SDADC_0_2$" text-anchor="middle" font-size="14">$IN0NSEL$</text>
+              <line x1="150" y1="250" x2="150" y2="300" style="stroke:$SDADC_0_2$;stroke-width:1"/>
+              <path d="M150 300 L145 290 L155 290 Z" fill="$SDADC_0_2$"/>
+              <!-- 2nd order Modulator -->
+              <rect x="60" y="300" rx="10" ry="10" width="180" height="100" style="fill:none;stroke-width:1;stroke:$SDADC_0_2$"/>
+              <text x="150" y="340" font-weight="bold" fill="$SDADC_0_3$" text-anchor="middle" font-size="16" visibility="$VIS_SDADC_0_2$">2nd Order</text>
+              <text x="150" y="370" font-weight="bold" fill="$SDADC_0_3$" text-anchor="middle" font-size="16" visibility="$VIS_SDADC_0_2$">Modulator</text>
+              <line x1="150" y1="400" x2="150" y2="480" style="stroke:$SDADC_0_1$;stroke-width:1"/>
+              <path d="M150 480 L145 470 L155 470 Z" fill="$SDADC_0_1$"/>
+              <!-- 3rd order Demodulator -->
+              <rect x="60" y="480" rx="10" ry="10" width="180" height="100" style="fill:none;stroke-width:1;stroke:$SDADC_0_4$"/>
+              <text x="150" y="505" font-weight="bold" fill="$SDADC_0_5$" text-anchor="middle" font-size="16">3rd Order</text>
+              <text x="150" y="535" font-weight="bold" fill="$SDADC_0_5$" text-anchor="middle" font-size="16">CIC Filter</text>
+              <text x="150" y="560" fill="$SDADC_0_4$" text-anchor="middle" font-size="14">Decimation Factor = $DECFACT0$</text>
+              <line x1="90" y1="580" x2="90" y2="640" style="stroke:$SDADC_0_4$;stroke-width:1"/>
+              <path d="M90 640 L85 630 L95 630 Z" fill="$SDADC_0_4$"/>
+              <line x1="210" y1="580" x2="210" y2="710" style="stroke:$SDADC_0_4$;stroke-width:1"/>
+              <path d="M210 710 L205 700 L215 700 Z" fill="$SDADC_0_4$"/>
+              <text x="225" y="645" fill="$SDADC_0_6$" text-anchor="middle" font-size="14" transform="rotate(90,225,645)">Wait For Read</text>
+              <!-- Result -->
+              <rect x="155" y="710" rx="10" ry="10" width="110" height="70" style="fill:none;stroke-width:1;stroke:$SDADC_0_4$"/>
+              <text x="210" y="740" font-weight="bold" fill="$SDADC_0_7$" text-anchor="middle" font-size="16">Result</text>
+              <text x="210" y="760" fill="$SDADC_0_4$" text-anchor="middle" font-size="14">$LSH0$ Left Shift</text>
+              <line x1="210" y1="780" x2="210" y2="820" style="stroke:$SDADC_0_4$;stroke-width:1"/>
+              <path d="M210 820 L205 810 L215 810 Z" fill="$SDADC_0_4$"/>
+              <!-- Comparator -->
+              <rect x="145" y="820" rx="10" ry="10" width="130" height="80" style="fill:none;stroke-width:1;stroke:$SDADC_0_4$"/>
+              <text x="210" y="840" font-weight="bold" fill="$SDADC_0_8$" text-anchor="middle" font-size="16">Comparator</text>
+              <text x="210" y="865" fill="$SDADC_0_4$" text-anchor="middle" font-size="14">Upper: $UP0$, hyst. $HYSTUP0$</text>
+              <text x="210" y="890" fill="$SDADC_0_4$" text-anchor="middle" font-size="14">Lower: $LO0$, hyst. $HYSTLO0$</text>
+              <!-- Timestamp -->
+              <rect x="35" y="640" rx="10" ry="10" width="110" height="50" style="fill:none;stroke-width:1;stroke:$SDADC_0_4$"/>
+              <text x="90" y="670" font-weight="bold" fill="$SDADC_0_9$" text-anchor="middle" font-size="16">Timestamp</text>
+              <!-- Interrupts -->
+              <line x1="105" y1="745" x2="155" y2="745" style="stroke:$SDADC_0_10$;stroke-width:1"/>
+              <line x1="105" y1="745" x2="105" y2="960" style="stroke:$SDADC_0_10$;stroke-width:1"/>
+              <path d="M105 960 L100 950 L110 950 Z" fill="$SDADC_0_10$"/>
+              <text x="105" y="985" fill="$SDADC_0_10$" text-anchor="middle" font-size="14">Res0 Int</text>
+              <line x1="175" y1="900" x2="175" y2="960" style="stroke:$SDADC_0_11$;stroke-width:1"/>
+              <path d="M175 960 L170 950 L180 950 Z" fill="$SDADC_0_11$"/>
+              <text x="175" y="985" fill="$SDADC_0_11$" text-anchor="middle" font-size="14">Cmp0 Up</text>
+              <text x="175" y="1005" fill="$SDADC_0_11$" text-anchor="middle" font-size="14">Int</text>
+              <line x1="245" y1="900" x2="245" y2="960" style="stroke:$SDADC_0_12$;stroke-width:1"/>
+              <path d="M245 960 L240 950 L250 950 Z" fill="$SDADC_0_12$"/>
+              <text x="245" y="985" fill="$SDADC_0_12$" text-anchor="middle" font-size="14">Cmp0 Lo</text>
+              <text x="245" y="1005" fill="$SDADC_0_12$" text-anchor="middle" font-size="14">Int</text>
+              <!-- In case of external modulator -->
+              <text x="80" y="420" fill="$SDADC_0_13$" text-anchor="middle" font-size="14">Trigger Event</text>
+              <text x="80" y="440" fill="$SDADC_0_13$" text-anchor="middle" font-size="14">$TRIG0$</text>
+              <line x1="80" y1="450" x2="80" y2="480" style="stroke:$SDADC_0_13$;stroke-width:1"/>
+              <path d="M80 480 L75 470 L85 470 Z" fill="$SDADC_0_13$"/>
+              <text x="150" y="370" fill="$SDADC_0_14$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_0_1$">Digital Input</text>
+              <text x="150" y="390" fill="$SDADC_0_14$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_0_1$">$DIN0SEL$</text>
+              <line x1="220" y1="300" x2="220" y2="480" style="stroke:$SDADC_0_14$;stroke-width:1" visibility="$VIS_SDADC_0_1$"/>
+              <path d="M220 480 L215 470 L225 470 Z" fill="$SDADC_0_14$"/>
+              <!-- In case of external demodulator -->
+              <text x="150" y="500" fill="$SDADC_0_15$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_0_3$">DOUT Mapping</text>
+              <text x="150" y="520" fill="$SDADC_0_15$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_0_3$">$DOUT0$</text>
+
+              <!-- Channel 1 -->
+              <text x="580" y="180" font-weight="bold" fill="$SDADC_1_1$" text-anchor="end" font-size="18">CHANNEL 1</text>
+              <rect x="320" y="190" width="270" height="840" style="fill:none;stroke-width:3;stroke-dasharray:10;stroke:$SDADC_1_1$"/>
+              <!-- Inputs -->
+              <text x="450" y="220" fill="$SDADC_1_2$" text-anchor="middle" font-size="14">Positive</text>
+              <text x="450" y="240" fill="$SDADC_1_2$" text-anchor="middle" font-size="14">$IN1PSEL$</text>
+              <line x1="450" y1="250" x2="450" y2="300" style="stroke:$SDADC_1_2$;stroke-width:1"/>
+              <path d="M450 300 L445 290 L455 290 Z" fill="$SDADC_1_2$"/>
+              <text x="520" y="220" fill="$SDADC_1_2$" text-anchor="middle" font-size="14">Negative</text>
+              <text x="520" y="240" fill="$SDADC_1_2$" text-anchor="middle" font-size="14">$IN1NSEL$</text>
+              <line x1="520" y1="250" x2="520" y2="300" style="stroke:$SDADC_1_2$;stroke-width:1"/>
+              <path d="M520 300 L515 290 L525 290 Z" fill="$SDADC_1_2$"/>
+              <!-- 2nd order Modulator -->
+              <rect x="360" y="300" rx="10" ry="10" width="180" height="100" style="fill:none;stroke-width:1;stroke:$SDADC_1_2$"/>
+              <text x="450" y="340" font-weight="bold" fill="$SDADC_1_3$" text-anchor="middle" font-size="16">2nd Order</text>
+              <text x="450" y="370" font-weight="bold" fill="$SDADC_1_3$" text-anchor="middle" font-size="16">Modulator</text>
+              <line x1="450" y1="400" x2="450" y2="480" style="stroke:$SDADC_1_1$;stroke-width:1"/>
+              <path d="M450 480 L445 470 L455 470 Z" fill="$SDADC_1_1$"/>
+              <!-- 3rd order Demodulator -->
+              <rect x="360" y="480" rx="10" ry="10" width="180" height="100" style="fill:none;stroke-width:1;stroke:$SDADC_1_4$"/>
+              <text x="450" y="505" font-weight="bold" fill="$SDADC_1_5$" text-anchor="middle" font-size="16">3rd Order</text>
+              <text x="450" y="535" font-weight="bold" fill="$SDADC_1_5$" text-anchor="middle" font-size="16">CIC Filter</text>
+              <text x="450" y="560" fill="$SDADC_1_4$" text-anchor="middle" font-size="14">Decimation Factor = $DECFACT1$</text>
+              <line x1="390" y1="580" x2="390" y2="640" style="stroke:$SDADC_1_4$;stroke-width:1"/>
+              <path d="M390 640 L385 630 L395 630 Z" fill="$SDADC_1_4$"/>
+              <line x1="510" y1="580" x2="510" y2="710" style="stroke:$SDADC_1_4$;stroke-width:1"/>
+              <path d="M510 710 L505 700 L515 700 Z" fill="$SDADC_1_4$"/>
+              <text x="525" y="645" fill="$SDADC_1_6$" text-anchor="middle" font-size="14" transform="rotate(90,525,645)">Wait For Read</text>
+              <!-- Result -->
+              <rect x="455" y="710" rx="10" ry="10" width="110" height="70" style="fill:none;stroke-width:1;stroke:$SDADC_1_4$"/>
+              <text x="510" y="740" font-weight="bold" fill="$SDADC_1_7$" text-anchor="middle" font-size="16">Result</text>
+              <text x="510" y="760" fill="$SDADC_1_4$" text-anchor="middle" font-size="14">$LSH1$ Left Shift</text>
+              <line x1="510" y1="780" x2="510" y2="820" style="stroke:$SDADC_1_4$;stroke-width:1"/>
+              <path d="M510 820 L505 810 L515 810 Z" fill="$SDADC_1_4$"/>
+              <!-- Comparator -->
+              <rect x="445" y="820" rx="10" ry="10" width="130" height="80" style="fill:none;stroke-width:1;stroke:$SDADC_1_4$"/>
+              <text x="510" y="840" font-weight="bold" fill="$SDADC_1_8$" text-anchor="middle" font-size="16">Comparator</text>
+              <text x="510" y="865" fill="$SDADC_1_4$" text-anchor="middle" font-size="14">Upper: $UP1$, hyst. $HYSTUP1$</text>
+              <text x="510" y="890" fill="$SDADC_1_4$" text-anchor="middle" font-size="14">Lower: $LO1$, hyst. $HYSTLO1$</text>
+              <!-- Timestamp -->
+              <rect x="335" y="640" rx="10" ry="10" width="110" height="50" style="fill:none;stroke-width:1;stroke:$SDADC_1_4$"/>
+              <text x="390" y="670" font-weight="bold" fill="$SDADC_1_9$" text-anchor="middle" font-size="16">Timestamp</text>
+              <!-- Interrupts -->
+              <line x1="405" y1="745" x2="455" y2="745" style="stroke:$SDADC_1_10$;stroke-width:1"/>
+              <line x1="405" y1="745" x2="405" y2="960" style="stroke:$SDADC_1_10$;stroke-width:1"/>
+              <path d="M405 960 L400 950 L410 950 Z" fill="$SDADC_1_10$"/>
+              <text x="405" y="985" fill="$SDADC_1_10$" text-anchor="middle" font-size="14">Res1 Int</text>
+              <line x1="475" y1="900" x2="475" y2="960" style="stroke:$SDADC_1_11$;stroke-width:1"/>
+              <path d="M475 960 L470 950 L480 950 Z" fill="$SDADC_1_11$"/>
+              <text x="475" y="985" fill="$SDADC_1_11$" text-anchor="middle" font-size="14">Cmp1 Up</text>
+              <text x="475" y="1005" fill="$SDADC_1_11$" text-anchor="middle" font-size="14">Int</text>
+              <line x1="545" y1="900" x2="545" y2="960" style="stroke:$SDADC_1_12$;stroke-width:1"/>
+              <path d="M545 960 L540 950 L550 950 Z" fill="$SDADC_1_12$"/>
+              <text x="545" y="985" fill="$SDADC_1_12$" text-anchor="middle" font-size="14">Cmp1 Lo</text>
+              <text x="545" y="1005" fill="$SDADC_1_12$" text-anchor="middle" font-size="14">Int</text>
+              <!-- In case of external modulator -->
+              <line x1="380" y1="300" x2="380" y2="480" style="stroke:$SDADC_1_14$;stroke-width:1" visibility="$VIS_SDADC_1_1$"/>
+              <path d="M380 480 L375 470 L385 470 Z" fill="$SDADC_1_14$"/>
+              <text x="450" y="370" fill="$SDADC_1_14$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_1_1$">Digital Input</text>
+              <text x="450" y="390" fill="$SDADC_1_14$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_1_1$">$DIN1SEL$</text>
+              <text x="520" y="420" fill="$SDADC_1_13$" text-anchor="middle" font-size="14">Trigger Event</text>
+              <text x="520" y="440" fill="$SDADC_1_13$" text-anchor="middle" font-size="14">$TRIG1$</text>
+              <line x1="520" y1="450" x2="520" y2="480" style="stroke:$SDADC_1_13$;stroke-width:1"/>
+              <path d="M520 480 L515 470 L525 470 Z" fill="$SDADC_1_13$"/>
+              <!-- In case of external demodulator -->
+              <text x="450" y="500" fill="$SDADC_1_15$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_1_3$">DOUT Mapping</text>
+              <text x="450" y="520" fill="$SDADC_1_15$" text-anchor="middle" font-size="14" visibility="$VIS_SDADC_1_3$">$DOUT1$</text>
+
+            </svg>
+          </svgembed>
+        </groupcontainer>
+      </groupcontainer>
+    </header>
+  </verticalcontainer>
+
+</ifxmlcfg>

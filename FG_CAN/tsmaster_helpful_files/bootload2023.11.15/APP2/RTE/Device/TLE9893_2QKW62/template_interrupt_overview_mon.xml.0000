@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_interrupt_overview_mon.xml                                        -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.1.12">
+  <checksum>290f98133e5fb608bfb3976d0a08c7beb6c7c78b5e85e4ceafaca688c1ab7515</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <verticalcontainer size="800;-1"  stretch="2">
+    <text label="Configured Interrupts of Nodes 12, 13"/>
+    <verticalcontainer label="Timer and Math" visible="false">
+      <timer visible="true" define="MON_FILL_INT_OVERVIEW" interval="1" singleShot="1" run="0">
+        <action event="changed" cmd="setDef" data="RO_MON.MON1_R_CALLBACK=MON.MON1_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_MON.MON1_F_CALLBACK=MON.MON1_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_MON.MON2_R_CALLBACK=MON.MON2_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_MON.MON2_F_CALLBACK=MON.MON2_F_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_MON.MON3_R_CALLBACK=MON.MON3_R_CALLBACK"/>
+        <action event="changed" cmd="setDef" data="RO_MON.MON3_F_CALLBACK=MON.MON3_F_CALLBACK"/>
+      </timer>
+      <math formula="MON.MON1_R_INT_EN"><action event="changed" cmd="setDef" data="MON.MON1_R_INT_BOX.visible=MON.MON1_R_INT_EN"/></math>
+      <math formula="MON.MON1_F_INT_EN"><action event="changed" cmd="setDef" data="MON.MON1_F_INT_BOX.visible=MON.MON1_F_INT_EN"/></math>
+      <math formula="MON.MON2_R_INT_EN"><action event="changed" cmd="setDef" data="MON.MON2_R_INT_BOX.visible=MON.MON2_R_INT_EN"/></math>
+      <math formula="MON.MON2_F_INT_EN"><action event="changed" cmd="setDef" data="MON.MON2_F_INT_BOX.visible=MON.MON2_F_INT_EN"/></math>
+      <math formula="MON.MON3_R_INT_EN"><action event="changed" cmd="setDef" data="MON.MON3_R_INT_BOX.visible=MON.MON3_R_INT_EN"/></math>
+      <math formula="MON.MON3_F_INT_EN"><action event="changed" cmd="setDef" data="MON.MON3_F_INT_BOX.visible=MON.MON3_F_INT_EN"/></math>
+    </verticalcontainer> <!-- Timer and Math -->
+    <verticalcontainer label="Interrupt Overview ">
+      <horizontalcontainer>
+        <text size="200;-1" label="Interrupt"/>
+        <text size="75;-1" label="Int. Node"/>
+        <text size="75;-1" label="Enable"/>
+        <text size="400;-1" label="Callback function"/>
+      </horizontalcontainer>
+      <horizontalcontainer define="MON.MON1_R_INT_BOX" visible="false">
+        <text size="200;-1" label="MON1 R"/>
+        <math size="75;-1" formula="SCU.INP2.INP_MON1+12"/>
+        <math size="75;-1" formula="SCU.MONIEN.MON1EN"/>
+        <edit size="400;-1" define="RO_MON.MON1_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="MON.MON1_F_INT_BOX" visible="false">
+        <text size="200;-1" label="MON1 F"/>
+        <math size="75;-1" formula="SCU.INP2.INP_MON1+12"/>
+        <math size="75;-1" formula="SCU.MONIEN.MON1EN"/>
+        <edit size="400;-1" define="RO_MON.MON1_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="MON.MON2_R_INT_BOX" visible="false">
+        <text size="200;-1" label="MON2 R"/>
+        <math size="75;-1" formula="SCU.INP2.INP_MON2+12"/>
+        <math size="75;-1" formula="SCU.MONIEN.MON2EN"/>
+        <edit size="400;-1" define="RO_MON.MON2_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="MON.MON2_F_INT_BOX" visible="false">
+        <text size="200;-1" label="MON2 F"/>
+        <math size="75;-1" formula="SCU.INP2.INP_MON2+12"/>
+        <math size="75;-1" formula="SCU.MONIEN.MON2EN"/>
+        <edit size="400;-1" define="RO_MON.MON2_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="MON.MON3_R_INT_BOX" visible="false">
+        <text size="200;-1" label="MON3 R"/>
+        <math size="75;-1" formula="SCU.INP2.INP_MON3+12"/>
+        <math size="75;-1" formula="SCU.MONIEN.MON3EN"/>
+        <edit size="400;-1" define="RO_MON.MON3_R_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+      <horizontalcontainer define="MON.MON3_F_INT_BOX" visible="false">
+        <text size="200;-1" label="MON3 F"/>
+        <math size="75;-1" formula="SCU.INP2.INP_MON3+12"/>
+        <math size="75;-1" formula="SCU.MONIEN.MON3EN"/>
+        <edit size="400;-1" define="RO_MON.MON3_F_CALLBACK" svd="0" readonly="1" default=""/>
+      </horizontalcontainer>
+    </verticalcontainer> <!-- Interrupt Overview -->
+  </verticalcontainer>
+</ifxmlcfg>
+

@@ -429,7 +429,7 @@ void IfxPmsPm_startStandbySequenceInFlash(IfxPmsPm_StandbyConfig *standbyConfig,
                 IfxScuWdt_setSafetyEndinitInline(endinitSfty_pw);
 
                 /*Wait for waitCounter corresponding to the pll step */
-                //IfxScuCcu_wait(pllThrottleConfig.pllSteps[pllStepsCount - 1].waitTime);
+//                IfxScuCcu_wait(pllThrottleConfig.pllSteps[pllStepsCount - 1].waitTime);
             }
         }
 

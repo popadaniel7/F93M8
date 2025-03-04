@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file template_adc1_channel_class.xml                                            -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.1.0: 2020-10-23, BG:   EP-482: Added doctype and checksum                   -->
+<!--********************************************************************************-->
+
+<!-- Channel Class Template -->
+<!-- Parameter: -->
+<!--   IDX: channel class index, range 0..3 -->  
+
+<ifxmlcfg version="2.1.12">
+  <checksum>250f4748f3252f8e960ea087b1531906fb031de5cf23c09b03b18268c680df18</checksum>
+  <version label="V0.1.0"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <treecontainer headerlabels="Item;Value;" label="Class $IDX$" desc="Channel Class $IDX$" columnwidths="200;150">
+    <header file="adc1_defines.h">
+      <math visible="false" define="ADC1.CONV$IDX$_TICKS" svd="0" formula="(14+3+ADC1.CONVCFG$IDX$.STC.label+ADC1.CONVCFG$IDX$.MSBD)+(14+3+ADC1.CONVCFG$IDX$.STC.label+ADC1.CONVCFG$IDX$.MSBD)*ADC1.CONVCFG$IDX$.OVERS.label+(ADC1.CONVCFG$IDX$.TCONF.label*8)+ADC1.CONVCFG$IDX$.PCAL*10+ADC1.CONVCFG$IDX$.SESP*16+ADC1.CONVCFG$IDX$.BWD.label" header="temp_defines.h">
+        <action event="changed" cmd="setDef" data="ADC1.TIM_CHCFG.run=1"/>
+      </math>
+      <edit label="Category" define="ADC1.CONVCFG$IDX$_CTRY" svd="0" header="temp_defines.h"/>
+      <radio define="ADC1.CONVCFG_TCOSSEL$IDX$" svd="0" header="temp_defines.h">
+        <radiobutton label="Tracking Conversions" uielement="branch" lockon="ADC1.CONVCFG$IDX$.OVERS=0" setdef="ADC1.CONV$IDX$_TCOS_TXT=---">
+          <combo label="Value" define="ADC1.CONVCFG$IDX$.TCONF">
+            <item label="0" setdef="ADC1.CONV$IDX$_TCOS_TXT=---"/>
+            <item label="1" setdef="ADC1.CONV$IDX$_TCOS_TXT=TC1"/>
+            <item label="3" setdef="ADC1.CONV$IDX$_TCOS_TXT=TC3"/>
+            <item label="7" setdef="ADC1.CONV$IDX$_TCOS_TXT=TC7"/>
+          </combo>
+        </radiobutton>
+        <radiobutton label="Oversampling" uielement="branch" lockon="ADC1.CONVCFG$IDX$.TCONF=0" setdef="ADC1.CONV$IDX$_TCOS_TXT=---">
+          <combo label="Value" define="ADC1.CONVCFG$IDX$.OVERS">
+            <item label="0" setdef="ADC1.CONV$IDX$_TCOS_TXT=---"/>
+            <item label="2" setdef="ADC1.CONV$IDX$_TCOS_TXT=OS2"/>
+            <item label="4" setdef="ADC1.CONV$IDX$_TCOS_TXT=OS4"/>
+            <item label="8" setdef="ADC1.CONV$IDX$_TCOS_TXT=OS8"/>
+          </combo>
+        </radiobutton>
+      </radio>
+      <combo label="Sample Time [ticks]" define="ADC1.CONVCFG$IDX$.STC" default="label=5">
+        <item label="2" override="value1"/>
+        <item label="3" override="value2"/>
+        <item label="4" override="value3"/>
+        <item label="5" override="value4"/>
+        <item label="6" override="value5"/>
+        <item label="7" override="value6"/>
+        <item label="8" override="value7"/>
+        <item label="9" override="value8"/>
+        <item label="10" override="value9"/>
+        <item label="11" override="value10"/>
+        <item label="12" override="value11"/>
+        <item label="16" override="value12"/>
+        <item label="20" override="value13"/>
+        <item label="32" override="value14"/>
+        <item label="64" override="value15"/>
+        <item label="128" override="value16"/>
+      </combo>
+      <branch label="Broken Wire Detection">
+        <combo label="Detection time [n * tADC1]" define="ADC1.CONVCFG$IDX$.BWD">
+          <item label="0"  override="value1" setdef="ADC1.CONV$IDX$_BWD_TXT=---"/>
+          <item label="4"  override="value2" setdef="ADC1.CONV$IDX$_BWD_TXT=BW4"/>
+          <item label="8"  override="value3" setdef="ADC1.CONV$IDX$_BWD_TXT=BW8"/>
+          <item label="16" override="value4" setdef="ADC1.CONV$IDX$_BWD_TXT=BW16"/>
+        </combo>
+        <checkbox label="Enable High Current" define="ADC1.CONVCFG$IDX$.BWD_HI_CUR"/>
+      </branch>
+      <checkbox label="Post Calibration" define="ADC1.CONVCFG$IDX$.PCAL">
+        <action event="checked" cmd="setDef" data="ADC1.CONV$IDX$_PC_TXT=PC"/>
+        <action event="unchecked" cmd="setDef" data="ADC1.CONV$IDX$_PC_TXT=--"/>
+      </checkbox>
+      <checkbox label="MSB Doubling" define="ADC1.CONVCFG$IDX$.MSBD">
+        <action event="checked" cmd="setDef" data="ADC1.CONV$IDX$_MSBD_TXT=MSB"/>
+        <action event="unchecked" cmd="setDef" data="ADC1.CONV$IDX$_MSBD_TXT=---"/>
+      </checkbox>
+      <checkbox label="Spreaded Early Sample Point" define="ADC1.CONVCFG$IDX$.SESP">
+        <action event="checked" cmd="setDef" data="ADC1.CONV$IDX$_SESP_TXT=SESP"/>
+        <action event="unchecked" cmd="setDef" data="ADC1.CONV$IDX$_SESP_TXT=----"/>
+      </checkbox>
+    </header>
+  </treecontainer>
+</ifxmlcfg>

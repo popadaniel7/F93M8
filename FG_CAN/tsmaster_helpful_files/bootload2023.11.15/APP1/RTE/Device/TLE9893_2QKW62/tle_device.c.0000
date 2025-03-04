@@ -1,0 +1,128 @@
+/*
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **********************************************************************************************************************/
+
+/*******************************************************************************
+**                                  Includes                                  **
+*******************************************************************************/
+#include "tle_device.h"
+
+/*******************************************************************************
+**                        Private Constant Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Private Macro Declarations                         **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Variable Definitions                        **
+*******************************************************************************/
+
+/*******************************************************************************
+**                        Private Function Declarations                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                         Global Function Definitions                        **
+*******************************************************************************/
+
+/** \brief Initialize all modules of the device
+ *
+ * \param none
+ * \return sint8 0: success, <0: error codes
+ */
+sint8 TLE_init(void)
+{
+  sint8 e_returnCode;
+  e_returnCode = ERR_LOG_SUCCESS;
+
+  #ifdef RTE_DEVICE_TLELIB_SCU
+    SCU_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_PMU
+    PMU_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_ADC1
+    e_returnCode |= ADC1_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_ADC2
+    e_returnCode |= ADC2_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_BDRV
+    e_returnCode |= BDRV_initCP();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_CSACSC
+    e_returnCode |= CSACSC_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_BDRV
+    e_returnCode |= BDRV_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_CCU7
+    e_returnCode |= CCU7_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_CAN
+    /* CAN_init(); */
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_DMA
+    /* DMA_init(); */
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_GPIO
+    GPIO_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_GPT12
+    e_returnCode |= GPT12_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_MON
+    MON_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_SDADC
+    e_returnCode |= SDADC_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_SSC
+    e_returnCode |= SSC0_init();
+    e_returnCode |= SSC1_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_TIMER2X
+    e_returnCode |= T20_init();
+    e_returnCode |= T21_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_UART
+    e_returnCode |= UART0_init();
+    e_returnCode |= UART1_init();
+  #endif
+  #ifdef RTE_DEVICE_TLELIB_INT
+    INT_init();
+  #endif
+  
+  if (e_returnCode != ERR_LOG_SUCCESS)
+  {
+    e_returnCode = ERR_LOG_CODE_MODULE_DISABLED_IN_CW;
+  }
+  
+  return e_returnCode;
+}

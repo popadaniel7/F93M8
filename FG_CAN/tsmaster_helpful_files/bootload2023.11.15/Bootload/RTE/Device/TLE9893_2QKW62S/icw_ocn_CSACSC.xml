@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_CSACSC.xml                                                         -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, DM:   Initial version                                      -->
+<!-- V0.0.2: 2020-09-21, JO:   EP-466: Lock CPU.NVIC_ISER.IRQEN0/1=1 to enable the  -->
+<!--                           currently used interrupt node                        -->
+<!-- V0.0.3: 2020-10-21, BG:   EP-539: Enabled the module per default               -->
+<!-- V0.0.4: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!-- V0.0.5: 2020-12-18, BG:   EP-607: Updated default value and range for OC_TH_MAX-->
+<!-- V0.0.6: 2021-02-03, BG:   EP-687: Corrected the value assignment for the gain  -->
+<!--                           factor/min. gain factor and the output offset/min.   -->
+<!--                           output offset                                        -->
+<!--                           Updated the order for setting the value/max value    -->
+<!--                           for the overcurrent threshold                        -->
+<!--                           Updated the default value for the gain factor/min.   -->
+<!--                           gain factor and the output offset/min. output offset -->
+<!-- V0.0.7: 2021-02-08, BG:   EP-690: Updated CW minimal version to 2.6.2          -->
+<!-- V0.0.8: 2021-02-15, BG:   EP-699: Updated default value for Rshunt             -->
+<!--                           Corrected formula for CSACSC.CTRL1.THR_MAX           -->
+<!--                           Simplified the comboboxes for the gain factor/min.   -->
+<!--                           gain factor and the output offset/min. output offset -->
+<!-- V0.0.9: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<ifxmlcfg version="2.6.2">
+  <checksum>62119c761b2f16de9d68c0b9f42c051ea375eeda2719f41c26b40a294d83e86c</checksum>
+  <version label="V0.0.9"/>
+  <svd file="TLE989x.svd"/>
+  <verticalcontainer label="CSA/CSC" desc="Current Sense Amplifier">
+    <header file="csacsc_defines.h">
+      <doublespinbox visible="false" define="CSACSC.CSAOUT_MAX" svd="0" default="3.5" header="temp_defines.h"/>
+      <checkbox label="Enable CSA/CSC" define="CSACSC.CTRL1.CSAC_EN" default="1" font="Source Sans Pro,15,0,0,100,1,0,0,0,0" color="255;128;64">
+        <action event="checked" cmd="setDef" data="CSACSC.TOP.enabled=1;ADC1.GLOBCONF.EN=1"/>
+        <action event="unchecked" cmd="setDef" data="CSACSC.TOP.enabled=0"/>
+      </checkbox>
+      <groupcontainer define="CSACSC.TOP">
+        <treecontainer label="CSA" desc="Current Sense Amplifier" headerlabels="Item;Value;" columnwidths="300;250">
+          <branch label="CSA - Current Sense Amplifier">
+            <doublespinbox label="R shunt" define="CSACSC.R_SHUNT" svd="0" default="15.000" suffix=" mOhm" range="0.001;100.000" header="temp_defines.h"/>
+            <math visible="false" label="I max" unit=" A" define="CSACSC.I_MAX" svd="0" format="%.2f" formula="(3.5-CSACSC.CTRL2.OFFS_SEL.label)/CSACSC.CTRL2.GAIN_SEL.label/(CSACSC.R_SHUNT/1000)" header="temp_defines.h">
+              <action event="changed" cmd="setDef" data="CSACSC.OC_TH_MAX.max=300.00"/>
+              <action event="changed" cmd="setDef" data="CSACSC.OC_TH.max=300.00"/>
+              <action event="changed" cmd="setDef" data="CSACSC.OC_TH_MAX=CSACSC.I_MAX"/>
+              <action event="changed" cmd="setDef" data="CSACSC.OC_TH_MAX.max=CSACSC.I_MAX"/>
+              <action event="changed" cmd="setDef" data="CSACSC.OC_TH.max=CSACSC.I_MAX"/>
+            </math>
+            <combo label="Gain Factor" define="CSACSC.CTRL2.GAIN_SEL" default="label=60">
+              <item label="10" override="value1">
+                <action cond="CSACSC.CTRL1.GAIN_MIN.label&gt;10" event="selected" cmd="runScript" data="MessageBox(Gain lower than Min.Gain!)"/>
+                <action cond="CSACSC.CTRL1.GAIN_MIN.label&gt;10" event="selected" cmd="setDef" data="CSACSC.CTRL2.GAIN_SEL.label=CSACSC.CTRL1.GAIN_MIN.label"/>
+              </item>
+              <item label="20" override="value2">
+                <action cond="CSACSC.CTRL1.GAIN_MIN.label&gt;20" event="selected" cmd="runScript" data="MessageBox(Gain lower than Min.Gain!)"/>
+                <action cond="CSACSC.CTRL1.GAIN_MIN.label&gt;20" event="selected" cmd="setDef" data="CSACSC.CTRL2.GAIN_SEL.label=CSACSC.CTRL1.GAIN_MIN.label"/>
+              </item>
+              <item label="40" override="value3">
+                <action cond="CSACSC.CTRL1.GAIN_MIN.label&gt;40" event="selected" cmd="runScript" data="MessageBox(Gain lower than Min.Gain!)"/>
+                <action cond="CSACSC.CTRL1.GAIN_MIN.label&gt;40" event="selected" cmd="setDef" data="CSACSC.CTRL2.GAIN_SEL.label=CSACSC.CTRL1.GAIN_MIN.label"/>
+              </item>
+              <item label="60" override="value4"/>
+            </combo>
+            <combo label="Min. Gain Factor" define="CSACSC.CTRL1.GAIN_MIN" default="label=60">
+              <item label="10" override="value1"/>
+              <item label="20" override="value4">
+                <action cond="CSACSC.CTRL2.GAIN_SEL.label&lt;20" event="selected" cmd="runScript" data="MessageBox(Gain lower than Min.Gain!)"/>
+                <action cond="CSACSC.CTRL2.GAIN_SEL.label&lt;20" event="selected" cmd="setDef" data="CSACSC.CTRL2.GAIN_SEL.label=20"/>
+              </item>
+              <item label="40" override="value13">
+                <action cond="CSACSC.CTRL2.GAIN_SEL.label&lt;40" event="selected" cmd="runScript" data="MessageBox(Gain lower than Min.Gain!)"/>
+                <action cond="CSACSC.CTRL2.GAIN_SEL.label&lt;40" event="selected" cmd="setDef" data="CSACSC.CTRL2.GAIN_SEL.label=40"/>
+              </item>
+              <item label="60" override="value16">
+                <action cond="CSACSC.CTRL2.GAIN_SEL.label&lt;60" event="selected" cmd="runScript" data="MessageBox(Gain lower than Min.Gain!)"/>
+                <action cond="CSACSC.CTRL2.GAIN_SEL.label&lt;60" event="selected" cmd="setDef" data="CSACSC.CTRL2.GAIN_SEL.label=60"/>
+              </item>
+              <item hide="value2"/>
+              <item hide="value3"/>
+              <item hide="value5"/>
+              <item hide="value6"/>
+              <item hide="value7"/>
+              <item hide="value8"/>
+              <item hide="value9"/>
+              <item hide="value10"/>
+              <item hide="value11"/>
+              <item hide="value12"/>
+              <item hide="value14"/>
+              <item hide="value15"/>
+            </combo>
+            <combo label="Output Offset [V]" define="CSACSC.CTRL2.OFFS_SEL" default="label=2.0">
+              <item label="0.5" override="value1">
+                <action cond="CSACSC.CTRL1.OFFS_MIN.label&gt;0.5" event="selected" cmd="runScript" data="MessageBox(Offset lower than Min.Offset!)"/>
+                <action cond="CSACSC.CTRL1.OFFS_MIN.label&gt;0.5" event="selected" cmd="setDef" data="CSACSC.CTRL2.OFFS_SEL.label=CSACSC.CTRL1.OFFS_MIN.label"/>
+              </item>
+              <item label="1.0" override="value2">
+                <action cond="CSACSC.CTRL1.OFFS_MIN.label&gt;1.0" event="selected" cmd="runScript" data="MessageBox(Offset lower than Min.Offset!)"/>
+                <action cond="CSACSC.CTRL1.OFFS_MIN.label&gt;1.0" event="selected" cmd="setDef" data="CSACSC.CTRL2.OFFS_SEL.label=CSACSC.CTRL1.OFFS_MIN.label"/>
+              </item>
+              <item label="1.5" override="value3">
+                <action cond="CSACSC.CTRL1.OFFS_MIN.label&gt;1.5" event="selected" cmd="runScript" data="MessageBox(Offset lower than Min.Offset!)"/>
+                <action cond="CSACSC.CTRL1.OFFS_MIN.label&gt;1.5" event="selected" cmd="setDef" data="CSACSC.CTRL2.OFFS_SEL.label=CSACSC.CTRL1.OFFS_MIN.label"/>
+              </item>
+              <item label="2.0" override="value4"/>
+            </combo>
+            <combo label="Min. Output Offset [V]" define="CSACSC.CTRL1.OFFS_MIN" default="label=2.0">
+              <item label="0.5" override="value1"/>
+              <item label="1.0" override="value4">
+                <action cond="CSACSC.CTRL2.OFFS_SEL.label&lt;1.0" event="selected" cmd="runScript" data="MessageBox(Offset lower than Min.Offset!)"/>
+                <action cond="CSACSC.CTRL2.OFFS_SEL.label&lt;1.0" event="selected" cmd="setDef" data="CSACSC.CTRL2.OFFS_SEL.label=1.0"/>
+              </item>
+              <item label="1.5" override="value13">
+                <action cond="CSACSC.CTRL2.OFFS_SEL.label&lt;1.5" event="selected" cmd="runScript" data="MessageBox(Offset lower than Min.Offset!)"/>
+                <action cond="CSACSC.CTRL2.OFFS_SEL.label&lt;1.5" event="selected" cmd="setDef" data="CSACSC.CTRL2.OFFS_SEL.label=1.5"/>
+              </item>
+              <item label="2.0" override="value16">
+                <action cond="CSACSC.CTRL2.OFFS_SEL.label&lt;2.0" event="selected" cmd="runScript" data="MessageBox(Offset lower than Min.Offset!)"/>
+                <action cond="CSACSC.CTRL2.OFFS_SEL.label&lt;2.0" event="selected" cmd="setDef" data="CSACSC.CTRL2.OFFS_SEL.label=2.0"/>
+              </item>
+              <item hide="value2"/>
+              <item hide="value3"/>
+              <item hide="value5"/>
+              <item hide="value6"/>
+              <item hide="value7"/>
+              <item hide="value8"/>
+              <item hide="value9"/>
+              <item hide="value10"/>
+              <item hide="value11"/>
+              <item hide="value12"/>
+              <item hide="value14"/>
+              <item hide="value15"/>
+            </combo>
+            <combo label="Additional Input Offset" define="CSACSC.CTRL2.ADD_INP_OFFS"/>
+            <combo label="Vout" define="CSACSC.CTRL2.VOUT_SEL"/>
+          </branch>
+          <branch label="CSC - Current Sense Comparator">
+            <doublespinbox label="Overcurrent Threshold" define="CSACSC.OC_TH" svd="0" default="5.00" suffix=" A" range="0.00;30.00" header="temp_defines.h"/>
+            <doublespinbox label="Max. Overcurrent Threshold" define="CSACSC.OC_TH_MAX" svd="0" default="60.00" suffix=" A" range="0.00;60.00" header="temp_defines.h">
+              <action event="changed" cmd="setDef" data="CSACSC.OC_TH.max=CSACSC.OC_TH_MAX"/>
+            </doublespinbox>
+            <combo label="Filter Time" define="CSACSC.CTRL2.TFILT_SEL"/>
+          </branch>
+          <branch label="Interrupts">
+            <combo label="Node Selection" define="SCU.INP0.INP_CSC" header="isr_defines.h">
+              <item label="WARN_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN0=1"/>
+              <item label="WARN_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN1=1"/>
+            </combo>
+            <checkbox label="Overcurrent" define="CSACSC.OC_INT_EN" svd="0" header="isr_defines.h" uielement="branch">
+              <checkbox label="Enable Interrupt" define="CSACSC.IRQEN.CSC_OC_IEN" header="isr_defines.h"/>
+              <edit label="Callback" define="CSACSC.OC_CALLBACK" svd="0" header="isr_defines.h" default="place_your_function_callback_here"/>
+            </checkbox>
+            <checkbox label="Parameter Error" define="CSACSC.PARAM_INT_EN" svd="0" header="isr_defines.h" uielement="branch">
+              <checkbox label="Enable Interrupt" define="CSACSC.IRQEN.SEL_ERR_IEN" header="isr_defines.h"/>
+              <edit label="Callback" define="CSACSC.PARAM_CALLBACK" svd="0" header="isr_defines.h" default="place_your_function_callback_here"/>
+            </checkbox>
+          </branch>
+
+          <var define="THR_MAX_4" default="0"/>
+          <var define="THR_MAX_3" default="0"/>
+          <var define="THR_MAX_2" default="0"/>
+          <var define="THR_MAX_1" default="0"/>
+          <var define="THR_MAX_0" default="0"/>
+
+          <math visible="false" define="CSACSC.V_SHUNT" svd="0" format="%.2f" formula="CSACSC.OC_TH*(CSACSC.R_SHUNT/1000)" header="temp_defines.h"/>
+          <math visible="false" define="CSACSC.V_SHUNT_MAX" svd="0" format="%.2f" formula="CSACSC.OC_TH_MAX*(CSACSC.R_SHUNT/1000)" header="temp_defines.h"/>
+
+          <math visible="false" define="CSACSC.V_CSAOUT_OFF" svd="0" format="%.2f" formula="CSACSC.CTRL2.OFFS_SEL.label" header="temp_defines.h"/>
+
+          <math visible="false" define="CSACSC.V_CSAOUT" svd="0" format="%.2f" formula="CSACSC.V_SHUNT*CSACSC.CTRL2.GAIN_SEL.label+CSACSC.V_CSAOUT_OFF" header="temp_defines.h"/>
+          <math visible="false" define="CSACSC.V_CSAOUT_MAX" svd="0" format="%.2f" formula="CSACSC.V_SHUNT_MAX*CSACSC.CTRL2.GAIN_SEL.label+CSACSC.V_CSAOUT_OFF" header="temp_defines.h"/>
+
+
+          <math visible="false" define="CSACSC.CTRL2.THR_SEL" formula="trunc((((CSACSC.V_CSAOUT-CSACSC.V_CSAOUT_OFF)*32)/(CSACSC.CSAOUT_MAX-CSACSC.V_CSAOUT_OFF))-1)"/>
+          <math visible="false" define="CSACSC.CTRL1_THR_MAX" svd="0" formula="trunc((((CSACSC.V_CSAOUT_MAX-CSACSC.V_CSAOUT_OFF)*32)/(CSACSC.CSAOUT_MAX-CSACSC.V_CSAOUT_OFF))-1)" header="temp_defines.h">
+            <action cond="CSACSC.CTRL1_THR_MAX==31" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==30" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==29" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==28" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==27" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==26" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==25" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==24" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==23" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==22" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==21" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==20" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==19" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==18" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==17" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==16" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=1"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==15" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==14" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==13" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==12" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==11" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==10" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==9" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==8" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=1;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==7" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==6" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==5" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==4" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=1;THR_MAX_3=0;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==3" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==2" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=1;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==1" event="changed" cmd="setDef" data="THR_MAX_0=1;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=0"/>
+            <action cond="CSACSC.CTRL1_THR_MAX==0" event="changed" cmd="setDef" data="THR_MAX_0=0;THR_MAX_1=0;THR_MAX_2=0;THR_MAX_3=0;THR_MAX_4=0"/>
+          </math>   
+          <math visible="false" define="CSACSC.CTRL1.THR_MAX" formula="trunc((THR_MAX_0+THR_MAX_0*2)+(THR_MAX_1*4+THR_MAX_1*8)+(THR_MAX_2*16+THR_MAX_2*32)+(THR_MAX_3*64+THR_MAX_3*128)+(THR_MAX_4*256+THR_MAX_4*512))"/>
+          
+        </treecontainer>
+      </groupcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>

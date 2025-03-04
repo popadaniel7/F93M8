@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file template_adc2_compare_fix.xml                                              -->
+<!--brief Infineon MOTIX(TM) MCU Modules configuration                              -->
+<!--                                                                                -->
+<!--Copyright (c) Infineon Technologies AG                                          -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                Infineon MOTIX(TM) MCU Module configuration file                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-10-23, DM:   Initial version                                      -->
+<!-- V0.0.2: 2020-10-27, BG:   EP-560: Corrected node pointer for ISR               -->
+<!--                           EP-560: Updated default values                       -->
+<!--                           EP-560: Added missing parameters for Compare channels-->
+<!-- V0.0.3: 2020-10-29, BG:   EP-560: Switched defines for CMP low/up interrupts   -->
+<!-- V0.0.4: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!-- V0.0.5: 2021-11-12, JO:   EP-937: Updated copyright and branding               -->
+<!--********************************************************************************-->
+
+<!-- Compare Template -->
+<!-- Parameter: -->
+<!--   CMPIDX: compare channel index, range 0..3 -->
+<!--   CHIDX:   channel the filter is assigned to, range 0..14 -->
+<ifxmlcfg version="2.6.2">
+  <checksum>bc9f513b44a8fdaf911002992725e975cc47864afcfc302f22403fa1afe7e435</checksum>
+  <version label="V0.0.5"/>
+  <svd file="tle989x.svd"/>
+  <usesPython/>
+  <treecontainer label="Compare $CMPIDX$" headerlabels="Item;Value;" columnwidths="300;300">
+    <header file="adc2_defines.h">
+      <edit label="Used by Channel" readonly="1" define="ADC2.CMP$CMPIDX$_USED_TXT" svd="0" default="$CHIDX$" header=""/>
+      <horizontalcontainer label="Compare Input Select">
+        <radio define="ADC2.CMPCFG$CMPIDX$.INP_SEL" default="$INP_SEL$">
+          <radiobutton label="Direct ADC value" setdef="ADC2.CMPCFG$CMPIDX$_INSEL=0"/>
+          <radiobutton label="Filtered ADC value" setdef="ADC2.CMPCFG$CMPIDX$_INSEL=1"/>
+        </radio>
+      </horizontalcontainer>
+      <combo label="Compare Mode" define="ADC2.CMPCFG$CMPIDX$.MODE" default="$MODE$">
+        <item label="OV/UV" override="value1"/>
+        <item label="UV" override="value2"/>
+        <item label="OV" override="value3"/>
+        <item hide="value4"/>
+      </combo>
+      <doublespinbox label="Upper Threshold [V]" range="0.00;$MAX$" define="ADC2.UPPER_TH$CMPIDX$" svd="0" default="$UPPER$" header="temp_defines.h"/>
+      <combo label="Upper Hysteresis" define="ADC2.CMPCFG$CMPIDX$.HYST_UP" default="$HYST_UP$"/>
+      <doublespinbox label="Lower Threshold [V]" range="0.00;$MAX$" define="ADC2.LOWER_TH$CMPIDX$" svd="0" default="$LOWER$" header="temp_defines.h"/>
+      <combo label="Lower Hysteresis" define="ADC2.CMPCFG$CMPIDX$.HYST_LO" default="$HYST_LO$"/>
+      <checkbox label="Restart Blank Time" define="ADC2.CMPCFG$CMPIDX$.RST_BLANK_TIME" default="$RST_BLANK$"/>
+      <combo label="Blank Time" define="ADC2.CMPCFG$CMPIDX$.BLANK_TIME" default="$BLANK$"/>
+      <branch label="Interrupts">
+        <checkbox label="Upper Threshold" define="ADC2.UPTH$CMPIDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+          <checkbox label="Enable Interrupt" define="ADC2.IEN1.IEN_UP$CMPIDX$" header="isr_defines.h"/>
+          <combo label="Node Selection" define="ADC2.INP2.INP_CMP_UP$CMPIDX$" header="isr_defines.h">
+            <item label="ADC2_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN10=1"/>
+            <item label="ADC2_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN11=1"/>
+            <item label="NMI" override="value4"/>
+            <item hide="value3"/>
+          </combo>
+          <edit label="Callback" define="ADC2.UPTH$CMPIDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+        </checkbox>
+        <checkbox label="Lower Threshold" define="ADC2.LOTH$CMPIDX$_INT_EN" svd="0" uielement="branch" header="isr_defines.h">
+          <checkbox label="Enable Interrupt" define="ADC2.IEN1.IEN_LO$CMPIDX$" header="isr_defines.h"/>
+          <combo label="Node Selection" define="ADC2.INP2.INP_CMP_LO$CMPIDX$" header="isr_defines.h">
+            <item label="ADC2_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN10=1"/>
+            <item label="ADC2_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN11=1"/>
+            <item label="NMI" override="value4"/>
+            <item hide="value3"/>
+          </combo>
+          <edit label="Callback" define="ADC2.LOTH$CMPIDX$_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+        </checkbox>
+      </branch>
+      <branch label="Register Values">
+        <math label="Upper Threshold" define="ADC2.CMPCFG$CMPIDX$.UPPER" format="%X" formula="ADC2.CHCFG0.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR0/256)*1023)/1.211)/4:ADC2.CHCFG1.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR1/256)*1023)/1.211)/4:ADC2.CHCFG2.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR2/256)*1023)/1.211)/4:ADC2.CHCFG3.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR3/256)*1023)/1.211)/4:ADC2.CHCFG4.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR4/256)*1023)/1.211)/4:ADC2.CHCFG5.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR5/256)*1023)/1.211)/4:ADC2.CHCFG6.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR6/256)*1023)/1.211)/4:ADC2.CHCFG7.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR7/256)*1023)/1.211)/4:ADC2.CHCFG8.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR8/256)*1023)/1.211)/4:ADC2.CHCFG9.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR9/256)*1023)/1.211)/4:ADC2.CHCFG10.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR10/256)*1023)/1.211)/4:ADC2.CHCFG11.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR11/256)*1023)/1.211)/4:ADC2.CHCFG12.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR12/256)*1023)/1.211)/4:ADC2.CHCFG13.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR13/256)*1023)/1.211)/4:ADC2.CHCFG14.CMPSEL==$CMPIDX$?(((ADC2.UPPER_TH$CMPIDX$*ADC2.ATTENUATOR14/256)*1023)/1.211)/4:0"/>
+        <math label="Lower Threshold" define="ADC2.CMPCFG$CMPIDX$.LOWER" format="%X" formula="ADC2.CHCFG0.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR0/256)*1023)/1.211)/4:ADC2.CHCFG1.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR1/256)*1023)/1.211)/4:ADC2.CHCFG2.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR2/256)*1023)/1.211)/4:ADC2.CHCFG3.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR3/256)*1023)/1.211)/4:ADC2.CHCFG4.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR4/256)*1023)/1.211)/4:ADC2.CHCFG5.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR5/256)*1023)/1.211)/4:ADC2.CHCFG6.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR6/256)*1023)/1.211)/4:ADC2.CHCFG7.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR7/256)*1023)/1.211)/4:ADC2.CHCFG8.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR8/256)*1023)/1.211)/4:ADC2.CHCFG9.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR9/256)*1023)/1.211)/4:ADC2.CHCFG10.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR10/256)*1023)/1.211)/4:ADC2.CHCFG11.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR11/256)*1023)/1.211)/4:ADC2.CHCFG12.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR12/256)*1023)/1.211)/4:ADC2.CHCFG13.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR13/256)*1023)/1.211)/4:ADC2.CHCFG14.CMPSEL==$CMPIDX$?(((ADC2.LOWER_TH$CMPIDX$*ADC2.ATTENUATOR14/256)*1023)/1.211)/4:0"/>
+      </branch>
+    </header>
+  </treecontainer>
+</ifxmlcfg>

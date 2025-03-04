@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--file icw_ocn_gpio.xml                                                           -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>1c64e8c725bfab036e2ae30fb3c54969de0ca3ffc14de2477d489f6e88aadb1e</checksum>
+  <version label="V0.0.1"/>
+
+  <verticalcontainer label="GPIOs">
+    <header file="gpio_defines.h">
+      <horizontalcontainer>
+        <groupcontainer label="P0.x">
+          <treecontainer headerlabels="Item;Value;" columnwidths="250;250;1">
+            <include PORT_IDX="0" PIN_IDX="0" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="1" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="2" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="3" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="4" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="5" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="6" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="7" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="8" ATLSEL_IDX="1">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="9" ATLSEL_IDX="1">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="0" PIN_IDX="10" ATLSEL_IDX="1">template_gpio_p0p1.xml</include>
+          </treecontainer>
+        </groupcontainer>
+        <groupcontainer label="P1.x">
+          <treecontainer headerlabels="Item;Value;" columnwidths="250;250;1">
+            <include PORT_IDX="1" PIN_IDX="0" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="1" PIN_IDX="1" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="1" PIN_IDX="2" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="1" PIN_IDX="3" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+            <include PORT_IDX="1" PIN_IDX="4" ATLSEL_IDX="0">template_gpio_p0p1.xml</include>
+          </treecontainer>
+        </groupcontainer>
+        <groupcontainer label="P2.x">
+          <treecontainer headerlabels="Item;Value;" columnwidths="250;250;1">
+            <include PORT_IDX="2" PIN_IDX="0" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="1" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="2" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="3" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="4" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="5" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="6" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="7" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="8" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+            <include PORT_IDX="2" PIN_IDX="9" ATLSEL_IDX="0">template_gpio_p2.xml</include>
+          </treecontainer>
+        </groupcontainer>
+      </horizontalcontainer>
+
+    </header>
+  </verticalcontainer>
+
+</ifxmlcfg>

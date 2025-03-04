@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--file icw_ocn_mon.xml                                                            -->
+<!--brief Embedded Power Modules configuration                                      -->
+<!--                                                                                -->
+<!--Copyright (c) 2017, Infineon Technologies AG                                    -->
+<!--All rights reserved.                                                            -->
+<!--                                                                                -->
+<!--Redistribution and use in source and binary forms, with or without modification,-->
+<!--are permitted provided that the following conditions are met:                   -->
+<!--                                                                                -->
+<!--  Redistributions of source code must retain the above copyright notice, this   -->
+<!--  list of conditions and the following disclaimer.                              -->
+<!--                                                                                -->
+<!--  Redistributions in binary form must reproduce the above copyright notice,     -->
+<!--  this list of conditions and the following disclaimer in the documentation     -->
+<!--  and/or other materials provided with the distribution.                        -->
+<!--                                                                                -->
+<!--  Neither the name of the copyright holders nor the names of its contributors   -->
+<!--  may be used to endorse or promote products derived from this software without -->
+<!--  specific prior written permission.                                            -->
+<!--                                                                                -->
+<!--THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!--ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED   -->
+<!--WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE          -->
+<!--DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE    -->
+<!--FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL      -->
+<!--DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR      -->
+<!--SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER      -->
+<!--CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,   -->
+<!--OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE   -->
+<!--OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.            -->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--        Infineon Embedded Power Family TLE989x Module Configuration File        -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                               Author(s) Identity                               -->
+<!--********************************************************************************-->
+<!--   Initials     Name                                                            -->
+<!--   DM           Daniel Mysliwitz                                                -->
+<!--   JO           Julia Ott                                                       -->
+<!--   BG           Blandine Guillot                                                -->
+<!--********************************************************************************-->
+<!--                                                                                -->
+<!--********************************************************************************-->
+<!--                            Revision Control History                            -->
+<!--********************************************************************************-->
+<!-- V0.0.1: 2020-09-11, JO:   Initial version                                      -->
+<!-- V0.1.0: 2020-12-03, BG:   EP-624: Moved the MONx config from PMU to MON tab    -->
+<!--                           Updated the default value for enabling input and     -->
+<!--                           enabling wake on rising/falling edge                 -->
+<!-- V0.1.1: 2020-12-11, BG:   EP-646: Updated node names                           -->
+<!--********************************************************************************-->
+<ifxmlcfg version="2.1.12">
+  <checksum>add1b241d33d7979235a0f1a8703d5d3d8472df3a2c3e02d8f63aa16bf519851</checksum>
+  <version label="V0.1.1"/>
+  <svd file="TLE989x.svd"/>
+  <verticalcontainer label="MON">
+    <header file="pmu_defines.h">
+      <horizontalcontainer>
+        <groupcontainer label="MON1" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="171;217;228">
+          <treecontainer headerlabels="Item;Value;" columnwidths="300;250;1">
+            <checkbox label="Enable MON input" define="PMU.MON_CTRL1.EN" default="1"/>
+            <checkbox label="Enable Wake on Rising Edge" define="PMU.MON_CTRL1.WAKE_RISE" default="1"/>
+            <checkbox label="Enable Wake on Falling Edge" define="PMU.MON_CTRL1.WAKE_FALL" default="1"/>
+            <checkbox label="Enable Cyclic Sense" define="PMU.MON_CTRL1.CYC_SENSE_EN" default="0">
+              <action event="checked" cmd="setDef" data="CONT_CYC_SENSE.enabled=1"/>
+              <action cond="((PMU.WAKE_CTRL.GPIO0_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL0.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO1_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL1.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO2_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL2.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO3_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL3.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO4_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL4.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO5_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL5.CYC==0)).*
+                            ((PMU.WAKE_CTRL.MON1_WAKE_EN==0).+(PMU.MON_CTRL1.CYC_SENSE_EN==0)).*
+                            ((PMU.WAKE_CTRL.MON2_WAKE_EN==0).+(PMU.MON_CTRL2.CYC_SENSE_EN==0)).*
+                            ((PMU.WAKE_CTRL.MON3_WAKE_EN==0).+(PMU.MON_CTRL3.CYC_SENSE_EN==0)).*
+                            (PMU.CYC_CTRL.CYC_SENSE_EN==0)" event="unchecked" cmd="setDef" data="CONT_CYC_SENSE.enabled=0"/>
+            </checkbox>
+            <checkbox label="Enable Pull-Up Current Source" define="PMU.MON_CTRL1.PU" default="0"/>
+            <checkbox label="Enable Pull-Down Current Source" define="PMU.MON_CTRL1.PD" default="0"/>
+            <branch label="Interrupts" expand="1">
+              <combo label="Node Selection" define="SCU.INP2.INP_MON1" header="isr_defines.h">
+                <item label="MON_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN12=1"/>
+                <item label="MON_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN13=1"/>
+              </combo>
+              <checkbox label="Rising Edge Interrupt" define="MON.MON1_R_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+                <checkbox label="Enable Interrupt" define="SCU.MONCON.MON1IEV[0]" header="isr_defines.h"/>
+                <edit label="Callback" define="MON.MON1_R_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+              </checkbox>
+              <checkbox label="Falling Edge Interrupt" define="MON.MON1_F_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+                <checkbox label="Enable Interrupt" define="SCU.MONCON.MON1IEV[1]" header="isr_defines.h"/>
+                <edit label="Callback" define="MON.MON1_F_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+              </checkbox>
+              <math label="MON1 Interrupt Enable" define="SCU.MONIEN.MON1EN" formula="SCU.MONCON.MON1IEV[0].+SCU.MONCON.MON1IEV[1]" header="isr_defines.h"/>
+            </branch>
+          </treecontainer>
+        </groupcontainer>
+        <groupcontainer label="MON2" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="214;126;177">
+          <treecontainer headerlabels="Item;Value;" columnwidths="300;250;1">
+            <checkbox label="Enable MON input" define="PMU.MON_CTRL2.EN" default="1"/>
+            <checkbox label="Enable Wake on Rising Edge" define="PMU.MON_CTRL2.WAKE_RISE" default="1"/>
+            <checkbox label="Enable Wake on Falling Edge" define="PMU.MON_CTRL2.WAKE_FALL" default="1"/>
+            <checkbox label="Enable Cyclic Sense" define="PMU.MON_CTRL2.CYC_SENSE_EN" default="0">
+              <action event="checked" cmd="setDef" data="CONT_CYC_SENSE.enabled=1"/>
+              <action cond="((PMU.WAKE_CTRL.GPIO0_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL0.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO1_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL1.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO2_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL2.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO3_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL3.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO4_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL4.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO5_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL5.CYC==0)).*
+                            ((PMU.WAKE_CTRL.MON1_WAKE_EN==0).+(PMU.MON_CTRL1.CYC_SENSE_EN==0)).*
+                            ((PMU.WAKE_CTRL.MON2_WAKE_EN==0).+(PMU.MON_CTRL2.CYC_SENSE_EN==0)).*
+                            ((PMU.WAKE_CTRL.MON3_WAKE_EN==0).+(PMU.MON_CTRL3.CYC_SENSE_EN==0)).*
+                            (PMU.CYC_CTRL.CYC_SENSE_EN==0)" event="unchecked" cmd="setDef" data="CONT_CYC_SENSE.enabled=0"/>
+            </checkbox>
+            <checkbox label="Enable Pull-Up Current Source" define="PMU.MON_CTRL2.PU" default="0"/>
+            <checkbox label="Enable Pull-Down Current Source" define="PMU.MON_CTRL2.PD" default="0"/>
+            <branch label="Interrupts" expand="1">
+              <combo label="Node Selection" define="SCU.INP2.INP_MON2" header="isr_defines.h">
+                <item label="MON_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN12=1"/>
+                <item label="MON_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN13=1"/>
+              </combo>
+              <checkbox label="Rising Edge Interrupt" define="MON.MON2_R_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+                <checkbox label="Enable Interrupt" define="SCU.MONCON.MON2IEV[0]" header="isr_defines.h"/>
+                <edit label="Callback" define="MON.MON2_R_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+              </checkbox>
+              <checkbox label="Falling Edge Interrupt" define="MON.MON2_F_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+                <checkbox label="Enable Interrupt" define="SCU.MONCON.MON2IEV[1]" header="isr_defines.h"/>
+                <edit label="Callback" define="MON.MON2_F_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+              </checkbox>
+              <math label="MON2 Interrupt Enable" define="SCU.MONIEN.MON2EN" formula="SCU.MONCON.MON2IEV[0].+SCU.MONCON.MON2IEV[1]" header="isr_defines.h"/>
+            </branch>
+          </treecontainer>
+        </groupcontainer>
+        <groupcontainer label="MON3" font="Source Sans Pro,12,0,0,100,0,0,0,0,0" color="206;217;164">
+          <treecontainer headerlabels="Item;Value;" columnwidths="300;250;1">
+            <checkbox label="Enable MON input" define="PMU.MON_CTRL3.EN" default="1"/>
+            <checkbox label="Enable Wake on Rising Edge" define="PMU.MON_CTRL3.WAKE_RISE" default="1"/>
+            <checkbox label="Enable Wake on Falling Edge" define="PMU.MON_CTRL3.WAKE_FALL" default="1"/>
+            <checkbox label="Enable Cyclic Sense" define="PMU.MON_CTRL3.CYC_SENSE_EN" default="0">
+              <action event="checked" cmd="setDef" data="CONT_CYC_SENSE.enabled=1"/>
+              <action cond="((PMU.WAKE_CTRL.GPIO0_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL0.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO1_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL1.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO2_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL2.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO3_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL3.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO4_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL4.CYC==0)).*
+                            ((PMU.WAKE_CTRL.GPIO5_WAKE_EN==0).+(PMU.WAKE_GPIO_CTRL5.CYC==0)).*
+                            ((PMU.WAKE_CTRL.MON1_WAKE_EN==0).+(PMU.MON_CTRL1.CYC_SENSE_EN==0)).*
+                            ((PMU.WAKE_CTRL.MON2_WAKE_EN==0).+(PMU.MON_CTRL2.CYC_SENSE_EN==0)).*
+                            ((PMU.WAKE_CTRL.MON3_WAKE_EN==0).+(PMU.MON_CTRL3.CYC_SENSE_EN==0)).*
+                            (PMU.CYC_CTRL.CYC_SENSE_EN==0)" event="unchecked" cmd="setDef" data="CONT_CYC_SENSE.enabled=0"/>
+            </checkbox>
+            <checkbox label="Enable Pull-Up Current Source" define="PMU.MON_CTRL3.PU" default="0"/>
+            <checkbox label="Enable Pull-Down Current Source" define="PMU.MON_CTRL3.PD" default="0"/>
+            <branch label="Interrupts" expand="1">
+              <combo label="Node Selection" define="SCU.INP2.INP_MON3" header="isr_defines.h">
+                <item label="MON_INP0_NVIC_IRQn" override="value1" lockon="CPU.NVIC_ISER.IRQEN12=1"/>
+                <item label="MON_INP1_NVIC_IRQn" override="value2" lockon="CPU.NVIC_ISER.IRQEN13=1"/>
+              </combo>
+              <checkbox label="Rising Edge Interrupt" define="MON.MON3_R_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+                <checkbox label="Enable Interrupt" define="SCU.MONCON.MON3IEV[0]" header="isr_defines.h"/>
+                <edit label="Callback" define="MON.MON3_R_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+              </checkbox>
+              <checkbox label="Falling Edge Interrupt" define="MON.MON3_F_INT_EN" uielement="branch" svd="0" header="isr_defines.h">
+                <checkbox label="Enable Interrupt" define="SCU.MONCON.MON3IEV[1]" header="isr_defines.h"/>
+                <edit label="Callback" define="MON.MON3_F_CALLBACK" svd="0" default="place_your_function_callback_here" header="isr_defines.h"/>
+              </checkbox>
+              <math label="MON3 Interrupt Enable" define="SCU.MONIEN.MON3EN" formula="SCU.MONCON.MON3IEV[0].+SCU.MONCON.MON3IEV[1]" header="isr_defines.h"/>
+            </branch>
+          </treecontainer>
+        </groupcontainer>
+      </horizontalcontainer>
+    </header>
+  </verticalcontainer>
+</ifxmlcfg>
