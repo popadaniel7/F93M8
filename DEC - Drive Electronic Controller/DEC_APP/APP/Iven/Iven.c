@@ -22,13 +22,13 @@ void Iven_MainFunction(void)
 {
     static uint32 timestamp = 0u;
     static uint32 iteratorAux = 0u;
-    static uint8 pIven_StatusDriveControlMessageState = 0;
-    static uint8 pIven_StatusActuatorMessageState = 0;
-    static uint8 pIven_CanRx_StatusDoorLeft = 0;
-    static uint8 pIven_CanRx_StatusDoorRight = 0;
-    static uint8 pIven_CanRx_GearboxControl = 0;
+    static uint8 pIven_StatusDriveControlMessageState = 0u;
+    static uint8 pIven_StatusActuatorMessageState = 0u;
+    static uint8 pIven_CanRx_StatusDoorLeft = 0u;
+    static uint8 pIven_CanRx_StatusDoorRight = 0u;
+    static uint8 pIven_CanRx_GearboxControl = 0u;
     static uint8 pIven_CanRx_IgnitionControl = 0;
-    static uint8 pIven_CanTx_IrSenStat = 0;
+    static uint8 pIven_CanTx_IrSenStat = 0u;
     static uint8 pIven_CanRx_ErrorDetectedCbm = 0u;
     static uint8 pIven_CanTx_DecMcuError = 0u;
     static uint8 pIven_CanTx_DiagnosticMode = 0u;

@@ -14,6 +14,7 @@
 #include "IfxPort_reg.h"
 #include "Dem.h"
 #include "SafetyKit_InternalWatchdogs.h"
+#include "SafetyKit_Main.h"
 
 static uint32 SysMgr_MainCounter = 0u;
 uint32 SysMgr_RunCounter = 0u;
@@ -31,7 +32,7 @@ void SysMgr_GoSleep(void);
 
 void SysMgr_GoSleep(void)
 {
-    Ifx_P *portSfr0 = IfxPort_getAddress(0);
+    Ifx_P *portSfr0 = IfxPort_getAddress(0u);
 
     serviceCpuWatchdog();
     serviceSafetyWatchdog();
@@ -72,17 +73,19 @@ void SysMgr_GoSleep(void)
     SRC_MTUDONE.B.CLRR = 1U;
     SRC_PMSDTS.B.CLRR = 1U;
     
-    IfxPort_setPinMode(portSfr0, 0, IfxPort_Mode_inputNoPullDevice);
-    IfxPort_setPinPadDriver(portSfr0, 0, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_resetPinControllerSelection(portSfr0, 0);
-    IfxPort_setPinMode(portSfr0, 1, IfxPort_Mode_inputNoPullDevice);
-    IfxPort_setPinPadDriver(portSfr0, 1, IfxPort_PadDriver_cmosAutomotiveSpeed1);
-    IfxPort_resetPinControllerSelection(portSfr0, 1);
+    IfxPort_setPinMode(portSfr0, 0u, IfxPort_Mode_inputNoPullDevice);
+    IfxPort_setPinPadDriver(portSfr0, 0u, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_resetPinControllerSelection(portSfr0, 0u);
+    IfxPort_setPinMode(portSfr0, 1u, IfxPort_Mode_inputNoPullDevice);
+    IfxPort_setPinPadDriver(portSfr0, 1u, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxPort_resetPinControllerSelection(portSfr0, 1u);
     IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
     SysMgr_Core0OnIdlePowerDown = 1u;
     IfxCpu_setAllIdleExceptMasterCpu(IfxCpu_getCoreIndex());
     IfxPmsPm_setCoreMode(0u, IfxCpu_CoreMode_idle);
+    for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
+    McuSm_PerformResetHook(0, 0);
 }
 
 void SysMgr_ProcessResetDtc(void)
@@ -170,8 +173,6 @@ void SysMgr_EcuStateMachine(void)
 void SysMgr_MainFunction(void)
 {
     SysMgr_EcuStateMachine();
-
-    SysMgr_McuTemperature = IfxDts_Dts_getTemperatureCelsius();
-
+    SysMgr_McuTemperature = g_SafetyKitStatus.dieTempStatus.dieTemperatureCore;
     SysMgr_MainCounter++;
 }

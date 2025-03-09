@@ -8,7 +8,7 @@
 #include "Dem.h"
 #include "EncCal.h"
 
-static uint32 ColDet_MainCounter = 0u;
+uint32 ColDet_MainCounter = 0u;
 CollisionState ColDet_CanTx_CollisionState = COLLISION_SAFE;
 uint8 ColDet_CanTx_BrakeLevel = 0u;  
 uint8 ColDet_CanTx_IrSenStat = 0u;
@@ -94,7 +94,7 @@ void ColDet_MainFunction(void)
 
                 if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
                 {
-                    if(0u < ColDet_CanTx_BrakeLevel)
+                    if(50u < ColDet_CanTx_BrakeLevel)
                     {
                         ColDet_CanTx_BrakeLevel -= 10u;
                     }
@@ -177,7 +177,7 @@ void ColDet_MainFunction(void)
             {
                 if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
                 {
-                    if (80u > ColDet_CanTx_BrakeLevel)
+                    if (50u > ColDet_CanTx_BrakeLevel)
                     {
                         ColDet_CanTx_BrakeLevel += 10u;
                     }

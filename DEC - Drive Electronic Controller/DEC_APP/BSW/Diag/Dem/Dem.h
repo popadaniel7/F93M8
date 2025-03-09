@@ -31,6 +31,7 @@
 
 extern uint8 Dem_DtcArray[DEM_NUMBER_OF_DTCS];
 extern uint8 Dem_DtcArray_Default[DEM_NUMBER_OF_DTCS];
+extern uint8 Dem_ControlDtcSetting;
 
 extern void Dem_SetDtc(uint32 dtcId, uint8 dtcStatus, uint8 index);
 extern void Dem_Init(void);

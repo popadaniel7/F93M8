@@ -13,7 +13,6 @@
 #define AIN_IRCYCLECOUNTER              40U
 
 extern float Ain_IRSensorValue;
-extern uint8 Ain_CanRx_MeasuredVoltage;
 
 extern void Ain_MainFunction(void);
 extern float Ain_AdcToVoltage(float rawAdc, float refVoltage);

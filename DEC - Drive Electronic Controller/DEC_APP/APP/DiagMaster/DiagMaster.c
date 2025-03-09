@@ -49,7 +49,7 @@ void DiagMaster_MainFunction(void)
 
     if((6u > DiagMaster_VehicleSpeed)
             && (1u == DiagMaster_RequestDiagnosticMode)
-            && (0u == DiagMaster_GearboxStatus)
+            && (0u == DiagMaster_GearboxStatus || 1u == DiagMaster_GearboxStatus)
             && (1u == DiagMaster_TesterPresentActive)
             && (3u == DiagMaster_ActiveSessionState))
     {
@@ -101,34 +101,34 @@ void DiagMaster_MainFunction(void)
             /* Request for master, no master processing required for slave ECUs. */
             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x6FFu;
 
-            if(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[0] >= 0x10)
+            if(0x10u <= DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[0u])
             {
                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].msgType = DIAGMASTER_ISOTPRXTX_TYPE;
             }
             else
             {
-                switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[1])
+                switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[1u])
                 {
                     case 0x10u:
                     {
-                        switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                        switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                         {
                             case 0x01u:
-                                DiagMaster_ActiveSessionState = (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                DiagMaster_ActiveSessionState = (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId =
-                                        (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] - 1u;
+                                        (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] - 1u;
                                 break;
                             case 0x02u:
                             case 0x04u:
                             case 0x05u:
-                                if(0x03u == DiagMaster_ActiveSessionState && 0x01u == DiagMaster_DiagnosticModeActivated)
+                                if(0x03u == DiagMaster_ActiveSessionState && 0x01u <= DiagMaster_DiagnosticModeActivated)
                                 {
-                                    DiagMaster_ActiveSessionState = (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                    DiagMaster_ActiveSessionState = (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId =
-                                            (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] - 1u;
+                                            (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] - 1u;
                                 }
                                 else
                                 {
@@ -138,10 +138,10 @@ void DiagMaster_MainFunction(void)
                             case 0x03u:
                                 if(0x01u == DiagMaster_DiagnosticModeActivated)
                                 {
-                                    DiagMaster_ActiveSessionState = (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                    DiagMaster_ActiveSessionState = (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId =
-                                            (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] - 1u;
+                                            (uint8)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] - 1u;
                                 }
                                 else
                                 {
@@ -157,11 +157,11 @@ void DiagMaster_MainFunction(void)
                         if(0x01u == DiagMaster_DiagnosticModeActivated)
                         {
                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
-                            if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[3])
+                            if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                             {
                                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 0x05u;
                             }
-                            else if(0x02 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[32])
+                            else if(0x02 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                             {
                                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 0x06u;
                             }
@@ -233,31 +233,21 @@ void DiagMaster_MainFunction(void)
                     case 0x22:
                         if((0x03u == DiagMaster_ActiveSessionState) && ((0x01u == DiagMaster_DiagnosticModeActivated) || (0x02u == DiagMaster_DiagnosticModeActivated)))
                         {
-                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[3])
+                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[3u])
                             {
-                                case 1u:
-                                {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 19u;
-                                    break;
-                                }
-                                case 4u:
-                                {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 20u;
-                                    break;
-                                }
                                 case 5u:
-                                {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 23u;
-                                    break;
-                                }
-                                case 0x80u:
                                 {
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 21u;
                                     break;
                                 }
+                                case 0x80u:
+                                {
+                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 19u;
+                                    break;
+                                }
                                 case 0x85u:
                                 {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 22u;
+                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId  = 20u;
                                     break;
                                 }
                                 default:
@@ -314,11 +304,11 @@ void DiagMaster_MainFunction(void)
                         {
                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
 
-                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[3u])
                             {
-                                case 0x04:
+                                case 0x04u:
                                 {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 12u;
+                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 13u;
                                     break;
                                 }
                                 case 0x14u:
@@ -348,27 +338,22 @@ void DiagMaster_MainFunction(void)
                                 }
                                 case 0x20u:
                                 {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 24u;
+                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 22u;
                                     break;
                                 }
                                 case 0x21u:
                                 {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 25u;
+                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 23u;
                                     break;
                                 }
                                 case 0x22u:
                                 {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 26u;
+                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 24u;
                                     break;
                                 }
                                 case 0x23u:
                                 {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 27u;
-                                    break;
-                                }
-                                case 0x24u:
-                                {
-                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 28u;
+                                    DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 25u;
                                     break;
                                 }
                                 default:
@@ -380,7 +365,7 @@ void DiagMaster_MainFunction(void)
                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 0u;
                         }
 
-                        if(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[3] == 0x99u)
+                        if(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[3u] == 0x99u)
                         {
                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].masterDiagReqId = 18u;
@@ -407,14 +392,14 @@ void DiagMaster_MainFunction(void)
         {
             if(1u <= DiagMaster_DiagnosticModeActivated)
             {
-                if(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[0] >= 0x10)
+                if(0x10u >= DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[0u])
                 {
                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].msgType = DIAGMASTER_ISOTPRXTX_TYPE;
 
                     switch(DiagMaster_ActiveId)
                     {
-                        case 0x701:
+                        case 0x701u:
                             if(0x6FEu == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId)
                             {
                                 /* Tester requests via Master the 0x701 slave. */
@@ -425,7 +410,7 @@ void DiagMaster_MainFunction(void)
                             {
                                 /* Slave 0x701 responded to the tester request via Master. */
                                 /* Content of the UDS pay-load is decided by the slave. Master only forwards the request according to rules. */
-                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x701u;
+                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x6FFu;
                             }
                             else
                             {
@@ -443,7 +428,7 @@ void DiagMaster_MainFunction(void)
                             {
                                 /* Slave 0x703 responded to the tester request via Master. */
                                 /* Content of the UDS pay-load is decided by the slave. Master only forwards the request according to rules. */
-                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x703u;
+                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x6FFu;
                             }
                             else
                             {
@@ -463,7 +448,7 @@ void DiagMaster_MainFunction(void)
                 {
                     switch(DiagMaster_ActiveId)
                     {
-                        case 0x701:
+                        case 0x701u:
                         {
                             if(0x6FEu == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId)
                             {
@@ -476,7 +461,7 @@ void DiagMaster_MainFunction(void)
                             {
                                 /* Slave 0x701 responded to the tester request via Master. */
                                 /* Content of the UDS pay-load is decided by the slave. Master only forwards the request according to rules. */
-                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x701u;
+                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x6FFU;
                                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].msgType = DIAGMASTER_RESPONSE_TYPE;
                             }
                             else
@@ -484,22 +469,22 @@ void DiagMaster_MainFunction(void)
                                 /* Do nothing. */
                             }
 
-                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[1])
+                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[1u])
                             {
                                 case 0x10u:
-                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
-                                        DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                        DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                         DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     }
-                                    else if(0x02 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x04 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x05 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    else if(0x02u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x04u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x05u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
                                         if((0x01u != DiagMaster_701SessionState) && (0x00u != DiagMaster_701SessionState))
                                         {
-                                            DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                            DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                         }
                                         else
@@ -595,19 +580,19 @@ void DiagMaster_MainFunction(void)
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     break;
                                 case 0x50u:
-                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
-                                        DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                        DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                         DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     }
-                                    else if(0x02 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x04 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x05 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    else if(0x02 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x04 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x05 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
                                         if((0x01u != DiagMaster_701SessionState) && (0x00u != DiagMaster_701SessionState))
                                         {
-                                            DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                            DiagMaster_701SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                         }
                                         else
@@ -634,7 +619,7 @@ void DiagMaster_MainFunction(void)
                                         DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 0u;
                                     }
                                     break;
-                                case 0x7E:
+                                case 0x7Eu:
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     break;
                                 case 0xc5u:
@@ -720,7 +705,7 @@ void DiagMaster_MainFunction(void)
                             {
                                 /* Slave 0x701 responded to the tester request via Master. */
                                 /* Content of the UDS pay-load is decided by the slave. Master only forwards the request according to rules. */
-                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x703u;
+                                DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId = 0x6FFU;
                                 DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].msgType = DIAGMASTER_RESPONSE_TYPE;
                             }
                             else
@@ -728,22 +713,22 @@ void DiagMaster_MainFunction(void)
                                 /* Do nothing. */
                             }
 
-                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[1])
+                            switch(DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[1u])
                             {
                                 case 0x10u:
-                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
-                                        DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                        DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                         DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     }
-                                    else if(0x02 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x04 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x05 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    else if(0x02u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x04u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x05u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
                                         if((0x01u != DiagMaster_703SessionState) && (0x00u != DiagMaster_703SessionState))
                                         {
-                                            DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                            DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                         }
                                         else
@@ -839,19 +824,19 @@ void DiagMaster_MainFunction(void)
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     break;
                                 case 0x50u:
-                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    if(0x01u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x03u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
-                                        DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                        DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                         DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     }
-                                    else if(0x02 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x04 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2] ||
-                                            0x05 == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2])
+                                    else if(0x02u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x04u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] ||
+                                            0x05u == DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u])
                                     {
                                         if((0x01u != DiagMaster_703SessionState) && (0x00u != DiagMaster_703SessionState))
                                         {
-                                            DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2];
+                                            DiagMaster_703SessionState = (uint16)DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].diagnosticMessage.rxData[2u];
                                             DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                         }
                                         else
@@ -878,7 +863,7 @@ void DiagMaster_MainFunction(void)
                                         DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 0u;
                                     }
                                     break;
-                                case 0x7E:
+                                case 0x7Eu:
                                     DiagMaster_Receive_DiagnosticMessageBuffer[DiagMaster_Rx_DiagBufCnt].isAllowed = 1u;
                                     break;
                                 case 0xc5u:

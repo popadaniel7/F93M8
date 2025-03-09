@@ -1,0 +1,41 @@
+#include "Ifx_Types.h"
+#include "IfxCpu_reg.h"
+#include "IfxMtu.h"
+#include "IfxScuRcu.h"
+#include "Ifx_Cfg_Trap.h"
+#include "IfxDts_Dts.h"
+
+typedef struct
+{
+        uint32              reason;
+        uint32              information;
+}McuSm_ResetHistory_t;
+
+extern  uint32 McuSm_LastResetReason;
+extern  uint32 McuSm_LastResetInformation;
+extern  uint32 McuSm_IndexResetHistory;
+extern  McuSm_ResetHistory_t McuSm_ResetHistory[20u];
+extern  McuSm_ResetReason_t McuSm_ResetReasonListCounter[400u];
+
+extern void McuSm_InitializeBusMpu(void);
+extern void McuSm_EnableBusMpu(void);
+extern void McuSm_InitializeDataProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range);
+extern void McuSm_InitializeCodeProtectionRange(uint32 lowerBoundAddress, uint32 upperBoundAddress, uint8 range);
+extern void McuSm_EnableDataRead(uint8 protectionSet, uint8 range);
+extern void McuSm_EnableDataWrite(uint8 protectionSet, uint8 range);
+extern void McuSm_EnableCodeExecution(uint8 protectionSet, uint8 range);
+extern void McuSm_MbistManager(void);
+extern void McuSm_MbistTest(IfxMtu_MbistSel mbistSel);
+extern uint32 McuSm_GetMbistErrors(IfxMtu_MbistSel mbistSel);
+extern void McuSm_ClearMbistErrors(IfxMtu_MbistSel mbistSel);
+extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
+extern void McuSm_CsaCapture(void);
+extern void McuSm_PIEAR_PIETR_Capture(void);
+extern void McuSm_DIEAR_DIETR_Capture(void);
+extern void McuSm_DATR_DEADD_Capture(void);
+extern void McuSm_AG_Capture(void);
+extern void McuSm_TRAP1(IfxCpu_Trap trapInfo);
+extern void McuSm_TRAP2(IfxCpu_Trap trapInfo);
+extern void McuSm_TRAP3(IfxCpu_Trap trapInfo);
+extern void McuSm_TRAP4(IfxCpu_Trap trapInfo);
+extern void McuSm_TRAP7(IfxCpu_Trap trapInfo);

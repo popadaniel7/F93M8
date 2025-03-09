@@ -10,8 +10,8 @@ void Fls_Erase(uint32 sectorAddress);
 
 void Fls_ReadBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
 {
-    uint32 numPages = (DataLength + DFLASH_PAGE_LENGTH - 1) / DFLASH_PAGE_LENGTH; /* Calculate required pages */
-    for (uint32 page = 0; page < numPages; page++)
+    uint32 numPages = (DataLength + DFLASH_PAGE_LENGTH - 1u) / DFLASH_PAGE_LENGTH; /* Calculate required pages */
+    for (uint32 page = 0u; page < numPages; page++)
     {
         uint32 pageAddr = BlockAddress + (page * DFLASH_PAGE_LENGTH); /* Calculate the address for each page */
         /* Read the data directly from the Data Flash memory */
@@ -26,9 +26,9 @@ void Fls_ReadBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
             /* Do nothing. */
         }
 
-        if ((dataIndex + 1) < DataLength)
+        if ((dataIndex + 1u) < DataLength)
         {
-            BlockData[dataIndex + 1] = MEM(pageAddr + 4);
+            BlockData[dataIndex + 1u] = MEM(pageAddr + 4u);
         }
         else
         {
@@ -44,8 +44,8 @@ void Fls_WriteBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
 {
     uint16 endInitSafetyPassword = IfxScuWdt_getSafetyWatchdogPassword();
     /* Calculate the number of pages needed */
-    uint32 numPages = (DataLength + DFLASH_PAGE_LENGTH - 1) / DFLASH_PAGE_LENGTH;
-    for (uint32 page = 0; page < numPages; page++)
+    uint32 numPages = (DataLength + DFLASH_PAGE_LENGTH - 1u) / DFLASH_PAGE_LENGTH;
+    for (uint32 page = 0u; page < numPages; page++)
     {
         uint32 pageAddr = BlockAddress + (page * DFLASH_PAGE_LENGTH); /* Get correct address */
         /* Enter in page mode */
@@ -54,7 +54,7 @@ void Fls_WriteBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
         /* Load two words of data at a time */
         uint32 dataIndex = page * (DFLASH_PAGE_LENGTH / sizeof(uint32));
         uint32 data1 = (dataIndex < DataLength) ? BlockData[dataIndex] : 0xFFFFFFFF;
-        uint32 data2 = ((dataIndex + 1) < DataLength) ? BlockData[dataIndex + 1] : 0xFFFFFFFF;
+        uint32 data2 = ((dataIndex + 1) < DataLength) ? BlockData[dataIndex + 1u] : 0xFFFFFFFF;
         IfxFlash_loadPage2X32(pageAddr, data1, data2);
         /* Write the loaded page */
         IfxScuWdt_clearSafetyEndinit(endInitSafetyPassword);

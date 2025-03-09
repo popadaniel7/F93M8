@@ -11,19 +11,19 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define ISOTP_PCI_SF        0x00
-#define ISOTP_PCI_FF        0x10
-#define ISOTP_PCI_CF        0x20
-#define ISOTP_PCI_FC        0x30
-#define ISOTP_FC_STATUS_CTS 0x00
-#define ISOTP_FC_STATUS_WAIT 0x01
-#define ISOTP_FC_STATUS_OVFL 0x02
-#define ISOTP_CAN_DL        8
-#define ISOTP_DEFAULT_N_AR_TIMEOUT  1
-#define ISOTP_DEFAULT_N_BR_TIMEOUT  1
-#define ISOTP_DEFAULT_N_CR_TIMEOUT  1
-#define ISOTP_DEFAULT_BLOCK_SIZE  8
-#define ISOTP_DEFAULT_ST_MIN_MS   5
+#define ISOTP_PCI_SF        0x00u
+#define ISOTP_PCI_FF        0x10u
+#define ISOTP_PCI_CF        0x20u
+#define ISOTP_PCI_FC        0x30u
+#define ISOTP_FC_STATUS_CTS 0x00u
+#define ISOTP_FC_STATUS_WAIT 0x01u
+#define ISOTP_FC_STATUS_OVFL 0x02u
+#define ISOTP_CAN_DL        8u
+#define ISOTP_DEFAULT_N_AR_TIMEOUT  1u
+#define ISOTP_DEFAULT_N_BR_TIMEOUT  1u
+#define ISOTP_DEFAULT_N_CR_TIMEOUT  1u
+#define ISOTP_DEFAULT_BLOCK_SIZE  8u
+#define ISOTP_DEFAULT_ST_MIN_MS   5u
 #define MAXIMUM_CAN_DATA_PAYLOAD 8u
 #define CAN_NO_RX_MSG 6u
 #define CAN_NO_TX_MSG 9u
@@ -81,11 +81,11 @@ typedef struct
 
 typedef enum
 {
-    ISOTP_STATE_IDLE = 0,
-    ISOTP_STATE_RX_FF,  // waiting for consecutive frames
-    ISOTP_STATE_RX_CF,
-    ISOTP_STATE_TX_FF,  // sending first frame
-    ISOTP_STATE_TX_CF,
+    ISOTP_STATE_IDLE = 0u,
+    ISOTP_STATE_RX_FF = 1u,  // waiting for consecutive frames
+    ISOTP_STATE_RX_CF = 2u,
+    ISOTP_STATE_TX_FF = 3u,  // sending first frame
+    ISOTP_STATE_TX_CF = 4u,
 } IsoTpChannelState;
 
 typedef struct

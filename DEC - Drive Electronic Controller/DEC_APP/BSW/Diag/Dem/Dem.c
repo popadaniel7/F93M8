@@ -2,6 +2,7 @@
 
 uint8 Dem_DtcArray[DEM_NUMBER_OF_DTCS];
 uint8 Dem_DtcArray_Default[DEM_NUMBER_OF_DTCS];
+uint8 Dem_ControlDtcSetting = 0u;
 
 void Dem_SetDtc(uint32 dtcId, uint8 dtcStatus, uint8 index);
 void Dem_PreInit(void);

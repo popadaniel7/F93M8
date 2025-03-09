@@ -91,14 +91,14 @@ void Nvm_WriteBlock(uint16 blockId, uint32 *data)
     size = Nvm_NvStatArr[blockId].blockSize / 4u;
     crc = Crc_Calculate(data, size, 0u);
 
-    if((address + NVM_SIZE_HEADER_BYTES + Nvm_NvStatArr[blockId].blockSize + 8) < 0xAF040000)
+    if((address + NVM_SIZE_HEADER_BYTES + Nvm_NvStatArr[blockId].blockSize + 8u) < 0xAF040000u)
     {
         Fls_WriteBlock(address, (uint32*)&Nvm_HeaderArr[blockId], NVM_SIZE_HEADER_BYTES);
         address += NVM_SIZE_HEADER_BYTES;
         Nvm_NvStatArr[blockId].blockAddress = address;
         Fls_WriteBlock(address, data, Nvm_NvStatArr[blockId].blockSize);
         address += Nvm_NvStatArr[blockId].blockSize;
-        crcPadded[0] = crc;
+        crcPadded[0u] = crc;
         Fls_WriteBlock(address, (uint32*)&crcPadded, 8u);
         address += 8u;
         Nvm_CurrentAddress = address;
@@ -131,7 +131,7 @@ void Nvm_FindCurrentAddress()
 
     uint32 localAddress = Nvm_CurrentAddress;
     uint32 keepOldLocalAddress = localAddress;
-    uint32 startPattern[2] = {0, 0};
+    uint32 startPattern[2u] = {0u, 0u};
     Nvm_Header_t localHeader;
     uint8 localBlockId = 0u;
     uint8 localBlockCounter = 0u;
@@ -153,12 +153,12 @@ void Nvm_FindCurrentAddress()
         /* Read start pattern of the sector. */
         Fls_ReadBlock(localAddress, (uint32*)&startPattern, 8u);
 
-        if(0xA5A5A5A5U == startPattern[0] && 0xA5A5A5A5U == startPattern[1])
+        if(0xA5A5A5A5U == startPattern[0u] && 0xA5A5A5A5U == startPattern[1u])
         {
             /* Sector pattern identified, proceed with header identification. */
             localAddress += 8u;
 
-            while(localAddress + 8u < 0xAF040000)
+            while(localAddress + 8u < 0xAF040000u)
             {
                 Fls_ReadBlock(localAddress, (uint32*)&localHeader, NVM_SIZE_HEADER_BYTES);
 
@@ -192,13 +192,13 @@ void Nvm_FindCurrentAddress()
                 }
             }
         }
-        else if(0u != startPattern[0] && 0u != startPattern[1])
+        else if(0u != startPattern[0u] && 0u != startPattern[1u])
         {
             /* Corrupted pattern, erase the data-flash. */
             Fls_Erase(localAddress);
             /* Write sector pattern, assumption is that the data-flash is empty. */
-            startPattern[0] = 0xA5A5u;
-            startPattern[1] = 0xA5A5u;
+            startPattern[0u] = 0xA5A5u;
+            startPattern[1u] = 0xA5A5u;
             Fls_WriteBlock(localAddress, (uint32*)&startPattern, 8u);
             localAddress += 8u;
             Nvm_CurrentAddress = localAddress;
@@ -207,8 +207,8 @@ void Nvm_FindCurrentAddress()
         else
         {
             /* Write sector pattern, assumption is that the data-flash is empty. */
-            startPattern[0] = 0xA5A5A5A5u;
-            startPattern[1] = 0xA5A5A5A5u;
+            startPattern[0u] = 0xA5A5A5A5u;
+            startPattern[1u] = 0xA5A5A5A5u;
             Fls_WriteBlock(localAddress, (uint32*)&startPattern, 8u);
             localAddress += 8u;
             Nvm_CurrentAddress = localAddress;
@@ -237,15 +237,15 @@ void Nvm_ReadAll(void)
 
     for(uint8 i = 1u; i < NVM_NO_BLOCKS; i++)
     {
-        if((Nvm_HeaderArr[i].blockId != 0u) && (Nvm_HeaderArr[i].blockId != 0xFF)
-                && (Nvm_HeaderArr[i].blockSize != 0u && Nvm_HeaderArr[i].blockSize != 0xFF))
+        if((Nvm_HeaderArr[i].blockId != 0u) && (Nvm_HeaderArr[i].blockId != 0xFFu)
+                && (Nvm_HeaderArr[i].blockSize != 0u && Nvm_HeaderArr[i].blockSize != 0xFFu))
         {
             Fls_ReadBlock(Nvm_NvStatArr[i].blockAddress, Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize);
             crcAddress = Nvm_NvStatArr[i].blockAddress + Nvm_NvStatArr[i].blockSize;
             Fls_ReadBlock(crcAddress, localCrc, 8u);
             compareCrc = Crc_Calculate(Nvm_BlockDataList[i].data, Nvm_NvStatArr[i].blockSize / 4u, 0u);
 
-            if(compareCrc == localCrc[0])
+            if(compareCrc == localCrc[0u])
             {
                 /* Do nothing. */
             }

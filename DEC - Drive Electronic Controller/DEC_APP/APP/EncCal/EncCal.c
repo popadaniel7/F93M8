@@ -152,6 +152,7 @@ uint8 EncCal_IsVoDataValid = 0u;
 uint8 EncCal_CheckResult_Coding = 0u;
 uint8 EncCal_CheckResult_Calibration = 0u;
 uint8 EncCal_CheckResult_VoData = 0u;
+uint8 zeroBuffer[sizeof(EncCal_VODataComplete)];
 
 void EncCal_InitVoData(void);
 void EncCal_WriteVoData(uint32* data);
@@ -168,8 +169,7 @@ void EncCal_MainFunction(void);
 
 void EncCal_InitVoData(void)
 {
-    uint8 zeroBuffer[sizeof(EncCal_VODataComplete)] = {0};
-    EncCal_IsVoDataValid = (memcmp(&EncCal_VODataComplete, zeroBuffer, sizeof(EncCal_VODataComplete)) == 0);
+    EncCal_IsVoDataValid = (memcmp(&EncCal_VODataComplete, zeroBuffer, sizeof(EncCal_VODataComplete)) == 0u);
 
     if(1u == EncCal_IsVoDataValid)
     {
@@ -177,7 +177,7 @@ void EncCal_InitVoData(void)
     }
     else
     {
-        /* Do nothing. */
+        EncCal_IsVoDataValid = 2u;
     }
 }
 

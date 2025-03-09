@@ -53,7 +53,7 @@ void Ain_Filtering_InitEvAdcChannels(void)
     IfxEvadc_Adc_ChannelConfig adcChannelConf;                  /* Configuration structure                          */
     uint16 chnNum;
 
-    for(chnNum = 0; chnNum < CHANNELS_NUM; chnNum++)            /* The channels included in g_chn are initialized   */
+    for(chnNum = 0u; chnNum < CHANNELS_NUM; chnNum++)            /* The channels included in g_chn are initialized   */
     {
         /* Fill the configuration with default values */
         IfxEvadc_Adc_initChannelConfig(&adcChannelConf, &g_evadcGroup);

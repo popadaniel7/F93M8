@@ -92,7 +92,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 200u,
+                .cycleTime = 20u,
         },
         /* DataRecorder */
         {
@@ -114,7 +114,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 200u,
+                .cycleTime = 20u,
         },
         /* Networkmanagement3 */
         {
@@ -218,7 +218,7 @@ ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
                                 .remoteTransmitRequest = FALSE,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
                                 .errorStateIndicator = FALSE,
-                                .dataLengthCode = 5u,
+                                .dataLengthCode = 2u,
                                 .frameMode = IfxCan_FrameMode_standard,
                                 .txEventFifoControl = FALSE,
                                 .storeInTxFifoQueue = FALSE,
@@ -408,6 +408,7 @@ uint8 ComMaster_TxSignal_SisCrc = 0u;
 uint8 ComMaster_TxSignal_SisSeqCnt = 0u;
 uint8 ComMaster_TxSignal_SisIgnitionStatus = 0u;
 uint8 ComMaster_CanTx_InVehicleSafetyErrorFlag = 0u;
+uint8 ComMaster_HasStatusDriveControlBeenReceived = 0u;
 
 void ComMaster_MainFunction(void);
 void ComMaster_E2e_UpdateTx(Can_TxMsg_t *message, uint8 sequenceCounter);
@@ -446,44 +447,45 @@ void ComMaster_MainFunction(void)
                 {
                     case 0x001u:
                         ComMaster_E2eError_Sdts = ComMaster_E2e_CheckRx(&ComMaster_ReceiveTable[i].receiveMessage, ComMaster_E2eSeqCnt_Sdts);
-                        ComMaster_RxSignal_SdtsCrc = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0];
-                        ComMaster_RxSignal_SdtsSeqCnt = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1];
-                        ComMaster_RxSignal_SdtsVehSpeed = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2];
-                        ComMaster_RxSignal_SdtsMotorRpm = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[3];
-                        ComMaster_RxSignal_SdtsDriveTrainStatus = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[4];
+                        ComMaster_RxSignal_SdtsCrc = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
+                        ComMaster_RxSignal_SdtsSeqCnt = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1u];
+                        ComMaster_RxSignal_SdtsVehSpeed = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2u];
+                        ComMaster_RxSignal_SdtsMotorRpm = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[3u];
+                        ComMaster_RxSignal_SdtsDriveTrainStatus = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[4u];
                         ComMaster_E2eSeqCnt_Sdts = ComMaster_RxSignal_SdtsSeqCnt;
                         ComMaster_SdtsMsgStat_Cnt = 0u;
                         break;
                     case 0x100u:
-                        ComMaster_RxSignal_StatusGb = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2];
-                        ComMaster_RxSignal_StatusIgn = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[3];
+                        ComMaster_RxSignal_StatusGb = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1u];
+                        ComMaster_RxSignal_StatusIgn = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
                         ComMaster_SdcMsgStat_Cnt = 0u;
+                        ComMaster_HasStatusDriveControlBeenReceived = 1u;
                         break;
                     case 0x101u:
-                        ComMaster_RxSignal_StatusDoorLeft = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0];
-                        ComMaster_RxSignal_StatusDoorRight = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1];
-                        ComMaster_RxSignal_StatusHc05 = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2];
+                        ComMaster_RxSignal_StatusDoorLeft = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
+                        ComMaster_RxSignal_StatusDoorRight = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1u];
+                        ComMaster_RxSignal_StatusHc05 = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2u];
                         ComMaster_SaMsgStat_Cnt = 0u;
                         break;
                     case 0x108u:
-                        ComMaster_RxSignal_StatusFogLights = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0];
-                        ComMaster_RxSignal_StatusHighBeam = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1];
-                        ComMaster_RxSignal_TurnSignals = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2];
+                        ComMaster_RxSignal_StatusFogLights = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
+                        ComMaster_RxSignal_StatusHighBeam = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1u];
+                        ComMaster_RxSignal_TurnSignals = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2u];
                         ComMaster_LsMsgStat_Cnt = 0u;
                         break;
                     case 0x10Au:
-                        ComMaster_RxSignal_AutoClimate = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0];
-                        ComMaster_RxSignal_ClimateTemperature = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1];
-                        ComMaster_RxSignal_DisplayMode = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2];
-                        ComMaster_RxSignal_FanValue = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[3];
-                        ComMaster_RxSignal_Recirculation = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[4];
-                        ComMaster_RxSignal_RotaryLightSwitch = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[5];
-                        ComMaster_RxSignal_WiperStock = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[6];
-                        ComMaster_RxSignal_OutsideTemperature = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[7];
+                        ComMaster_RxSignal_AutoClimate = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
+                        ComMaster_RxSignal_ClimateTemperature = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1u];
+                        ComMaster_RxSignal_DisplayMode = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2u];
+                        ComMaster_RxSignal_FanValue = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[3u];
+                        ComMaster_RxSignal_Recirculation = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[4u];
+                        ComMaster_RxSignal_RotaryLightSwitch = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[5u];
+                        ComMaster_RxSignal_WiperStock = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[6u];
+                        ComMaster_RxSignal_OutsideTemperature = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[7u];
                         ComMaster_CwcMsgStat_Cnt = 0u;
                         break;
                     case 0x10Cu:
-                        ComMaster_RxSignal_Err701_ID = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0];
+                        ComMaster_RxSignal_Err701_ID = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
                         break;
                     default:
                         ComMaster_ReceiveTable[i].receivedValidFlag = 0xFFU;
@@ -509,16 +511,16 @@ void ComMaster_MainFunction(void)
     }
     else
     {
-        ComMaster_RxSignal_Speed = 0;
-        ComMaster_RxSignal_Rpm = 0;
+        ComMaster_RxSignal_Speed = 0u;
+        ComMaster_RxSignal_Rpm = 0u;
     }
 
-    if(200u < ComMaster_SdtsMsgStat_Cnt)
+    if(200u < ComMaster_SdtsMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         ComMaster_SafeDriveTrainStatusMessageState = 253u;
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X001_MISSING, 1u, 32u);
-        ComMaster_RxSignal_Speed = 0;
-        ComMaster_RxSignal_Rpm = 0;
+        ComMaster_RxSignal_Speed = 0u;
+        ComMaster_RxSignal_Rpm = 0u;
     }
     else
     {
@@ -539,7 +541,7 @@ void ComMaster_MainFunction(void)
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X100_MISSING, 0u, 7u);
     }
 
-    if(200u < ComMaster_SaMsgStat_Cnt)
+    if(200u < ComMaster_SaMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         ComMaster_StatusActuatorMessageState = 253u;
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X101_MISSING, 1u, 6u);
@@ -553,7 +555,7 @@ void ComMaster_MainFunction(void)
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X101_MISSING, 0u, 6u);
     }
 
-    if(200u < ComMaster_CwcMsgStat_Cnt)
+    if(200u < ComMaster_CwcMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X10A_MISSING, 1u, 1u);
         ComMaster_RxSignal_AutoClimate = 0u;
@@ -570,7 +572,7 @@ void ComMaster_MainFunction(void)
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X10A_MISSING, 0u, 1u);
     }
 
-    if(200u < ComMaster_LsMsgStat_Cnt)
+    if(200u < ComMaster_LsMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X108_MISSING, 1u, 2u);
         ComMaster_RxSignal_StatusFogLights = 0u;
@@ -844,7 +846,7 @@ void ComMaster_MainFunction(void)
                 /* Do nothing. */
             }
 
-            if(4000u < ComMaster_MainCounter - timestampSwitchOffNm3s && timestampSwitchOffNm3s != 0u)
+            if(2000u < ComMaster_MainCounter - timestampSwitchOffNm3s && timestampSwitchOffNm3s != 0u)
             {
                 ComMaster_TxSignal_NM3 = 0x00u;
             }
@@ -990,30 +992,24 @@ void ComMaster_MainFunction(void)
             /* Do nothing. */
         }
 
-        if(0u < ComMaster_TxSignal_Ignition)
+        if(ComMaster_MainCounter % ComMaster_TransmitTable[3u].cycleTime == 0u)
         {
-            if(ComMaster_MainCounter % ComMaster_TransmitTable[3u].cycleTime == 0u)
-            {
-                ComMaster_TransmitTable[3u].transmitFlag = 1u;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-
-            if(ComMaster_MainCounter % ComMaster_TransmitTable[4u].cycleTime == 0u)
-            {
-                ComMaster_TransmitTable[4u].transmitFlag = 1u;
-            }
-            else
-            {
-                /* Do nothing. */
-            }
+            ComMaster_TransmitTable[3u].transmitFlag = 1u;
         }
         else
         {
             /* Do nothing. */
         }
+
+        if(ComMaster_MainCounter % ComMaster_TransmitTable[4u].cycleTime == 0u)
+        {
+            ComMaster_TransmitTable[4u].transmitFlag = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
     }
     else
     {
@@ -1047,13 +1043,27 @@ void ComMaster_MainFunction(void)
     else
     {
         ComMaster_ActivityOnTheBus = Can_ActivityOnTheBus;
-        ComMaster_SwitchTxOff = 1u;
+        if(2u != ComMaster_SwitchTxOff)
+        {
+            ComMaster_SwitchTxOff = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
     }
 
     if(Can_ActivityOnTheBus == 1u)
     {
         ComMaster_TxSignal_NM3 = 0x10u;
-        ComMaster_SwitchTxOff = 1u;
+        if(2u != ComMaster_SwitchTxOff)
+        {
+            ComMaster_SwitchTxOff = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
         ComMaster_ActivityOnTheBus = Can_ActivityOnTheBus;
         timestampActivityOnTheBus = 0u;
     }

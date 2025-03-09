@@ -149,7 +149,7 @@ void vApplicationMallocFailedHook_core0(void)
 
 void vApplicationStackOverflowHook_core0(TaskHandle_t_core0 xTask, char * pcTaskName )
 {
-    McuSm_PerformResetHook(379u, (uint8)pcTaskName);
+    McuSm_PerformResetHook(379u, 1u);
 }
 
 void vApplicationTickHook_core0(void)
@@ -164,12 +164,12 @@ void vApplicationIdleHook_core0(void)
 
 void vApplicationMallocFailedHook_core1(void)
 {
-    McuSm_PerformResetHook(380u, 1u);
+    McuSm_PerformResetHook(380u, 2u);
 }
 
 void vApplicationStackOverflowHook_core1(TaskHandle_t_core1 xTask, char * pcTaskName )
 {
-    McuSm_PerformResetHook(379u, (uint8)pcTaskName);
+    McuSm_PerformResetHook(379u, 2u);
 }
 
 void vApplicationTickHook_core1(void)
@@ -184,12 +184,12 @@ void vApplicationIdleHook_core1(void)
 
 void vApplicationMallocFailedHook_core2(void)
 {
-    McuSm_PerformResetHook(380u, 1u);
+    McuSm_PerformResetHook(380u, 3u);
 }
 
 void vApplicationStackOverflowHook_core2(TaskHandle_t_core2 xTask, char * pcTaskName )
 {
-    McuSm_PerformResetHook(379u, (uint8)pcTaskName);
+    McuSm_PerformResetHook(379u, 3u);
 }
 
 void vApplicationTickHook_core2(void)

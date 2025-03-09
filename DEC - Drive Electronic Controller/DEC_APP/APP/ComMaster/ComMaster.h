@@ -17,6 +17,7 @@ typedef struct
         uint8 receivedValidFlag;
 }ComMaster_ReceiveType_t;
 
+extern uint8 ComMaster_SwitchTxOff;
 extern ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG];
 extern ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG];
 extern uint32 ComMaster_SdcMsgStat_Cnt;
@@ -84,6 +85,7 @@ extern uint8 ComMaster_E2eSeqCnt_Sdts;
 extern uint8 ComMaster_CanTx_InVehicleSafetyErrorFlag;
 extern uint8 ComMaster_SafeDriveTrainStatusMessageState;
 extern uint32 ComMaster_SdtsMsgStat_Cnt;
+extern uint8 ComMaster_HasStatusDriveControlBeenReceived;
 
 extern void ComMaster_MainFunction(void);
 extern void ComMaster_E2e_UpdateTx(Can_TxMsg_t *message, uint8 sequenceCounter);

@@ -13,7 +13,7 @@ uint8 OsInit_C2 = 0u;
 void core2_main(void)
 {
     IfxCpu_enableInterrupts();
-    initCpuWatchdog(2);
+    initCpuWatchdog(2u);
     while(OsInit_C1 == 0u)
     {
         serviceCpuWatchdog();

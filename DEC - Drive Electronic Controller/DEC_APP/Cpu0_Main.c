@@ -45,7 +45,7 @@ void core0_main(void)
     SysMgr_ProcessResetDtc();
     Os_Init_C0();
     OsInit_C0 = 1u;
-    initCpuWatchdog(0);
+    initCpuWatchdog(0u);
     initSafetyWatchdog();
     serviceCpuWatchdog();
     serviceSafetyWatchdog();
