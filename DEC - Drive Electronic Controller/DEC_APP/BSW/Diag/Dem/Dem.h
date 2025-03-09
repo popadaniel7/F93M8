@@ -33,10 +33,15 @@
 #define COMMASTER_DTC_ID_SIGNAL_STATUSHC05_INVALID                      0x4eu//30
 #define ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH                            0x4fu//31
 #define COMMASTER_DTC_ID_MESSAGE_0X001_MISSING                          0x50u//32
+#define ENCCAL_INVALID_CODING                                           0x51u//33
+#define ENCCAL_INVALID_CALIBRATION                                      0x52u//34
+#define ENCCAL_INVALID_VODATA                                           0x53u//35
 
-#define DEM_NUMBER_OF_DTCS 66u
+#define DEM_NUMBER_OF_DTCS 80u
 
 extern uint8 Dem_DtcArray[DEM_NUMBER_OF_DTCS];
+extern uint8 Dem_DtcArray_Default[DEM_NUMBER_OF_DTCS];
 
 extern void Dem_SetDtc(uint32 dtcId, uint8 dtcStatus, uint8 index);
 extern void Dem_Init(void);
+extern void Dem_PreInit(void);

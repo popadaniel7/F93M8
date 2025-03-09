@@ -4,11 +4,9 @@
 
 static uint32 Ain_MainCounter = AIN_ZERO;
 uint32 Ain_AuxBufferDma[CHANNELS_NUM] = {AIN_ZERO};
-float IRSensorValue = AIN_ZERO;
+float Ain_IRSensorValue = AIN_ZERO;
 uint8 Ain_CanRx_MeasuredVoltage = AIN_ZERO;
-
 Ifx_EVADC_G_RES Ain_Results[CHANNELS_NUM];
-
 extern IfxEvadc_Adc_Channel g_evadcChannel[CHANNELS_NUM];
 
 void Ain_MainFunction(void);
@@ -25,7 +23,7 @@ void Ain_ProcessIRSensorValue(void)
     localRefValue  = ADC_VREF_VALUE;
     actualVoltageReference = localRefValue | Ain_CanRx_MeasuredVoltage;
     localVoltageCalculated = Ain_AdcToVoltage((float)Ain_AuxBufferDma[0u], actualVoltageReference);
-    IRSensorValue = Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(localVoltageCalculated);
+    Ain_IRSensorValue = Ain_ConvertVoltageToDistanceGP2Y0A21YK0F(localVoltageCalculated);
 }
 
 /* Approximate GP2Y0A21YK0F distance calculation from sensor voltage */
@@ -66,20 +64,37 @@ float Ain_AdcToVoltage(float rawAdc, float refVoltage)
 
 void Ain_MainFunction(void)
 {
+    static uint8 localCounter = 0u;
+    static uint32 localAvg = 0u;
+
     for(uint8 i = 0; i < CHANNELS_NUM; i++)
     {
         /* Wait for a valid result */
         Ifx_EVADC_G_RES conversionResult;
+
         do
         {
             conversionResult = IfxEvadc_Adc_getResult(&g_evadcChannel[i]); /* Read the result of the selected channel */
-        } while(!conversionResult.B.VF);
+        }while(!conversionResult.B.VF);
 
         /* Store result */
         Ain_Results[i] = conversionResult;
     }
 
-    Ain_AuxBufferDma[0] = Ain_Results[0].B.RESULT;
-    Ain_ProcessIRSensorValue();
+    if(8u > localCounter)
+    {
+        localAvg += Ain_Results[0].B.RESULT;
+        localCounter++;
+    }
+    else
+    {
+        localAvg += Ain_Results[0].B.RESULT;
+        localCounter++;
+        Ain_AuxBufferDma[0u] = localAvg / localCounter;
+        Ain_ProcessIRSensorValue();
+        localAvg = 0u;
+        localCounter = 0u;
+    }
+
     Ain_MainCounter++;
 }

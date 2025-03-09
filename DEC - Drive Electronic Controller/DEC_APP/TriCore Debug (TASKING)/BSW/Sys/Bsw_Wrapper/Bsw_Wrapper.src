@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f cc1604a --dep-file=BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.src ../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c"
+	.compiler_invocation	"ctc -f cc7228a --dep-file=BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ColDet -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\ComMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DcyHandler -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\DiagMaster -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EnergyMgmt -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\Iven -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Com\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dcm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Diag\\\\Dem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Ain -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Io\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Fls -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Mem\\\\Nvm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Bsw_Wrapper -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2 -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Os -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\00_Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\01_Smu\\\\SMU_Test -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\02_Safety_Mechanisms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SmM\\\\06_Safe_Computation -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\SysMgr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\Wdg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Configurations -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\SysSe\\\\Bsp -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Can -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Can\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Dma -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dma\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Dts -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Dts\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Adc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Evadc\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Crc -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Fce\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Flash\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Smu\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Stm\\\\Std -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2004 -o BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.src ../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c"
 	.compiler_name		"ctc"
 	;source	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c'
 
@@ -12,29 +12,29 @@ $TC162
 	.align	2
 	
 ; Function vPortSetCCPN_core0
-.L18:
+.L23:
 vPortSetCCPN_core0:	.type	func
 	disable
-.L409:
+.L433:
 	mfcr	d15,#65068
-.L410:
+.L434:
 	insert	d0,d15,#0,#0,#8
-.L411:
+.L435:
 	and	d15,d4,#255
-.L412:
+.L436:
 	or	d0,d15
-.L413:
+.L437:
 	mtcr	#65068,d0
 	isync
-.L414:
+.L438:
 	enable
-.L415:
+.L439:
 	ret
-.L118:
+.L123:
 	
 __vPortSetCCPN_core0_function_end:
 	.size	vPortSetCCPN_core0,__vPortSetCCPN_core0_function_end-vPortSetCCPN_core0
-.L64:
+.L69:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core0.vPortSetICR_core0',code,cluster('vPortSetICR_core0')
@@ -42,21 +42,21 @@ __vPortSetCCPN_core0_function_end:
 	.align	2
 	
 ; Function vPortSetICR_core0
-.L20:
+.L25:
 vPortSetICR_core0:	.type	func
 	disable
-.L420:
+.L444:
 	mtcr	#65068,d4
 	isync
-.L421:
+.L445:
 	enable
-.L422:
+.L446:
 	ret
-.L120:
+.L125:
 	
 __vPortSetICR_core0_function_end:
 	.size	vPortSetICR_core0,__vPortSetICR_core0_function_end-vPortSetICR_core0
-.L69:
+.L74:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core0.xPortSetCCPN_core0',code,cluster('xPortSetCCPN_core0')
@@ -64,31 +64,31 @@ __vPortSetICR_core0_function_end:
 	.align	2
 	
 ; Function xPortSetCCPN_core0
-.L22:
+.L27:
 xPortSetCCPN_core0:	.type	func
 	disable
-.L427:
+.L451:
 	mfcr	d2,#65068
-.L142:
+.L147:
 	insert	d0,d2,#0,#0,#8
-.L428:
+.L452:
 	and	d15,d4,#255
-.L429:
+.L453:
 	or	d0,d15
-.L430:
+.L454:
 	mtcr	#65068,d0
 	isync
-.L431:
+.L455:
 	enable
-.L432:
+.L456:
 	j	.L2
 .L2:
 	ret
-.L123:
+.L128:
 	
 __xPortSetCCPN_core0_function_end:
 	.size	xPortSetCCPN_core0,__xPortSetCCPN_core0_function_end-xPortSetCCPN_core0
-.L74:
+.L79:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core1.vPortSetCCPN_core1',code,cluster('vPortSetCCPN_core1')
@@ -96,29 +96,29 @@ __xPortSetCCPN_core0_function_end:
 	.align	2
 	
 ; Function vPortSetCCPN_core1
-.L24:
+.L29:
 vPortSetCCPN_core1:	.type	func
 	disable
-.L437:
+.L461:
 	mfcr	d15,#65068
-.L438:
+.L462:
 	insert	d0,d15,#0,#0,#8
-.L439:
+.L463:
 	and	d15,d4,#255
-.L440:
+.L464:
 	or	d0,d15
-.L441:
+.L465:
 	mtcr	#65068,d0
 	isync
-.L442:
+.L466:
 	enable
-.L443:
+.L467:
 	ret
-.L127:
+.L132:
 	
 __vPortSetCCPN_core1_function_end:
 	.size	vPortSetCCPN_core1,__vPortSetCCPN_core1_function_end-vPortSetCCPN_core1
-.L79:
+.L84:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core1.vPortSetICR_core1',code,cluster('vPortSetICR_core1')
@@ -126,21 +126,21 @@ __vPortSetCCPN_core1_function_end:
 	.align	2
 	
 ; Function vPortSetICR_core1
-.L26:
+.L31:
 vPortSetICR_core1:	.type	func
 	disable
-.L448:
+.L472:
 	mtcr	#65068,d4
 	isync
-.L449:
+.L473:
 	enable
-.L450:
+.L474:
 	ret
-.L129:
+.L134:
 	
 __vPortSetICR_core1_function_end:
 	.size	vPortSetICR_core1,__vPortSetICR_core1_function_end-vPortSetICR_core1
-.L84:
+.L89:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core1.xPortSetCCPN_core1',code,cluster('xPortSetCCPN_core1')
@@ -148,31 +148,31 @@ __vPortSetICR_core1_function_end:
 	.align	2
 	
 ; Function xPortSetCCPN_core1
-.L28:
+.L33:
 xPortSetCCPN_core1:	.type	func
 	disable
-.L455:
+.L479:
 	mfcr	d2,#65068
-.L143:
+.L148:
 	insert	d0,d2,#0,#0,#8
-.L456:
+.L480:
 	and	d15,d4,#255
-.L457:
+.L481:
 	or	d0,d15
-.L458:
+.L482:
 	mtcr	#65068,d0
 	isync
-.L459:
+.L483:
 	enable
-.L460:
+.L484:
 	j	.L3
 .L3:
 	ret
-.L131:
+.L136:
 	
 __xPortSetCCPN_core1_function_end:
 	.size	xPortSetCCPN_core1,__xPortSetCCPN_core1_function_end-xPortSetCCPN_core1
-.L89:
+.L94:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core2.vPortSetCCPN_core2',code,cluster('vPortSetCCPN_core2')
@@ -180,29 +180,29 @@ __xPortSetCCPN_core1_function_end:
 	.align	2
 	
 ; Function vPortSetCCPN_core2
-.L30:
+.L35:
 vPortSetCCPN_core2:	.type	func
 	disable
-.L465:
+.L489:
 	mfcr	d15,#65068
-.L466:
+.L490:
 	insert	d0,d15,#0,#0,#8
-.L467:
+.L491:
 	and	d15,d4,#255
-.L468:
+.L492:
 	or	d0,d15
-.L469:
+.L493:
 	mtcr	#65068,d0
 	isync
-.L470:
+.L494:
 	enable
-.L471:
+.L495:
 	ret
-.L134:
+.L139:
 	
 __vPortSetCCPN_core2_function_end:
 	.size	vPortSetCCPN_core2,__vPortSetCCPN_core2_function_end-vPortSetCCPN_core2
-.L94:
+.L99:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core2.vPortSetICR_core2',code,cluster('vPortSetICR_core2')
@@ -210,21 +210,21 @@ __vPortSetCCPN_core2_function_end:
 	.align	2
 	
 ; Function vPortSetICR_core2
-.L32:
+.L37:
 vPortSetICR_core2:	.type	func
 	disable
-.L476:
+.L500:
 	mtcr	#65068,d4
 	isync
-.L477:
+.L501:
 	enable
-.L478:
+.L502:
 	ret
-.L136:
+.L141:
 	
 __vPortSetICR_core2_function_end:
 	.size	vPortSetICR_core2,__vPortSetICR_core2_function_end-vPortSetICR_core2
-.L99:
+.L104:
 	; End of function
 	
 	.sdecl	'.text.portmacro_core2.xPortSetCCPN_core2',code,cluster('xPortSetCCPN_core2')
@@ -232,31 +232,31 @@ __vPortSetICR_core2_function_end:
 	.align	2
 	
 ; Function xPortSetCCPN_core2
-.L34:
+.L39:
 xPortSetCCPN_core2:	.type	func
 	disable
-.L483:
+.L507:
 	mfcr	d2,#65068
-.L144:
+.L149:
 	insert	d0,d2,#0,#0,#8
-.L484:
+.L508:
 	and	d15,d4,#255
-.L485:
+.L509:
 	or	d0,d15
-.L486:
+.L510:
 	mtcr	#65068,d0
 	isync
-.L487:
+.L511:
 	enable
-.L488:
+.L512:
 	j	.L4
 .L4:
 	ret
-.L138:
+.L143:
 	
 __xPortSetCCPN_core2_function_end:
 	.size	xPortSetCCPN_core2,__xPortSetCCPN_core2_function_end-xPortSetCCPN_core2
-.L104:
+.L109:
 	; End of function
 	
 	.sdecl	'.text.Bsw_Wrapper.Bsw_Wrapper_MainFunction_C0',code,cluster('Bsw_Wrapper_MainFunction_C0')
@@ -265,657 +265,713 @@ __xPortSetCCPN_core2_function_end:
 	
 	.global	Bsw_Wrapper_MainFunction_C0
 ; Function Bsw_Wrapper_MainFunction_C0
-.L36:
+.L41:
 Bsw_Wrapper_MainFunction_C0:	.type	func
 	movh.a	a4,#@his(ComMaster_ReceiveTable)
 	lea	a4,[a4]@los(ComMaster_ReceiveTable)
-.L158:
+.L163:
 	movh.a	a5,#@his(Can_ReceiveTable)
 	lea	a5,[a5]@los(Can_ReceiveTable)
-.L159:
+.L164:
 	mov	d4,#280
 	call	memcpy
-.L113:
+.L118:
 	mov	d0,#0
-.L145:
+.L150:
 	j	.L5
 .L6:
 	mul	d15,d0,#28
-.L160:
+.L165:
 	movh.a	a15,#@his(Can_ReceiveTable)
 	lea	a15,[a15]@los(Can_ReceiveTable)
-.L161:
+.L166:
 	addsc.a	a15,a15,d15,#0
-.L162:
+.L167:
 	mov	d15,#0
-.L163:
+.L168:
 	st.w	[a15]2,d15
-.L164:
+.L169:
 	add	d0,#1
 .L5:
 	jlt.u	d0,#10,.L6
-.L114:
+.L119:
 	movh.a	a15,#@his(ComMaster_TxSignal_ICM_ID)
 	lea	a15,[a15]@los(ComMaster_TxSignal_ICM_ID)
-.L165:
+.L170:
 	movh.a	a2,#@his(Iven_CanTx_IcmId)
 	lea	a2,[a2]@los(Iven_CanTx_IcmId)
 	ld.bu	d15,[a2]
-.L166:
+.L171:
 	st.b	[a15],d15
-.L167:
+.L172:
 	movh.a	a15,#@his(ComMaster_TxSignal_IrSenStat)
 	lea	a15,[a15]@los(ComMaster_TxSignal_IrSenStat)
-.L168:
+.L173:
 	movh.a	a2,#@his(ColDet_CanTx_IrSenStat)
 	lea	a2,[a2]@los(ColDet_CanTx_IrSenStat)
 	ld.bu	d15,[a2]
-.L169:
+.L174:
 	st.b	[a15],d15
-.L170:
+.L175:
 	movh.a	a15,#@his(ComMaster_TxSignal_VehicleStatus)
 	lea	a15,[a15]@los(ComMaster_TxSignal_VehicleStatus)
-.L171:
+.L176:
 	movh.a	a2,#@his(DcyHandler_CanTx_VehicleState)
 	lea	a2,[a2]@los(DcyHandler_CanTx_VehicleState)
 	ld.bu	d15,[a2]
-.L172:
+.L177:
 	st.b	[a15],d15
-.L173:
+.L178:
 	movh.a	a15,#@his(DcyHandler_CanRx_IgnitionState)
 	lea	a15,[a15]@los(DcyHandler_CanRx_IgnitionState)
-.L174:
+.L179:
 	movh.a	a2,#@his(Iven_CanTx_InVehicleSafetyError)
 	lea	a2,[a2]@los(Iven_CanTx_InVehicleSafetyError)
 	ld.bu	d15,[a2]
-.L175:
+.L180:
 	st.b	[a15],d15
-.L176:
+.L181:
 	movh.a	a15,#@his(ComMaster_TxSignal_DcyStatus)
 	lea	a15,[a15]@los(ComMaster_TxSignal_DcyStatus)
-.L177:
+.L182:
 	movh.a	a2,#@his(DcyHandler_CanTx_DcyStatus)
 	lea	a2,[a2]@los(DcyHandler_CanTx_DcyStatus)
 	ld.bu	d15,[a2]
-.L178:
+.L183:
 	st.b	[a15],d15
-.L179:
+.L184:
 	movh.a	a15,#@his(DcyHandler_CanRx_VehicleSpeed)
 	lea	a15,[a15]@los(DcyHandler_CanRx_VehicleSpeed)
-.L180:
+.L185:
 	movh.a	a2,#@his(ComMaster_RxSignal_Speed)
 	lea	a2,[a2]@los(ComMaster_RxSignal_Speed)
 	ld.bu	d15,[a2]
-.L181:
+.L186:
 	st.b	[a15],d15
-.L182:
+.L187:
 	movh.a	a15,#@his(DcyHandler_CanRx_GearboxState)
 	lea	a15,[a15]@los(DcyHandler_CanRx_GearboxState)
-.L183:
+.L188:
 	movh.a	a2,#@his(ComMaster_TxSignal_Gear)
 	lea	a2,[a2]@los(ComMaster_TxSignal_Gear)
 	ld.bu	d15,[a2]
-.L184:
+.L189:
 	st.b	[a15],d15
-.L185:
+.L190:
 	movh.a	a15,#@his(DcyHandler_CanRx_IgnitionState)
 	lea	a15,[a15]@los(DcyHandler_CanRx_IgnitionState)
-.L186:
+.L191:
 	movh.a	a2,#@his(ComMaster_TxSignal_Ignition)
 	lea	a2,[a2]@los(ComMaster_TxSignal_Ignition)
 	ld.bu	d15,[a2]
-.L187:
+.L192:
 	st.b	[a15],d15
-.L188:
+.L193:
 	movh.a	a15,#@his(DcyHandler_CanTx_InVehicleSafetyErrorFlag)
 	lea	a15,[a15]@los(DcyHandler_CanTx_InVehicleSafetyErrorFlag)
-.L189:
+.L194:
 	movh.a	a2,#@his(Iven_CanTx_InVehicleSafetyError)
 	lea	a2,[a2]@los(Iven_CanTx_InVehicleSafetyError)
 	ld.bu	d15,[a2]
-.L190:
+.L195:
 	st.b	[a15],d15
-.L191:
+.L196:
 	movh.a	a15,#@his(ComMaster_CanTx_InVehicleSafetyErrorFlag)
 	lea	a15,[a15]@los(ComMaster_CanTx_InVehicleSafetyErrorFlag)
-.L192:
+.L197:
 	movh.a	a2,#@his(Iven_CanTx_InVehicleSafetyError)
 	lea	a2,[a2]@los(Iven_CanTx_InVehicleSafetyError)
 	ld.bu	d15,[a2]
-.L193:
+.L198:
 	st.b	[a15],d15
-.L194:
+.L199:
 	movh.a	a15,#@his(DiagMaster_GearboxStatus)
 	lea	a15,[a15]@los(DiagMaster_GearboxStatus)
-.L195:
+.L200:
 	movh.a	a2,#@his(ComMaster_TxSignal_Gear)
 	lea	a2,[a2]@los(ComMaster_TxSignal_Gear)
 	ld.bu	d15,[a2]
-.L196:
+.L201:
 	st.b	[a15],d15
-.L197:
+.L202:
 	movh.a	a15,#@his(DiagMaster_VehicleSpeed)
 	lea	a15,[a15]@los(DiagMaster_VehicleSpeed)
-.L198:
+.L203:
 	movh.a	a2,#@his(ComMaster_RxSignal_Speed)
 	lea	a2,[a2]@los(ComMaster_RxSignal_Speed)
 	ld.bu	d15,[a2]
-.L199:
+.L204:
 	st.b	[a15],d15
-.L200:
+.L205:
 	movh.a	a15,#@his(ColDet_CanRx_CalculatedSpeed)
 	lea	a15,[a15]@los(ColDet_CanRx_CalculatedSpeed)
-.L201:
+.L206:
 	movh.a	a2,#@his(ComMaster_RxSignal_Speed)
 	lea	a2,[a2]@los(ComMaster_RxSignal_Speed)
 	ld.bu	d15,[a2]
-.L202:
+.L207:
 	st.b	[a15],d15
-.L203:
+.L208:
 	movh.a	a15,#@his(Iven_CanRx_SafeDriveTrainStatusMessageState)
 	lea	a15,[a15]@los(Iven_CanRx_SafeDriveTrainStatusMessageState)
-.L204:
+.L209:
 	movh.a	a2,#@his(ComMaster_SafeDriveTrainStatusMessageState)
 	lea	a2,[a2]@los(ComMaster_SafeDriveTrainStatusMessageState)
 	ld.bu	d15,[a2]
-.L205:
+.L210:
 	st.b	[a15],d15
-.L206:
+.L211:
 	movh.a	a15,#@his(Iven_CanRx_SdtsDriveTrainStatus)
 	lea	a15,[a15]@los(Iven_CanRx_SdtsDriveTrainStatus)
-.L207:
+.L212:
 	movh.a	a2,#@his(ComMaster_RxSignal_SdtsDriveTrainStatus)
 	lea	a2,[a2]@los(ComMaster_RxSignal_SdtsDriveTrainStatus)
 	ld.bu	d15,[a2]
-.L208:
+.L213:
 	st.b	[a15],d15
-.L209:
+.L214:
 	movh.a	a15,#@his(ComMaster_TxSignal_SbaBrakeLevel)
 	lea	a15,[a15]@los(ComMaster_TxSignal_SbaBrakeLevel)
-.L210:
+.L215:
 	movh.a	a2,#@his(ColDet_CanTx_BrakeLevel)
 	lea	a2,[a2]@los(ColDet_CanTx_BrakeLevel)
 	ld.bu	d15,[a2]
-.L211:
+.L216:
 	st.b	[a15],d15
-.L212:
+.L217:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus1)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus1)
-.L213:
+.L218:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus1)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus1)
 	ld.bu	d15,[a2]
-.L214:
+.L219:
 	st.b	[a15],d15
-.L215:
+.L220:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus2)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus2)
-.L216:
+.L221:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus2)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus2)
 	ld.bu	d15,[a2]
-.L217:
+.L222:
 	st.b	[a15],d15
-.L218:
+.L223:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus3)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus3)
-.L219:
+.L224:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus3)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus3)
 	ld.bu	d15,[a2]
-.L220:
+.L225:
 	st.b	[a15],d15
-.L221:
+.L226:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus4)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus4)
-.L222:
+.L227:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus4)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus4)
 	ld.bu	d15,[a2]
-.L223:
+.L228:
 	st.b	[a15],d15
-.L224:
+.L229:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus5)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus5)
-.L225:
+.L230:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus5)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus5)
 	ld.bu	d15,[a2]
-.L226:
+.L231:
 	st.b	[a15],d15
-.L227:
+.L232:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus6)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus6)
-.L228:
+.L233:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus6)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus6)
 	ld.bu	d15,[a2]
-.L229:
+.L234:
 	st.b	[a15],d15
-.L230:
+.L235:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus7)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus7)
-.L231:
+.L236:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus7)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus7)
 	ld.bu	d15,[a2]
-.L232:
+.L237:
 	st.b	[a15],d15
-.L233:
+.L238:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_LoadStatus8)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_LoadStatus8)
-.L234:
+.L239:
 	movh.a	a2,#@his(ComMaster_RxSignal_LoadStatus8)
 	lea	a2,[a2]@los(ComMaster_RxSignal_LoadStatus8)
 	ld.bu	d15,[a2]
-.L235:
+.L240:
 	st.b	[a15],d15
-.L236:
+.L241:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_IgnitionStatus)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_IgnitionStatus)
-.L237:
+.L242:
 	movh.a	a2,#@his(ComMaster_TxSignal_Ignition)
 	lea	a2,[a2]@los(ComMaster_TxSignal_Ignition)
 	ld.bu	d15,[a2]
-.L238:
+.L243:
 	st.b	[a15],d15
-.L239:
+.L244:
 	movh.a	a15,#@his(EnergyMgmt_CanTx_VehicleState)
 	lea	a15,[a15]@los(EnergyMgmt_CanTx_VehicleState)
-.L240:
+.L245:
 	movh.a	a2,#@his(DcyHandler_CanTx_VehicleState)
 	lea	a2,[a2]@los(DcyHandler_CanTx_VehicleState)
 	ld.bu	d15,[a2]
-.L241:
+.L246:
 	st.b	[a15],d15
-.L242:
+.L247:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_StatusDoorLeft)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_StatusDoorLeft)
-.L243:
+.L248:
 	movh.a	a2,#@his(ComMaster_RxSignal_StatusDoorLeft)
 	lea	a2,[a2]@los(ComMaster_RxSignal_StatusDoorLeft)
 	ld.bu	d15,[a2]
-.L244:
+.L249:
 	st.b	[a15],d15
-.L245:
+.L250:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_StatusDoorRight)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_StatusDoorRight)
-.L246:
+.L251:
 	movh.a	a2,#@his(ComMaster_RxSignal_StatusDoorRight)
 	lea	a2,[a2]@los(ComMaster_RxSignal_StatusDoorRight)
 	ld.bu	d15,[a2]
-.L247:
+.L252:
 	st.b	[a15],d15
-.L248:
+.L253:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_StatusHc05)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_StatusHc05)
-.L249:
+.L254:
 	movh.a	a2,#@his(ComMaster_RxSignal_StatusHc05)
 	lea	a2,[a2]@los(ComMaster_RxSignal_StatusHc05)
 	ld.bu	d15,[a2]
-.L250:
+.L255:
 	st.b	[a15],d15
-.L251:
+.L256:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_VoltageMeasured)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_VoltageMeasured)
-.L252:
+.L257:
 	movh.a	a2,#@his(ComMaster_TxSignal_VBat)
 	lea	a2,[a2]@los(ComMaster_TxSignal_VBat)
 	ld.bu	d15,[a2]
-.L253:
+.L258:
 	st.b	[a15],d15
-.L254:
+.L259:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_CurrentMeasured)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_CurrentMeasured)
-.L255:
+.L260:
 	movh.a	a2,#@his(ComMaster_RxSignal_TotalCurrentConsumption)
 	lea	a2,[a2]@los(ComMaster_RxSignal_TotalCurrentConsumption)
 	ld.bu	d15,[a2]
-.L256:
+.L261:
 	st.b	[a15],d15
-.L257:
+.L262:
 	movh.a	a15,#@his(EnergyMgmt_CanRx_CurrentMeasured2)
 	lea	a15,[a15]@los(EnergyMgmt_CanRx_CurrentMeasured2)
-.L258:
+.L263:
 	movh.a	a2,#@his(ComMaster_RxSignal_TotalCurrentConsumption2)
 	lea	a2,[a2]@los(ComMaster_RxSignal_TotalCurrentConsumption2)
 	ld.bu	d15,[a2]
-.L259:
+.L264:
 	st.b	[a15],d15
-.L260:
+.L265:
 	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad1)
 	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad1)
-.L261:
+.L266:
 	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad1)
 	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad1)
 	ld.bu	d15,[a2]
-.L262:
+.L267:
 	st.b	[a15],d15
-.L263:
+.L268:
+	movh.a	a15,#@his(EncCal_Coding_DmuL)
+	lea	a15,[a15]@los(EncCal_Coding_DmuL)
+	ld.bu	d15,[a15]
+.L269:
+	jne	d15,#2,.L7
+.L270:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L271:
+	mov	d15,#0
+.L272:
+	st.b	[a15],d15
+.L273:
 	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad2)
 	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad2)
-.L264:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad2)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad2)
-	ld.bu	d15,[a2]
-.L265:
-	st.b	[a15],d15
-.L266:
-	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad3)
-	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad3)
-.L267:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad3)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad3)
-	ld.bu	d15,[a2]
-.L268:
-	st.b	[a15],d15
-.L269:
-	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad4)
-	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad4)
-.L270:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad4)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad4)
-	ld.bu	d15,[a2]
-.L271:
-	st.b	[a15],d15
-.L272:
-	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad5)
-	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad5)
-.L273:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad5)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad5)
-	ld.bu	d15,[a2]
 .L274:
-	st.b	[a15],d15
+	mov	d15,#0
 .L275:
-	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad6)
-	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad6)
-.L276:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad6)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad6)
-	ld.bu	d15,[a2]
-.L277:
 	st.b	[a15],d15
+.L276:
+	j	.L8
+.L7:
+	movh.a	a15,#@his(DcyHandler_CanTx_VehicleState)
+	lea	a15,[a15]@los(DcyHandler_CanTx_VehicleState)
+	ld.bu	d0,[a15]
+.L151:
+	mov	d15,#8
+.L277:
+	jne	d15,d0,.L9
 .L278:
-	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad7)
-	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad7)
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
 .L279:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad7)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad7)
-	ld.bu	d15,[a2]
+	mov	d15,#1
 .L280:
 	st.b	[a15],d15
 .L281:
-	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad8)
-	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad8)
+	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad2)
+	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad2)
 .L282:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad8)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad8)
-	ld.bu	d15,[a2]
+	mov	d15,#1
 .L283:
 	st.b	[a15],d15
 .L284:
+	j	.L10
+.L9:
+	movh.a	a15,#@his(EnergyMgmt_CanTx_CommandLoad2)
+	lea	a15,[a15]@los(EnergyMgmt_CanTx_CommandLoad2)
+.L285:
+	movh.a	a2,#@his(ComMaster_TxSignal_CommandLoad2)
+	lea	a2,[a2]@los(ComMaster_TxSignal_CommandLoad2)
+	ld.bu	d15,[a2]
+.L286:
+	st.b	[a15],d15
+.L10:
+.L8:
+	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad3)
+	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad3)
+.L287:
+	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad3)
+	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad3)
+	ld.bu	d15,[a2]
+.L288:
+	st.b	[a15],d15
+.L289:
+	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad4)
+	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad4)
+.L290:
+	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad4)
+	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad4)
+	ld.bu	d15,[a2]
+.L291:
+	st.b	[a15],d15
+.L292:
+	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad5)
+	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad5)
+.L293:
+	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad5)
+	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad5)
+	ld.bu	d15,[a2]
+.L294:
+	st.b	[a15],d15
+.L295:
+	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad6)
+	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad6)
+.L296:
+	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad6)
+	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad6)
+	ld.bu	d15,[a2]
+.L297:
+	st.b	[a15],d15
+.L298:
+	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad7)
+	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad7)
+.L299:
+	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad7)
+	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad7)
+	ld.bu	d15,[a2]
+.L300:
+	st.b	[a15],d15
+.L301:
+	movh.a	a15,#@his(ComMaster_TxSignal_CommandLoad8)
+	lea	a15,[a15]@los(ComMaster_TxSignal_CommandLoad8)
+.L302:
+	movh.a	a2,#@his(EnergyMgmt_CanTx_CommandLoad8)
+	lea	a2,[a2]@los(EnergyMgmt_CanTx_CommandLoad8)
+	ld.bu	d15,[a2]
+.L303:
+	st.b	[a15],d15
+.L304:
 	movh.a	a15,#@his(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
 	lea	a15,[a15]@los(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
 	ld.bu	d15,[a15]
-.L285:
-	jeq	d15,#0,.L7
-.L286:
+.L305:
+	jeq	d15,#0,.L11
+.L306:
 	movh.a	a15,#@his(_999001_pEnergyMgmt_CanTx_PowerSupplyReducedPerformance)
 	lea	a15,[a15]@los(_999001_pEnergyMgmt_CanTx_PowerSupplyReducedPerformance)
 	ld.bu	d15,[a15]
-.L287:
+.L307:
 	movh.a	a15,#@his(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
 	lea	a15,[a15]@los(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
 	ld.bu	d0,[a15]
-.L146:
-	jeq	d15,d0,.L8
-.L288:
+.L308:
+	jeq	d15,d0,.L12
+.L309:
 	movh.a	a15,#@his(Iven_IcmLookupTable)
 	lea	a15,[a15]@los(Iven_IcmLookupTable)
-.L289:
+.L310:
 	mov	d15,#1
-.L290:
+.L311:
 	st.b	[a15]60,d15
-.L291:
-	j	.L9
-.L8:
-.L7:
-.L9:
+.L312:
+	j	.L13
+.L12:
+.L11:
+.L13:
 	movh.a	a15,#@his(Iven_CanRx_ErrorDetectedCbm)
 	lea	a15,[a15]@los(Iven_CanRx_ErrorDetectedCbm)
-.L292:
+.L313:
 	movh.a	a2,#@his(ComMaster_RxSignal_Err701_ID)
 	lea	a2,[a2]@los(ComMaster_RxSignal_Err701_ID)
-	ld.bu	d15,[a2]
-.L293:
-	st.b	[a15],d15
-.L294:
-	movh.a	a15,#@his(Iven_CanRx_ErrorDetectedPdm)
-	lea	a15,[a15]@los(Iven_CanRx_ErrorDetectedPdm)
-.L295:
-	movh.a	a2,#@his(ComMaster_RxSignal_Err705_ID)
-	lea	a2,[a2]@los(ComMaster_RxSignal_Err705_ID)
-	ld.bu	d15,[a2]
-.L296:
-	st.b	[a15],d15
-.L297:
-	movh.a	a15,#@his(ComMaster_RxSignal_Err701_ID)
-	lea	a15,[a15]@los(ComMaster_RxSignal_Err701_ID)
-.L298:
-	mov	d15,#0
-.L299:
-	st.b	[a15],d15
-.L300:
-	movh.a	a15,#@his(ComMaster_RxSignal_Err705_ID)
-	lea	a15,[a15]@los(ComMaster_RxSignal_Err705_ID)
-.L301:
-	mov	d15,#0
-.L302:
-	st.b	[a15],d15
-.L303:
-	movh.a	a15,#@his(Iven_CanTx_IrSenStat)
-	lea	a15,[a15]@los(Iven_CanTx_IrSenStat)
-.L304:
-	movh.a	a2,#@his(ColDet_CanTx_IrSenStat)
-	lea	a2,[a2]@los(ColDet_CanTx_IrSenStat)
-	ld.bu	d15,[a2]
-.L305:
-	st.b	[a15],d15
-.L306:
-	movh.a	a15,#@his(Iven_CanRx_GearboxControl)
-	lea	a15,[a15]@los(Iven_CanRx_GearboxControl)
-.L307:
-	movh.a	a2,#@his(ComMaster_TxSignal_Gear)
-	lea	a2,[a2]@los(ComMaster_TxSignal_Gear)
-	ld.bu	d15,[a2]
-.L308:
-	st.b	[a15],d15
-.L309:
-	movh.a	a15,#@his(Iven_CanRx_IgnitionControl)
-	lea	a15,[a15]@los(Iven_CanRx_IgnitionControl)
-.L310:
-	movh.a	a2,#@his(ComMaster_TxSignal_Ignition)
-	lea	a2,[a2]@los(ComMaster_TxSignal_Ignition)
-	ld.bu	d15,[a2]
-.L311:
-	st.b	[a15],d15
-.L312:
-	movh.a	a15,#@his(Iven_CanRx_StatusDoorLeft)
-	lea	a15,[a15]@los(Iven_CanRx_StatusDoorLeft)
-.L313:
-	movh.a	a2,#@his(ComMaster_RxSignal_StatusDoorLeft)
-	lea	a2,[a2]@los(ComMaster_RxSignal_StatusDoorLeft)
 	ld.bu	d15,[a2]
 .L314:
 	st.b	[a15],d15
 .L315:
-	movh.a	a15,#@his(Iven_CanRx_StatusDoorRight)
-	lea	a15,[a15]@los(Iven_CanRx_StatusDoorRight)
+	movh.a	a15,#@his(Iven_CanRx_ErrorDetectedPdm)
+	lea	a15,[a15]@los(Iven_CanRx_ErrorDetectedPdm)
 .L316:
-	movh.a	a2,#@his(ComMaster_RxSignal_StatusDoorRight)
-	lea	a2,[a2]@los(ComMaster_RxSignal_StatusDoorRight)
+	movh.a	a2,#@his(ComMaster_RxSignal_Err705_ID)
+	lea	a2,[a2]@los(ComMaster_RxSignal_Err705_ID)
 	ld.bu	d15,[a2]
 .L317:
 	st.b	[a15],d15
 .L318:
-	movh.a	a15,#@his(Iven_CanRx_PSNWarn)
-	lea	a15,[a15]@los(Iven_CanRx_PSNWarn)
+	movh.a	a15,#@his(ComMaster_RxSignal_Err701_ID)
+	lea	a15,[a15]@los(ComMaster_RxSignal_Err701_ID)
 .L319:
-	movh.a	a2,#@his(ComMaster_RxSignal_PSNWarn)
-	lea	a2,[a2]@los(ComMaster_RxSignal_PSNWarn)
-	ld.bu	d15,[a2]
+	mov	d15,#0
 .L320:
 	st.b	[a15],d15
 .L321:
-	movh.a	a15,#@his(Iven_CanRx_CurrentConsumption)
-	lea	a15,[a15]@los(Iven_CanRx_CurrentConsumption)
+	movh.a	a15,#@his(ComMaster_RxSignal_Err705_ID)
+	lea	a15,[a15]@los(ComMaster_RxSignal_Err705_ID)
 .L322:
-	movh.a	a2,#@his(ComMaster_RxSignal_TotalCurrentConsumption)
-	lea	a2,[a2]@los(ComMaster_RxSignal_TotalCurrentConsumption)
-	ld.bu	d15,[a2]
+	mov	d15,#0
 .L323:
 	st.b	[a15],d15
 .L324:
-	movh.a	a15,#@his(Iven_CanRx_MeasuredVoltageSupply)
-	lea	a15,[a15]@los(Iven_CanRx_MeasuredVoltageSupply)
+	movh.a	a15,#@his(Iven_CanTx_IrSenStat)
+	lea	a15,[a15]@los(Iven_CanTx_IrSenStat)
 .L325:
-	movh.a	a2,#@his(ComMaster_TxSignal_VBat)
-	lea	a2,[a2]@los(ComMaster_TxSignal_VBat)
+	movh.a	a2,#@his(ColDet_CanTx_IrSenStat)
+	lea	a2,[a2]@los(ColDet_CanTx_IrSenStat)
 	ld.bu	d15,[a2]
 .L326:
 	st.b	[a15],d15
 .L327:
+	movh.a	a15,#@his(Iven_CanRx_GearboxControl)
+	lea	a15,[a15]@los(Iven_CanRx_GearboxControl)
+.L328:
+	movh.a	a2,#@his(ComMaster_TxSignal_Gear)
+	lea	a2,[a2]@los(ComMaster_TxSignal_Gear)
+	ld.bu	d15,[a2]
+.L329:
+	st.b	[a15],d15
+.L330:
+	movh.a	a15,#@his(Iven_CanRx_IgnitionControl)
+	lea	a15,[a15]@los(Iven_CanRx_IgnitionControl)
+.L331:
+	movh.a	a2,#@his(ComMaster_TxSignal_Ignition)
+	lea	a2,[a2]@los(ComMaster_TxSignal_Ignition)
+	ld.bu	d15,[a2]
+.L332:
+	st.b	[a15],d15
+.L333:
+	movh.a	a15,#@his(Iven_CanRx_StatusDoorLeft)
+	lea	a15,[a15]@los(Iven_CanRx_StatusDoorLeft)
+.L334:
+	movh.a	a2,#@his(ComMaster_RxSignal_StatusDoorLeft)
+	lea	a2,[a2]@los(ComMaster_RxSignal_StatusDoorLeft)
+	ld.bu	d15,[a2]
+.L335:
+	st.b	[a15],d15
+.L336:
+	movh.a	a15,#@his(Iven_CanRx_StatusDoorRight)
+	lea	a15,[a15]@los(Iven_CanRx_StatusDoorRight)
+.L337:
+	movh.a	a2,#@his(ComMaster_RxSignal_StatusDoorRight)
+	lea	a2,[a2]@los(ComMaster_RxSignal_StatusDoorRight)
+	ld.bu	d15,[a2]
+.L338:
+	st.b	[a15],d15
+.L339:
+	movh.a	a15,#@his(Iven_CanRx_PSNWarn)
+	lea	a15,[a15]@los(Iven_CanRx_PSNWarn)
+.L340:
+	movh.a	a2,#@his(ComMaster_RxSignal_PSNWarn)
+	lea	a2,[a2]@los(ComMaster_RxSignal_PSNWarn)
+	ld.bu	d15,[a2]
+.L341:
+	st.b	[a15],d15
+.L342:
+	movh.a	a15,#@his(Iven_CanRx_CurrentConsumption)
+	lea	a15,[a15]@los(Iven_CanRx_CurrentConsumption)
+.L343:
+	movh.a	a2,#@his(ComMaster_RxSignal_TotalCurrentConsumption)
+	lea	a2,[a2]@los(ComMaster_RxSignal_TotalCurrentConsumption)
+	ld.bu	d15,[a2]
+.L344:
+	st.b	[a15],d15
+.L345:
+	movh.a	a15,#@his(Iven_CanRx_MeasuredVoltageSupply)
+	lea	a15,[a15]@los(Iven_CanRx_MeasuredVoltageSupply)
+.L346:
+	movh.a	a2,#@his(ComMaster_TxSignal_VBat)
+	lea	a2,[a2]@los(ComMaster_TxSignal_VBat)
+	ld.bu	d15,[a2]
+.L347:
+	st.b	[a15],d15
+.L348:
 	movh.a	a15,#@his(McuSm_LastResetReason)
 	lea	a15,[a15]@los(McuSm_LastResetReason)
 	ld.w	d15,[a15]
-.L328:
-	jeq	d15,#0,.L10
-.L329:
+.L349:
+	jeq	d15,#0,.L14
+.L350:
+	movh.a	a15,#@his(McuSm_LastResetReason)
+	lea	a15,[a15]@los(McuSm_LastResetReason)
+	ld.w	d15,[a15]
+.L351:
+	mov.u	d0,#61423
+.L352:
+	jeq	d15,d0,.L15
+.L353:
 	movh.a	a15,#@his(_999002_pIven_CanTx_DecMcuError)
 	lea	a15,[a15]@los(_999002_pIven_CanTx_DecMcuError)
 	ld.bu	d15,[a15]
-.L330:
-	jne	d15,#0,.L11
-.L331:
+.L354:
+	jne	d15,#0,.L16
+.L355:
 	movh.a	a15,#@his(Iven_CanTx_DecMcuError)
 	lea	a15,[a15]@los(Iven_CanTx_DecMcuError)
-.L332:
-	mov	d15,#1
-.L333:
-	st.b	[a15],d15
-.L334:
-	movh.a	a15,#@his(_999002_pIven_CanTx_DecMcuError)
-	lea	a15,[a15]@los(_999002_pIven_CanTx_DecMcuError)
-.L335:
-	mov	d15,#1
-.L336:
-	st.b	[a15],d15
-.L337:
-	j	.L12
-.L11:
-.L10:
-.L12:
-	movh.a	a15,#@his(Iven_StatusDriveControlMessageState)
-	lea	a15,[a15]@los(Iven_StatusDriveControlMessageState)
-.L338:
-	movh.a	a2,#@his(ComMaster_StatusDriveControlMessageState)
-	lea	a2,[a2]@los(ComMaster_StatusDriveControlMessageState)
-	ld.bu	d15,[a2]
-.L339:
-	st.b	[a15],d15
-.L340:
-	movh.a	a15,#@his(Iven_StatusLoadListMessageState)
-	lea	a15,[a15]@los(Iven_StatusLoadListMessageState)
-.L341:
-	movh.a	a2,#@his(ComMaster_StatusLoadListMessageState)
-	lea	a2,[a2]@los(ComMaster_StatusLoadListMessageState)
-	ld.bu	d15,[a2]
-.L342:
-	st.b	[a15],d15
-.L343:
-	movh.a	a15,#@his(Iven_StatusPowerSupplyNetworkMessageState)
-	lea	a15,[a15]@los(Iven_StatusPowerSupplyNetworkMessageState)
-.L344:
-	movh.a	a2,#@his(ComMaster_StatusPowerSupplyNetworkMessageState)
-	lea	a2,[a2]@los(ComMaster_StatusPowerSupplyNetworkMessageState)
-	ld.bu	d15,[a2]
-.L345:
-	st.b	[a15],d15
-.L346:
-	movh.a	a15,#@his(Iven_StatusActuatorMessageState)
-	lea	a15,[a15]@los(Iven_StatusActuatorMessageState)
-.L347:
-	movh.a	a2,#@his(ComMaster_StatusActuatorMessageState)
-	lea	a2,[a2]@los(ComMaster_StatusActuatorMessageState)
-	ld.bu	d15,[a2]
-.L348:
-	st.b	[a15],d15
-.L349:
-	movh.a	a15,#@his(ComMaster_TxSignal_ReducedPowerSupply)
-	lea	a15,[a15]@los(ComMaster_TxSignal_ReducedPowerSupply)
-.L350:
-	movh.a	a2,#@his(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
-	lea	a2,[a2]@los(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
-	ld.bu	d15,[a2]
-.L351:
-	st.b	[a15],d15
-.L352:
-	movh.a	a15,#@his(Iven_CanTx_PowerSteeringStatus)
-	lea	a15,[a15]@los(Iven_CanTx_PowerSteeringStatus)
-.L353:
-	movh.a	a2,#@his(ComMaster_TxSignal_PowerSteeringAngle)
-	lea	a2,[a2]@los(ComMaster_TxSignal_PowerSteeringAngle)
-	ld.bu	d15,[a2]
-.L354:
-	st.b	[a15],d15
-.L355:
-	movh.a	a15,#@his(Iven_CanTx_DiagnosticMode)
-	lea	a15,[a15]@los(Iven_CanTx_DiagnosticMode)
 .L356:
-	movh.a	a2,#@his(DiagMaster_DiagnosticModeActivated)
-	lea	a2,[a2]@los(DiagMaster_DiagnosticModeActivated)
-	ld.bu	d15,[a2]
+	mov	d15,#1
 .L357:
 	st.b	[a15],d15
 .L358:
-	movh.a	a15,#@his(DcyHandler_CanRx_RequestDiagnosisMode)
-	lea	a15,[a15]@los(DcyHandler_CanRx_RequestDiagnosisMode)
+	movh.a	a15,#@his(_999002_pIven_CanTx_DecMcuError)
+	lea	a15,[a15]@los(_999002_pIven_CanTx_DecMcuError)
 .L359:
-	movh.a	a2,#@his(DiagMaster_DiagnosticModeActivated)
-	lea	a2,[a2]@los(DiagMaster_DiagnosticModeActivated)
-	ld.bu	d15,[a2]
+	mov	d15,#1
 .L360:
 	st.b	[a15],d15
 .L361:
-	movh.a	a15,#@his(DcyHandler_CanRx_ResetDcy)
-	lea	a15,[a15]@los(DcyHandler_CanRx_ResetDcy)
+	j	.L17
+.L16:
+.L15:
+.L14:
+.L17:
+	movh.a	a15,#@his(Iven_StatusDriveControlMessageState)
+	lea	a15,[a15]@los(Iven_StatusDriveControlMessageState)
 .L362:
-	movh.a	a2,#@his(DiagMaster_ResetDcy)
-	lea	a2,[a2]@los(DiagMaster_ResetDcy)
+	movh.a	a2,#@his(ComMaster_StatusDriveControlMessageState)
+	lea	a2,[a2]@los(ComMaster_StatusDriveControlMessageState)
 	ld.bu	d15,[a2]
 .L363:
 	st.b	[a15],d15
 .L364:
-	call	serviceCpuWatchdog
+	movh.a	a15,#@his(Iven_StatusLoadListMessageState)
+	lea	a15,[a15]@los(Iven_StatusLoadListMessageState)
 .L365:
-	call	serviceSafetyWatchdog
+	movh.a	a2,#@his(ComMaster_StatusLoadListMessageState)
+	lea	a2,[a2]@los(ComMaster_StatusLoadListMessageState)
+	ld.bu	d15,[a2]
 .L366:
+	st.b	[a15],d15
+.L367:
+	movh.a	a15,#@his(Iven_StatusPowerSupplyNetworkMessageState)
+	lea	a15,[a15]@los(Iven_StatusPowerSupplyNetworkMessageState)
+.L368:
+	movh.a	a2,#@his(ComMaster_StatusPowerSupplyNetworkMessageState)
+	lea	a2,[a2]@los(ComMaster_StatusPowerSupplyNetworkMessageState)
+	ld.bu	d15,[a2]
+.L369:
+	st.b	[a15],d15
+.L370:
+	movh.a	a15,#@his(Iven_StatusActuatorMessageState)
+	lea	a15,[a15]@los(Iven_StatusActuatorMessageState)
+.L371:
+	movh.a	a2,#@his(ComMaster_StatusActuatorMessageState)
+	lea	a2,[a2]@los(ComMaster_StatusActuatorMessageState)
+	ld.bu	d15,[a2]
+.L372:
+	st.b	[a15],d15
+.L373:
+	movh.a	a15,#@his(ComMaster_TxSignal_ReducedPowerSupply)
+	lea	a15,[a15]@los(ComMaster_TxSignal_ReducedPowerSupply)
+.L374:
+	movh.a	a2,#@his(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+	lea	a2,[a2]@los(EnergyMgmt_CanTx_PowerSupplyReducedPerformance)
+	ld.bu	d15,[a2]
+.L375:
+	st.b	[a15],d15
+.L376:
+	movh.a	a15,#@his(Iven_CanTx_PowerSteeringStatus)
+	lea	a15,[a15]@los(Iven_CanTx_PowerSteeringStatus)
+.L377:
+	movh.a	a2,#@his(ComMaster_TxSignal_PowerSteeringAngle)
+	lea	a2,[a2]@los(ComMaster_TxSignal_PowerSteeringAngle)
+	ld.bu	d15,[a2]
+.L378:
+	st.b	[a15],d15
+.L379:
+	movh.a	a15,#@his(Iven_CanTx_DiagnosticMode)
+	lea	a15,[a15]@los(Iven_CanTx_DiagnosticMode)
+.L380:
+	movh.a	a2,#@his(DiagMaster_DiagnosticModeActivated)
+	lea	a2,[a2]@los(DiagMaster_DiagnosticModeActivated)
+	ld.bu	d15,[a2]
+.L381:
+	st.b	[a15],d15
+.L382:
+	movh.a	a15,#@his(DcyHandler_CanRx_RequestDiagnosisMode)
+	lea	a15,[a15]@los(DcyHandler_CanRx_RequestDiagnosisMode)
+.L383:
+	movh.a	a2,#@his(DiagMaster_DiagnosticModeActivated)
+	lea	a2,[a2]@los(DiagMaster_DiagnosticModeActivated)
+	ld.bu	d15,[a2]
+.L384:
+	st.b	[a15],d15
+.L385:
+	movh.a	a15,#@his(DcyHandler_CanRx_ResetDcy)
+	lea	a15,[a15]@los(DcyHandler_CanRx_ResetDcy)
+.L386:
+	movh.a	a2,#@his(DiagMaster_ResetDcy)
+	lea	a2,[a2]@los(DiagMaster_ResetDcy)
+	ld.bu	d15,[a2]
+.L387:
+	st.b	[a15],d15
+.L388:
+	call	serviceCpuWatchdog
+.L389:
+	call	serviceSafetyWatchdog
+.L390:
 	movh.a	a15,#@his(Bsw_Wrapper_MainCounter_C0)
 	lea	a15,[a15]@los(Bsw_Wrapper_MainCounter_C0)
 	movh.a	a2,#@his(Bsw_Wrapper_MainCounter_C0)
 	lea	a2,[a2]@los(Bsw_Wrapper_MainCounter_C0)
 	ld.w	d15,[a2]
-.L367:
+.L391:
 	add	d15,#1
 	st.w	[a15],d15
-.L368:
+.L392:
 	ret
-.L111:
+.L116:
 	
 __Bsw_Wrapper_MainFunction_C0_function_end:
 	.size	Bsw_Wrapper_MainFunction_C0,__Bsw_Wrapper_MainFunction_C0_function_end-Bsw_Wrapper_MainFunction_C0
-.L49:
+.L54:
 	; End of function
 	
 	.sdecl	'.text.Bsw_Wrapper.Bsw_Wrapper_MainFunction_C1',code,cluster('Bsw_Wrapper_MainFunction_C1')
@@ -924,55 +980,55 @@ __Bsw_Wrapper_MainFunction_C0_function_end:
 	
 	.global	Bsw_Wrapper_MainFunction_C1
 ; Function Bsw_Wrapper_MainFunction_C1
-.L38:
+.L43:
 Bsw_Wrapper_MainFunction_C1:	.type	func
 	call	serviceCpuWatchdog
-.L373:
+.L397:
 	movh.a	a15,#@his(SysMgr_EcuState)
 	lea	a15,[a15]@los(SysMgr_EcuState)
 	ld.bu	d15,[a15]
-.L374:
-	jne	d15,#4,.L13
-.L375:
+.L398:
+	jne	d15,#4,.L18
+.L399:
 	call	Wdg_DeInitializeCpu1Watchdog
-.L376:
+.L400:
 	call	vTaskSuspendAll_core1
-.L377:
+.L401:
 	call	vTaskEndScheduler_core1
-.L378:
+.L402:
 	lea	a4,0xf0001100
 	call	IfxStm_disableModule
-.L379:
+.L403:
 	movh.a	a15,#@his(SysMgr_Core1OnHalt)
 	lea	a15,[a15]@los(SysMgr_Core1OnHalt)
-.L380:
+.L404:
 	mov	d15,#1
-.L381:
+.L405:
 	st.b	[a15],d15
-.L382:
+.L406:
 	movh.a	a4,#63618
-.L383:
+.L407:
 	mov	d4,#2
 	call	IfxCpu_setCoreMode
-.L384:
-	j	.L14
-.L13:
-.L14:
+.L408:
+	j	.L19
+.L18:
+.L19:
 	movh.a	a15,#@his(Bsw_Wrapper_MainCounter_C1)
 	lea	a15,[a15]@los(Bsw_Wrapper_MainCounter_C1)
 	movh.a	a2,#@his(Bsw_Wrapper_MainCounter_C1)
 	lea	a2,[a2]@los(Bsw_Wrapper_MainCounter_C1)
 	ld.w	d15,[a2]
-.L385:
+.L409:
 	add	d15,#1
 	st.w	[a15],d15
-.L386:
+.L410:
 	ret
-.L116:
+.L121:
 	
 __Bsw_Wrapper_MainFunction_C1_function_end:
 	.size	Bsw_Wrapper_MainFunction_C1,__Bsw_Wrapper_MainFunction_C1_function_end-Bsw_Wrapper_MainFunction_C1
-.L54:
+.L59:
 	; End of function
 	
 	.sdecl	'.text.Bsw_Wrapper.Bsw_Wrapper_MainFunction_C2',code,cluster('Bsw_Wrapper_MainFunction_C2')
@@ -981,55 +1037,55 @@ __Bsw_Wrapper_MainFunction_C1_function_end:
 	
 	.global	Bsw_Wrapper_MainFunction_C2
 ; Function Bsw_Wrapper_MainFunction_C2
-.L40:
+.L45:
 Bsw_Wrapper_MainFunction_C2:	.type	func
 	call	serviceCpuWatchdog
-.L391:
+.L415:
 	movh.a	a15,#@his(SysMgr_EcuState)
 	lea	a15,[a15]@los(SysMgr_EcuState)
 	ld.bu	d15,[a15]
-.L392:
-	jne	d15,#4,.L15
-.L393:
+.L416:
+	jne	d15,#4,.L20
+.L417:
 	call	Wdg_DeInitializeCpu1Watchdog
-.L394:
+.L418:
 	call	vTaskSuspendAll_core2
-.L395:
+.L419:
 	call	vTaskEndScheduler_core2
-.L396:
+.L420:
 	lea	a4,0xf0001200
 	call	IfxStm_disableModule
-.L397:
+.L421:
 	movh.a	a15,#@his(SysMgr_Core2OnHalt)
 	lea	a15,[a15]@los(SysMgr_Core2OnHalt)
-.L398:
+.L422:
 	mov	d15,#1
-.L399:
+.L423:
 	st.b	[a15],d15
-.L400:
+.L424:
 	movh.a	a4,#63620
-.L401:
+.L425:
 	mov	d4,#2
 	call	IfxCpu_setCoreMode
-.L402:
-	j	.L16
-.L15:
-.L16:
+.L426:
+	j	.L21
+.L20:
+.L21:
 	movh.a	a15,#@his(Bsw_Wrapper_MainCounter_C2)
 	lea	a15,[a15]@los(Bsw_Wrapper_MainCounter_C2)
 	movh.a	a2,#@his(Bsw_Wrapper_MainCounter_C2)
 	lea	a2,[a2]@los(Bsw_Wrapper_MainCounter_C2)
 	ld.w	d15,[a2]
-.L403:
+.L427:
 	add	d15,#1
 	st.w	[a15],d15
-.L404:
+.L428:
 	ret
-.L117:
+.L122:
 	
 __Bsw_Wrapper_MainFunction_C2_function_end:
 	.size	Bsw_Wrapper_MainFunction_C2,__Bsw_Wrapper_MainFunction_C2_function_end-Bsw_Wrapper_MainFunction_C2
-.L59:
+.L64:
 	; End of function
 	
 	.sdecl	'.data.Bsw_Wrapper.Bsw_Wrapper_MainCounter_C0',data,cluster('Bsw_Wrapper_MainCounter_C0')
@@ -1206,21 +1262,22 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.extern	McuSm_LastResetReason
 	.extern	serviceSafetyWatchdog
 	.extern	serviceCpuWatchdog
+	.extern	EncCal_Coding_DmuL
 	.calls	'Bsw_Wrapper_MainFunction_C2','',0
 	.sdecl	'.debug_info',debug
 	.sect	'.debug_info'
-.L42:
-	.word	248841
+.L47:
+	.word	248870
 	.half	3
-	.word	.L43
+	.word	.L48
 	.byte	4
-.L41:
+.L46:
 	.byte	1
 	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
-	.word	.L44
+	.word	.L49
 	.byte	2,1,1,3
 	.word	237
 	.byte	4
@@ -1254,7 +1311,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'value',0,2,143,1,43
 	.word	383
 	.byte	6,0
-.L125:
+.L130:
 	.byte	7
 	.byte	'unsigned int',0,4,7,7
 	.byte	'int',0,4,5,7
@@ -1281,7 +1338,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'B',0
 	.word	540
 	.byte	4,2,35,0,0
-.L112:
+.L117:
 	.byte	7
 	.byte	'unsigned char',0,1,8,7
 	.byte	'unsigned short int',0,2,7,10
@@ -2769,7 +2826,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'enabled',0,8,130,8,50
 	.word	676
 	.byte	6,0
-.L141:
+.L146:
 	.byte	7
 	.byte	'unsigned long int',0,4,7,8
 	.byte	'IfxCpu_getPerformanceCounter',0,3,8,251,6,19
@@ -11142,7 +11199,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	0,28
 	.word	13981
 	.byte	0,0,6,0,0
-.L121:
+.L126:
 	.byte	7
 	.byte	'long int',0,4,5,24
 	.byte	'vTaskEndScheduler_core1',0,21,165,10,6,1,1,1,1,24
@@ -26109,11 +26166,11 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'StaticStreamBuffer_t_core0',0,39,149,11,3
 	.word	166974
 	.byte	3
-	.word	.L147-.L42
+	.word	.L152-.L47
 	.byte	14
 	.word	9728
 	.byte	3
-	.word	.L147-.L42
+	.word	.L152-.L47
 	.byte	10
 	.byte	'xMINI_LIST_ITEM_core0',0,40,157,1,12,12,13
 	.byte	'xItemValue_core0',0
@@ -26136,7 +26193,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.word	167132
 	.byte	12,2,35,8,0,3
 	.word	167235
-.L147:
+.L152:
 	.byte	10
 	.byte	'xLIST_ITEM_core0',0,40,144,1,8,20,13
 	.byte	'xItemValue_core0',0
@@ -26278,11 +26335,11 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'StaticStreamBuffer_t_core1',0,44,149,11,3
 	.word	168603
 	.byte	3
-	.word	.L148-.L42
+	.word	.L153-.L47
 	.byte	14
 	.word	9728
 	.byte	3
-	.word	.L148-.L42
+	.word	.L153-.L47
 	.byte	10
 	.byte	'xMINI_LIST_ITEM_core1',0,45,157,1,12,12,13
 	.byte	'xItemValue_core1',0
@@ -26305,7 +26362,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.word	168761
 	.byte	12,2,35,8,0,3
 	.word	168864
-.L148:
+.L153:
 	.byte	10
 	.byte	'xLIST_ITEM_core1',0,45,144,1,8,20,13
 	.byte	'xItemValue_core1',0
@@ -26447,11 +26504,11 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'StaticStreamBuffer_t_core2',0,48,149,11,3
 	.word	170232
 	.byte	3
-	.word	.L149-.L42
+	.word	.L154-.L47
 	.byte	14
 	.word	9728
 	.byte	3
-	.word	.L149-.L42
+	.word	.L154-.L47
 	.byte	10
 	.byte	'xMINI_LIST_ITEM_core2',0,49,157,1,12,12,13
 	.byte	'xItemValue_core2',0
@@ -26474,7 +26531,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.word	170390
 	.byte	12,2,35,8,0,3
 	.word	170493
-.L149:
+.L154:
 	.byte	10
 	.byte	'xLIST_ITEM_core2',0,49,144,1,8,20,13
 	.byte	'xItemValue_core2',0
@@ -29127,13 +29184,13 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'DcyHandler_CanTx_VehicleState',0,57,33,34
 	.word	196467
 	.byte	1,1,37
-	.byte	'ColDet_CanTx_BrakeLevel',0,58,11,14
+	.byte	'ColDet_CanTx_BrakeLevel',0,58,12,14
 	.word	676
 	.byte	1,1,37
-	.byte	'ColDet_CanTx_IrSenStat',0,58,12,14
+	.byte	'ColDet_CanTx_IrSenStat',0,58,13,14
 	.word	676
 	.byte	1,1,37
-	.byte	'ColDet_CanRx_CalculatedSpeed',0,58,13,14
+	.byte	'ColDet_CanRx_CalculatedSpeed',0,58,14,14
 	.word	676
 	.byte	1,1,37
 	.byte	'EnergyMgmt_CanTx_CommandLoad1',0,59,3,14
@@ -29211,16 +29268,16 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'EnergyMgmt_CanTx_PowerSupplyReducedPerformance',0,59,27,14
 	.word	676
 	.byte	1,1,37
-	.byte	'DiagMaster_DiagnosticModeActivated',0,60,32,14
+	.byte	'DiagMaster_DiagnosticModeActivated',0,60,31,14
 	.word	676
 	.byte	1,1,37
-	.byte	'DiagMaster_GearboxStatus',0,60,35,14
+	.byte	'DiagMaster_GearboxStatus',0,60,34,14
 	.word	676
 	.byte	1,1,37
-	.byte	'DiagMaster_VehicleSpeed',0,60,36,14
+	.byte	'DiagMaster_VehicleSpeed',0,60,35,14
 	.word	676
 	.byte	1,1,37
-	.byte	'DiagMaster_ResetDcy',0,60,40,14
+	.byte	'DiagMaster_ResetDcy',0,60,39,14
 	.word	676
 	.byte	1,1,10
 	.byte	'_Ifx_MTU_ACCEN0_Bits',0,61,68,16,4,11
@@ -34706,10 +34763,13 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	37
 	.byte	'McuSm_LastResetReason',0,66,226,1,16
 	.word	9728
+	.byte	1,1,37
+	.byte	'EncCal_Coding_DmuL',0,67,45,14
+	.word	676
 	.byte	1,1,0
 	.sdecl	'.debug_abbrev',debug
 	.sect	'.debug_abbrev'
-.L43:
+.L48:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,21,0,54,15,39,12,0,0,3,15,0,73,19,0,0,4,46,1,3,8,32,13
 	.byte	58,15,59,15,57,15,54,15,39,12,0,0,5,5,0,3,8,58,15,59,15,57,15,73,19,0,0,6,11,0,0,0,7,36,0,3,8,11,15,62
 	.byte	15,0,0,8,46,1,3,8,32,13,58,15,59,15,57,15,73,19,54,15,39,12,0,0,9,59,0,3,8,0,0,10,19,1,3,8,58,15,59,15
@@ -34725,12 +34785,12 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	59,15,57,15,60,12,0,0,0
 	.sdecl	'.debug_line',debug
 	.sect	'.debug_line'
-.L44:
-	.word	.L151-.L150
-.L150:
+.L49:
+	.word	.L156-.L155
+.L155:
 	.half	3
-	.word	.L153-.L152
-.L152:
+	.word	.L158-.L157
+.L157:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg',0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std',0
@@ -34754,6 +34814,7 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std',0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap',0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\McuSm',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\APP\\\\EncCal',0
 	.byte	0
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\Cpu\\Std\\IfxCpu_IntrinsicsTasking.h',0
 	.byte	0,0,0
@@ -34834,513 +34895,14 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	'IfxCpu_Trap.h',0,21,0,0
 	.byte	'Ifx_Cfg_Trap.h',0,21,0,0
 	.byte	'IfxPms_regdef.h',0,1,0,0
-	.byte	'McuSm.h',0,22,0,0,0
-.L153:
-.L151:
+	.byte	'McuSm.h',0,22,0,0
+	.byte	'EncCal.h',0,23,0,0,0
+.L158:
+.L156:
 	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainFunction_C0')
 	.sect	'.debug_info'
-.L45:
-	.word	425
-	.half	3
-	.word	.L46
-	.byte	4,1
-	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0
-	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
-	.byte	12,1
-	.word	.L48,.L47
-	.byte	2
-	.word	.L41
-	.byte	3
-	.byte	'Bsw_Wrapper_MainFunction_C0',0,1,29,6,1,1,1
-	.word	.L36,.L111,.L35
-	.byte	4
-	.word	.L36,.L111
-	.byte	5
-	.byte	'pEnergyMgmt_CanTx_PowerSupplyReducedPerformance',0,1,31,18
-	.word	.L112
-	.byte	5,3
-	.word	_999001_pEnergyMgmt_CanTx_PowerSupplyReducedPerformance
-	.byte	5
-	.byte	'pIven_CanTx_DecMcuError',0,1,32,18
-	.word	.L112
-	.byte	5,3
-	.word	_999002_pIven_CanTx_DecMcuError
-	.byte	4
-	.word	.L113,.L114
-	.byte	6
-	.byte	'i',0,1,36,15
-	.word	.L112,.L115
-	.byte	0,0,0,0
-	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainFunction_C0')
-	.sect	'.debug_abbrev'
-.L46:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,6,52,0
-	.byte	3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
-	.sdecl	'.debug_line',debug,cluster('Bsw_Wrapper_MainFunction_C0')
-	.sect	'.debug_line'
-.L47:
-	.word	.L155-.L154
-.L154:
-	.half	3
-	.word	.L157-.L156
-.L156:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
-	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0,0,0,0,0
-.L157:
-	.byte	5,12,7,0,5,2
-	.word	.L36
-	.byte	3,33,1,5,36,9
-	.half	.L158-.L36
-	.byte	1,5,54,9
-	.half	.L159-.L158
-	.byte	1,5,17,9
-	.half	.L113-.L159
-	.byte	3,2,1,5,45,9
-	.half	.L145-.L113
-	.byte	1,5,25,9
-	.half	.L6-.L145
-	.byte	3,2,1,5,9,9
-	.half	.L160-.L6
-	.byte	1,5,25,9
-	.half	.L161-.L160
-	.byte	1,5,62,9
-	.half	.L162-.L161
-	.byte	1,5,60,9
-	.half	.L163-.L162
-	.byte	1,5,49,9
-	.half	.L164-.L163
-	.byte	3,126,1,5,45,9
-	.half	.L5-.L164
-	.byte	1,5,5,7,9
-	.half	.L114-.L5
-	.byte	3,5,1,5,33,9
-	.half	.L165-.L114
-	.byte	1,5,31,9
-	.half	.L166-.L165
-	.byte	1,5,5,9
-	.half	.L167-.L166
-	.byte	3,1,1,5,36,9
-	.half	.L168-.L167
-	.byte	1,5,34,9
-	.half	.L169-.L168
-	.byte	1,5,5,9
-	.half	.L170-.L169
-	.byte	3,1,1,5,40,9
-	.half	.L171-.L170
-	.byte	1,5,38,9
-	.half	.L172-.L171
-	.byte	1,5,5,9
-	.half	.L173-.L172
-	.byte	3,1,1,5,38,9
-	.half	.L174-.L173
-	.byte	1,5,36,9
-	.half	.L175-.L174
-	.byte	1,5,5,9
-	.half	.L176-.L175
-	.byte	3,1,1,5,36,9
-	.half	.L177-.L176
-	.byte	1,5,34,9
-	.half	.L178-.L177
-	.byte	1,5,5,9
-	.half	.L179-.L178
-	.byte	3,1,1,5,37,9
-	.half	.L180-.L179
-	.byte	1,5,35,9
-	.half	.L181-.L180
-	.byte	1,5,5,9
-	.half	.L182-.L181
-	.byte	3,1,1,5,37,9
-	.half	.L183-.L182
-	.byte	1,5,35,9
-	.half	.L184-.L183
-	.byte	1,5,5,9
-	.half	.L185-.L184
-	.byte	3,1,1,5,38,9
-	.half	.L186-.L185
-	.byte	1,5,36,9
-	.half	.L187-.L186
-	.byte	1,5,5,9
-	.half	.L188-.L187
-	.byte	3,1,1,5,49,9
-	.half	.L189-.L188
-	.byte	1,5,47,9
-	.half	.L190-.L189
-	.byte	1,5,5,9
-	.half	.L191-.L190
-	.byte	3,1,1,5,48,9
-	.half	.L192-.L191
-	.byte	1,5,46,9
-	.half	.L193-.L192
-	.byte	1,5,5,9
-	.half	.L194-.L193
-	.byte	3,1,1,5,32,9
-	.half	.L195-.L194
-	.byte	1,5,30,9
-	.half	.L196-.L195
-	.byte	1,5,5,9
-	.half	.L197-.L196
-	.byte	3,1,1,5,31,9
-	.half	.L198-.L197
-	.byte	1,5,29,9
-	.half	.L199-.L198
-	.byte	1,5,5,9
-	.half	.L200-.L199
-	.byte	3,1,1,5,36,9
-	.half	.L201-.L200
-	.byte	1,5,34,9
-	.half	.L202-.L201
-	.byte	1,5,5,9
-	.half	.L203-.L202
-	.byte	3,1,1,5,51,9
-	.half	.L204-.L203
-	.byte	1,5,49,9
-	.half	.L205-.L204
-	.byte	1,5,5,9
-	.half	.L206-.L205
-	.byte	3,1,1,5,39,9
-	.half	.L207-.L206
-	.byte	1,5,37,9
-	.half	.L208-.L207
-	.byte	1,5,5,9
-	.half	.L209-.L208
-	.byte	3,1,1,5,40,9
-	.half	.L210-.L209
-	.byte	1,5,38,9
-	.half	.L211-.L210
-	.byte	1,5,5,9
-	.half	.L212-.L211
-	.byte	3,1,1,5,36,9
-	.half	.L213-.L212
-	.byte	1,5,34,9
-	.half	.L214-.L213
-	.byte	1,5,5,9
-	.half	.L215-.L214
-	.byte	3,1,1,5,36,9
-	.half	.L216-.L215
-	.byte	1,5,34,9
-	.half	.L217-.L216
-	.byte	1,5,5,9
-	.half	.L218-.L217
-	.byte	3,1,1,5,36,9
-	.half	.L219-.L218
-	.byte	1,5,34,9
-	.half	.L220-.L219
-	.byte	1,5,5,9
-	.half	.L221-.L220
-	.byte	3,1,1,5,36,9
-	.half	.L222-.L221
-	.byte	1,5,34,9
-	.half	.L223-.L222
-	.byte	1,5,5,9
-	.half	.L224-.L223
-	.byte	3,1,1,5,36,9
-	.half	.L225-.L224
-	.byte	1,5,34,9
-	.half	.L226-.L225
-	.byte	1,5,5,9
-	.half	.L227-.L226
-	.byte	3,1,1,5,36,9
-	.half	.L228-.L227
-	.byte	1,5,34,9
-	.half	.L229-.L228
-	.byte	1,5,5,9
-	.half	.L230-.L229
-	.byte	3,1,1,5,36,9
-	.half	.L231-.L230
-	.byte	1,5,34,9
-	.half	.L232-.L231
-	.byte	1,5,5,9
-	.half	.L233-.L232
-	.byte	3,1,1,5,36,9
-	.half	.L234-.L233
-	.byte	1,5,34,9
-	.half	.L235-.L234
-	.byte	1,5,5,9
-	.half	.L236-.L235
-	.byte	3,1,1,5,39,9
-	.half	.L237-.L236
-	.byte	1,5,37,9
-	.half	.L238-.L237
-	.byte	1,5,5,9
-	.half	.L239-.L238
-	.byte	3,1,1,5,37,9
-	.half	.L240-.L239
-	.byte	1,5,35,9
-	.half	.L241-.L240
-	.byte	1,5,5,9
-	.half	.L242-.L241
-	.byte	3,1,1,5,39,9
-	.half	.L243-.L242
-	.byte	1,5,37,9
-	.half	.L244-.L243
-	.byte	1,5,5,9
-	.half	.L245-.L244
-	.byte	3,1,1,5,40,9
-	.half	.L246-.L245
-	.byte	1,5,38,9
-	.half	.L247-.L246
-	.byte	1,5,5,9
-	.half	.L248-.L247
-	.byte	3,1,1,5,35,9
-	.half	.L249-.L248
-	.byte	1,5,33,9
-	.half	.L250-.L249
-	.byte	1,5,5,9
-	.half	.L251-.L250
-	.byte	3,1,1,5,40,9
-	.half	.L252-.L251
-	.byte	1,5,38,9
-	.half	.L253-.L252
-	.byte	1,5,5,9
-	.half	.L254-.L253
-	.byte	3,1,1,5,40,9
-	.half	.L255-.L254
-	.byte	1,5,38,9
-	.half	.L256-.L255
-	.byte	1,5,5,9
-	.half	.L257-.L256
-	.byte	3,1,1,5,41,9
-	.half	.L258-.L257
-	.byte	1,5,39,9
-	.half	.L259-.L258
-	.byte	1,5,5,9
-	.half	.L260-.L259
-	.byte	3,1,1,5,39,9
-	.half	.L261-.L260
-	.byte	1,5,37,9
-	.half	.L262-.L261
-	.byte	1,5,5,9
-	.half	.L263-.L262
-	.byte	3,1,1,5,39,9
-	.half	.L264-.L263
-	.byte	1,5,37,9
-	.half	.L265-.L264
-	.byte	1,5,5,9
-	.half	.L266-.L265
-	.byte	3,1,1,5,39,9
-	.half	.L267-.L266
-	.byte	1,5,37,9
-	.half	.L268-.L267
-	.byte	1,5,5,9
-	.half	.L269-.L268
-	.byte	3,1,1,5,39,9
-	.half	.L270-.L269
-	.byte	1,5,37,9
-	.half	.L271-.L270
-	.byte	1,5,5,9
-	.half	.L272-.L271
-	.byte	3,1,1,5,39,9
-	.half	.L273-.L272
-	.byte	1,5,37,9
-	.half	.L274-.L273
-	.byte	1,5,5,9
-	.half	.L275-.L274
-	.byte	3,1,1,5,39,9
-	.half	.L276-.L275
-	.byte	1,5,37,9
-	.half	.L277-.L276
-	.byte	1,5,5,9
-	.half	.L278-.L277
-	.byte	3,1,1,5,39,9
-	.half	.L279-.L278
-	.byte	1,5,37,9
-	.half	.L280-.L279
-	.byte	1,5,5,9
-	.half	.L281-.L280
-	.byte	3,1,1,5,39,9
-	.half	.L282-.L281
-	.byte	1,5,37,9
-	.half	.L283-.L282
-	.byte	1,5,15,9
-	.half	.L284-.L283
-	.byte	3,2,1,5,8,9
-	.half	.L285-.L284
-	.byte	1,5,14,7,9
-	.half	.L286-.L285
-	.byte	3,1,1,5,65,9
-	.half	.L287-.L286
-	.byte	1,5,62,9
-	.half	.L146-.L287
-	.byte	1,5,9,7,9
-	.half	.L288-.L146
-	.byte	3,2,1,5,50,9
-	.half	.L289-.L288
-	.byte	1,5,48,9
-	.half	.L290-.L289
-	.byte	1,5,52,9
-	.half	.L291-.L290
-	.byte	1,5,5,9
-	.half	.L9-.L291
-	.byte	3,7,1,5,35,9
-	.half	.L292-.L9
-	.byte	1,5,33,9
-	.half	.L293-.L292
-	.byte	1,5,5,9
-	.half	.L294-.L293
-	.byte	3,1,1,5,35,9
-	.half	.L295-.L294
-	.byte	1,5,33,9
-	.half	.L296-.L295
-	.byte	1,5,5,9
-	.half	.L297-.L296
-	.byte	3,1,1,5,36,9
-	.half	.L298-.L297
-	.byte	1,5,34,9
-	.half	.L299-.L298
-	.byte	1,5,5,9
-	.half	.L300-.L299
-	.byte	3,1,1,5,36,9
-	.half	.L301-.L300
-	.byte	1,5,34,9
-	.half	.L302-.L301
-	.byte	1,5,5,9
-	.half	.L303-.L302
-	.byte	3,1,1,5,28,9
-	.half	.L304-.L303
-	.byte	1,5,26,9
-	.half	.L305-.L304
-	.byte	1,5,5,9
-	.half	.L306-.L305
-	.byte	3,1,1,5,33,9
-	.half	.L307-.L306
-	.byte	1,5,31,9
-	.half	.L308-.L307
-	.byte	1,5,5,9
-	.half	.L309-.L308
-	.byte	3,1,1,5,34,9
-	.half	.L310-.L309
-	.byte	1,5,32,9
-	.half	.L311-.L310
-	.byte	1,5,5,9
-	.half	.L312-.L311
-	.byte	3,1,1,5,33,9
-	.half	.L313-.L312
-	.byte	1,5,31,9
-	.half	.L314-.L313
-	.byte	1,5,5,9
-	.half	.L315-.L314
-	.byte	3,1,1,5,34,9
-	.half	.L316-.L315
-	.byte	1,5,32,9
-	.half	.L317-.L316
-	.byte	1,5,5,9
-	.half	.L318-.L317
-	.byte	3,1,1,5,26,9
-	.half	.L319-.L318
-	.byte	1,5,24,9
-	.half	.L320-.L319
-	.byte	1,5,5,9
-	.half	.L321-.L320
-	.byte	3,1,1,5,38,9
-	.half	.L322-.L321
-	.byte	1,5,36,9
-	.half	.L323-.L322
-	.byte	1,5,5,9
-	.half	.L324-.L323
-	.byte	3,1,1,5,40,9
-	.half	.L325-.L324
-	.byte	1,5,38,9
-	.half	.L326-.L325
-	.byte	1,5,14,9
-	.half	.L327-.L326
-	.byte	3,2,1,5,8,9
-	.half	.L328-.L327
-	.byte	1,5,45,7,9
-	.half	.L329-.L328
-	.byte	1,5,42,9
-	.half	.L330-.L329
-	.byte	1,5,9,7,9
-	.half	.L331-.L330
-	.byte	3,2,1,5,34,9
-	.half	.L332-.L331
-	.byte	1,5,32,9
-	.half	.L333-.L332
-	.byte	1,5,9,9
-	.half	.L334-.L333
-	.byte	3,1,1,5,35,9
-	.half	.L335-.L334
-	.byte	1,5,33,9
-	.half	.L336-.L335
-	.byte	1,5,36,9
-	.half	.L337-.L336
-	.byte	3,127,1,5,5,9
-	.half	.L12-.L337
-	.byte	3,8,1,5,43,9
-	.half	.L338-.L12
-	.byte	1,5,41,9
-	.half	.L339-.L338
-	.byte	1,5,5,9
-	.half	.L340-.L339
-	.byte	3,1,1,5,39,9
-	.half	.L341-.L340
-	.byte	1,5,37,9
-	.half	.L342-.L341
-	.byte	1,5,5,9
-	.half	.L343-.L342
-	.byte	3,1,1,5,49,9
-	.half	.L344-.L343
-	.byte	1,5,47,9
-	.half	.L345-.L344
-	.byte	1,5,5,9
-	.half	.L346-.L345
-	.byte	3,1,1,5,39,9
-	.half	.L347-.L346
-	.byte	1,5,37,9
-	.half	.L348-.L347
-	.byte	1,5,5,9
-	.half	.L349-.L348
-	.byte	3,1,1,5,45,9
-	.half	.L350-.L349
-	.byte	1,5,43,9
-	.half	.L351-.L350
-	.byte	1,5,5,9
-	.half	.L352-.L351
-	.byte	3,1,1,5,38,9
-	.half	.L353-.L352
-	.byte	1,5,36,9
-	.half	.L354-.L353
-	.byte	1,5,5,9
-	.half	.L355-.L354
-	.byte	3,1,1,5,33,9
-	.half	.L356-.L355
-	.byte	1,5,31,9
-	.half	.L357-.L356
-	.byte	1,5,5,9
-	.half	.L358-.L357
-	.byte	3,1,1,5,45,9
-	.half	.L359-.L358
-	.byte	1,5,43,9
-	.half	.L360-.L359
-	.byte	1,5,5,9
-	.half	.L361-.L360
-	.byte	3,1,1,5,33,9
-	.half	.L362-.L361
-	.byte	1,5,31,9
-	.half	.L363-.L362
-	.byte	1,5,23,9
-	.half	.L364-.L363
-	.byte	3,2,1,5,26,9
-	.half	.L365-.L364
-	.byte	3,1,1,5,5,9
-	.half	.L366-.L365
-	.byte	3,2,1,5,31,9
-	.half	.L367-.L366
-	.byte	1,5,1,9
-	.half	.L368-.L367
-	.byte	3,1,1,7,9
-	.half	.L49-.L368
-	.byte	0,1,1
-.L155:
-	.sdecl	'.debug_ranges',debug,cluster('Bsw_Wrapper_MainFunction_C0')
-	.sect	'.debug_ranges'
-.L48:
-	.word	-1,.L36,0,.L49-.L36,0,0
-	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainFunction_C1')
-	.sect	'.debug_info'
 .L50:
-	.word	301
+	.word	425
 	.half	3
 	.word	.L51
 	.byte	4,1
@@ -35350,70 +34912,538 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L53,.L52
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'Bsw_Wrapper_MainFunction_C1',0,1,130,1,6,1,1,1
-	.word	.L38,.L116,.L37
+	.byte	'Bsw_Wrapper_MainFunction_C0',0,1,30,6,1,1,1
+	.word	.L41,.L116,.L40
 	.byte	4
-	.word	.L38,.L116
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainFunction_C1')
+	.word	.L41,.L116
+	.byte	5
+	.byte	'pEnergyMgmt_CanTx_PowerSupplyReducedPerformance',0,1,32,18
+	.word	.L117
+	.byte	5,3
+	.word	_999001_pEnergyMgmt_CanTx_PowerSupplyReducedPerformance
+	.byte	5
+	.byte	'pIven_CanTx_DecMcuError',0,1,33,18
+	.word	.L117
+	.byte	5,3
+	.word	_999002_pIven_CanTx_DecMcuError
+	.byte	4
+	.word	.L118,.L119
+	.byte	6
+	.byte	'i',0,1,37,15
+	.word	.L117,.L120
+	.byte	0,0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainFunction_C0')
 	.sect	'.debug_abbrev'
 .L51:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('Bsw_Wrapper_MainFunction_C1')
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,6,52,0
+	.byte	3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Bsw_Wrapper_MainFunction_C0')
 	.sect	'.debug_line'
 .L52:
-	.word	.L370-.L369
-.L369:
+	.word	.L160-.L159
+.L159:
 	.half	3
-	.word	.L372-.L371
-.L371:
+	.word	.L162-.L161
+.L161:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0,0,0,0,0
-.L372:
-	.byte	5,23,7,0,5,2
-	.word	.L38
-	.byte	3,131,1,1,5,24,9
-	.half	.L373-.L38
-	.byte	3,2,1,5,5,9
-	.half	.L374-.L373
-	.byte	1,5,37,7,9
-	.half	.L375-.L374
-	.byte	3,2,1,5,30,9
-	.half	.L376-.L375
+.L162:
+	.byte	5,12,7,0,5,2
+	.word	.L41
+	.byte	3,34,1,5,36,9
+	.half	.L163-.L41
+	.byte	1,5,54,9
+	.half	.L164-.L163
+	.byte	1,5,17,9
+	.half	.L118-.L164
+	.byte	3,2,1,5,45,9
+	.half	.L150-.L118
+	.byte	1,5,25,9
+	.half	.L6-.L150
+	.byte	3,2,1,5,9,9
+	.half	.L165-.L6
+	.byte	1,5,25,9
+	.half	.L166-.L165
+	.byte	1,5,62,9
+	.half	.L167-.L166
+	.byte	1,5,60,9
+	.half	.L168-.L167
+	.byte	1,5,49,9
+	.half	.L169-.L168
+	.byte	3,126,1,5,45,9
+	.half	.L5-.L169
+	.byte	1,5,5,7,9
+	.half	.L119-.L5
+	.byte	3,5,1,5,33,9
+	.half	.L170-.L119
+	.byte	1,5,31,9
+	.half	.L171-.L170
+	.byte	1,5,5,9
+	.half	.L172-.L171
+	.byte	3,1,1,5,36,9
+	.half	.L173-.L172
+	.byte	1,5,34,9
+	.half	.L174-.L173
+	.byte	1,5,5,9
+	.half	.L175-.L174
+	.byte	3,1,1,5,40,9
+	.half	.L176-.L175
+	.byte	1,5,38,9
+	.half	.L177-.L176
+	.byte	1,5,5,9
+	.half	.L178-.L177
+	.byte	3,1,1,5,38,9
+	.half	.L179-.L178
+	.byte	1,5,36,9
+	.half	.L180-.L179
+	.byte	1,5,5,9
+	.half	.L181-.L180
+	.byte	3,1,1,5,36,9
+	.half	.L182-.L181
+	.byte	1,5,34,9
+	.half	.L183-.L182
+	.byte	1,5,5,9
+	.half	.L184-.L183
+	.byte	3,1,1,5,37,9
+	.half	.L185-.L184
+	.byte	1,5,35,9
+	.half	.L186-.L185
+	.byte	1,5,5,9
+	.half	.L187-.L186
+	.byte	3,1,1,5,37,9
+	.half	.L188-.L187
+	.byte	1,5,35,9
+	.half	.L189-.L188
+	.byte	1,5,5,9
+	.half	.L190-.L189
+	.byte	3,1,1,5,38,9
+	.half	.L191-.L190
+	.byte	1,5,36,9
+	.half	.L192-.L191
+	.byte	1,5,5,9
+	.half	.L193-.L192
+	.byte	3,1,1,5,49,9
+	.half	.L194-.L193
+	.byte	1,5,47,9
+	.half	.L195-.L194
+	.byte	1,5,5,9
+	.half	.L196-.L195
+	.byte	3,1,1,5,48,9
+	.half	.L197-.L196
+	.byte	1,5,46,9
+	.half	.L198-.L197
+	.byte	1,5,5,9
+	.half	.L199-.L198
 	.byte	3,1,1,5,32,9
-	.half	.L377-.L376
+	.half	.L200-.L199
+	.byte	1,5,30,9
+	.half	.L201-.L200
+	.byte	1,5,5,9
+	.half	.L202-.L201
 	.byte	3,1,1,5,31,9
-	.half	.L378-.L377
-	.byte	3,1,1,5,9,9
-	.half	.L379-.L378
-	.byte	3,1,1,5,30,9
-	.half	.L380-.L379
-	.byte	1,5,28,9
-	.half	.L381-.L380
+	.half	.L203-.L202
 	.byte	1,5,29,9
-	.half	.L382-.L381
-	.byte	3,1,1,5,42,9
-	.half	.L383-.L382
+	.half	.L204-.L203
+	.byte	1,5,5,9
+	.half	.L205-.L204
+	.byte	3,1,1,5,36,9
+	.half	.L206-.L205
+	.byte	1,5,34,9
+	.half	.L207-.L206
+	.byte	1,5,5,9
+	.half	.L208-.L207
+	.byte	3,1,1,5,51,9
+	.half	.L209-.L208
+	.byte	1,5,49,9
+	.half	.L210-.L209
+	.byte	1,5,5,9
+	.half	.L211-.L210
+	.byte	3,1,1,5,39,9
+	.half	.L212-.L211
+	.byte	1,5,37,9
+	.half	.L213-.L212
+	.byte	1,5,5,9
+	.half	.L214-.L213
+	.byte	3,1,1,5,40,9
+	.half	.L215-.L214
+	.byte	1,5,38,9
+	.half	.L216-.L215
+	.byte	1,5,5,9
+	.half	.L217-.L216
+	.byte	3,1,1,5,36,9
+	.half	.L218-.L217
+	.byte	1,5,34,9
+	.half	.L219-.L218
+	.byte	1,5,5,9
+	.half	.L220-.L219
+	.byte	3,1,1,5,36,9
+	.half	.L221-.L220
+	.byte	1,5,34,9
+	.half	.L222-.L221
+	.byte	1,5,5,9
+	.half	.L223-.L222
+	.byte	3,1,1,5,36,9
+	.half	.L224-.L223
+	.byte	1,5,34,9
+	.half	.L225-.L224
+	.byte	1,5,5,9
+	.half	.L226-.L225
+	.byte	3,1,1,5,36,9
+	.half	.L227-.L226
+	.byte	1,5,34,9
+	.half	.L228-.L227
+	.byte	1,5,5,9
+	.half	.L229-.L228
+	.byte	3,1,1,5,36,9
+	.half	.L230-.L229
+	.byte	1,5,34,9
+	.half	.L231-.L230
+	.byte	1,5,5,9
+	.half	.L232-.L231
+	.byte	3,1,1,5,36,9
+	.half	.L233-.L232
+	.byte	1,5,34,9
+	.half	.L234-.L233
+	.byte	1,5,5,9
+	.half	.L235-.L234
+	.byte	3,1,1,5,36,9
+	.half	.L236-.L235
+	.byte	1,5,34,9
+	.half	.L237-.L236
+	.byte	1,5,5,9
+	.half	.L238-.L237
+	.byte	3,1,1,5,36,9
+	.half	.L239-.L238
+	.byte	1,5,34,9
+	.half	.L240-.L239
+	.byte	1,5,5,9
+	.half	.L241-.L240
+	.byte	3,1,1,5,39,9
+	.half	.L242-.L241
+	.byte	1,5,37,9
+	.half	.L243-.L242
+	.byte	1,5,5,9
+	.half	.L244-.L243
+	.byte	3,1,1,5,37,9
+	.half	.L245-.L244
+	.byte	1,5,35,9
+	.half	.L246-.L245
+	.byte	1,5,5,9
+	.half	.L247-.L246
+	.byte	3,1,1,5,39,9
+	.half	.L248-.L247
+	.byte	1,5,37,9
+	.half	.L249-.L248
+	.byte	1,5,5,9
+	.half	.L250-.L249
+	.byte	3,1,1,5,40,9
+	.half	.L251-.L250
+	.byte	1,5,38,9
+	.half	.L252-.L251
+	.byte	1,5,5,9
+	.half	.L253-.L252
+	.byte	3,1,1,5,35,9
+	.half	.L254-.L253
+	.byte	1,5,33,9
+	.half	.L255-.L254
+	.byte	1,5,5,9
+	.half	.L256-.L255
+	.byte	3,1,1,5,40,9
+	.half	.L257-.L256
+	.byte	1,5,38,9
+	.half	.L258-.L257
+	.byte	1,5,5,9
+	.half	.L259-.L258
+	.byte	3,1,1,5,40,9
+	.half	.L260-.L259
+	.byte	1,5,38,9
+	.half	.L261-.L260
+	.byte	1,5,5,9
+	.half	.L262-.L261
+	.byte	3,1,1,5,41,9
+	.half	.L263-.L262
 	.byte	1,5,39,9
+	.half	.L264-.L263
+	.byte	1,5,5,9
+	.half	.L265-.L264
+	.byte	3,1,1,5,39,9
+	.half	.L266-.L265
+	.byte	1,5,37,9
+	.half	.L267-.L266
+	.byte	1,5,14,9
+	.half	.L268-.L267
+	.byte	3,2,1,5,5,9
+	.half	.L269-.L268
+	.byte	1,5,9,7,9
+	.half	.L270-.L269
+	.byte	3,2,1,5,41,9
+	.half	.L271-.L270
+	.byte	1,5,39,9
+	.half	.L272-.L271
+	.byte	1,5,9,9
+	.half	.L273-.L272
+	.byte	3,1,1,5,43,9
+	.half	.L274-.L273
+	.byte	1,5,41,9
+	.half	.L275-.L274
+	.byte	1,5,43,9
+	.half	.L276-.L275
+	.byte	3,127,1,5,18,9
+	.half	.L7-.L276
+	.byte	3,5,1,5,12,9
+	.half	.L151-.L7
+	.byte	1,5,9,9
+	.half	.L277-.L151
+	.byte	1,5,13,7,9
+	.half	.L278-.L277
+	.byte	3,2,1,5,45,9
+	.half	.L279-.L278
+	.byte	1,5,43,9
+	.half	.L280-.L279
+	.byte	1,5,13,9
+	.half	.L281-.L280
+	.byte	3,1,1,5,47,9
+	.half	.L282-.L281
+	.byte	1,5,45,9
+	.half	.L283-.L282
+	.byte	1,5,47,9
+	.half	.L284-.L283
+	.byte	3,127,1,5,13,9
+	.half	.L9-.L284
+	.byte	3,5,1,5,45,9
+	.half	.L285-.L9
+	.byte	1,5,43,9
+	.half	.L286-.L285
+	.byte	1,5,5,9
+	.half	.L8-.L286
+	.byte	3,4,1,5,39,9
+	.half	.L287-.L8
+	.byte	1,5,37,9
+	.half	.L288-.L287
+	.byte	1,5,5,9
+	.half	.L289-.L288
+	.byte	3,1,1,5,39,9
+	.half	.L290-.L289
+	.byte	1,5,37,9
+	.half	.L291-.L290
+	.byte	1,5,5,9
+	.half	.L292-.L291
+	.byte	3,1,1,5,39,9
+	.half	.L293-.L292
+	.byte	1,5,37,9
+	.half	.L294-.L293
+	.byte	1,5,5,9
+	.half	.L295-.L294
+	.byte	3,1,1,5,39,9
+	.half	.L296-.L295
+	.byte	1,5,37,9
+	.half	.L297-.L296
+	.byte	1,5,5,9
+	.half	.L298-.L297
+	.byte	3,1,1,5,39,9
+	.half	.L299-.L298
+	.byte	1,5,37,9
+	.half	.L300-.L299
+	.byte	1,5,5,9
+	.half	.L301-.L300
+	.byte	3,1,1,5,39,9
+	.half	.L302-.L301
+	.byte	1,5,37,9
+	.half	.L303-.L302
+	.byte	1,5,15,9
+	.half	.L304-.L303
+	.byte	3,2,1,5,8,9
+	.half	.L305-.L304
+	.byte	1,5,14,7,9
+	.half	.L306-.L305
+	.byte	3,1,1,5,65,9
+	.half	.L307-.L306
+	.byte	1,5,62,9
+	.half	.L308-.L307
+	.byte	1,5,9,7,9
+	.half	.L309-.L308
+	.byte	3,2,1,5,50,9
+	.half	.L310-.L309
+	.byte	1,5,48,9
+	.half	.L311-.L310
+	.byte	1,5,52,9
+	.half	.L312-.L311
+	.byte	1,5,5,9
+	.half	.L13-.L312
+	.byte	3,7,1,5,35,9
+	.half	.L313-.L13
+	.byte	1,5,33,9
+	.half	.L314-.L313
+	.byte	1,5,5,9
+	.half	.L315-.L314
+	.byte	3,1,1,5,35,9
+	.half	.L316-.L315
+	.byte	1,5,33,9
+	.half	.L317-.L316
+	.byte	1,5,5,9
+	.half	.L318-.L317
+	.byte	3,1,1,5,36,9
+	.half	.L319-.L318
+	.byte	1,5,34,9
+	.half	.L320-.L319
+	.byte	1,5,5,9
+	.half	.L321-.L320
+	.byte	3,1,1,5,36,9
+	.half	.L322-.L321
+	.byte	1,5,34,9
+	.half	.L323-.L322
+	.byte	1,5,5,9
+	.half	.L324-.L323
+	.byte	3,1,1,5,28,9
+	.half	.L325-.L324
+	.byte	1,5,26,9
+	.half	.L326-.L325
+	.byte	1,5,5,9
+	.half	.L327-.L326
+	.byte	3,1,1,5,33,9
+	.half	.L328-.L327
+	.byte	1,5,31,9
+	.half	.L329-.L328
+	.byte	1,5,5,9
+	.half	.L330-.L329
+	.byte	3,1,1,5,34,9
+	.half	.L331-.L330
+	.byte	1,5,32,9
+	.half	.L332-.L331
+	.byte	1,5,5,9
+	.half	.L333-.L332
+	.byte	3,1,1,5,33,9
+	.half	.L334-.L333
+	.byte	1,5,31,9
+	.half	.L335-.L334
+	.byte	1,5,5,9
+	.half	.L336-.L335
+	.byte	3,1,1,5,34,9
+	.half	.L337-.L336
+	.byte	1,5,32,9
+	.half	.L338-.L337
+	.byte	1,5,5,9
+	.half	.L339-.L338
+	.byte	3,1,1,5,26,9
+	.half	.L340-.L339
+	.byte	1,5,24,9
+	.half	.L341-.L340
+	.byte	1,5,5,9
+	.half	.L342-.L341
+	.byte	3,1,1,5,38,9
+	.half	.L343-.L342
+	.byte	1,5,36,9
+	.half	.L344-.L343
+	.byte	1,5,5,9
+	.half	.L345-.L344
+	.byte	3,1,1,5,40,9
+	.half	.L346-.L345
+	.byte	1,5,38,9
+	.half	.L347-.L346
+	.byte	1,5,15,9
+	.half	.L348-.L347
+	.byte	3,2,1,5,9,9
+	.half	.L349-.L348
+	.byte	1,5,51,7,9
+	.half	.L350-.L349
+	.byte	1,5,40,9
+	.half	.L351-.L350
+	.byte	1,5,48,9
+	.half	.L352-.L351
+	.byte	1,5,83,7,9
+	.half	.L353-.L352
+	.byte	1,5,80,9
+	.half	.L354-.L353
+	.byte	1,5,9,7,9
+	.half	.L355-.L354
+	.byte	3,2,1,5,34,9
+	.half	.L356-.L355
+	.byte	1,5,32,9
+	.half	.L357-.L356
+	.byte	1,5,9,9
+	.half	.L358-.L357
+	.byte	3,1,1,5,35,9
+	.half	.L359-.L358
+	.byte	1,5,33,9
+	.half	.L360-.L359
+	.byte	1,5,36,9
+	.half	.L361-.L360
+	.byte	3,127,1,5,5,9
+	.half	.L17-.L361
+	.byte	3,8,1,5,43,9
+	.half	.L362-.L17
+	.byte	1,5,41,9
+	.half	.L363-.L362
+	.byte	1,5,5,9
+	.half	.L364-.L363
+	.byte	3,1,1,5,39,9
+	.half	.L365-.L364
+	.byte	1,5,37,9
+	.half	.L366-.L365
+	.byte	1,5,5,9
+	.half	.L367-.L366
+	.byte	3,1,1,5,49,9
+	.half	.L368-.L367
+	.byte	1,5,47,9
+	.half	.L369-.L368
+	.byte	1,5,5,9
+	.half	.L370-.L369
+	.byte	3,1,1,5,39,9
+	.half	.L371-.L370
+	.byte	1,5,37,9
+	.half	.L372-.L371
+	.byte	1,5,5,9
+	.half	.L373-.L372
+	.byte	3,1,1,5,45,9
+	.half	.L374-.L373
+	.byte	1,5,43,9
+	.half	.L375-.L374
+	.byte	1,5,5,9
+	.half	.L376-.L375
+	.byte	3,1,1,5,38,9
+	.half	.L377-.L376
+	.byte	1,5,36,9
+	.half	.L378-.L377
+	.byte	1,5,5,9
+	.half	.L379-.L378
+	.byte	3,1,1,5,33,9
+	.half	.L380-.L379
+	.byte	1,5,31,9
+	.half	.L381-.L380
+	.byte	1,5,5,9
+	.half	.L382-.L381
+	.byte	3,1,1,5,45,9
+	.half	.L383-.L382
+	.byte	1,5,43,9
 	.half	.L384-.L383
-	.byte	3,123,1,5,5,9
-	.half	.L14-.L384
-	.byte	3,12,1,5,31,9
-	.half	.L385-.L14
-	.byte	1,5,1,9
+	.byte	1,5,5,9
+	.half	.L385-.L384
+	.byte	3,1,1,5,33,9
 	.half	.L386-.L385
+	.byte	1,5,31,9
+	.half	.L387-.L386
+	.byte	1,5,23,9
+	.half	.L388-.L387
+	.byte	3,2,1,5,26,9
+	.half	.L389-.L388
+	.byte	3,1,1,5,5,9
+	.half	.L390-.L389
+	.byte	3,2,1,5,31,9
+	.half	.L391-.L390
+	.byte	1,5,1,9
+	.half	.L392-.L391
 	.byte	3,1,1,7,9
-	.half	.L54-.L386
+	.half	.L54-.L392
 	.byte	0,1,1
-.L370:
-	.sdecl	'.debug_ranges',debug,cluster('Bsw_Wrapper_MainFunction_C1')
+.L160:
+	.sdecl	'.debug_ranges',debug,cluster('Bsw_Wrapper_MainFunction_C0')
 	.sect	'.debug_ranges'
 .L53:
-	.word	-1,.L38,0,.L54-.L38,0,0
-	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainFunction_C2')
+	.word	-1,.L41,0,.L54-.L41,0,0
+	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainFunction_C1')
 	.sect	'.debug_info'
 .L55:
 	.word	301
@@ -35426,138 +35456,149 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L58,.L57
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'Bsw_Wrapper_MainFunction_C2',0,1,150,1,6,1,1,1
-	.word	.L40,.L117,.L39
+	.byte	'Bsw_Wrapper_MainFunction_C1',0,1,149,1,6,1,1,1
+	.word	.L43,.L121,.L42
 	.byte	4
-	.word	.L40,.L117
+	.word	.L43,.L121
 	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainFunction_C2')
+	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainFunction_C1')
 	.sect	'.debug_abbrev'
 .L56:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('Bsw_Wrapper_MainFunction_C2')
+	.sdecl	'.debug_line',debug,cluster('Bsw_Wrapper_MainFunction_C1')
 	.sect	'.debug_line'
 .L57:
-	.word	.L388-.L387
-.L387:
+	.word	.L394-.L393
+.L393:
 	.half	3
-	.word	.L390-.L389
-.L389:
+	.word	.L396-.L395
+.L395:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0,0,0,0,0
-.L390:
+.L396:
 	.byte	5,23,7,0,5,2
-	.word	.L40
-	.byte	3,151,1,1,5,24,9
-	.half	.L391-.L40
+	.word	.L43
+	.byte	3,150,1,1,5,24,9
+	.half	.L397-.L43
 	.byte	3,2,1,5,5,9
-	.half	.L392-.L391
-	.byte	1,5,37,7,9
-	.half	.L393-.L392
-	.byte	3,2,1,5,30,9
-	.half	.L394-.L393
-	.byte	3,1,1,5,32,9
-	.half	.L395-.L394
-	.byte	3,1,1,5,31,9
-	.half	.L396-.L395
-	.byte	3,1,1,5,9,9
-	.half	.L397-.L396
-	.byte	3,1,1,5,30,9
 	.half	.L398-.L397
-	.byte	1,5,28,9
+	.byte	1,5,37,7,9
 	.half	.L399-.L398
-	.byte	1,5,29,9
+	.byte	3,2,1,5,30,9
 	.half	.L400-.L399
-	.byte	3,1,1,5,42,9
+	.byte	3,1,1,5,32,9
 	.half	.L401-.L400
-	.byte	1,5,39,9
+	.byte	3,1,1,5,31,9
 	.half	.L402-.L401
-	.byte	3,123,1,5,5,9
-	.half	.L16-.L402
-	.byte	3,12,1,5,31,9
-	.half	.L403-.L16
-	.byte	1,5,1,9
+	.byte	3,1,1,5,9,9
+	.half	.L403-.L402
+	.byte	3,1,1,5,30,9
 	.half	.L404-.L403
+	.byte	1,5,28,9
+	.half	.L405-.L404
+	.byte	1,5,29,9
+	.half	.L406-.L405
+	.byte	3,1,1,5,42,9
+	.half	.L407-.L406
+	.byte	1,5,39,9
+	.half	.L408-.L407
+	.byte	3,123,1,5,5,9
+	.half	.L19-.L408
+	.byte	3,12,1,5,31,9
+	.half	.L409-.L19
+	.byte	1,5,1,9
+	.half	.L410-.L409
 	.byte	3,1,1,7,9
-	.half	.L59-.L404
+	.half	.L59-.L410
 	.byte	0,1,1
-.L388:
-	.sdecl	'.debug_ranges',debug,cluster('Bsw_Wrapper_MainFunction_C2')
+.L394:
+	.sdecl	'.debug_ranges',debug,cluster('Bsw_Wrapper_MainFunction_C1')
 	.sect	'.debug_ranges'
 .L58:
-	.word	-1,.L40,0,.L59-.L40,0,0
-	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN_core0')
+	.word	-1,.L43,0,.L59-.L43,0,0
+	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainFunction_C2')
 	.sect	'.debug_info'
 .L60:
-	.word	404
+	.word	301
 	.half	3
 	.word	.L61
 	.byte	4,1
-	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0\\portmacro_core0.h',0
+	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L63,.L62
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'vPortSetCCPN_core0',0,1,162,1,54,1,1
-	.word	.L18,.L118,.L17
+	.byte	'Bsw_Wrapper_MainFunction_C2',0,1,169,1,6,1,1,1
+	.word	.L45,.L122,.L44
 	.byte	4
-	.byte	'ucCCPN',0,1,162,1,88
-	.word	.L112,.L119
-	.byte	5
-	.word	.L18,.L118
+	.word	.L45,.L122
 	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN_core0')
+	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainFunction_C2')
 	.sect	'.debug_abbrev'
 .L61:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN_core0')
+	.byte	39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('Bsw_Wrapper_MainFunction_C2')
 	.sect	'.debug_line'
 .L62:
-	.word	.L406-.L405
-.L405:
+	.word	.L412-.L411
+.L411:
 	.half	3
-	.word	.L408-.L407
-.L407:
-	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
-	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0',0
-	.byte	0
-	.byte	'portmacro_core0.h',0,1,0,0,0
-.L408:
-	.byte	5,14,7,0,5,2
-	.word	.L18
-	.byte	3,163,1,1,5,40,9
-	.half	.L409-.L18
-	.byte	3,1,1,5,62,9
-	.half	.L410-.L409
-	.byte	1,5,105,9
-	.half	.L411-.L410
-	.byte	1,5,94,9
-	.half	.L412-.L411
-	.byte	1,5,11,9
-	.half	.L413-.L412
-	.byte	1,5,13,9
-	.half	.L414-.L413
-	.byte	3,1,1,5,1,9
-	.half	.L415-.L414
+	.word	.L414-.L413
+.L413:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0,0,0,0,0
+.L414:
+	.byte	5,23,7,0,5,2
+	.word	.L45
+	.byte	3,170,1,1,5,24,9
+	.half	.L415-.L45
+	.byte	3,2,1,5,5,9
+	.half	.L416-.L415
+	.byte	1,5,37,7,9
+	.half	.L417-.L416
+	.byte	3,2,1,5,30,9
+	.half	.L418-.L417
+	.byte	3,1,1,5,32,9
+	.half	.L419-.L418
+	.byte	3,1,1,5,31,9
+	.half	.L420-.L419
+	.byte	3,1,1,5,9,9
+	.half	.L421-.L420
+	.byte	3,1,1,5,30,9
+	.half	.L422-.L421
+	.byte	1,5,28,9
+	.half	.L423-.L422
+	.byte	1,5,29,9
+	.half	.L424-.L423
+	.byte	3,1,1,5,42,9
+	.half	.L425-.L424
+	.byte	1,5,39,9
+	.half	.L426-.L425
+	.byte	3,123,1,5,5,9
+	.half	.L21-.L426
+	.byte	3,12,1,5,31,9
+	.half	.L427-.L21
+	.byte	1,5,1,9
+	.half	.L428-.L427
 	.byte	3,1,1,7,9
-	.half	.L64-.L415
+	.half	.L64-.L428
 	.byte	0,1,1
-.L406:
-	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN_core0')
+.L412:
+	.sdecl	'.debug_ranges',debug,cluster('Bsw_Wrapper_MainFunction_C2')
 	.sect	'.debug_ranges'
 .L63:
-	.word	-1,.L18,0,.L64-.L18,0,0
-	.sdecl	'.debug_info',debug,cluster('vPortSetICR_core0')
+	.word	-1,.L45,0,.L64-.L45,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN_core0')
 	.sect	'.debug_info'
 .L65:
-	.word	402
+	.word	404
 	.half	3
 	.word	.L66
 	.byte	4,1
@@ -35567,54 +35608,62 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L68,.L67
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'vPortSetICR_core0',0,1,169,1,54,1,1
-	.word	.L20,.L120,.L19
+	.byte	'vPortSetCCPN_core0',0,1,162,1,54,1,1
+	.word	.L23,.L123,.L22
 	.byte	4
-	.byte	'ulICR',0,1,169,1,93
-	.word	.L121,.L122
+	.byte	'ucCCPN',0,1,162,1,88
+	.word	.L117,.L124
 	.byte	5
-	.word	.L20,.L120
+	.word	.L23,.L123
 	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR_core0')
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN_core0')
 	.sect	'.debug_abbrev'
 .L66:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('vPortSetICR_core0')
+	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN_core0')
 	.sect	'.debug_line'
 .L67:
-	.word	.L417-.L416
-.L416:
+	.word	.L430-.L429
+.L429:
 	.half	3
-	.word	.L419-.L418
-.L418:
+	.word	.L432-.L431
+.L431:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0',0
 	.byte	0
 	.byte	'portmacro_core0.h',0,1,0,0,0
-.L419:
+.L432:
 	.byte	5,14,7,0,5,2
-	.word	.L20
-	.byte	3,170,1,1,5,11,9
-	.half	.L420-.L20
-	.byte	3,1,1,5,13,9
-	.half	.L421-.L420
+	.word	.L23
+	.byte	3,163,1,1,5,40,9
+	.half	.L433-.L23
+	.byte	3,1,1,5,62,9
+	.half	.L434-.L433
+	.byte	1,5,105,9
+	.half	.L435-.L434
+	.byte	1,5,94,9
+	.half	.L436-.L435
+	.byte	1,5,11,9
+	.half	.L437-.L436
+	.byte	1,5,13,9
+	.half	.L438-.L437
 	.byte	3,1,1,5,1,9
-	.half	.L422-.L421
+	.half	.L439-.L438
 	.byte	3,1,1,7,9
-	.half	.L69-.L422
+	.half	.L69-.L439
 	.byte	0,1,1
-.L417:
-	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR_core0')
+.L430:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN_core0')
 	.sect	'.debug_ranges'
 .L68:
-	.word	-1,.L20,0,.L69-.L20,0,0
-	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN_core0')
+	.word	-1,.L23,0,.L69-.L23,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetICR_core0')
 	.sect	'.debug_info'
 .L70:
-	.word	427
+	.word	402
 	.half	3
 	.word	.L71
 	.byte	4,1
@@ -35624,135 +35673,127 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L73,.L72
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'xPortSetCCPN_core0',0,1,176,1,69
-	.word	.L121
-	.byte	1,1
-	.word	.L22,.L123,.L21
+	.byte	'vPortSetICR_core0',0,1,169,1,54,1,1
+	.word	.L25,.L125,.L24
 	.byte	4
-	.byte	'ucCCPN',0,1,176,1,103
-	.word	.L112,.L124
+	.byte	'ulICR',0,1,169,1,93
+	.word	.L126,.L127
 	.byte	5
-	.word	.L22,.L123
-	.byte	6
-	.byte	'xICR',0,1,178,1,14
-	.word	.L125,.L126
-	.byte	0,0,0
-	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN_core0')
+	.word	.L25,.L125
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR_core0')
 	.sect	'.debug_abbrev'
 .L71:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
-	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
-	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
-	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN_core0')
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetICR_core0')
 	.sect	'.debug_line'
 .L72:
-	.word	.L424-.L423
-.L423:
+	.word	.L441-.L440
+.L440:
 	.half	3
-	.word	.L426-.L425
-.L425:
+	.word	.L443-.L442
+.L442:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0',0
 	.byte	0
 	.byte	'portmacro_core0.h',0,1,0,0,0
-.L426:
+.L443:
 	.byte	5,14,7,0,5,2
-	.word	.L22
-	.byte	3,179,1,1,5,18,9
-	.half	.L427-.L22
-	.byte	3,1,1,5,39,9
-	.half	.L142-.L427
-	.byte	3,1,1,5,82,9
-	.half	.L428-.L142
-	.byte	1,5,71,9
-	.half	.L429-.L428
-	.byte	1,5,11,9
-	.half	.L430-.L429
-	.byte	1,5,13,9
-	.half	.L431-.L430
-	.byte	3,1,1,5,5,9
-	.half	.L432-.L431
+	.word	.L25
+	.byte	3,170,1,1,5,11,9
+	.half	.L444-.L25
+	.byte	3,1,1,5,13,9
+	.half	.L445-.L444
 	.byte	3,1,1,5,1,9
-	.half	.L2-.L432
+	.half	.L446-.L445
 	.byte	3,1,1,7,9
-	.half	.L74-.L2
+	.half	.L74-.L446
 	.byte	0,1,1
-.L424:
-	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN_core0')
+.L441:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR_core0')
 	.sect	'.debug_ranges'
 .L73:
-	.word	-1,.L22,0,.L74-.L22,0,0
-	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN_core1')
+	.word	-1,.L25,0,.L74-.L25,0,0
+	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN_core0')
 	.sect	'.debug_info'
 .L75:
-	.word	404
+	.word	427
 	.half	3
 	.word	.L76
 	.byte	4,1
-	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1\\portmacro_core1.h',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0\\portmacro_core0.h',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L78,.L77
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'vPortSetCCPN_core1',0,1,162,1,54,1,1
-	.word	.L24,.L127,.L23
+	.byte	'xPortSetCCPN_core0',0,1,176,1,69
+	.word	.L126
+	.byte	1,1
+	.word	.L27,.L128,.L26
 	.byte	4
-	.byte	'ucCCPN',0,1,162,1,88
-	.word	.L112,.L128
+	.byte	'ucCCPN',0,1,176,1,103
+	.word	.L117,.L129
 	.byte	5
-	.word	.L24,.L127
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN_core1')
+	.word	.L27,.L128
+	.byte	6
+	.byte	'xICR',0,1,178,1,14
+	.word	.L130,.L131
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN_core0')
 	.sect	'.debug_abbrev'
 .L76:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN_core1')
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN_core0')
 	.sect	'.debug_line'
 .L77:
-	.word	.L434-.L433
-.L433:
+	.word	.L448-.L447
+.L447:
 	.half	3
-	.word	.L436-.L435
-.L435:
+	.word	.L450-.L449
+.L449:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
-	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core0',0
 	.byte	0
-	.byte	'portmacro_core1.h',0,1,0,0,0
-.L436:
+	.byte	'portmacro_core0.h',0,1,0,0,0
+.L450:
 	.byte	5,14,7,0,5,2
-	.word	.L24
-	.byte	3,163,1,1,5,40,9
-	.half	.L437-.L24
-	.byte	3,1,1,5,62,9
-	.half	.L438-.L437
-	.byte	1,5,105,9
-	.half	.L439-.L438
-	.byte	1,5,94,9
-	.half	.L440-.L439
+	.word	.L27
+	.byte	3,179,1,1,5,18,9
+	.half	.L451-.L27
+	.byte	3,1,1,5,39,9
+	.half	.L147-.L451
+	.byte	3,1,1,5,82,9
+	.half	.L452-.L147
+	.byte	1,5,71,9
+	.half	.L453-.L452
 	.byte	1,5,11,9
-	.half	.L441-.L440
+	.half	.L454-.L453
 	.byte	1,5,13,9
-	.half	.L442-.L441
+	.half	.L455-.L454
+	.byte	3,1,1,5,5,9
+	.half	.L456-.L455
 	.byte	3,1,1,5,1,9
-	.half	.L443-.L442
+	.half	.L2-.L456
 	.byte	3,1,1,7,9
-	.half	.L79-.L443
+	.half	.L79-.L2
 	.byte	0,1,1
-.L434:
-	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN_core1')
+.L448:
+	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN_core0')
 	.sect	'.debug_ranges'
 .L78:
-	.word	-1,.L24,0,.L79-.L24,0,0
-	.sdecl	'.debug_info',debug,cluster('vPortSetICR_core1')
+	.word	-1,.L27,0,.L79-.L27,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN_core1')
 	.sect	'.debug_info'
 .L80:
-	.word	402
+	.word	404
 	.half	3
 	.word	.L81
 	.byte	4,1
@@ -35762,54 +35803,62 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L83,.L82
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'vPortSetICR_core1',0,1,169,1,54,1,1
-	.word	.L26,.L129,.L25
+	.byte	'vPortSetCCPN_core1',0,1,162,1,54,1,1
+	.word	.L29,.L132,.L28
 	.byte	4
-	.byte	'ulICR',0,1,169,1,93
-	.word	.L121,.L130
+	.byte	'ucCCPN',0,1,162,1,88
+	.word	.L117,.L133
 	.byte	5
-	.word	.L26,.L129
+	.word	.L29,.L132
 	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR_core1')
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN_core1')
 	.sect	'.debug_abbrev'
 .L81:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('vPortSetICR_core1')
+	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN_core1')
 	.sect	'.debug_line'
 .L82:
-	.word	.L445-.L444
-.L444:
+	.word	.L458-.L457
+.L457:
 	.half	3
-	.word	.L447-.L446
-.L446:
+	.word	.L460-.L459
+.L459:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1',0
 	.byte	0
 	.byte	'portmacro_core1.h',0,1,0,0,0
-.L447:
+.L460:
 	.byte	5,14,7,0,5,2
-	.word	.L26
-	.byte	3,170,1,1,5,11,9
-	.half	.L448-.L26
-	.byte	3,1,1,5,13,9
-	.half	.L449-.L448
+	.word	.L29
+	.byte	3,163,1,1,5,40,9
+	.half	.L461-.L29
+	.byte	3,1,1,5,62,9
+	.half	.L462-.L461
+	.byte	1,5,105,9
+	.half	.L463-.L462
+	.byte	1,5,94,9
+	.half	.L464-.L463
+	.byte	1,5,11,9
+	.half	.L465-.L464
+	.byte	1,5,13,9
+	.half	.L466-.L465
 	.byte	3,1,1,5,1,9
-	.half	.L450-.L449
+	.half	.L467-.L466
 	.byte	3,1,1,7,9
-	.half	.L84-.L450
+	.half	.L84-.L467
 	.byte	0,1,1
-.L445:
-	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR_core1')
+.L458:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN_core1')
 	.sect	'.debug_ranges'
 .L83:
-	.word	-1,.L26,0,.L84-.L26,0,0
-	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN_core1')
+	.word	-1,.L29,0,.L84-.L29,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetICR_core1')
 	.sect	'.debug_info'
 .L85:
-	.word	427
+	.word	402
 	.half	3
 	.word	.L86
 	.byte	4,1
@@ -35819,135 +35868,127 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L88,.L87
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'xPortSetCCPN_core1',0,1,176,1,69
-	.word	.L121
-	.byte	1,1
-	.word	.L28,.L131,.L27
+	.byte	'vPortSetICR_core1',0,1,169,1,54,1,1
+	.word	.L31,.L134,.L30
 	.byte	4
-	.byte	'ucCCPN',0,1,176,1,103
-	.word	.L112,.L132
+	.byte	'ulICR',0,1,169,1,93
+	.word	.L126,.L135
 	.byte	5
-	.word	.L28,.L131
-	.byte	6
-	.byte	'xICR',0,1,178,1,14
-	.word	.L125,.L133
-	.byte	0,0,0
-	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN_core1')
+	.word	.L31,.L134
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR_core1')
 	.sect	'.debug_abbrev'
 .L86:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
-	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
-	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
-	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN_core1')
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetICR_core1')
 	.sect	'.debug_line'
 .L87:
-	.word	.L452-.L451
-.L451:
+	.word	.L469-.L468
+.L468:
 	.half	3
-	.word	.L454-.L453
-.L453:
+	.word	.L471-.L470
+.L470:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1',0
 	.byte	0
 	.byte	'portmacro_core1.h',0,1,0,0,0
-.L454:
+.L471:
 	.byte	5,14,7,0,5,2
-	.word	.L28
-	.byte	3,179,1,1,5,18,9
-	.half	.L455-.L28
-	.byte	3,1,1,5,39,9
-	.half	.L143-.L455
-	.byte	3,1,1,5,82,9
-	.half	.L456-.L143
-	.byte	1,5,71,9
-	.half	.L457-.L456
-	.byte	1,5,11,9
-	.half	.L458-.L457
-	.byte	1,5,13,9
-	.half	.L459-.L458
-	.byte	3,1,1,5,5,9
-	.half	.L460-.L459
+	.word	.L31
+	.byte	3,170,1,1,5,11,9
+	.half	.L472-.L31
+	.byte	3,1,1,5,13,9
+	.half	.L473-.L472
 	.byte	3,1,1,5,1,9
-	.half	.L3-.L460
+	.half	.L474-.L473
 	.byte	3,1,1,7,9
-	.half	.L89-.L3
+	.half	.L89-.L474
 	.byte	0,1,1
-.L452:
-	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN_core1')
+.L469:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR_core1')
 	.sect	'.debug_ranges'
 .L88:
-	.word	-1,.L28,0,.L89-.L28,0,0
-	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN_core2')
+	.word	-1,.L31,0,.L89-.L31,0,0
+	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN_core1')
 	.sect	'.debug_info'
 .L90:
-	.word	404
+	.word	427
 	.half	3
 	.word	.L91
 	.byte	4,1
-	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2\\portmacro_core2.h',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1\\portmacro_core1.h',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L93,.L92
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'vPortSetCCPN_core2',0,1,162,1,54,1,1
-	.word	.L30,.L134,.L29
+	.byte	'xPortSetCCPN_core1',0,1,176,1,69
+	.word	.L126
+	.byte	1,1
+	.word	.L33,.L136,.L32
 	.byte	4
-	.byte	'ucCCPN',0,1,162,1,88
-	.word	.L112,.L135
+	.byte	'ucCCPN',0,1,176,1,103
+	.word	.L117,.L137
 	.byte	5
-	.word	.L30,.L134
-	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN_core2')
+	.word	.L33,.L136
+	.byte	6
+	.byte	'xICR',0,1,178,1,14
+	.word	.L130,.L138
+	.byte	0,0,0
+	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN_core1')
 	.sect	'.debug_abbrev'
 .L91:
-	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
-	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN_core2')
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
+	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
+	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN_core1')
 	.sect	'.debug_line'
 .L92:
-	.word	.L462-.L461
-.L461:
+	.word	.L476-.L475
+.L475:
 	.half	3
-	.word	.L464-.L463
-.L463:
+	.word	.L478-.L477
+.L477:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
-	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2',0
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core1',0
 	.byte	0
-	.byte	'portmacro_core2.h',0,1,0,0,0
-.L464:
+	.byte	'portmacro_core1.h',0,1,0,0,0
+.L478:
 	.byte	5,14,7,0,5,2
-	.word	.L30
-	.byte	3,163,1,1,5,40,9
-	.half	.L465-.L30
-	.byte	3,1,1,5,62,9
-	.half	.L466-.L465
-	.byte	1,5,105,9
-	.half	.L467-.L466
-	.byte	1,5,94,9
-	.half	.L468-.L467
+	.word	.L33
+	.byte	3,179,1,1,5,18,9
+	.half	.L479-.L33
+	.byte	3,1,1,5,39,9
+	.half	.L148-.L479
+	.byte	3,1,1,5,82,9
+	.half	.L480-.L148
+	.byte	1,5,71,9
+	.half	.L481-.L480
 	.byte	1,5,11,9
-	.half	.L469-.L468
+	.half	.L482-.L481
 	.byte	1,5,13,9
-	.half	.L470-.L469
+	.half	.L483-.L482
+	.byte	3,1,1,5,5,9
+	.half	.L484-.L483
 	.byte	3,1,1,5,1,9
-	.half	.L471-.L470
+	.half	.L3-.L484
 	.byte	3,1,1,7,9
-	.half	.L94-.L471
+	.half	.L94-.L3
 	.byte	0,1,1
-.L462:
-	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN_core2')
+.L476:
+	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN_core1')
 	.sect	'.debug_ranges'
 .L93:
-	.word	-1,.L30,0,.L94-.L30,0,0
-	.sdecl	'.debug_info',debug,cluster('vPortSetICR_core2')
+	.word	-1,.L33,0,.L94-.L33,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN_core2')
 	.sect	'.debug_info'
 .L95:
-	.word	402
+	.word	404
 	.half	3
 	.word	.L96
 	.byte	4,1
@@ -35957,54 +35998,62 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L98,.L97
 	.byte	2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'vPortSetICR_core2',0,1,169,1,54,1,1
-	.word	.L32,.L136,.L31
+	.byte	'vPortSetCCPN_core2',0,1,162,1,54,1,1
+	.word	.L35,.L139,.L34
 	.byte	4
-	.byte	'ulICR',0,1,169,1,93
-	.word	.L121,.L137
+	.byte	'ucCCPN',0,1,162,1,88
+	.word	.L117,.L140
 	.byte	5
-	.word	.L32,.L136
+	.word	.L35,.L139
 	.byte	0,0
-	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR_core2')
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetCCPN_core2')
 	.sect	'.debug_abbrev'
 .L96:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
 	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
-	.sdecl	'.debug_line',debug,cluster('vPortSetICR_core2')
+	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN_core2')
 	.sect	'.debug_line'
 .L97:
-	.word	.L473-.L472
-.L472:
+	.word	.L486-.L485
+.L485:
 	.half	3
-	.word	.L475-.L474
-.L474:
+	.word	.L488-.L487
+.L487:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2',0
 	.byte	0
 	.byte	'portmacro_core2.h',0,1,0,0,0
-.L475:
+.L488:
 	.byte	5,14,7,0,5,2
-	.word	.L32
-	.byte	3,170,1,1,5,11,9
-	.half	.L476-.L32
-	.byte	3,1,1,5,13,9
-	.half	.L477-.L476
+	.word	.L35
+	.byte	3,163,1,1,5,40,9
+	.half	.L489-.L35
+	.byte	3,1,1,5,62,9
+	.half	.L490-.L489
+	.byte	1,5,105,9
+	.half	.L491-.L490
+	.byte	1,5,94,9
+	.half	.L492-.L491
+	.byte	1,5,11,9
+	.half	.L493-.L492
+	.byte	1,5,13,9
+	.half	.L494-.L493
 	.byte	3,1,1,5,1,9
-	.half	.L478-.L477
+	.half	.L495-.L494
 	.byte	3,1,1,7,9
-	.half	.L99-.L478
+	.half	.L99-.L495
 	.byte	0,1,1
-.L473:
-	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR_core2')
+.L486:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN_core2')
 	.sect	'.debug_ranges'
 .L98:
-	.word	-1,.L32,0,.L99-.L32,0,0
-	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN_core2')
+	.word	-1,.L35,0,.L99-.L35,0,0
+	.sdecl	'.debug_info',debug,cluster('vPortSetICR_core2')
 	.sect	'.debug_info'
 .L100:
-	.word	427
+	.word	402
 	.half	3
 	.word	.L101
 	.byte	4,1
@@ -36014,284 +36063,341 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.byte	12,1
 	.word	.L103,.L102
 	.byte	2
-	.word	.L41
+	.word	.L46
+	.byte	3
+	.byte	'vPortSetICR_core2',0,1,169,1,54,1,1
+	.word	.L37,.L141,.L36
+	.byte	4
+	.byte	'ulICR',0,1,169,1,93
+	.word	.L126,.L142
+	.byte	5
+	.word	.L37,.L141
+	.byte	0,0
+	.sdecl	'.debug_abbrev',debug,cluster('vPortSetICR_core2')
+	.sect	'.debug_abbrev'
+.L101:
+	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54,15
+	.byte	39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.sdecl	'.debug_line',debug,cluster('vPortSetICR_core2')
+	.sect	'.debug_line'
+.L102:
+	.word	.L497-.L496
+.L496:
+	.half	3
+	.word	.L499-.L498
+.L498:
+	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2',0
+	.byte	0
+	.byte	'portmacro_core2.h',0,1,0,0,0
+.L499:
+	.byte	5,14,7,0,5,2
+	.word	.L37
+	.byte	3,170,1,1,5,11,9
+	.half	.L500-.L37
+	.byte	3,1,1,5,13,9
+	.half	.L501-.L500
+	.byte	3,1,1,5,1,9
+	.half	.L502-.L501
+	.byte	3,1,1,7,9
+	.half	.L104-.L502
+	.byte	0,1,1
+.L497:
+	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR_core2')
+	.sect	'.debug_ranges'
+.L103:
+	.word	-1,.L37,0,.L104-.L37,0,0
+	.sdecl	'.debug_info',debug,cluster('xPortSetCCPN_core2')
+	.sect	'.debug_info'
+.L105:
+	.word	427
+	.half	3
+	.word	.L106
+	.byte	4,1
+	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2\\portmacro_core2.h',0
+	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
+	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
+	.byte	12,1
+	.word	.L108,.L107
+	.byte	2
+	.word	.L46
 	.byte	3
 	.byte	'xPortSetCCPN_core2',0,1,176,1,69
-	.word	.L121
+	.word	.L126
 	.byte	1,1
-	.word	.L34,.L138,.L33
+	.word	.L39,.L143,.L38
 	.byte	4
 	.byte	'ucCCPN',0,1,176,1,103
-	.word	.L112,.L139
+	.word	.L117,.L144
 	.byte	5
-	.word	.L34,.L138
+	.word	.L39,.L143
 	.byte	6
 	.byte	'xICR',0,1,178,1,14
-	.word	.L125,.L140
+	.word	.L130,.L145
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('xPortSetCCPN_core2')
 	.sect	'.debug_abbrev'
-.L101:
+.L106:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73,16
 	.byte	54,15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3
 	.byte	8,58,15,59,15,57,15,73,16,2,6,0,0,0
 	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN_core2')
 	.sect	'.debug_line'
-.L102:
-	.word	.L480-.L479
-.L479:
+.L107:
+	.word	.L504-.L503
+.L503:
 	.half	3
-	.word	.L482-.L481
-.L481:
+	.word	.L506-.L505
+.L505:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\Daniel\\\\Desktop\\\\FG9326M8GTEI4\\\\DEC - Drive Electronic Controller\\\\DEC_APP\\\\BSW\\\\Sys\\\\FreeRTOS_core2',0
 	.byte	0
 	.byte	'portmacro_core2.h',0,1,0,0,0
-.L482:
+.L506:
 	.byte	5,14,7,0,5,2
-	.word	.L34
+	.word	.L39
 	.byte	3,179,1,1,5,18,9
-	.half	.L483-.L34
+	.half	.L507-.L39
 	.byte	3,1,1,5,39,9
-	.half	.L144-.L483
+	.half	.L149-.L507
 	.byte	3,1,1,5,82,9
-	.half	.L484-.L144
+	.half	.L508-.L149
 	.byte	1,5,71,9
-	.half	.L485-.L484
+	.half	.L509-.L508
 	.byte	1,5,11,9
-	.half	.L486-.L485
+	.half	.L510-.L509
 	.byte	1,5,13,9
-	.half	.L487-.L486
+	.half	.L511-.L510
 	.byte	3,1,1,5,5,9
-	.half	.L488-.L487
+	.half	.L512-.L511
 	.byte	3,1,1,5,1,9
-	.half	.L4-.L488
+	.half	.L4-.L512
 	.byte	3,1,1,7,9
-	.half	.L104-.L4
+	.half	.L109-.L4
 	.byte	0,1,1
-.L480:
+.L504:
 	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN_core2')
 	.sect	'.debug_ranges'
-.L103:
-	.word	-1,.L34,0,.L104-.L34,0,0
+.L108:
+	.word	-1,.L39,0,.L109-.L39,0,0
 	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainCounter_C0')
 	.sect	'.debug_info'
-.L105:
+.L110:
 	.word	276
 	.half	3
-	.word	.L106
+	.word	.L111
 	.byte	4,1
 	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'Bsw_Wrapper_MainCounter_C0',0,25,21,15
-	.word	.L141
+	.byte	'Bsw_Wrapper_MainCounter_C0',0,25,22,15
+	.word	.L146
 	.byte	5,3
 	.word	Bsw_Wrapper_MainCounter_C0
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainCounter_C0')
 	.sect	'.debug_abbrev'
-.L106:
+.L111:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
 	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainCounter_C1')
 	.sect	'.debug_info'
-.L107:
+.L112:
 	.word	276
 	.half	3
-	.word	.L108
+	.word	.L113
 	.byte	4,1
 	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'Bsw_Wrapper_MainCounter_C1',0,25,22,15
-	.word	.L141
+	.byte	'Bsw_Wrapper_MainCounter_C1',0,25,23,15
+	.word	.L146
 	.byte	5,3
 	.word	Bsw_Wrapper_MainCounter_C1
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainCounter_C1')
 	.sect	'.debug_abbrev'
-.L108:
+.L113:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
 	.sdecl	'.debug_info',debug,cluster('Bsw_Wrapper_MainCounter_C2')
 	.sect	'.debug_info'
-.L109:
+.L114:
 	.word	276
 	.half	3
-	.word	.L110
+	.word	.L115
 	.byte	4,1
 	.byte	'../BSW/Sys/Bsw_Wrapper/Bsw_Wrapper.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
 	.byte	'C:\\Users\\Daniel\\Desktop\\FG9326M8GTEI4\\DEC - Drive Electronic Controller\\DEC_APP\\TriCore Debug (TASKING)\\',0
 	.byte	12,1,2
-	.word	.L41
+	.word	.L46
 	.byte	3
-	.byte	'Bsw_Wrapper_MainCounter_C2',0,25,23,15
-	.word	.L141
+	.byte	'Bsw_Wrapper_MainCounter_C2',0,25,24,15
+	.word	.L146
 	.byte	5,3
 	.word	Bsw_Wrapper_MainCounter_C2
 	.byte	0
 	.sdecl	'.debug_abbrev',debug,cluster('Bsw_Wrapper_MainCounter_C2')
 	.sect	'.debug_abbrev'
-.L110:
+.L115:
 	.byte	1,17,1,3,8,37,8,27,8,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0,0,0
 	.sdecl	'.debug_loc',debug,cluster('Bsw_Wrapper_MainFunction_C0')
 	.sect	'.debug_loc'
-.L35:
-	.word	-1,.L36,0,.L111-.L36
+.L40:
+	.word	-1,.L41,0,.L116-.L41
 	.half	2
 	.byte	138,0
 	.word	0,0
-.L115:
-	.word	-1,.L36,.L145-.L36,.L146-.L36
+.L120:
+	.word	-1,.L41,.L150-.L41,.L151-.L41
 	.half	5
 	.byte	144,32,157,32,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('Bsw_Wrapper_MainFunction_C1')
 	.sect	'.debug_loc'
-.L37:
-	.word	-1,.L38,0,.L116-.L38
+.L42:
+	.word	-1,.L43,0,.L121-.L43
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('Bsw_Wrapper_MainFunction_C2')
 	.sect	'.debug_loc'
-.L39:
-	.word	-1,.L40,0,.L117-.L40
+.L44:
+	.word	-1,.L45,0,.L122-.L45
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetCCPN_core0')
 	.sect	'.debug_loc'
-.L119:
-	.word	-1,.L18,0,.L118-.L18
+.L124:
+	.word	-1,.L23,0,.L123-.L23
 	.half	1
 	.byte	84
 	.word	0,0
-.L17:
-	.word	-1,.L18,0,.L118-.L18
+.L22:
+	.word	-1,.L23,0,.L123-.L23
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetCCPN_core1')
 	.sect	'.debug_loc'
-.L128:
-	.word	-1,.L24,0,.L127-.L24
+.L133:
+	.word	-1,.L29,0,.L132-.L29
 	.half	1
 	.byte	84
 	.word	0,0
-.L23:
-	.word	-1,.L24,0,.L127-.L24
+.L28:
+	.word	-1,.L29,0,.L132-.L29
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetCCPN_core2')
 	.sect	'.debug_loc'
-.L135:
-	.word	-1,.L30,0,.L134-.L30
+.L140:
+	.word	-1,.L35,0,.L139-.L35
 	.half	1
 	.byte	84
 	.word	0,0
-.L29:
-	.word	-1,.L30,0,.L134-.L30
+.L34:
+	.word	-1,.L35,0,.L139-.L35
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetICR_core0')
 	.sect	'.debug_loc'
-.L122:
-	.word	-1,.L20,0,.L120-.L20
+.L127:
+	.word	-1,.L25,0,.L125-.L25
 	.half	1
 	.byte	84
 	.word	0,0
-.L19:
-	.word	-1,.L20,0,.L120-.L20
+.L24:
+	.word	-1,.L25,0,.L125-.L25
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetICR_core1')
 	.sect	'.debug_loc'
-.L130:
-	.word	-1,.L26,0,.L129-.L26
+.L135:
+	.word	-1,.L31,0,.L134-.L31
 	.half	1
 	.byte	84
 	.word	0,0
-.L25:
-	.word	-1,.L26,0,.L129-.L26
+.L30:
+	.word	-1,.L31,0,.L134-.L31
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('vPortSetICR_core2')
 	.sect	'.debug_loc'
-.L137:
-	.word	-1,.L32,0,.L136-.L32
+.L142:
+	.word	-1,.L37,0,.L141-.L37
 	.half	1
 	.byte	84
 	.word	0,0
-.L31:
-	.word	-1,.L32,0,.L136-.L32
+.L36:
+	.word	-1,.L37,0,.L141-.L37
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xPortSetCCPN_core0')
 	.sect	'.debug_loc'
-.L124:
-	.word	-1,.L22,0,.L123-.L22
+.L129:
+	.word	-1,.L27,0,.L128-.L27
 	.half	1
 	.byte	84
 	.word	0,0
-.L126:
-	.word	-1,.L22,.L142-.L22,.L123-.L22
+.L131:
+	.word	-1,.L27,.L147-.L27,.L128-.L27
 	.half	1
 	.byte	82
 	.word	0,0
-.L21:
-	.word	-1,.L22,0,.L123-.L22
+.L26:
+	.word	-1,.L27,0,.L128-.L27
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xPortSetCCPN_core1')
 	.sect	'.debug_loc'
-.L132:
-	.word	-1,.L28,0,.L131-.L28
+.L137:
+	.word	-1,.L33,0,.L136-.L33
 	.half	1
 	.byte	84
 	.word	0,0
-.L133:
-	.word	-1,.L28,.L143-.L28,.L131-.L28
+.L138:
+	.word	-1,.L33,.L148-.L33,.L136-.L33
 	.half	1
 	.byte	82
 	.word	0,0
-.L27:
-	.word	-1,.L28,0,.L131-.L28
+.L32:
+	.word	-1,.L33,0,.L136-.L33
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_loc',debug,cluster('xPortSetCCPN_core2')
 	.sect	'.debug_loc'
-.L139:
-	.word	-1,.L34,0,.L138-.L34
+.L144:
+	.word	-1,.L39,0,.L143-.L39
 	.half	1
 	.byte	84
 	.word	0,0
-.L140:
-	.word	-1,.L34,.L144-.L34,.L138-.L34
+.L145:
+	.word	-1,.L39,.L149-.L39,.L143-.L39
 	.half	1
 	.byte	82
 	.word	0,0
-.L33:
-	.word	-1,.L34,0,.L138-.L34
+.L38:
+	.word	-1,.L39,0,.L143-.L39
 	.half	2
 	.byte	138,0
 	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L489:
+.L513:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
@@ -36299,58 +36405,58 @@ _999002_pIven_CanTx_DecMcuError:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN_core0')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L18,.L118-.L18
+	.word	.L513,.L23,.L123-.L23
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('vPortSetICR_core0')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L20,.L120-.L20
+	.word	.L513,.L25,.L125-.L25
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN_core0')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L22,.L123-.L22
+	.word	.L513,.L27,.L128-.L27
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN_core1')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L24,.L127-.L24
+	.word	.L513,.L29,.L132-.L29
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('vPortSetICR_core1')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L26,.L129-.L26
+	.word	.L513,.L31,.L134-.L31
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN_core1')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L28,.L131-.L28
+	.word	.L513,.L33,.L136-.L33
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN_core2')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L30,.L134-.L30
+	.word	.L513,.L35,.L139-.L35
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('vPortSetICR_core2')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L32,.L136-.L32
+	.word	.L513,.L37,.L141-.L37
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN_core2')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L489,.L34,.L138-.L34
+	.word	.L513,.L39,.L143-.L39
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('Bsw_Wrapper_MainFunction_C0')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L489,.L36,.L111-.L36
+	.word	.L513,.L41,.L116-.L41
 	.sdecl	'.debug_frame',debug,cluster('Bsw_Wrapper_MainFunction_C1')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L489,.L38,.L116-.L38
+	.word	.L513,.L43,.L121-.L43
 	.sdecl	'.debug_frame',debug,cluster('Bsw_Wrapper_MainFunction_C2')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L489,.L40,.L117-.L40
+	.word	.L513,.L45,.L122-.L45
 	; Module end

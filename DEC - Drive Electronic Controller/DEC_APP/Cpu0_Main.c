@@ -24,6 +24,8 @@ extern void Ssw_StartCores(void);
 
 void core0_main(void)
 {
+    IfxScuWdt_disableCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
+    IfxScuWdt_disableSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
     runSafeAppSwStartup();
     /* Start core 1 and core 2. */
     Ssw_StartCores();
@@ -35,6 +37,7 @@ void core0_main(void)
     gpio_init_pins();
     can0_node0_init_pins();
     Can_Init();
+    Dem_PreInit();
     Nvm_ReadAll();
     Dem_Init();
     Dcm_Init();

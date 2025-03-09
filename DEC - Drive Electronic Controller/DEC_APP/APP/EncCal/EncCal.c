@@ -1,6 +1,7 @@
 #include "Nvm.h"
 #include "EncCal.h"
 #include "string.h"
+#include "Dem.h"
 
 EncCal_VOData_t EncCal_VODataComplete_Default =
 {
@@ -124,7 +125,7 @@ EncCal_VOData_t EncCal_VODataComplete;
 uint32 EncCal_Calibration_Buffer[ENCCAL_CALIBRATION_SIZE];
 uint32 EncCal_Calibration_DefaultBuffer[ENCCAL_CALIBRATION_SIZE] =
 {
-        2u,1u,1u,10u,80u,80u,2u,5000u,35u,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf
+        50u,30u,15u,10u,80u,0xFFFFU,2u,5000u,35u,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf
 };
 uint32 EncCal_Calibration_ColDet_StableDistanceCm                               = 0u;
 uint32 EncCal_Calibration_ColDet_TtcWarn                                        = 0u;
@@ -205,9 +206,9 @@ uint8 EncCal_CalibrationValidity(void)
 {
     static uint8 retVal = 0u;
 
-    if(2u > EncCal_Calibration_ColDet_StableDistanceCm || 3u < EncCal_Calibration_ColDet_StableDistanceCm)
+    if(45u > EncCal_Calibration_ColDet_StableDistanceCm || 55u < EncCal_Calibration_ColDet_StableDistanceCm)
     {
-        EncCal_Calibration_ColDet_StableDistanceCm = 2u;
+        EncCal_Calibration_ColDet_StableDistanceCm = 50u;
         retVal = 1u;
     }
     else
@@ -215,9 +216,9 @@ uint8 EncCal_CalibrationValidity(void)
         /* Do nothing. */
     }
 
-    if(1u > EncCal_Calibration_ColDet_TtcWarn || 3u < EncCal_Calibration_ColDet_TtcWarn)
+    if(10u > EncCal_Calibration_ColDet_TtcWarn || 20u < EncCal_Calibration_ColDet_TtcWarn)
     {
-        EncCal_Calibration_ColDet_TtcWarn = 1u;
+        EncCal_Calibration_ColDet_TtcWarn = 15;
         retVal = 1u;
     }
     else
@@ -225,9 +226,9 @@ uint8 EncCal_CalibrationValidity(void)
         /* Do nothing. */
     }
 
-    if(1u > EncCal_Calibration_ColDet_TtcBrake || 2u < EncCal_Calibration_ColDet_TtcBrake)
+    if(25u > EncCal_Calibration_ColDet_TtcBrake || 35u < EncCal_Calibration_ColDet_TtcBrake)
     {
-        EncCal_Calibration_ColDet_TtcBrake = 1u;
+        EncCal_Calibration_ColDet_TtcBrake = 30u;
         retVal = 1u;
     }
     else
@@ -255,9 +256,9 @@ uint8 EncCal_CalibrationValidity(void)
         /* Do nothing. */
     }
 
-    if(80u > EncCal_Calibration_ColDet_InvalidDist)
+    if(0xFFFFU != EncCal_Calibration_ColDet_InvalidDist)
     {
-        EncCal_Calibration_ColDet_InvalidDist = 80u;
+        EncCal_Calibration_ColDet_InvalidDist = 0xFFFFU;
         retVal = 1u;
     }
     else
@@ -574,7 +575,45 @@ void EncCal_WriteCoding(uint32* data)
 
 void EncCal_MainFunction(void)
 {
+    static uint8 firstCall = 0u;
+
     EncCal_InitCalibration();
     EncCal_InitCoding();
     EncCal_InitVoData();
+
+    if(0u == firstCall)
+    {
+        if(1u == EncCal_CalibrationValidResult)
+        {
+            Dem_SetDtc(ENCCAL_INVALID_CALIBRATION, 1u, 34u);
+        }
+        else
+        {
+            Dem_SetDtc(ENCCAL_INVALID_CALIBRATION, 0u, 34u);
+        }
+
+        if(1u == EncCal_CodingValidResult)
+        {
+            Dem_SetDtc(ENCCAL_INVALID_CODING, 1u, 33u);
+        }
+        else
+        {
+            Dem_SetDtc(ENCCAL_INVALID_CODING, 0u, 33u);
+        }
+
+        if(1u == EncCal_IsVoDataValid)
+        {
+            Dem_SetDtc(ENCCAL_INVALID_VODATA, 1u, 35u);
+        }
+        else
+        {
+            Dem_SetDtc(ENCCAL_INVALID_VODATA, 0u, 35u);
+        }
+
+        firstCall = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }

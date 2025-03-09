@@ -5,7 +5,6 @@ fceCrc g_fceCrc2; /* Structure to store information */
 
 void Crc_Init(void);
 uint32 Crc_Calculate(uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
-uint32 Crc_CalculateFCECRC(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue);
 /* Initialization of FCE
  * This function is called from main during initialization phase
  */
@@ -24,14 +23,6 @@ void Crc_Init(void)
     crcConfig.fceChannelId = IfxDma_ChannelId_1;
     IfxFce_Crc_initCrc(&g_fceCrc2.fceCrc, &crcConfig);
 }
-/* Start the calculation
- * This function is called from main, background loop
- */
-uint32 Crc_CalculateFCECRC(const uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue)
-{
-    //g_fceCrc2.crc_result = Crc_Calculate(crcData, crcDataLength, crcStartValue);
-    return g_fceCrc2.crc_result;
-}
 
 uint32 Crc_Calculate(uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue)
 {
@@ -39,9 +30,7 @@ uint32 Crc_Calculate(uint32 *crcData, uint16 crcDataLength, uint32 crcStartValue
 
     IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
-
     crcRet =  IfxFce_Crc_calculateCrc(&g_fceCrc2.fceCrc, crcData, crcDataLength, crcStartValue);
-
     IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
 

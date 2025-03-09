@@ -33,7 +33,6 @@ void SysMgr_GoSleep(void);
 void SysMgr_GoSleep(void)
 {
     Ifx_P *portSfr0 = IfxPort_getAddress(0);
-    //IfxScuCcu_Config clockConfig;
 
     serviceCpuWatchdog();
     serviceSafetyWatchdog();
@@ -59,9 +58,6 @@ void SysMgr_GoSleep(void)
     SRC_BCUSPB.B.SRE = 0u;
     SRC_MTUDONE.B.SRE = 0U;
     SRC_PMSDTS.B.SRE = 0U;
-//    SRC_SMU0.B.SRE = 0U;
-//    SRC_SMU1.B.SRE = 0U;
-//    SRC_SMU2.B.SRE = 0U;
     SRC_CAN_CAN0_INT1.B.CLRR = 1U;
     SRC_CAN_CAN0_INT2.B.CLRR = 1U;
     SRC_CAN_CAN0_INT3.B.CLRR = 1U;
@@ -76,9 +72,6 @@ void SysMgr_GoSleep(void)
     SRC_BCUSPB.B.CLRR = 1U;
     SRC_MTUDONE.B.CLRR = 1U;
     SRC_PMSDTS.B.CLRR = 1U;
-//    SRC_SMU0.B.CLRR = 1U;
-//    SRC_SMU1.B.CLRR = 1U;
-//    SRC_SMU2.B.CLRR = 1U;
     
     IfxPort_setPinMode(portSfr0, 0, IfxPort_Mode_inputNoPullDevice);
     IfxPort_setPinPadDriver(portSfr0, 0, IfxPort_PadDriver_cmosAutomotiveSpeed1);
@@ -86,8 +79,6 @@ void SysMgr_GoSleep(void)
     IfxPort_setPinMode(portSfr0, 1, IfxPort_Mode_inputNoPullDevice);
     IfxPort_setPinPadDriver(portSfr0, 1, IfxPort_PadDriver_cmosAutomotiveSpeed1);
     IfxPort_resetPinControllerSelection(portSfr0, 1);
-    //IfxScuCcu_initConfig(&clockConfig);
-    //IfxScuCcu_switchToBackupClock(&clockConfig);
     IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
     SysMgr_Core0OnIdlePowerDown = 1u;
@@ -146,13 +137,13 @@ void SysMgr_EcuStateMachine(void)
             }
             else
             {
-                SysMgr_RunCounter = 0u;
+                SysMgr_RunCounter = 12000u;
             }
             break;
         case SYSMGR_POSTRUN:
-            //Nvm_WriteAll();
+            Nvm_WriteAll();
 
-            if(0u == SysMgr_NoBusActivity)// &&2u == Nvm_WriteAllFinished)
+            if(0u == SysMgr_NoBusActivity && 2u == Nvm_WriteAllFinished)
             {
                 SysMgr_EcuState = SYSMGR_SLEEP;
             }

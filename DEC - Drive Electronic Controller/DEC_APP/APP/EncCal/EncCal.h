@@ -1,7 +1,7 @@
 #include "Ifx_Types.h"
 
-#define ENCCAL_CODING_SIZE      16U//21U
-#define ENCCAL_CALIBRATION_SIZE 16U//9U//36U // alwayes needs to be % 8 == 0
+#define ENCCAL_CODING_SIZE      16U
+#define ENCCAL_CALIBRATION_SIZE 16U
 
 typedef struct
 {
@@ -22,33 +22,6 @@ typedef struct
 extern EncCal_VOData_t EncCal_VODataComplete;
 extern uint32 EncCal_Calibration_Buffer[ENCCAL_CALIBRATION_SIZE];
 extern uint32 EncCal_Calibration_DefaultBuffer[ENCCAL_CALIBRATION_SIZE];
-//extern uint32 EncCal_Calibration_EPSCtrlPID_Kp                                        ;
-//extern uint32 EncCal_Calibration_EPSCtrlPID_Ki                                        ;
-//extern uint32 EncCal_Calibration_EPSCtrlPID_Kd                                        ;
-//extern uint32 EncCal_Calibration_EPSCtrlPID_IntegralWindupMin                         ;
-//extern uint32 EncCal_Calibration_EPSCtrlPID_IntegralWindupMax                         ;
-//extern uint32 EncCal_Calibration_EPSCtrl_SteeringToMotorRatio                         ;
-//extern uint32 EncCal_Calibration_EPSCtrl_InitialSetpoint                              ;
-//extern uint32 EncCal_Calibration_EPSCtrl_Bts7960PwmFrequencyMax                       ;
-//extern uint32 EncCal_Calibration_EPSCtrl_DcMotorStartupDutyCycle                      ;
-//extern uint32 EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMin                         ;
-//extern uint32 EncCal_Calibration_EPSCtrl_PIDtoPwmDutyCycleMax                         ;
-//extern uint32 EncCal_Calibration_EPSCtrl_OverloadCurrentDcMotor                       ;
-//extern uint32 EncCal_Calibration_EPSCtrl_DriveModeSportModeFactorForAssistance        ;
-//extern uint32 EncCal_Calibration_EPSCtrl_DriveModeComfortModeFactorForAssistance      ;
-//extern uint32 EncCal_Calibration_EPSCtrl_DriveModeEcoModeFactorForAssistance          ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_PwmFrequenceyMax                          ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_DutyCycleToRpmFactor                      ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_PwmDutyCycleMin                           ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_PwmDutyCycleMax                           ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_DriveModeSportModeFactorForAcceleration   ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_DriveModeComfortModeFactorForAcceleration ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_DriveModeEcoModeFactorForAcceleration     ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_FactorForAcceleration                     ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_FactorForDecceleration                    ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_DutyCycleStep                             ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_WheelCircumference                        ;
-//extern uint32 EncCal_Calibration_EMotorCtrl_OutputSensorActiveValue                   ;
 extern uint32 EncCal_Calibration_ColDet_StableDistanceCm                              ;
 extern uint32 EncCal_Calibration_ColDet_TtcWarn                                       ;
 extern uint32 EncCal_Calibration_ColDet_TtcBrake                                      ;
@@ -75,11 +48,6 @@ extern uint8 EncCal_Coding_L5;
 extern uint8 EncCal_Coding_L6;
 extern uint8 EncCal_Coding_L7;
 extern uint8 EncCal_Coding_L8;
-//extern uint8 EncCal_Coding_EpsCtrl;
-//extern uint8 EncCal_Coding_EMotorCtrl;
-//extern uint8 EncCal_Coding_EpsMotorFan;
-//extern uint8 EncCal_Coding_SpeedSen;
-//extern uint8 EncCal_Coding_TSen;
 extern uint8 EncCal_Coding_ConsumerCutoffTime;
 extern uint8 EncCal_CodingValidResult;
 extern uint8 EncCal_CalibrationValidResult;

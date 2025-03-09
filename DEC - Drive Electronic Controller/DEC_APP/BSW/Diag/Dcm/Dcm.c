@@ -135,24 +135,24 @@ void Dcm_MainFunction(void)
                     Dcm_FuncPtr[Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].masterDiagReqId]((uint8*)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData);
                     Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId,
                             (uint8*)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData,
-                            (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0] & 0x0F));
+                            (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0u] & 0x0F));
                 }
             }
             else
             {
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0] = 0x03u;
-                localData = (uint8)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1];
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1] = 0x7Fu;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[2] = localData;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[3] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[4] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[5] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[6] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[7] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0u] = 0x03u;
+                localData = (uint8)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1u];
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1u] = 0x7Fu;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] = localData;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[3u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[4u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[5u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[6u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[7u] = 0u;
 
                 Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId,
                         (uint8*)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData,
-                        (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0] & 0x0F));
+                        (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0u] & 0x0F));
             }
         }
         else
@@ -166,7 +166,7 @@ void Dcm_MainFunction(void)
                     /* Get ISO-TP message in ISO-TP buffer. */
                     Can_IsoTp_OnCanReceive((uint16)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId,
                             (uint8*)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData,
-                            (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0] & 0x0F));
+                            (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0u] & 0x0F));
                     /* Process ISO-TP request. */
                     Can_IsoTp_MainFunction();
                 }
@@ -178,24 +178,24 @@ void Dcm_MainFunction(void)
                     /* Even though it is not an ISO-TP frame, we have everything we need in the ISO-TP Send Frame function call. */
                     Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId,
                             (uint8*)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData,
-                            (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0] & 0x0F));
+                            (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0u] & 0x0F));
                 }
             }
             else
             {
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0] = 0x03u;
-                localData = (uint8)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1];
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1] = 0x7Fu;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[2] = localData;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[3] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[4] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[5] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[6] = 0u;
-                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[7] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0u] = 0x03u;
+                localData = (uint8)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1u];
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[1u] = 0x7Fu;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[2u] = localData;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[3u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[4u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[5u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[6u] = 0u;
+                Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[7u] = 0u;
 
                 Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxMsg.messageId,
                         (uint8*)Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData,
-                        (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0] & 0x0F));
+                        (Dcm_Receive_DiagnosticMessageBuffer[Dcm_Rx_DiagBufCnt].diagnosticMessage.rxData[0u] & 0x0F));
             }
         }
         /* Clear this message. */

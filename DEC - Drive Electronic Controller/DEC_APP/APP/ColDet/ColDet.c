@@ -6,14 +6,11 @@
 #include <math.h>
 #include "time.h"
 #include "Dem.h"
-
-#define TIME_TO_COLLISION_WARN   2.0
-#define TIME_TO_COLLISION_BRAKE  1.0
-#define DISTANCE_STABLE_THRESHOLD_CM  1
+#include "EncCal.h"
 
 static uint32 ColDet_MainCounter = 0u;
 CollisionState ColDet_CanTx_CollisionState = COLLISION_SAFE;
-uint8 ColDet_CanTx_BrakeLevel = 0;  // current brake application level (as a percentage)=
+uint8 ColDet_CanTx_BrakeLevel = 0u;  
 uint8 ColDet_CanTx_IrSenStat = 0u;
 uint8 ColDet_CanRx_CalculatedSpeed = 0u;
 
@@ -21,20 +18,28 @@ void ColDet_MainFunction(void);
 
 void ColDet_MainFunction(void)
 {
-    // For simulation, define a max distance that indicates "no obstacle"
-    const uint32 NO_OBSTACLE_DISTANCE = 100000;  // 1000 m (just a large number)
-    // Variables to hold sensor readings
-    uint32 distanceCm = NO_OBSTACLE_DISTANCE;
-    uint32 lastDistanceCm = NO_OBSTACLE_DISTANCE;
-    double speed = 0.0;
-    double ttc = 0.0;
-    // 1. Read current sensor values
-    speed = ColDet_CanRx_CalculatedSpeed;         // current vehicle speed
-    distanceCm = IRSensorValue; // distance to obstacle from IR sensor
-    // 2. Filter sensor noise: ignore tiny fluctuations in distance
-    if (abs(distanceCm - lastDistanceCm) <= DISTANCE_STABLE_THRESHOLD_CM)
+    static float convStableDistanceCm = 0.0f;
+    static float convTtcWarn = 0.0f;
+    static float convTtcBrake = 0.0f;
+    uint32 distanceCm = EncCal_Calibration_ColDet_InvalidDist;
+    uint32 lastDistanceCm = EncCal_Calibration_ColDet_InvalidDist;
+    static double speed = 0.0f;
+    static double ttc = 0.0f;
+    static uint16 localCounter = 0u;
+    static bool objectDetected = 0u;
+    static uint32 cycleTimeTtcWarn = 0u;
+    static uint32 cycleTimeTtcBrake = 0u;
+
+    convStableDistanceCm = (float)EncCal_Calibration_ColDet_StableDistanceCm / 100.0f;
+    convTtcWarn = (float)EncCal_Calibration_ColDet_TtcWarn / 100.0f;
+    convTtcBrake  = (float)EncCal_Calibration_ColDet_TtcBrake / 100.0f;
+    speed = ColDet_CanRx_CalculatedSpeed;        
+    distanceCm = Ain_IRSensorValue;
+    cycleTimeTtcWarn = (EncCal_Calibration_ColDet_TtcWarn * 10u) / 5u;
+    cycleTimeTtcBrake = (EncCal_Calibration_ColDet_TtcBrake * 10u) / 5u;
+
+    if(abs(distanceCm - lastDistanceCm) <= convStableDistanceCm)
     {
-        // If the distance changed by 1 cm or less, treat it as essentially unchanged
         distanceCm = lastDistanceCm;
     }
     else
@@ -43,97 +48,238 @@ void ColDet_MainFunction(void)
     }
 
     lastDistanceCm = distanceCm;
-    // Determine if an obstacle is detected within sensor range
-    bool objectDetected = (distanceCm < NO_OBSTACLE_DISTANCE);
-    // 3. Calculate Time-to-Collision (TTC) if object is detected and car is moving
-    if (objectDetected && speed > 0.0)
+    objectDetected = (distanceCm < EncCal_Calibration_ColDet_InvalidDist);
+
+    if (objectDetected && speed > 0.0f)
     {
-        // Convert distance and speed to consistent units (e.g., meters and m/s) if needed
-        // Here assuming distanceCm is in cm and speed is in cm/s for simplicity
         ttc = distanceCm / speed;
     }
     else
     {
-        ttc = 9999;  // No collision imminent (no object or not moving)
+        ttc = 9999u; 
     }
-    // (These represent the distances at which TTC equals the thresholds)
-    // 5. State machine: decide state transitions and actions
+    
     switch (ColDet_CanTx_CollisionState)
     {
-        case COLLISION_SAFE:
-            if (objectDetected && ttc <= TIME_TO_COLLISION_BRAKE)
-            {
-                // Obstacle extremely close – immediate emergency brake
-                ColDet_CanTx_CollisionState = COLLISION_BRAKE;
-                ColDet_CanTx_BrakeLevel = 100;            // full braking
-                // (In a real system, also trigger audible/visual collision alert)
-            }
-            else if (objectDetected && ttc <= TIME_TO_COLLISION_WARN) {
-                // Obstacle within warning range – enter warning state
-                ColDet_CanTx_CollisionState = COLLISION_WARNING;
-                // Initialize gradual braking
-                ColDet_CanTx_BrakeLevel = 30;             // e.g., 30% brake to start slowing
-                // (Also perhaps trigger a warning light/sound for driver)
-            }
-            else
-            {
-                // No threat – stay in SAFE
-                ColDet_CanTx_CollisionState = COLLISION_SAFE;
-                ColDet_CanTx_BrakeLevel = 0;
-            }
+        default:
             break;
-
-        case COLLISION_WARNING:
-            if (!objectDetected || ttc > TIME_TO_COLLISION_WARN)
-            {
-                // Obstacle gone or now far away – go back to SAFE
-                ColDet_CanTx_CollisionState = COLLISION_SAFE;
-                ColDet_CanTx_BrakeLevel = 0;
-            }
-            else if (ttc <= TIME_TO_COLLISION_BRAKE)
-            {
-                // Situation worsened – switch to emergency brake
+        case COLLISION_ERROR:
+            ColDet_CanTx_BrakeLevel = 0u;
+            break;
+        case COLLISION_SAFE:
+            if (objectDetected && ttc <= convTtcBrake)
+            {                
                 ColDet_CanTx_CollisionState = COLLISION_BRAKE;
-                ColDet_CanTx_BrakeLevel = 100;
-            }
-            else
-            {
-                // Still in warning range – continue gradual braking
-                // Increase brake pressure stepwise but avoid harsh braking
-                if (ColDet_CanTx_BrakeLevel < 80)
-                {       // cap gradual braking at ~80%
-                    ColDet_CanTx_BrakeLevel += 10;        // ramp up brakes by 10% (adjust step as needed)
+
+                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                {
+                    if (100u > ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel += 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
                 }
                 else
                 {
                     /* Do nothing. */
                 }
-                // (The obstacle is still in front but not extremely close, so we are slowing down smoothly)
+
+            }
+            else if (objectDetected && ttc <= convTtcWarn)
+            {                
+                ColDet_CanTx_CollisionState = COLLISION_WARNING;
+
+                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                {
+                    if(0u < ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel -= 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+
+            }
+            else
+            {
+                ColDet_CanTx_CollisionState = COLLISION_SAFE;
+
+                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                {
+                    if(0u < ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel -= 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            break;
+
+        case COLLISION_WARNING:
+            if (!objectDetected || ttc > convTtcWarn)
+            {
+                ColDet_CanTx_CollisionState = COLLISION_SAFE;
+
+                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                {
+                    if(0u < ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel -= 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+
+            }
+            else if (ttc <= convTtcBrake)
+            {
+                ColDet_CanTx_CollisionState = COLLISION_BRAKE;
+
+                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                {
+                    if (100u > ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel += 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else
+            {
+                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                {
+                    if (80u > ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel += 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
             }
             break;
 
         case COLLISION_BRAKE:
-            if (!objectDetected || ttc > TIME_TO_COLLISION_WARN)
+            if (!objectDetected || ttc > convTtcWarn)
             {
-                // Obstacle cleared or moved far – return to SAFE
                 ColDet_CanTx_CollisionState = COLLISION_SAFE;
-                // Optionally, if the car is almost stopped, keep brake applied a moment to be sure
-                ColDet_CanTx_BrakeLevel = 0;
+
+                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                {
+                    if(0u < ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel -= 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+
             }
-            else if (ttc > TIME_TO_COLLISION_BRAKE && ttc <= TIME_TO_COLLISION_WARN)
+            else if (ttc > convTtcBrake && ttc <= convTtcWarn)
             {
-                // Obstacle still ahead but not an immediate collision (TTC improved to >1s)
                 ColDet_CanTx_CollisionState = COLLISION_WARNING;
-                // Rather than full release, maintain moderate braking as a precaution
-                ColDet_CanTx_BrakeLevel = 50;         // e.g., reduce braking to 50%
+
+                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                {
+                    if (50u > ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel += 10u;
+                    }
+                    else if(50u < ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel -= 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
             }
             else
             {
-                // Remain in emergency brake state (ttc still <= 1s)
                 ColDet_CanTx_CollisionState = COLLISION_BRAKE;
-                ColDet_CanTx_BrakeLevel = 100;
+
+                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                {
+                    if (100u > ColDet_CanTx_BrakeLevel)
+                    {
+                        ColDet_CanTx_BrakeLevel += 10u;
+                    }
+                    else
+                    {
+                        /* Do nothing. */
+                    }
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
             }
             break;
+    }
+
+    if(Ain_IRSensorValue == EncCal_Calibration_ColDet_InvalidDist)
+    {
+        localCounter++;
+
+        if(200u < localCounter)
+        {
+            Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 1u, 0u);
+            ColDet_CanTx_CollisionState = COLLISION_ERROR;
+            ColDet_CanTx_BrakeLevel = 0u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+    else
+    {
+        Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 0u, 0u);
     }
 
     ColDet_CanTx_IrSenStat = ColDet_CanTx_CollisionState;

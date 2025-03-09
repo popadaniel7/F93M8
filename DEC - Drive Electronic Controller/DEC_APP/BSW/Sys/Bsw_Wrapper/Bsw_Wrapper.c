@@ -17,6 +17,7 @@
 #include "DiagMaster.h"
 #include "McuSm.h"
 #include "SafetyKit_InternalWatchdogs.h"
+#include "EncCal.h"
 
 static uint32 Bsw_Wrapper_MainCounter_C0 = 0u;
 static uint32 Bsw_Wrapper_MainCounter_C1 = 0u;
@@ -71,7 +72,25 @@ void Bsw_Wrapper_MainFunction_C0(void)
     EnergyMgmt_CanRx_CurrentMeasured = ComMaster_RxSignal_TotalCurrentConsumption;
     EnergyMgmt_CanRx_CurrentMeasured2 = ComMaster_RxSignal_TotalCurrentConsumption2;
     ComMaster_TxSignal_CommandLoad1 = EnergyMgmt_CanTx_CommandLoad1;
-    ComMaster_TxSignal_CommandLoad2 = EnergyMgmt_CanTx_CommandLoad2;
+
+    if(2u == EncCal_Coding_DmuL)
+    {
+        EnergyMgmt_CanTx_CommandLoad2 = 0u;
+        ComMaster_TxSignal_CommandLoad2 = 0u;
+    }
+    else
+    {
+        if(8u == EnergyMgmt_CanTx_VehicleState)
+        {
+            EnergyMgmt_CanTx_CommandLoad2 = 1u;
+            ComMaster_TxSignal_CommandLoad2 = 1u;
+        }
+        else
+        {
+            EnergyMgmt_CanTx_CommandLoad2 = ComMaster_TxSignal_CommandLoad2;
+        }
+    }
+
     ComMaster_TxSignal_CommandLoad3 = EnergyMgmt_CanTx_CommandLoad3;
     ComMaster_TxSignal_CommandLoad4 = EnergyMgmt_CanTx_CommandLoad4;
     ComMaster_TxSignal_CommandLoad5 = EnergyMgmt_CanTx_CommandLoad5;
@@ -102,7 +121,7 @@ void Bsw_Wrapper_MainFunction_C0(void)
     Iven_CanRx_CurrentConsumption  = ComMaster_RxSignal_TotalCurrentConsumption;
     Iven_CanRx_MeasuredVoltageSupply = ComMaster_TxSignal_VBat;
 
-    if(0u != McuSm_LastResetReason && 0u == pIven_CanTx_DecMcuError)
+    if((0u != McuSm_LastResetReason && 0xEFEFU != McuSm_LastResetReason) && 0u == pIven_CanTx_DecMcuError)
     {
         Iven_CanTx_DecMcuError = 1u;
         pIven_CanTx_DecMcuError = 1u;

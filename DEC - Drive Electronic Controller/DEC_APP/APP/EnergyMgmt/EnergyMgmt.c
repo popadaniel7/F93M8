@@ -64,7 +64,7 @@ void EnergyMgmt_MainFunction(void)
     cutoffTime = EncCal_Coding_ConsumerCutoffTime * 60u * 1000u / 5u;
     totalCurrent = EnergyMgmt_CanRx_CurrentMeasured * 1000u + EnergyMgmt_CanRx_CurrentMeasured2 * 10u;
 
-    if((EncCal_Calibration_EnergyMgmt_UnderVoltageTh > EnergyMgmt_CanRx_VoltageMeasured) && (0u != EnergyMgmt_CanRx_VoltageMeasured) && debFlagExceeded)
+    if((EncCal_Calibration_EnergyMgmt_UnderVoltageTh > EnergyMgmt_CanRx_VoltageMeasured) && (0u != EnergyMgmt_CanRx_VoltageMeasured) && 1u == debFlagExceeded)
     {
         switchOffFlag2 = 1u;
         EnergyMgmt_CanTx_PowerSupplyReducedPerformance = 2u;
@@ -74,7 +74,7 @@ void EnergyMgmt_MainFunction(void)
         switchOffFlag2 = 0u;
     }
 
-    if(totalCurrent > (EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u) && debFlagExceeded)
+    if(totalCurrent > (EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u) && 1u == debFlagExceeded)
     {
         if(0u == timestamp2)
         {
@@ -95,7 +95,7 @@ void EnergyMgmt_MainFunction(void)
             switchOffFlag1 = 0u;
         }
     }
-    else if(totalCurrent < ((EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u) - 250u) && debFlagExceeded)
+    else if(totalCurrent < ((EncCal_Calibration_EnergyMgmt_MaxOutputCurrent / 2u) - 250u) && 1u == debFlagExceeded)
     {
         timestamp2 = 0u;
         switchOffFlag1 = 0u;
@@ -119,6 +119,7 @@ void EnergyMgmt_MainFunction(void)
     switch(EnergyMgmt_CanRx_IgnitionStatus)
     {
         case 0u:
+        case 253u:
             if(0u != pIgnState)
             {
                 timestamp3 = EnergyMgmt_MainCounter;
@@ -127,15 +128,7 @@ void EnergyMgmt_MainFunction(void)
             {
                 /* Do nothing. */
             }
-            
-            if(4000u < EnergyMgmt_MainCounter - timestamp3 && 0u != timestamp3)
-            {
-                EnergyMgmt_CanTx_CommandLoad2 = 0u;
-            }
-            else
-            {
-                /* Do nothing. */
-            }            
+
             EnergyMgmt_CanTx_CommandLoad4 = 0u;
             EnergyMgmt_CanTx_CommandLoad5 = 0u;
             EnergyMgmt_CanTx_CommandLoad6 = 0u;
@@ -143,6 +136,7 @@ void EnergyMgmt_MainFunction(void)
             EnergyMgmt_CanTx_CommandLoad8 = 0u;
             break;
         case 1u:
+        case 254u:
             if(2u == EncCal_Coding_DmuL)
             {
                 EnergyMgmt_CanTx_CommandLoad2 = 0u;
@@ -271,165 +265,172 @@ void EnergyMgmt_MainFunction(void)
         EnergyMgmt_CanTx_PowerSupplyReducedPerformance = 0u;
     }
 
-    if(((EnergyMgmt_CanTx_CommandLoad1 == 1u) && (EnergyMgmt_CanRx_LoadStatus1 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad1 == 0u) && (EnergyMgmt_CanRx_LoadStatus1 == 1u)))
+    if(EnergyMgmt_CanRx_IgnitionStatus != 0u)
     {
-        counter1++;
+        if(((EnergyMgmt_CanTx_CommandLoad1 == 1u) && (EnergyMgmt_CanRx_LoadStatus1 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad1 == 0u) && (EnergyMgmt_CanRx_LoadStatus1 == 1u)))
+        {
+            counter1++;
+        }
+        else
+        {
+            counter1 = 0u;
+        }
+
+        if(2000u <= counter1)
+        {
+            counter1 = 0u;
+
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
+
+        if(((EnergyMgmt_CanTx_CommandLoad2 == 1u) && (EnergyMgmt_CanRx_LoadStatus2 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad2 == 0u) && (EnergyMgmt_CanRx_LoadStatus2 == 1u)))
+        {
+            counter2++;
+        }
+        else
+        {
+            counter2 = 0u;
+        }
+
+        if(2000u <= counter2)
+        {
+            counter2 = 0u;
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
+
+        if(((EnergyMgmt_CanTx_CommandLoad3 == 1u) && (EnergyMgmt_CanRx_LoadStatus3 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad3 == 0u) && (EnergyMgmt_CanRx_LoadStatus3 == 1u)))
+        {
+            counter3++;
+        }
+        else
+        {
+            counter3 = 0u;
+        }
+
+        if(2000u <= counter3)
+        {
+            counter3 = 0u;
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
+
+        if(((EnergyMgmt_CanTx_CommandLoad4 == 1u) && (EnergyMgmt_CanRx_LoadStatus4 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad4 == 0u) && (EnergyMgmt_CanRx_LoadStatus4 == 1u)))
+        {
+            counter4++;
+        }
+        else
+        {
+            counter4 = 0u;
+        }
+
+        if(2000u <= counter4)
+        {
+            counter4 = 0u;
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
+
+        if(((EnergyMgmt_CanTx_CommandLoad5 == 1u) && (EnergyMgmt_CanRx_LoadStatus5 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad5 == 0u) && (EnergyMgmt_CanRx_LoadStatus5 == 1u)))
+        {
+            counter5++;
+        }
+        else
+        {
+            counter5 = 0u;
+        }
+
+        if(2000u <= counter5)
+        {
+            counter5 = 0u;
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
+
+        if(((EnergyMgmt_CanTx_CommandLoad6 == 1u) && (EnergyMgmt_CanRx_LoadStatus6 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad6 == 0u) && (EnergyMgmt_CanRx_LoadStatus6 == 1u)))
+        {
+            counter6++;
+        }
+        else
+        {
+            counter6 = 0u;
+        }
+
+        if(2000u <= counter6)
+        {
+            counter6 = 0u;
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
+
+        if(((EnergyMgmt_CanTx_CommandLoad7 == 1u) && (EnergyMgmt_CanRx_LoadStatus7 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad7 == 0u) && (EnergyMgmt_CanRx_LoadStatus7 == 1u)))
+        {
+            counter7++;
+        }
+        else
+        {
+            counter7 = 0u;
+        }
+
+        if(2000u <= counter7)
+        {
+            counter7 = 0u;
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
+
+        if(((EnergyMgmt_CanTx_CommandLoad8 == 1u) && (EnergyMgmt_CanRx_LoadStatus8 == 0u)) ||
+                ((EnergyMgmt_CanTx_CommandLoad8 == 0u) && (EnergyMgmt_CanRx_LoadStatus8 == 1u)))
+        {
+            counter8++;
+        }
+        else
+        {
+            counter8 = 0u;
+        }
+
+        if(2000u <= counter8)
+        {
+            counter8 = 0u;
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
+        }
+        else
+        {
+            Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        }
     }
     else
     {
-        counter1 = 0u;
-    }
-
-    if(2000u <= counter1)
-    {
-        counter1 = 0u;
-
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
-    }
-
-    if(((EnergyMgmt_CanTx_CommandLoad2 == 1u) && (EnergyMgmt_CanRx_LoadStatus2 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad2 == 0u) && (EnergyMgmt_CanRx_LoadStatus2 == 1u)))
-    {
-        counter2++;
-    }
-    else
-    {
-        counter2 = 0u;
-    }
-
-    if(2000u <= counter2)
-    {
-        counter2 = 0u;
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
-    }
-
-    if(((EnergyMgmt_CanTx_CommandLoad3 == 1u) && (EnergyMgmt_CanRx_LoadStatus3 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad3 == 0u) && (EnergyMgmt_CanRx_LoadStatus3 == 1u)))
-    {
-        counter3++;
-    }
-    else
-    {
-        counter3 = 0u;
-    }
-
-    if(2000u <= counter3)
-    {
-        counter3 = 0u;
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
-    }
-
-    if(((EnergyMgmt_CanTx_CommandLoad4 == 1u) && (EnergyMgmt_CanRx_LoadStatus4 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad4 == 0u) && (EnergyMgmt_CanRx_LoadStatus4 == 1u)))
-    {
-        counter4++;
-    }
-    else
-    {
-        counter4 = 0u;
-    }
-
-    if(2000u <= counter4)
-    {
-        counter4 = 0u;
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
-    }
-
-    if(((EnergyMgmt_CanTx_CommandLoad5 == 1u) && (EnergyMgmt_CanRx_LoadStatus5 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad5 == 0u) && (EnergyMgmt_CanRx_LoadStatus5 == 1u)))
-    {
-        counter5++;
-    }
-    else
-    {
-        counter5 = 0u;
-    }
-
-    if(2000u <= counter5)
-    {
-        counter5 = 0u;
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
-    }
-
-    if(((EnergyMgmt_CanTx_CommandLoad6 == 1u) && (EnergyMgmt_CanRx_LoadStatus6 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad6 == 0u) && (EnergyMgmt_CanRx_LoadStatus6 == 1u)))
-    {
-        counter6++;
-    }
-    else
-    {
-        counter6 = 0u;
-    }
-
-    if(2000u <= counter6)
-    {
-        counter6 = 0u;
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
-    }
-
-    if(((EnergyMgmt_CanTx_CommandLoad7 == 1u) && (EnergyMgmt_CanRx_LoadStatus7 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad7 == 0u) && (EnergyMgmt_CanRx_LoadStatus7 == 1u)))
-    {
-        counter7++;
-    }
-    else
-    {
-        counter7 = 0u;
-    }
-
-    if(2000u <= counter7)
-    {
-        counter7 = 0u;
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
-    }
-
-    if(((EnergyMgmt_CanTx_CommandLoad8 == 1u) && (EnergyMgmt_CanRx_LoadStatus8 == 0u)) ||
-            ((EnergyMgmt_CanTx_CommandLoad8 == 0u) && (EnergyMgmt_CanRx_LoadStatus8 == 1u)))
-    {
-        counter8++;
-    }
-    else
-    {
-        counter8 = 0u;
-    }
-
-    if(2000u <= counter8)
-    {
-        counter8 = 0u;
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 1u, 31u);
-    }
-    else
-    {
-        Dem_SetDtc(ENERGYMGMT_DTC_ID_LOADSTATUSMISMATCH, 0u, 31u);
+        /* Do nothing. */
     }
     
     pIgnState = EnergyMgmt_CanRx_IgnitionStatus;

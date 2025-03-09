@@ -19,6 +19,8 @@ void DcyHandler_MainFunction(void)
         switch(DcyHandler_CanRx_IgnitionState)
         {
             case 0u:
+            case 253u:
+            case 254u:
                 /* Ignition off. */
                 DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
                 DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_IGNITION_OFF;
@@ -39,6 +41,7 @@ void DcyHandler_MainFunction(void)
                         break;
                     case 1u:
                         DcyHandler_CanTx_DcyStatus = DCY_START;
+
                         if(1u <= DcyHandler_CanRx_VehicleSpeed)
                         {
                             DcyHandler_CanTx_VehicleState = VEHSTATE_DRIVING;
@@ -50,6 +53,7 @@ void DcyHandler_MainFunction(void)
                         break;
                     case 2u:
                         DcyHandler_CanTx_DcyStatus = DCY_START;
+
                         if(1u <= DcyHandler_CanRx_VehicleSpeed)
                         {
                             DcyHandler_CanTx_VehicleState = VEHSTATE_DRIVING;

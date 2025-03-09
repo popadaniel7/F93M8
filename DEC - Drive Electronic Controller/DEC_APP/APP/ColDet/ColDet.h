@@ -4,7 +4,8 @@ typedef enum
 {
     COLLISION_SAFE = 0u,
     COLLISION_WARNING = 1u,
-    COLLISION_BRAKE = 2u
+    COLLISION_BRAKE = 2u,
+    COLLISION_ERROR = 254u
 } CollisionState;
 
 extern CollisionState ColDet_CanTx_CollisionState;

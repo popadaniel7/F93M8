@@ -92,24 +92,24 @@ typedef struct
 {
     // -- Common --
     IsoTpChannelState state;
-    uint16_t          timer;         // for timeouts
-    uint32_t          canId;         // physical CAN ID used for the channel
+    uint16          timer;         // for timeouts
+    uint32          canId;         // physical CAN ID used for the channel
     // -- Rx only --
-    uint16_t          payloadLength; // total payload length in bytes
-    uint16_t          receivedBytes;
-    uint8_t           nextCfSequenceNumber;
+    uint16          payloadLength; // total payload length in bytes
+    uint16          receivedBytes;
+    uint8           nextCfSequenceNumber;
     // We store the incoming data here
-    uint8_t          *rxBufferPtr;   // external or static buffer
-    uint16_t          rxBufferSize;  // max buffer length
+    uint8          *rxBufferPtr;   // external or static buffer
+    uint16          rxBufferSize;  // max buffer length
     // -- Tx only --
-    const uint8_t    *txDataPtr;     // pointer to user data
-    uint16_t          txDataSize;    // total data size to send
-    uint16_t          txDataOffset;  // how many bytes have been sent
-    uint8_t           txSequenceNumber;
+    const uint8    *txDataPtr;     // pointer to user data
+    uint16          txDataSize;    // total data size to send
+    uint16          txDataOffset;  // how many bytes have been sent
+    uint8           txSequenceNumber;
     // Flow Control parameters
-    uint8_t           blockSize;
-    uint8_t           blockCounter;
-    uint8_t           stMin;         // separation time in ms
+    uint8           blockSize;
+    uint8           blockCounter;
+    uint8           stMin;         // separation time in ms
 } IsoTpChannel;
 
 extern Can_TransmitType_t Can_TransmitTable[CAN_NO_TX_MSG];

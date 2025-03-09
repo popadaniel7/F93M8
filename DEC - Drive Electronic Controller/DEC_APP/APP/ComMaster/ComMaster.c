@@ -5,7 +5,6 @@
 #include "Dem.h"
 
 #define WUP_PDM               &MODULE_P00,0
-#define WUP_DMU               &MODULE_P00,1
 
 ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
 {
@@ -161,7 +160,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 2u,
+                .cycleTime = 20u,
         },
         /* SafeIgnitionStatus */
         {
@@ -603,7 +602,6 @@ void ComMaster_MainFunction(void)
 
     if(0u == ComMaster_MainCounter)
     {
-        IfxPort_setPinMode(WUP_DMU, IfxPort_Mode_outputPushPullGeneral);
         IfxPort_setPinMode(WUP_PDM, IfxPort_Mode_outputPushPullGeneral);
     }
     else
@@ -1208,29 +1206,64 @@ void ComMaster_MainFunction(void)
         }
     }
 
+    if(8u == ComMaster_TxSignal_VehicleStatus)
+    {
+        if(253u == ComMaster_TxSignal_Ignition)
+        {
+            ComMaster_TxSignal_Ignition = 254u;
+        }
+        else
+        {
+            ComMaster_TxSignal_Ignition = 1u;
+        }
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
     switch(ComMaster_TxSignal_Ignition)
     {
         case 2u:
             ComMaster_TxSignal_NM3 = 0x10u;
             ComMaster_TxSignal_NM3_PN1 = 0x11u;
             ComMaster_TxSignal_NM3_PN2 = 0x12u;
-            IfxPort_setPinState(WUP_DMU, IfxPort_State_high);
+
+            if(1u == EncCal_Coding_DmuL)
+            {
+                ComMaster_TxSignal_CommandLoad2 = 1u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
             IfxPort_setPinState(WUP_PDM, IfxPort_State_high);
             timestampSwitchOffNm3s = 0u;
             break;
         case 1u:
+        case 254u:
             ComMaster_TxSignal_NM3 = 0x10u;
             ComMaster_TxSignal_NM3_PN1 = 0x11u;
             ComMaster_TxSignal_NM3_PN2 = 0x12u;
-            IfxPort_setPinState(WUP_DMU, IfxPort_State_high);
+
+            if(1u == EncCal_Coding_DmuL)
+            {
+                ComMaster_TxSignal_CommandLoad2 = 1u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
             IfxPort_setPinState(WUP_PDM, IfxPort_State_high);
             timestampSwitchOffNm3s = 0u;
             break;
         case 0u:
+        case 253u:
             ComMaster_TxSignal_NM3 = 0x10u;
             ComMaster_TxSignal_NM3_PN1 = 0x11u;
             ComMaster_TxSignal_NM3_PN2 = 0x00u;
-            IfxPort_setPinState(WUP_DMU, IfxPort_State_low);
 
             if((((EncCal_Coding_ConsumerCutoffTime * 60u * 1000u) / 5u) < (ComMaster_MainCounter - timestampIgnValid)) ||
                     (((0u == ComMaster_RxSignal_StatusDoorLeft) || (0u == ComMaster_RxSignal_StatusDoorRight)) &&
@@ -1252,7 +1285,16 @@ void ComMaster_MainFunction(void)
                 /* Do nothing. */
             }
 
-            if(2000u < ComMaster_MainCounter - timestampSwitchOffNm3s)
+            if(2000u < ComMaster_MainCounter - timestampSwitchOffNm3s && timestampSwitchOffNm3s != 0u)
+            {
+                ComMaster_TxSignal_CommandLoad2 = 0u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if(4000u < ComMaster_MainCounter - timestampSwitchOffNm3s && timestampSwitchOffNm3s != 0u)
             {
                 IfxPort_setPinState(WUP_PDM, IfxPort_State_low);
                 ComMaster_TxSignal_NM3 = 0x00u;
@@ -1477,14 +1519,14 @@ void ComMaster_MainFunction(void)
 
     if(0u == ComMaster_TxSignal_NM3)
     {
-      if(0u == timestampActivityOnTheBus)
-      {
-        timestampActivityOnTheBus = ComMaster_MainCounter;
-      }
-      else
-      {
-        /* Do nothing. */
-      }
+        if(0u == timestampActivityOnTheBus)
+        {
+            timestampActivityOnTheBus = ComMaster_MainCounter;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
         
         Can_ActivityOnTheBus = 0u;
 

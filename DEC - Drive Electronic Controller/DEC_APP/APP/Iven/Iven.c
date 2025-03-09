@@ -5,10 +5,10 @@ uint8 Iven_CanTx_IcmId = 0u;
 uint8 Iven_StatusDriveControlMessageState = 0u;
 uint8 Iven_StatusLoadListMessageState = 0u;
 uint8 Iven_StatusPowerSupplyNetworkMessageState = 0u;
+uint8 Iven_StatusActuatorMessageState = 0u;
 uint8 Iven_CanRx_PSNWarn = 0u;
 uint8 Iven_CanRx_CurrentConsumption  = 0u;
 uint8 Iven_CanRx_MeasuredVoltageSupply = 50u;
-uint8 Iven_StatusActuatorMessageState = 0u;
 uint8 Iven_CanRx_StatusDoorLeft = 0u;
 uint8 Iven_CanRx_StatusDoorRight = 0u;
 uint8 Iven_CanRx_GearboxControl = 0u;
@@ -180,7 +180,7 @@ void Iven_MainFunction(void)
         /* Do nothing. */
     }
 
-    if((253u == Iven_CanRx_IgnitionControl) &&
+    if((253u == Iven_CanRx_IgnitionControl || 254u == Iven_CanRx_IgnitionControl) &&
             (Iven_CanRx_IgnitionControl != pIven_CanRx_IgnitionControl))
     {
         /* Invalid value. */
@@ -295,8 +295,7 @@ void Iven_MainFunction(void)
                 && 35u < Iven_CanRx_MeasuredVoltageSupply
                 && 3u >= Iven_CanRx_GearboxControl
                 && 253 > Iven_CanTx_PowerSteeringStatus
-                && 254U > Iven_CanTx_IrSenStat
-                && 3u > Iven_CanRx_CurrentConsumption)
+                && 2u > Iven_CanRx_CurrentConsumption)
         {
             Iven_CanTx_InVehicleSafetyError = 0u;
         }
@@ -306,7 +305,7 @@ void Iven_MainFunction(void)
         }
     }
     /* Process IVENs end. */
-    for(uint8 i = 0; i < IVEN_ICM_NUMBER_OF_MESSAGES; i++)
+    for(uint8 i = 0u; i < IVEN_ICM_NUMBER_OF_MESSAGES; i++)
     {
         if(0u == timestamp)
         {
@@ -315,7 +314,7 @@ void Iven_MainFunction(void)
                 Iven_IcmLookupTable[i].messageCount++;
                 timestamp = Iven_MainCounter;
                 iteratorAux = i;
-                Iven_CanTx_IcmId = i + 1;
+                Iven_CanTx_IcmId = i + 1u;
             }
             else
             {
@@ -326,10 +325,10 @@ void Iven_MainFunction(void)
         {
             if(600u <= Iven_MainCounter - timestamp)
             {
-                timestamp = 0;
-                Iven_IcmLookupTable[iteratorAux].messageStatus = 0;
-                iteratorAux = 0;
-                Iven_CanTx_IcmId = 0;
+                timestamp = 0u;
+                Iven_IcmLookupTable[iteratorAux].messageStatus = 0u;
+                iteratorAux = 0u;
+                Iven_CanTx_IcmId = 0u;
             }
             else
             {

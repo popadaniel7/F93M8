@@ -675,9 +675,9 @@
       </Update1>
       <WatchExport>
        <Expression>true</Expression>
-       <FileName></FileName>
-       <Location>false</Location>
-       <Type>false</Type>
+       <FileName>..\..\..\..\..\..\dtc.txt</FileName>
+       <Location>true</Location>
+       <Type>true</Type>
        <Value>true</Value>
       </WatchExport>
      </Debug>
@@ -3057,14 +3057,14 @@
          </__.0>
          <__.1>
           <AllowDownloadOnly>false</AllowDownloadOnly>
-          <AllowErase>false</AllowErase>
+          <AllowErase>true</AllowErase>
           <CoreIndex>4294967295</CoreIndex>
           <Device>TC37x_DFLASH_384kB</Device>
           <DeviceAddress>0xAF000000</DeviceAddress>
           <DeviceType>Unknown</DeviceType>
           <Enabled>true</Enabled>
           <EnableECC>1</EnableECC>
-          <EraseBeforeDownload>false</EraseBeforeDownload>
+          <EraseBeforeDownload>true</EraseBeforeDownload>
           <FillDevice>true</FillDevice>
           <FillFirst>0x0</FillFirst>
           <FillLast>0x0</FillLast>
@@ -3525,8 +3525,8 @@
         <CycleDuration>1e-09</CycleDuration>
         <DebugChannel>DAP</DebugChannel>
         <DebugClockkHz>4000</DebugClockkHz>
-        <DetectWDT>false</DetectWDT>
-        <DetectWDT_duration_ms>20</DetectWDT_duration_ms>
+        <DetectWDT>true</DetectWDT>
+        <DetectWDT_duration_ms>999</DetectWDT_duration_ms>
         <EndSession>Cleanup</EndSession>
         <ExtOscillatorClk>1000</ExtOscillatorClk>
         <GenerateAuroraClock>false</GenerateAuroraClock>
@@ -3559,7 +3559,7 @@
         <ResetPinConnected>true</ResetPinConnected>
         <ReversedAuroraLanes>false</ReversedAuroraLanes>
         <SamplingEdge>Pos</SamplingEdge>
-        <StopAfterReset>false</StopAfterReset>
+        <StopAfterReset>true</StopAfterReset>
         <SuspendPeripheralsWhileStopped>true</SuspendPeripheralsWhileStopped>
         <TargetResetTimeout>100</TargetResetTimeout>
         <MemorySecurity_CheckParameters>
@@ -3626,7 +3626,7 @@
         <ResetMethod>1</ResetMethod>
         <RESETMode>0</RESETMode>
         <ReversedAuroraLanes>0</ReversedAuroraLanes>
-        <StopAfterReset>0</StopAfterReset>
+        <StopAfterReset>1</StopAfterReset>
         <TargetResetTimeout>100</TargetResetTimeout>
        </Debugging>
        <ExtWDT>

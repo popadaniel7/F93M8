@@ -12,8 +12,7 @@
 #define AIN_DIVISIONFACTOR_TEN          10.0f
 #define AIN_IRCYCLECOUNTER              40U
 
-
-extern float IRSensorValue;
+extern float Ain_IRSensorValue;
 extern uint8 Ain_CanRx_MeasuredVoltage;
 
 extern void Ain_MainFunction(void);
