@@ -31,7 +31,6 @@ void Dcm_RDBI_SWVersion(uint8* data);
 void Dcm_RDBI_ActiveDiagnosticSession(uint8* data);
 void Dcm_RC_Request701Active(uint8* data);
 void Dcm_RC_Request703Active(uint8* data);
-void Dcm_RC_Request705Active(uint8* data);
 void Dcm_RC_RequestMasterActive(uint8* data);
 void Dcm_RC_ResetDcy(uint8* data);
 
@@ -48,7 +47,7 @@ uint32 Dcm_Rx_DiagBufCnt = 0u;
 static uint32 Dcm_MainCounter = 0u;
 
 typedef void (*FuncPtr_t)(uint8*);
-FuncPtr_t Dcm_FuncPtr[29] =
+FuncPtr_t Dcm_FuncPtr[28u] =
 {
         Dcm_DSC_DefaultSession,
         Dcm_DSC_ProgrammingSession,
@@ -75,7 +74,6 @@ FuncPtr_t Dcm_FuncPtr[29] =
         Dcm_RDBI_ActiveDiagnosticSession,
         Dcm_RC_Request701Active,
         Dcm_RC_Request703Active,
-        Dcm_RC_Request705Active,
         Dcm_RC_RequestMasterActive,
         Dcm_RC_ResetDcy
 };
@@ -339,11 +337,6 @@ void Dcm_RC_Request701Active(uint8* data)
 }
 
 void Dcm_RC_Request703Active(uint8* data)
-{
-    data[1] = data[1] + 0x40u;
-}
-
-void Dcm_RC_Request705Active(uint8* data)
 {
     data[1] = data[1] + 0x40u;
 }

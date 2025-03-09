@@ -336,14 +336,8 @@ extern CANSPI_uCAN_MSG CanSpi_RxFrame_Buffer1;
 extern CANSPI_uCAN_MSG Dcm_DiagServiceResponse_Frame;
 /* DIAG ROUTINE CAN TX buffer. */
 extern CANSPI_uCAN_MSG Dcm_DiagServiceRequest_Frame;
-/* XCP CAN RX buffer. */
-extern CANSPI_uCAN_MSG CanSpi_Xcp_RxBuffer;
-/* XCP CAN TX buffer. */
-extern CANSPI_uCAN_MSG CanSpi_Xcp_TxBuffer;
 /* NM3 signal value. */
 extern uint8 CanSpi_Networkmanagement3_Signal;
-/* XCP status variable. */
-extern uint8 CanSpi_isXcpActive;
 /* VARIABLES STOP */
 /* FUNCTIONS START */
 /* Main function. */

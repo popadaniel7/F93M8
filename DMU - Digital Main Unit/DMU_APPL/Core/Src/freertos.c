@@ -17,7 +17,6 @@
 #include "I2cH.h"
 #include "Dcm.h"
 #include "Dem.h"
-#include "Ain.h"
 #include "Nvm.h"
 #include "EcuM.h"
 #include "FsmcH.h"
@@ -40,23 +39,12 @@
 /* USER CODE BEGIN Variables */
 long long OS_Counter = 0;
 long long IDLE_Counter = 0;
-TaskStatus_t xTaskStatusArray[12] = {0};
-UBaseType_t uxArraySize = {0};
-uint32 ulTotalRunTime = {0};
-uint8 OS_IdleIndex = 0;
-float OS_IdleRunTime = 0;
-float OS_DeltaIdleRunTime = 0;
-float OS_CpuLoad = 0;
-uint32 OS_AverageCpuLoad = 0;
-uint8 OS_XCP_CpuLoad = 0;
-uint32 localTaskCounter = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm5ms_QM_NVM = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm5ms_QM_APPL = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm5ms_QM_BSW = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm5ms_QM_DCM = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm10ms_QM_APPL = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm10ms_QM_BSW = 0;
-volatile unsigned long ulHighFrequencyTimerTicks;
 extern __attribute__((section(".ccmram"))) uint8 EcuM_State;
 extern __attribute__((section(".ccmram"))) uint8 Nvm_ReadAllPending;
 extern TIM_HandleTypeDef htim9;
@@ -74,13 +62,6 @@ const osThreadAttr_t QM_BSW_attributes = {
   .name = "QM_BSW",
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityRealtime7,
-};
-/* Definitions for OS_CPULOAD_MONITORING */
-osThreadId_t OS_CPULOAD_MONITORINGHandle;
-const osThreadAttr_t OS_CPULOAD_MONITORING_attributes = {
-  .name = "OS_CPULOAD_MONITORING",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for NVM_HANDLING */
 osThreadId_t NVM_HANDLINGHandle;
@@ -124,7 +105,6 @@ extern void EcuM_PerformReset(uint8 param);
 
 void QM_APPL_OS_TASK(void *argument);
 void QM_BSW_OS_TASK(void *argument);
-void OS_CPULOAD_MONITORING_TASK(void *argument);
 void NVM_HANDLING_OS_TASK(void *argument);
 void OS_TASK_QM_DCM(void *argument);
 void Alarm5ms_QM_APPL_Callback(void *argument);
@@ -135,33 +115,15 @@ void Alarm10ms_QM_BSW_Callback(void *argument);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* Hook prototypes */
-void configureTimerForRunTimeStats(void);
-unsigned long getRunTimeCounterValue(void);
 void vApplicationIdleHook(void);
 void vApplicationTickHook(void);
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName);
 void vApplicationMallocFailedHook(void);
 
-/* USER CODE BEGIN 1 */
-void configureTimerForRunTimeStats(void)
-{
-	ulHighFrequencyTimerTicks = 0;
-	HAL_TIM_Base_Start_IT(&htim9);
-}
-
-unsigned long getRunTimeCounterValue(void)
-{
-	return ulHighFrequencyTimerTicks;
-}
-/* USER CODE END 1 */
-
 /* USER CODE BEGIN 2 */
 void vApplicationIdleHook( void )
 {
 	IDLE_Counter++;
-	uxArraySize = uxTaskGetSystemState(xTaskStatusArray, 12, &ulTotalRunTime);
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3, 0);
-
 }
 /* USER CODE END 2 */
 
@@ -226,9 +188,6 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of QM_BSW */
   QM_BSWHandle = osThreadNew(QM_BSW_OS_TASK, NULL, &QM_BSW_attributes);
-
-  /* creation of OS_CPULOAD_MONITORING */
-  OS_CPULOAD_MONITORINGHandle = osThreadNew(OS_CPULOAD_MONITORING_TASK, NULL, &OS_CPULOAD_MONITORING_attributes);
 
   /* creation of NVM_HANDLING */
   NVM_HANDLINGHandle = osThreadNew(NVM_HANDLING_OS_TASK, NULL, &NVM_HANDLING_attributes);
@@ -301,7 +260,6 @@ void QM_BSW_OS_TASK(void *argument)
 		}
 		if(1 == Alarm10ms_QM_BSW)
 		{
-			Ain_MainFunction();
 			I2cH_MainFunction();
 			DcmiH_MainFunction();
 			FsmcH_MainFunction();
@@ -319,41 +277,6 @@ void QM_BSW_OS_TASK(void *argument)
 		vTaskSuspend(NULL);
 	}
   /* USER CODE END QM_BSW_OS_TASK */
-}
-
-/* USER CODE BEGIN Header_OS_CPULOAD_MONITORING_TASK */
-/* USER CODE END Header_OS_CPULOAD_MONITORING_TASK */
-void OS_CPULOAD_MONITORING_TASK(void *argument)
-{
-  /* USER CODE BEGIN OS_CPULOAD_MONITORING_TASK */
-	for(;;)
-	{
-		localTaskCounter++;
-		OS_DeltaIdleRunTime = xTaskStatusArray[OS_IdleIndex].ulRunTimeCounter - OS_IdleRunTime;
-		if(0 != ulHighFrequencyTimerTicks) OS_CpuLoad = 100 - (OS_DeltaIdleRunTime / ulHighFrequencyTimerTicks) * 100;
-		else
-		{
-			/* Do nothing. */
-		}
-		if(0 < OS_CpuLoad) OS_AverageCpuLoad += OS_CpuLoad;
-		else
-		{
-			/* Do nothing. */
-		}
-		ulHighFrequencyTimerTicks = 0;
-		OS_IdleRunTime = xTaskStatusArray[OS_IdleIndex].ulRunTimeCounter;
-		if(localTaskCounter % 40 == 0)
-		{
-			OS_XCP_CpuLoad = OS_AverageCpuLoad / 40;
-			OS_AverageCpuLoad = 0;
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-		vTaskSuspend(NULL);
-	}
-  /* USER CODE END OS_CPULOAD_MONITORING_TASK */
 }
 
 /* USER CODE BEGIN Header_NVM_HANDLING_OS_TASK */
@@ -437,14 +360,7 @@ void Alarm10ms_QM_APPL_Callback(void *argument)
 void Alarm10ms_QM_BSW_Callback(void *argument)
 {
   /* USER CODE BEGIN Alarm10ms_QM_BSW_Callback */
-	static uint32 localCounter = 0;
 	Alarm10ms_QM_BSW = 1;
-	localCounter++;
-	if(localCounter != 0 && localCounter % 4 == 0) vTaskResume(OS_CPULOAD_MONITORINGHandle);
-	else
-	{
-		/* Do nothing. */
-	}
 	vTaskResume(QM_BSWHandle);
   /* USER CODE END Alarm10ms_QM_BSW_Callback */
 }

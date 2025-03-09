@@ -44,7 +44,6 @@ static void DiagService_RDTCI_ReadDTCInformationSupportedDtc(void);
 static void DiagService_RDBI_ReadAwakeReasons(void);
 static void DiagService_RDBI_ReadCodingData(void);
 static void DiagService_RDBI_ReadCalibrationData(void);
-static void DiagService_RDBI_ReadWakeupHistory(void);
 static void DiagService_RDBI_ReadSWVersion(void);
 static void DiagService_RDBI_ReadActiveDiagnosticSession(void);
 static void DiagService_RDBI_ReadAliveTime(void);
@@ -70,18 +69,18 @@ extern void NvM_WriteAll(void);
 /* Look-up table for RDBPI diagnostic routines. */
 Dcm_RDBPI_Table_t Dcm_RDBPI_Table[] =
 {
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicIgnitionCompleteStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicGearboxSelectorCompleteStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicPowerSteeringCompleteStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicAccelerationCompleteStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicBrakeCompleteStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicDoorLockActuatorStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicWindshieldWiperActuatorStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicClimaFanStatus},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicAQS},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicGS},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicLS},
-		{0x00, 0x04, 0x00, DiagService_RDBPI_ReadPeriodicRS},
+		{DiagService_RDBPI_ReadPeriodicIgnitionCompleteStatus},
+		{DiagService_RDBPI_ReadPeriodicGearboxSelectorCompleteStatus},
+		{DiagService_RDBPI_ReadPeriodicPowerSteeringCompleteStatus},
+		{DiagService_RDBPI_ReadPeriodicAccelerationCompleteStatus},
+		{DiagService_RDBPI_ReadPeriodicBrakeCompleteStatus},
+		{DiagService_RDBPI_ReadPeriodicDoorLockActuatorStatus},
+		{DiagService_RDBPI_ReadPeriodicWindshieldWiperActuatorStatus},
+		{DiagService_RDBPI_ReadPeriodicClimaFanStatus},
+		{DiagService_RDBPI_ReadPeriodicAQS},
+		{DiagService_RDBPI_ReadPeriodicGS},
+		{DiagService_RDBPI_ReadPeriodicLS},
+		{DiagService_RDBPI_ReadPeriodicRS},
 };
 /* VARIABLES STOP */
 /* FUNCTIONS START */
@@ -361,7 +360,7 @@ static void DiagService_RDBI_ReadCodingData(void)
 	Dcm_DiagServiceResponse_Frame.frame.data6 = NvMBlock_Coding[2];
 	Dcm_DiagServiceResponse_Frame.frame.data7 = NvMBlock_Coding[3];
 	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
-	Dcm_TxIsoTp((uint8*)NvMBlock_Coding, 40);
+	Dcm_TxIsoTp((uint8*)NvMBlock_Coding, 10);
 	Dcm_DiagServiceResponse_Frame.frame.idType = 0;
 	Dcm_DiagServiceResponse_Frame.frame.id = 0;
 	Dcm_DiagServiceResponse_Frame.frame.dlc = 0;
@@ -399,44 +398,7 @@ static void DiagService_RDBI_ReadCalibrationData(void)
 	Dcm_DiagServiceResponse_Frame.frame.data6 = NvMBlock_Calibration[2];
 	Dcm_DiagServiceResponse_Frame.frame.data7 = NvMBlock_Calibration[3];
 	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
-	Dcm_TxIsoTp((uint8*)NvMBlock_Calibration, 68);
-	Dcm_DiagServiceResponse_Frame.frame.idType = 0;
-	Dcm_DiagServiceResponse_Frame.frame.id = 0;
-	Dcm_DiagServiceResponse_Frame.frame.dlc = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data0 = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data1 = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data2 = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data3 = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data4 = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data5 = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data6 = 0;
-	Dcm_DiagServiceResponse_Frame.frame.data7 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.idType = 0;
-	Dcm_DiagServiceRequest_Frame.frame.id = 0;
-	Dcm_DiagServiceRequest_Frame.frame.dlc = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data0 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data1 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data2 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data3 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data4 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data5 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data6 = 0;
-	Dcm_DiagServiceRequest_Frame.frame.data7 = 0;
-}
-static void DiagService_RDBI_ReadWakeupHistory(void)
-{
-	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
-	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
-	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
-	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
-	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x62;
-	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x00;
-	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x04;
-	Dcm_DiagServiceResponse_Frame.frame.data4 = EcuM_WakeupHistory[0];
-	Dcm_DiagServiceResponse_Frame.frame.data5 = EcuM_WakeupHistory[1];
-	Dcm_DiagServiceResponse_Frame.frame.data6 = EcuM_WakeupHistory[2];
-	Dcm_DiagServiceResponse_Frame.frame.data7 = EcuM_WakeupHistory[3];
-	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
+	Dcm_TxIsoTp((uint8*)NvMBlock_Calibration, 17);
 	Dcm_DiagServiceResponse_Frame.frame.idType = 0;
 	Dcm_DiagServiceResponse_Frame.frame.id = 0;
 	Dcm_DiagServiceResponse_Frame.frame.dlc = 0;
@@ -1222,7 +1184,7 @@ static void DiagService_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x59;
 	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x0A;
 	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
-	Dcm_TxIsoTp((uint8*)Dem_DTCStoreArray, 13 * sizeof(Dem_DTC_t));
+	Dcm_TxIsoTp((uint8*)Dem_DTCStoreArray, 13);
 	__enable_irq();
 }
 void Dcm_MainFunction(void)
@@ -1348,16 +1310,6 @@ void Dcm_MainFunction(void)
 		{
 			if(Dcm_DiagServiceRequest_Frame.frame.data2 == 0x04)
 			{
-				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].IsFunctionActive = 0;
-				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].Timestamp = 0;
-				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].TransmissionMode = 0x04;
-				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].FuncPtr();
-			}
-			else if(Dcm_DiagServiceRequest_Frame.frame.data2 != 0x04)
-			{
-				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].IsFunctionActive = 1;
-				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].TransmissionMode = Dcm_DiagServiceRequest_Frame.frame.data2;
-				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].Timestamp = Dcm_MainCounter;
 				Dcm_RDBPI_Table[Dcm_DiagServiceRequest_Frame.frame.data3].FuncPtr();
 			}
 			else
@@ -1368,27 +1320,6 @@ void Dcm_MainFunction(void)
 		else
 		{
 			/* Do nothing. */
-		}
-		/* Check if it is time to call RDBPI. */
-		for(uint8 i = 0; i < 8; i++)
-		{
-			if(Dcm_RDBPI_Table[i].IsFunctionActive == 0x01)
-			{
-				if((Dcm_MainCounter - Dcm_RDBPI_Table[i].Timestamp) > ((250) / Dcm_RDBPI_Table[i].TransmissionMode))
-				{
-					Dcm_RDBPI_Table[i].FuncPtr();
-					Dcm_RDBPI_Table[i].Timestamp = Dcm_MainCounter;
-					break;
-				}
-				else
-				{
-					/* Do nothing. */
-				}
-			}
-			else
-			{
-				/* Do nothing. */
-			}
 		}
 		/* Read data routines. */
 		if(Dcm_DiagServiceRequest_Frame.frame.data1 == 0x22)
@@ -1406,11 +1337,6 @@ void Dcm_MainFunction(void)
 					/* Do nothing. */
 				}
 				if(Dcm_DiagServiceRequest_Frame.frame.data3 == 0x03) DiagService_RDBI_ReadCalibrationData();
-				else
-				{
-					/* Do nothing. */
-				}
-				if(Dcm_DiagServiceRequest_Frame.frame.data3 == 0x04) DiagService_RDBI_ReadWakeupHistory();
 				else
 				{
 					/* Do nothing. */

@@ -25,8 +25,8 @@
 #define ISOTP_DEFAULT_BLOCK_SIZE  8
 #define ISOTP_DEFAULT_ST_MIN_MS   5
 #define MAXIMUM_CAN_DATA_PAYLOAD 8u
-#define CAN_NO_RX_MSG 10u
-#define CAN_NO_TX_MSG 11u
+#define CAN_NO_RX_MSG 6u
+#define CAN_NO_TX_MSG 9u
 
 typedef enum
 {

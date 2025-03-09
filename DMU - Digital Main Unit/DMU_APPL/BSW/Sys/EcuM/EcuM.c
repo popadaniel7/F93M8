@@ -1,6 +1,4 @@
 #include "EcuM.h"
-#include "adc.h"
-#include "Ain.h"
 #include "Nvm.h"
 #include "Dem.h"
 #include "rtc.h"
@@ -12,17 +10,17 @@ __attribute__((section(".ncr"))) uint32 EcuM_ResetCounter[13];
 __attribute__((section(".ncr"))) uint32 EcuM_ResetFlag[13];
 __attribute__((section(".ccmram"))) uint8 EcuM_State = 0;
 __attribute__((section(".ccmram"))) uint32 EcuM_MainCounter = 0;
+__attribute__((section(".ccmram"))) uint8 EcuM_ResetOccured = 0;
+__attribute__((section(".ccmram"))) uint8 EcuM_StopModeActive = 0;
 extern __attribute__((section(".ccmram"))) uint8 CanH_RequestBusSleep;
 extern __attribute__((section(".ccmram"))) uint8 Nvm_WriteAllPending;
 extern __attribute__((section(".ccmram"))) uint8 Nvm_ReadAllPending;
-extern __attribute__((section(".ccmram"))) uint32 DataRecorder_ResetCounter[13];
 extern TIM_HandleTypeDef htim1;
-extern TIM_HandleTypeDef htim9;
+extern TIM_HandleTypeDef htim3;
 extern RTC_HandleTypeDef hrtc;
 extern I2C_HandleTypeDef hi2c2;
 extern DCMI_HandleTypeDef hdcmi;
 extern CAN_HandleTypeDef hcan1;
-extern ADC_HandleTypeDef hadc1;
 extern SRAM_HandleTypeDef hsram1;
 
 void EcuM_MainFunction(void);
@@ -53,11 +51,11 @@ void EcuM_MainFunction(void)
 		{
 			if(0 != EcuM_ResetFlag[i])
 			{
-				Dem_SetDtc(0x11, i, 1);
+				Dem_SetDtc(0, i, 1);
 				EcuM_ResetFlag[i] = 0;
-				DataRecorder_ResetCounter[i]++;
+				EcuM_ResetOccured = 1u;
 			}
-			else Dem_SetDtc(0x11, i, 0);
+			else Dem_SetDtc(0, i, 0);
 		}
 	}
 	else
@@ -149,22 +147,18 @@ void EcuM_GoToSleep(void)
 {
 	__disable_irq();
 	HAL_SuspendTick();
-	HAL_ADC_Stop(&hadc1);
-	HAL_CAN_Stop(&hcan1);
 	HAL_DCMI_Stop(&hdcmi);
-	HAL_TIM_Base_Stop(&htim9);
+	HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_4);
+	HAL_TIM_PWM_DeInit(&htim3);
 	HAL_TIM_Base_Stop(&htim1);
 	HAL_I2C_DeInit(&hi2c2);
-	HAL_TIM_Base_DeInit(&htim9);
 	HAL_DCMI_DeInit(&hdcmi);
-	HAL_CAN_DeInit(&hcan1);
-	HAL_ADC_DeInit(&hadc1);
 	for(uint8 i = 0; i < 82; i++) HAL_NVIC_ClearPendingIRQ(i);
 	EcuM_DeInitGpio();
 	__HAL_RCC_DMA2_CLK_DISABLE();
-	HAL_PWR_EnableWakeUpPin(PWR_WAKEUP_PIN1);
 	SysTick->CTRL &= ~(SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk);
+	EcuM_StopModeActive = 1;
 	__enable_irq();
-	HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFE);
+	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
 	EcuM_PerformReset(0);
 }

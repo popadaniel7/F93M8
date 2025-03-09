@@ -36,15 +36,15 @@ void MX_CAN1_Init(void)
   /* USER CODE BEGIN CAN1_Init 2 */
 	CAN_FilterTypeDef filterConfig;
 	filterConfig.FilterBank = 6;
-		filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
-		filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
-		filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-		filterConfig.FilterActivation = ENABLE;
-		filterConfig.FilterIdHigh = (0x99 << 5) & 0xFFFF;
-		filterConfig.FilterIdLow = 0x0000;
-		filterConfig.FilterMaskIdHigh = (0x7FF << 5);
-		filterConfig.FilterMaskIdLow = 0x0000;
-		HAL_CAN_ConfigFilter(&hcan1, &filterConfig);
+	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
+	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
+	filterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	filterConfig.FilterActivation = ENABLE;
+	filterConfig.FilterIdHigh = (0x99 << 5) & 0xFFFF;
+	filterConfig.FilterIdLow = 0x0000;
+	filterConfig.FilterMaskIdHigh = (0x7FF << 5);
+	filterConfig.FilterMaskIdLow = 0x0000;
+	HAL_CAN_ConfigFilter(&hcan1, &filterConfig);
 	filterConfig.FilterBank = 7;
 	filterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
 	filterConfig.FilterScale = CAN_FILTERSCALE_32BIT;

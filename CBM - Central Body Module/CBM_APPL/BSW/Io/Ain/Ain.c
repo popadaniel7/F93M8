@@ -81,18 +81,6 @@ void Ain_MainFunction(void)
 			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
 			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
 			break;
-		case 1:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
-			break;
-		case 2:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
-			break;
 		case 3:
 			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 0);
 			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
@@ -102,18 +90,6 @@ void Ain_MainFunction(void)
 		case 4:
 			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 1);
 			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
-			break;
-		case 5:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
-			break;
-		case 6:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 1);
 			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 1);
 			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
 			break;
@@ -165,9 +141,6 @@ void Ain_MainFunction(void)
 	}
 	/* Store the measured values. */
 	StatusList_InputValue[IGN_ARRPOS] = Ain_Mux[IGNPOT_POS];
-	StatusList_InputValue[ACC_ARRPOS] = Ain_Mux[ACCPOT_POS];
-	StatusList_InputValue[BR_ARRPOS] = Ain_Mux[BRPOT_POS];
-	StatusList_InputValue[PS_ARRPOS] = Ain_Mux[PSPOT_POS];
 	StatusList_InputValue[GB_ARRPOS] = Ain_Mux[GBPOT_POS];
 	StatusList_InputValue[LSNS_ARRPOS] = Ain_Mux[LS_POS];
 	StatusList_InputValue[RSNS_ARRPOS] = Ain_Mux[RS_POS];

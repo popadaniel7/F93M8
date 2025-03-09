@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 ELF_SRCS := 
@@ -29,7 +29,6 @@ APPL/ActCtrl \
 APPL/InputCtrl \
 BSW/Com/CanSpi \
 BSW/Com/UartH \
-BSW/Com/Xcp \
 BSW/Diag/Dcm \
 BSW/Diag/Dem \
 BSW/Io/Ain \

@@ -129,9 +129,9 @@ void InputCtrl_MainFunction(void)
 	for(uint8 i = IGN_ARRPOS; i < RAW_INPUTS; i++) StatusList_RawValue[i] = (StatusList_InputValue[i] * 255) / 4095;
 	/* Update the to-be-sent-on-CAN variables. */
 	StatusList_ComOutValue[IGN_ARRPOS] = (StatusList_OutputValue[IGN_ARRPOS] * 2) / 4095;
-	StatusList_ComOutValue[ACC_ARRPOS] = (StatusList_OutputValue[ACC_ARRPOS] * 100) / 4095;
-	StatusList_ComOutValue[BR_ARRPOS] = (StatusList_OutputValue[BR_ARRPOS] * 100) / 4095;
-	StatusList_ComOutValue[PS_ARRPOS] = (StatusList_OutputValue[PS_ARRPOS] * 180) / 4095;
+	//StatusList_ComOutValue[ACC_ARRPOS] = (StatusList_OutputValue[ACC_ARRPOS] * 100) / 4095;
+	//StatusList_ComOutValue[BR_ARRPOS] = (StatusList_OutputValue[BR_ARRPOS] * 100) / 4095;
+	//StatusList_ComOutValue[PS_ARRPOS] = (StatusList_OutputValue[PS_ARRPOS] * 180) / 4095;
 	StatusList_ComOutValue[GB_ARRPOS] = (StatusList_OutputValue[GB_ARRPOS] * 2) / 4095;
 	StatusList_ComOutValue[HC05_ARRPOS] = StatusList_OutputValue[HC05_ARRPOS];
 	/* Process the input values of sensors. */

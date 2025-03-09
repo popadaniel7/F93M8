@@ -29,7 +29,6 @@ APP/ComMaster \
 APP/DcyHandler \
 APP/DiagMaster \
 APP/EncCal \
-APP/EnergyMgmt \
 APP/Iven \
 BSW/Com/Can \
 BSW/Diag/Dcm \

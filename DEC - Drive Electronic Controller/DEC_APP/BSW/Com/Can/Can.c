@@ -103,7 +103,7 @@ void Can_ReInitAfterError(void)
     g_mcmcan.canSrcNode.can = &MODULE_CAN0;
     g_mcmcan.canSrcNode.frameMode = IfxCan_FrameMode_standard;
     g_mcmcan.canNodeConfig.filterConfig.messageIdLength = IfxCan_MessageIdLength_standard;
-    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 17u;
+    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 11u;
     g_mcmcan.canNodeConfig.filterConfig.extendedListSize = 0u;
     g_mcmcan.canNodeConfig.filterConfig.standardFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
     g_mcmcan.canNodeConfig.filterConfig.extendedFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
@@ -113,104 +113,56 @@ void Can_ReInitAfterError(void)
     IfxCan_Can_initNode(&g_mcmcan.canDstNode, &g_mcmcan.canNodeConfig);
     /* Apply the standard filter */
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 6u;
-    g_mcmcan.canFilter.id1 = 0x10Au;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_6;
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 0u;
-    g_mcmcan.canFilter.id1 = 0x100u;
+    g_mcmcan.canFilter.id1 = 0x10Au;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
-    /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 1u;
-    g_mcmcan.canFilter.id1 = 0x101u;;
+    g_mcmcan.canFilter.id1 = 0x100u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_1;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 2u;
-    g_mcmcan.canFilter.id1 = 0x103u;
+    g_mcmcan.canFilter.id1 = 0x101u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_2;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 3u;
-    g_mcmcan.canFilter.id1 = 0x104u;
+    g_mcmcan.canFilter.id1 = 0x108u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_3;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 4u;
-    g_mcmcan.canFilter.id1 = 0x107u;
+    g_mcmcan.canFilter.id1 = 0x10Cu;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_4;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 5u;
-    g_mcmcan.canFilter.id1 = 0x108u;
+    g_mcmcan.canFilter.id1 = 0x701u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_5;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
+    g_mcmcan.canFilter.number = 6u;
+    g_mcmcan.canFilter.id1 = 0x703u;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_6;
+    /* Apply the standard filter */
+    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
+    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 7u;
-    g_mcmcan.canFilter.id1 = 0x10Cu;
+    g_mcmcan.canFilter.id1 = 0x6FEu;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_7;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 8u;
-    g_mcmcan.canFilter.id1 = 0x10Du;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_8;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 9u;
-    g_mcmcan.canFilter.id1 = 0x700u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_9;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 10u;
-    g_mcmcan.canFilter.id1 = 0x701u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_10;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 11u;
-    g_mcmcan.canFilter.id1 = 0x702u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_11;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 12u;
-    g_mcmcan.canFilter.id1 = 0x703u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_12;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 13u;
-    g_mcmcan.canFilter.id1 = 0x704u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_13;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 14u;
-    g_mcmcan.canFilter.id1 = 0x705u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_14;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 15u;
-    g_mcmcan.canFilter.id1 = 0x6FEu;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_15;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 16u;
     g_mcmcan.canFilter.id1 = 0x001u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_16;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_8;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
@@ -295,104 +247,56 @@ void Can_Init(void)
     IfxCan_Can_initNode(&g_mcmcan.canDstNode, &g_mcmcan.canNodeConfig);
     /* Apply the standard filter */
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 6u;
-    g_mcmcan.canFilter.id1 = 0x10Au;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_6;
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 0u;
-    g_mcmcan.canFilter.id1 = 0x100u;
+    g_mcmcan.canFilter.id1 = 0x10Au;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
-    /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 1u;
-    g_mcmcan.canFilter.id1 = 0x101u;;
+    g_mcmcan.canFilter.id1 = 0x100u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_1;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 2u;
-    g_mcmcan.canFilter.id1 = 0x103u;
+    g_mcmcan.canFilter.id1 = 0x101u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_2;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 3u;
-    g_mcmcan.canFilter.id1 = 0x104u;
+    g_mcmcan.canFilter.id1 = 0x108u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_3;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 4u;
-    g_mcmcan.canFilter.id1 = 0x107u;
+    g_mcmcan.canFilter.id1 = 0x10Cu;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_4;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 5u;
-    g_mcmcan.canFilter.id1 = 0x108u;
+    g_mcmcan.canFilter.id1 = 0x701u;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_5;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
+    g_mcmcan.canFilter.number = 6u;
+    g_mcmcan.canFilter.id1 = 0x703u;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_6;
+    /* Apply the standard filter */
+    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
+    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 7u;
-    g_mcmcan.canFilter.id1 = 0x10Cu;
+    g_mcmcan.canFilter.id1 = 0x6FEu;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_7;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 8u;
-    g_mcmcan.canFilter.id1 = 0x10Du;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_8;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 9u;
-    g_mcmcan.canFilter.id1 = 0x700u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_9;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 10u;
-    g_mcmcan.canFilter.id1 = 0x701u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_10;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 11u;
-    g_mcmcan.canFilter.id1 = 0x702u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_11;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 12u;
-    g_mcmcan.canFilter.id1 = 0x703u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_12;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 13u;
-    g_mcmcan.canFilter.id1 = 0x704u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_13;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 14u;
-    g_mcmcan.canFilter.id1 = 0x705u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_14;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 15u;
-    g_mcmcan.canFilter.id1 = 0x6FEu;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_15;
-    /* Apply the standard filter */
-    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
-    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 16u;
     g_mcmcan.canFilter.id1 = 0x001u;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_16;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_8;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     IfxCan_Node_initRxPin(g_mcmcan.canDstNode.node, &IfxCan_RXD00B_P20_7_IN, IfxPort_Mode_inputPullUp, IfxPort_PadDriver_cmosAutomotiveSpeed1);
@@ -431,7 +335,7 @@ void Can_Rx(void)
         /* Do nothing. */
     }
 
-    for(uint8 i = 0 ; i < 17; i ++)
+    for(uint8 i = 0 ; i < 9; i ++)
     {
         /* Read the received CAN message */
         g_mcmcan.rxMsg.bufferNumber = i;
@@ -484,8 +388,8 @@ void Can_ProcessReceivedMessages(void)
         switch(Can_RxMessageBuffer[i].rxMsg.messageId)
         {
             case 0x001u:
-                Can_ReceiveTable[9u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
-                memcpy(Can_ReceiveTable[9u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
+                Can_ReceiveTable[5u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
+                memcpy(Can_ReceiveTable[5u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
                 break;
             case 0x100u:
                 Can_ReceiveTable[0u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
@@ -495,33 +399,17 @@ void Can_ProcessReceivedMessages(void)
                 Can_ReceiveTable[1u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
                 memcpy(Can_ReceiveTable[1u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
                 break;
-            case 0x103u:
+            case 0x108u:
                 Can_ReceiveTable[2u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
                 memcpy(Can_ReceiveTable[2u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
                 break;
-            case 0x104u:
+            case 0x10Au:
                 Can_ReceiveTable[3u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
                 memcpy(Can_ReceiveTable[3u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
                 break;
-            case 0x107u:
+            case 0x10Cu:
                 Can_ReceiveTable[4u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
                 memcpy(Can_ReceiveTable[4u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
-                break;
-            case 0x108u:
-                Can_ReceiveTable[5u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
-                memcpy(Can_ReceiveTable[5u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
-                break;
-            case 0x10Au:
-                Can_ReceiveTable[6u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
-                memcpy(Can_ReceiveTable[6u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
-                break;
-            case 0x10Cu:
-                Can_ReceiveTable[7u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
-                memcpy(Can_ReceiveTable[7u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
-                break;
-            case 0x10Du:
-                Can_ReceiveTable[8u].receiveMessage.rxMsg = Can_RxMessageBuffer[i].rxMsg;
-                memcpy(Can_ReceiveTable[8u].receiveMessage.rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
                 break;
             case 0x701u:
                 Can_Rx_DiagnosticBuffer[Can_Rx_DiagBufCnt].rxMsg = Can_RxMessageBuffer[i].rxMsg;
@@ -529,11 +417,6 @@ void Can_ProcessReceivedMessages(void)
                 Can_Rx_DiagBufCnt++;
                 break;
             case 0x703u:
-                Can_Rx_DiagnosticBuffer[Can_Rx_DiagBufCnt].rxMsg = Can_RxMessageBuffer[i].rxMsg;
-                memcpy(Can_Rx_DiagnosticBuffer[Can_Rx_DiagBufCnt].rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
-                Can_Rx_DiagBufCnt++;
-                break;
-            case 0x705u:
                 Can_Rx_DiagnosticBuffer[Can_Rx_DiagBufCnt].rxMsg = Can_RxMessageBuffer[i].rxMsg;
                 memcpy(Can_Rx_DiagnosticBuffer[Can_Rx_DiagBufCnt].rxData, Can_RxMessageBuffer[i].rxData, sizeof(Can_RxMessageBuffer[i].rxData));
                 Can_Rx_DiagBufCnt++;
@@ -563,7 +446,7 @@ void Can_TransmitScheduleTable(void)
             memcpy(g_mcmcan.txData, Can_TransmitTable[i].transmitMessage.txData, sizeof(Can_TransmitTable[i].transmitMessage.txData));
             Can_TransmitTable[i].transmitFlag = 0u;
             Can_Tx(g_mcmcan);
-            for(uint8 j = 0; j < 8u; j++)
+            for(uint8 j = 0; j < COMMASTER_NO_TX_MSG; j++)
             {
                 Can_TransmitTable[i].transmitMessage.txData[j] = 0u;
             }
@@ -584,24 +467,8 @@ void Can_Sleep(void)
 
 void Can_MainFunction(void)
 {
-    static uint32 timestamp = 0u;
-    static uint8 localErrorFlag = 0u;
     static uint8 localBusOff = 0u;
     static uint8 localWarningStatus = 0u;
-
-    if((0u != Can_BusOff_Flag) ||
-            (0u != Can_Moer_Flag) ||
-            (0u != Can_Alrt_Flag) ||
-            (0u != Can_Loi_Flag))
-    {
-        timestamp = Can_MainCounter;
-    }
-    else
-    {
-        timestamp = 0u;
-        localErrorFlag = 0u;
-        Can_State = CAN_PROCESS_RXTX;
-    }
 
     localBusOff = IfxCan_Node_getBusOffStatus(g_mcmcan.canDstNode.node);
     localWarningStatus = IfxCan_Node_getWarningStatus(g_mcmcan.canDstNode.node);
@@ -615,46 +482,21 @@ void Can_MainFunction(void)
         /* Do nothing. */
     }
 
-    if(((12000u < Can_MainCounter - timestamp) && timestamp != 0u) ||
-            (6000u < Can_BusOff_Flag) ||
-            (6000u < Can_Alrt_Flag)||
-            (6000u < Can_Moer_Flag)||
-            (6000u < Can_Loi_Flag))
+    switch(Can_State)
     {
-        localErrorFlag = 1u;
-        timestamp = 0u;
-        Can_BusOff_Flag = 0u;
-        Can_Alrt_Flag = 0u;
-        Can_Moer_Flag = 0u;
-        Can_Loi_Flag = 0u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(0u == localErrorFlag)
-    {
-        switch(Can_State)
-        {
-            case CAN_INIT_SUCCESFUL:
-                Can_State = CAN_FIRST_TRANSMIT;
-                break;
-            case CAN_FIRST_TRANSMIT:
-                Can_TransmitAllMessages();
-                Can_State = CAN_PROCESS_RXTX;
-                break;
-            case CAN_PROCESS_RXTX:
-                Can_ProcessReceivedMessages();
-                Can_TransmitScheduleTable();
-                break;
-            default:
-                break;
-        }
-    }
-    else
-    {
-        Can_State = CAN_ERROR;
+        case CAN_INIT_SUCCESFUL:
+            Can_State = CAN_FIRST_TRANSMIT;
+            break;
+        case CAN_FIRST_TRANSMIT:
+            Can_TransmitAllMessages();
+            Can_State = CAN_PROCESS_RXTX;
+            break;
+        case CAN_PROCESS_RXTX:
+            Can_ProcessReceivedMessages();
+            Can_TransmitScheduleTable();
+            break;
+        default:
+            break;
     }
 
     Can_MainCounter++;

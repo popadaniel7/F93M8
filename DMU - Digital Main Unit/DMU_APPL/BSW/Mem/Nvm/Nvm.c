@@ -6,11 +6,9 @@
 __attribute__((section(".ccmram"))) uint32 Nvm_MainCounter = 0;
 __attribute__((section(".ccmram"))) uint8 Nvm_WriteAllPending = 0;
 __attribute__((section(".ccmram"))) uint8 Nvm_ReadAllPending = 0;
-__attribute__((section(".ccmram"))) uint32 Nvm_DataRecorder_CommonBlock[62] = {0};
-extern __attribute__((section(".ccmram"))) uint32 DataRecorder_CcmCounter[39];
+__attribute__((section(".ccmram"))) uint32 Nvm_DataRecorder_CommonBlock[2] = {0};
 extern __attribute__((section(".ccmram"))) uint8 DataRecorder_KilometerTotal;
 extern __attribute__((section(".ccmram"))) uint8 DataRecorder_KilometerPerDcy;
-extern __attribute__((section(".ccmram"))) uint32 DataRecorder_ResetCounter[13];
 extern __attribute__((section(".ccmram"))) Dem_DTC_t Dem_DTCArray[DEM_NUMBER_OF_DTCS];
 
 void Nvm_MainFunction(void);
@@ -20,34 +18,30 @@ void NvM_FlashReadData(uint32 StartSectorAddress, uint32 *RxBuf, uint16 numberof
 uint32 NvM_FlashWriteData(uint32 StartSectorAddress, uint32 *Data, uint16 numberofwords, uint32 Sector);
 void Nvm_ReadAll(void)
 {
-	NvM_FlashReadData(0x0800C000, (uint32*)Dem_DTCArray, sizeof(Dem_DTC_t) / 4);
+	NvM_FlashReadData(0x0800C000, (uint32*)Dem_DTCArray, DEM_NUMBER_OF_DTCS);
 	if(Dem_DTCArray[0].isActiveNow >= 255) memset(Dem_DTCArray, 0, sizeof(Dem_DTC_t));
 	else
 	{
 		/* Do nothing. */
 	}
-	NvM_FlashReadData(0x08008000, Nvm_DataRecorder_CommonBlock, 54);
-	if(Nvm_DataRecorder_CommonBlock[53] >= 0xffff)
+	NvM_FlashReadData(0x08008000, Nvm_DataRecorder_CommonBlock, 2);
+	if(Nvm_DataRecorder_CommonBlock[0u] >= 0xffff)
 	{
-		for(uint8 i = 0; i < 54; i++) Nvm_DataRecorder_CommonBlock[i] = 0;
-		NvM_FlashWriteData(0x08008000, Nvm_DataRecorder_CommonBlock, 54, 2);
+		for(uint8 i = 0; i < 2; i++) Nvm_DataRecorder_CommonBlock[i] = 0;
+		NvM_FlashWriteData(0x08008000, Nvm_DataRecorder_CommonBlock, 2, 2);
 	}
 	else
 	{
 		DataRecorder_KilometerTotal = Nvm_DataRecorder_CommonBlock[0];
 		DataRecorder_KilometerPerDcy = Nvm_DataRecorder_CommonBlock[1];
-		for(uint8 i = 2; i < 41; i++) DataRecorder_CcmCounter[i - 2] = Nvm_DataRecorder_CommonBlock[i];
-		for(uint8 i = 41; i < 54; i++) DataRecorder_ResetCounter[i - 41] = Nvm_DataRecorder_CommonBlock[i];
 	}
 }
 void Nvm_WriteAll(void)
 {
 	Nvm_DataRecorder_CommonBlock[0] = DataRecorder_KilometerTotal;
 	Nvm_DataRecorder_CommonBlock[1] = DataRecorder_KilometerPerDcy;
-	for(uint8 i = 2; i < 41; i++) Nvm_DataRecorder_CommonBlock[i] = DataRecorder_CcmCounter[i - 2];
-	for(uint8 i = 41; i < 54; i++) Nvm_DataRecorder_CommonBlock[i] = DataRecorder_ResetCounter[i - 41];
-	NvM_FlashWriteData(0x08008000, Nvm_DataRecorder_CommonBlock, 54, 2);
-	NvM_FlashWriteData(0x0800C000, (uint32*)Dem_DTCArray, sizeof(Dem_DTC_t) / 4, 3);
+	NvM_FlashWriteData(0x08008000, Nvm_DataRecorder_CommonBlock, 2, 2);
+	NvM_FlashWriteData(0x0800C000, (uint32*)Dem_DTCArray, DEM_NUMBER_OF_DTCS, 3);
 }
 void Nvm_MainFunction(void)
 {

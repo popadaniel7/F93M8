@@ -1,7 +1,7 @@
 #include "Ifx_Types.h"
 
-#define ENCCAL_CODING_SIZE      16U
-#define ENCCAL_CALIBRATION_SIZE 16U
+#define ENCCAL_CODING_SIZE      8U
+#define ENCCAL_CALIBRATION_SIZE 8U
 
 typedef struct
 {
@@ -28,27 +28,13 @@ extern uint32 EncCal_Calibration_ColDet_TtcBrake                                
 extern uint32 EncCal_Calibration_ColDet_MinDist                                       ;
 extern uint32 EncCal_Calibration_ColDet_MaxDist                                       ;
 extern uint32 EncCal_Calibration_ColDet_InvalidDist                                   ;
-extern uint32 EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer                   ;
-extern uint32 EncCal_Calibration_EnergyMgmt_MaxOutputCurrent                          ;
-extern uint32 EncCal_Calibration_EnergyMgmt_UnderVoltageTh                            ;
 extern uint8 EncCal_Coding_DefaultBuffer[ENCCAL_CODING_SIZE];
 extern uint8 EncCal_Coding_Buffer[ENCCAL_CODING_SIZE];
-extern uint8 EncCal_Coding_PsCtrl;
 extern uint8 EncCal_Coding_IgnCtrl;
-extern uint8 EncCal_Coding_AccCtrl;
-extern uint8 EncCal_Coding_BrCtrl;
 extern uint8 EncCal_Coding_CenLoc;
 extern uint8 EncCal_Coding_Hc05;
 extern uint8 EncCal_Coding_Hc05Vent;
 extern uint8 EncCal_Coding_Lsen;
-extern uint8 EncCal_Coding_CbmL;
-extern uint8 EncCal_Coding_DmuL;
-extern uint8 EncCal_Coding_L4;
-extern uint8 EncCal_Coding_L5;
-extern uint8 EncCal_Coding_L6;
-extern uint8 EncCal_Coding_L7;
-extern uint8 EncCal_Coding_L8;
-extern uint8 EncCal_Coding_ConsumerCutoffTime;
 extern uint8 EncCal_CodingValidResult;
 extern uint8 EncCal_CalibrationValidResult;
 extern uint8 EncCal_CheckResult_Coding;

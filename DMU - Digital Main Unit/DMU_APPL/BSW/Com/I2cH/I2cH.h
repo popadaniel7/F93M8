@@ -1,10 +1,3 @@
-/*
- * I2cH.h
- *
- *  Created on: Jun 17, 2024
- *      Author: Daniel
- */
-
 #ifndef I2CH_H_
 #define I2CH_H_
 

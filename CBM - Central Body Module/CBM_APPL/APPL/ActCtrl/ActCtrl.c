@@ -53,6 +53,43 @@ void ActCtrl_ClimaMainFunction(void)
 	static uint8 recirculationCalculatedValue = 0;
 	/* Coefficient calculation. */
 	static uint8 calculatedTemperatureValue = 0;
+	static uint32 localCounter = 0;
+
+	if(0 == StatusBodyControl_FanValue)
+	{
+		if(StatusList_OutputValue[HC05_ARRPOS] == 3)
+		{
+			calculatedPWM = 25 * 4;
+			localCounter++;
+
+			if(360000 < localCounter)
+			{
+				calculatedPWM = 0;
+				localCounter = 0;
+				StatusList_OutputValue[HC05_ARRPOS] = 0;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+
+		}
+		else
+		{
+			calculatedPWM = 0;
+		}
+	}
+	else
+	{
+		if(StatusList_OutputValue[HC05_ARRPOS] == 3)
+		{
+			StatusList_OutputValue[HC05_ARRPOS] = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
 	/* Manual control. */
 	if(0 == StatusBodyControl_Auto) calculatedPWM = 25 * StatusBodyControl_FanValue;
 	else

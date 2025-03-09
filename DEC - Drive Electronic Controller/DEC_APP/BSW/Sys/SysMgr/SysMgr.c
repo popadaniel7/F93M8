@@ -7,7 +7,6 @@
 #include "Crc.h"
 #include "task_core0.h"
 #include "FreeRTOSConfig_core0.h"
-#include "SCR.h"
 #include "Wdg.h"
 #include "IfxPmsPm.h"
 #include "IfxStm.h"

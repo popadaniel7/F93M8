@@ -4,6 +4,7 @@
 #include "IfxCpu.h"
 #include "IfxCan_Can.h"
 #include "IfxScuRcu.h"
+#include "aurix_pin_mappings.h"
 
 #define MAXIMUM_CAN_DATA_PAYLOAD    8u
 #define IRQ_CANRX_CHANNEL           4U
@@ -74,6 +75,7 @@ uint32 FBL_DSC_Status = 0;
 IFX_INTERRUPT(ISR_CanTx, 0, 6u);
 IFX_INTERRUPT(ISR_CanRx, 0, 5u);
 
+void Can_ReInitAfterError(void);
 void Can_Init(void);
 uint32 Can_Tx(McmcanType message);
 void Can_Rx(void);
@@ -109,7 +111,8 @@ void core0_main(void)
     IfxCpu_enableInterrupts();
     IfxScuWdt_disableCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_disableSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
-    //Can_Init();
+    can0_node0_init_pins();
+    Can_Init();
     FBL_ProgrammingAddress = 0;
     FBL_ProgrammingIndex = 0;
     FBL_FlashReadData(ROM_APPL_START_ADDR, &ROM_APPL_START_ADDR_storedValue);
@@ -153,61 +156,165 @@ void core0_main(void)
     
     while(1)
     {
+        static uint8 localBusOff = 0u;
+        static uint8 localWarningStatus = 0u;
+
+        localBusOff = IfxCan_Node_getBusOffStatus(g_mcmcan.canDstNode.node);
+        localWarningStatus = IfxCan_Node_getWarningStatus(g_mcmcan.canDstNode.node);
+
+        if(0u != localBusOff || 0u != localWarningStatus)
+        {
+            Can_ReInitAfterError();
+        }
+        else
+        {
+            /* Do nothing. */
+        }
     }
+}
+
+void Can_ReInitAfterError(void)
+{
+    IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
+    IfxCan_Can_initModuleConfig(&g_mcmcan.canConfig, &MODULE_CAN0);
+    IfxCan_Can_initModule(&g_mcmcan.canModule, &g_mcmcan.canConfig);
+    IfxCan_Can_initNodeConfig(&g_mcmcan.canNodeConfig, &g_mcmcan.canModule);
+    g_mcmcan.canNodeConfig.baudRate.baudrate = 500000u;
+    g_mcmcan.canNodeConfig.baudRate.prescaler = 3u;
+    g_mcmcan.canNodeConfig.baudRate.samplePoint = 8095;
+    g_mcmcan.canNodeConfig.baudRate.syncJumpWidth = 0u;
+    g_mcmcan.canNodeConfig.baudRate.timeSegment1 = 14u;
+    g_mcmcan.canNodeConfig.baudRate.timeSegment2 = 3u;
+    g_mcmcan.canNodeConfig.calculateBitTimingValues = FALSE;
+    g_mcmcan.canNodeConfig.busLoopbackEnabled = FALSE;
+    g_mcmcan.canNodeConfig.txConfig.txMode = IfxCan_TxMode_dedicatedBuffers;
+    g_mcmcan.canNodeConfig.txConfig.dedicatedTxBuffersNumber = 63u;
+    g_mcmcan.canNodeConfig.txConfig.txBufferDataFieldSize = IfxCan_DataFieldSize_8;
+    g_mcmcan.canNodeConfig.frame.mode = IfxCan_FrameMode_standard;
+    g_mcmcan.canNodeConfig.frame.type = IfxCan_FrameType_transmitAndReceive;
+    g_mcmcan.canNodeConfig.nodeId = IfxCan_NodeId_0;
+    g_mcmcan.canNodeConfig.rxConfig.rxMode = IfxCan_RxMode_dedicatedBuffers;
+    g_mcmcan.canNodeConfig.rxConfig.rxBufferDataFieldSize = IfxCan_DataFieldSize_8;
+    g_mcmcan.canNodeConfig.interruptConfig.messageRAMAccessFailureEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.timeoutOccurredEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.errorLoggingOverflowEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.errorPassiveEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.errorLoggingOverflowEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.warningStatusEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.busOffStatusEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.protocolErrorArbitrationEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.protocolErrorDataEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.messageStoredToDedicatedRxBufferEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.reint.priority = IRQ_CANRX_CHANNEL;
+    g_mcmcan.canNodeConfig.interruptConfig.reint.interruptLine = IfxCan_InterruptLine_0;
+    g_mcmcan.canNodeConfig.interruptConfig.reint.typeOfService = IfxSrc_Tos_cpu0;
+    /* Message RAM configuration */
+    g_mcmcan.canNodeConfig.messageRAM.baseAddress = (uint32)(g_mcmcan.canNodeConfig.can);
+    g_mcmcan.canNodeConfig.messageRAM.standardFilterListStartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.extendedFilterListStartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.rxFifo0StartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.rxFifo1StartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.rxBuffersStartAddress = 0x120;
+    g_mcmcan.canNodeConfig.messageRAM.txEventFifoStartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.txBuffersStartAddress = 0x520u;
+    /* Setup CAN node handles */
+    g_mcmcan.canDstNode.can = &MODULE_CAN0;
+    g_mcmcan.canDstNode.frameMode = IfxCan_FrameMode_standard;
+    g_mcmcan.canSrcNode.can = &MODULE_CAN0;
+    g_mcmcan.canSrcNode.frameMode = IfxCan_FrameMode_standard;
+    g_mcmcan.canNodeConfig.filterConfig.messageIdLength = IfxCan_MessageIdLength_standard;
+    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 11u;
+    g_mcmcan.canNodeConfig.filterConfig.extendedListSize = 0u;
+    g_mcmcan.canNodeConfig.filterConfig.standardFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
+    g_mcmcan.canNodeConfig.filterConfig.extendedFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
+    g_mcmcan.canNodeConfig.filterConfig.rejectRemoteFramesWithStandardId = TRUE;
+    g_mcmcan.canNodeConfig.filterConfig.rejectRemoteFramesWithExtendedId = TRUE;
+    /* Initialize the node */
+    IfxCan_Can_initNode(&g_mcmcan.canDstNode, &g_mcmcan.canNodeConfig);
+    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
+    g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
+    g_mcmcan.canFilter.number = 0u;
+    g_mcmcan.canFilter.id1 = 0x6FEu;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
+    /* Apply the standard filter */
+    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
+    IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
 }
 
 void Can_Init(void)
 {
+    IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
+    IfxPort_setPinModeOutput(&MODULE_P20, 6, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(&MODULE_P20, 6);
     IfxCan_Can_initModuleConfig(&g_mcmcan.canConfig, &MODULE_CAN0);
     IfxCan_Can_initModule(&g_mcmcan.canModule, &g_mcmcan.canConfig);
     IfxCan_Can_initNodeConfig(&g_mcmcan.canNodeConfig, &g_mcmcan.canModule);
-    g_mcmcan.canNodeConfig.nodeId = IfxCan_NodeId_0;
-    g_mcmcan.canNodeConfig.clockSource = IfxCan_ClockSource_both;
-    g_mcmcan.canNodeConfig.frame.type = IfxCan_FrameType_transmitAndReceive;
-    g_mcmcan.canNodeConfig.frame.mode = IfxCan_FrameMode_standard;
+    IfxScuCcu_setMcanFrequency(40000000.0f);
     g_mcmcan.canNodeConfig.baudRate.baudrate = 500000u;
-    g_mcmcan.canNodeConfig.baudRate.samplePoint = 8000u;
-    g_mcmcan.canNodeConfig.baudRate.syncJumpWidth = 3u;
-    g_mcmcan.canNodeConfig.baudRate.prescaler = 0u;
-    g_mcmcan.canNodeConfig.baudRate.timeSegment1 = 3u;
-    g_mcmcan.canNodeConfig.baudRate.timeSegment2 = 10u;
+    g_mcmcan.canNodeConfig.baudRate.prescaler = 3u;
+    g_mcmcan.canNodeConfig.baudRate.samplePoint = 8095;
+    g_mcmcan.canNodeConfig.baudRate.syncJumpWidth = 0u;
+    g_mcmcan.canNodeConfig.baudRate.timeSegment1 = 14u;
+    g_mcmcan.canNodeConfig.baudRate.timeSegment2 = 3u;
+    g_mcmcan.canNodeConfig.calculateBitTimingValues = FALSE;
+    g_mcmcan.canNodeConfig.busLoopbackEnabled = FALSE;
     g_mcmcan.canNodeConfig.txConfig.txMode = IfxCan_TxMode_dedicatedBuffers;
-    g_mcmcan.canNodeConfig.txConfig.dedicatedTxBuffersNumber = 40u;
-    g_mcmcan.canNodeConfig.txConfig.txFifoQueueSize = 0u;
+    g_mcmcan.canNodeConfig.txConfig.dedicatedTxBuffersNumber = 63u;
     g_mcmcan.canNodeConfig.txConfig.txBufferDataFieldSize = IfxCan_DataFieldSize_8;
-    g_mcmcan.canNodeConfig.txConfig.txEventFifoSize = 0u;
-    g_mcmcan.canNodeConfig.rxConfig.rxMode                = IfxCan_RxMode_dedicatedBuffers;
+    g_mcmcan.canNodeConfig.frame.mode = IfxCan_FrameMode_standard;
+    g_mcmcan.canNodeConfig.frame.type = IfxCan_FrameType_transmitAndReceive;
+    g_mcmcan.canNodeConfig.nodeId = IfxCan_NodeId_0;
+    g_mcmcan.canNodeConfig.rxConfig.rxMode = IfxCan_RxMode_dedicatedBuffers;
     g_mcmcan.canNodeConfig.rxConfig.rxBufferDataFieldSize = IfxCan_DataFieldSize_8;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo0DataFieldSize  = IfxCan_DataFieldSize_8;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo1DataFieldSize  = IfxCan_DataFieldSize_8;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo0OperatingMode  = IfxCan_RxFifoMode_blocking;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo1OperatingMode  = IfxCan_RxFifoMode_blocking;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo0WatermarkLevel = 0;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo1WatermarkLevel = 0;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo0Size           = 0;
-    g_mcmcan.canNodeConfig.rxConfig.rxFifo1Size           = 0;
-    g_mcmcan.canNodeConfig.messageRAM.baseAddress                    = (uint32)(g_mcmcan.canNodeConfig.can);
-    g_mcmcan.canNodeConfig.messageRAM.standardFilterListStartAddress = 0u;
-    g_mcmcan.canNodeConfig.messageRAM.extendedFilterListStartAddress = 0u;
-    g_mcmcan.canNodeConfig.messageRAM.rxFifo0StartAddress            = 0u;
-    g_mcmcan.canNodeConfig.messageRAM.rxFifo1StartAddress            = 0u;
-    g_mcmcan.canNodeConfig.messageRAM.rxBuffersStartAddress          = 0x100u;
-    g_mcmcan.canNodeConfig.messageRAM.txEventFifoStartAddress        = 0u;
-    g_mcmcan.canNodeConfig.messageRAM.txBuffersStartAddress          = 0x420u;
+    g_mcmcan.canNodeConfig.interruptConfig.messageRAMAccessFailureEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.timeoutOccurredEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.errorLoggingOverflowEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.errorPassiveEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.errorLoggingOverflowEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.warningStatusEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.busOffStatusEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.protocolErrorArbitrationEnabled = TRUE;
+    g_mcmcan.canNodeConfig.interruptConfig.protocolErrorDataEnabled = TRUE;
     g_mcmcan.canNodeConfig.interruptConfig.messageStoredToDedicatedRxBufferEnabled = TRUE;
     g_mcmcan.canNodeConfig.interruptConfig.reint.priority = IRQ_CANRX_CHANNEL;
-    g_mcmcan.canNodeConfig.interruptConfig.reint.interruptLine = IfxCan_InterruptLine_1;
+    g_mcmcan.canNodeConfig.interruptConfig.reint.interruptLine = IfxCan_InterruptLine_0;
     g_mcmcan.canNodeConfig.interruptConfig.reint.typeOfService = IfxSrc_Tos_cpu0;
-    g_mcmcan.canNodeConfig.interruptConfig.transmissionCompletedEnabled = TRUE;
-    g_mcmcan.canNodeConfig.interruptConfig.traco.priority = IRQ_CANTX_CHANNEL;
-    g_mcmcan.canNodeConfig.interruptConfig.traco.interruptLine = IfxCan_InterruptLine_0;
-    g_mcmcan.canNodeConfig.interruptConfig.traco.typeOfService = IfxSrc_Tos_cpu0;
-    IfxCan_Can_initNode(&g_mcmcan.canSrcNode, &g_mcmcan.canNodeConfig);
-    g_mcmcan.canFilter.number = 0;
+    /* Message RAM configuration */
+    g_mcmcan.canNodeConfig.messageRAM.baseAddress = (uint32)(g_mcmcan.canNodeConfig.can);
+    g_mcmcan.canNodeConfig.messageRAM.standardFilterListStartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.extendedFilterListStartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.rxFifo0StartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.rxFifo1StartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.rxBuffersStartAddress = 0x120;
+    g_mcmcan.canNodeConfig.messageRAM.txEventFifoStartAddress = 0x0u;
+    g_mcmcan.canNodeConfig.messageRAM.txBuffersStartAddress = 0x520u;
+    /* Setup CAN node handles */
+    g_mcmcan.canDstNode.can = &MODULE_CAN0;
+    g_mcmcan.canDstNode.frameMode = IfxCan_FrameMode_standard;
+    g_mcmcan.canSrcNode.can = &MODULE_CAN0;
+    g_mcmcan.canSrcNode.frameMode = IfxCan_FrameMode_standard;
+    g_mcmcan.canNodeConfig.filterConfig.messageIdLength = IfxCan_MessageIdLength_standard;
+    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 1u;
+    g_mcmcan.canNodeConfig.filterConfig.extendedListSize = 0u;
+    g_mcmcan.canNodeConfig.filterConfig.standardFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
+    g_mcmcan.canNodeConfig.filterConfig.extendedFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
+    g_mcmcan.canNodeConfig.filterConfig.rejectRemoteFramesWithStandardId = TRUE;
+    g_mcmcan.canNodeConfig.filterConfig.rejectRemoteFramesWithExtendedId = TRUE;
+    /* Initialize the node */
+    IfxCan_Can_initNode(&g_mcmcan.canDstNode, &g_mcmcan.canNodeConfig);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.id1 = 0;
+    g_mcmcan.canFilter.number = 0u;
+    g_mcmcan.canFilter.id1 = 0x6FEu;
     g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
-    IfxPort_setPinLow(&MODULE_P20, 6);
+    /* Apply the standard filter */
+    IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
+    IfxCan_Node_initRxPin(g_mcmcan.canDstNode.node, &IfxCan_RXD00B_P20_7_IN, IfxPort_Mode_inputPullUp, IfxPort_PadDriver_cmosAutomotiveSpeed1);
+    IfxCan_Node_initTxPin(&IfxCan_TXD00_P20_8_OUT, IfxPort_OutputMode_pushPull, IfxPort_PadDriver_cmosAutomotiveSpeed4);
+    IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
 }
 
 uint32 Can_Tx(McmcanType message)
@@ -217,6 +324,7 @@ uint32 Can_Tx(McmcanType message)
 
 void Can_Rx(void)
 {
+    g_mcmcan.rxMsg.bufferNumber = 0u;
     /* Clear the "Message stored to Dedicated RX Buffer" interrupt flag */
     IfxCan_Node_clearInterruptFlag(g_mcmcan.canDstNode.node, IfxCan_Interrupt_messageStoredToDedicatedRxBuffer);
     /* Read the received CAN message */
@@ -234,13 +342,13 @@ void Can_Rx(void)
             FBL_DiagService_ER_SoftReset();
             break;
         default:
-            if(g_mcmcan.rxData[1] == 0x50 && g_mcmcan.rxData[2] == 0x02)
+            if(g_mcmcan.rxData[1u] == 0x50u && g_mcmcan.rxData[2u] == 0x02u)
             {
                 g_mcmcan.txMsg.dataLengthCode = g_mcmcan.rxMsg.dataLengthCode;
-                g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1;
-                g_mcmcan.txData[0] = g_mcmcan.rxData[0];
-                g_mcmcan.txData[1] = g_mcmcan.rxData[1] + 0x40;
-                g_mcmcan.txData[2] = g_mcmcan.rxData[2];
+                g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1u;
+                g_mcmcan.txData[0u] = g_mcmcan.rxData[0u];
+                g_mcmcan.txData[1u] = g_mcmcan.rxData[1u] + 0x40u;
+                g_mcmcan.txData[2u] = g_mcmcan.rxData[2u];
                 FBL_DSC_State = PROGRAMMING;
                 Can_Tx(g_mcmcan);
                 FBL_DiagService_DSC_Programming();

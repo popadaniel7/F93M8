@@ -4,8 +4,8 @@
 #include "Dem.h"
 #include <string.h>
 
-#define DCM_CAN_ID_TX 0x704
-#define DCM_CAN_ID_RX 0x705
+#define DCM_CAN_ID_TX 0x702
+#define DCM_CAN_ID_RX 0x703
 #define DCM_DATA_SIZE (DEM_NUMBER_OF_DTCS * sizeof(Dem_DTC_t))
 #define DCM_MAX_CAN_DATA_LEN 8
 typedef struct
@@ -77,21 +77,17 @@ void DiagRoutine_CDTCS_ControlDTCSetting(void);
 void DiagRoutine_RC_DisplaySelfTest(void);
 void DiagRoutine_RC_CameraDisplay(void);
 extern void EcuM_PerformReset(uint8 param);
-extern void Nvm_W25Q16_WriteBlock(uint8 * pBuffer, uint32 Block_Address, uint32 OffsetInByte, uint32 NumByteToWrite_up_to_BlockSize);
 extern void Dem_ClearDtc(void);
 extern void Nvm_WriteAll(void);
 typedef void (*Dcm_FuncPtr)();
 typedef struct
 {
-	uint8 IsFunctionActive;
-	uint8 TransmissionMode;
-	uint32 Timestamp;
 	Dcm_FuncPtr FuncPtr;
 }Dcm_RDBPI_Table_t;
 Dcm_RDBPI_Table_t Dcm_RDBPI_Table[] =
 {
-		{0x00, 0x04, 0x00, DiagRoutine_RDBPI_ReadCameraStatus},
-		{0x00, 0x04, 0x00, DiagRoutine_RDBPI_ReadDisplayStatus},
+		{DiagRoutine_RDBPI_ReadCameraStatus},
+		{DiagRoutine_RDBPI_ReadDisplayStatus},
 };
 void Dcm_MainFunction(void)
 {
@@ -189,42 +185,15 @@ void Dcm_MainFunction(void)
 				}
 			}
 		}
-
-		for(uint8 i = 0; i < 2; i++)
-		{
-			if(Dcm_RDBPI_Table[i].IsFunctionActive == 0x01)
-			{
-				if((Dcm_MainCounter - Dcm_RDBPI_Table[i].Timestamp) > ((250) / Dcm_RDBPI_Table[i].TransmissionMode))
-				{
-					Dcm_RDBPI_Table[i].FuncPtr();
-					Dcm_RDBPI_Table[i].Timestamp = Dcm_MainCounter;
-					break;
-				}
-				else
-				{
-					/* Do nothing. */
-				}
-			}
-			else
-			{
-				/* Do nothing. */
-			}
-		}
 		/* Read data routines. */
 		if(CanH_DiagArray[1] == 0x2A)
 		{
 			if(CanH_DiagArray[2] == 0x04)
 			{
-				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].IsFunctionActive = 0;
-				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].Timestamp = 0;
-				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].TransmissionMode = 0x04;
 				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].FuncPtr();
 			}
 			else if(CanH_DiagArray[2] != 0x04)
 			{
-				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].IsFunctionActive = 1;
-				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].TransmissionMode = CanH_DiagArray[2];
-				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].Timestamp = Dcm_MainCounter;
 				Dcm_RDBPI_Table[CanH_DiagArray[3] - 12].FuncPtr();
 			}
 			else
@@ -287,7 +256,7 @@ void Dcm_MainFunction(void)
 void DiagRoutine_RDBPI_ReadCameraStatus(void)
 {
 	Dcm_TxHeader.DLC = 8;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
 	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
 	Dcm_TxData[2] = CanH_DiagArray[2];
@@ -301,7 +270,7 @@ void DiagRoutine_RDBPI_ReadCameraStatus(void)
 void DiagRoutine_RDBPI_ReadDisplayStatus(void)
 {
 	Dcm_TxHeader.DLC = 8;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
 	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
 	Dcm_TxData[2] = CanH_DiagArray[2];
@@ -315,7 +284,7 @@ void DiagRoutine_RDBPI_ReadDisplayStatus(void)
 void DiagRoutine_DSC_DefaultSession(void)
 {
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = CanH_DiagRxHeader.DLC - 1;
 	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
 	Dcm_TxData[2] = CanH_DiagArray[2];
@@ -366,7 +335,7 @@ void DiagRoutine_ER_HardReset(void)
 {
 	__disable_irq();
 	Dcm_TxHeader.DLC = 3;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 2;
 	Dcm_TxData[1] = 0x51;
 	Dcm_TxData[2] = 0x01;
@@ -386,7 +355,7 @@ void DiagRoutine_ER_SoftReset(void)
 {
 	__disable_irq();
 	Dcm_TxHeader.DLC = 3;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 2;
 	Dcm_TxData[1] = 0x51;
 	Dcm_TxData[2] = 3;
@@ -489,9 +458,9 @@ void Dcm_TxIsoTp(uint8 *data, uint16 size)
 void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void)
 {
 	uint8 *data = (uint8*)Dem_DTCArray;
-	uint16 total_size = DEM_NUMBER_OF_DTCS * sizeof(Dem_DTC_t);
+	uint16 total_size = DEM_NUMBER_OF_DTCS;
 	Dcm_TxHeader.DLC = 3;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 2;
 	Dcm_TxData[1] = 0x59;
 	Dcm_TxData[2] = 0x0A;
@@ -578,7 +547,7 @@ void DiagRoutine_CDTCS_ControlDTCSetting(void)
 void DiagRoutine_RC_DisplaySelfTest(void)
 {
 	Dcm_TxHeader.DLC = 5;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 4;
 	Dcm_TxData[1] = 0x71;
 	Dcm_TxData[2] = 0x01;
@@ -593,7 +562,7 @@ void DiagRoutine_RC_DisplaySelfTest(void)
 void DiagRoutine_RC_CameraDisplay(void)
 {
 	Dcm_TxHeader.DLC = 5;
-	Dcm_TxHeader.StdId = 0x705;
+	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 4;
 	Dcm_TxData[1] = 0x71;
 	Dcm_TxData[2] = 0x01;

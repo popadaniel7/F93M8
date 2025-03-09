@@ -74,7 +74,6 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_USART1_UART_Init();
-  MX_TIM9_Init();
 
   /* Initialize interrupts */
   MX_NVIC_Init();
@@ -171,9 +170,6 @@ static void MX_NVIC_Init(void)
   /* TIM3_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(TIM3_IRQn, 6, 0);
   HAL_NVIC_EnableIRQ(TIM3_IRQn);
-  /* TIM1_BRK_TIM9_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(TIM1_BRK_TIM9_IRQn, 6, 0);
-  HAL_NVIC_EnableIRQ(TIM1_BRK_TIM9_IRQn);
   /* USART1_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(USART1_IRQn, 6, 0);
   HAL_NVIC_EnableIRQ(USART1_IRQn);
@@ -203,7 +199,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM5) {
+  if (htim->Instance == TIM5)
+  {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */

@@ -28,11 +28,7 @@ typedef void (*Dcm_FuncPtr)();
 /* RDBPI data type. */
 typedef struct
 {
-	uint8 IsFunctionActive;
-	uint8 TransmissionMode;
-	uint32 Timestamp;
 	Dcm_FuncPtr FuncPtr;
-
 }Dcm_RDBPI_Table_t;
 /* TYPEDEF STOP */
 /* VARIABLES START */

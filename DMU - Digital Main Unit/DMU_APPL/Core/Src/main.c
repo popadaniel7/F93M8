@@ -3,7 +3,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "adc.h"
 #include "can.h"
 #include "dcmi.h"
 #include "dma.h"
@@ -78,17 +77,17 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_DMA_Init();
   MX_GPIO_Init();
-  MX_ADC1_Init();
   MX_CAN1_Init();
   MX_DCMI_Init();
   MX_FSMC_Init();
   MX_RTC_Init();
-  MX_TIM9_Init();
   MX_I2C2_Init();
+  MX_TIM3_Init();
 
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -180,9 +179,6 @@ static void MX_NVIC_Init(void)
   /* PVD_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(PVD_IRQn, 15, 0);
   HAL_NVIC_EnableIRQ(PVD_IRQn);
-  /* DMA2_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 15, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
   /* DCMI_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DCMI_IRQn, 7, 0);
   HAL_NVIC_EnableIRQ(DCMI_IRQn);
@@ -198,12 +194,6 @@ static void MX_NVIC_Init(void)
   /* CAN1_SCE_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(CAN1_SCE_IRQn, 12, 0);
   HAL_NVIC_EnableIRQ(CAN1_SCE_IRQn);
-  /* ADC_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(ADC_IRQn, 15, 0);
-  HAL_NVIC_EnableIRQ(ADC_IRQn);
-  /* TIM1_BRK_TIM9_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(TIM1_BRK_TIM9_IRQn, 1, 0);
-  HAL_NVIC_EnableIRQ(TIM1_BRK_TIM9_IRQn);
   /* RCC_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(RCC_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(RCC_IRQn);

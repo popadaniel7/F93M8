@@ -33,7 +33,7 @@ NS_ :
 
 BS_:
 
-BU_: Tester EMC CBS FRBE PDM CBM DMU DEC
+BU_: Tester EMC CBS FRBE CBM DMU DEC
 
 
 BO_ 5 SafeIgnitionStatus: 3 DEC
@@ -45,12 +45,6 @@ BO_ 4 SafeVehicleError: 3 DEC
  SG_ Sve_IvenSafe : 16|8@1+ (1,0) [0|255] ""  EMC
  SG_ Sve_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
  SG_ Sve_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
-
-BO_ 3 SafeSupplyStatus: 4 DEC
- SG_ Sss_RPS : 24|8@1+ (1,0) [0|255] ""  EMC
- SG_ Sss_PSNW : 16|8@1+ (1,0) [0|255] ""  EMC
- SG_ Sss_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
- SG_ Sss_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
 
 BO_ 2 SafeBrakeAssist: 3 DEC
  SG_ Sba_AssistRequestStatus : 16|8@1+ (1,0) [0|255] ""  EMC
@@ -72,18 +66,7 @@ BO_ 153 StatusBodyControl2: 5 DEC
  SG_ FanValueRequest : 0|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
 
 BO_ 271 DataRecorder: 2 DEC
- SG_ DcyStatus : 0|8@1+ (1,0) [0|255] "" Vector__XXX
- SG_ VBat : 8|8@1+ (1,0) [0|255] ""  DMU
-
-BO_ 270 CommandLoad: 8 DEC
- SG_ CommandLoad8 : 56|8@1+ (1,0) [0|255] ""  PDM
- SG_ CommandLoad7 : 48|8@1+ (1,0) [0|255] ""  PDM
- SG_ CommandLoad6 : 40|8@1+ (1,0) [0|255] ""  PDM
- SG_ CommandLoad5 : 32|8@1+ (1,0) [0|255] ""  PDM
- SG_ CommandLoad4 : 24|8@1+ (1,0) [0|255] ""  PDM
- SG_ CommandLoad3 : 16|8@1+ (1,0) [0|255] ""  PDM
- SG_ CommandLoad2 : 8|8@1+ (1,0) [0|255] ""  PDM
- SG_ CommandLoad1 : 0|8@1+ (1,0) [0|255] ""  PDM
+ SG_ DcyStatus : 0|8@1+ (1,0) [0|255] ""  DMU
 
 BO_ 264 LightStatus: 3 FRBE
  SG_ StatusTurnSignals : 16|8@1+ (1,0) [0|255] ""  DEC
@@ -100,49 +83,23 @@ BO_ 266 ClimateWiperControl: 8 CBS
  SG_ ClimateTemperature : 8|8@1+ (1,0) [0|255] ""  DEC
  SG_ AutoClimate : 0|8@1+ (1,0) [0|255] ""  DEC
 
-BO_ 269 StatusErrorSetting_705: 1 PDM
- SG_ Err705_ID : 0|8@1+ (1,0) [0|255] ""  DEC
-
-BO_ 263 StatusVoltageCurrent: 3 PDM
- SG_ TotalCurrentConsumption2 : 16|8@1+ (1,0) [0|255] ""  DEC
- SG_ TotalCurrentConsumption : 8|8@1+ (1,0) [0|255] ""  DEC
- SG_ MeasuredVoltageSupply : 0|8@1+ (1,0) [0|255] ""  DEC
-
-BO_ 260 StatusPowerSupplyNetwork: 1 PDM
- SG_ PSNWarn : 0|8@1+ (1,0) [0|255] ""  DEC
-
-BO_ 259 StatusLoadList: 8 PDM
- SG_ LoadStatus8 : 56|8@1+ (1,0) [0|255] ""  DEC
- SG_ LoadStatus7 : 48|8@1+ (1,0) [0|255] ""  DEC
- SG_ LoadStatus6 : 40|8@1+ (1,0) [0|255] ""  DEC
- SG_ LoadStatus5 : 32|8@1+ (1,0) [0|255] ""  DEC
- SG_ LoadStatus4 : 24|8@1+ (1,0) [0|255] ""  DEC
- SG_ LoadStatus3 : 16|8@1+ (1,0) [0|255] ""  DEC
- SG_ LoadStatus2 : 8|8@1+ (1,0) [0|255] ""  DEC
- SG_ LoadStatus1 : 0|8@1+ (1,0) [0|255] ""  DEC
-
 BO_ 267 InfoClustermessage: 1 DEC
  SG_ ICM_ID : 0|8@1+ (1,0) [0|255] ""  DMU
 
-BO_ 151 VehicleState: 8 DEC
- SG_ ReducedPowerSupply : 56|8@1+ (1,0) [0|255] "" Vector__XXX
- SG_ VehicleStatus : 48|8@1+ (1,0) [0|255] "" Vector__XXX
- SG_ PowerSteeringAngle : 8|8@1+ (1,0) [0|255] ""  DMU
+BO_ 151 VehicleState: 6 DEC
+ SG_ VehicleStatus : 40|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ Ignition : 0|8@1+ (1,0) [0|255] ""  DMU
- SG_ Speed : 40|8@1+ (1,0) [0|255] ""  CBM,DMU
- SG_ Rpm : 32|8@1+ (1,0) [0|255] ""  DMU
- SG_ IrSenStat : 24|8@1+ (1,0) [0|255] ""  DMU
- SG_ Gear : 16|8@1+ (1,0) [0|255] ""  DMU
+ SG_ Speed : 32|8@1+ (1,0) [0|255] ""  CBM,DMU
+ SG_ Rpm : 24|8@1+ (1,0) [0|255] ""  DMU
+ SG_ IrSenStat : 16|8@1+ (1,0) [0|255] ""  DMU
+ SG_ Gear : 8|8@1+ (1,0) [0|255] ""  DMU
 
 BO_ 268 StatusErrorSetting_701: 1 CBM
  SG_ Err701_ID : 0|8@1+ (1,0) [0|255] ""  DEC
 
-BO_ 256 StatusDriveControl: 5 CBM
- SG_ StatusPs : 32|8@1+ (1,0) [0|255] ""  DEC
- SG_ StatusIgn : 24|8@1+ (1,0) [0|255] ""  DEC
- SG_ StatusGb : 16|8@1+ (1,0) [0|255] ""  DEC
- SG_ StatusBr : 8|8@1+ (1,0) [0|255] ""  DEC
- SG_ StatusAcc : 0|8@1+ (1,0) [0|255] ""  DEC
+BO_ 256 StatusDriveControl: 2 CBM
+ SG_ StatusIgn : 0|8@1+ (1,0) [0|255] ""  DEC
+ SG_ StatusGb : 8|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 152 StatusBodyControl: 6 DEC
  SG_ AutoClimateRequest : 40|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
@@ -157,8 +114,6 @@ BO_ 257 StatusActuator: 3 CBM
  SG_ StatusDoorRight : 8|8@1+ (1,0) [0|255] ""  DEC
  SG_ StatusDoorLeft : 0|8@1+ (1,0) [0|255] ""  DEC
 
-BO_ 1797 DiagCAN_Response_705: 8 PDM
-
 BO_ 1795 DiagCAN_Response_703: 8 DMU
 
 BO_ 1793 DiagCAN_Response_701: 8 CBM
@@ -167,18 +122,14 @@ BO_ 1791 DiagCAN_Response_DiagMaster: 8 DEC
 
 BO_ 1790 DiagCAN_Request_DiagMaster: 8 Tester
 
-BO_ 1796 DiagCAN_Request_704: 8 Tester
-
 BO_ 1794 DiagCAN_Request_702: 8 Tester
 
 BO_ 1792 DiagCAN_Request_700: 8 Tester
 
 BO_ 1296 Networkmanagement3: 3 DEC
- SG_ NM3_PN2 : 16|8@1- (1,0) [0|0] ""  DMU
  SG_ NM3_PN1 : 8|8@1+ (1,0) [0|255] ""  CBM
- SG_ NM3 : 0|8@1+ (1,0) [0|255] ""  PDM,DMU,CBM
+ SG_ NM3 : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
 
-BO_TX_BU_ 1797 : DEC,PDM;
 BO_TX_BU_ 1795 : DEC,DMU;
 BO_TX_BU_ 1793 : DEC,CBM;
 

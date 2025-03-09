@@ -5,10 +5,8 @@ __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_DriveCycleStatus = 
 __attribute__((section(".ccmram"))) uint32 DataRecorder_MainCounter = 0x00;
 __attribute__((section(".ccmram"))) float DataRecorder_SpeedInKmS = 0x00;
 __attribute__((section(".ccmram"))) uint32 DataRecorder_SpeedCounterActive = 0x00;
-__attribute__((section(".ccmram"))) uint32 DataRecorder_CcmCounter[DATARECORDER_CCM_MAXNUMBER] = {0x00};
 __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerTotal = 0x00;
 __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerPerDcy = 0x00;
-__attribute__((section(".ccmram"))) uint32 DataRecorder_ResetCounter[13] = {0x00};
 __attribute__((section(".ccmram"))) float aux_km1 = 0;
 __attribute__((section(".ccmram"))) float aux_km2 = 0;
 __attribute__((section(".ccmram"))) float fin_aux_km1 = 0;
@@ -32,10 +30,11 @@ void DataRecorder_MainFunction(void)
 	{
 		/* Do nothing. */
 	}
-	/* Value END == 0x03 is not send so often... depends on the user!
-	 * It simulates a kilometer reset from the traditional info-cluster button.
-	 * */
-	if(DATARECORDER_DCY_END == DataRecorder_RxSig_DriveCycleStatus) DataRecorder_KilometerPerDcy = 0;
+	/* Value END == 0x03 */
+	if(DATARECORDER_DCY_END == DataRecorder_RxSig_DriveCycleStatus)
+	{
+		DataRecorder_KilometerPerDcy = 0;
+	}
 	else
 	{
 		/* Do nothing. */

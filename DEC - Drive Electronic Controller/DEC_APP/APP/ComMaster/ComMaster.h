@@ -1,8 +1,8 @@
 #include "Ifx_Types.h"
 #include "Can.h"
 
-#define COMMASTER_NO_RX_MSG 10u
-#define COMMASTER_NO_TX_MSG 11u
+#define COMMASTER_NO_RX_MSG 6u
+#define COMMASTER_NO_TX_MSG 9u
 
 typedef struct
 {
@@ -20,33 +20,18 @@ typedef struct
 extern ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG];
 extern ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG];
 extern uint32 ComMaster_SdcMsgStat_Cnt;
-extern uint32 ComMaster_LlMsgStat_Cnt;
-extern uint32 ComMaster_SpsnMsgStat_Cnt;
 extern uint32 ComMaster_SaMsgStat_Cnt;
 extern uint32 ComMaster_CwcMsgStat_Cnt;
-extern uint32 ComMaster_SvcMsgStat_Cnt;
 extern uint32 ComMaster_LsMsgStat_Cnt;
 extern uint8 ComMaster_RxSignal_AutoClimate;
 extern uint8 ComMaster_RxSignal_ClimateTemperature;
 extern uint8 ComMaster_RxSignal_DisplayMode;
 extern uint8 ComMaster_RxSignal_Err701_ID;
-extern uint8 ComMaster_RxSignal_Err705_ID;
 extern uint8 ComMaster_RxSignal_FanValue;
-extern uint8 ComMaster_RxSignal_LoadStatus1;
-extern uint8 ComMaster_RxSignal_LoadStatus2;
-extern uint8 ComMaster_RxSignal_LoadStatus3;
-extern uint8 ComMaster_RxSignal_LoadStatus4;
-extern uint8 ComMaster_RxSignal_LoadStatus5;
-extern uint8 ComMaster_RxSignal_LoadStatus6;
-extern uint8 ComMaster_RxSignal_LoadStatus7;
-extern uint8 ComMaster_RxSignal_LoadStatus8;
-extern uint8 ComMaster_RxSignal_MeasuredVoltageSupply;
-extern uint8 ComMaster_RxSignal_PSNWarn;
 extern uint8 ComMaster_RxSignal_Recirculation;
 extern uint8 ComMaster_RxSignal_RotaryLightSwitch;
 extern uint8 ComMaster_RxSignal_StatusIgn;
 extern uint8 ComMaster_RxSignal_StatusGb;
-extern uint8 ComMaster_RxSignal_StatusPs;
 extern uint8 ComMaster_RxSignal_StatusDoorLeft;
 extern uint8 ComMaster_RxSignal_StatusDoorRight;
 extern uint8 ComMaster_RxSignal_StatusHighBeam;
@@ -54,19 +39,9 @@ extern uint8 ComMaster_RxSignal_StatusFogLights;
 extern uint8 ComMaster_RxSignal_WiperStock;
 extern uint8 ComMaster_RxSignal_OutsideTemperature;
 extern uint8 ComMaster_RxSignal_TurnSignals;
-extern uint8 ComMaster_RxSignal_TotalCurrentConsumption;
-extern uint8 ComMaster_RxSignal_TotalCurrentConsumption2;
 extern uint8 ComMaster_RxSignal_StatusHc05;
 extern uint8 ComMaster_TxSignal_AutoClimateRequest;
 extern uint8 ComMaster_TxSignal_ClimaTempRequest;
-extern uint8 ComMaster_TxSignal_CommandLoad1;
-extern uint8 ComMaster_TxSignal_CommandLoad2;
-extern uint8 ComMaster_TxSignal_CommandLoad3;
-extern uint8 ComMaster_TxSignal_CommandLoad4;
-extern uint8 ComMaster_TxSignal_CommandLoad5;
-extern uint8 ComMaster_TxSignal_CommandLoad6;
-extern uint8 ComMaster_TxSignal_CommandLoad7;
-extern uint8 ComMaster_TxSignal_CommandLoad8;
 extern uint8 ComMaster_TxSignal_DcyStatus;
 extern uint8 ComMaster_TxSignal_DisplayModeRequest;
 extern uint8 ComMaster_TxSignal_FanValueRequest;
@@ -78,22 +53,16 @@ extern uint8 ComMaster_TxSignal_Ignition;
 extern uint8 ComMaster_TxSignal_IrSenStat;
 extern uint8 ComMaster_TxSignal_NM3;
 extern uint8 ComMaster_TxSignal_NM3_PN1;
-extern uint8 ComMaster_TxSignal_NM3_PN2;
 extern uint8 ComMaster_TxSignal_StatusOutTemp;
-extern uint8 ComMaster_TxSignal_PowerSteeringAngle;
 extern uint8 ComMaster_TxSignal_RecirculationRequest;
 extern uint8 ComMaster_TxSignal_RlsRequest;
 extern uint8 ComMaster_RxSignal_Rpm;
 extern uint8 ComMaster_RxSignal_Speed;
 extern uint8 ComMaster_TxSignal_TurnSignals;
-extern uint8 ComMaster_TxSignal_VBat;
 extern uint8 ComMaster_TxSignal_WiperStockRequest;
 extern uint8 ComMaster_TxSignal_VehicleStatus;
-extern uint8 ComMaster_TxSignal_ReducedPowerSupply;
 extern uint8 ComMaster_ActivityOnTheBus;
 extern uint8 ComMaster_StatusDriveControlMessageState;
-extern uint8 ComMaster_StatusLoadListMessageState;
-extern uint8 ComMaster_StatusPowerSupplyNetworkMessageState;
 extern uint8 ComMaster_StatusActuatorMessageState;
 extern uint8 ComMaster_RxSignal_SdtsCrc;
 extern uint8 ComMaster_RxSignal_SdtsSeqCnt;
@@ -104,10 +73,6 @@ extern uint8 ComMaster_TxSignal_SbaCrc;
 extern uint8 ComMaster_TxSignal_SbaSeqCnt;
 extern uint8 ComMaster_TxSignal_SbaAssistRequestStatus;
 extern uint8 ComMaster_TxSignal_SbaBrakeLevel;
-extern uint8 ComMaster_TxSignal_SssCrc;
-extern uint8 ComMaster_TxSignal_SssSeqCnt;
-extern uint8 ComMaster_TxSignal_SssPSNW;
-extern uint8 ComMaster_TxSignal_SssRPS;
 extern uint8 ComMaster_TxSignal_SveCrc;
 extern uint8 ComMaster_TxSignal_SveSeqCnt;
 extern uint8 ComMaster_TxSignal_SveIvenSafe;

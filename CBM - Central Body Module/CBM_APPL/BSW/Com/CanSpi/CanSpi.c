@@ -5,7 +5,6 @@
 #include "InputCtrl.h"
 #include "Dcm.h"
 #include "spi.h"
-#include "Xcp.h"
 #include "EcuM.h"
 /* DEFINE START */
 /* Macro for SPI handler. */
@@ -52,10 +51,6 @@ CANSPI_uCAN_MSG CanSpi_RxFrame_Buffer1 = {0};
 CANSPI_uCAN_MSG Dcm_DiagServiceResponse_Frame = {0};
 /* DIAG ROUTINE CAN TX buffer. */
 CANSPI_uCAN_MSG Dcm_DiagServiceRequest_Frame = {0};
-/* XCP CAN RX buffer. */
-CANSPI_uCAN_MSG CanSpi_Xcp_RxBuffer = {0};
-/* XCP CAN TX buffer. */
-CANSPI_uCAN_MSG CanSpi_Xcp_TxBuffer = {0};
 /* NM3 signal value. */
 uint8 CanSpi_Networkmanagement3_Signal = {0};
 /* XCP status variable. */
@@ -144,12 +139,6 @@ void CanSpi_MainFunction(void)
 	{
 		/* Do nothing. */
 	}
-	/* If XCP is active, call the XCP main function. */
-	if(CanSpi_isXcpActive == 1) Xcp_MainFunction();
-	else
-	{
-		/* Do nothing. */
-	}
 	/* Perform transceiver initialization. */
 	if(CanSpi_MainCounter == 0) CanSpi_MCP2515_Reset();
 	else if(1 == CanSpi_MainCounter)
@@ -187,14 +176,12 @@ void CanSpi_MainFunction(void)
 			/* If RX is performed successfully. */
 			if(CanSpi_Receive(&CanSpi_RxFrame_Buffer0) != 0)
 			{
-				/* ClimateWiperControl */
-				if(0x10A == CanSpi_RxFrame_Buffer0.frame.id)
+				/* StatusBodyControl2 */
+				if(0x99 == CanSpi_RxFrame_Buffer0.frame.id)
 				{
-					StatusBodyControl_FanValue = CanSpi_RxFrame_Buffer0.frame.data3;
-					StatusBodyControl_Auto = CanSpi_RxFrame_Buffer0.frame.data0;
-					StatusBodyControl_Recirc = CanSpi_RxFrame_Buffer0.frame.data4;
-					StatusBodyControl_Temperature = CanSpi_RxFrame_Buffer0.frame.data1;
-					WiperStock_VehicleState = CanSpi_RxFrame_Buffer0.frame.data6;
+					StatusBodyControl_FanValue = CanSpi_RxFrame_Buffer0.frame.data0;
+					StatusBodyControl_Temperature = CanSpi_RxFrame_Buffer0.frame.data2;
+					WiperStock_VehicleState = CanSpi_RxFrame_Buffer0.frame.data4;
 				}
 				else
 				{
@@ -203,7 +190,9 @@ void CanSpi_MainFunction(void)
 				/* StatusBodyControl */
 				if(0x98 == CanSpi_RxFrame_Buffer0.frame.id)
 				{
-					StatusBodyControl_OutsideTemp = CanSpi_RxFrame_Buffer0.frame.data5;
+					StatusBodyControl_OutsideTemp = CanSpi_RxFrame_Buffer0.frame.data3;
+					StatusBodyControl_Auto = CanSpi_RxFrame_Buffer0.frame.data5;
+					StatusBodyControl_Recirc = CanSpi_RxFrame_Buffer0.frame.data0;
 					CanSpi_StatusBodyControl_MissCnt = 0;
 				}
 				else
@@ -213,7 +202,7 @@ void CanSpi_MainFunction(void)
 				/* VehicleState Frame */
 				if(CanSpi_RxFrame_Buffer0.frame.id == 0x097)
 				{
-					VehicleSpeed_VehicleState  = CanSpi_RxFrame_Buffer0.frame.data7;
+					VehicleSpeed_VehicleState  = CanSpi_RxFrame_Buffer0.frame.data4;
 					CanSpi_VehicleState_MissCnt = 0;
 				}
 				else
@@ -243,16 +232,6 @@ void CanSpi_MainFunction(void)
 				{
 					/* Do nothing. */
 				}
-				/* XCP Frame */
-				if(CanSpi_RxFrame_Buffer0.frame.id == 0x600)
-				{
-					CanSpi_isXcpActive = 1;
-					CanSpi_Xcp_RxBuffer = CanSpi_RxFrame_Buffer0;
-				}
-				else
-				{
-					/* Do nothing. */
-				}
 				/* Diagnostic request Frame */
 				if(CanSpi_RxFrame_Buffer0.frame.id == 0x700) Dcm_DiagServiceRequest_Frame = CanSpi_RxFrame_Buffer0;
 				else
@@ -274,14 +253,12 @@ void CanSpi_MainFunction(void)
 		{
 			if(CanSpi_Receive(&CanSpi_RxFrame_Buffer1) != 0)
 			{
-				/* ClimateWiperControl */
-				if(0x10A == CanSpi_RxFrame_Buffer1.frame.id)
+				/* StatusBodyControl2 */
+				if(0x99 == CanSpi_RxFrame_Buffer1.frame.id)
 				{
-					StatusBodyControl_FanValue = CanSpi_RxFrame_Buffer1.frame.data3;
-					StatusBodyControl_Auto = CanSpi_RxFrame_Buffer1.frame.data0;
-					StatusBodyControl_Recirc = CanSpi_RxFrame_Buffer1.frame.data4;
-					StatusBodyControl_Temperature = CanSpi_RxFrame_Buffer1.frame.data1;
-					WiperStock_VehicleState = CanSpi_RxFrame_Buffer1.frame.data6;
+					StatusBodyControl_FanValue = CanSpi_RxFrame_Buffer1.frame.data0;
+					StatusBodyControl_Temperature = CanSpi_RxFrame_Buffer1.frame.data2;
+					WiperStock_VehicleState = CanSpi_RxFrame_Buffer1.frame.data4;
 				}
 				else
 				{
@@ -290,7 +267,9 @@ void CanSpi_MainFunction(void)
 				/* StatusBodyControl */
 				if(0x98 == CanSpi_RxFrame_Buffer1.frame.id)
 				{
-					StatusBodyControl_OutsideTemp = CanSpi_RxFrame_Buffer1.frame.data5;
+					StatusBodyControl_OutsideTemp = CanSpi_RxFrame_Buffer1.frame.data3;
+					StatusBodyControl_Auto = CanSpi_RxFrame_Buffer1.frame.data5;
+					StatusBodyControl_Recirc = CanSpi_RxFrame_Buffer1.frame.data0;
 					CanSpi_StatusBodyControl_MissCnt = 0;
 				}
 				else
@@ -300,8 +279,7 @@ void CanSpi_MainFunction(void)
 				/* VehicleState Frame */
 				if(CanSpi_RxFrame_Buffer1.frame.id == 0x097)
 				{
-					VehicleSpeed_VehicleState  = CanSpi_RxFrame_Buffer1.frame.data7;
-					VehicleState_Rpm = CanSpi_RxFrame_Buffer1.frame.data6;
+					VehicleSpeed_VehicleState  = CanSpi_RxFrame_Buffer1.frame.data4;
 					CanSpi_VehicleState_MissCnt = 0;
 				}
 				else
@@ -326,16 +304,6 @@ void CanSpi_MainFunction(void)
 					{
 						/* Do nothing. */
 					}
-				}
-				else
-				{
-					/* Do nothing. */
-				}
-				/* XCP Frame */
-				if(CanSpi_RxFrame_Buffer1.frame.id == 0x600)
-				{
-					CanSpi_isXcpActive = 1;
-					CanSpi_Xcp_RxBuffer = CanSpi_RxFrame_Buffer1;
 				}
 				else
 				{
@@ -434,19 +402,7 @@ void CanSpi_MainFunction(void)
 		/* Do nothing. */
 	}
 	/* If communication status is full or partial. */
-	if(CanSpi_Bus_ErrorArr[0] == 0
-			&& CanSpi_Bus_ErrorArr[1] == 0
-			&& CanSpi_Bus_ErrorArr[2] == 0
-			&& CanSpi_ErrorArr[0] == 0
-			&& CanSpi_ErrorArr[1] == 0
-			&& CanSpi_ErrorArr[2] == 0
-			&& CanSpi_ErrorArr[3] == 0
-			&& CanSpi_ErrorArr[4] == 0
-			&& CanSpi_ErrorArr[5] == 0
-			&& CanSpi_ErrorArr[6] == 0
-			&& CanSpi_ErrorArr[7] == 0
-			&& CanSpi_ErrorArr[8] == 0
-			&& CanSpi_Communication_Status != NO_COMMUNICATION
+	if(CanSpi_Communication_Status != NO_COMMUNICATION
 			&& CanSpi_Communication_Status != CC_ACTIVE
 			&& CanSpi_Communication_Status != PARTIAL_COMMUNICATION
 			&& EcuM_State == RUN)
@@ -457,17 +413,14 @@ void CanSpi_MainFunction(void)
 		else Dem_SaveDtc(0x0A, 0);
 		if(200 < CanSpi_VehicleState_MissCnt) Dem_SaveDtc(0x0B, 1);
 		else Dem_SaveDtc(0x0B, 0);
-		/* Status Center Console List 1 */
-		if(CanSpi_MainCounter % 4 == 0)
+		/* Status Drive Control */
+		if(CanSpi_MainCounter % 2 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x100;
-			CanSpi_TxFrame.frame.dlc = 5;
-			CanSpi_TxFrame.frame.data0 = StatusList_ComOutValue[1];
-			CanSpi_TxFrame.frame.data1 = StatusList_ComOutValue[2];
-			CanSpi_TxFrame.frame.data2 = StatusList_ComOutValue[4];
-			CanSpi_TxFrame.frame.data3 = StatusList_ComOutValue[0];
-			CanSpi_TxFrame.frame.data4 = StatusList_ComOutValue[3];
+			CanSpi_TxFrame.frame.dlc = 2;
+			CanSpi_TxFrame.frame.data0 = StatusList_ComOutValue[0];
+			CanSpi_TxFrame.frame.data1 = StatusList_ComOutValue[4];
 			CanSpi_Transmit(&CanSpi_TxFrame);
 			CanSpi_TxFrame.frame.idType = 0;
 			CanSpi_TxFrame.frame.id = 0;
@@ -490,9 +443,10 @@ void CanSpi_MainFunction(void)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x101;
-			CanSpi_TxFrame.frame.dlc = 2;
+			CanSpi_TxFrame.frame.dlc = 3;
 			CanSpi_TxFrame.frame.data0 = CmdList_ActualValue[2];
 			CanSpi_TxFrame.frame.data1 = CmdList_ActualValue[3];
+			CanSpi_TxFrame.frame.data2 = StatusList_ComOutValue[9];
 			CanSpi_Transmit(&CanSpi_TxFrame);
 			CanSpi_TxFrame.frame.idType = 0;
 			CanSpi_TxFrame.frame.id = 0;

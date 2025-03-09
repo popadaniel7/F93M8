@@ -4,48 +4,23 @@
 #include <string.h>
 #include "rtc.h"
 #include "FsmcH.h"
+#include "tim.h"
 /* ICM messages */
 __attribute__((section(".ccmram"))) char DigitalCluster_CheckControlMessage_String[DIGITALCLUSTER_CCM_MAXNUMBER][DIGITALCLUSTER_CCM_MAXLENGTH] =
 {
 		"NULL",
 		DIGITALCLUSTER_CCM_MSGID000,
 		DIGITALCLUSTER_CCM_MSGID001,
-		DIGITALCLUSTER_CCM_MSGID013,
-		DIGITALCLUSTER_CCM_MSGID025,
-		DIGITALCLUSTER_CCM_MSGID026,
-		DIGITALCLUSTER_CCM_MSGID027,
 		DIGITALCLUSTER_CCM_MSGID028,
-		DIGITALCLUSTER_CCM_MSGID029,
-		DIGITALCLUSTER_CCM_MSGID030,
-		DIGITALCLUSTER_CCM_MSGID031,
 		DIGITALCLUSTER_CCM_MSGID032,
 		DIGITALCLUSTER_CCM_MSGID033,
 		DIGITALCLUSTER_CCM_MSGID034,
 		DIGITALCLUSTER_CCM_MSGID035,
 		DIGITALCLUSTER_CCM_MSGID037,
-		DIGITALCLUSTER_CCM_MSGID040,
-		DIGITALCLUSTER_CCM_MSGID053,
-		DIGITALCLUSTER_CCM_MSGID058,
-		DIGITALCLUSTER_CCM_MSGID059,
-		DIGITALCLUSTER_CCM_MSGID060,
-		DIGITALCLUSTER_CCM_MSGID061,
-		DIGITALCLUSTER_CCM_MSGID062,
-		DIGITALCLUSTER_CCM_MSGID063,
-		DIGITALCLUSTER_CCM_MSGID064,
-		DIGITALCLUSTER_CCM_MSGID065,
-		DIGITALCLUSTER_CCM_MSGID066,
-		DIGITALCLUSTER_CCM_MSGID067,
-		DIGITALCLUSTER_CCM_MSGID068,
-		DIGITALCLUSTER_CCM_MSGID069,
-		DIGITALCLUSTER_CCM_MSGID070,
-		DIGITALCLUSTER_CCM_MSGID071,
-		DIGITALCLUSTER_CCM_MSGID072,
-		DIGITALCLUSTER_CCM_MSGID073,
-		DIGITALCLUSTER_CCM_MSGID074,
-		DIGITALCLUSTER_CCM_MSGID075,
-		DIGITALCLUSTER_CCM_MSGID076,
-		DIGITALCLUSTER_CCM_MSGID077,
-		DIGITALCLUSTER_CCM_MSGID078
+		DIGITALCLUSTER_CCM_MSGID041,
+		DIGITALCLUSTER_CCM_MSGID097,
+		DIGITALCLUSTER_CCM_MSGID098,
+		DIGITALCLUSTER_CCM_MSGID099
 };
 /* Digital cluster design */
 __attribute__((section(".ccmram"))) DigitalCluster_DisplayMode_t DigitalCluster_Display_ComfortEcoSport =
@@ -156,12 +131,6 @@ __attribute__((section(".ccmram"))) DigitalCluster_DisplayMode_t DigitalCluster_
 						DIGITALCLUSTER_DLHB_POSX_CSE,
 						DIGITALCLUSTER_DLHB_POSY_CSE,
 						DIGITALCLUSTER_DLHB_TEXT_CSE
-				},
-				.DL_PS =
-				{
-						DIGITALCLUSTER_DLPS_POSX_CSE,
-						DIGITALCLUSTER_DLPS_POSY_CSE,
-						DIGITALCLUSTER_DLPS_TEXT_CSE
 				},
 		},
 		.DashboardLights2 =
@@ -324,10 +293,8 @@ __attribute__((section(".ccmram"))) uint8 DigitalCluster_ReadDisplayPowerMode_Re
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_LcdInit = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RetValInit = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_IgnitionStatus = 0;
-__attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_VBat = 0;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_Gear = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_HighBeamStatus = 0x00;
-__attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_PowerSteeringStatus = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_VehicleSpeed = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_MotorRpm = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_TurnSignals = 0x00;
@@ -376,7 +343,6 @@ __attribute__((section(".ccmram"))) uint16 maxBarHeight = 180;
 __attribute__((section(".ccmram"))) uint8 hasTimeHChanged = 0;
 __attribute__((section(".ccmram"))) uint8 hasTimeMChanged = 0;
 __attribute__((section(".ccmram"))) uint8 hbPrevState = 0;
-__attribute__((section(".ccmram"))) uint8 psPrevState = 0;
 __attribute__((section(".ccmram"))) uint8 tPrevState = 100;
 __attribute__((section(".ccmram"))) uint8 gPrevState = 5;
 __attribute__((section(".ccmram"))) uint8 dmPrevState = 0;
@@ -404,10 +370,22 @@ __attribute__((section(".ccmram"))) uint8 pRecirculation = 1;
 __attribute__((section(".ccmram"))) uint8 pRequestedTemperature = 99;
 __attribute__((section(".ccmram"))) uint8 pAutoClimate = 1;
 __attribute__((section(".ccmram"))) uint8 pFanValue = 9;
-extern __attribute__((section(".ccmram"))) uint32 DataRecorder_CcmCounter[DIGITALCLUSTER_CCM_MAXNUMBER];
+__attribute__((section(".ccmram"))) uint8 DigitalCluster_IsDmuError = 0;
+__attribute__((section(".ccmram"))) uint8 DigitalCluster_IsReverseCameraError = 0;
+__attribute__((section(".ccmram"))) uint8 DigitalCluster_IsDigitalClusterError = 0;
+__attribute__((section(".ccmram"))) uint8 DigitalCluster_IsOutsideTemperatureLow = 0;
+__attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsDmuError = 0;
+__attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsReverseCameraError = 0;
+__attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsDigitalClusterError = 0;
+__attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsOutsideTemperatureLow = 0;
+
+extern __attribute__((section(".ccmram"))) uint32 RevCam_DcmiStatus;
+extern __attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus;
 extern __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerTotal;
 extern __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerPerDcy;
 extern __attribute__((section(".ccmram"))) uint32 DataRecorder_RxSig_VehicleSpeed;
+extern __attribute__((section(".ccmram"))) uint8 EcuM_ResetOccured;
+extern TIM_HandleTypeDef htim3;
 
 void DigitalCluster_SelfTest(void);
 void DigitalCluster_WelcomeAnimationHandler(void);
@@ -443,7 +421,6 @@ void DigitalCluster_Init(void)
 	hasTimeHChanged = 99;
 	hasTimeMChanged = 99;
 	hbPrevState = 99;
-	psPrevState = 99;
 	tPrevState = 100;
 	gPrevState = 5;
 	dmPrevState = 180;
@@ -479,6 +456,10 @@ void DigitalCluster_Init(void)
 	pAutoClimate = 99;
 	pFanValue = 9;
 	pCheckControlMessageId = 99;
+	pDigitalCluster_IsDmuError = 0;
+	pDigitalCluster_IsReverseCameraError = 0;
+	pDigitalCluster_IsDigitalClusterError = 0;
+	pDigitalCluster_IsOutsideTemperatureLow = 0;
 	/* Initialize the ILI9341 via FSMC. */
 	DigitalCluster_RetValInit = FsmcH_LcdInit();
 	/* Delay to prevent wrong initialization. */
@@ -497,7 +478,7 @@ void DigitalCluster_Init(void)
 			 * Switch back-light on.
 			 * Set background color to black. */
 			DigitalCluster_LcdInit = 0x01;
-			HAL_GPIO_WritePin(DIGITALCLUSTER_BACKLIGHT_GPIO_Port, DIGITALCLUSTER_BACKLIGHT_Pin, 1);
+			htim3.Instance->CCR4 = 999u;
 			FsmcH_FillRectangle(0, 0, 320, 240, TFT_BLACK);
 		}
 		else
@@ -800,6 +781,108 @@ void DigitalCluster_CalculateTime(DigitalCluster_DisplayMode_t *displayType)
 }
 void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayType)
 {
+	__disable_irq();
+	DigitalCluster_IsDmuError = EcuM_ResetOccured;
+	DigitalCluster_IsReverseCameraError = RevCam_I2cStatus | RevCam_DcmiStatus;
+	DigitalCluster_IsDigitalClusterError = DigitalCluster_FsmcDmaErrorFlag;
+	DigitalCluster_IsOutsideTemperatureLow = DigitalCluster_RxSig_OutsideTemperature;
+
+	if(3 >= DigitalCluster_IsOutsideTemperatureLow)
+	{
+		if(3 <= pDigitalCluster_IsOutsideTemperatureLow)
+		{
+			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			{
+				pDigitalCluster_IsOutsideTemperatureLow = DigitalCluster_IsOutsideTemperatureLow;
+				DigitalCluster_RxSig_CheckControlMessageId = 9;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
+	if(0 != DigitalCluster_IsDmuError)
+	{
+		if(0 == pDigitalCluster_IsDmuError)
+		{
+			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			{
+				pDigitalCluster_IsDmuError = DigitalCluster_IsDmuError;
+				DigitalCluster_RxSig_CheckControlMessageId = 12;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
+	if(0 != DigitalCluster_IsReverseCameraError)
+	{
+		if(0 == pDigitalCluster_IsReverseCameraError)
+		{
+			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			{
+				pDigitalCluster_IsReverseCameraError = DigitalCluster_IsReverseCameraError;
+				DigitalCluster_RxSig_CheckControlMessageId = 4;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
+	if(0 != DigitalCluster_IsDigitalClusterError)
+	{
+		if(0 == pDigitalCluster_IsDigitalClusterError)
+		{
+			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			{
+				pDigitalCluster_IsDigitalClusterError = DigitalCluster_IsDigitalClusterError;
+				DigitalCluster_RxSig_CheckControlMessageId = 11;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
 	if(0 != DigitalCluster_RxSig_CheckControlMessageId)
 	{
 		if(12 > CCM_Counter)
@@ -834,7 +917,6 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 		else
 		{
 			pCheckControlMessageId = DigitalCluster_RxSig_CheckControlMessageId;
-			DataRecorder_CcmCounter[DigitalCluster_RxSig_CheckControlMessageId]++;
 			DigitalCluster_RxSig_CheckControlMessageId = 0;
 			CCM_Counter = 0;
 			ccmFlag = 0;
@@ -849,6 +931,7 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 	{
 		CCM_Counter = 0;
 	}
+	__enable_irq();
 }
 void DigitalCluster_HandleTurnSignal(DigitalCluster_DisplayMode_t *displayType)
 {
@@ -1291,29 +1374,6 @@ void DigitalCluster_DisplayInfoLights(DigitalCluster_DisplayMode_t *displayType)
 	{
 		/* Do nothing. */
 	}
-	if(DigitalCluster_RxSig_PowerSteeringStatus == 255u && psPrevState != 255u)
-	{
-		psPrevState = DigitalCluster_RxSig_PowerSteeringStatus;
-		FsmcH_DrawString(displayType->DashboardLights.DL_PS.position_x,
-				displayType->DashboardLights.DL_PS.position_y,
-				displayType->DashboardLights.DL_PS.text,
-				TFT_YELLOW,
-				TFT_BLACK);
-	}
-	else if(DigitalCluster_RxSig_PowerSteeringStatus != 255u && psPrevState == 255u)
-	{
-		psPrevState = DigitalCluster_RxSig_PowerSteeringStatus;
-		psPrevState = DigitalCluster_RxSig_PowerSteeringStatus;
-		FsmcH_DrawString(displayType->DashboardLights.DL_PS.position_x,
-				displayType->DashboardLights.DL_PS.position_y,
-				"  ",
-				TFT_YELLOW,
-				TFT_BLACK);
-	}
-	else
-	{
-		/* Do nothing. */
-	}
 }
 void DigitalCluster_DisplayCenterSpeedRpm(DigitalCluster_DisplayMode_t *displayType)
 {
@@ -1544,7 +1604,7 @@ void DigitalCluster_ShutOffDisplay(void)
 	/* Shutdown sequence. */
 	DigitalCluster_ShutOffDisplayFlag = 0x01;
 	FsmcH_FillRectangle(0, 0, 320, 240 ,0);
-	HAL_GPIO_WritePin(DIGITALCLUSTER_BACKLIGHT_GPIO_Port, DIGITALCLUSTER_BACKLIGHT_Pin, 0);
+	htim3.Instance->CCR4 = 0u;
 	HAL_GPIO_WritePin(BUZOUT_GPIO_Port, BUZOUT_Pin, 0);
 	FsmcH_WriteCommand(0x28);
 }
@@ -1594,7 +1654,6 @@ void DigitalCluster_LeavingAnimationHandler(void)
 		hasTimeHChanged = 180;
 		hasTimeMChanged = 180;
 		hbPrevState = 180;
-		psPrevState = 180;
 		tPrevState = 100;
 		gPrevState = 5;
 		dmPrevState = 180;
@@ -1629,6 +1688,10 @@ void DigitalCluster_LeavingAnimationHandler(void)
 		pAutoClimate = 99;
 		pFanValue = 9;
 		pCheckControlMessageId = 0;
+		pDigitalCluster_IsDmuError = 0;
+		pDigitalCluster_IsReverseCameraError = 0;
+		pDigitalCluster_IsDigitalClusterError = 0;
+		pDigitalCluster_IsOutsideTemperatureLow = 0;
 	}
 	else
 	{
@@ -1695,7 +1758,6 @@ void DigitalCluster_InitMemory(void)
 	hasTimeHChanged = 99;
 	hasTimeMChanged = 99;
 	hbPrevState = 99;
-	psPrevState = 99;
 	tPrevState = 100;
 	gPrevState = 5;
 	dmPrevState = 99;
@@ -1723,9 +1785,36 @@ void DigitalCluster_InitMemory(void)
 	pAutoClimate = 99;
 	pFanValue = 99;
 	pCheckControlMessageId = 0;
+	pDigitalCluster_IsDmuError = 0;
+	pDigitalCluster_IsReverseCameraError = 0;
+	pDigitalCluster_IsDigitalClusterError = 0;
+	pDigitalCluster_IsOutsideTemperatureLow = 0;
 }
 void DigitalCluster_MainFunction(void)
 {
+	if(1u == DigitalCluster_RxSig_Rls)
+	{
+		if(499u < htim3.Instance->CCR4)
+		{
+			htim3.Instance->CCR4--;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		if(999u > htim3.Instance->CCR4)
+		{
+			htim3.Instance->CCR4++;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+
 	/* Make sure to keep buzzer low when needed. */
 	if(DigitalCluster_RxSig_CheckControlMessageId == 0 && DigitalCluster_RxSig_CollisionWarning != 2)
 	{
@@ -1739,131 +1828,123 @@ void DigitalCluster_MainFunction(void)
 	/* Execute logic only when initialization is succesful. */
 	if(0x01 == DigitalCluster_LcdInit)
 	{
-		/* Voltage supply is above 3V. */
-		if(29 < DigitalCluster_RxSig_VBat)
+		/* Ignition is above 1. */
+		if(0x01 <= DigitalCluster_RxSig_IgnitionStatus)
 		{
-			/* Ignition is above 1. */
-			if(0x01 <= DigitalCluster_RxSig_IgnitionStatus)
+			DigitalCluster_PreviousIgnStat = DigitalCluster_RxSig_IgnitionStatus;
+			/* Execute reverse camera functionality only after welcoming animation is executed. */
+			if(0x01 == DigitalCluster_WelcomeAnimationFlag) RevCam_MainFunction();
+			else
 			{
-				DigitalCluster_PreviousIgnStat = DigitalCluster_RxSig_IgnitionStatus;
-				/* Execute reverse camera functionality only after welcoming animation is executed. */
-				if(0x01 == DigitalCluster_WelcomeAnimationFlag) RevCam_MainFunction();
+				/* Do nothing. */
+			}
+			if(0 == DigitalCluster_IsReverseCameraActive)
+			{
+				if(pIsReverseCameraActive != DigitalCluster_IsReverseCameraActive)
+				{
+					/* Restore previous state after reverse camera. */
+					pIsReverseCameraActive = DigitalCluster_IsReverseCameraActive;
+					DigitalCluster_InitMemory();
+					FsmcH_FillRectangle(0, 0, 320, 240 ,0);
+				}
 				else
 				{
 					/* Do nothing. */
 				}
-				if(0 == DigitalCluster_IsReverseCameraActive)
+				/* If shutdown was executed, re-initialize. */
+				if(0x01 == DigitalCluster_ShutOffDisplayFlag)
 				{
-					if(pIsReverseCameraActive != DigitalCluster_IsReverseCameraActive)
+					DigitalCluster_ShutOffDisplayFlag = 0x00;
+					DigitalCluster_WelcomeAnimationFlag = 0x00;
+					DigitalCluster_LeavingAnimationFlag = 0x01;
+					DigitalCluster_LcdInit = 0x00;
+					DigitalCluster_InitHandler();
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* Execute welcoming animation. */
+				if(0x00 == DigitalCluster_WelcomeAnimationFlag)
+				{
+					/* 4 times per second refresh rate. */
+					if(DigitalCluster_MainCounter % 50 == 0 && DigitalCluster_MainCounter != 0)
 					{
-						/* Restore previous state after reverse camera. */
-						pIsReverseCameraActive = DigitalCluster_IsReverseCameraActive;
-						DigitalCluster_InitMemory();
-						FsmcH_FillRectangle(0, 0, 320, 240 ,0);
-					}
-					else
-					{
-						/* Do nothing. */
-					}
-					/* If shutdown was executed, re-initialize. */
-					if(0x01 == DigitalCluster_ShutOffDisplayFlag)
-					{
-						DigitalCluster_ShutOffDisplayFlag = 0x00;
-						DigitalCluster_WelcomeAnimationFlag = 0x00;
+						DigitalCluster_WelcomeAnimationHandler();
 						DigitalCluster_LeavingAnimationFlag = 0x01;
-						DigitalCluster_LcdInit = 0x00;
-						DigitalCluster_InitHandler();
 					}
 					else
 					{
 						/* Do nothing. */
 					}
-					/* Execute welcoming animation. */
-					if(0x00 == DigitalCluster_WelcomeAnimationFlag)
+				}
+				else
+				{
+					/* If no self test is requested and the welcoming animation is finished.
+					 * Update display mode. */
+					if(0 == DigitalCluster_IsSelfTestRequested)
 					{
-						/* 4 times per second refresh rate. */
-						if(DigitalCluster_MainCounter % 50 == 0 && DigitalCluster_MainCounter != 0)
+						DigitalCluster_Display_ComfortEcoSport.DisplayType = DigitalCluster_RxSig_DisplayMode;
+						if(0 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
 						{
-							DigitalCluster_WelcomeAnimationHandler();
-							DigitalCluster_LeavingAnimationFlag = 0x01;
+							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_IVORY;
+							DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_FIREBRICK;
+							DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_PALEGOLDENROD;
+						}
+						else if(1 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
+						{
+							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_WHITESMOKE;
+							DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_ORANGE;
+							DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_RED;
+						}
+						else if(2 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
+						{
+							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_ALICEBLUE;
+							DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_SKYBLUE;
+							DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_AQUA;
 						}
 						else
 						{
 							/* Do nothing. */
 						}
-					}
-					else
-					{
-						/* If no self test is requested and the welcoming animation is finished.
-						 * Update display mode. */
-						if(0 == DigitalCluster_IsSelfTestRequested)
+						/* 4 times per second refresh displayable information. */
+						if(DigitalCluster_MainCounter % 50 == 0 && DigitalCluster_MainCounter != 0) DigitalCluster_CSEHandler();
+						else
 						{
-							DigitalCluster_Display_ComfortEcoSport.DisplayType = DigitalCluster_RxSig_DisplayMode;
-							if(0 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
-							{
-								DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_IVORY;
-								DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_FIREBRICK;
-								DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_PALEGOLDENROD;
-							}
-							else if(1 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
-							{
-								DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_WHITESMOKE;
-								DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_ORANGE;
-								DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_RED;
-							}
-							else if(2 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
-							{
-								DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_ALICEBLUE;
-								DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_SKYBLUE;
-								DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_AQUA;
-							}
-							else
-							{
-								/* Do nothing. */
-							}
-							/* 4 times per second refresh displayable information. */
-							if(DigitalCluster_MainCounter % 50 == 0 && DigitalCluster_MainCounter != 0) DigitalCluster_CSEHandler();
-							else
-							{
-								/* Do nothing. */
-							}
+							/* Do nothing. */
 						}
-						else DigitalCluster_SelfTest();
 					}
+					else DigitalCluster_SelfTest();
+				}
+			}
+			else
+			{
+				/* Keep track of previous reverse camera state. */
+				if(pIsReverseCameraActive != DigitalCluster_IsReverseCameraActive)
+				{
+					pIsReverseCameraActive = DigitalCluster_IsReverseCameraActive;
+					FsmcH_FillRectangle(0, 0, 320, 240 ,0);
 				}
 				else
 				{
-					/* Keep track of previous reverse camera state. */
-					if(pIsReverseCameraActive != DigitalCluster_IsReverseCameraActive)
-					{
-						pIsReverseCameraActive = DigitalCluster_IsReverseCameraActive;
-						FsmcH_FillRectangle(0, 0, 320, 240 ,0);
-					}
-					else
-					{
-						/* Do nothing. */
-					}
+					/* Do nothing. */
 				}
-			}/* Prepare for shutdown and leaving animation. */
-			else if(0x00 == DigitalCluster_RxSig_IgnitionStatus && 0x00 != DigitalCluster_PreviousIgnStat)
+			}
+		}/* Prepare for shutdown and leaving animation. */
+		else if(0x00 == DigitalCluster_RxSig_IgnitionStatus && 0x00 != DigitalCluster_PreviousIgnStat)
+		{
+			DigitalCluster_IsReverseCameraActive = 0;
+			if(0x01 == DigitalCluster_LeavingAnimationFlag)
 			{
-				DigitalCluster_IsReverseCameraActive = 0;
-				if(0x01 == DigitalCluster_LeavingAnimationFlag)
+				if(DigitalCluster_MainCounter % 50 == 0 && DigitalCluster_MainCounter != 0) DigitalCluster_LeavingAnimationHandler();
+				else
 				{
-					if(DigitalCluster_MainCounter % 50 == 0 && DigitalCluster_MainCounter != 0) DigitalCluster_LeavingAnimationHandler();
-					else
-					{
-						/* Do nothing. */
-					}
+					/* Do nothing. */
 				}
-				else  if(0x02 == DigitalCluster_LeavingAnimationFlag)
-				{
-					if(0x00 == DigitalCluster_ShutOffDisplayFlag) DigitalCluster_ShutOffDisplay();
-					else
-					{
-						/* Do nothing. */
-					}
-				}
+			}
+			else  if(0x02 == DigitalCluster_LeavingAnimationFlag)
+			{
+				if(0x00 == DigitalCluster_ShutOffDisplayFlag) DigitalCluster_ShutOffDisplay();
 				else
 				{
 					/* Do nothing. */
@@ -1876,13 +1957,13 @@ void DigitalCluster_MainFunction(void)
 		}
 		else
 		{
-			if(0x00 == DigitalCluster_ShutOffDisplayFlag) DigitalCluster_ShutOffDisplay();
-			else
-			{
-				/* Do nothing. */
-			}
+			/* Do nothing. */
 		}
 	}
-	else DigitalCluster_InitHandler();
+	else
+	{
+		if(0x00 == DigitalCluster_ShutOffDisplayFlag) DigitalCluster_ShutOffDisplay();
+		else DigitalCluster_InitHandler();
+	}
 	DigitalCluster_MainCounter++;
 }

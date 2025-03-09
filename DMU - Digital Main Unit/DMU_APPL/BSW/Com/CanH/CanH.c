@@ -19,10 +19,8 @@ __attribute__((section(".ccmram"))) uint8 CanH_RxSig_Networkmanagement3 = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_Ignition = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_Speed = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_Rpm = 0;
-__attribute__((section(".ccmram"))) uint8 CanH_RxSig_VBat = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_CurrentConsumption = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_Gear = 0;
-__attribute__((section(".ccmram"))) uint8 CanH_RxSig_PowerSteeringStatus = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_TemperatureSensor = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_DisplayMode = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_RotaryLightSwitch = 0;
@@ -36,10 +34,8 @@ __attribute__((section(".ccmram"))) uint8 CanH_RxSig_Recirculation = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_FanValue = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_ClimaTemp = 0;
 __attribute__((section(".ccmram"))) uint8 CanH_RxSig_AutoClimate = 0;
-__attribute__((section(".ccmram"))) uint8 CanH_XcpArray[8] = {0};
 __attribute__((section(".ccmram"))) uint8 CanH_DiagArray[8] = {0};
 __attribute__((section(".ccmram"))) CAN_RxHeaderTypeDef CanH_DiagRxHeader = {0, 0, 0, 0, 0, 0, 0};
-__attribute__((section(".ccmram"))) CAN_RxHeaderTypeDef CanH_XcpRxHeader = {0, 0, 0, 0, 0, 0, 0};
 __attribute__((section(".ccmram"))) uint32 CanH_VehState_MissCnt = 0;
 __attribute__((section(".ccmram"))) uint32 CanH_BodyState_MissCnt = 0;
 __attribute__((section(".ccmram"))) uint32 CanH_BodyState2_MissCnt = 0;
@@ -57,10 +53,8 @@ extern __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_LVBat;
 extern __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_CurrentConsumptionInstantLV;
 extern __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_QC;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_IgnitionStatus;
-extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_VBat;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_Gear;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_HighBeamStatus;
-extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_PowerSteeringStatus;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_VehicleSpeed;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_MotorRpm;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_TurnSignals;
@@ -79,22 +73,15 @@ extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_FanValue;
 extern __attribute__((section(".ccmram"))) float Ain_VrefInt;
 extern __attribute__((section(".ccmram"))) float Ain_McuTemp;
 extern __attribute__((section(".ccmram"))) float Ain_Vbat;
+extern __attribute__((section(".ccmram"))) uint8 EcuM_StopModeActive;
 extern CAN_HandleTypeDef hcan1;
+
+extern void EcuM_PerformReset(uint8 param);
 
 void CanH_MainFunction(void);
 void HAL_CAN_ErrorCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan);
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_RxFifo1FullCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_SleepCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_WakeUpFromRxMsgCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox0AbortCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox1AbortCallback(CAN_HandleTypeDef *hcan);
-void HAL_CAN_TxMailbox2AbortCallback(CAN_HandleTypeDef *hcan);
 
 void CanH_MainFunction(void)
 {
@@ -104,9 +91,7 @@ void CanH_MainFunction(void)
 	{
 		HAL_CAN_Start(&hcan1);
 		notificationLocal = CAN_IT_RX_FIFO0_MSG_PENDING |
-				CAN_IT_RX_FIFO0_FULL |
-				CAN_IT_WAKEUP |
-				CAN_IT_SLEEP_ACK |
+				CAN_IT_RX_FIFO1_MSG_PENDING |
 				CAN_IT_ERROR_WARNING |
 				CAN_IT_ERROR_PASSIVE |
 				CAN_IT_BUSOFF |
@@ -119,7 +104,7 @@ void CanH_MainFunction(void)
 	{
 		/* Do nothing. */
 	}
-	if(0x04 != HAL_CAN_GetError(&hcan1) && (FULL_COMMUNICATION == CanH_CommunicationState || PARTIAL_COMMUNICATION == CanH_CommunicationState) && CC_ACTIVE != CanH_CommunicationState)
+	if((FULL_COMMUNICATION == CanH_CommunicationState || PARTIAL_COMMUNICATION == CanH_CommunicationState) && CC_ACTIVE != CanH_CommunicationState)
 	{
 		for(uint8 i = 0; i < 21; i++) CanH_ErrArr[i] = 0;
 		CanH_BodyState_MissCnt++;
@@ -250,189 +235,196 @@ void HAL_CAN_ErrorCallback(CAN_HandleTypeDef *hcan)
 }
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-	CanH_RxFifo0MsgPendingCnt++;
-	HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &CanH_RxHeader, CanH_RxData);
-	/* NM3 */
-	if(0x510 == CanH_RxHeader.StdId)
+	if(1u == EcuM_StopModeActive)
 	{
-		CanH_RxSig_Networkmanagement3 = CanH_RxData[0];
-		if(0x10 == CanH_RxData[0])
+		HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &CanH_RxHeader, CanH_RxData);
+		/* NM3 */
+		if(0x510 == CanH_RxHeader.StdId)
 		{
-			CanH_RequestBusSleep = 0;
-			if(CC_ACTIVE != CanH_CommunicationState) CanH_CommunicationState = FULL_COMMUNICATION;
+			CanH_RxSig_Networkmanagement3 = CanH_RxData[1];
+			if(0x11 == CanH_RxData[1])
+			{
+				EcuM_PerformReset(0);
+			}
 			else
 			{
 				/* Do nothing. */
 			}
-			CanH_NoCommCounter = 0;
 		}
 		else
 		{
 			/* Do nothing. */
 		}
+		HAL_PWR_EnableSleepOnExit();
 	}
 	else
 	{
-		/* Do nothing. */
-	}
-	/* VehicleState */
-	if(0x97 == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_Ignition = CanH_RxData[2];
-		CanH_RxSig_Speed = CanH_RxData[7];
-		CanH_RxSig_Rpm = CanH_RxData[6];
-		CanH_RxSig_Gear = CanH_RxData[3];
-		CanH_RxSig_PowerSteeringStatus = CanH_RxData[4];
-		CanH_RxSig_IrSensStat = CanH_RxData[5];
-		CanH_VehState_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* StatusBodyControl */
-	if(0x98 == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_Recirculation = CanH_RxData[0];
-		CanH_RxSig_FogLights = CanH_RxData[3];
-		CanH_RxSig_HighBeam = CanH_RxData[4];
-		CanH_RxSig_TemperatureSensor = CanH_RxData[5];
-		CanH_RxSig_TurnSignal = CanH_RxData[6];
-		CanH_RxSig_AutoClimate = CanH_RxData[7];
-		CanH_BodyState_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* StatusBodyControl2 */
-	if(0x99 == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_FanValue = CanH_RxData[0];
-		CanH_RxSig_DisplayMode = CanH_RxData[1];
-		CanH_RxSig_ClimaTemp = CanH_RxData[2];
-		CanH_RxSig_RotaryLightSwitch = CanH_RxData[3];
-		CanH_BodyState2_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	if(0x10b == CanH_RxHeader.StdId)CanH_RxSig_CcmId = CanH_RxData[0];
-	else
-	{
-		/* Do nothing. */
-	}
-	/* DataRecorder */
-	if(0x10f == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_VBat = CanH_RxData[1];
-		CanH_RxSig_DrivecycleStatus = CanH_RxData[2];
-		CanH_DataRecorder_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* Diagnosis */
-	if(0x704 == CanH_RxHeader.StdId)
-	{
-		CanH_DiagRxHeader.DLC = CanH_RxHeader.DLC;
-		CanH_DiagRxHeader.ExtId = CanH_RxHeader.ExtId;
-		CanH_DiagRxHeader.FilterMatchIndex = CanH_RxHeader.FilterMatchIndex;
-		CanH_DiagRxHeader.IDE = CanH_RxHeader.IDE;
-		CanH_DiagRxHeader.RTR = CanH_RxHeader.RTR;
-		CanH_DiagRxHeader.StdId = CanH_RxHeader.StdId;
-		CanH_DiagRxHeader.Timestamp = CanH_RxHeader.Timestamp;
-		for(uint8 i = 0; i < 8; i++) CanH_DiagArray[i] = CanH_RxData[i];
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* XCP */
-	if(0x604 == CanH_RxHeader.StdId)
-	{
-		CanH_XcpRxHeader.DLC = CanH_RxHeader.DLC;
-		CanH_XcpRxHeader.ExtId = CanH_RxHeader.ExtId;
-		CanH_XcpRxHeader.FilterMatchIndex = CanH_RxHeader.FilterMatchIndex;
-		CanH_XcpRxHeader.IDE = CanH_RxHeader.IDE;
-		CanH_XcpRxHeader.RTR = CanH_RxHeader.RTR;
-		CanH_XcpRxHeader.StdId = CanH_RxHeader.StdId;
-		CanH_XcpRxHeader.Timestamp = CanH_RxHeader.Timestamp;
-		for(uint8 i = 0; i < 8; i++) CanH_XcpArray[i] = CanH_RxData[i];
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	CanH_RxHeader.DLC = 0;
-	CanH_RxHeader.ExtId = 0;
-	CanH_RxHeader.FilterMatchIndex = 0;
-	CanH_RxHeader.IDE = 0;
-	CanH_RxHeader.RTR = 0;
-	CanH_RxHeader.StdId = 0;
-	CanH_RxHeader.Timestamp = 0;
-	for(uint8 i = 0; i < 8; i++) CanH_RxData[i] = 0;
-	DataRecorder_RxSig_VehicleSpeed = CanH_RxSig_Speed;
-	DataRecorder_RxSig_DriveCycleStatus = CanH_RxSig_DrivecycleStatus;
-	DigitalCluster_RxSig_IgnitionStatus = CanH_RxSig_Ignition;
-	DigitalCluster_RxSig_VBat = CanH_RxSig_VBat;
-	DigitalCluster_RxSig_Gear = CanH_RxSig_Gear;
-	DigitalCluster_RxSig_HighBeamStatus = CanH_RxSig_HighBeam;
-	DigitalCluster_RxSig_PowerSteeringStatus = CanH_RxSig_PowerSteeringStatus;
-	DigitalCluster_RxSig_VehicleSpeed = CanH_RxSig_Speed;
-	DigitalCluster_RxSig_MotorRpm = CanH_RxSig_Rpm;
-	DigitalCluster_RxSig_TurnSignals = CanH_RxSig_TurnSignal;
-	DigitalCluster_RxSig_DisplayMode = CanH_RxSig_DisplayMode;
-	DigitalCluster_RxSig_CollisionWarning = CanH_RxSig_IrSensStat;
-	if(0 != CanH_RxSig_CcmId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
-	else
-	{
-		/* Do nothing. */
-	}
-	DigitalCluster_RxSig_OutsideTemperature = CanH_RxSig_TemperatureSensor;
-	DigitalCluster_RxSig_FanValue = CanH_RxSig_FanValue;
-	DigitalCluster_RxSig_RequestedTemperature = CanH_RxSig_ClimaTemp;
-	DigitalCluster_RxSig_Recirculation = CanH_RxSig_Recirculation;
-	DigitalCluster_RxSig_AutoClimate = CanH_RxSig_AutoClimate;
-	DigitalCluster_RxSig_Rls = CanH_RxSig_RotaryLightSwitch;
-	switch(CanH_RxSig_FogLights)
-	{
-	case 1:
-		DigitalCluster_RxSig_FogLightFront = 1;
-		DigitalCluster_RxSig_FogLightRear = 0;
-		break;
-	case 2:
-		DigitalCluster_RxSig_FogLightFront = 0;
-		DigitalCluster_RxSig_FogLightRear = 1;
-		break;
-	case 3:
-		DigitalCluster_RxSig_FogLightFront = 1;
-		DigitalCluster_RxSig_FogLightRear = 1;
-		break;
-	default:
-		DigitalCluster_RxSig_FogLightFront = 0;
-		DigitalCluster_RxSig_FogLightRear = 0;
-		break;
+		CanH_RxFifo0MsgPendingCnt++;
+		HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &CanH_RxHeader, CanH_RxData);
+		/* NM3 */
+		if(0x510 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_Networkmanagement3 = CanH_RxData[1];
+			if(0x11 == CanH_RxData[1])
+			{
+				CanH_RequestBusSleep = 0;
+				if(CC_ACTIVE != CanH_CommunicationState) CanH_CommunicationState = FULL_COMMUNICATION;
+				else
+				{
+					/* Do nothing. */
+				}
+				CanH_NoCommCounter = 0;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* VehicleState */
+		if(0x97 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_Ignition = CanH_RxData[2];
+			CanH_RxSig_Speed = CanH_RxData[7];
+			CanH_RxSig_Rpm = CanH_RxData[6];
+			CanH_RxSig_Gear = CanH_RxData[3];
+			CanH_RxSig_IrSensStat = CanH_RxData[5];
+			CanH_VehState_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* StatusBodyControl */
+		if(0x98 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_Recirculation = CanH_RxData[0];
+			CanH_RxSig_FogLights = CanH_RxData[3];
+			CanH_RxSig_HighBeam = CanH_RxData[4];
+			CanH_RxSig_TemperatureSensor = CanH_RxData[5];
+			CanH_RxSig_TurnSignal = CanH_RxData[6];
+			CanH_RxSig_AutoClimate = CanH_RxData[7];
+			CanH_BodyState_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* StatusBodyControl2 */
+		if(0x99 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_FanValue = CanH_RxData[0];
+			CanH_RxSig_DisplayMode = CanH_RxData[1];
+			CanH_RxSig_ClimaTemp = CanH_RxData[2];
+			CanH_RxSig_RotaryLightSwitch = CanH_RxData[3];
+			CanH_BodyState2_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		if(0x10b == CanH_RxHeader.StdId)CanH_RxSig_CcmId = CanH_RxData[0];
+		else
+		{
+			/* Do nothing. */
+		}
+		/* DataRecorder */
+		if(0x10f == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_DrivecycleStatus = CanH_RxData[0];
+			CanH_DataRecorder_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* Diagnosis */
+		if(0x702 == CanH_RxHeader.StdId)
+		{
+			CanH_DiagRxHeader.DLC = CanH_RxHeader.DLC;
+			CanH_DiagRxHeader.ExtId = CanH_RxHeader.ExtId;
+			CanH_DiagRxHeader.FilterMatchIndex = CanH_RxHeader.FilterMatchIndex;
+			CanH_DiagRxHeader.IDE = CanH_RxHeader.IDE;
+			CanH_DiagRxHeader.RTR = CanH_RxHeader.RTR;
+			CanH_DiagRxHeader.StdId = CanH_RxHeader.StdId;
+			CanH_DiagRxHeader.Timestamp = CanH_RxHeader.Timestamp;
+			for(uint8 i = 0; i < 8; i++) CanH_DiagArray[i] = CanH_RxData[i];
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		CanH_RxHeader.DLC = 0;
+		CanH_RxHeader.ExtId = 0;
+		CanH_RxHeader.FilterMatchIndex = 0;
+		CanH_RxHeader.IDE = 0;
+		CanH_RxHeader.RTR = 0;
+		CanH_RxHeader.StdId = 0;
+		CanH_RxHeader.Timestamp = 0;
+		for(uint8 i = 0; i < 8; i++) CanH_RxData[i] = 0;
+		DataRecorder_RxSig_VehicleSpeed = CanH_RxSig_Speed;
+		DataRecorder_RxSig_DriveCycleStatus = CanH_RxSig_DrivecycleStatus;
+		DigitalCluster_RxSig_IgnitionStatus = CanH_RxSig_Ignition;
+		DigitalCluster_RxSig_Gear = CanH_RxSig_Gear;
+		DigitalCluster_RxSig_HighBeamStatus = CanH_RxSig_HighBeam;
+		DigitalCluster_RxSig_VehicleSpeed = CanH_RxSig_Speed;
+		DigitalCluster_RxSig_MotorRpm = CanH_RxSig_Rpm;
+		DigitalCluster_RxSig_TurnSignals = CanH_RxSig_TurnSignal;
+		DigitalCluster_RxSig_DisplayMode = CanH_RxSig_DisplayMode;
+		DigitalCluster_RxSig_CollisionWarning = CanH_RxSig_IrSensStat;
+		if(0 != CanH_RxSig_CcmId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
+		else
+		{
+			/* Do nothing. */
+		}
+		DigitalCluster_RxSig_OutsideTemperature = CanH_RxSig_TemperatureSensor;
+		DigitalCluster_RxSig_FanValue = CanH_RxSig_FanValue;
+		DigitalCluster_RxSig_RequestedTemperature = CanH_RxSig_ClimaTemp;
+		DigitalCluster_RxSig_Recirculation = CanH_RxSig_Recirculation;
+		DigitalCluster_RxSig_AutoClimate = CanH_RxSig_AutoClimate;
+		DigitalCluster_RxSig_Rls = CanH_RxSig_RotaryLightSwitch;
+		switch(CanH_RxSig_FogLights)
+		{
+		case 1:
+			DigitalCluster_RxSig_FogLightFront = 1;
+			DigitalCluster_RxSig_FogLightRear = 0;
+			break;
+		case 2:
+			DigitalCluster_RxSig_FogLightFront = 0;
+			DigitalCluster_RxSig_FogLightRear = 1;
+			break;
+		case 3:
+			DigitalCluster_RxSig_FogLightFront = 1;
+			DigitalCluster_RxSig_FogLightRear = 1;
+			break;
+		default:
+			DigitalCluster_RxSig_FogLightFront = 0;
+			DigitalCluster_RxSig_FogLightRear = 0;
+			break;
+		}
 	}
 }
 void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan)
 {
 	CanH_RxFifo0FullCnt++;
-	/* NM3 */
-	if(0x510 == CanH_RxHeader.StdId)
+	if(1u == EcuM_StopModeActive)
 	{
-		CanH_RxSig_Networkmanagement3 = CanH_RxData[0];
-		if(0x10 == CanH_RxData[0])
+		HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &CanH_RxHeader, CanH_RxData);
+		/* NM3 */
+		if(0x510 == CanH_RxHeader.StdId)
 		{
-			CanH_RequestBusSleep = 0;
-			if(CC_ACTIVE != CanH_CommunicationState) CanH_CommunicationState = FULL_COMMUNICATION;
+			CanH_RxSig_Networkmanagement3 = CanH_RxData[1];
+			if(0x11 == CanH_RxData[1])
+			{
+				EcuM_PerformReset(0);
+			}
 			else
 			{
 				/* Do nothing. */
 			}
-			CanH_NoCommCounter = 0;
 		}
 		else
 		{
@@ -441,147 +433,151 @@ void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan)
 	}
 	else
 	{
-		/* Do nothing. */
-	}
-	/* VehicleState */
-	if(0x97 == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_Ignition = CanH_RxData[2];
-		CanH_RxSig_Speed = CanH_RxData[7];
-		CanH_RxSig_Rpm = CanH_RxData[6];
-		CanH_RxSig_Gear = CanH_RxData[3];
-		CanH_RxSig_PowerSteeringStatus = CanH_RxData[4];
-		CanH_RxSig_IrSensStat = CanH_RxData[5];
-		CanH_VehState_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* StatusBodyControl */
-	if(0x98 == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_Recirculation = CanH_RxData[0];
-		CanH_RxSig_FogLights = CanH_RxData[3];
-		CanH_RxSig_HighBeam = CanH_RxData[4];
-		CanH_RxSig_TemperatureSensor = CanH_RxData[5];
-		CanH_RxSig_TurnSignal = CanH_RxData[6];
-		CanH_RxSig_AutoClimate = CanH_RxData[7];
-		CanH_BodyState_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* StatusBodyControl2 */
-	if(0x99 == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_FanValue = CanH_RxData[0];
-		CanH_RxSig_DisplayMode = CanH_RxData[1];
-		CanH_RxSig_ClimaTemp = CanH_RxData[2];
-		CanH_RxSig_RotaryLightSwitch = CanH_RxData[3];
-		CanH_BodyState2_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	if(0x10b == CanH_RxHeader.StdId)CanH_RxSig_CcmId = CanH_RxData[0];
-	else
-	{
-		/* Do nothing. */
-	}
-	/* DataRecorder */
-	if(0x10f == CanH_RxHeader.StdId)
-	{
-		CanH_RxSig_VBat = CanH_RxData[1];
-		CanH_RxSig_DrivecycleStatus = CanH_RxData[2];
-		CanH_DataRecorder_MissCnt = 0;
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* Diagnosis */
-	if(0x704 == CanH_RxHeader.StdId)
-	{
-		CanH_DiagRxHeader.DLC = CanH_RxHeader.DLC;
-		CanH_DiagRxHeader.ExtId = CanH_RxHeader.ExtId;
-		CanH_DiagRxHeader.FilterMatchIndex = CanH_RxHeader.FilterMatchIndex;
-		CanH_DiagRxHeader.IDE = CanH_RxHeader.IDE;
-		CanH_DiagRxHeader.RTR = CanH_RxHeader.RTR;
-		CanH_DiagRxHeader.StdId = CanH_RxHeader.StdId;
-		CanH_DiagRxHeader.Timestamp = CanH_RxHeader.Timestamp;
-		for(uint8 i = 0; i < 8; i++) CanH_DiagArray[i] = CanH_RxData[i];
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* XCP */
-	if(0x604 == CanH_RxHeader.StdId)
-	{
-		CanH_XcpRxHeader.DLC = CanH_RxHeader.DLC;
-		CanH_XcpRxHeader.ExtId = CanH_RxHeader.ExtId;
-		CanH_XcpRxHeader.FilterMatchIndex = CanH_RxHeader.FilterMatchIndex;
-		CanH_XcpRxHeader.IDE = CanH_RxHeader.IDE;
-		CanH_XcpRxHeader.RTR = CanH_RxHeader.RTR;
-		CanH_XcpRxHeader.StdId = CanH_RxHeader.StdId;
-		CanH_XcpRxHeader.Timestamp = CanH_RxHeader.Timestamp;
-		for(uint8 i = 0; i < 8; i++) CanH_XcpArray[i] = CanH_RxData[i];
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	CanH_RxHeader.DLC = 0;
-	CanH_RxHeader.ExtId = 0;
-	CanH_RxHeader.FilterMatchIndex = 0;
-	CanH_RxHeader.IDE = 0;
-	CanH_RxHeader.RTR = 0;
-	CanH_RxHeader.StdId = 0;
-	CanH_RxHeader.Timestamp = 0;
-	for(uint8 i = 0; i < 8; i++) CanH_RxData[i] = 0;
-	DataRecorder_RxSig_VehicleSpeed = CanH_RxSig_Speed;
-	DataRecorder_RxSig_DriveCycleStatus = CanH_RxSig_DrivecycleStatus;
-	DigitalCluster_RxSig_IgnitionStatus = CanH_RxSig_Ignition;
-	DigitalCluster_RxSig_VBat = CanH_RxSig_VBat;
-	DigitalCluster_RxSig_Gear = CanH_RxSig_Gear;
-	DigitalCluster_RxSig_HighBeamStatus = CanH_RxSig_HighBeam;
-	DigitalCluster_RxSig_PowerSteeringStatus = CanH_RxSig_PowerSteeringStatus;
-	DigitalCluster_RxSig_VehicleSpeed = CanH_RxSig_Speed;
-	DigitalCluster_RxSig_MotorRpm = CanH_RxSig_Rpm;
-	DigitalCluster_RxSig_TurnSignals = CanH_RxSig_TurnSignal;
-	DigitalCluster_RxSig_DisplayMode = CanH_RxSig_DisplayMode;
-	DigitalCluster_RxSig_CollisionWarning = CanH_RxSig_IrSensStat;
-	if(0 != CanH_RxSig_CcmId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
-	else
-	{
-		/* Do nothing. */
-	}
-	DigitalCluster_RxSig_OutsideTemperature = CanH_RxSig_TemperatureSensor;
-	DigitalCluster_RxSig_FanValue = CanH_RxSig_FanValue;
-	DigitalCluster_RxSig_RequestedTemperature = CanH_RxSig_ClimaTemp;
-	DigitalCluster_RxSig_Recirculation = CanH_RxSig_Recirculation;
-	DigitalCluster_RxSig_AutoClimate = CanH_RxSig_AutoClimate;
-	DigitalCluster_RxSig_Rls = CanH_RxSig_RotaryLightSwitch;
-	switch(CanH_RxSig_FogLights)
-	{
-	case 1:
-		DigitalCluster_RxSig_FogLightFront = 1;
-		DigitalCluster_RxSig_FogLightRear = 0;
-		break;
-	case 2:
-		DigitalCluster_RxSig_FogLightFront = 0;
-		DigitalCluster_RxSig_FogLightRear = 1;
-		break;
-	case 3:
-		DigitalCluster_RxSig_FogLightFront = 1;
-		DigitalCluster_RxSig_FogLightRear = 1;
-		break;
-	default:
-		DigitalCluster_RxSig_FogLightFront = 0;
-		DigitalCluster_RxSig_FogLightRear = 0;
-		break;
+		CanH_RxFifo0MsgPendingCnt++;
+		HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &CanH_RxHeader, CanH_RxData);
+		/* NM3 */
+		if(0x510 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_Networkmanagement3 = CanH_RxData[1];
+			if(0x11 == CanH_RxData[1])
+			{
+				CanH_RequestBusSleep = 0;
+				if(CC_ACTIVE != CanH_CommunicationState) CanH_CommunicationState = FULL_COMMUNICATION;
+				else
+				{
+					/* Do nothing. */
+				}
+				CanH_NoCommCounter = 0;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* VehicleState */
+		if(0x97 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_Ignition = CanH_RxData[2];
+			CanH_RxSig_Speed = CanH_RxData[7];
+			CanH_RxSig_Rpm = CanH_RxData[6];
+			CanH_RxSig_Gear = CanH_RxData[3];
+			CanH_RxSig_IrSensStat = CanH_RxData[5];
+			CanH_VehState_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* StatusBodyControl */
+		if(0x98 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_Recirculation = CanH_RxData[0];
+			CanH_RxSig_FogLights = CanH_RxData[3];
+			CanH_RxSig_HighBeam = CanH_RxData[4];
+			CanH_RxSig_TemperatureSensor = CanH_RxData[5];
+			CanH_RxSig_TurnSignal = CanH_RxData[6];
+			CanH_RxSig_AutoClimate = CanH_RxData[7];
+			CanH_BodyState_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* StatusBodyControl2 */
+		if(0x99 == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_FanValue = CanH_RxData[0];
+			CanH_RxSig_DisplayMode = CanH_RxData[1];
+			CanH_RxSig_ClimaTemp = CanH_RxData[2];
+			CanH_RxSig_RotaryLightSwitch = CanH_RxData[3];
+			CanH_BodyState2_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		if(0x10b == CanH_RxHeader.StdId)CanH_RxSig_CcmId = CanH_RxData[0];
+		else
+		{
+			/* Do nothing. */
+		}
+		/* DataRecorder */
+		if(0x10f == CanH_RxHeader.StdId)
+		{
+			CanH_RxSig_DrivecycleStatus = CanH_RxData[0];
+			CanH_DataRecorder_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		/* Diagnosis */
+		if(0x702 == CanH_RxHeader.StdId)
+		{
+			CanH_DiagRxHeader.DLC = CanH_RxHeader.DLC;
+			CanH_DiagRxHeader.ExtId = CanH_RxHeader.ExtId;
+			CanH_DiagRxHeader.FilterMatchIndex = CanH_RxHeader.FilterMatchIndex;
+			CanH_DiagRxHeader.IDE = CanH_RxHeader.IDE;
+			CanH_DiagRxHeader.RTR = CanH_RxHeader.RTR;
+			CanH_DiagRxHeader.StdId = CanH_RxHeader.StdId;
+			CanH_DiagRxHeader.Timestamp = CanH_RxHeader.Timestamp;
+			for(uint8 i = 0; i < 8; i++) CanH_DiagArray[i] = CanH_RxData[i];
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		CanH_RxHeader.DLC = 0;
+		CanH_RxHeader.ExtId = 0;
+		CanH_RxHeader.FilterMatchIndex = 0;
+		CanH_RxHeader.IDE = 0;
+		CanH_RxHeader.RTR = 0;
+		CanH_RxHeader.StdId = 0;
+		CanH_RxHeader.Timestamp = 0;
+		for(uint8 i = 0; i < 8; i++) CanH_RxData[i] = 0;
+		DataRecorder_RxSig_VehicleSpeed = CanH_RxSig_Speed;
+		DataRecorder_RxSig_DriveCycleStatus = CanH_RxSig_DrivecycleStatus;
+		DigitalCluster_RxSig_IgnitionStatus = CanH_RxSig_Ignition;
+		DigitalCluster_RxSig_Gear = CanH_RxSig_Gear;
+		DigitalCluster_RxSig_HighBeamStatus = CanH_RxSig_HighBeam;
+		DigitalCluster_RxSig_VehicleSpeed = CanH_RxSig_Speed;
+		DigitalCluster_RxSig_MotorRpm = CanH_RxSig_Rpm;
+		DigitalCluster_RxSig_TurnSignals = CanH_RxSig_TurnSignal;
+		DigitalCluster_RxSig_DisplayMode = CanH_RxSig_DisplayMode;
+		DigitalCluster_RxSig_CollisionWarning = CanH_RxSig_IrSensStat;
+		if(0 != CanH_RxSig_CcmId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
+		else
+		{
+			/* Do nothing. */
+		}
+		DigitalCluster_RxSig_OutsideTemperature = CanH_RxSig_TemperatureSensor;
+		DigitalCluster_RxSig_FanValue = CanH_RxSig_FanValue;
+		DigitalCluster_RxSig_RequestedTemperature = CanH_RxSig_ClimaTemp;
+		DigitalCluster_RxSig_Recirculation = CanH_RxSig_Recirculation;
+		DigitalCluster_RxSig_AutoClimate = CanH_RxSig_AutoClimate;
+		DigitalCluster_RxSig_Rls = CanH_RxSig_RotaryLightSwitch;
+		switch(CanH_RxSig_FogLights)
+		{
+		case 1:
+			DigitalCluster_RxSig_FogLightFront = 1;
+			DigitalCluster_RxSig_FogLightRear = 0;
+			break;
+		case 2:
+			DigitalCluster_RxSig_FogLightFront = 0;
+			DigitalCluster_RxSig_FogLightRear = 1;
+			break;
+		case 3:
+			DigitalCluster_RxSig_FogLightFront = 1;
+			DigitalCluster_RxSig_FogLightRear = 1;
+			break;
+		default:
+			DigitalCluster_RxSig_FogLightFront = 0;
+			DigitalCluster_RxSig_FogLightRear = 0;
+			break;
+		}
 	}
 }

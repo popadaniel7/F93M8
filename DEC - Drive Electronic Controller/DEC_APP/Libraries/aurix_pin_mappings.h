@@ -25,16 +25,6 @@
 
 /* Symbolic names for GPIO ports */
 
-// p00_0
-#define IFXCFG_PORT_WUP_DMU                     IfxPort_P00_0
-#define IFXCFG_PORT_WUP_DMU_MODE                IfxPort_Mode_outputPushPullGeneral
-#define IFXCFG_PORT_WUP_DMU_PAD_DRIVER          IfxPort_PadDriver_cmosAutomotiveSpeed4
-
-// p00_1
-#define IFXCFG_PORT_WUP_PDM                     IfxPort_P00_1
-#define IFXCFG_PORT_WUP_PDM_MODE                IfxPort_Mode_outputPushPullGeneral
-#define IFXCFG_PORT_WUP_PDM_PAD_DRIVER          IfxPort_PadDriver_cmosAutomotiveSpeed4
-
 // p20_6
 #define IFXCFG_PORT_CAN_STB                     IfxPort_P20_6
 #define IFXCFG_PORT_CAN_STB_MODE                IfxPort_Mode_outputPushPullGeneral
@@ -43,8 +33,6 @@
 
 /* Generic port I/O configuration */
 
-#define IFXCFG_P00_0_IO_CONFIG                  { &IFXCFG_PORT_WUP_DMU, IFXCFG_PORT_WUP_DMU_MODE, IFXCFG_PORT_WUP_DMU_PAD_DRIVER }
-#define IFXCFG_P00_1_IO_CONFIG                  { &IFXCFG_PORT_WUP_PDM, IFXCFG_PORT_WUP_PDM_MODE, IFXCFG_PORT_WUP_PDM_PAD_DRIVER }
 #define IFXCFG_P20_6_IO_CONFIG                  { &IFXCFG_PORT_CAN_STB, IFXCFG_PORT_CAN_STB_MODE, IFXCFG_PORT_CAN_STB_PAD_DRIVER }
 
 

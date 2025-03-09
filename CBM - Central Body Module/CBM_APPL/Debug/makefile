@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -20,7 +20,6 @@ RM := rm -rf
 -include BSW/Io/Ain/subdir.mk
 -include BSW/Diag/Dem/subdir.mk
 -include BSW/Diag/Dcm/subdir.mk
--include BSW/Com/Xcp/subdir.mk
 -include BSW/Com/UartH/subdir.mk
 -include BSW/Com/CanSpi/subdir.mk
 -include APPL/InputCtrl/subdir.mk

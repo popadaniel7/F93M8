@@ -88,8 +88,8 @@ void NvM_ReadAll(void)
 	NvM_FlashReadData(NVMBLOCK_CALIBRATION_START_ADDR, NvMBlock_Calibration, NVMBLOCK_CALIBRATION_SIZE);
 	NvM_FlashReadData(NVMBLOCK_CODING_START_ADDR, NvMBlock_Coding, NVMBLOCK_CODING_SIZE);
 
-	if(0xFFFFFFFF == NvMBlock_DemDTCArray[0].counter) memset(NvMBlock_DemDTCArray, 0, sizeof(Dem_DTC_t) * NVMBLOCK_DTC_SIZE);
-	else memcpy(Dem_DTCStoreArray, NvMBlock_DemDTCArray, sizeof(Dem_DTC_t) * NVMBLOCK_DTC_SIZE);
+	if(0xFFFFFFFF == NvMBlock_DemDTCArray[0].isActiveNow) memset(NvMBlock_DemDTCArray, 0, 13 * 4);
+	else memcpy(Dem_DTCStoreArray, NvMBlock_DemDTCArray, 13);
 
 	if(NvMBlock_Calibration[0] == 0xFFFFFFFF)
 	{
@@ -175,12 +175,12 @@ void NvM_WriteAll(void)
 	}
 	for(uint8 i = 0; i < NVMBLOCK_DTC_SIZE; i++)
 	{
-		if(NvMBlock_DemDTCArray[i].counter != Dem_DTCStoreArray[i].counter)
+		if(NvMBlock_DemDTCArray[i].isActiveNow != Dem_DTCStoreArray[i].isActiveNow)
 		{
 			NvM_WriteFlag_Dtc = 1;
 			NvMBlock_DemDTCArray[i].isActiveNow = 0;
 			Dem_DTCStoreArray[i].isActiveNow = 0;
-			memcpy(NvMBlock_DemDTCArray, Dem_DTCStoreArray, sizeof(Dem_DTC_t) * NVMBLOCK_DTC_SIZE);
+			memcpy(NvMBlock_DemDTCArray, Dem_DTCStoreArray, 13);
 		}
 		else
 		{

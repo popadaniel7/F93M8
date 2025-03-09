@@ -125,7 +125,7 @@ EncCal_VOData_t EncCal_VODataComplete;
 uint32 EncCal_Calibration_Buffer[ENCCAL_CALIBRATION_SIZE];
 uint32 EncCal_Calibration_DefaultBuffer[ENCCAL_CALIBRATION_SIZE] =
 {
-        50u,30u,15u,10u,80u,0xFFFFU,2u,5000u,35u,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf,0xdf
+        50u,30u,15u,10u,80u,0xFFFFU,0xdfu,0xdfu
 };
 uint32 EncCal_Calibration_ColDet_StableDistanceCm                               = 0u;
 uint32 EncCal_Calibration_ColDet_TtcWarn                                        = 0u;
@@ -138,25 +138,14 @@ uint32 EncCal_Calibration_EnergyMgmt_MaxOutputCurrent                           
 uint32 EncCal_Calibration_EnergyMgmt_UnderVoltageTh                             = 0u;
 uint8 EncCal_Coding_DefaultBuffer[ENCCAL_CODING_SIZE] =
 {
-        1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u,1u
+        1u,1u,1u,1u,1u,0xdfu,0xdfu,0xdfu
 };
 uint8 EncCal_Coding_Buffer[ENCCAL_CODING_SIZE];
-uint8 EncCal_Coding_PsCtrl = 0u;
 uint8 EncCal_Coding_IgnCtrl = 0u;
-uint8 EncCal_Coding_AccCtrl = 0u;
-uint8 EncCal_Coding_BrCtrl = 0u;
 uint8 EncCal_Coding_CenLoc = 0u;
 uint8 EncCal_Coding_Hc05 = 0u;
 uint8 EncCal_Coding_Hc05Vent = 0u;
 uint8 EncCal_Coding_Lsen = 0u;
-uint8 EncCal_Coding_CbmL = 0u;
-uint8 EncCal_Coding_DmuL = 0u;
-uint8 EncCal_Coding_L4 = 0u;
-uint8 EncCal_Coding_L5 = 0u;
-uint8 EncCal_Coding_L6 = 0u;
-uint8 EncCal_Coding_L7 = 0u;
-uint8 EncCal_Coding_L8 = 0u;
-uint8 EncCal_Coding_ConsumerCutoffTime = 0u;
 uint8 EncCal_CodingValidResult = 0u;
 uint8 EncCal_CalibrationValidResult = 0u;
 uint8 EncCal_IsVoDataValid = 0u;
@@ -266,36 +255,6 @@ uint8 EncCal_CalibrationValidity(void)
         /* Do nothing. */
     }
 
-    if(0u == EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer || 10u < EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer)
-    {
-        EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer = 2u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2500u > EncCal_Calibration_EnergyMgmt_MaxOutputCurrent || 5000u < EncCal_Calibration_EnergyMgmt_MaxOutputCurrent)
-    {
-        EncCal_Calibration_EnergyMgmt_MaxOutputCurrent = 5000u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(30u > EncCal_Calibration_EnergyMgmt_UnderVoltageTh || 40u < EncCal_Calibration_EnergyMgmt_UnderVoltageTh)
-    {
-        EncCal_Calibration_EnergyMgmt_UnderVoltageTh = 35u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
     return retVal;
 }
 
@@ -303,49 +262,9 @@ uint8 EncCal_CodingValidity(void)
 {
     static uint8 retVal = 0u;
 
-    if(2u > EncCal_Coding_ConsumerCutoffTime && 16u < EncCal_Coding_ConsumerCutoffTime)
-    {
-        EncCal_Coding_ConsumerCutoffTime = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_PsCtrl)
-    {
-        EncCal_Coding_PsCtrl = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
     if(2u < EncCal_Coding_IgnCtrl)
     {
         EncCal_Coding_IgnCtrl = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_AccCtrl)
-    {
-        EncCal_Coding_AccCtrl = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_BrCtrl)
-    {
-        EncCal_Coding_BrCtrl = 1u;
         retVal = 1u;
     }
     else
@@ -393,76 +312,6 @@ uint8 EncCal_CodingValidity(void)
         /* Do nothing. */
     }
 
-    if(2u < EncCal_Coding_CbmL)
-    {
-        EncCal_Coding_CbmL = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_DmuL)
-    {
-        EncCal_Coding_DmuL = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_L4)
-    {
-        EncCal_Coding_L4 = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_L5)
-    {
-        EncCal_Coding_L5 = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_L6)
-    {
-        EncCal_Coding_L6 = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_L7)
-    {
-        EncCal_Coding_L7 = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
-    if(2u < EncCal_Coding_L8)
-    {
-        EncCal_Coding_L8 = 1u;
-        retVal = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-
     return retVal;
 }
 
@@ -499,10 +348,6 @@ void EncCal_InitCalibration(void)
     EncCal_Calibration_ColDet_MinDist                                        = EncCal_Calibration_Buffer[3u];
     EncCal_Calibration_ColDet_MaxDist                                        = EncCal_Calibration_Buffer[4u];
     EncCal_Calibration_ColDet_InvalidDist                                    = EncCal_Calibration_Buffer[5u];
-    EncCal_Calibration_EnergyMgmt_CurrentConsumptionTimer                    = EncCal_Calibration_Buffer[6u];
-    EncCal_Calibration_EnergyMgmt_MaxOutputCurrent                           = EncCal_Calibration_Buffer[7u];
-    EncCal_Calibration_EnergyMgmt_UnderVoltageTh                             = EncCal_Calibration_Buffer[8u];
-
     EncCal_CalibrationValidResult = EncCal_CalibrationValidity();
 }
 
@@ -533,23 +378,11 @@ void EncCal_InitCoding(void)
         memcpy(EncCal_Coding_Buffer, EncCal_Coding_DefaultBuffer, sizeof(EncCal_Coding_Buffer));
     }
 
-    EncCal_Coding_PsCtrl            = (uint8)EncCal_Coding_Buffer[0u];
     EncCal_Coding_IgnCtrl           = (uint8)EncCal_Coding_Buffer[1u];
-    EncCal_Coding_AccCtrl           = (uint8)EncCal_Coding_Buffer[2u];
-    EncCal_Coding_BrCtrl            = (uint8)EncCal_Coding_Buffer[3u];
     EncCal_Coding_CenLoc            = (uint8)EncCal_Coding_Buffer[4u];
     EncCal_Coding_Hc05              = (uint8)EncCal_Coding_Buffer[5u];
     EncCal_Coding_Hc05Vent          = (uint8)EncCal_Coding_Buffer[6u];
     EncCal_Coding_Lsen              = (uint8)EncCal_Coding_Buffer[7u];
-    EncCal_Coding_CbmL              = (uint8)EncCal_Coding_Buffer[8u];
-    EncCal_Coding_DmuL              = (uint8)EncCal_Coding_Buffer[9u];
-    EncCal_Coding_L4                = (uint8)EncCal_Coding_Buffer[10u];
-    EncCal_Coding_L5                = (uint8)EncCal_Coding_Buffer[11u];
-    EncCal_Coding_L6                = (uint8)EncCal_Coding_Buffer[12u];
-    EncCal_Coding_L7                = (uint8)EncCal_Coding_Buffer[13u];
-    EncCal_Coding_L8                = (uint8)EncCal_Coding_Buffer[14u];
-    EncCal_Coding_ConsumerCutoffTime = (uint8)EncCal_Coding_Buffer[15u];
-
     EncCal_CodingValidResult = EncCal_CodingValidity();
 }
 
