@@ -280,6 +280,7 @@ void ColDet_MainFunction(void)
     else
     {
         Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 0u, 0u);
+        ColDet_CanTx_CollisionState = COLLISION_SAFE;
     }
 
     ColDet_CanTx_IrSenStat = ColDet_CanTx_CollisionState;

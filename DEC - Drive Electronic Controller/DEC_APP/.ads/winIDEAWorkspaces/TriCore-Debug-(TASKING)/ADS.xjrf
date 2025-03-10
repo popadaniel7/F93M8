@@ -77,7 +77,7 @@
          <IgnoreDLInfo>false</IgnoreDLInfo>
         </MemProp_ISA>
         <OS>
-         <Type>None</Type>
+         <Type>FreeRTOS</Type>
          <FreeRTOS>
           <ProfilerXMLPath></ProfilerXMLPath>
          </FreeRTOS>
@@ -173,7 +173,7 @@
             <Type>ELF</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
-             <CallStackGeneration>Automatic</CallStackGeneration>
+             <CallStackGeneration>Simulated</CallStackGeneration>
              <DumpELFHeaders>false</DumpELFHeaders>
              <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
              <InsertInlinedFunctions>false</InsertInlinedFunctions>
@@ -256,7 +256,7 @@
             <Type>ELF</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
-             <CallStackGeneration>Automatic</CallStackGeneration>
+             <CallStackGeneration>Simulated</CallStackGeneration>
              <DumpELFHeaders>false</DumpELFHeaders>
              <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
              <InsertInlinedFunctions>false</InsertInlinedFunctions>
@@ -315,7 +315,7 @@
       <SoCs>
        <__.0>
         <Enabled>true</Enabled>
-        <ProbeURL></ProbeURL>
+        <ProbeURL>System</ProbeURL>
         <SFRName>TC375T</SFRName>
         <UserName>MCU</UserName>
         <DLFs_Program>
@@ -508,21 +508,6 @@
            <VM>0x0</VM>
           </MSID>
          </__.0>
-         <__.1>
-          <Application></Application>
-          <Cores>SCR</Cores>
-          <Enabled>false</Enabled>
-          <UserName>SCR</UserName>
-          <MSID>
-           <App>0x0</App>
-           <bAppID>false</bAppID>
-           <bVMID>false</bVMID>
-           <Level>Sys</Level>
-           <Secure>false</Secure>
-           <Use>false</Use>
-           <VM>0x0</VM>
-          </MSID>
-         </__.1>
         </MemorySpaces>
         <SMP>
          <Bindings>
@@ -542,7 +527,7 @@
          <DisplayLoadMap>false</DisplayLoadMap>
          <PostDLActionAlsoAfterReset>false</PostDLActionAlsoAfterReset>
          <TargetDownload>None</TargetDownload>
-         <VerifyDownload>false</VerifyDownload>
+         <VerifyDownload>true</VerifyDownload>
          <LoadReport>
           <FileName>$Download.xml</FileName>
           <Format>none</Format>
@@ -647,7 +632,7 @@
         <DisplayCollapsedArrayStruct>true</DisplayCollapsedArrayStruct>
         <DisplayPointerMemArea>false</DisplayPointerMemArea>
         <EnumDisplay>Enum</EnumDisplay>
-        <Hex>false</Hex>
+        <Hex>true</Hex>
         <MaxParseUpload>256</MaxParseUpload>
         <QualifiedNames>Unique</QualifiedNames>
         <UseSpacers>false</UseSpacers>
@@ -953,26 +938,26 @@
          <TriCore16>
           <Enabled>0</Enabled>
           <BP.0>
-           <Access>0</Access>
-           <Address></Address>
-           <Enabled>0</Enabled>
-           <EntireObject>0</EntireObject>
-           <Range>0</Range>
+           <Access>1</Access>
+           <Address>(isoTpTx).blockCounter</Address>
+           <Enabled>1</Enabled>
+           <EntireObject>1</EntireObject>
+           <Range>1</Range>
            <Event>
             <BBM>0</BBM>
             <BOD>0</BOD>
             <CNT>0</CNT>
             <CSP>0</CSP>
             <CST>0</CST>
-            <Enable>0</Enable>
-            <EVTA>0</EVTA>
-            <SUSP>0</SUSP>
+            <Enable>1</Enable>
+            <EVTA>2</EVTA>
+            <SUSP>1</SUSP>
            </Event>
           </BP.0>
           <BP.1>
-           <Access>0</Access>
+           <Access>1</Access>
            <Address></Address>
-           <Enabled>0</Enabled>
+           <Enabled>1</Enabled>
            <EntireObject>0</EntireObject>
            <Range>0</Range>
            <Event>
@@ -981,9 +966,9 @@
             <CNT>0</CNT>
             <CSP>0</CSP>
             <CST>0</CST>
-            <Enable>0</Enable>
-            <EVTA>0</EVTA>
-            <SUSP>0</SUSP>
+            <Enable>1</Enable>
+            <EVTA>2</EVTA>
+            <SUSP>1</SUSP>
            </Event>
           </BP.1>
           <BP.2>
@@ -3008,14 +2993,14 @@
         <Devices>
          <__.0>
           <AllowDownloadOnly>false</AllowDownloadOnly>
-          <AllowErase>false</AllowErase>
+          <AllowErase>true</AllowErase>
           <CoreIndex>4294967295</CoreIndex>
           <Device>TC37x_PFLASH_6MB</Device>
           <DeviceAddress>0x80000000</DeviceAddress>
           <DeviceType>Unknown</DeviceType>
           <Enabled>true</Enabled>
           <EnableECC>1</EnableECC>
-          <EraseBeforeDownload>false</EraseBeforeDownload>
+          <EraseBeforeDownload>true</EraseBeforeDownload>
           <FillDevice>true</FillDevice>
           <FillFirst>0x0</FillFirst>
           <FillLast>0x0</FillLast>
@@ -3525,8 +3510,8 @@
         <CycleDuration>1e-09</CycleDuration>
         <DebugChannel>DAP</DebugChannel>
         <DebugClockkHz>4000</DebugClockkHz>
-        <DetectWDT>true</DetectWDT>
-        <DetectWDT_duration_ms>999</DetectWDT_duration_ms>
+        <DetectWDT>false</DetectWDT>
+        <DetectWDT_duration_ms>20</DetectWDT_duration_ms>
         <EndSession>Cleanup</EndSession>
         <ExtOscillatorClk>1000</ExtOscillatorClk>
         <GenerateAuroraClock>false</GenerateAuroraClock>
@@ -3551,7 +3536,7 @@
         <PostResetDelay>0</PostResetDelay>
         <ReadMemoryOnMissingCode>true</ReadMemoryOnMissingCode>
         <ReadStatusInterval_ms>0</ReadStatusInterval_ms>
-        <RequireDeviceIDMatch>true</RequireDeviceIDMatch>
+        <RequireDeviceIDMatch>false</RequireDeviceIDMatch>
         <RESETDriveWhenDetached>no</RESETDriveWhenDetached>
         <ResetDuration>20</ResetDuration>
         <ResetMethod>StopAndPreset</ResetMethod>
@@ -3559,7 +3544,7 @@
         <ResetPinConnected>true</ResetPinConnected>
         <ReversedAuroraLanes>false</ReversedAuroraLanes>
         <SamplingEdge>Pos</SamplingEdge>
-        <StopAfterReset>true</StopAfterReset>
+        <StopAfterReset>false</StopAfterReset>
         <SuspendPeripheralsWhileStopped>true</SuspendPeripheralsWhileStopped>
         <TargetResetTimeout>100</TargetResetTimeout>
         <MemorySecurity_CheckParameters>
@@ -3620,13 +3605,13 @@
         <PostResetDelay>0</PostResetDelay>
         <ReadMemoryOnMissingCode>1</ReadMemoryOnMissingCode>
         <ReadStatusInterval_ms>0</ReadStatusInterval_ms>
-        <RequireDeviceIDMatch>1</RequireDeviceIDMatch>
+        <RequireDeviceIDMatch>0</RequireDeviceIDMatch>
         <ResetDelay>20</ResetDelay>
         <RESETDriveWhenDetached>0</RESETDriveWhenDetached>
         <ResetMethod>1</ResetMethod>
         <RESETMode>0</RESETMode>
         <ReversedAuroraLanes>0</ReversedAuroraLanes>
-        <StopAfterReset>1</StopAfterReset>
+        <StopAfterReset>0</StopAfterReset>
         <TargetResetTimeout>100</TargetResetTimeout>
        </Debugging>
        <ExtWDT>

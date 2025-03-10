@@ -59,11 +59,11 @@ BO_ 1 SafeDriveTrainStatus: 5 EMC
  SG_ Sdts_Crc : 0|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 153 StatusBodyControl2: 5 DEC
- SG_ WiperStockRequest : 32|8@1+ (1,0) [0|255] ""  DEC
- SG_ RlsRequest : 24|8@1+ (1,0) [0|255] ""  DEC,DMU
- SG_ ClimaTempRequest : 16|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
- SG_ DisplayModeRequest : 8|8@1+ (1,0) [0|255] ""  DEC,DMU
- SG_ FanValueRequest : 0|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
+ SG_ WiperStockRequest : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ RlsRequest : 24|8@1+ (1,0) [0|255] ""  DMU
+ SG_ ClimaTempRequest : 16|8@1+ (1,0) [0|255] ""  DMU,CBM
+ SG_ DisplayModeRequest : 8|8@1+ (1,0) [0|255] ""  DMU
+ SG_ FanValueRequest : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
 
 BO_ 271 DataRecorder: 2 DEC
  SG_ DcyStatus : 0|8@1+ (1,0) [0|255] ""  DMU
@@ -102,12 +102,12 @@ BO_ 256 StatusDriveControl: 2 CBM
  SG_ StatusGb : 8|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 152 StatusBodyControl: 6 DEC
- SG_ AutoClimateRequest : 40|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
- SG_ RecirculationRequest : 0|8@1+ (1,0) [0|255] ""  DEC,DMU,CBM
- SG_ TurnSignals : 32|8@1+ (1,0) [0|255] ""  DEC,DMU
- SG_ StatusOutTemp : 24|8@1+ (1,0) [0|255] ""  DEC,CBM,DMU
- SG_ HighBeam : 16|8@1+ (1,0) [0|255] ""  DEC,DMU
- SG_ FogLights : 8|8@1+ (1,0) [0|255] ""  DEC,DMU
+ SG_ AutoClimateRequest : 40|8@1+ (1,0) [0|255] ""  DMU,CBM
+ SG_ RecirculationRequest : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
+ SG_ TurnSignals : 32|8@1+ (1,0) [0|255] ""  DMU
+ SG_ StatusOutTemp : 24|8@1+ (1,0) [0|255] ""  CBM,DMU
+ SG_ HighBeam : 16|8@1+ (1,0) [0|255] ""  DMU
+ SG_ FogLights : 8|8@1+ (1,0) [0|255] ""  DMU
 
 BO_ 257 StatusActuator: 3 CBM
  SG_ StatusHc05 : 16|8@1+ (1,0) [0|255] "" Vector__XXX

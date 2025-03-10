@@ -12,18 +12,18 @@
 #define SESSIONSTATUS_ADDR          0xb000173c
 #define APPL_START_ADDRESS          0x80060000
 #define PFLASH_PAGE_LENGTH          IFXFLASH_PFLASH_PAGE_LENGTH /* 0x20 = 32 Bytes (smallest unit that can be programmed in the Program Flash memory (PFLASH)) */
-#define FLASH_MODULE                0                           /* Macro to select the flash (PMU) module           */
+#define FLASH_MODULE                0u                           /* Macro to select the flash (PMU) module           */
 #define PROGRAM_FLASH_0             IfxFlash_FlashType_P0       /* Define the Program Flash Bank to be used         */
-#define PFLASH_NUM_PAGE_TO_FLASH    2                           /* Number of pages to flash in the PFLASH           */
-#define PFLASH_NUM_SECTORS          20                           /* Number of PFLASH sectors to be erased            */
+#define PFLASH_NUM_PAGE_TO_FLASH    2u                           /* Number of pages to flash in the PFLASH           */
+#define PFLASH_NUM_SECTORS          20u                           /* Number of PFLASH sectors to be erased            */
 /* Reserved space for erase and program routines in bytes */
-#define ERASESECTOR_LEN             (110)
-#define WAITUNBUSY_LEN              (110)
-#define ENTERPAGEMODE_LEN           (110)
-#define LOADPAGE2X32_LEN            (110)
-#define WRITEPAGE_LEN               (110)
-#define ERASEPFLASH_LEN             (0x186)
-#define WRITEPFLASH_LEN             (0x228)
+#define ERASESECTOR_LEN             (110u)
+#define WAITUNBUSY_LEN              (110u)
+#define ENTERPAGEMODE_LEN           (110u)
+#define LOADPAGE2X32_LEN            (110u)
+#define WRITEPAGE_LEN               (110u)
+#define ERASEPFLASH_LEN             (0x186u)
+#define WRITEPFLASH_LEN             (0x228u)
 /* Relocation address for the erase and program routines: Program Scratch-Pad SRAM (PSPR) of CPU0 */
 #define RELOCATION_START_ADDR       (0x70100000U)
 /* Definition of the addresses where to relocate the erase and program routines, given their reserved space */
@@ -61,19 +61,19 @@ typedef struct
 } McmcanType;
 
 McmcanType g_mcmcan;
-uint8 FBL_RxFrame[8] = {0};
-uint8 FBL_TxFrame[8] = {0};
+uint8 FBL_RxFrame[8u] = {0u};
+uint8 FBL_TxFrame[8u] = {0u};
 uint32* FBL_DSC_Pointer = (uint32*)(SESSIONSTATUS_ADDR);
 FBL_DSC_t FBL_DSC_State = JUMPTOAPPL;
-uint32 FBL_ProgrammingData = 0;
-uint32 FBL_ProgrammingIndex = 0;
-uint32 FBL_ProgrammingAddress = 0;
-uint32 ROM_APPL_START_ADDR_storedValue = 0;
+uint32 FBL_ProgrammingData = 0u;
+uint32 FBL_ProgrammingIndex = 0u;
+uint32 FBL_ProgrammingAddress = 0u;
+uint32 ROM_APPL_START_ADDR_storedValue = 0u;
 uint32 ROM_APPL_START_ADDR = APPL_START_ADDRESS;
-uint32 FBL_DSC_Status = 0;
+uint32 FBL_DSC_Status = 0u;
 
-IFX_INTERRUPT(ISR_CanTx, 0, 6u);
-IFX_INTERRUPT(ISR_CanRx, 0, 5u);
+IFX_INTERRUPT(ISR_CanTx, 0u, 6u);
+IFX_INTERRUPT(ISR_CanRx, 0u, 5u);
 
 void Can_ReInitAfterError(void);
 void Can_Init(void);
@@ -111,10 +111,12 @@ void core0_main(void)
     IfxCpu_enableInterrupts();
     IfxScuWdt_disableCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_disableSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
+
+    gpio_init_pins();
     can0_node0_init_pins();
     Can_Init();
-    FBL_ProgrammingAddress = 0;
-    FBL_ProgrammingIndex = 0;
+    FBL_ProgrammingAddress = 0u;
+    FBL_ProgrammingIndex = 0u;
     FBL_FlashReadData(ROM_APPL_START_ADDR, &ROM_APPL_START_ADDR_storedValue);
     if(ROM_APPL_START_ADDR_storedValue != 0xFFFFFFFF)
     {
@@ -153,7 +155,7 @@ void core0_main(void)
             /* Do nothing. */
         }
     }
-    
+
     while(1)
     {
         static uint8 localBusOff = 0u;
@@ -247,8 +249,8 @@ void Can_Init(void)
 {
     IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
-    IfxPort_setPinModeOutput(&MODULE_P20, 6, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
-    IfxPort_setPinLow(&MODULE_P20, 6);
+    IfxPort_setPinModeOutput(&MODULE_P20, 6u, IfxPort_OutputMode_pushPull, IfxPort_OutputIdx_general);
+    IfxPort_setPinLow(&MODULE_P20, 6u);
     IfxCan_Can_initModuleConfig(&g_mcmcan.canConfig, &MODULE_CAN0);
     IfxCan_Can_initModule(&g_mcmcan.canModule, &g_mcmcan.canConfig);
     IfxCan_Can_initNodeConfig(&g_mcmcan.canNodeConfig, &g_mcmcan.canModule);
@@ -400,7 +402,7 @@ void FBL_CopyFunctionsToPSPR(void)
 
 void FBL_FlashReadData(uint32 address, uint32* rxBuffer)
 {
-    address += 32;
+    address += 32u;
     *rxBuffer = *((volatile uint32 *)address);
 }
 
@@ -408,24 +410,24 @@ uint32 FBL_FlashWriteData(uint32 address, uint32 data)
 {
     uint32 targetOffset = address % PFLASH_PAGE_LENGTH;       /* Offset within the page */
     uint32 pageAddr = address - targetOffset;                  /* Start address of the flash page */
-    uint32 numWords = PFLASH_PAGE_LENGTH / 4;                  /* Number of 32-bit words in the page */
+    uint32 numWords = PFLASH_PAGE_LENGTH / 4u;                  /* Number of 32-bit words in the page */
     uint32 pageBuffer[numWords];
     uint32 i;
     /* Read the current contents of the flash page into a RAM buffer (Assuming flash is memory-mapped, you can read it directly.) */
     for(i = 0; i < numWords; i++)
     {
-        pageBuffer[i] = *((volatile uint32*)(pageAddr + (i * 4)));
+        pageBuffer[i] = *((volatile uint32*)(pageAddr + (i * 4u)));
     }
     /* Update the target word in the buffer (Assumes that 'address' is aligned to 4 bytes.) */
-    pageBuffer[targetOffset / 4] = data;
+    pageBuffer[targetOffset / 4u] = data;
     /* Get the current Safety Watch-dog password */
     uint16 endInitSafetyPassword = IfxScuWdt_getSafetyWatchdogPasswordInline();
     /* Program the page by loading the entire page buffer. Programming is done in chunks of 8 bytes (two 32-bit words). */
-    for(uint32 offset = 0; offset < PFLASH_PAGE_LENGTH; offset += 0x8)
+    for(uint32 offset = 0u; offset < PFLASH_PAGE_LENGTH; offset += 0x8u)
     {
         uint32 wordIndex = offset / 4;
         uint32 wordL = pageBuffer[wordIndex];
-        uint32 wordU = pageBuffer[wordIndex + 1];
+        uint32 wordU = pageBuffer[wordIndex + 1u];
         /* Load the two words into the flash programming buffer. Note: Use (pageAddr + offset) as the target address */
         g_commandFromPSPR.load2X32bits(pageAddr + offset, wordL, wordU);
     }
@@ -455,39 +457,39 @@ void FBL_DiagService_DSC_RequestDownload(void)
 {
     g_mcmcan.txMsg.dataLengthCode = g_mcmcan.rxMsg.dataLengthCode;
     g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1u;
-    g_mcmcan.txData[0] = g_mcmcan.rxData[0];
-    g_mcmcan.txData[1] = g_mcmcan.rxData[1] + 0x40u;
-    g_mcmcan.txData[2] = g_mcmcan.rxData[2];
+    g_mcmcan.txData[0u] = g_mcmcan.rxData[0u];
+    g_mcmcan.txData[1u] = g_mcmcan.rxData[1u] + 0x40u;
+    g_mcmcan.txData[2u] = g_mcmcan.rxData[2u];
     Can_Tx(g_mcmcan);
-    for(uint8 i = 0; i < 8 ; i++) g_mcmcan.txData[i] = 0u;
+    for(uint8 i = 0u; i < 8u ; i++) g_mcmcan.txData[i] = 0u;
     g_mcmcan.txMsg.dataLengthCode = 0u;
 }
 void FBL_DiagService_DSC_TransferData(void)
 {
-    FBL_ProgrammingData = (FBL_RxFrame[6] << 24) | (FBL_RxFrame[5] << 16) | (FBL_RxFrame[4] << 8) | FBL_RxFrame[3];
+    FBL_ProgrammingData = (FBL_RxFrame[6u] << 24) | (FBL_RxFrame[5u] << 16) | (FBL_RxFrame[4u] << 8) | FBL_RxFrame[3u];
     IfxCpu_disableInterrupts();
     FBL_FlashWriteData(FBL_ProgrammingAddress, FBL_ProgrammingData);
     IfxCpu_enableInterrupts();
-    FBL_ProgrammingAddress += 4;
-    FBL_ProgrammingIndex += 1;
+    FBL_ProgrammingAddress += 4u;
+    FBL_ProgrammingIndex += 1u;
     g_mcmcan.txMsg.dataLengthCode = g_mcmcan.rxMsg.dataLengthCode;
     g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1u;
-    g_mcmcan.txData[0] = g_mcmcan.rxData[0];
-    g_mcmcan.txData[1] = g_mcmcan.rxData[1] + 0x40u;
-    g_mcmcan.txData[2] = g_mcmcan.rxData[2];
+    g_mcmcan.txData[0] = g_mcmcan.rxData[0u];
+    g_mcmcan.txData[1] = g_mcmcan.rxData[1u] + 0x40u;
+    g_mcmcan.txData[2] = g_mcmcan.rxData[2u];
     Can_Tx(g_mcmcan);
-    for(uint8 i = 0; i < 8 ; i++) g_mcmcan.txData[i] = 0u;
+    for(uint8 i = 0u; i < 8u ; i++) g_mcmcan.txData[i] = 0u;
     g_mcmcan.txMsg.dataLengthCode = 0u;
 }
 void FBL_DiagService_DSC_RequestTransferExit(void)
 {
     g_mcmcan.txMsg.dataLengthCode = g_mcmcan.rxMsg.dataLengthCode;
     g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1u;
-    g_mcmcan.txData[0] = g_mcmcan.rxData[0];
-    g_mcmcan.txData[1] = g_mcmcan.rxData[1] + 0x40u;
-    g_mcmcan.txData[2] = g_mcmcan.rxData[2];
+    g_mcmcan.txData[0] = g_mcmcan.rxData[0u];
+    g_mcmcan.txData[1] = g_mcmcan.rxData[1u] + 0x40u;
+    g_mcmcan.txData[2] = g_mcmcan.rxData[2u];
     Can_Tx(g_mcmcan);
-    for(uint8 i = 0; i < 8 ; i++) g_mcmcan.txData[i] = 0u;
+    for(uint8 i = 0u; i < 8u ; i++) g_mcmcan.txData[i] = 0u;
     g_mcmcan.txMsg.dataLengthCode = 0u;
 }
 void FBL_DiagService_RAR_MassEraseAPPL(void)
@@ -495,21 +497,21 @@ void FBL_DiagService_RAR_MassEraseAPPL(void)
     IfxCpu_disableInterrupts();
     g_mcmcan.txMsg.dataLengthCode = g_mcmcan.rxMsg.dataLengthCode;
     g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1u;
-    g_mcmcan.txData[0] = g_mcmcan.rxData[0];
-    g_mcmcan.txData[1] = g_mcmcan.rxData[1] + 0x40u;
-    g_mcmcan.txData[2] = g_mcmcan.rxData[2];
+    g_mcmcan.txData[0u] = g_mcmcan.rxData[0u];
+    g_mcmcan.txData[1u] = g_mcmcan.rxData[1u] + 0x40u;
+    g_mcmcan.txData[2u] = g_mcmcan.rxData[2u];
     Can_Tx(g_mcmcan);
     FBL_EraseFlash_APPL();
-    for(uint8 i = 0; i < 8 ; i++) g_mcmcan.txData[i] = 0u;
+    for(uint8 i = 0u; i < 8u ; i++) g_mcmcan.txData[i] = 0u;
     g_mcmcan.txMsg.dataLengthCode = 0u;
     IfxCpu_enableInterrupts();
 }
 volatile uint32 appEntryGlobal;
 void FBL_JumpToAppl(void)
 {
-    appEntryGlobal = APPL_START_ADDRESS + 0x04u;
+    appEntryGlobal = APPL_START_ADDRESS;
 
-    __disable();
+    IfxCpu_disableInterrupts();
     __asm("movh.a  a15,#@his(appEntryGlobal)");
     __asm("lea     a15,[a15]@los(appEntryGlobal)");
     __asm("ld.a    a15,[a15]");
@@ -519,32 +521,32 @@ void FBL_JumpToAppl(void)
 void FBL_DiagService_ER_SoftReset(void)
 {
     IfxCpu_disableInterrupts();
-    *FBL_DSC_Pointer = 0;
-    IfxScuRcu_performReset(2, 0);
+    *FBL_DSC_Pointer = 0u;
+    IfxScuRcu_performReset(2u, 0u);
 }
 void FBL_DiagService_ER_HardReset(void)
 {
     IfxCpu_disableInterrupts();
-    *FBL_DSC_Pointer = 0;
-    IfxScuRcu_performReset(2, 0);
+    *FBL_DSC_Pointer = 0u;
+    IfxScuRcu_performReset(2u, 0u);
 }
 
 void FBL_DiagService_RDBI_ReadActiveDiagnosticSession(void)
 {
     g_mcmcan.txMsg.dataLengthCode = g_mcmcan.rxMsg.dataLengthCode;
     g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1u;
-    g_mcmcan.txData[0] = g_mcmcan.rxData[0];
-    g_mcmcan.txData[1] = g_mcmcan.rxData[1] + 0x40u;
-    g_mcmcan.txData[2] = g_mcmcan.rxData[2];
-    g_mcmcan.txData[3] = g_mcmcan.rxData[3];
-    g_mcmcan.txData[4] =  FBL_DSC_State;
+    g_mcmcan.txData[0u] = g_mcmcan.rxData[0u];
+    g_mcmcan.txData[1u] = g_mcmcan.rxData[1u] + 0x40u;
+    g_mcmcan.txData[2u] = g_mcmcan.rxData[2u];
+    g_mcmcan.txData[3u] = g_mcmcan.rxData[3u];
+    g_mcmcan.txData[4u] =  FBL_DSC_State;
     Can_Tx(g_mcmcan);
-    for(uint8 i = 0; i < 8 ; i++) g_mcmcan.txData[i] = 0u;
+    for(uint8 i = 0u; i < 8u ; i++) g_mcmcan.txData[i] = 0u;
     g_mcmcan.txMsg.dataLengthCode = 0u;
 }
 void FBL_DiagService_DSC_Programming(void)
 {
-    if(FBL_RxFrame[1] == 0x22 && FBL_RxFrame[2] == 0xF1 && FBL_RxFrame[3] == 0x86)
+    if(FBL_RxFrame[1u] == 0x22u && FBL_RxFrame[2u] == 0xF1u && FBL_RxFrame[3u] == 0x86u)
     {
         FBL_DiagService_RDBI_ReadActiveDiagnosticSession();
     }
@@ -552,7 +554,7 @@ void FBL_DiagService_DSC_Programming(void)
     {
         /* Do nothing. */
     }
-    if(FBL_RxFrame[0] == 0x04 && FBL_RxFrame[1] == 0x31 && FBL_RxFrame[4] == 0x00)
+    if(FBL_RxFrame[0u] == 0x04u && FBL_RxFrame[1u] == 0x31u && FBL_RxFrame[4u] == 0x00u)
     {
         FBL_DiagService_RAR_MassEraseAPPL();
     }
@@ -561,9 +563,9 @@ void FBL_DiagService_DSC_Programming(void)
         /* Do nothing. */
     }
 
-    if(FBL_RxFrame[1] == 0x34)
+    if(FBL_RxFrame[1u] == 0x34u)
     {
-        FBL_ProgrammingAddress = (0x08 << 24)|(FBL_RxFrame[4] << 16)|(FBL_RxFrame[5] << 8)|(FBL_RxFrame[6]);
+        FBL_ProgrammingAddress = (0x08u << 24u)|(FBL_RxFrame[4u] << 16u)|(FBL_RxFrame[5u] << 8u)|(FBL_RxFrame[6u]);
         FBL_DiagService_DSC_RequestDownload();
     }
     else
@@ -571,7 +573,7 @@ void FBL_DiagService_DSC_Programming(void)
         /* Do nothing. */
     }
 
-    if(FBL_RxFrame[1] == 0x36)
+    if(FBL_RxFrame[1u] == 0x36u)
     {
         FBL_DiagService_DSC_TransferData();
     }
@@ -580,7 +582,7 @@ void FBL_DiagService_DSC_Programming(void)
         /* Do nothing. */
     }
 
-    if(FBL_RxFrame[1] == 0x37 && FBL_RxFrame[0] == 0x01)
+    if(FBL_RxFrame[1u] == 0x37u && FBL_RxFrame[0u] == 0x01u)
     {
         FBL_DiagService_DSC_RequestTransferExit();
     }
@@ -589,16 +591,16 @@ void FBL_DiagService_DSC_Programming(void)
         /* Do nothing. */
     }
 
-    if(FBL_RxFrame[1] == 0x11 && FBL_RxFrame[2] == 0x01)
+    if(FBL_RxFrame[1u] == 0x11u && FBL_RxFrame[2u] == 0x01u)
     {
         g_mcmcan.txMsg.dataLengthCode = g_mcmcan.rxMsg.dataLengthCode;
         g_mcmcan.txMsg.messageId = g_mcmcan.rxMsg.messageId + 1u;
-        g_mcmcan.txData[0] = g_mcmcan.rxData[0];
-        g_mcmcan.txData[1] = g_mcmcan.rxData[1] + 0x40u;
-        g_mcmcan.txData[2] = g_mcmcan.rxData[2];
-        g_mcmcan.txData[3] = g_mcmcan.rxData[3];
+        g_mcmcan.txData[0u] = g_mcmcan.rxData[0u];
+        g_mcmcan.txData[1u] = g_mcmcan.rxData[1u] + 0x40u;
+        g_mcmcan.txData[2u] = g_mcmcan.rxData[2u];
+        g_mcmcan.txData[3u] = g_mcmcan.rxData[3u];
         Can_Tx(g_mcmcan);
-        for(uint32 i = 0; i < 200000; i ++);
+        for(uint32 i = 0u; i < 200000u; i ++);
         FBL_DiagService_ER_HardReset();
     }
     else

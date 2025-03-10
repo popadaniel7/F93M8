@@ -100,12 +100,12 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                 {
                         .txMsg =
                         {
-                                .bufferNumber = 5u,
+                                .bufferNumber = 4u,
                                 .messageId = 0x10Fu,
                                 .remoteTransmitRequest = 0u,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
                                 .errorStateIndicator = 0u,
-                                .dataLengthCode = IfxCan_DataLengthCode_8,
+                                .dataLengthCode = IfxCan_DataLengthCode_1,
                                 .frameMode = IfxCan_FrameMode_standard,
                                 .txEventFifoControl = FALSE,
                                 .storeInTxFifoQueue = FALSE,
@@ -122,7 +122,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                 {
                         .txMsg =
                         {
-                                .bufferNumber = 6u,
+                                .bufferNumber = 5u,
                                 .messageId = 0x510u,
                                 .remoteTransmitRequest = 0u,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -144,7 +144,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                 {
                         .txMsg =
                         {
-                                .bufferNumber = 7u,
+                                .bufferNumber = 6u,
                                 .messageId = 0x005u,
                                 .remoteTransmitRequest = 0u,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -166,7 +166,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                 {
                         .txMsg =
                         {
-                                .bufferNumber = 8u,
+                                .bufferNumber = 7u,
                                 .messageId = 0x004u,
                                 .remoteTransmitRequest = 0u,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -188,7 +188,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                 {
                         .txMsg =
                         {
-                                .bufferNumber = 10u,
+                                .bufferNumber = 8u,
                                 .messageId = 0x002u,
                                 .remoteTransmitRequest = 0u,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -860,6 +860,14 @@ void ComMaster_MainFunction(void)
             break;
     }
 
+
+    Can_ActivityOnTheBus=1u;
+    ComMaster_SwitchTxOff = 1u;
+    ComMaster_ActivityOnTheBus= 1u;
+    SysMgr_NoBusActivity = 1u;
+    ComMaster_TxSignal_NM3 = 0x10u;
+    ComMaster_TxSignal_NM3_PN1 = 0x11u;
+
     ComMaster_TxSignal_SbaAssistRequestStatus = ComMaster_TxSignal_IrSenStat;
     ComMaster_TxSignal_SveIvenSafe = ComMaster_CanTx_InVehicleSafetyErrorFlag;
     ComMaster_TxSignal_SisIgnitionStatus = ComMaster_TxSignal_Ignition;
@@ -1016,61 +1024,64 @@ void ComMaster_MainFunction(void)
         /* Do nothing. */
     }
 
-    if(0u == ComMaster_TxSignal_NM3)
-    {
-        if(0u == timestampActivityOnTheBus)
-        {
-            timestampActivityOnTheBus = ComMaster_MainCounter;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-        
-        Can_ActivityOnTheBus = 0u;
+    //TODO
 
-        if(12000u < (ComMaster_MainCounter - timestampActivityOnTheBus))
-        {
-            ComMaster_SwitchTxOff = 0u;
-            ComMaster_ActivityOnTheBus = 0u;
 
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-    }
-    else
-    {
-        ComMaster_ActivityOnTheBus = Can_ActivityOnTheBus;
-        if(2u != ComMaster_SwitchTxOff)
-        {
-            ComMaster_SwitchTxOff = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-    }
-
-    if(Can_ActivityOnTheBus == 1u)
-    {
-        ComMaster_TxSignal_NM3 = 0x10u;
-        if(2u != ComMaster_SwitchTxOff)
-        {
-            ComMaster_SwitchTxOff = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-        ComMaster_ActivityOnTheBus = Can_ActivityOnTheBus;
-        timestampActivityOnTheBus = 0u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    //    if(0u == ComMaster_TxSignal_NM3)
+    //    {
+    //        if(0u == timestampActivityOnTheBus)
+    //        {
+    //            timestampActivityOnTheBus = ComMaster_MainCounter;
+    //        }
+    //        else
+    //        {
+    //            /* Do nothing. */
+    //        }
+    //
+    //        Can_ActivityOnTheBus = 0u;
+    //
+    //        if(12000u < (ComMaster_MainCounter - timestampActivityOnTheBus))
+    //        {
+    //            ComMaster_SwitchTxOff = 0u;
+    //            ComMaster_ActivityOnTheBus = 0u;
+    //
+    //        }
+    //        else
+    //        {
+    //            /* Do nothing. */
+    //        }
+    //    }
+    //    else
+    //    {
+    //        ComMaster_ActivityOnTheBus = Can_ActivityOnTheBus;
+    //        if(2u != ComMaster_SwitchTxOff)
+    //        {
+    //            ComMaster_SwitchTxOff = 1u;
+    //        }
+    //        else
+    //        {
+    //            /* Do nothing. */
+    //        }
+    //    }
+    //
+    //    if(Can_ActivityOnTheBus == 1u)
+    //    {
+    //        ComMaster_TxSignal_NM3 = 0x10u;
+    //        if(2u != ComMaster_SwitchTxOff)
+    //        {
+    //            ComMaster_SwitchTxOff = 1u;
+    //        }
+    //        else
+    //        {
+    //            /* Do nothing. */
+    //        }
+    //        ComMaster_ActivityOnTheBus = Can_ActivityOnTheBus;
+    //        timestampActivityOnTheBus = 0u;
+    //    }
+    //    else
+    //    {
+    //        /* Do nothing. */
+    //    }
 
     IfxCpu_disableInterrupts();
     memcpy(Can_TransmitTable, ComMaster_TransmitTable, sizeof(ComMaster_TransmitTable));

@@ -111,7 +111,7 @@ static void __StartUpSoftware_Phase4(void);
 static void __StartUpSoftware_Phase5(void);
 static void __StartUpSoftware_Phase6(void);
 static void __Core0_start(void);
-IFX_SSW_COMMON_LINKER_SYMBOLS(); // @suppress("Unused variable declaration in file scope")
+IFX_SSW_COMMON_LINKER_SYMBOLS();
 IFX_SSW_CORE_LINKER_SYMBOLS(0);
 
 /*******************************************************************************
@@ -229,11 +229,11 @@ static void __StartUpSoftware_Phase6(void)
 {
     /* Start remaining cores as a daisy-chain */
 #if (IFX_CFG_SSW_ENABLE_TRICORE1 != 0)
-    Ifx_Ssw_startCore(&MODULE_CPU1, (unsigned int)__START(1));           /*The status returned by function call is ignored */
+    //Ifx_Ssw_startCore(&MODULE_CPU1, (unsigned int)__START(1));           /*The status returned by function call is ignored */
 #endif /* #if (IFX_CFG_CPU_CSTART_ENABLE_TRICORE1 != 0)*/
 #if (IFX_CFG_SSW_ENABLE_TRICORE1 == 0)
 #if (IFX_CFG_SSW_ENABLE_TRICORE2 != 0)
-    Ifx_Ssw_startCore(&MODULE_CPU2, (unsigned int)__START(2));           /*The status returned by function call is ignored */
+    //Ifx_Ssw_startCore(&MODULE_CPU2, (unsigned int)__START(2));           /*The status returned by function call is ignored */
 #endif
 #endif /* #if (IFX_CFG_SSW_ENABLE_TRICORE1 == 0) */
 

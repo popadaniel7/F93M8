@@ -3,11 +3,14 @@
 #include "IfxCan.h"
 #include "ComMaster.h"
 #include "aurix_pin_mappings.h"
+#include "DiagMaster.h"
+#include "EncCal.h"
+#include "Dcm.h"
 
 McmcanType g_mcmcan;
 Can_RxMsg_t Can_RxMessageBuffer[50u];
 uint32 Can_BufferIndex_ReceivedMessages = 0u;
-static uint32 Can_MainCounter = 0u;
+uint32 Can_MainCounter = 0u;
 uint8 Can_BusOff_Flag = 0u;
 uint8 Can_Alrt_Flag = 0u;
 uint8 Can_Moer_Flag = 0u;
@@ -17,11 +20,20 @@ Can_TransmitType_t Can_TransmitTable[COMMASTER_NO_TX_MSG];
 Can_ReceiveType_t Can_ReceiveTable[COMMASTER_NO_RX_MSG];
 uint32 Can_Rx_DiagBufCnt = 0u;
 Can_RxMsg_t Can_Rx_DiagnosticBuffer[50u];
-IsoTpChannel g_isoTpRx;
-IsoTpChannel g_isoTpTx;
-uint8 g_rxDataBuffer[4096u] = {0u};
 uint8 Can_ActivityOnTheBus = 0u;
 uint8 Can_DedBuff = 0u;
+uint8  isoTpRxBuffer[ISO_TP_MAX_PAYLOAD];  // Reassembly buffer for ISO-TP payload
+uint16 isoTpRxLength = 0;                  // Number of bytes reassembled so far
+uint16 isoTpRxExpectedLength = 0;          // Total expected payload length (from FF)
+bool   isoTpRxInProgress = false;          // Flag: multi-frame reception ongoing
+uint8  isoTpNextSeq = 0;                   // Next expected consecutive frame sequence
+// Storage arrays for diagnostic data coming from the tester (Group B)
+uint8 storedData_04[ENCCAL_CODING_SIZE];  // For sub-function 0x04
+uint8 storedData_05[ENCCAL_CALIBRATION_SIZE];  // For sub-function 0x05
+uint8 storedData_06[sizeof(EncCal_VOData_t)];  // For sub-function 0x06
+IsoTpTx_t isoTpTx = {0u};
+uint8 isoTpRxNextSeq = 0u;                 // Next expected sequence number
+
 extern uint8 SysMgr_Core0OnIdlePowerDown;
 
 extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
@@ -34,11 +46,15 @@ void Can_TransmitAllMessages(void);
 void Can_ProcessReceivedMessages(void);
 void Can_TransmitScheduleTable(void);
 bool Can_IsoTp_SendFrame(uint16 canId, const uint8 *data, uint8 size);
-void Can_IsoTp_Init(void);
-bool Can_IsoTp_Transmit(uint16 canId, const uint8 *data, uint16 size);
-void Can_IsoTp_OnCanReceive(uint16 canId, const uint8 *data, uint8 size);
-void Can_IsoTp_MainFunction(void);
 void Can_MainFunction(void);
+// ISO-TP transmit: sends a full ISO-TP message (single or multi-frame)
+bool Can_IsoTpTransmit(uint16 txId, const uint8 *data, uint16 length);
+// ISO-TP processing for one incoming CAN frame
+void Can_ProcessIsoTpMessage(const CanMsg *msg);
+// Transmit a Flow Control frame in response to a First Frame
+void Can_SendFlowControlFrame(void);
+// Called periodically (or in main loop) to handle ISO-TP CF transmissions
+void Can_IsoTpTx_MainFunction(void);
 
 void Can_ReInitAfterError(void)
 {
@@ -247,9 +263,9 @@ void Can_Init(void)
     IfxCan_Can_initNode(&g_mcmcan.canDstNode, &g_mcmcan.canNodeConfig);
     /* Apply the standard filter */
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 0u;
+    g_mcmcan.canFilter.number = 7u;
     g_mcmcan.canFilter.id1 = 0x10Au;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_7;
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 1u;
@@ -288,9 +304,9 @@ void Can_Init(void)
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 7u;
+    g_mcmcan.canFilter.number = 0u;
     g_mcmcan.canFilter.id1 = 0x6FEu;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_7;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
@@ -310,6 +326,7 @@ void Can_Init(void)
  */
 bool Can_Tx(McmcanType message)
 {
+    if(0x000u == message.txMsg.messageId) __debug();
     return IfxCan_Can_sendMessage(&message.canDstNode, &message.txMsg, (uint32*)message.txData);
 }
 
@@ -339,16 +356,64 @@ void Can_Rx(void)
     {
         /* Read the received CAN message */
         g_mcmcan.rxMsg.bufferNumber = i;
-        IfxCan_Can_readMessage(&g_mcmcan.canDstNode, &g_mcmcan.rxMsg, (uint32*)&g_mcmcan.rxData[0u]);
+        if(1U == IfxCan_Can_isNewDataReceived(&g_mcmcan.canDstNode, i))
+        {
+            IfxCan_Can_readMessage(&g_mcmcan.canDstNode, &g_mcmcan.rxMsg, (uint32*)&g_mcmcan.rxData[0u]);
+        }
+        else
+        {
+            IfxCan_Node_clearRxBufferNewDataFlag(g_mcmcan.canDstNode.node, i);
+        }
+
+        if(0x6FEU == g_mcmcan.rxMsg.messageId)
+        {
+            if(0x10u <= g_mcmcan.rxData[0u] ||
+                    (((0x10 > g_mcmcan.rxData[0u])
+                            && (0x19u == g_mcmcan.rxData[1u]))
+                            || (0x31 == g_mcmcan.rxData[1u]
+                                                        && (0x15 == g_mcmcan.rxData[4u] ||
+                                                                0x16 == g_mcmcan.rxData[4u] ||
+                                                                0x17 == g_mcmcan.rxData[4u] ||
+                                                                0x04 == g_mcmcan.rxData[4u]))))
+            {
+                if(1u <= DiagMaster_DiagnosticModeActivated)
+                {
+                    if(0x30 == g_mcmcan.rxData[0u])
+                    {
+                      __asm("nop");
+                    }
+                    CanMsg msg;
+                    for(uint8 k = 0u; k < 8u; k++) msg.data[k] = g_mcmcan.rxData[k];
+                    msg.id = (uint16)g_mcmcan.rxMsg.messageId;
+                    msg.dlc = g_mcmcan.rxMsg.dataLengthCode;
+                    Can_ProcessIsoTpMessage(&msg);
+                    memset(g_mcmcan.rxData, 0u, sizeof(g_mcmcan.rxData));
+                    g_mcmcan.rxMsg.messageId = 0u;
+                }
+                else
+                {
+                    /* Do nothing.*/
+                }
+            }
+            else
+            {
+                /* Do nothing.*/
+            }
+        }
+        else
+        {
+            /* Do nothing. */
+        }
 
         if(0u != g_mcmcan.rxMsg.messageId && 50u > Can_BufferIndex_ReceivedMessages)
         {
+            IfxCan_Node_clearRxBufferNewDataFlag(g_mcmcan.canDstNode.node, i);
             Can_RxMessageBuffer[Can_BufferIndex_ReceivedMessages].rxMsg = g_mcmcan.rxMsg;
             memcpy(Can_RxMessageBuffer[Can_BufferIndex_ReceivedMessages].rxData, g_mcmcan.rxData, sizeof(g_mcmcan.rxData));
             memset(g_mcmcan.rxData, 0u, sizeof(g_mcmcan.rxData));
             g_mcmcan.rxMsg.messageId = 0u;
             Can_BufferIndex_ReceivedMessages++;
-            Can_ActivityOnTheBus = 1u;
+            Can_ActivityOnTheBus = 1u;            
         }
         else
         {
@@ -356,6 +421,191 @@ void Can_Rx(void)
         }
     }
 }
+
+void Can_ProcessIsoTpMessage(const CanMsg *msg)
+{
+    uint8_t pciType = msg->data[0] & 0xF0;
+
+    if (pciType == 0x00u)
+    {
+        // --- Single Frame (SF) ---
+        uint8_t sfDataLen = msg->data[0] & 0x0F;
+        if (msg->dlc < (1 + sfDataLen))
+            return; // invalid frame length
+        memcpy(isoTpRxBuffer, &msg->data[1], sfDataLen);
+        isoTpRxLength = sfDataLen;
+        isoTpRxInProgress = false; // Single Frame complete
+
+        // Process the complete diagnostic request
+        Dcm_ProcessDiagnosticRequest(isoTpRxBuffer, isoTpRxLength);
+    }
+    else if (pciType == 0x10u)
+    {
+        // --- First Frame (FF) ---
+        uint16_t totalLen = ((msg->data[0] & 0x0F) << 8) | msg->data[1];
+        isoTpRxExpectedLength = totalLen;
+        uint8_t ffDataLen = (msg->dlc > 2) ? (msg->dlc - 2) : 0;
+        memcpy(isoTpRxBuffer, &msg->data[2], ffDataLen);
+        isoTpRxLength = ffDataLen;
+        isoTpRxInProgress = true;
+        isoTpRxNextSeq = 1;  // Expect next CF with sequence number 1
+
+        // Send Flow Control (FC) frame to allow tester to send Consecutive Frames
+        Can_SendFlowControlFrame();
+    }
+    else if (pciType == 0x20u)
+    {
+        // --- Consecutive Frame (CF) ---
+        if (!isoTpRxInProgress)
+            return; // No active multi-frame reception
+        uint8_t seqNum = msg->data[0] & 0x0F;
+        if (seqNum != isoTpRxNextSeq)
+        {
+            // Sequence mismatch: abort multi-frame reception
+            isoTpRxInProgress = false;
+            isoTpRxLength = 0;
+            return;
+        }
+        uint8_t cfDataLen = (msg->dlc > 1) ? (msg->dlc - 1) : 0;
+        memcpy(&isoTpRxBuffer[isoTpRxLength], &msg->data[1], cfDataLen);
+        isoTpRxLength += cfDataLen;
+        isoTpRxNextSeq = (isoTpRxNextSeq + 1) & 0x0F;
+        if (isoTpRxLength >= isoTpRxExpectedLength)
+        {
+            // Full payload reassembled
+            Dcm_ProcessDiagnosticRequest(isoTpRxBuffer, isoTpRxExpectedLength);
+            isoTpRxInProgress = false;
+        }
+    }
+    else if (pciType == 0x30u)
+    {
+        // --- Flow Control (FC) ---
+        // Tester sends FC in response to our multi-frame transmission.
+        // If we are waiting for an FC (state WAIT_FC), update state accordingly.
+        //if (isoTpTx.state == ISO_TP_TX_WAIT_FC)
+        {
+            uint8_t flowStatus = msg->data[0] & 0x0F;
+            if (flowStatus == 0) // Clear To Send (CTS)
+            {
+                isoTpTx.blockSize = msg->data[1]; // Block size (0 means send all remaining)
+                isoTpTx.stMin = msg->data[2];       // STmin in ms
+                isoTpTx.blockCounter = 0;
+                isoTpTx.state = ISO_TP_TX_CF; // Transition to sending Consecutive Frames
+                // Immediately send next consecutive frame(s) in the current interrupt context.
+                Can_IsoTpTx_MainFunction();
+            }
+            else if (flowStatus == 1)
+            {
+                // WAIT: keep state as WAIT_FC (optionally handle timer for WAIT timeout)
+            }
+            else
+            {
+                // Abort transmission (flowStatus == 2 or unknown)
+                isoTpTx.state = ISO_TP_TX_IDLE;
+            }
+        }
+    }
+    else
+    {
+        // Unknown PCI type: do nothing.
+    }
+}
+
+void Can_SendFlowControlFrame(void)
+{
+    uint8 fcFrame[8u] = {0u};
+    fcFrame[0u] = 0x30u; // Flow Control: 0x3 (FC) with status "CTS" in lower nibble (0x0)
+    fcFrame[1u] = 0x00u; // Block Size = 0 (no block limit)
+    fcFrame[2u] = 0x00u; // STmin = 0 ms separation time
+    // Transmit the FC frame from ECU diagnostic ID (0x6FF) to tester (0x6FE)
+    Can_IsoTp_SendFrame(0x6FF, fcFrame, 3u);
+}
+
+bool Can_IsoTpTransmit(uint16 txId, const uint8 *data, uint16 length)
+{
+    if (length <= 7)
+    {
+        uint8_t frame[ISO_TP_CAN_DL] = {0};
+        frame[0] = (uint8_t)(length & 0x0F); // SF: lower nibble = payload length
+        memcpy(&frame[1], data, length);
+        return Can_IsoTp_SendFrame(txId, frame, (uint8_t)(length + 1));
+    }
+    else
+    {
+        // Set up the ISO-TP transmit state machine.
+        isoTpTx.txId = txId;
+        isoTpTx.txData = data;
+        isoTpTx.txDataSize = length;
+        isoTpTx.txDataOffset = (length >= 6) ? 6 : length;  // First Frame carries up to 6 bytes.
+        isoTpTx.txSequenceNumber = 1;
+        isoTpTx.blockCounter = 0;
+        isoTpTx.state = ISO_TP_TX_WAIT_FC;
+
+        // Send the First Frame (FF)
+        uint8_t ff[ISO_TP_CAN_DL] = {0};
+        ff[0] = 0x10 | ((length >> 8) & 0x0F); // PCI: FF with high nibble of length.
+        ff[1] = (uint8_t)(length & 0xFF);
+        uint8_t bytesInFF = (length >= 6) ? 6 : (uint8_t)length;
+        memcpy(&ff[2], data, bytesInFF);
+        if (!Can_IsoTp_SendFrame(txId, ff, ISO_TP_CAN_DL))
+        {
+            isoTpTx.state = ISO_TP_TX_IDLE;
+            return false;
+        }
+        // Wait for the tester’s FC frame (which will be processed in ProcessIsoTpMessage).
+        return true;
+    }
+}
+
+void Can_IsoTpTx_MainFunction(void)
+{
+    if (isoTpTx.state != ISO_TP_TX_CF)
+        return; // Only send CF if in transmit state for Consecutive Frames.
+
+    if (isoTpTx.txDataOffset >= isoTpTx.txDataSize)
+    {
+        // All data sent; mark transmission complete.
+        isoTpTx.state = ISO_TP_TX_IDLE;
+        return;
+    }
+
+    // Build a Consecutive Frame (CF)
+    uint8_t cf[ISO_TP_CAN_DL] = {0};
+    cf[0] = 0x20 | (isoTpTx.txSequenceNumber & 0x0F);
+    uint16_t bytesRemaining = isoTpTx.txDataSize - isoTpTx.txDataOffset;
+    uint16_t bytesToSend = (bytesRemaining > 7) ? 7 : bytesRemaining;
+    memcpy(&cf[1], &isoTpTx.txData[isoTpTx.txDataOffset], bytesToSend);
+
+    // Transmit the CF frame.
+    if (!Can_IsoTp_SendFrame(isoTpTx.txId, cf, bytesToSend + 1))
+    {
+        //isoTpTx.state = ISO_TP_TX_IDLE;
+        //return;
+    }
+    isoTpTx.txDataOffset += bytesToSend;
+    isoTpTx.txSequenceNumber = (isoTpTx.txSequenceNumber + 1) & 0x0F;
+    isoTpTx.blockCounter++;
+
+    // If a block size is specified and reached, pause transmission and wait for next FC.
+    if ((isoTpTx.blockSize != 0) && (isoTpTx.blockCounter >= isoTpTx.blockSize) && (isoTpTx.txDataOffset < isoTpTx.txDataSize))
+    {
+        isoTpTx.state = ISO_TP_TX_WAIT_FC;
+    }
+    else
+    {
+        // If more data remains, you could call IsoTpTx_MainFunction again or wait for the next call.
+        if (isoTpTx.txDataOffset < isoTpTx.txDataSize)
+        {
+            // Optionally, if operating in interrupt context, call again:
+            //Can_IsoTpTx_MainFunction();
+        }
+        else
+        {
+            isoTpTx.state = ISO_TP_TX_IDLE;
+        }
+    }
+}
+
 
 void Can_TransmitAllMessages(void)
 {
@@ -431,6 +681,14 @@ void Can_ProcessReceivedMessages(void)
         }
         memset(&Can_RxMessageBuffer[i], 0u, sizeof(Can_RxMessageBuffer[i]));
     }
+    memcpy(&DiagMaster_Receive_DiagnosticMessageBuffer->diagnosticMessage,
+            &Can_Rx_DiagnosticBuffer,
+            sizeof(DiagMaster_Receive_DiagnosticMessageBuffer));
+    memset(&Can_Rx_DiagnosticBuffer,
+            0u,
+            sizeof(Can_Rx_DiagnosticBuffer));
+    DiagMaster_Rx_DiagBufCnt = Can_Rx_DiagBufCnt;
+    Can_Rx_DiagBufCnt = 0u;
     Can_BufferIndex_ReceivedMessages = 0u;
     IfxCpu_enableInterrupts();
 }
@@ -469,6 +727,8 @@ void Can_MainFunction(void)
 {
     static uint8 localBusOff = 0u;
     static uint8 localWarningStatus = 0u;
+
+    Can_IsoTpTx_MainFunction();
 
     localBusOff = IfxCan_Node_getBusOffStatus(g_mcmcan.canDstNode.node);
     localWarningStatus = IfxCan_Node_getWarningStatus(g_mcmcan.canDstNode.node);
@@ -515,404 +775,4 @@ bool Can_IsoTp_SendFrame(uint16 canId, const uint8 *data, uint8 size)
     status = Can_Tx(localMcmcan);
     IfxCpu_enableInterrupts();
     return status;
-}
-
-void Can_IsoTp_Init(void)
-{
-    memset(&g_isoTpRx, 0u, sizeof(g_isoTpRx));
-    memset(&g_isoTpTx, 0u, sizeof(g_isoTpTx));
-    g_isoTpRx.state         = ISOTP_STATE_IDLE;
-    g_isoTpRx.canId         = 0x6FEu;
-    g_isoTpRx.rxBufferPtr   = g_rxDataBuffer;
-    g_isoTpRx.rxBufferSize  = sizeof(g_rxDataBuffer);
-    g_isoTpTx.state         = ISOTP_STATE_IDLE;
-    g_isoTpTx.canId         = 0x6FFu;
-    g_isoTpTx.blockSize     = ISOTP_DEFAULT_BLOCK_SIZE;
-    g_isoTpTx.stMin         = ISOTP_DEFAULT_ST_MIN_MS;
-}
-
-bool Can_IsoTp_Transmit(uint16 canId, const uint8 *data, uint16 size)
-{
-    if (g_isoTpTx.state != ISOTP_STATE_IDLE)
-    {
-        // Tx channel busy
-        return false;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-    // Initialize Tx channel
-    g_isoTpTx.state         = ISOTP_STATE_TX_FF; // We'll decide SF vs FF below
-    g_isoTpTx.canId         = canId;
-    g_isoTpTx.txDataPtr     = data;
-    g_isoTpTx.txDataSize    = size;
-    g_isoTpTx.txDataOffset  = 0u;
-    g_isoTpTx.txSequenceNumber = 1u; // next CF SN
-    g_isoTpTx.blockCounter  = 0u;
-    g_isoTpTx.timer         = 1u; // Not defined above, you can define your own
-    // Decide if Single Frame or Multi-Frame
-    // Single Frame can carry up to 7 bytes (PCI nibble + up to 7 data bytes)
-    if (size <= 7u)
-    {
-        uint8 canPayload[ISOTP_CAN_DL] = {0u};
-        // PCI nibble: 0x0 | (size)
-        canPayload[0u] = (uint8_t)(ISOTP_PCI_SF | (uint8_t)size);
-        // Copy pay-load
-        memcpy(&canPayload[1u], data, size);
-        // Send single CAN frame
-        if (!Can_IsoTp_SendFrame((uint16)canId, canPayload, 1u + (uint8_t)size))
-        {
-            g_isoTpTx.state = ISOTP_STATE_IDLE;
-            return false;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-        // Done
-        g_isoTpTx.state = ISOTP_STATE_IDLE;  // Transmission completed
-    }
-    else
-    {
-        // Multi-frame
-        // First frame has 2 bytes of length info:
-        // Byte0: PCI nibble 0x1 for FF, plus the high nibble of total length
-        // Byte1: lower 8 bits of total length
-        // Then up to 6 data bytes
-        uint8 canPayload[ISOTP_CAN_DL] = {0u};
-        canPayload[0u] = (uint8)(ISOTP_PCI_FF | ((size >> 8u) & 0x0Fu));
-        canPayload[1u] = (uint8)(size & 0xFFu);
-        // We can fit up to 6 bytes of data in the first frame
-        uint8 bytesInFF = 6U;
-        memcpy(&canPayload[2u], data, bytesInFF);
-        // Transmit FF
-        if (!Can_IsoTp_SendFrame((uint16)canId, canPayload, 8u))
-        {
-            g_isoTpTx.state = ISOTP_STATE_IDLE;
-            return false;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-        // Move offset
-        g_isoTpTx.txDataOffset = bytesInFF;
-        // Remain in ISOTP_STATE_TX_FF until we get FlowControl from the receiver
-    }
-    return true;
-}
-
-void Can_IsoTp_OnCanReceive(uint16 canId, const uint8 *data, uint8 size)
-{
-    if (size < 1u)
-    {
-        return; // invalid
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-    uint8 pci = data[0u] & 0xF0u; // top nibble = PCI type
-    // --------------------------------------------------------
-    // 1. Check if this frame is for our Rx channel
-    // --------------------------------------------------------
-    if (canId == g_isoTpRx.canId)
-    {
-        switch (pci)
-        {
-            // -----------------------------------------
-            // Single Frame
-            // -----------------------------------------
-            case ISOTP_PCI_SF:
-            {
-                uint8 len = data[0u] & 0x0Fu; // low nibble = data length
-                if (len <= 7u && len <= (size - 1u))
-                {
-                    // Copy the payload
-                    memcpy(g_isoTpRx.rxBufferPtr, &data[1u], len);
-                    g_isoTpRx.payloadLength  = len;
-                    g_isoTpRx.receivedBytes  = len;
-                    g_isoTpRx.state          = ISOTP_STATE_IDLE; // Rx complete
-                }
-                else
-                {
-                    /* Do nothing. */
-                }
-                break;
-            }
-            // -----------------------------------------
-            // First Frame
-            // -----------------------------------------
-            case ISOTP_PCI_FF:
-            {
-                // length is 12 bits across (data[0] & 0x0F) << 8 | data[1]
-                uint16 totalLen = ((data[0u] & 0x0Fu) << 8u) | data[1u];
-                if (totalLen > g_isoTpRx.rxBufferSize)
-                {
-                    // Buffer overflow, discard or handle error
-                    g_isoTpRx.state = ISOTP_STATE_IDLE;
-                    break;
-                }
-                else
-                {
-                    /* Do nothing. */
-                }
-                // Copy up to 6 data bytes from FF
-                uint8 bytesInFF = 6u;
-                if (bytesInFF > (size - 2u))
-                {
-                    break;
-                }
-                else
-                {
-                    /* Do nothing. */
-                }
-
-                memcpy(g_isoTpRx.rxBufferPtr, &data[2u], bytesInFF);
-                g_isoTpRx.payloadLength   = totalLen;
-                g_isoTpRx.receivedBytes   = bytesInFF;
-                g_isoTpRx.state           = ISOTP_STATE_RX_FF;
-                g_isoTpRx.nextCfSequenceNumber = 1u; // next CF must have SN=1
-                // We must send Flow Control (FC)
-                uint8 fcFrame[ISOTP_CAN_DL] = {0u};
-                fcFrame[0] = (uint8)(ISOTP_PCI_FC | ISOTP_FC_STATUS_CTS);
-                fcFrame[1] = g_isoTpTx.blockSize;
-                fcFrame[2] = g_isoTpTx.stMin;
-                // The rest can be 0
-                Can_IsoTp_SendFrame((uint16)canId, fcFrame, 3u);
-                break;
-            }
-            // -----------------------------------------
-            // Consecutive Frame
-            // -----------------------------------------
-            case ISOTP_PCI_CF:
-            {
-                if ((g_isoTpRx.state == ISOTP_STATE_RX_FF) ||
-                        (g_isoTpRx.state == ISOTP_STATE_RX_CF))
-                {
-                    uint8 sn = data[0u] & 0x0Fu;
-                    if (sn == g_isoTpRx.nextCfSequenceNumber)
-                    {
-                        // OK, copy data
-                        uint8 bytesToCopy = (uint8)(size - 1u);
-                        uint16 remaining = g_isoTpRx.payloadLength - g_isoTpRx.receivedBytes;
-                        if (bytesToCopy > remaining)
-                        {
-                            bytesToCopy = (uint8_t)remaining; // avoid overflow
-                        }
-                        memcpy(&g_isoTpRx.rxBufferPtr[g_isoTpRx.receivedBytes], &data[1u], bytesToCopy);
-                        g_isoTpRx.receivedBytes += bytesToCopy;
-                        g_isoTpRx.nextCfSequenceNumber = (sn + 1u) & 0x0Fu;
-                        g_isoTpRx.state = ISOTP_STATE_RX_CF;
-                        // Check if we are done
-                        if (g_isoTpRx.receivedBytes >= g_isoTpRx.payloadLength)
-                        {
-                            // Rx complete
-                            g_isoTpRx.state = ISOTP_STATE_IDLE;
-                            // Notify upper layer
-                            // e.g. Dcm_OnIsoTpRxComplete(...)
-                        }
-                        else
-                        {
-                            /* Do nothing. */
-                        }
-                        // else, we might need to handle block size / flow control timing
-                        // This example always returns CTS once at FF,
-                        // a real stack might do extended block checks, further FC, etc.
-                    }
-                    else
-                    {
-                        // Sequence mismatch -> error
-                        g_isoTpRx.state = ISOTP_STATE_IDLE;
-                    }
-                }
-                break;
-            }
-            // -----------------------------------------
-            // Flow Control - Not expected for Rx
-            // -----------------------------------------
-            case ISOTP_PCI_FC:
-            default:
-                // ignore or handle error
-                break;
-        }
-    }
-    // --------------------------------------------------------
-    // 2. Check if this frame is FlowControl for our Tx channel
-    // --------------------------------------------------------
-    else if (canId == g_isoTpTx.canId)
-    {
-        if ((pci & 0xF0u) == ISOTP_PCI_FC)
-        {
-            // This is a FlowControl frame from the receiver, relevant only if we are in TX_FF
-            if (g_isoTpTx.state == ISOTP_STATE_TX_FF)
-            {
-                uint8 fs = data[0u] & 0x0Fu; // FlowStatus
-                uint8 blockSize = data[1u];
-                uint8 stMin     = data[2u];
-
-                if (fs == ISOTP_FC_STATUS_CTS)
-                {
-                    // Accept new block size, stMin
-                    g_isoTpTx.blockSize = blockSize;
-                    g_isoTpTx.stMin     = stMin; // (in ms)
-                    g_isoTpTx.blockCounter = 0u;
-
-                    // Start sending Consecutive Frames
-                    g_isoTpTx.state = ISOTP_STATE_TX_CF;
-                }
-                else if (fs == ISOTP_FC_STATUS_WAIT)
-                {
-                    // The receiver requests a pause
-                    // Re-send after some time or wait for next FC
-                    // This demo does not handle WAIT properly
-                }
-                else
-                {
-                    // Overflow or other negative flow status
-                    // Abort
-                    g_isoTpTx.state = ISOTP_STATE_IDLE;
-                }
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-    }
-    else
-    {
-        /* Do nothing. */
-    }
-}
-
-void Can_IsoTp_MainFunction(void)
-{
-    // -----------------------------
-    // RX Timeout Management
-    // -----------------------------
-    switch (g_isoTpRx.state)
-    {
-        case ISOTP_STATE_RX_FF:
-        case ISOTP_STATE_RX_CF:
-            if (g_isoTpRx.timer > 0u)
-            {
-                g_isoTpRx.timer--;
-                if (g_isoTpRx.timer == 0u)
-                {
-                    // Rx timeout
-                    g_isoTpRx.state = ISOTP_STATE_IDLE;
-                }
-                else
-                {
-                    /* Do nothing. */
-                }
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-            break;
-        default:
-            // Idle or no action
-            break;
-    }
-    // -----------------------------
-    // TX Timeout Management & CF Sending
-    // -----------------------------
-    switch (g_isoTpTx.state)
-    {
-        case ISOTP_STATE_TX_FF:
-            // We are waiting for FlowControl
-            if (g_isoTpTx.timer > 0u)
-            {
-                g_isoTpTx.timer--;
-                if (g_isoTpTx.timer == 0u)
-                {
-                    // Timeout waiting for FC
-                    g_isoTpTx.state = ISOTP_STATE_IDLE;
-                }
-                else
-                {
-                    /* Do nothing. */
-                }
-            }
-            else
-            {
-                /* Do nothing. */
-            }
-            break;
-        case ISOTP_STATE_TX_CF:
-        {
-            // Check if we can send next CF
-            // Enforce blockSize and stMin if needed
-            // For demonstration: send frames continuously, ignoring STmin
-            // Real code: you'd use a sub-timer to track STmin, block usage, etc.
-            if (g_isoTpTx.txDataOffset < g_isoTpTx.txDataSize)
-            {
-                // Build the CF
-                uint8 cfPayload[ISOTP_CAN_DL] = {0u};
-                cfPayload[0u] = (uint8)(ISOTP_PCI_CF | (g_isoTpTx.txSequenceNumber & 0x0Fu));
-                uint8 bytesToSend = (uint8)(g_isoTpTx.txDataSize - g_isoTpTx.txDataOffset);
-                if (bytesToSend > 7u)
-                {
-                    bytesToSend = 7u;
-                }
-                else
-                {
-                    /* Do nothing. */
-                }
-
-                memcpy(&cfPayload[1u], &g_isoTpTx.txDataPtr[g_isoTpTx.txDataOffset], bytesToSend);
-
-                if (!Can_IsoTp_SendFrame((uint16)g_isoTpTx.canId, cfPayload, 1u + bytesToSend))
-                {
-                    // Could not send
-                    g_isoTpTx.state = ISOTP_STATE_IDLE;
-                    break;
-                }
-                else
-                {
-                    /* Do nothing. */
-                }
-                // Update for next CF
-                g_isoTpTx.txDataOffset += bytesToSend;
-                g_isoTpTx.txSequenceNumber = (g_isoTpTx.txSequenceNumber + 1u) & 0x0Fu;
-                g_isoTpTx.blockCounter++;
-                // If block counter == blockSize, we should wait for next FlowControl
-                if ((g_isoTpTx.blockSize > 0u) &&
-                        (g_isoTpTx.blockCounter >= g_isoTpTx.blockSize) &&
-                        (g_isoTpTx.txDataOffset < g_isoTpTx.txDataSize))
-                {
-                    // We need to wait for next FC
-                    g_isoTpTx.blockCounter = 0u;
-                    g_isoTpTx.state = ISOTP_STATE_TX_FF; // or a dedicated "WAIT_FC" state
-                    // Start or reset a timer
-                    g_isoTpTx.timer = 1u;
-                }
-                else
-                {
-                    // Remain in TX_CF if not finished
-                    if (g_isoTpTx.txDataOffset >= g_isoTpTx.txDataSize)
-                    {
-                        // Done
-                        g_isoTpTx.state = ISOTP_STATE_IDLE;
-                    }
-                    else
-                    {
-                        /* Do nothing. */
-                    }
-                }
-            }
-            break;
-        }
-        default:
-            // Idle or single-frame done
-            break;
-    }
 }

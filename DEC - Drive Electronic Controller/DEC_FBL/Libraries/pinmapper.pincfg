@@ -12,11 +12,11 @@
   <v1:configSetting configurationId="p14_2.in.bind" altId="p14_2.in.bind.in">
     <v1:connectionSetting altId="evrc.en.bind.en"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="pms.hwcfg5.bind" altId="pms.hwcfg5.bind.hwcfg5">
-    <v1:connectionSetting altId="p10_6.in.bind.in"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="pms.testmode.bind" altId="pms.testmode.bind.testmode">
     <v1:connectionSetting altId="p20_2.in.bind.in"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="pms.hwcfg5.bind" altId="pms.hwcfg5.bind.hwcfg5">
+    <v1:connectionSetting altId="p10_6.in.bind.in"/>
   </v1:configSetting>
   <v1:configSetting configurationId="p10_6.in.bind" altId="p10_6.in.bind.in">
     <v1:connectionSetting altId="pms.hwcfg5.bind.hwcfg5"/>
@@ -55,18 +55,18 @@
     <v1:connectionSetting altId="p20_8.out.bind.alt5"/>
   </v1:configSetting>
   <v1:configSetting configurationId="p20_6.dir" altId="p20_6.dir.out"/>
-  <v1:configSetting configurationId="p20_8.out.bind" altId="p20_8.out.bind.alt5">
-    <v1:connectionSetting altId="can0_node0.txd.bind.out"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="can0_node0.rxd.bind" altId="can0_node0.rxd.bind.rxd1">
     <v1:connectionSetting altId="p20_7.in.bind.in"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="p20_6.out.mode" altId="p20_6.out.mode.od"/>
+  <v1:configSetting configurationId="p20_8.dir" altId="p20_8.dir.out"/>
+  <v1:configSetting configurationId="p20_6.out.bind" altId="p20_6.out.bind.gpio"/>
+  <v1:configSetting configurationId="p20_8.out.bind" altId="p20_8.out.bind.alt5">
+    <v1:connectionSetting altId="can0_node0.txd.bind.out"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p20_6.out.mode" altId="p20_6.out.mode.pp"/>
   <v1:configSetting configurationId="p20_7.in.bind" altId="p20_7.in.bind.in">
     <v1:connectionSetting altId="can0_node0.rxd.bind.rxd1"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="p20_8.dir" altId="p20_8.dir.out"/>
-  <v1:configSetting configurationId="p20_6.out.bind" altId="p20_6.out.bind.gpio"/>
   <v1:propertySetting propertyId="p20_6.symbolicname" value="GPIO1"/>
   <v1:propertySetting propertyId="p20_7.symbolicname" value="CAN0_NODE0_RXD"/>
   <v1:propertySetting propertyId="p20_8.symbolicname" value="CAN0_NODE0_TXD"/>

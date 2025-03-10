@@ -11,22 +11,41 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define ISOTP_PCI_SF        0x00u
-#define ISOTP_PCI_FF        0x10u
-#define ISOTP_PCI_CF        0x20u
-#define ISOTP_PCI_FC        0x30u
-#define ISOTP_FC_STATUS_CTS 0x00u
-#define ISOTP_FC_STATUS_WAIT 0x01u
-#define ISOTP_FC_STATUS_OVFL 0x02u
-#define ISOTP_CAN_DL        8u
-#define ISOTP_DEFAULT_N_AR_TIMEOUT  1u
-#define ISOTP_DEFAULT_N_BR_TIMEOUT  1u
-#define ISOTP_DEFAULT_N_CR_TIMEOUT  1u
-#define ISOTP_DEFAULT_BLOCK_SIZE  8u
-#define ISOTP_DEFAULT_ST_MIN_MS   5u
 #define MAXIMUM_CAN_DATA_PAYLOAD 8u
 #define CAN_NO_RX_MSG 6u
 #define CAN_NO_TX_MSG 9u
+#define CAN_RX_BUFFER_COUNT        9      // Number of hardware Rx buffers
+#define ISO_TP_MAX_PAYLOAD         2048   // Maximum reassembly buffer size
+#define ISO_TP_CAN_DL              8       // CAN data length (8 bytes)
+
+typedef struct
+{
+        uint16 id;        // CAN identifier
+        uint8  dlc;       // Data Length Code (number of valid data bytes)
+        uint8  data[ISO_TP_CAN_DL];   // Up to 8 data bytes per CAN frame
+} CanMsg;
+
+typedef enum
+{
+    ISO_TP_TX_IDLE = 0,
+    ISO_TP_TX_WAIT_FC,  // Waiting for Flow Control (FC) frame from tester
+    ISO_TP_TX_CF       // Transmitting Consecutive Frames
+} IsoTpTxState_t;
+
+typedef struct
+{
+    uint16 txId;           // CAN Identifier for transmission (ECU sends on 0x6FF)
+    const uint8 *txData;   // Pointer to the full response payload to be sent
+    uint16 txDataSize;     // Total length of the response payload
+    uint16 txDataOffset;   // Offset into the payload for the next frame
+    uint8  txSequenceNumber; // Next consecutive frame sequence number (0-15)
+    uint8  blockSize;      // Block size as received in FC (0 means “send all”)
+    uint8  stMin;          // Minimum separation time (in ms) from FC
+    uint8  blockCounter;   // Counter for frames sent in current block
+    IsoTpTxState_t state;    // Current state of the transmit state machine
+    // Optionally, add a timer for STmin handling if needed.
+} IsoTpTx_t;
+
 
 typedef enum
 {
@@ -79,39 +98,6 @@ typedef struct
         uint8 receivedValidFlag;
 }Can_ReceiveType_t;
 
-typedef enum
-{
-    ISOTP_STATE_IDLE = 0u,
-    ISOTP_STATE_RX_FF = 1u,  // waiting for consecutive frames
-    ISOTP_STATE_RX_CF = 2u,
-    ISOTP_STATE_TX_FF = 3u,  // sending first frame
-    ISOTP_STATE_TX_CF = 4u,
-} IsoTpChannelState;
-
-typedef struct
-{
-    // -- Common --
-    IsoTpChannelState state;
-    uint16          timer;         // for timeouts
-    uint32          canId;         // physical CAN ID used for the channel
-    // -- Rx only --
-    uint16          payloadLength; // total payload length in bytes
-    uint16          receivedBytes;
-    uint8           nextCfSequenceNumber;
-    // We store the incoming data here
-    uint8          *rxBufferPtr;   // external or static buffer
-    uint16          rxBufferSize;  // max buffer length
-    // -- Tx only --
-    const uint8    *txDataPtr;     // pointer to user data
-    uint16          txDataSize;    // total data size to send
-    uint16          txDataOffset;  // how many bytes have been sent
-    uint8           txSequenceNumber;
-    // Flow Control parameters
-    uint8           blockSize;
-    uint8           blockCounter;
-    uint8           stMin;         // separation time in ms
-} IsoTpChannel;
-
 extern Can_TransmitType_t Can_TransmitTable[CAN_NO_TX_MSG];
 extern Can_ReceiveType_t Can_ReceiveTable[CAN_NO_RX_MSG];
 extern McmcanType g_mcmcan;
@@ -137,8 +123,15 @@ extern bool Can_Tx(McmcanType message);
 extern void Can_Rx(void);
 extern void Can_MainFunction(void);
 extern bool Can_IsoTp_SendFrame(uint16 canId, const uint8 *data, uint8 size);
-extern void Can_IsoTp_Init(void);
-extern bool Can_IsoTp_Transmit(uint16 canId, const uint8 *data, uint16 size);
-extern void Can_IsoTp_OnCanReceive(uint16 canId, const uint8 *data, uint8 size);
 extern void Can_IsoTp_MainFunction(void);
+// Low-level CAN transmit function (assumed to be implemented to drive your hardware)
+extern bool Can_SendFrame(uint16 id, const uint8_t *data, uint8 dlc);
+// ISO-TP transmit: sends a full ISO-TP message (single or multi-frame)
+extern bool Can_IsoTpTransmit(uint16 txId, const uint8 *data, uint16 length);
+// ISO-TP processing for one incoming CAN frame
+extern void Can_ProcessIsoTpMessage(const CanMsg *msg);
+// Transmit a Flow Control frame in response to a First Frame
+extern void Can_SendFlowControlFrame(void);
+// Called periodically (or in main loop) to handle ISO-TP CF transmissions
+extern void Can_IsoTpTx_MainFunction(void);
 #endif /* MCMCAN_H_ */

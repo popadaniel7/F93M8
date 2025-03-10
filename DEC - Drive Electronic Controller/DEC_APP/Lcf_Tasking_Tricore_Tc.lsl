@@ -26,8 +26,8 @@
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
 #define LCF_CSA0_SIZE               3k
-#define LCF_USTACK0_SIZE            1k
-#define LCF_ISTACK0_SIZE            1k
+#define LCF_USTACK0_SIZE            4k
+#define LCF_ISTACK0_SIZE            4k
 #define LCF_CSA1_SIZE               3k
 #define LCF_USTACK1_SIZE            1k
 #define LCF_ISTACK1_SIZE            1k

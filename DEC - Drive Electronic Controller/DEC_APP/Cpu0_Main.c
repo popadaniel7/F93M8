@@ -40,7 +40,6 @@ void core0_main(void)
     Dem_PreInit();
     Nvm_ReadAll();
     Dem_Init();
-    Dcm_Init();
     EncCal_MainFunction();
     SysMgr_ProcessResetDtc();
     Os_Init_C0();

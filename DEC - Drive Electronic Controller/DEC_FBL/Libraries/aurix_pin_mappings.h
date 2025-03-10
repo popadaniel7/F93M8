@@ -27,7 +27,7 @@
 
 // p20_6
 #define IFXCFG_PORT_GPIO1                       IfxPort_P20_6
-#define IFXCFG_PORT_GPIO1_MODE                  IfxPort_Mode_outputOpenDrainGeneral
+#define IFXCFG_PORT_GPIO1_MODE                  IfxPort_Mode_outputPushPullGeneral
 #define IFXCFG_PORT_GPIO1_PAD_DRIVER            IfxPort_PadDriver_cmosAutomotiveSpeed4
 
 

@@ -1,4 +1,5 @@
 #include "Ifx_Types.h"
 
-extern void Dcm_Init(void);
+// Called when a complete ISO-TP diagnostic message has been reassembled.
+extern void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length);
 extern void Dcm_MainFunction(void);
