@@ -112,6 +112,11 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo)
     Ifx_SCU_WDTCPU *cpuwdg = &MODULE_SCU.WDTCPU[coreId];
 
     __debug();
+    
+  while(1)
+  {
+    __debug();
+  }
 
     McuSm_LastResetReason = 373u;
     McuSm_LastResetInformation = trapInfo.tId;

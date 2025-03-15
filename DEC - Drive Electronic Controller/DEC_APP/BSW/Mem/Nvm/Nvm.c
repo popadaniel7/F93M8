@@ -5,8 +5,6 @@
 #include "EncCal.h"
 #include "Dem.h"
 
-extern EncCal_VOData_t EncCal_VODataComplete_Default;
-
 uint32 Nvm_CurrentAddress;
 uint32 Nvm_SectorSwitchActivated;
 uint32 Nvm_CurrentSector;
@@ -14,7 +12,7 @@ Nvm_Header_t Nvm_HeaderArr[NVM_NO_BLOCKS];
 Nvm_Header_t Nvm_HeaderArr_Default[NVM_NO_BLOCKS]=
 {
         {0u, 0u, 0u, 0u}, // block 0 dummy not used
-        {1u, ENCCAL_CALIBRATION_SIZE * 4u, 0u, 0u}, // calibration block
+        {1u, ENCCAL_CALIBRATION_SIZE, 0u, 0u}, // calibration block
         {2u, ENCCAL_CODING_SIZE, 0u, 0u}, // coding block
         {3u, sizeof(EncCal_VODataComplete), 0u, 0u}, // VO data block
         {4u, DEM_NUMBER_OF_DTCS, 0u, 0u}, // dtc data block
@@ -23,7 +21,7 @@ Nvm_NvStat_t Nvm_NvStatArr[NVM_NO_BLOCKS];
 Nvm_NvStat_t Nvm_NvStatArr_Default[NVM_NO_BLOCKS] =
 {
         {0u, 0u, 0u}, // block 0 dummy not used
-        {ENCCAL_CALIBRATION_SIZE * 4u, 0u, 0u,}, // calibration block
+        {ENCCAL_CALIBRATION_SIZE, 0u, 0u,}, // calibration block
         {ENCCAL_CODING_SIZE, 0u, 0u}, // coding block
         {sizeof(EncCal_VODataComplete), 0u, 0u}, // VO data block
         {DEM_NUMBER_OF_DTCS, 0u, 0u}, // dtc data block

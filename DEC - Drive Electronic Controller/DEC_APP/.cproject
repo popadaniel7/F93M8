@@ -15,12 +15,24 @@
 				<configuration artifactName="${ProjName}" buildArtefactType="com.infineon.aurix.buildsystem.managed.buildArtefactType.elf" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=com.infineon.aurix.buildsystem.managed.buildArtefactType.elf,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" description="" id="com.infineon.aurix.buildsystem.managed.configuration.binary.1148670663" name="TriCore Debug (TASKING)" parent="com.infineon.aurix.buildsystem.managed.configuration.binary">
 					<folderInfo id="com.infineon.aurix.buildsystem.managed.configuration.binary.1148670663." name="/" resourcePath="">
 						<toolChain id="com.infineon.aurix.buildsystem.managed.toolChain.tasking.exe.binary.1123746612" name="TASKING" superClass="com.infineon.aurix.buildsystem.managed.toolChain.tasking.exe.binary">
-							<option id="com.tasking.ctc.cpu.111610510" name="Processor" superClass="com.tasking.ctc.cpu" value="tc37x" valueType="string"/>
-							<option id="com.tasking.ctc.package.1955738164" name="Device package" superClass="com.tasking.ctc.package" value="lqfp176" valueType="string"/>
-							<targetPlatform archList="all" binaryParser="com.tasking.managedbuilder.TASKING_ELF" id="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform.475631239" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform"/>
+							<option id="com.tasking.ctc.cpu.1772493364" name="Processor" superClass="com.tasking.ctc.cpu" value="tc37x" valueType="string"/>
+							<option id="com.tasking.ctc.package.473620182" name="Device package" superClass="com.tasking.ctc.package" value="lfbga292" valueType="string"/>
+							<targetPlatform archList="all" id="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform.475631239" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform"/>
 							<builder buildPath="${workspace_loc:/DEC_APP}/TriCore Debug (TASKING)" id="com.infineon.aurix.buildsystem.managed.tasking.builder.2125111074" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" superClass="com.infineon.aurix.buildsystem.managed.tasking.builder"/>
 							<tool id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.debug.91631202" name="TASKING C/C++ Compiler" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.debug">
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.include.1527843876" name="Include paths (-I)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.include" valueType="includePath">
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.optimization.level.debug.2061376870" name="Optimization level: (-Ox)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.optimization.level.debug" value="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.optimization.level.0" valueType="enumerated"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.optimization.tradeoff.579663386" name="Trade-off between speed and size: (--tradeoff=)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.optimization.tradeoff" value="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.optimization.tradeoff.4" valueType="enumerated"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.debugging.1103308655" name="Generate symbolic debug information:" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.debugging" value="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.debugging.default" valueType="enumerated"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.gxx.1527369986" name="Allow GNU C++ extensions (--g++)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.gxx" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.tKeyword.1600833265" name="Allow the 'wchar_t' keyword (C++) (--wchar_t-keyword)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.tKeyword" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccRTTI.1958074941" name="Support for C++ RTTI (run-time type information) (--rtti)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccRTTI" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.c11ioStreams.1728283294" name="Support for C++11 I/O streams (--io-streams=cpp11)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.c11ioStreams" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ioStreams.644340833" name="Support for C++ I/O streams (--io-streams)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ioStreams" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccAnachronisms.428558748" name="C++ anachronisms (--anachronisms)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccAnachronisms" value="true" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccStrict.1604145382" name="Allow non-ANSI/ISO C++ features (--strict)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccStrict" value="true" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccExceptions.1650036415" name="Support for C++ exception handling (--exceptions)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.ccExceptions" value="true" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.cpu.1167175836" name="(HIDDEN) CPU Id (-C)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.cpu" value="tc37x" valueType="string"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.include.546805991" name="Include paths (-I)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.include" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/APP}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/APP/ColDet}&quot;"/>
@@ -117,16 +129,21 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Libraries/iLLD/TC37A/Tricore/_Impl}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Libraries/iLLD/TC37A/Tricore/_PinMap}&quot;"/>
 								</option>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.preprocessor.definedSymbols.75465519" name="Defined symbols (-D)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.preprocessor.definedSymbols" valueType="definedSymbols">
-									<listOptionValue builtIn="false" value="__CPU__=tc37x"/>
-								</option>
 								<inputType id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.input.cpp.428894840" name="C++" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.input.cpp"/>
 								<inputType id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.input.1905616432" name="C" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.input"/>
 							</tool>
 							<tool id="com.infineon.aurix.buildsystem.managed.tool.c.assembler.tasking.1588332599" name="TASKING Assembler" superClass="com.infineon.aurix.buildsystem.managed.tool.c.assembler.tasking">
+								<option id="com.infineon.aurix.buildsystem.managed.c.assembler.tasking.diagnostics.errorLimit.1974037882" name="Maximum number of emitted errors: (--error-limit=)" superClass="com.infineon.aurix.buildsystem.managed.c.assembler.tasking.diagnostics.errorLimit" value="42" valueType="string"/>
 								<inputType id="com.infineon.aurix.buildsystem.managed.tool.c.assembler.tasking.input.1678816901" superClass="com.infineon.aurix.buildsystem.managed.tool.c.assembler.tasking.input"/>
 							</tool>
-							<tool id="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.913201876" name="TASKING Linker" superClass="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking"/>
+							<tool id="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.913201876" name="TASKING Linker" superClass="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking">
+								<option id="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.statics.261965701" name="Include module local symbols information (-Wl-mq)" superClass="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.statics" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.overlay.2036496063" name="Include overlay information (-Wl-mo)" superClass="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.overlay" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.nonAlloc.1262668738" name="Include information of non-alloc sections (-Wl-mn)" superClass="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.nonAlloc" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.lsl.1153490643" name="Include processor and memory information (-Wl-ms)" superClass="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.mapFileFormat.lsl" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.optimizefirstFitDecreasing.1239918000" name="Use a 'first-fit decreasing' algorithm (-Wl-Ol)" superClass="com.infineon.aurix.buildsystem.managed.tool.c.linker.tasking.optimizefirstFitDecreasing" value="false" valueType="boolean"/>
+								<option id="com.infineon.aurix.buildsystem.managed.c.linker.tasking.cpu.659250279" name="(HIDDEN) CPU Id (-C)" superClass="com.infineon.aurix.buildsystem.managed.c.linker.tasking.cpu" value="tc37x" valueType="string"/>
+							</tool>
 							<tool id="com.infineon.aurix.buildsystem.managed.tool.printsize.tasking.1603429590" name="Print Size" superClass="com.infineon.aurix.buildsystem.managed.tool.printsize.tasking"/>
 						</toolChain>
 					</folderInfo>
@@ -176,6 +193,7 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
 				<externalSettings containerId="DEC_APP;com.infineon.aurix.buildsystem.managed.configuration.scr.sdcc.binary.2104642980" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 			</storageModule>
+			<storageModule moduleId="com.infineon.aurix.buildsystem.build.autodiscovery.settings"/>
 		</cconfiguration>
 		<cconfiguration id="com.infineon.aurix.buildsystem.managed.configuration.binary.538766656">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.infineon.aurix.buildsystem.managed.configuration.binary.538766656" moduleId="org.eclipse.cdt.core.settings" name="TriCore Release (TASKING)">
@@ -193,7 +211,7 @@
 						<toolChain id="com.infineon.aurix.buildsystem.managed.toolChain.tasking.exe.binary.1582769325" name="TASKING" superClass="com.infineon.aurix.buildsystem.managed.toolChain.tasking.exe.binary">
 							<option id="com.tasking.ctc.cpu.1618902507" name="Processor" superClass="com.tasking.ctc.cpu" value="tc37x" valueType="string"/>
 							<option id="com.tasking.ctc.package.1919127000" name="Device package" superClass="com.tasking.ctc.package" value="lqfp176" valueType="string"/>
-							<targetPlatform archList="all" binaryParser="com.tasking.managedbuilder.TASKING_ELF" id="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform.1307694889" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform"/>
+							<targetPlatform archList="all" id="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform.1307694889" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.tasking.targetPlatform"/>
 							<builder buildPath="${workspace_loc:/DEC_APP}/TriCore Release (TASKING)" id="com.infineon.aurix.buildsystem.managed.tasking.builder.729840378" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" superClass="com.infineon.aurix.buildsystem.managed.tasking.builder"/>
 							<tool id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.debug.1882936393" name="TASKING C/C++ Compiler" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler.tasking.debug">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.include.1219282683" name="Include paths (-I)" superClass="com.infineon.aurix.buildsystem.managed.c.compiler.tasking.include" valueType="includePath">
@@ -377,7 +395,8 @@
 					<folderInfo id="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.debug.239400288." name="/" resourcePath="">
 						<toolChain id="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.debug.1220127951" name="GCC" superClass="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.debug">
 							<option id="com.infineon.aurix.buildsystem.managed.gcc.c.option.mtc.1302491214" name="Instruction set" superClass="com.infineon.aurix.buildsystem.managed.gcc.c.option.mtc" value="com.infineon.aurix.buildsystem.managed.gcc.c.option.mtc.mtc162" valueType="enumerated"/>
-							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform.245732401" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform"/>
+							<option id="com.infineon.aurix.buildsystem.managed.gcc.c.option.mcpu.2036973550" name="CPU Derivative" superClass="com.infineon.aurix.buildsystem.managed.gcc.c.option.mcpu"/>
+							<targetPlatform archList="all" id="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform.245732401" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform"/>
 							<builder buildPath="${workspace_loc:/DEC_APP}/TriCore Debug (GCC)" id="com.infineon.aurix.buildsystem.managed.gcc.builtin.builder.1202754846" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" superClass="com.infineon.aurix.buildsystem.managed.gcc.builtin.builder"/>
 							<tool id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.749457660" name="AURIX GCC Compiler" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler">
 								<option defaultValue="gnu.c.optimization.level.none" id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.option.optimization.level.1277767502" name="Optimization Level" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.debug" valueType="enumerated"/>
@@ -591,6 +610,7 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
 				<externalSettings containerId="DEC_APP;com.infineon.aurix.buildsystem.managed.configuration.scr.sdcc.binary.2104642980" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
 			</storageModule>
+			<storageModule moduleId="com.infineon.aurix.buildsystem.build.autodiscovery.settings"/>
 		</cconfiguration>
 		<cconfiguration id="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.release.117651125">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.release.117651125" moduleId="org.eclipse.cdt.core.settings" name="TriCore Release (GCC)">
@@ -609,7 +629,7 @@
 					<folderInfo id="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.release.117651125." name="/" resourcePath="">
 						<toolChain id="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.release.764584827" name="GCC" superClass="com.infineon.aurix.buildsystem.managed.external.gcc.builtin.configuration.release">
 							<option id="com.infineon.aurix.buildsystem.managed.gcc.c.option.mtc.1467274746" name="Instruction set" superClass="com.infineon.aurix.buildsystem.managed.gcc.c.option.mtc" value="com.infineon.aurix.buildsystem.managed.gcc.c.option.mtc.mtc162" valueType="enumerated"/>
-							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform.935844784" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform"/>
+							<targetPlatform archList="all" id="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform.935844784" isAbstract="false" osList="all" superClass="com.infineon.aurix.buildsystem.managed.gcc.targetPlatform"/>
 							<builder buildPath="${workspace_loc:/DEC_APP}/TriCore Release (GCC)" id="com.infineon.aurix.buildsystem.managed.gcc.builtin.builder.987279490" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" superClass="com.infineon.aurix.buildsystem.managed.gcc.builtin.builder"/>
 							<tool id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.68428314" name="AURIX GCC Compiler" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler">
 								<option defaultValue="gnu.c.optimization.level.most" id="com.infineon.aurix.buildsystem.managed.tool.c.compiler.option.optimization.level.8313531" name="Optimization Level" superClass="com.infineon.aurix.buildsystem.managed.tool.c.compiler.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>

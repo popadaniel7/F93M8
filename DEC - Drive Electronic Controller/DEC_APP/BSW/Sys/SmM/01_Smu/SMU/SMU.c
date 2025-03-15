@@ -221,225 +221,9 @@ RuntimeAlarmHandle runtimeAlarmHandleNotConfiguredAlarm;
 void initFunctionExecutionStatusSMU(SmuExecutionStatusType *SmuExecutionStatusType);
 SmuStatusType initSMUAlarmsSMU(void);
 SmuStatusType activatSMU(void);
-SmuStatusType checkIsrConfigSMU(void);
-IFX_INTERRUPT(isr0SMU, 0, ISR_PRORITY_SMU_ISR_0);
-IFX_INTERRUPT(isr1SMU, 1, ISR_PRORITY_SMU_ISR_1);
-IFX_INTERRUPT(isr2SMU, 2, ISR_PRORITY_SMU_ISR_2);
 /*********************************************************************************************************************/
 /*-------------------------Function Implementations------------------------------------------------------------------*/
 /*********************************************************************************************************************/
-/* alarm interrupt routine 0, insert here the routine wanted when the interrupt is called */
-void isr0SMU(void)
-{
-    uint16 nbrRaisedAlarm;
-
-    /* Enable the global interrupts of this CPU */
-    IfxCpu_enableInterrupts();
-
-    /* nbr_raised_alarm > 0  : An alarm was triggered which is listed in alarmsThatTriggerIsr1 and which was not
-     * yet pending
-     * nbr_raised_alarm == 0 : An alarm was triggered which is not listed in alarmsThatTriggerIsr1, therefore it
-     * is probably
-     * one of the alarms configured with default configuration during Application SSW
-     * */
-    nbrRaisedAlarm = detectAlarmSourcSMU(&alarmsThatTriggerIsr0[0], nbrAlarmsThatTriggerIsr0);
-
-    if(nbrRaisedAlarm == 0 && DEFAULT_ALARM_ACTION == IfxSmu_InternalAlarmAction_igcs0)
-    {
-        //popMessage = "Default IGCS0 SMU Alarm!";
-        IfxCpu_disableInterrupts();
-        runtimeAlarmHandleNotConfiguredAlarm = (RuntimeAlarmHandle){&globalAlarmConfig[0], pending};
-        g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter] =
-                &runtimeAlarmHandleNotConfiguredAlarm;
-        g_SafetyKitStatus.smuAlarmPending.alarmCounter++;
-        IfxCpu_enableInterrupts();
-    }
-
-    if (!isrConfigTestRunningSMU)
-    {
-        IfxSmu_clearAlarmExecutedStatus(IfxSmu_AlarmExecutionStatus_irq0);
-    }
-}
-
-/* alarm interrupt routine 1, insert here the routine wanted when the interrupt is called */
-void isr1SMU(void)
-{
-    uint16 nbrRaisedAlarm;
-
-    /* Enable the global interrupts of this CPU */
-    IfxCpu_enableInterrupts();
-
-    /* nbr_raised_alarm > 0  : An alarm was triggered which is listed in alarmsThatTriggerIsr1 and which was not yet
-     * pending
-     * nbr_raised_alarm == 0 : An alarm was triggered which is not listed in alarmsThatTriggerIsr1, therefore it is
-     * probably
-     * one of the alarms configured with default configuration during Application SSW
-     * */
-    nbrRaisedAlarm = detectAlarmSourcSMU(&alarmsThatTriggerIsr1[0], nbrAlarmsThatTriggerIsr1);
-    if(nbrRaisedAlarm == 0 && DEFAULT_ALARM_ACTION == IfxSmu_InternalAlarmAction_igcs1)
-    {
-        //popMessage = "Default IGCS1 SMU Alarm!";
-        IfxCpu_disableInterrupts();
-
-        runtimeAlarmHandleNotConfiguredAlarm = (RuntimeAlarmHandle){&globalAlarmConfig[0], pending};
-        g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter] =
-                &runtimeAlarmHandleNotConfiguredAlarm;
-        g_SafetyKitStatus.smuAlarmPending.alarmCounter++;
-        IfxCpu_enableInterrupts();
-    }
-    /* nbr_raised_alarm < 0 : do nothing */
-
-    if (!isrConfigTestRunningSMU)
-    {
-        IfxSmu_clearAlarmExecutedStatus(IfxSmu_AlarmExecutionStatus_irq1);
-    }
-}
-
-/* alarm interrupt routine 2, insert here the routine wanted when the interrupt is called */
-void isr2SMU(void)
-{
-    uint16 nbrRaisedAlarm;
-    /* Enable the global interrupts of this CPU */
-    IfxCpu_enableInterrupts();
-
-    /* nbr_raised_alarm > 0  : An alarm was triggered which is listed in alarmsThatTriggerIsr1 and which was not yet
-     * pending
-     * nbr_raised_alarm == 0 : An alarm was triggered which is not listed in alarmsThatTriggerIsr1, therefore it is
-     * probably
-     * one of the alarms configured with default configuration during Application SSW
-     * */
-    nbrRaisedAlarm = detectAlarmSourcSMU(&alarmsThatTriggerIsr2[0], nbrAlarmsThatTriggerIsr2);
-    /* Probably one of the alarms configured with default configuration during Application SSW */
-    if(nbrRaisedAlarm == 0 && DEFAULT_ALARM_ACTION == IfxSmu_InternalAlarmAction_igcs2)
-    {
-        IfxCpu_disableInterrupts();
-
-        runtimeAlarmHandleNotConfiguredAlarm = (RuntimeAlarmHandle){&globalAlarmConfig[0], pending};
-        g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter] =
-                &runtimeAlarmHandleNotConfiguredAlarm;
-        g_SafetyKitStatus.smuAlarmPending.alarmCounter++;
-        IfxCpu_enableInterrupts();
-    }
-
-    if (!isrConfigTestRunningSMU)
-    {
-        IfxSmu_clearAlarmExecutedStatus(IfxSmu_AlarmExecutionStatus_irq2);
-    }
-}
-
-/*
- * check the configuration of SMU ISRs
- * */
-SmuStatusType checkIsrConfigSMU(void)
-{
-    uint8 smuIsrSts;
-    uint32 isrTestTimeout = 0xfff;
-    TargetPES configPES;
-
-
-    /* Check if SMU interrupts are setup correctly by triggering SOFT_SMU_ALM_CFG_CHECK (sw_alm0)
-     * This alarm is initially configured to trigger IGCS0 reaction, but we will change its config
-     * on purpose to also check IGCS1 and IGCS2
-     * Also disable PES during test to avoid triggering it
-     */
-
-    configPES = SMU_AGC.B.PES;
-
-    /* Unlocks the SMU configuration registers for modification */
-    g_SafetyKitStatus.unlockConfig &= IfxSmu_unlockConfigRegisters();
-    if (g_SafetyKitStatus.unlockConfig == TRUE)
-    {
-        g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = pass;
-    }
-    else
-    {
-        g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = fail;
-    }
-
-    IfxSmu_configAlarmActionPES(disablePES);
-    IfxSmu_temporaryLockConfigRegisters();
-
-    for (uint8 k=0; k<3; k++)
-    {
-        IfxSmu_setAlarmAction(SOFT_SMU_ALM_CFG_CHECK, IfxSmu_InternalAlarmAction_igcs0 + k);
-
-        isrConfigTestRunningSMU = TRUE;
-        g_SafetyKitStatus.smuStatus.smuCoreSWAlarmTriggerSts = softwareCoreAlarmTriggerSMU(SOFT_SMU_ALM_CFG_CHECK);
-
-        /* Wait for configured interrupts to be reached and processed */
-        do
-        {
-            IfxScuWdt_serviceCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
-            IfxScuWdt_serviceSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
-            isrTestTimeout--;
-            smuIsrSts = SMU_AEX.B.IRQ2STS << 2 | SMU_AEX.B.IRQ1STS << 1 | SMU_AEX.B.IRQ0STS;
-
-        } while((smuIsrSts != configArrayIGCS[k].igcs_config) && (isrTestTimeout > 0));
-
-        isrConfigTestRunningSMU = FALSE;
-        IfxSmu_clearAlarmStatus(SOFT_SMU_ALM_CFG_CHECK);
-        IfxSmu_clearAlarmExecutedStatus(IfxSmu_AlarmExecutionStatus_irq0);
-        IfxSmu_clearAlarmExecutedStatus(IfxSmu_AlarmExecutionStatus_irq1);
-        IfxSmu_clearAlarmExecutedStatus(IfxSmu_AlarmExecutionStatus_irq2);
-
-        /* Wait until alarmCounter is incremented to decrement it afterwards again and to clear alarm in
-         * g_SafetyKitStatus.smuAlarmPending structure */
-        volatile uint16 timeout = 0xFFFF;/* Note STHE: added "volatile" as it didn't work always without */
-        do
-        {
-            IfxScuWdt_serviceCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
-            IfxScuWdt_serviceSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
-            __nop();
-        } while(timeout-- && !g_SafetyKitStatus.smuAlarmPending.alarmCounter);
-
-        if(g_SafetyKitStatus.smuAlarmPending.alarmCounter > 0)
-        {
-            /* Set alarmState to "notPending", decrement alarmCounter and close TFT POP UP window */
-            g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter - 1]->alarmState =
-                    notPending;
-            g_SafetyKitStatus.smuAlarmPending.alarmCounter--;
-        }
-
-        if (isrTestTimeout == 0)
-        {
-            IfxSmu_setAlarmAction(SOFT_SMU_ALM_CFG_CHECK, IfxSmu_InternalAlarmAction_disabled);
-
-            /* Unlocks the SMU configuration registers for modification */
-            g_SafetyKitStatus.unlockConfig &= IfxSmu_unlockConfigRegisters();
-            if (g_SafetyKitStatus.unlockConfig == TRUE)
-            {
-                g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = pass;
-            }
-            else
-            {
-                g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = fail;
-            }
-            IfxSmu_configAlarmActionPES(configPES);
-            IfxSmu_temporaryLockConfigRegisters();
-
-            return fail;
-        }
-    }
-    IfxSmu_setAlarmAction(SOFT_SMU_ALM_CFG_CHECK, IfxSmu_InternalAlarmAction_disabled);
-
-    /* Unlocks the SMU configuration registers for modification */
-    g_SafetyKitStatus.unlockConfig &= IfxSmu_unlockConfigRegisters();
-    if (g_SafetyKitStatus.unlockConfig == TRUE)
-    {
-        g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = pass;
-    }
-    else
-    {
-        g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = fail;
-    }
-
-    IfxSmu_configAlarmActionPES(configPES);
-    IfxSmu_temporaryLockConfigRegisters();
-
-    return pass;
-
-}
-
 /*
  * activate the  SMU, enable transition from run to fault state and enable configuration of KEYS locked
  * registers and checks if the SMU has really been started
@@ -569,15 +353,6 @@ SmuStatusType initSMUAlarmsSMU(void)
     /* Configure each Interrupt Generation Configuration Set according to user config */
     IfxScuWdt_clearSafetyEndinitInline (IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
-    SMU_AGC.B.IGCS0 = configArrayIGCS[0].igcs_config;
-    configApplied = (SMU_AGC.B.IGCS0 == configArrayIGCS[0].igcs_config);
-
-    SMU_AGC.B.IGCS1 = configArrayIGCS[1].igcs_config;
-    configApplied &= (SMU_AGC.B.IGCS1 == configArrayIGCS[1].igcs_config);
-
-    SMU_AGC.B.IGCS2 = configArrayIGCS[2].igcs_config;
-    configApplied &= (SMU_AGC.B.IGCS2 == configArrayIGCS[2].igcs_config);
-
     IfxScuWdt_setSafetyEndinitInline (IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
     /* Enable required interrupts */
@@ -695,13 +470,7 @@ void initSMUModule(void)
     /* Enable the SMU */
     result = activatSMU();
     g_SafetyKitStatus.smuStatus.smuCoreInitSts = result;
-
-    /* Check if IGCSx group config is valid and if SMU ISRs are reachable */
-    //result = checkIsrConfigSMU();
-    //g_SafetyKitStatus.smuStatus.smuCoreAlarmConfigSts &= result;
-
 }
-
 /*
  * This function configures the alarm action for every alarm which has no default alarm configuration set
  * Note: This function is only configuring every alarm with with default alarm group configuration but
@@ -735,7 +504,7 @@ void safetyKitEnableAllSMUAlarms(void)
             {
                 /* Do nothing. */
             }
-          
+
             if(6u == alarmGroup && 20u == alarmPos)
             {
                 continue;
@@ -744,7 +513,7 @@ void safetyKitEnableAllSMUAlarms(void)
             {
                 /* Do nothing. */
             }
-          
+
             if(7u == alarmGroup && 1u == alarmPos)
             {
                 continue;

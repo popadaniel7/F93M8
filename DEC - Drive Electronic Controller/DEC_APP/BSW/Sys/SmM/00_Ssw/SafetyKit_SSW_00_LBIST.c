@@ -109,8 +109,8 @@ void safetyKitSswLbist(void)
     if (Ifx_Ssw_isColdPoweronReset())
     {
         /* Initialize the SswStatus_XRAM data if it was a Cold PORST */
-        g_sswStatusXram->lbistRuns = 0;
-        g_sswStatusXram->lbistAppSwReq = 0;
+        //g_sswStatusXram->lbistRuns = 0;
+        //g_sswStatusXram->lbistAppSwReq = 0;
     }
 
     /* check if LBIST was terminated by a PORST */
@@ -120,7 +120,7 @@ void safetyKitSswLbist(void)
         if (IfxScuLbist_isDone())
         {
             /* Increment execution counter variable (is not reset by WarmPORST) */
-            g_sswStatusXram->lbistRuns++;
+            //g_sswStatusXram->lbistRuns++;
 
             /* SM:LBIST_RESULT */
             if ( IFX_SCU_CHIPID_CHREV_TC39X_BD == MODULE_SCU.CHIPID.B.CHREV)
@@ -152,17 +152,17 @@ void safetyKitSswLbist(void)
             {
                 g_SafetyKitStatus.sswStatus.lbistStatus = failed;
                 /* Check if another LBIST attempt should be started */
-                if (g_sswStatusXram->lbistRuns < SAFETKIT_LBIST_MAX_RUNS)
-                {
+                //if (g_sswStatusXram->lbistRuns < SAFETKIT_LBIST_MAX_RUNS)
+                //{
                     /* SM:LBIST_CFG */
                     safetyKitTriggerLbist();
-                }
-                else
-                {
-                    /* LBIST has failed three consecutive times, device has to be considered as defect. */
-                    while (1);
-                    __debug();
-                }
+                //}
+                //else
+                //{
+                //    /* LBIST has failed three consecutive times, device has to be considered as defect. */
+                //   while (1);
+                //    __debug();
+                //}
             }
         }
         else
@@ -197,7 +197,7 @@ boolean IfxScuLbist_isTerminatedPORST(void)
 void safetyKitTriggerLbist(void)
 {
     /* Increment counter variable which counts the LBIST requests via Application SW */
-    g_sswStatusXram->lbistAppSwReq++;
+    //g_sswStatusXram->lbistAppSwReq++;
 
     /* Clear COLD PORST reason to preserve the data on the SCR XRAM */
     IfxScuRcu_clearColdResetStatus();

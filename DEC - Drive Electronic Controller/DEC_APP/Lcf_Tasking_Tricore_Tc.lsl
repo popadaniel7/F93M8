@@ -57,17 +57,16 @@
 #define LCF_HEAP0_OFFSET            (LCF_USTACK0_OFFSET - LCF_HEAP_SIZE)
 #define LCF_HEAP1_OFFSET            (LCF_USTACK1_OFFSET - LCF_HEAP_SIZE)
 #define LCF_HEAP2_OFFSET            (LCF_USTACK2_OFFSET - LCF_HEAP_SIZE)
-#define APP_PFLASH_BASE             0x80060000 // Base of Application_PFLASH
-#define REGION_SIZE                 0x80000 // 512 Kbytes total/* Partition Application_PFLASH among the three cores. Here, we reserve 0x20000 (128K) for each core.(3 × 128K = 384K, which leaves room for other sections if needed.) */
-#define LCF_STARTPTR_CPU0           (APP_PFLASH_BASE) // 0x80060000
-#define LCF_STARTPTR_CPU1           (APP_PFLASH_BASE + 0x20000) // 0x80080000
-#define LCF_STARTPTR_CPU2           (APP_PFLASH_BASE + 0x40000) // 0x800A0000
-#define LCF_TRAPVEC0_START          (LCF_STARTPTR_CPU0 + 0x0100) // 0x80060100
-#define LCF_TRAPVEC1_START          (LCF_STARTPTR_CPU1 + 0x0100) // 0x80080100
-#define LCF_TRAPVEC2_START          (LCF_STARTPTR_CPU2 + 0x0100) // 0x800A0100
-#define LCF_INTVEC0_START           (LCF_STARTPTR_CPU0 + 0x2000) // 0x80062000
-#define LCF_INTVEC1_START           (LCF_STARTPTR_CPU1 + 0x2000) // 0x80082000
-#define LCF_INTVEC2_START           (LCF_STARTPTR_CPU2 + 0x2000) // 0x800A2000
+#define APP_PFLASH_BASE             0x80300000 
+#define LCF_STARTPTR_CPU0           (APP_PFLASH_BASE)
+#define LCF_STARTPTR_CPU1           (APP_PFLASH_BASE + 0x10000) 
+#define LCF_STARTPTR_CPU2           (APP_PFLASH_BASE + 0x20000)
+#define LCF_TRAPVEC0_START          (LCF_STARTPTR_CPU0 + 0x0100) 
+#define LCF_TRAPVEC1_START          (LCF_STARTPTR_CPU1 + 0x0100) 
+#define LCF_TRAPVEC2_START          (LCF_STARTPTR_CPU2 + 0x0100) 
+#define LCF_INTVEC0_START           (LCF_STARTPTR_CPU0 + 0x2000) 
+#define LCF_INTVEC1_START           (LCF_STARTPTR_CPU1 + 0x2000) 
+#define LCF_INTVEC2_START           (LCF_STARTPTR_CPU2 + 0x2000) 
 #define INTTAB0                     (LCF_INTVEC0_START)
 #define INTTAB1                     (LCF_INTVEC1_START)
 #define INTTAB2                     (LCF_INTVEC2_START)
@@ -167,94 +166,16 @@ derivative tc37
         map (dest=bus:tc0:fpi_bus, dest_offset=0xc0000000, size=64k, priority=8);
         map (dest=bus:sri, dest_offset=0x70100000, size=64k);
     }
-    //memory BootManager_PFLASH
-    //{
-    //    mau = 8;
-    //    size = 64K;    /* 0x10000 bytes */
-    //    type = rom;
-    //    map cached    (dest=bus:sri, dest_offset=0x80000000, size=64K);
-    //    //map not_cached (dest=bus:sri, dest_offset=0xa0000000, reserved, size=64K);
-    //} 
-    //memory Bootloader_PFLASH
-    //{
-    //    mau = 8;
-    //    size = 128K;   /* 0x20000 bytes */
-    //    type = rom;
-    //    map cached    (dest=bus:sri, dest_offset=0x80010000, size=128K);
-    //    //map not_cached (dest=bus:sri, dest_offset=0xa0010000, reserved, size=128K);
-    //}  
-    //memory BootManager_Backup_PFLASH
-    //{
-    //    mau = 8;
-    //    size = 64K;
-    //    type = rom;
-    //    map cached    (dest=bus:sri, dest_offset=0x80030000, size=64K);
-    //    //map not_cached (dest=bus:sri, dest_offset=0xa0030000, reserved, size=64K);
-    //}
-    //memory Application_Backup_PFLASH
-    //{
-    //    mau = 8;
-    //    size = 512K;
-    //    type = rom;
-    //    map cached    (dest=bus:sri, dest_offset=0x800E0000, size=512K);
-    //    //map not_cached (dest=bus:sri, dest_offset=0xa00E0000, reserved, size=512K);
-    //}
-    //memory SWAPP_CBM_PFLASH
-    //{
-    //    mau = 8;
-    //    size = 128K;
-    //    type = rom;
-    //    map cached    (dest=bus:sri, dest_offset=0x80160000, size=128K);
-    //    //map not_cached (dest=bus:sri, dest_offset=0xa0160000, reserved, size=128K);
-    //} 
-    //memory SWAPP_PDM_PFLASH
-    //{
-    //    mau = 8;
-    //    size = 64K;
-    //    type = rom;
-    //    map cached    (dest=bus:sri, dest_offset=0x80180000, size=64K);
-    //    //map not_cached (dest=bus:sri, dest_offset=0xa0180000, reserved, size=64K);
-    //}
-    //memory SWAPP_DMU_PFLASH
-    //{
-    //    mau = 8;
-    //    size = 256K;
-    //    type = rom;
-    //    map cached    (dest=bus:sri, dest_offset=0x80190000, size=256K);
-    //    //map not_cached (dest=bus:sri, dest_offset=0xa0190000, reserved, size=256K);
-    //}
     memory Application_PFLASH
     {
         mau = 8;
-        size = 512K;
+        size = 256K;
         type = rom;
-        map cached    (dest=bus:sri, dest_offset=LCF_STARTPTR_CPU0, size=512K);
+        fill = 0x36;
+        map cached    (dest=bus:sri, dest_offset=LCF_STARTPTR_CPU0, size=256K);
         //map not_cached (dest=bus:sri, dest_offset=0xa0060000, reserved, size=512K);
     }
-    memory Remaining_PFLASH
-    {
-        mau = 8;
-        size = 1216K;  /* remaining part of the 3M region */
-        type = rom;
-        map cached    (dest=bus:sri, dest_offset=0x801D0000, size=0x130000);
-        map not_cached (dest=bus:sri, dest_offset=0xa01D0000, reserved, size=0x130000);
-    }
-    // memory pfls0
-    //{
-    //     mau = 8;
-    //     size = 3M;
-    //     type = rom;
-    //     map     cached (dest=bus:sri, dest_offset=0x80000000,           size=3M);
-    //     //map not_cached (dest=bus:sri, dest_offset=0xa0000000, reserved, size=3M);
-    // }
-    // memory pfls1
-    // {
-    //     mau = 8;
-    //     size = 3M;
-    //     type = rom;
-    //     map     cached (dest=bus:sri, dest_offset=0x80300000,           size=3M);
-    //     //map not_cached (dest=bus:sri, dest_offset=0xa0300000, reserved, size=3M);
-    // }
+    
     memory dfls0
     {
         mau = 8;
@@ -422,21 +343,21 @@ derivative tc37
         /*Fixed memory Allocations for Trap Vector Table*/
         group (ordered)
         {
-            group trapvec_tc0 (align = 8, run_addr=LCF_TRAPVEC0_START)
+            group trapvec_tc0 (align = 32, run_addr=LCF_TRAPVEC0_START)
             {
                 section "trapvec_tc0" (size=0x100, attributes=rx, fill=0)
                 {
                     select "(.text.traptab_cpu0*)";
                 }
             }
-            group trapvec_tc1 (align = 8, run_addr=LCF_TRAPVEC1_START)
+            group trapvec_tc1 (align = 32, run_addr=LCF_TRAPVEC1_START)
             {
                 section "trapvec_tc1" (size=0x100, attributes=rx, fill=0)
                 {
                     select "(.text.traptab_cpu1*)";
                 }
             }
-            group trapvec_tc2 (align = 8, run_addr=LCF_TRAPVEC2_START)
+            group trapvec_tc2 (align = 32, run_addr=LCF_TRAPVEC2_START)
             {
                 section "trapvec_tc2" (size=0x100, attributes=rx, fill=0)
                 {

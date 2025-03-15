@@ -262,7 +262,7 @@ void ColDet_MainFunction(void)
             break;
     }
 
-    if(Ain_IRSensorValue == EncCal_Calibration_ColDet_InvalidDist)
+    if(Ain_IRSensorValue == (EncCal_Calibration_ColDet_InvalidDist << 8 | 0xFFU))
     {
         localCounter++;
 

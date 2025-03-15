@@ -77,7 +77,7 @@ void DcyHandler_MainFunction(void)
         DcyHandler_CanTx_VehicleState = VEHSTATE_VEHICLE_ERROR;
     }
 
-    if(1u == DcyHandler_CanRx_RequestDiagnosisMode)
+    if(1u <= DcyHandler_CanRx_RequestDiagnosisMode)
     {
         DcyHandler_CanTx_VehicleState = VEHSTATE_VEHICLE_DIAGNOSIS;
         DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;

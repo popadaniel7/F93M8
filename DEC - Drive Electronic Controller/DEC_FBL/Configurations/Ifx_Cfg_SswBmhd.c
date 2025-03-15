@@ -198,7 +198,7 @@ const Ifx_Ssw_Bmhd bmhd_1_orig =
 {
     0x00FE,         /* 0x000: .bmi: Boot Mode Index (BMI)                                               */
     0xB359,         /* 0x002: .bmhdid: Boot Mode Header ID (CODE) = B359H                               */
-    0xA0000000,     /* 0x004: .stad: User Code start address                                            */
+    0x80000000,     /* 0x004: .stad: User Code start address                                            */
     0x31795570,     /* 0x008: .crc: Check Result for the BMI Header (offset 000H - 007H)                */
     0xCE86AA8F,     /* 0x00C: .crcInv: Inverted Check Result for the BMI Header (offset 000H - 007H)    */
     {
@@ -263,7 +263,7 @@ const Ifx_Ssw_Bmhd bmhd_1_copy =
 {
     0x00FE,         /* 0x000: .bmi: Boot Mode Index (BMI)                                               */
     0xB359,         /* 0x002: .bmhdid: Boot Mode Header ID (CODE) = B359H                               */
-    0xA0000000,     /* 0x004: .stad: User Code start address                                            */
+    0x80000000,     /* 0x004: .stad: User Code start address                                            */
     0x31795570,     /* 0x008: .crc: Check Result for the BMI Header (offset 000H - 007H)                */
     0xCE86AA8F,     /* 0x00C: .crcInv: Inverted Check Result for the BMI Header (offset 000H - 007H)    */
     {
@@ -328,7 +328,7 @@ const Ifx_Ssw_Bmhd bmhd_2_orig =
 {
     0x00FE,         /* 0x000: .bmi: Boot Mode Index (BMI)                                               */
     0xB359,         /* 0x002: .bmhdid: Boot Mode Header ID (CODE) = B359H                               */
-    0xA0000000,     /* 0x004: .stad: User Code start address                                            */
+    0x80000000,     /* 0x004: .stad: User Code start address                                            */
     0x31795570,     /* 0x008: .crc: Check Result for the BMI Header (offset 000H - 007H)                */
     0xCE86AA8F,     /* 0x00C: .crcInv: Inverted Check Result for the BMI Header (offset 000H - 007H)    */
     {
@@ -393,7 +393,7 @@ const Ifx_Ssw_Bmhd bmhd_2_copy =
 {
     0x00FE,         /* 0x000: .bmi: Boot Mode Index (BMI)                                               */
     0xB359,         /* 0x002: .bmhdid: Boot Mode Header ID (CODE) = B359H                               */
-    0xA0000000,     /* 0x004: .stad: User Code start address                                            */
+    0x80000000,     /* 0x004: .stad: User Code start address                                            */
     0x31795570,     /* 0x008: .crc: Check Result for the BMI Header (offset 000H - 007H)                */
     0xCE86AA8F,     /* 0x00C: .crcInv: Inverted Check Result for the BMI Header (offset 000H - 007H)    */
     {
@@ -458,7 +458,7 @@ const Ifx_Ssw_Bmhd bmhd_3_orig =
 {
     0x00FE,         /* 0x000: .bmi: Boot Mode Index (BMI)                                               */
     0xB359,         /* 0x002: .bmhdid: Boot Mode Header ID (CODE) = B359H                               */
-    0xA0000000,     /* 0x004: .stad: User Code start address                                            */
+    0x80000000,     /* 0x004: .stad: User Code start address                                            */
     0x31795570,     /* 0x008: .crc: Check Result for the BMI Header (offset 000H - 007H)                */
     0xCE86AA8F,     /* 0x00C: .crcInv: Inverted Check Result for the BMI Header (offset 000H - 007H)    */
     {
@@ -523,7 +523,7 @@ const Ifx_Ssw_Bmhd bmhd_3_copy =
 {
     0x00FE,         /* 0x000: .bmi: Boot Mode Index (BMI)                                               */
     0xB359,         /* 0x002: .bmhdid: Boot Mode Header ID (CODE) = B359H                               */
-    0xA0000000,     /* 0x004: .stad: User Code start address                                            */
+    0x80000000,     /* 0x004: .stad: User Code start address                                            */
     0x31795570,     /* 0x008: .crc: Check Result for the BMI Header (offset 000H - 007H)                */
     0xCE86AA8F,     /* 0x00C: .crcInv: Inverted Check Result for the BMI Header (offset 000H - 007H)    */
     {

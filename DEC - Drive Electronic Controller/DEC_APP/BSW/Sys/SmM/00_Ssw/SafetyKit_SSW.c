@@ -55,7 +55,7 @@
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-volatile SswStatusXramType *g_sswStatusXram = &SSW_STATUS_DATA_ADDRESS;
+//volatile SswStatusXramType *g_sswStatusXram = &SSW_STATUS_DATA_ADDRESS;
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -91,7 +91,7 @@ void runSafeAppSwStartup(void)
  */
 SafetyKitResetCode safetyKitEvaluateReset(void)
 {
-    g_sswStatusXram->RSTSTAT.U = MODULE_SCU.RSTSTAT.U;
+    //g_sswStatusXram->RSTSTAT.U = MODULE_SCU.RSTSTAT.U;
     static boolean resetEvaluated = FALSE;
     static SafetyKitResetCode resetCode;
 

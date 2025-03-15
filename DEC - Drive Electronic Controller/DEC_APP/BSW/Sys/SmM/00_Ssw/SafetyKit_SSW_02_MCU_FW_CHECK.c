@@ -79,7 +79,7 @@ void safetyKitSswMcuFwCheck(void)
     if(g_SafetyKitStatus.resetCode.resetType == safetyKitResetTypeColdpoweron)
     {
         /* Initialize the g_sswStatusXram data if it was a Cold PORST */
-        g_sswStatusXram->mcuFwcheckRuns  = 0;
+        //g_sswStatusXram->mcuFwcheckRuns  = 0;
     }
 
     /* Enable MTU module if not yet enabled */
@@ -96,7 +96,7 @@ void safetyKitSswMcuFwCheck(void)
     }
 
     /* Increment the firmware check execution counter */
-    g_sswStatusXram->mcuFwcheckRuns++;
+    //g_sswStatusXram->mcuFwcheckRuns++;
     if  (
             /* Read SMU alarm register values and compare with expected ones(listed in Appendix A of the
              * Safety Manual)
@@ -131,12 +131,12 @@ void safetyKitSswMcuFwCheck(void)
     {
         g_SafetyKitStatus.sswStatus.mcuFwcheckStatus = failed;
         /* If FW check has failed during its first execution trigger the check again */
-        if(g_sswStatusXram->mcuFwcheckRuns < SAFETKIT_FW_CHECK_MAX_RUNS)
-        {
+        //if(g_sswStatusXram->mcuFwcheckRuns < SAFETKIT_FW_CHECK_MAX_RUNS)
+        //{
             /* Clear COLD PORST reason to preserve the data on the SCR XRAM */
             IfxScuRcu_clearColdResetStatus();
             //safetyKitFwCheckRetriggerCheck(g_SafetyKitStatus.resetCode.resetType);
-        }
+        //}
     }
 
     /* Disable MTU module if it was disabled */

@@ -6,12 +6,12 @@
 #include "McuSm.h"
 #include "Dem.h"
 #include "DcyHandler.h"
+#include "Nvm.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
 
 void Dcm_MainFunction(void);
-
 void Dcm_DSC_DefaultSession(uint8* data);
 void Dcm_DSC_ProgrammingSession(uint8* data);
 void Dcm_DSC_ExtendedSession(uint8* data);
@@ -50,15 +50,14 @@ typedef struct
 }Dcm_DiagReq_t;
 
 uint8 Dcm_SwVersion[4u] = {1u,1u,1u,1u};
-uint8 Dcm_GlobalIndex = 0u;
-uint8 Dcm_GlobalMasterIdReq = 0u;
+uint8 Dcm_SwitchTxOff = 0u;
 Dcm_DiagReq_t Dcm_Receive_DiagnosticMessageBuffer[50u];
 uint32 Dcm_Rx_DiagBufCnt = 0u;
 uint32 Dcm_MainCounter = 0u;
 
-extern uint8 storedData_04[ENCCAL_CODING_SIZE];  // For sub-function 0x04
-extern uint8 storedData_05[ENCCAL_CALIBRATION_SIZE];  // For sub-function 0x05
-extern uint8 storedData_06[sizeof(EncCal_VOData_t)];  // For sub-function 0x06
+extern uint8 storedData_04[ENCCAL_CODING_SIZE];         // For sub-function 0x04
+extern uint8 storedData_05[ENCCAL_CALIBRATION_SIZE];    // For sub-function 0x05
+extern uint8 storedData_06[sizeof(EncCal_VODataComplete)];    // For sub-function 0x06
 
 typedef void (*FuncPtr_t)(uint8*);
 FuncPtr_t Dcm_FuncPtr[26u] =
@@ -108,22 +107,15 @@ void Dcm_MainFunction(void)
     for(uint8 i = 0u; i < Dcm_Rx_DiagBufCnt; i++)
     {
         /* Check if the request is for master only. */
-        if(0x6FFu == Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId)
+        if(0x6FFu == DiagMaster_ActiveId)
         {
             /* Process master response. */
             if(1u == Dcm_Receive_DiagnosticMessageBuffer[i].isAllowed)
             {
-                if(DIAGMASTER_ISOTPRXTX_TYPE == Dcm_Receive_DiagnosticMessageBuffer[i].msgType)
-                {
-                    /* Do nothing.*/
-                }
-                else
-                {
-                    Dcm_FuncPtr[Dcm_Receive_DiagnosticMessageBuffer[i].masterDiagReqId]((uint8*)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData);
-                    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId,
-                            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData,
-                            ((Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-                }
+                Dcm_FuncPtr[Dcm_Receive_DiagnosticMessageBuffer[i].masterDiagReqId]((uint8*)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData);
+                Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId,
+                        (uint8*)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData,
+                        ((Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));                
             }
             else
             {
@@ -147,21 +139,10 @@ void Dcm_MainFunction(void)
             /* Check if we are allowed to respond to the tester. */
             if(1u == Dcm_Receive_DiagnosticMessageBuffer[i].isAllowed)
             {
-                /* Check if response type shall be ISO-TP. */
-                if(DIAGMASTER_ISOTPRXTX_TYPE == Dcm_Receive_DiagnosticMessageBuffer[i].msgType)
-                {
-                    /* Do nothing. */
-                }
-                else
-                {
-                    /* Non-ISO-TP request. */
-                    /* Slave request or response. */
-                    /* We do not know, we do not care. As long as it is allowed. */
-                    /* Even though it is not an ISO-TP frame, we have everything we need in the ISO-TP Send Frame function call. */
-                    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId,
-                            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData,
-                            ((Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-                }
+                Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId = DiagMaster_ActiveId - 1u;
+                Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId,
+                        (uint8*)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData,
+                        ((Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
             }
             else
             {
@@ -190,108 +171,10 @@ void Dcm_MainFunction(void)
 void Dcm_DSC_DefaultSession(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    DiagMaster_ActiveSessionState = 1u;
-}
 
-void Dcm_DSC_ProgrammingSession(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    DiagMaster_ActiveSessionState = 2u;
-}
-
-void Dcm_DSC_ExtendedSession(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    DiagMaster_ActiveSessionState = 3u;
-}
-
-void Dcm_DSC_CodingSession(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    DiagMaster_ActiveSessionState = 4u;
-}
-
-void Dcm_DSC_CalibrationSession(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    DiagMaster_ActiveSessionState = 5u;
-}
-
-void Dcm_ER_HardReset(uint8* data)
-{
-    (void)data;
-    //Nvm_WriteAll();
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x01u;
-    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
-            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
-            ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-    for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
-    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
-}
-
-void Dcm_ER_SoftReset(uint8* data)
-{
-    (void)data;
-    //Nvm_WriteAll();
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x02u;
-    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
-            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
-            ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-    for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
-    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
-}
-
-void Dcm_TP_TesterPresent(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    DiagMaster_TesterPresentActive = 1u;
-}
-
-void Dcm_RDTCI_ReadSupportDTCInformation(uint8* data)
-{
-    (void)data;
-}
-
-void Dcm_CDTCI_ClearDTCInformation(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    Dem_PreInit();
-    Dem_Init();
-}
-
-void Dcm_CC_CommunicationControl(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-
-    if(data[2u] == 1u)
+    if(0x6FFu == DiagMaster_ActiveId)
     {
-        ComMaster_SwitchTxOff = 0u;
-    }
-    else
-    {
-        ComMaster_SwitchTxOff = 1u;
-    }
-}
-
-void Dcm_CDTCS_ControlDTCSetting(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-
-    if(data[2u] == 1u)
-    {
-        Dem_ControlDtcSetting = 1u;
-    }
-    else if(data[2u] == 2u)
-    {
-        Dem_ControlDtcSetting = 0u;
+        DiagMaster_ActiveSessionState = 1u;
     }
     else
     {
@@ -299,53 +182,196 @@ void Dcm_CDTCS_ControlDTCSetting(uint8* data)
     }
 }
 
-void Dcm_RC_WriteCoding(uint8* data)
+void Dcm_DSC_ProgrammingSession(uint8* data)
 {
-    data[1u] = data[1u] + 0x40u;
-    //TODO
-}
+    (void)data;
 
-void Dcm_RC_ReadCoding(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    //TODO
-}
-
-void Dcm_RC_WriteCalibration(uint8* data)
-{
-    data[1u] = data[1u] + 0x40u;
-    //TODO
-}
-
-void Dcm_RC_ReadCalibration(uint8* data)
-{
-    data[1] = data[1] + 0x40u;
-    //TODO
-}
-
-void Dcm_RC_WriteVOData(uint8* data)
-{
-    data[1] = data[1] + 0x40u;
-    //TODO
-}
-
-void Dcm_RC_ReadVOData(uint8* data)
-{
-    data[1] = data[1] + 0x40u;
-    //TODO
-}
-
-void Dcm_RC_RequestDiagnosticModeActive(uint8* data)
-{
-    data[1] = data[1] + 0x40u;
-
-    if(data[3u] == 1u)
+    if(0x6FFu == DiagMaster_ActiveId)
     {
-        DiagMaster_RequestDiagnosticMode = 0u;
+        DiagMaster_ActiveSessionState = 2u;
+        Nvm_WriteAll();
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x50u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x02u;
+        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+        for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
+        IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
     }
     else
     {
-        DiagMaster_RequestDiagnosticMode = 1u;
+        /* Do nothing. */
+    }
+}
+
+void Dcm_DSC_ExtendedSession(uint8* data)
+{
+    data[1u] = data[1u] + 0x40u;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        DiagMaster_ActiveSessionState = 3u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+void Dcm_DSC_CodingSession(uint8* data){/*empty*/}
+void Dcm_DSC_CalibrationSession(uint8* data){/*empty*/}
+void Dcm_ER_HardReset(uint8* data)
+{
+    (void)data;
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        Nvm_WriteAll();
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x01u;
+        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+        for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
+        IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+void Dcm_ER_SoftReset(uint8* data)
+{
+    (void)data;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        Nvm_WriteAll();
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x03u;
+        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+        for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
+        IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+void Dcm_TP_TesterPresent(uint8* data)
+{
+    data[1u] = data[1u] + 0x40u;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        DiagMaster_TesterPresentActive = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+void Dcm_RDTCI_ReadSupportDTCInformation(uint8* data){/*empty*/}
+void Dcm_CDTCI_ClearDTCInformation(uint8* data)
+{
+    data[1u] = data[1u] + 0x40u;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        Dem_PreInit();
+        Dem_Init();
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+void Dcm_CC_CommunicationControl(uint8* data)
+{
+    data[1u] = data[1u] + 0x40u;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        if(1u == data[2u])
+        {
+            Dcm_SwitchTxOff = 0u;
+        }
+        else if(0u == data[2u])
+        {
+            Dcm_SwitchTxOff = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+
+void Dcm_CDTCS_ControlDTCSetting(uint8* data)
+{
+    data[1u] = data[1u] + 0x40u;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        if(1u == data[2u])
+        {
+            Dem_ControlDtcSetting = 1u;
+        }
+        else if(2u == data[2u])
+        {
+            Dem_ControlDtcSetting = 0u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+}
+void Dcm_RC_WriteCoding(uint8* data){/*empty*/}
+void Dcm_RC_ReadCoding(uint8* data){/*empty*/}
+void Dcm_RC_WriteCalibration(uint8* data){/*empty*/}
+void Dcm_RC_ReadCalibration(uint8* data){/*empty*/}
+void Dcm_RC_WriteVOData(uint8* data){/*empty*/}
+void Dcm_RC_ReadVOData(uint8* data){/*empty*/}
+void Dcm_RC_RequestDiagnosticModeActive(uint8* data)
+{
+    data[1u] = data[1u] + 0x40u;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        if(data[3u] == 1u)
+        {
+            DiagMaster_RequestDiagnosticMode = 0u;
+        }
+        else
+        {
+            DiagMaster_RequestDiagnosticMode = 1u;
+        }
+    }
+    else
+    {
+        /* Do nothing. */
     }
 }
 
@@ -353,33 +379,57 @@ void Dcm_RDBI_AliveTime(uint8* data)
 {
     data[0u] = data[0u] + 0x04u;
     data[1u] = data[1u] + 0x40u;
-    data[2u] = (uint8)DiagMaster_AliveTime >> 24u;
-    data[3u] = (uint8)DiagMaster_AliveTime >> 16u;
-    data[4u] = (uint8)DiagMaster_AliveTime >> 8u;
-    data[5u] = (uint8)DiagMaster_AliveTime;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        data[4u] = (uint8)(DiagMaster_AliveTime >> 24u);
+        data[5u] = (uint8)(DiagMaster_AliveTime >> 16u);
+        data[6u] = (uint8)(DiagMaster_AliveTime >> 8u);
+        data[7u] = (uint8)DiagMaster_AliveTime;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 void Dcm_RDBI_SWVersion(uint8* data)
 {
     data[0u] = data[0u] + 0x04u;
     data[1u] = data[1u] + 0x40u;
-    data[2u] = Dcm_SwVersion[0u];
-    data[3u] = Dcm_SwVersion[1u];
-    data[4u] = Dcm_SwVersion[2u];
-    data[5u] = Dcm_SwVersion[3u];
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        data[4u] = Dcm_SwVersion[0u];
+        data[5u] = Dcm_SwVersion[1u];
+        data[6u] = Dcm_SwVersion[2u];
+        data[7u] = Dcm_SwVersion[3u];
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 void Dcm_RDBI_ActiveDiagnosticSession(uint8* data)
 {
     data[0u] = data[0u] + 0x01u;
     data[1u] = data[1u] + 0x40u;
-    data[4u] = DiagMaster_ActiveSessionState;
+
+    if(0x6FFu == DiagMaster_ActiveId)
+    {
+        data[4u] = DiagMaster_ActiveSessionState;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 void Dcm_RC_Request701Active(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    DiagMaster_Is701Active = 0x701u;
+    DiagMaster_Is701Active = 1u;
     DiagMaster_Is703Active = 0u;
     DiagMaster_IsMasterActive = 0u;
 }
@@ -388,7 +438,7 @@ void Dcm_RC_Request703Active(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
     DiagMaster_Is701Active = 0u;
-    DiagMaster_Is703Active = 0x703u;
+    DiagMaster_Is703Active = 1u;
     DiagMaster_IsMasterActive = 0u;
 }
 
@@ -397,97 +447,177 @@ void Dcm_RC_RequestMasterActive(uint8* data)
     data[1] = data[1] + 0x40u;
     DiagMaster_Is701Active = 0u;
     DiagMaster_Is703Active = 0u;
-    DiagMaster_IsMasterActive = 0x6ffu;
+    DiagMaster_IsMasterActive = 1u;
 }
 
 void Dcm_RC_ResetDcy(uint8* data)
 {
     data[1] = data[1] + 0x40u;
-    DcyHandler_CanRx_ResetDcy = 1u;
-}
 
-void Dcm_ProcessDiagnosticRequest(const uint8_t *data, uint16_t length)
-{
-    if (length < 1)
-        return;
-
-    uint8_t serviceId = data[0];
-
-    if (serviceId == 0x19)
+    if(0x6FFu == DiagMaster_ActiveId)
     {
-        // Service 0x19 (e.g., "19 0A"): Read DTCs
-        if (length >= 2 && data[1] == 0x0A)
+        if(0x01u == data[5u])
         {
-            uint8_t response[2 + 80];
-            response[0] = 0x59; // Positive response for 0x19
-            response[1] = 0x0A;
-            for (uint8_t i = 0; i < 80; i++)
-                response[2 + i] = Dem_DtcArray[i]; // Dummy DTC data; replace with real data as needed.
-            Can_IsoTpTransmit(0x6FF, response, sizeof(response));
+            DiagMaster_ResetDcy = 1u;
+        }
+        else
+        {
+            DiagMaster_ResetDcy = 0u;
         }
     }
-    else if (serviceId == 0x31)
+    else
     {
-        // Service 0x31: Determine sub-function from byte 3 (must have at least 4 bytes)
-        if (length < 4)
-            return;
-        uint8_t subFunction = data[3];
+        /* Do nothing. */
+    }
+}
 
-        // Group A: ECU responds with data (read request)
-        if (subFunction == 0x15 || subFunction == 0x16 || subFunction == 0x17)
+void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
+{
+    uint8 serviceId = data[0u];
+
+    if(1u > length)
+    {
+        return;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    if(0x19u == serviceId)
+    {
+        // Service 0x19 (e.g., "19 0A"): Read DTCs
+        if (2u <= length && 0x0Au == data[1u])
         {
-            uint8 response[1682] = {0};
-            uint16_t respLen = 0;
-            response[0] = 0x71; // Positive response for service 0x31
-            response[1] = subFunction;
-            if (subFunction == 0x15)
+            uint8 response[2u + DEM_NUMBER_OF_DTCS];
+            response[0u] = 0x59; // Positive response for 0x19
+            response[1u] = 0x0Au;
+
+            for (uint8 i = 0u; i < DEM_NUMBER_OF_DTCS; i++)
             {
-                respLen = 2 + ENCCAL_CODING_SIZE;
-                for (uint8_t i = 0; i < ENCCAL_CODING_SIZE; i++)
-                    response[2 + i] = EncCal_Coding_Buffer[i];
+                response[2u + i] = Dem_DtcArray[i];
             }
-            else if (subFunction == 0x16)
+
+            Can_IsoTpTransmit(0x6FFu, response, sizeof(response));
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+    else if(0x31u == serviceId)
+    {
+        uint8 subFunction = data[3u];
+        // Service 0x31: Determine sub-function from byte 3 (must have at least 4 bytes)
+        if (4u > length)
+        {
+            return;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+        // Group A: ECU responds with data (read request)
+        if(0x15u == subFunction || 0x16u == subFunction || 0x17u == subFunction)
+        {
+            uint8 response[136U] = {0u};
+            uint16 respLen = 0u;
+            response[0u] = 0x71u; // Positive response for service 0x31
+            response[1u] = subFunction;
+            if (0x15u == subFunction)
             {
-                respLen = 2 + ENCCAL_CALIBRATION_SIZE * 4;
-                memcpy(&response[2], &EncCal_Calibration_Buffer[0u], ENCCAL_CALIBRATION_SIZE*4);
-                for (uint8_t i = 0; i < ENCCAL_CALIBRATION_SIZE; i++)
-                    response[2 + i] = (uint8)EncCal_Calibration_Buffer[i];
+                respLen = 2u + ENCCAL_CODING_SIZE;
+                for (uint8 i = 0u; i < ENCCAL_CODING_SIZE; i++)
+                    response[2u + i] = EncCal_Coding_Buffer[i];
             }
-            else if (subFunction == 0x17)
+            else if (0x16u == subFunction)
             {
-                respLen = 2 + sizeof(EncCal_VODataComplete);
-                memcpy(&response[2], &EncCal_VODataComplete, sizeof(EncCal_VODataComplete));
+                respLen = 2u + ENCCAL_CALIBRATION_SIZE;
+                memcpy(&response[2u], &EncCal_Calibration_Buffer[0u], ENCCAL_CALIBRATION_SIZE);
+                for (uint8 i = 0u; i < ENCCAL_CALIBRATION_SIZE; i++)
+                    response[2u + i] = (uint8)EncCal_Calibration_Buffer[i];
             }
-            Can_IsoTpTransmit(0x6FF, response, respLen);
+            else if (0x17u == subFunction)
+            {
+                respLen = 2u + sizeof(EncCal_VODataComplete);
+                memcpy(&response[2u], &EncCal_VODataComplete, sizeof(EncCal_VODataComplete));
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            Can_IsoTpTransmit(0x6FFu, response, respLen);
         }
         // Group B: Tester sends data to be stored (write request)
-        else if (subFunction == 0x04 || subFunction == 0x05 || subFunction == 0x06)
+        else if(0x04u == subFunction || 0x05u == subFunction || 0x06u == subFunction)
         {
-            uint16_t payloadLen = (length > 4) ? (length - 4) : 0;
-            if (subFunction == 0x04)
+            uint16 payloadLen = (length > 4u) ? (length - 4u) : 0u;
+
+            if(0x04u == subFunction)
             {
                 if (payloadLen > sizeof(storedData_04))
+                {
                     payloadLen = sizeof(storedData_04);
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+
                 memcpy(storedData_04, &data[4], payloadLen);
+                memcpy(&EncCal_Coding_Buffer, &storedData_04, sizeof(storedData_04));
+                Nvm_WriteBlock(2u, (uint32*)&EncCal_Coding_Buffer[0u]);
             }
-            else if (subFunction == 0x05)
+            else if(0x05u == subFunction)
             {
                 if (payloadLen > sizeof(storedData_05))
+                {
                     payloadLen = sizeof(storedData_05);
-                memcpy(storedData_05, &data[4], payloadLen);
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+
+                memcpy(storedData_05, &data[4u], payloadLen);
+                memcpy(&EncCal_Calibration_Buffer, &storedData_05, sizeof(storedData_05));
+                Nvm_WriteBlock(1u, (uint32*)&EncCal_Calibration_Buffer[0u]);
             }
-            else if (subFunction == 0x06)
+            else if(0x06u == subFunction)
             {
                 if (payloadLen > sizeof(storedData_06))
+                {
                     payloadLen = sizeof(storedData_06);
-                memcpy(storedData_06, &data[4], payloadLen);
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+
+                memcpy(storedData_06, &data[4u], payloadLen);
+                memcpy(&EncCal_VODataComplete, &storedData_06, sizeof(storedData_06));
+                Nvm_WriteBlock(3u, (uint32*)&EncCal_VODataComplete[0u]);
             }
-            uint8_t response[4] = {0};
-            response[0] = 0x71;
-            response[1] = data[1]; // Echo if needed
-            response[2] = data[2];
-            response[3] = subFunction;
-            Can_IsoTpTransmit(0x6FF, response, sizeof(response));
+            else
+            {
+                /* Do nothing. */
+            }
+
+            uint8 response[4u] = {0u};
+            response[0u] = 0x71u;
+            response[1u] = data[1u]; // Echo if needed
+            response[2u] = data[2u];
+            response[3u] = subFunction;
+            Can_IsoTpTransmit(0x6FFu, response, sizeof(response));
         }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+    else
+    {
+        /* Do nothing. */
     }
 }

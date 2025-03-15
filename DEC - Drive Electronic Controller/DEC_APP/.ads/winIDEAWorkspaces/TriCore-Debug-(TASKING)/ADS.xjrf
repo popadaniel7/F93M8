@@ -319,13 +319,13 @@
         <SFRName>TC375T</SFRName>
         <UserName>MCU</UserName>
         <DLFs_Program>
-         <DefaultFile>1</DefaultFile>
+         <DefaultFile>-1</DefaultFile>
          <File>
           <__.0>
            <Area></Area>
            <Load>true</Load>
-           <OverrideMemArea>false</OverrideMemArea>
-           <Path>..\..\..\..\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.elf</Path>
+           <OverrideMemArea>true</OverrideMemArea>
+           <Path>..\..\..\..\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.hex</Path>
            <UseDefaultMSID>true</UseDefaultMSID>
            <MSID>
             <App>0x0</App>
@@ -349,7 +349,7 @@
             <OptimizeTypeName>true</OptimizeTypeName>
             <SymbolOffset>0x0</SymbolOffset>
             <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
-            <Type>ELF</Type>
+            <Type>HEX</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
              <CallStackGeneration>Automatic</CallStackGeneration>
@@ -408,7 +408,7 @@
            <Area></Area>
            <Load>true</Load>
            <OverrideMemArea>false</OverrideMemArea>
-           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.elf</Path>
+           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.hex</Path>
            <UseDefaultMSID>true</UseDefaultMSID>
            <MSID>
             <App>0x0</App>
@@ -432,7 +432,7 @@
             <OptimizeTypeName>true</OptimizeTypeName>
             <SymbolOffset>0x0</SymbolOffset>
             <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
-            <Type>ELF</Type>
+            <Type>HEX</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
              <CallStackGeneration>Automatic</CallStackGeneration>
@@ -939,7 +939,7 @@
           <Enabled>0</Enabled>
           <BP.0>
            <Access>1</Access>
-           <Address>(isoTpTx).blockCounter</Address>
+           <Address>DiagMaster_ActiveSessionState</Address>
            <Enabled>1</Enabled>
            <EntireObject>1</EntireObject>
            <Range>1</Range>
@@ -3510,15 +3510,15 @@
         <CycleDuration>1e-09</CycleDuration>
         <DebugChannel>DAP</DebugChannel>
         <DebugClockkHz>4000</DebugClockkHz>
-        <DetectWDT>false</DetectWDT>
-        <DetectWDT_duration_ms>20</DetectWDT_duration_ms>
+        <DetectWDT>true</DetectWDT>
+        <DetectWDT_duration_ms>1</DetectWDT_duration_ms>
         <EndSession>Cleanup</EndSession>
         <ExtOscillatorClk>1000</ExtOscillatorClk>
         <GenerateAuroraClock>false</GenerateAuroraClock>
         <GenerateAuroraCRC>false</GenerateAuroraCRC>
         <IgnoreAccessErrors>false</IgnoreAccessErrors>
         <InitRAM>Never</InitRAM>
-        <LatchRESET>true</LatchRESET>
+        <LatchRESET>false</LatchRESET>
         <MemorySecurityND_Policy>Allow</MemorySecurityND_Policy>
         <MemorySecurity_CheckEntryPoint>false</MemorySecurity_CheckEntryPoint>
         <MemorySecurity_Policy>Allow</MemorySecurity_Policy>
@@ -3536,9 +3536,9 @@
         <PostResetDelay>0</PostResetDelay>
         <ReadMemoryOnMissingCode>true</ReadMemoryOnMissingCode>
         <ReadStatusInterval_ms>0</ReadStatusInterval_ms>
-        <RequireDeviceIDMatch>false</RequireDeviceIDMatch>
+        <RequireDeviceIDMatch>true</RequireDeviceIDMatch>
         <RESETDriveWhenDetached>no</RESETDriveWhenDetached>
-        <ResetDuration>20</ResetDuration>
+        <ResetDuration>1</ResetDuration>
         <ResetMethod>StopAndPreset</ResetMethod>
         <RESETMode>OD</RESETMode>
         <ResetPinConnected>true</ResetPinConnected>
@@ -3546,7 +3546,7 @@
         <SamplingEdge>Pos</SamplingEdge>
         <StopAfterReset>false</StopAfterReset>
         <SuspendPeripheralsWhileStopped>true</SuspendPeripheralsWhileStopped>
-        <TargetResetTimeout>100</TargetResetTimeout>
+        <TargetResetTimeout>1</TargetResetTimeout>
         <MemorySecurity_CheckParameters>
          <Entry>false</Entry>
          <Aurix>
@@ -3588,7 +3588,7 @@
         <GenerateAuroraCRC>0</GenerateAuroraCRC>
         <IgnoreAccessErrors>0</IgnoreAccessErrors>
         <InitRAM>0</InitRAM>
-        <LatchRESET>1</LatchRESET>
+        <LatchRESET>0</LatchRESET>
         <MemorySecurityND_Policy>2</MemorySecurityND_Policy>
         <MemorySecurity_CheckEntryPoint>0</MemorySecurity_CheckEntryPoint>
         <MemorySecurity_Policy>2</MemorySecurity_Policy>
@@ -3605,14 +3605,14 @@
         <PostResetDelay>0</PostResetDelay>
         <ReadMemoryOnMissingCode>1</ReadMemoryOnMissingCode>
         <ReadStatusInterval_ms>0</ReadStatusInterval_ms>
-        <RequireDeviceIDMatch>0</RequireDeviceIDMatch>
-        <ResetDelay>20</ResetDelay>
+        <RequireDeviceIDMatch>1</RequireDeviceIDMatch>
+        <ResetDelay>1</ResetDelay>
         <RESETDriveWhenDetached>0</RESETDriveWhenDetached>
         <ResetMethod>1</ResetMethod>
         <RESETMode>0</RESETMode>
         <ReversedAuroraLanes>0</ReversedAuroraLanes>
         <StopAfterReset>0</StopAfterReset>
-        <TargetResetTimeout>100</TargetResetTimeout>
+        <TargetResetTimeout>1</TargetResetTimeout>
        </Debugging>
        <ExtWDT>
         <DebugEntryExit>

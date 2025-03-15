@@ -16,8 +16,9 @@
 #include "SafetyKit_InternalWatchdogs.h"
 #include "SafetyKit_Main.h"
 
-static uint32 SysMgr_MainCounter = 0u;
+uint32 SysMgr_MainCounter = 0u;
 uint32 SysMgr_RunCounter = 0u;
+uint32 SysMgr_PostRunCounter = 0u;
 SysMgr_EcuState_t SysMgr_EcuState = SYSMGR_INIT;
 uint8 SysMgr_NoBusActivity = 0u;
 uint8 SysMgr_Core1OnHalt = 0u;
@@ -117,7 +118,8 @@ void SysMgr_EcuStateMachine(void)
             if(0u == SysMgr_MainCounter)
             {
                 SysMgr_EcuState = SYSMGR_RUN;
-                SysMgr_RunCounter = 12000u;
+                SysMgr_RunCounter = 2000u;
+                SysMgr_PostRunCounter = 2000u;
             }
             else
             {
@@ -135,17 +137,37 @@ void SysMgr_EcuStateMachine(void)
                 {
                     SysMgr_EcuState = SYSMGR_POSTRUN;
                     Nvm_WriteAllFinished = 0u;
+                    SysMgr_PostRunCounter = 2000u;
                 }
             }
             else
             {
-                SysMgr_RunCounter = 12000u;
+                SysMgr_RunCounter = 0u;
+                SysMgr_PostRunCounter = 2000u;
             }
             break;
         case SYSMGR_POSTRUN:
-            Nvm_WriteAll();
+            if(0u == Nvm_WriteAllFinished)
+            {
+                Nvm_WriteAll();
+            }
+            else
+            {
+                /* Do nothing. */
+            }
 
-            if(0u == SysMgr_NoBusActivity && 2u == Nvm_WriteAllFinished)
+            if(0u != SysMgr_PostRunCounter)
+            {
+                SysMgr_PostRunCounter--;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if(0u == Can_ActivityOnTheBus
+                    && 2u == Nvm_WriteAllFinished
+                    && 0u ==  SysMgr_PostRunCounter)
             {
                 SysMgr_EcuState = SYSMGR_SLEEP;
             }

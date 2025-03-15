@@ -50,8 +50,15 @@ void Dem_Init(void)
 
 void Dem_SetDtc(uint32 dtcId, uint8 dtcStatus, uint8 index)
 {
-    Dem_DtcArray[index * 2] = (uint8)dtcId;
-    Dem_DtcArray[index * 2 + 1] = dtcStatus;
+    if(0u == Dem_ControlDtcSetting)
+    {
+        Dem_DtcArray[index * 2] = (uint8)dtcId;
+        Dem_DtcArray[index * 2 + 1] = dtcStatus;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 void Dem_ClearDtc(void)

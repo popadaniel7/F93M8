@@ -42,10 +42,10 @@
 #define CRC_EXPECTED_RESULT_UC       0xA7EE4C1C                 /* UC: Update Check                                  */
 
 /* Cached address where the user want to store the safety data i.e. Bank Pf0 */
-#define PFLASH0_START_ADDRESS_IC      0x800d0000
+#//define PFLASH0_START_ADDRESS_IC      0x800d0000
 /* Cached address where the user want to store the safety data i.e. Bank Pf1 */
-#define PFLASH1_START_ADDRESS_UC      0x800D0064
-#define PFLASH1_DBE_ADDRESS           0x80400020        /* address where double bit error is injected */
+//#define PFLASH1_START_ADDRESS_UC      0x800D0064
+//#define PFLASH1_DBE_ADDRESS           0x80400020        /* address where double bit error is injected */
 
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
@@ -55,33 +55,33 @@ boolean doubleBitErrorOccur = FALSE;
 /*********************************************************************************************************************/
 /*--------------------------------------------Private Variables/Constants--------------------------------------------*/
 /*********************************************************************************************************************/
-/* data stored at Pf0 memory space for SM:PFLASH:INTEGRITY_CHECK */
-const uint32 dummySafetyDataIc [DATA_LENGTH_WORDS_IC] __at(PFLASH0_START_ADDRESS_IC)=
-{
-    0xbe9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4, 0xe8a97d48,
-    0x89367f27, 0x70095984, 0xec030f75, 0xdc22f8d4, 0xd951407b, 0x34ae18c6, 0x4d47ba7d, 0x0e2e4622, 0x4a2e90d3,
-    0xdaec3752, 0xcd3ed11c, 0x36b416b7, 0x8ea28658, 0xdd37eee3, 0x23928b62, 0x84eb4b22,
-};
-
-/* data stored at Pf1 memory space for SM:PFLASH:UPDATE_CHECK is equal to 32 bytes and also then ten pages
- * for SM:PFLASH:WL_FAIL_DETECT when Double bit error is injected */
-const uint32 dummySafetyDataUc [DATA_LENGTH] __at(PFLASH1_START_ADDRESS_UC)=
-{
-    /* initial data at Single bit error inject Address*/
-    0x0e9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    /* initial data at double bit error inject Address and ten pages after this for SM:PFLASH:WL_FAIL_DETECT*/
-    0x0e9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    /* initial data at multiple bit error inject Address*/
-    0x0e9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
-};
+///* data stored at Pf0 memory space for SM:PFLASH:INTEGRITY_CHECK */
+//const uint32 dummySafetyDataIc [DATA_LENGTH_WORDS_IC] __at(PFLASH0_START_ADDRESS_IC)=
+//{
+//    0xbe9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4, 0xe8a97d48,
+//    0x89367f27, 0x70095984, 0xec030f75, 0xdc22f8d4, 0xd951407b, 0x34ae18c6, 0x4d47ba7d, 0x0e2e4622, 0x4a2e90d3,
+//    0xdaec3752, 0xcd3ed11c, 0x36b416b7, 0x8ea28658, 0xdd37eee3, 0x23928b62, 0x84eb4b22,
+//};
+//
+///* data stored at Pf1 memory space for SM:PFLASH:UPDATE_CHECK is equal to 32 bytes and also then ten pages
+// * for SM:PFLASH:WL_FAIL_DETECT when Double bit error is injected */
+//const uint32 dummySafetyDataUc [DATA_LENGTH] __at(PFLASH1_START_ADDRESS_UC)=
+//{
+//    /* initial data at Single bit error inject Address*/
+//    0x0e9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    /* initial data at double bit error inject Address and ten pages after this for SM:PFLASH:WL_FAIL_DETECT*/
+//    0x0e9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    /* initial data at multiple bit error inject Address*/
+//    0x0e9957bb, 0x1c706c1e, 0x14c3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//    0x549957bb, 0x1c706c1e, 0xeec3db3f, 0x7fb17a93, 0xb0d9d5a7, 0x768093e0, 0x88b206a0, 0xc51299e4,
+//};
 
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
@@ -104,10 +104,10 @@ void enableWlFailDetectPFLASH(void)
  */
 void runIntegrityCheckPFLASH(void)
 {
-    uint32 *safetyDataIntegrityCheck = (uint32 * )PFLASH0_START_ADDRESS_IC;
+    //uint32 *safetyDataIntegrityCheck = (uint32 * )PFLASH0_START_ADDRESS_IC;
 
     /* CRC calculation with FCE Kernel 0 (CRC32) */
-    runCrcCheckFCE(CRC_EXPECTED_RESULT_IC, safetyDataIntegrityCheck, DATA_LENGTH_WORDS_IC);
+    //runCrcCheckFCE(CRC_EXPECTED_RESULT_IC, safetyDataIntegrityCheck, DATA_LENGTH_WORDS_IC);
 }
 
 /*
@@ -126,15 +126,15 @@ void runUpdateCheckPFLASH(uint32 startAddress)
  */
 void runWordlineFailDetectPFLASH(void)
 {
-    uint32 i;
-    uint32 *dataWlFaildetectPFLASH[NUM_OF_PAGES];
-
-    /* read 10 pages to check if any page is corrupted */
-    for(i=0; i < NUM_OF_PAGES; i++)
-    {
-        dataWlFaildetectPFLASH[i] = (uint32 * )(PFLASH1_DBE_ADDRESS + (i*0x10));
-    }
-    /* CRC calculation with FCE Kernel 0 (CRC32) can be done to check data integrity but as
-     * we are reading 10 pages, if the data is corrupted, then Multi bit error will occur and alarm will be generated*/
-    /*    runCrcCheckFCE(0xDA35427E, pflashWlFaildetectData, 80); */
+//    uint32 i;
+//    uint32 *dataWlFaildetectPFLASH[NUM_OF_PAGES];
+//
+//    /* read 10 pages to check if any page is corrupted */
+//    for(i=0; i < NUM_OF_PAGES; i++)
+//    {
+//        dataWlFaildetectPFLASH[i] = (uint32 * )(PFLASH1_DBE_ADDRESS + (i*0x10));
+//    }
+//    /* CRC calculation with FCE Kernel 0 (CRC32) can be done to check data integrity but as
+//     * we are reading 10 pages, if the data is corrupted, then Multi bit error will occur and alarm will be generated*/
+//    /*    runCrcCheckFCE(0xDA35427E, pflashWlFaildetectData, 80); */
 }

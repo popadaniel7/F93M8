@@ -23,14 +23,14 @@ Can_RxMsg_t Can_Rx_DiagnosticBuffer[50u];
 uint8 Can_ActivityOnTheBus = 0u;
 uint8 Can_DedBuff = 0u;
 uint8  isoTpRxBuffer[ISO_TP_MAX_PAYLOAD];  // Reassembly buffer for ISO-TP payload
-uint16 isoTpRxLength = 0;                  // Number of bytes reassembled so far
-uint16 isoTpRxExpectedLength = 0;          // Total expected payload length (from FF)
+uint16 isoTpRxLength = 0u;                  // Number of bytes reassembled so far
+uint16 isoTpRxExpectedLength = 0u;          // Total expected payload length (from FF)
 bool   isoTpRxInProgress = false;          // Flag: multi-frame reception ongoing
-uint8  isoTpNextSeq = 0;                   // Next expected consecutive frame sequence
+uint8  isoTpNextSeq = 0u;                   // Next expected consecutive frame sequence
 // Storage arrays for diagnostic data coming from the tester (Group B)
 uint8 storedData_04[ENCCAL_CODING_SIZE];  // For sub-function 0x04
 uint8 storedData_05[ENCCAL_CALIBRATION_SIZE];  // For sub-function 0x05
-uint8 storedData_06[sizeof(EncCal_VOData_t)];  // For sub-function 0x06
+uint8 storedData_06[sizeof(EncCal_VODataComplete)];  // For sub-function 0x06
 IsoTpTx_t isoTpTx = {0u};
 uint8 isoTpRxNextSeq = 0u;                 // Next expected sequence number
 
@@ -326,7 +326,6 @@ void Can_Init(void)
  */
 bool Can_Tx(McmcanType message)
 {
-    if(0x000u == message.txMsg.messageId) __debug();
     return IfxCan_Can_sendMessage(&message.canDstNode, &message.txMsg, (uint32*)message.txData);
 }
 
@@ -378,10 +377,6 @@ void Can_Rx(void)
             {
                 if(1u <= DiagMaster_DiagnosticModeActivated)
                 {
-                    if(0x30 == g_mcmcan.rxData[0u])
-                    {
-                      __asm("nop");
-                    }
                     CanMsg msg;
                     for(uint8 k = 0u; k < 8u; k++) msg.data[k] = g_mcmcan.rxData[k];
                     msg.id = (uint16)g_mcmcan.rxMsg.messageId;
