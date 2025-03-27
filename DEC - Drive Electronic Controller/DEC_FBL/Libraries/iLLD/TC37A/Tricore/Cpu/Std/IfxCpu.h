@@ -737,7 +737,6 @@ IFX_EXTERN void IfxCpu_disableInterruptsAllExceptMaster(IfxCpu_ResourceCpu maste
 /******************************************************************************/
 /*---------------------Inline Function Implementations------------------------*/
 /******************************************************************************/
-
 IFX_INLINE boolean IfxCpu_areInterruptsEnabled(void)
 {
     Ifx_CPU_ICR reg;
@@ -745,13 +744,13 @@ IFX_INLINE boolean IfxCpu_areInterruptsEnabled(void)
     return reg.B.IE != 0;
 }
 
-
 IFX_INLINE boolean IfxCpu_disableInterrupts(void)
 {
     boolean enabled;
     enabled = IfxCpu_areInterruptsEnabled();
     __disable();
     __nop();
+    __asm("nop");
     return enabled;
 }
 

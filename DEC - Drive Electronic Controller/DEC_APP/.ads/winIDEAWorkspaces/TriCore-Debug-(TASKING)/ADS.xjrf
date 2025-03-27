@@ -3511,7 +3511,7 @@
         <DebugChannel>DAP</DebugChannel>
         <DebugClockkHz>4000</DebugClockkHz>
         <DetectWDT>true</DetectWDT>
-        <DetectWDT_duration_ms>1</DetectWDT_duration_ms>
+        <DetectWDT_duration_ms>100</DetectWDT_duration_ms>
         <EndSession>Cleanup</EndSession>
         <ExtOscillatorClk>1000</ExtOscillatorClk>
         <GenerateAuroraClock>false</GenerateAuroraClock>
@@ -3538,15 +3538,15 @@
         <ReadStatusInterval_ms>0</ReadStatusInterval_ms>
         <RequireDeviceIDMatch>true</RequireDeviceIDMatch>
         <RESETDriveWhenDetached>no</RESETDriveWhenDetached>
-        <ResetDuration>1</ResetDuration>
+        <ResetDuration>20</ResetDuration>
         <ResetMethod>StopAndPreset</ResetMethod>
-        <RESETMode>OD</RESETMode>
+        <RESETMode>PP</RESETMode>
         <ResetPinConnected>true</ResetPinConnected>
         <ReversedAuroraLanes>false</ReversedAuroraLanes>
         <SamplingEdge>Pos</SamplingEdge>
         <StopAfterReset>false</StopAfterReset>
         <SuspendPeripheralsWhileStopped>true</SuspendPeripheralsWhileStopped>
-        <TargetResetTimeout>1</TargetResetTimeout>
+        <TargetResetTimeout>100</TargetResetTimeout>
         <MemorySecurity_CheckParameters>
          <Entry>false</Entry>
          <Aurix>
@@ -3606,13 +3606,13 @@
         <ReadMemoryOnMissingCode>1</ReadMemoryOnMissingCode>
         <ReadStatusInterval_ms>0</ReadStatusInterval_ms>
         <RequireDeviceIDMatch>1</RequireDeviceIDMatch>
-        <ResetDelay>1</ResetDelay>
+        <ResetDelay>20</ResetDelay>
         <RESETDriveWhenDetached>0</RESETDriveWhenDetached>
         <ResetMethod>1</ResetMethod>
-        <RESETMode>0</RESETMode>
+        <RESETMode>1</RESETMode>
         <ReversedAuroraLanes>0</ReversedAuroraLanes>
         <StopAfterReset>0</StopAfterReset>
-        <TargetResetTimeout>1</TargetResetTimeout>
+        <TargetResetTimeout>100</TargetResetTimeout>
        </Debugging>
        <ExtWDT>
         <DebugEntryExit>

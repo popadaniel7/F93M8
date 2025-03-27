@@ -193,8 +193,8 @@ typedef enum
  */
 typedef struct
 {
-    uint32  counter;        /**< \brief Counter value */
-    boolean overlfow;       /**< \brief sticky overlfow */
+        uint32  counter;        /**< \brief Counter value */
+        boolean overlfow;       /**< \brief sticky overlfow */
 } IfxCpu_Counter;
 
 /** \} */
@@ -205,11 +205,11 @@ typedef struct
  */
 typedef struct
 {
-    IfxCpu_Counter instruction;       /**< \brief Instruction counter */
-    IfxCpu_Counter clock;             /**< \brief CPU clock counter */
-    IfxCpu_Counter counter1;          /**< \brief Multi counter 1 */
-    IfxCpu_Counter counter2;          /**< \brief Multi counter 2 */
-    IfxCpu_Counter counter3;          /**< \brief Multi counter 3 */
+        IfxCpu_Counter instruction;       /**< \brief Instruction counter */
+        IfxCpu_Counter clock;             /**< \brief CPU clock counter */
+        IfxCpu_Counter counter1;          /**< \brief Multi counter 1 */
+        IfxCpu_Counter counter2;          /**< \brief Multi counter 2 */
+        IfxCpu_Counter counter3;          /**< \brief Multi counter 3 */
 } IfxCpu_Perf;
 
 /** \} */
@@ -745,16 +745,15 @@ IFX_INLINE boolean IfxCpu_areInterruptsEnabled(void)
     return reg.B.IE != 0;
 }
 
-
 IFX_INLINE boolean IfxCpu_disableInterrupts(void)
 {
-    boolean enabled;
-    enabled = IfxCpu_areInterruptsEnabled();
-    __disable();
-    __nop();
-    return enabled;
+//    boolean enabled;
+//    enabled = IfxCpu_areInterruptsEnabled();
+//    __disable();
+//    __nop();
+//    return enabled;
+    return 0;
 }
-
 
 IFX_INLINE void IfxCpu_enableInterrupts(void)
 {

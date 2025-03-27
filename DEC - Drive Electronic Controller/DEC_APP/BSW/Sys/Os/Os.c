@@ -206,7 +206,7 @@ void ASILD_APPL_MainCycle_Task_C0(void *pvParameters)
 {
     for(;;)
     {
-        if(1u == Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C0 && (2u == SysMgr_EcuState))
+        if(1u == Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C0 && (2u == SysMgr_EcuState || 3u == SysMgr_EcuState))
         {
             Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C0 = 0u;
             ComMaster_MainFunction();
@@ -224,7 +224,7 @@ void QM_APPL_MainCycle_Task_C0(void *pvParameters)
 {
     while(1)
     {
-        if(1u == Alarm5ms_Flag_QM_APPL_MainCycle_Task_C0 && 2u == SysMgr_EcuState)
+        if(1u == Alarm5ms_Flag_QM_APPL_MainCycle_Task_C0 && (2u == SysMgr_EcuState || 3u == SysMgr_EcuState))
         {
             Alarm5ms_Flag_QM_APPL_MainCycle_Task_C0 = 0u;
             DcyHandler_MainFunction();
@@ -280,7 +280,7 @@ void QM_BSW_Task_C0(void *pvParameters)
 {
     while(1)
     {
-        if(1u == Alarm5ms_Flag_QM_BSW_Task_C0 && 2u == SysMgr_EcuState)
+        if(1u == Alarm5ms_Flag_QM_BSW_Task_C0 && (2u == SysMgr_EcuState || 3u == SysMgr_EcuState))
         {
             Alarm5ms_Flag_QM_BSW_Task_C0 = 0u;
             Dcm_MainFunction();

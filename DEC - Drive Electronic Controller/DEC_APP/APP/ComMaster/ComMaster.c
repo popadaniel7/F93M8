@@ -1078,7 +1078,7 @@ void ComMaster_MainFunction(void)
         /* Do nothing. */
     }
 
-    IfxCpu_disableInterrupts();
+    //IfxCpu_disableInterrupts();
     memcpy(Can_TransmitTable, ComMaster_TransmitTable, sizeof(ComMaster_TransmitTable));
     for(uint8 i = 0; i < 7u; i++)
     {
@@ -1088,7 +1088,7 @@ void ComMaster_MainFunction(void)
             ComMaster_TransmitTable[i].transmitMessage.txData[j] = 0u;
         }
     }
-    IfxCpu_enableInterrupts();
+    //IfxCpu_enableInterrupts();
     ComMaster_MainCounter++;
 }
 

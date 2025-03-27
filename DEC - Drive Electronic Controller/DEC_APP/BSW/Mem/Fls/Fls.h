@@ -16,5 +16,5 @@
 /*********************************************************************************************************************/
 extern void Fls_WriteBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength);      /* Function that flashes the Data Flash memory     */
 extern void Fls_ReadBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength);
-extern void Fls_Erase(uint32 sectorAddress);
+extern void Fls_Erase(void);
 

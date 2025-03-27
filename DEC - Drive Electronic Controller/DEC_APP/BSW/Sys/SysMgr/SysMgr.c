@@ -15,6 +15,7 @@
 #include "Dem.h"
 #include "SafetyKit_InternalWatchdogs.h"
 #include "SafetyKit_Main.h"
+#include "DiagMaster.h"
 
 uint32 SysMgr_MainCounter = 0u;
 uint32 SysMgr_RunCounter = 0u;
@@ -25,6 +26,8 @@ uint8 SysMgr_Core1OnHalt = 0u;
 uint8 SysMgr_Core2OnHalt = 0u;
 float SysMgr_McuTemperature = 0u;
 uint8 SysMgr_Core0OnIdlePowerDown = 0u;
+uint8 SysMgr_ReleaseRun = 0u;
+uint8 SysMgr_ReleasePostRun = 0u;
 
 void SysMgr_ProcessResetDtc(void);
 void SysMgr_EcuStateMachine(void);
@@ -45,11 +48,6 @@ void SysMgr_GoSleep(void)
     vTaskSuspendAll_core0();
     vTaskEndScheduler_core0();
     IfxStm_disableModule(&MODULE_STM0);
-    SRC_CAN_CAN0_INT1.B.SRE = 0u;
-    SRC_CAN_CAN0_INT2.B.SRE = 0u;
-    SRC_CAN_CAN0_INT3.B.SRE = 0u;
-    SRC_CAN_CAN0_INT4.B.SRE = 0u;
-    SRC_CAN_CAN0_INT5.B.SRE = 0u;
     SRC_STM0SR0.B.SRE = 0u;
     SRC_STM0SR1.B.SRE = 0u;
     SRC_STM1SR0.B.SRE = 0u;
@@ -59,11 +57,6 @@ void SysMgr_GoSleep(void)
     SRC_BCUSPB.B.SRE = 0u;
     SRC_MTUDONE.B.SRE = 0U;
     SRC_PMSDTS.B.SRE = 0U;
-    SRC_CAN_CAN0_INT1.B.CLRR = 1U;
-    SRC_CAN_CAN0_INT2.B.CLRR = 1U;
-    SRC_CAN_CAN0_INT3.B.CLRR = 1U;
-    SRC_CAN_CAN0_INT4.B.CLRR = 1U;
-    SRC_CAN_CAN0_INT5.B.CLRR = 1U;
     SRC_STM0SR0.B.CLRR = 1U;
     SRC_STM0SR1.B.CLRR = 1U;
     SRC_STM1SR0.B.CLRR = 1U;
@@ -111,23 +104,41 @@ void SysMgr_ProcessResetDtc(void)
 
 void SysMgr_EcuStateMachine(void)
 {
+    if(1u == Can_ActivityOnTheBus)
+    {
+        SysMgr_EcuState = SYSMGR_RUN;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
     switch(SysMgr_EcuState)
     {
         case SYSMGR_INIT:
         case SYSMGR_STARTUP:
-            if(0u == SysMgr_MainCounter)
+            SysMgr_EcuState = SYSMGR_RUN;
+            SysMgr_RunCounter = 2000u;
+            SysMgr_PostRunCounter = 2000u;
+            SysMgr_ReleaseRun = 1u;
+            SysMgr_ReleasePostRun = 1u;
+            break;
+        case SYSMGR_RUN:
+            if(1u == SysMgr_NoBusActivity || 1u <= DiagMaster_RequestDiagnosticMode)
             {
-                SysMgr_EcuState = SYSMGR_RUN;
                 SysMgr_RunCounter = 2000u;
                 SysMgr_PostRunCounter = 2000u;
+                SysMgr_ReleaseRun = 1u;
+                SysMgr_ReleasePostRun = 1u;
+                Nvm_WriteAllFinished = 0u;
             }
             else
             {
-                /* Do nothing. */
+                SysMgr_ReleaseRun = 0u;
+                SysMgr_ReleasePostRun = 1u;
             }
-            break;
-        case SYSMGR_RUN:
-            if(0u == SysMgr_NoBusActivity)
+
+            if(0u == SysMgr_ReleaseRun)
             {
                 if(0u != SysMgr_RunCounter)
                 {
@@ -135,15 +146,14 @@ void SysMgr_EcuStateMachine(void)
                 }
                 else
                 {
-                    SysMgr_EcuState = SYSMGR_POSTRUN;
-                    Nvm_WriteAllFinished = 0u;
                     SysMgr_PostRunCounter = 2000u;
+                    SysMgr_ReleasePostRun = 1u;
+                    SysMgr_EcuState = SYSMGR_POSTRUN;
                 }
             }
             else
             {
-                SysMgr_RunCounter = 0u;
-                SysMgr_PostRunCounter = 2000u;
+                /* Do nothing.*/
             }
             break;
         case SYSMGR_POSTRUN:
@@ -151,25 +161,25 @@ void SysMgr_EcuStateMachine(void)
             {
                 Nvm_WriteAll();
             }
-            else
+            else if(2u == Nvm_WriteAllFinished)
             {
-                /* Do nothing. */
-            }
-
-            if(0u != SysMgr_PostRunCounter)
-            {
-                SysMgr_PostRunCounter--;
+                SysMgr_ReleasePostRun = 0u;
             }
             else
             {
                 /* Do nothing. */
             }
 
-            if(0u == Can_ActivityOnTheBus
-                    && 2u == Nvm_WriteAllFinished
-                    && 0u ==  SysMgr_PostRunCounter)
+            if(0u == SysMgr_ReleasePostRun)
             {
-                SysMgr_EcuState = SYSMGR_SLEEP;
+                if(0u != SysMgr_PostRunCounter)
+                {
+                    SysMgr_PostRunCounter--;
+                }
+                else
+                {
+                    SysMgr_EcuState = SYSMGR_SLEEP;
+                }
             }
             else
             {

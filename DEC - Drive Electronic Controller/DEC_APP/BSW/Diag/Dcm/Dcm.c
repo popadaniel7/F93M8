@@ -49,7 +49,13 @@ typedef struct
         uint8 masterDiagReqId;
 }Dcm_DiagReq_t;
 
-uint8 Dcm_SwVersion[4u] = {1u,1u,1u,1u};
+uint8 Dcm_SwVersion[4u] =
+{
+        4u,
+        1u,
+        1u,
+        1u
+};
 uint8 Dcm_SwitchTxOff = 0u;
 Dcm_DiagReq_t Dcm_Receive_DiagnosticMessageBuffer[50u];
 uint32 Dcm_Rx_DiagBufCnt = 0u;
@@ -94,15 +100,14 @@ void Dcm_MainFunction(void)
 {
     static uint8 localData = 0u;
     /* Copy data in exclusive area. */
-    IfxCpu_disableInterrupts();
+    //IfxCpu_disableInterrupts();
     memcpy(&Dcm_Receive_DiagnosticMessageBuffer,
             &DiagMaster_Transmit_DiagnosticMessageBuffer,
             sizeof(DiagMaster_Transmit_DiagnosticMessageBuffer));
     memset(&DiagMaster_Transmit_DiagnosticMessageBuffer,
             0u,
             sizeof(DiagMaster_Transmit_DiagnosticMessageBuffer));
-    IfxCpu_enableInterrupts();
-    IfxCpu_disableInterrupts();
+    //IfxCpu_enableInterrupts();
     /* Process the queue. */
     for(uint8 i = 0u; i < Dcm_Rx_DiagBufCnt; i++)
     {
@@ -164,159 +169,91 @@ void Dcm_MainFunction(void)
         localData = 0u;
     }
     memset(&Dcm_Receive_DiagnosticMessageBuffer, 0u, sizeof(Dcm_Receive_DiagnosticMessageBuffer));
-    IfxCpu_enableInterrupts();
     Dcm_MainCounter++;
 }
 
 void Dcm_DSC_DefaultSession(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        DiagMaster_ActiveSessionState = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    DiagMaster_ActiveSessionState = 1u;
 }
 
 void Dcm_DSC_ProgrammingSession(uint8* data)
 {
     (void)data;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        DiagMaster_ActiveSessionState = 2u;
-        Nvm_WriteAll();
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x50u;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x02u;
-        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
-                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
-                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-        for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
-        IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    DiagMaster_ActiveSessionState = 2u;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x50u;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x02u;
+    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+            ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+    Nvm_WriteAll();
+    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
 }
 
 void Dcm_DSC_ExtendedSession(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        DiagMaster_ActiveSessionState = 3u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    DiagMaster_ActiveSessionState = 3u;
 }
-
 void Dcm_DSC_CodingSession(uint8* data){/*empty*/}
 void Dcm_DSC_CalibrationSession(uint8* data){/*empty*/}
 void Dcm_ER_HardReset(uint8* data)
 {
     (void)data;
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        Nvm_WriteAll();
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x01u;
-        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
-                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
-                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-        for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
-        IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x01u;
+    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+            ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+    Nvm_WriteAll();
+    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
 }
 
 void Dcm_ER_SoftReset(uint8* data)
 {
     (void)data;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        Nvm_WriteAll();
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
-        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x03u;
-        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
-                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
-                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-        for (uint32 index = 0U; index < (uint32)90000U; index++){__asm("nop");}
-        IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
+    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x03u;
+    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+            ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+    Nvm_WriteAll();
+    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
 }
 
 void Dcm_TP_TesterPresent(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        DiagMaster_TesterPresentActive = 1u;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    DiagMaster_TesterPresentActive = 1u;
 }
 void Dcm_RDTCI_ReadSupportDTCInformation(uint8* data){/*empty*/}
 void Dcm_CDTCI_ClearDTCInformation(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        Dem_PreInit();
-        Dem_Init();
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    Dem_PreInit();
+    Dem_Init();
 }
 
 void Dcm_CC_CommunicationControl(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
+    if(1u == data[2u])
     {
-        if(1u == data[2u])
-        {
-            Dcm_SwitchTxOff = 0u;
-        }
-        else if(0u == data[2u])
-        {
-            Dcm_SwitchTxOff = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
+        Dcm_SwitchTxOff = 0u;
+    }
+    else if(0u == data[2u])
+    {
+        Dcm_SwitchTxOff = 1u;
     }
     else
     {
@@ -327,21 +264,13 @@ void Dcm_CC_CommunicationControl(uint8* data)
 void Dcm_CDTCS_ControlDTCSetting(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
+    if(1u == data[2u])
     {
-        if(1u == data[2u])
-        {
-            Dem_ControlDtcSetting = 1u;
-        }
-        else if(2u == data[2u])
-        {
-            Dem_ControlDtcSetting = 0u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
+        Dem_ControlDtcSetting = 1u;
+    }
+    else if(2u == data[2u])
+    {
+        Dem_ControlDtcSetting = 0u;
     }
     else
     {
@@ -357,21 +286,13 @@ void Dcm_RC_ReadVOData(uint8* data){/*empty*/}
 void Dcm_RC_RequestDiagnosticModeActive(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
+    if(data[3u] == 1u)
     {
-        if(data[3u] == 1u)
-        {
-            DiagMaster_RequestDiagnosticMode = 0u;
-        }
-        else
-        {
-            DiagMaster_RequestDiagnosticMode = 1u;
-        }
+        DiagMaster_RequestDiagnosticMode = 0u;
     }
     else
     {
-        /* Do nothing. */
+        DiagMaster_RequestDiagnosticMode = 1u;
     }
 }
 
@@ -379,51 +300,27 @@ void Dcm_RDBI_AliveTime(uint8* data)
 {
     data[0u] = data[0u] + 0x04u;
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        data[4u] = (uint8)(DiagMaster_AliveTime >> 24u);
-        data[5u] = (uint8)(DiagMaster_AliveTime >> 16u);
-        data[6u] = (uint8)(DiagMaster_AliveTime >> 8u);
-        data[7u] = (uint8)DiagMaster_AliveTime;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    data[4u] = (uint8)(DiagMaster_AliveTime >> 24u);
+    data[5u] = (uint8)(DiagMaster_AliveTime >> 16u);
+    data[6u] = (uint8)(DiagMaster_AliveTime >> 8u);
+    data[7u] = (uint8)DiagMaster_AliveTime;
 }
 
 void Dcm_RDBI_SWVersion(uint8* data)
 {
     data[0u] = data[0u] + 0x04u;
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        data[4u] = Dcm_SwVersion[0u];
-        data[5u] = Dcm_SwVersion[1u];
-        data[6u] = Dcm_SwVersion[2u];
-        data[7u] = Dcm_SwVersion[3u];
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    data[4u] = Dcm_SwVersion[0u];
+    data[5u] = Dcm_SwVersion[1u];
+    data[6u] = Dcm_SwVersion[2u];
+    data[7u] = Dcm_SwVersion[3u];
 }
 
 void Dcm_RDBI_ActiveDiagnosticSession(uint8* data)
 {
     data[0u] = data[0u] + 0x01u;
     data[1u] = data[1u] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
-    {
-        data[4u] = DiagMaster_ActiveSessionState;
-    }
-    else
-    {
-        /* Do nothing. */
-    }
+    data[4u] = DiagMaster_ActiveSessionState;
 }
 
 void Dcm_RC_Request701Active(uint8* data)
@@ -453,21 +350,13 @@ void Dcm_RC_RequestMasterActive(uint8* data)
 void Dcm_RC_ResetDcy(uint8* data)
 {
     data[1] = data[1] + 0x40u;
-
-    if(0x6FFu == DiagMaster_ActiveId)
+    if(0x01u == data[5u])
     {
-        if(0x01u == data[5u])
-        {
-            DiagMaster_ResetDcy = 1u;
-        }
-        else
-        {
-            DiagMaster_ResetDcy = 0u;
-        }
+        DiagMaster_ResetDcy = 1u;
     }
     else
     {
-        /* Do nothing. */
+        DiagMaster_ResetDcy = 0u;
     }
 }
 
@@ -523,24 +412,24 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
             uint8 response[136U] = {0u};
             uint16 respLen = 0u;
             response[0u] = 0x71u; // Positive response for service 0x31
-            response[1u] = subFunction;
+            response[3u] = subFunction;
             if (0x15u == subFunction)
             {
-                respLen = 2u + ENCCAL_CODING_SIZE;
+                respLen = 4u + ENCCAL_CODING_SIZE;
                 for (uint8 i = 0u; i < ENCCAL_CODING_SIZE; i++)
-                    response[2u + i] = EncCal_Coding_Buffer[i];
+                    response[4u + i] = EncCal_Coding_Buffer[i];
             }
             else if (0x16u == subFunction)
             {
-                respLen = 2u + ENCCAL_CALIBRATION_SIZE;
-                memcpy(&response[2u], &EncCal_Calibration_Buffer[0u], ENCCAL_CALIBRATION_SIZE);
+                respLen = 4u + ENCCAL_CALIBRATION_SIZE;
+                memcpy(&response[4u], &EncCal_Calibration_Buffer[0u], ENCCAL_CALIBRATION_SIZE);
                 for (uint8 i = 0u; i < ENCCAL_CALIBRATION_SIZE; i++)
-                    response[2u + i] = (uint8)EncCal_Calibration_Buffer[i];
+                    response[4u + i] = (uint8)EncCal_Calibration_Buffer[i];
             }
             else if (0x17u == subFunction)
             {
-                respLen = 2u + sizeof(EncCal_VODataComplete);
-                memcpy(&response[2u], &EncCal_VODataComplete, sizeof(EncCal_VODataComplete));
+                respLen = 4u + sizeof(EncCal_VODataComplete);
+                memcpy(&response[4u], &EncCal_VODataComplete, sizeof(EncCal_VODataComplete));
             }
             else
             {

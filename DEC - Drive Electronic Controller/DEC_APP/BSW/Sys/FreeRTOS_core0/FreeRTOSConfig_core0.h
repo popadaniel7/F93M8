@@ -49,8 +49,8 @@
 #define configASSERT_core0( x_core0 ) ((void)(x_core0)) /* Empty macro to remove compiler warning(s) about unused variables */
 #endif
 /* AURIX TCxxx definitions */
-#define configCONTEXT_INTERRUPT_PRIORITY_core0    254
-#define configTIMER_INTERRUPT_PRIORITY_core0      255 /* This value must not be bigger then context priority */
+#define configCONTEXT_INTERRUPT_PRIORITY_core0    1
+#define configTIMER_INTERRUPT_PRIORITY_core0      2 /* This value must not be bigger then context priority */
 #define configCPU_NR_core0                        0
 #define configPROVIDE_SYSCALL_TRAP_core0          0
 #define configSYSCALL_CALL_DEPTH_core0            2

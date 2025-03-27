@@ -6,7 +6,7 @@
 
 void Fls_WriteBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength);      /* Function that flashes the Data Flash memory     */
 void Fls_ReadBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength);
-void Fls_Erase(uint32 sectorAddress);
+void Fls_Erase(void);
 
 void Fls_ReadBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
 {
@@ -65,10 +65,11 @@ void Fls_WriteBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
     }
 }
 
-void Fls_Erase(uint32 sectorAddress)
+void Fls_Erase(void)
 {
     uint16 password = IfxScuWdt_getSafetyWatchdogPassword();
     IfxScuWdt_clearSafetyEndinit(password);
-    IfxFlash_eraseSector(sectorAddress);
+    IfxFlash_eraseMultipleSectors(0xAF000000u, 64u);
+    IfxFlash_waitUnbusy(FLASH_MODULE, IfxFlash_FlashType_D0);
     IfxScuWdt_setSafetyEndinit(password);
 }

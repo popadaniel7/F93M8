@@ -1,7 +1,7 @@
 #include "Ifx_Types.h"
 #include "IfxCpu_Irq.h"
 
-#define IRQ_CANRX_CHANNEL           1U
+#define IRQ_CANRX_CHANNEL           4U
 #define ISR_PRIORITY_CAN_ALRT       14U
 #define ISR_PRIORITY_CAN_MOER       15u
 #define ISR_PRIORITY_CAN_BOFF       16u

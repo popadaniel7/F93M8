@@ -921,7 +921,7 @@ void DiagMaster_MainFunction(void)
         }
     }
 
-    IfxCpu_disableInterrupts();
+    //IfxCpu_disableInterrupts();
     memcpy(&DiagMaster_Transmit_DiagnosticMessageBuffer,
             &DiagMaster_Receive_DiagnosticMessageBuffer,
             sizeof(DiagMaster_Receive_DiagnosticMessageBuffer));
@@ -930,7 +930,7 @@ void DiagMaster_MainFunction(void)
             sizeof(DiagMaster_Receive_DiagnosticMessageBuffer));
     Dcm_Rx_DiagBufCnt = DiagMaster_Rx_DiagBufCnt;
     DiagMaster_Rx_DiagBufCnt = 0u;
-    IfxCpu_enableInterrupts();
+    //IfxCpu_enableInterrupts();
 
     DiagMaster_MainCounter++;
 }

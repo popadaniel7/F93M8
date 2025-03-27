@@ -3,6 +3,7 @@
 #define NVM_NO_BLOCKS               5U// - +1, first is not used
 #define NVM_SIZE_HEADER_BYTES       8U// Data-flash write done in 8 bytes at a time
 
+
 typedef struct
 {
         uint8 blockId;
@@ -36,7 +37,6 @@ extern uint8 Nvm_ReadAllFinished;
 
 extern void Nvm_SectorSwitch(void);
 extern void Nvm_WriteBlock(uint16 blockId, uint32 *data);
-extern void Nvm_ReadBlock(uint32 blockId, uint32 *data);
 extern void Nvm_FindCurrentAddress();
 extern void Nvm_ReadAll(void);
 extern void Nvm_WriteAll(void);

@@ -58,6 +58,7 @@ void Can_IsoTpTx_MainFunction(void);
 
 void Can_ReInitAfterError(void)
 {
+    Can_State = CAN_INIT;
     IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
     IfxCan_Can_initModuleConfig(&g_mcmcan.canConfig, &MODULE_CAN0);
@@ -119,7 +120,7 @@ void Can_ReInitAfterError(void)
     g_mcmcan.canSrcNode.can = &MODULE_CAN0;
     g_mcmcan.canSrcNode.frameMode = IfxCan_FrameMode_standard;
     g_mcmcan.canNodeConfig.filterConfig.messageIdLength = IfxCan_MessageIdLength_standard;
-    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 11u;
+    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 17u;
     g_mcmcan.canNodeConfig.filterConfig.extendedListSize = 0u;
     g_mcmcan.canNodeConfig.filterConfig.standardFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
     g_mcmcan.canNodeConfig.filterConfig.extendedFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
@@ -129,9 +130,9 @@ void Can_ReInitAfterError(void)
     IfxCan_Can_initNode(&g_mcmcan.canDstNode, &g_mcmcan.canNodeConfig);
     /* Apply the standard filter */
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 0u;
+    g_mcmcan.canFilter.number = 7u;
     g_mcmcan.canFilter.id1 = 0x10Au;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_7;
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
     g_mcmcan.canFilter.number = 1u;
@@ -170,9 +171,9 @@ void Can_ReInitAfterError(void)
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
-    g_mcmcan.canFilter.number = 7u;
+    g_mcmcan.canFilter.number = 0u;
     g_mcmcan.canFilter.id1 = 0x6FEu;
-    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_7;
+    g_mcmcan.canFilter.rxBufferOffset = IfxCan_RxBufferId_0;
     /* Apply the standard filter */
     IfxCan_Can_setStandardFilter(&g_mcmcan.canDstNode, &g_mcmcan.canFilter);
     g_mcmcan.canFilter.elementConfiguration = IfxCan_FilterElementConfiguration_storeInRxBuffer;
@@ -329,6 +330,9 @@ bool Can_Tx(McmcanType message)
     return IfxCan_Can_sendMessage(&message.canDstNode, &message.txMsg, (uint32*)message.txData);
 }
 
+CanMsg msg[50u];
+uint8 counter;
+
 void Can_Rx(void)
 {
     if(1u == SysMgr_Core0OnIdlePowerDown)
@@ -370,18 +374,21 @@ void Can_Rx(void)
                     (((0x10 > g_mcmcan.rxData[0u])
                             && (0x19u == g_mcmcan.rxData[1u]))
                             || (0x31 == g_mcmcan.rxData[1u]
-                                                        && (0x15 == g_mcmcan.rxData[4u] ||
+                                                        &&     (0x15 == g_mcmcan.rxData[4u] ||
                                                                 0x16 == g_mcmcan.rxData[4u] ||
                                                                 0x17 == g_mcmcan.rxData[4u] ||
-                                                                0x04 == g_mcmcan.rxData[4u]))))
+                                                                0x04 == g_mcmcan.rxData[4u] ||
+                                                                0x05 == g_mcmcan.rxData[4u] ||
+                                                                0x06 == g_mcmcan.rxData[4u]))))
             {
                 if(1u <= DiagMaster_DiagnosticModeActivated)
                 {
-                    CanMsg msg;
-                    for(uint8 k = 0u; k < 8u; k++) msg.data[k] = g_mcmcan.rxData[k];
-                    msg.id = (uint16)g_mcmcan.rxMsg.messageId;
-                    msg.dlc = g_mcmcan.rxMsg.dataLengthCode;
-                    Can_ProcessIsoTpMessage(&msg);
+                    //CanMsg msg;
+                    for(uint8 k = 0u; k < 8u; k++) msg[counter].data[k] = g_mcmcan.rxData[k];
+                    msg[counter].id = (uint16)g_mcmcan.rxMsg.messageId;
+                    msg[counter].dlc = g_mcmcan.rxMsg.dataLengthCode;
+                    //Can_ProcessIsoTpMessage(&msg);
+                    counter++;
                     memset(g_mcmcan.rxData, 0u, sizeof(g_mcmcan.rxData));
                     g_mcmcan.rxMsg.messageId = 0u;
                 }
@@ -604,17 +611,13 @@ void Can_IsoTpTx_MainFunction(void)
 
 void Can_TransmitAllMessages(void)
 {
-    IfxCpu_disableInterrupts();
     memcpy(Can_TransmitTable, ComMaster_TransmitTable, sizeof(Can_TransmitType_t));
-    IfxCpu_enableInterrupts();
     for(uint8 i = 0u; i < COMMASTER_NO_TX_MSG; i++)
     {
         if(1u == Can_TransmitTable[i].transmitFlag)
         {
-            IfxCpu_disableInterrupts();
             g_mcmcan.txMsg = Can_TransmitTable[i].transmitMessage.txMsg;
             memcpy(g_mcmcan.txData, Can_TransmitTable[i].transmitMessage.txData, sizeof(Can_TransmitTable[i].transmitMessage.txData));
-            IfxCpu_enableInterrupts();
             Can_Tx(g_mcmcan);
             Can_TransmitTable[i].transmitFlag = 0u;
         }
@@ -627,7 +630,20 @@ void Can_TransmitAllMessages(void)
 
 void Can_ProcessReceivedMessages(void)
 {
-    IfxCpu_disableInterrupts();
+    for(uint8 i = 0; i < counter; i ++)
+    {
+        if(0u != msg[i].id)
+        {
+            Can_ProcessIsoTpMessage(&msg[i]);
+            memset(&msg[i], 0u, sizeof(msg));
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+    counter = 0u;
+    //IfxCpu_disableInterrupts();
     for(uint8 i = 0u; i < Can_BufferIndex_ReceivedMessages; i++)
     {
         switch(Can_RxMessageBuffer[i].rxMsg.messageId)
@@ -685,12 +701,11 @@ void Can_ProcessReceivedMessages(void)
     DiagMaster_Rx_DiagBufCnt = Can_Rx_DiagBufCnt;
     Can_Rx_DiagBufCnt = 0u;
     Can_BufferIndex_ReceivedMessages = 0u;
-    IfxCpu_enableInterrupts();
+    //IfxCpu_enableInterrupts();
 }
 
 void Can_TransmitScheduleTable(void)
 {
-    IfxCpu_disableInterrupts();
     for(uint8 i = 0u; i < COMMASTER_NO_TX_MSG; i++)
     {
         if(1u == Can_TransmitTable[i].transmitFlag)
@@ -709,7 +724,6 @@ void Can_TransmitScheduleTable(void)
             /* Do nothing. */
         }
     }
-    IfxCpu_enableInterrupts();
 }
 
 void Can_Sleep(void)
@@ -761,13 +775,11 @@ bool Can_IsoTp_SendFrame(uint16 canId, const uint8 *data, uint8 size)
 {
     McmcanType localMcmcan;
     bool status = false;
-    IfxCpu_disableInterrupts();
     memcpy(&localMcmcan, &g_mcmcan, sizeof(g_mcmcan));
     IfxCan_Can_initMessage(&localMcmcan.txMsg);
     localMcmcan.txMsg.messageId = canId;
     localMcmcan.txMsg.dataLengthCode = size;
     for(uint8 i = 0u; i < size; i++) localMcmcan.txData[i] = data[i];
     status = Can_Tx(localMcmcan);
-    IfxCpu_enableInterrupts();
     return status;
 }

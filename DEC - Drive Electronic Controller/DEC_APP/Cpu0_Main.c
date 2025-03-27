@@ -18,7 +18,6 @@
 #include "SafetyKit_Main.h"
 #include "aurix_pin_mappings.h"
 #include "SCR.h"
-
 uint8 OsInit_C0 = 0u;
 
 extern void Ssw_StartCores(void);

@@ -17,6 +17,8 @@ extern uint8 SysMgr_Core1OnHalt;
 extern uint8 SysMgr_Core2OnHalt;
 extern float SysMgr_McuTemperature;
 extern uint8 SysMgr_Core0OnIdlePowerDown;
+extern uint8 SysMgr_ReleaseRun;
+extern uint8 SysMgr_ReleasePostRun;
 
 extern void SysMgr_ProcessResetDtc(void);
 extern void SysMgr_EcuStateMachine(void);

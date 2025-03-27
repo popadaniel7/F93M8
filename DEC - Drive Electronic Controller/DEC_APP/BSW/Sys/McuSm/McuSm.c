@@ -25,7 +25,6 @@ void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
 {
     if(resetReason != 0u)
     {
-        IfxCpu_disableInterrupts();
         McuSm_LastResetReason = resetReason;
         McuSm_LastResetInformation = resetInformation;
         McuSm_ResetHistory[McuSm_IndexResetHistory].reason = resetReason;
