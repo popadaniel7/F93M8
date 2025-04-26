@@ -37,8 +37,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-long long OS_Counter = 0;
-long long IDLE_Counter = 0;
+__attribute__((section(".ccmram"))) long long OS_Counter = 0;
+__attribute__((section(".ccmram"))) long long IDLE_Counter = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm5ms_QM_NVM = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm5ms_QM_APPL = 0;
 __attribute__((section(".ccmram"))) uint8 Alarm5ms_QM_BSW = 0;

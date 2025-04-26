@@ -26,10 +26,10 @@
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
 
-#define LCF_CSA0_SIZE 1k
-#define LCF_USTACK0_SIZE 2k
-#define LCF_ISTACK0_SIZE 1k
-#define LCF_HEAP_SIZE  1k
+#define LCF_CSA0_SIZE 3k
+#define LCF_USTACK0_SIZE 3k
+#define LCF_ISTACK0_SIZE 3k
+#define LCF_HEAP_SIZE  3k
 #define LCF_CPU0 0
 #define LCF_DEFAULT_HOST LCF_CPU0
 #define LCF_DSPR0_START 0x70000000

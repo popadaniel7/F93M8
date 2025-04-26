@@ -25,10 +25,8 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
 #ifndef IFX_CFG_H
 #define IFX_CFG_H 1
-
 /*********************************************************************************************************************/
 /*------------------------------------------Configuration for IfxScu_cfg.h-------------------------------------------*/
 /*********************************************************************************************************************/
@@ -41,15 +39,4 @@
 #define IFX_CFG_SCU_PLL1_FREQUENCY      (320000000) /* Allowed values are: 320000000, 160000000 */
 /* Peripheral PLL2 frequency in Hz */
 #define IFX_CFG_SCU_PLL2_FREQUENCY      (200000000) /* Allowed values are: 200000000 */
-
-/*********************************************************************************************************************/
-/*-----------------------------------Configuration for Software managed interrupt------------------------------------*/
-/*********************************************************************************************************************/
-/* #define IFX_USE_SW_MANAGED_INT */ /* Decomment this line if the project needs to use Software managed interrupts */
-
-/*********************************************************************************************************************/
-/*---------------------------------Configuration for Trap Hook Functions' Extensions---------------------------------*/
-/*********************************************************************************************************************/
-/* #define IFX_CFG_EXTEND_TRAP_HOOKS */ /* Decomment this line if the project needs to extend trap hook functions */
-
 #endif /* IFX_CFG_H */

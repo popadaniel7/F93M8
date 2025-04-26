@@ -225,29 +225,29 @@ void EncCal_MainFunction(void)
     {
         if(1u == EncCal_CalibrationValidResult)
         {
-            Dem_SetDtc(ENCCAL_INVALID_CALIBRATION, 1u, 34u);
+            Dem_SetDtc(ENCCAL_INVALID_CALIBRATION, 1u, 24u);
         }
         else
         {
-            Dem_SetDtc(ENCCAL_INVALID_CALIBRATION, 0u, 34u);
+            Dem_SetDtc(ENCCAL_INVALID_CALIBRATION, 0u, 24u);
         }
 
         if(1u == EncCal_CodingValidResult)
         {
-            Dem_SetDtc(ENCCAL_INVALID_CODING, 1u, 33u);
+            Dem_SetDtc(ENCCAL_INVALID_CODING, 1u, 23u);
         }
         else
         {
-            Dem_SetDtc(ENCCAL_INVALID_CODING, 0u, 33u);
+            Dem_SetDtc(ENCCAL_INVALID_CODING, 0u, 23u);
         }
 
         if(1u == EncCal_IsVoDataValid)
         {
-            Dem_SetDtc(ENCCAL_INVALID_VODATA, 1u, 35u);
+            Dem_SetDtc(ENCCAL_INVALID_VODATA, 1u, 25u);
         }
         else
         {
-            Dem_SetDtc(ENCCAL_INVALID_VODATA, 0u, 35u);
+            Dem_SetDtc(ENCCAL_INVALID_VODATA, 0u, 25u);
         }
 
         firstCall = 1u;

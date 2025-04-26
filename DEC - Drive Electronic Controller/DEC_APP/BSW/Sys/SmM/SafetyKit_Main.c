@@ -24,13 +24,9 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
-#include "SafetyKit_Fce.h"
-#include "SafetyKit_NvmPflash.h"
 #include "SafetyKit_Main.h"
 #include "SafetyKit_Cfg.h"
 #include "SafetyKit_RegMon.h"
@@ -54,7 +50,6 @@ volatile Ifx_SMU_AG             g_SafetyKitSmuAlarmRegStatusEnlessLoop[IFXSMU_NU
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
-void runSMOnlyOnce(void);
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -77,18 +72,6 @@ void initSafetyKit(void)
     initDieTemperatureSensors();
     /* Initialize Secondary Voltage monitors and their threshold values */
     initVoltageMonitors();
-    /* SM:FCE:CRC_CFG */
-    initFCECRC();
     /* Initialization of SafetyKit is done */
     g_SafetyKitStatus.safetyKitInitDone = TRUE;
-    /* SMs which only need to run once in the beginning */
-    runSMOnlyOnce();
-}
-/*
- * This function is to run SMs which are required only once
- * */
-void runSMOnlyOnce(void)
-{
-    /* run SM:PFLASH:INTEGRITY_CHECK, needed only once */
-    runIntegrityCheckPFLASH();
 }

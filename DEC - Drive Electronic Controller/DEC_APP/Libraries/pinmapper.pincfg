@@ -78,4 +78,12 @@
   <v1:configSetting configurationId="p00_1.dir" altId="p00_1.dir.out"/>
   <v1:configSetting configurationId="scr_p00_7.in.bind" altId="scr_p00_7.in.bind.none"/>
   <v1:configSetting configurationId="scr_p00_2.dir" altId="scr_p00_2.dir.in"/>
+  <v1:configSetting configurationId="p40_6.an.bind" altId="p40_6.an.bind.anares">
+    <v1:connectionSetting altId="g8_qreq0.ch4.bind.ch4"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="g8_qreq0.ch4.bind" altId="g8_qreq0.ch4.bind.ch4">
+    <v1:connectionSetting altId="p40_6.an.bind.anares"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p40_6.function" altId="p40_6.function.analog"/>
+  <v1:propertySetting propertyId="p40_6.symbolicname" value="G8_QREQ0_CH4"/>
 </v1:pinSettings>

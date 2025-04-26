@@ -35,65 +35,10 @@
 #include "SafetyKit_Main.h"
 #include "Cpu/Irq/IfxCpu_Irq.h"
 #include "Keys.h"
-#include "SafetyKit_NvmPflash.h"
-
-#if CPU_WHICH_RUN_SMU == 0
-#if defined(__TASKING__)
 #pragma section code    "text_cpu0"
 #pragma section farbss  "bss_cpu0"
 #pragma section fardata "data_cpu0"
 #pragma section farrom  "rodata_cpu0"
-#else
-#error "Only TASKING is supported, add pragmas for your compiler"
-#endif
-#elif ((CPU_WHICH_RUN_SMU == 1) && (CPU_WHICH_RUN_SMU < IFXCPU_NUM_MODULES))
-#if defined(__TASKING__)
-#pragma section code    "text_cpu1"
-#pragma section farbss  "bss_cpu1"
-#pragma section fardata "data_cpu1"
-#pragma section farrom  "rodata_cpu1"
-#else
-#error "Only TASKING is supported, add pragmas for your compiler"
-#endif
-#elif ((CPU_WHICH_RUN_SMU == 2) && (CPU_WHICH_RUN_SMU < IFXCPU_NUM_MODULES))
-#if defined(__TASKING__)
-#pragma section code    "text_cpu2"
-#pragma section farbss  "bss_cpu2"
-#pragma section fardata "data_cpu2"
-#pragma section farrom  "rodata_cpu2"
-#else
-#error "Only TASKING is supported, add pragmas for your compiler"
-#endif
-#elif ((CPU_WHICH_RUN_SMU == 3) && (CPU_WHICH_RUN_SMU < IFXCPU_NUM_MODULES))
-#if defined(__TASKING__)
-#pragma section code    "text_cpu3"
-#pragma section farbss  "bss_cpu3"
-#pragma section fardata "data_cpu3"
-#pragma section farrom  "rodata_cpu3"
-#else
-#error "Only TASKING is supported, add pragmas for your compiler"
-#endif
-#elif ((CPU_WHICH_RUN_SMU == 4) && (CPU_WHICH_RUN_SMU < IFXCPU_NUM_MODULES))
-#if defined(__TASKING__)
-#pragma section code    "text_cpu4"
-#pragma section farbss  "bss_cpu4"
-#pragma section fardata "data_cpu4"
-#pragma section farrom  "rodata_cpu4"
-#else
-#error "Only TASKING is supported, add pragmas for your compiler"
-#endif
-#elif ((CPU_WHICH_RUN_SMU == 5) && (CPU_WHICH_RUN_SMU < IFXCPU_NUM_MODULES))
-#if defined(__TASKING__)
-#pragma section code    "text_cpu5"
-#pragma section farbss  "bss_cpu5"
-#pragma section fardata "data_cpu5"
-#pragma section farrom  "rodata_cpu5"
-#else
-#error "Only TASKING is supported, add pragmas for your compiler"
-#endif
-#else
-#error "Set CPU_WHICH_RUN_SMU to a valid value!"
-#endif
 /*********************************************************************************************************************/
 /*------------------------------Global variables---------------------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -116,68 +61,52 @@
  *  The use of the recovery timer only makes sense if the internal action is an interrupt or NMI. However no
  *  hardware check is done, it is up to software to configure the SMU_core in the appropriate way.
  *  */
-extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
+extern void McuSm_TRAP7(IfxCpu_Trap trapInfo);
+void localFunc(void);
+IfxCpu_Trap trapInfo;
 const AlarmConfigStruct globalAlarmConfig[USER_ALARM_NUMBER] =
 {
         /*---------------------------------------------------------------------------------------------------------------*/
-        /* IfxSmu_Alarm alarm                       IfxSmu_InternalAlarmAction         Enable      Trigger  Function to
+        /* IfxSmu_Alarm alarm                       IfxSmu_InternalAlarmAction     Enable      Trigger  Function to
                                                                                    external    Recovery call when alarm
                                                                                    reaction    Timer    is detected  */
         /*------------------------------------------------------------- IGCS0 -------------------------------------------*/
-        {DEFAULT_ALARM,                              DEFAULT_ALARM_ACTION,               FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_SMU,                           IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_ADC,                           IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_GTM_TOM_TIM,                   IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_GTM_CCU6_GPT12,                IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_GTM_TIM_TIM,                   IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_GTM_TIM_CCU6,                  IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_GTM_ECKL,                      IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_DMA,                           IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_QSPI_SAFE,                     IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_PFLASH,                        IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_PORT_SMs,                     IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_CLOCK_PLAUS,                   IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_DMA_DMASRI_EccError,           IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_IOM_Pin_MismatchIndication,    IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_EVR_Undervoltage_Alarm,        IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_XBAR_EDC_WritePhaseError,      IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_LMU_EDC_WritePhaseError,       IfxSmu_InternalAlarmAction_igcs0,   FALSE,      FALSE,      NULL_PTR},
-
-        /*------------------------------------------------------------- IGCS1 -------------------------------------------*/
-        {IfxSmu_Alarm_CPU0_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_igcs1,   TRUE,       FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_CPU1_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_igcs1,   TRUE,       FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_CPU2_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_igcs1,   TRUE,       FALSE,      NULL_PTR},
-        {IfxSmu_Alarm_CPU3_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_igcs1,   TRUE,       FALSE,      NULL_PTR},
-
-        /*------------------------------------------------------------- IGCS2 -------------------------------------------*/
-        {IfxSmu_Alarm_SMU_Error_PinFaultStateActivation, IfxSmu_InternalAlarmAction_igcs2,  FALSE,    FALSE,     NULL_PTR},
-        {IfxSmu_Alarm_SCU_External_EmergencyStopSignalEvent, IfxSmu_InternalAlarmAction_igcs2, FALSE, FALSE,     NULL_PTR},
-        {SOFT_SMU_ALM_ADC_BND,                        IfxSmu_InternalAlarmAction_igcs2,   FALSE,      FALSE,     NULL_PTR},
-        {IfxSmu_Alarm_HSM_Undervoltage_Alarm,         IfxSmu_InternalAlarmAction_igcs2,   FALSE,      FALSE,     NULL_PTR},
-        {IfxSmu_Alarm_FSI_PFlash_SingleBitError,      IfxSmu_InternalAlarmAction_igcs2,   FALSE,      FALSE,     NULL_PTR},
-        {IfxSmu_Alarm_FSI_PFlash_DoubleBitError, IfxSmu_InternalAlarmAction_igcs2, FALSE, FALSE, &enableWlFailDetectPFLASH},
-        {IfxSmu_Alarm_FSI_Multiple_BitErrorDetectionTrackingBufferFull, IfxSmu_InternalAlarmAction_igcs2,
-                FALSE,      FALSE,     NULL_PTR},
-                {IfxSmu_Alarm_SMU_Access_EnableErrorDetected, IfxSmu_InternalAlarmAction_igcs2,   FALSE,      FALSE,     NULL_PTR},
-                /*-------------------------------------------------------------- NMI --------------------------------------------*/
-                /* Note: STHE: Watchdog alarm and Recovery timer is not exactly configured as stated in UM section 15.3.1.5.8
-                 * Watchdog Alarms -> Changes in Recovery Timer configuration needs to be done */
-                {SMU_ALARM_WHICH_TRIGGERS_NMI, IfxSmu_InternalAlarmAction_nmi, FALSE, TRUE,       safetyKitWatchdogAlarmHandling},
-
-                /*------------------------------------------------------------- RESET --------------------------------------------*/
-                {IfxSmu_Alarm_SMU_Timer0_TimeOut,             IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,      NULL_PTR},
-                {IfxSmu_Alarm_SMU_Timer1_TimeOut,             IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,      NULL_PTR},
-
-                /*------------------------- CPU RESET (SMU AGC register defines which CPUs are affected by the CPU reset) --------*/
-
-                /*-------------------------------------------------------- Disabled alarms ---------------------------------------*/
-                /* Used for SMU ISR test */
-                {SOFT_SMU_ALM_CFG_CHECK,                     IfxSmu_InternalAlarmAction_disabled, FALSE,      FALSE,      NULL_PTR},
-                /* Will be triggered when Stall CPU button is pressed */
-                {IfxSmu_Alarm_SCU_External_RequestUnitAlarm1, IfxSmu_InternalAlarmAction_disabled, FALSE,     FALSE,      NULL_PTR},
-                /* Note: STHE: Some times this alarm is raised during fault injection and access other modules. Further
-                 * investigation needed why this is happening even though access is enabled to all masters. */
-                {IfxSmu_Alarm_SPB_BusErrorEvent,              IfxSmu_InternalAlarmAction_disabled, FALSE,     FALSE,      NULL_PTR}
+        {DEFAULT_ALARM,                              DEFAULT_ALARM_ACTION,             FALSE,      FALSE,      NULL_PTR},
+        {SOFT_SMU_ALM_SMU,                           IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_ADC,                           IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_GTM_TOM_TIM,                   IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_GTM_CCU6_GPT12,                IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_GTM_TIM_TIM,                   IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_GTM_TIM_CCU6,                  IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_GTM_ECKL,                      IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_DMA,                           IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_QSPI_SAFE,                     IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_PFLASH,                        IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_PORT_SMs,                      IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {SOFT_SMU_ALM_CLOCK_PLAUS,                   IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {IfxSmu_Alarm_DMA_DMASRI_EccError,           IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {IfxSmu_Alarm_IOM_Pin_MismatchIndication,    IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {IfxSmu_Alarm_EVR_Undervoltage_Alarm,        IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {IfxSmu_Alarm_XBAR_EDC_WritePhaseError,      IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {IfxSmu_Alarm_LMU_EDC_WritePhaseError,       IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {IfxSmu_Alarm_CPU0_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_nmi,   TRUE,       FALSE,      localFunc},
+        {IfxSmu_Alarm_CPU1_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_nmi,   TRUE,       FALSE,      localFunc},
+        {IfxSmu_Alarm_CPU2_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_nmi,   TRUE,       FALSE,      localFunc},
+        {IfxSmu_Alarm_CPU3_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_nmi,   TRUE,       FALSE,      localFunc},
+        {IfxSmu_Alarm_SMU_Error_PinFaultStateActivation, IfxSmu_InternalAlarmAction_nmi,  FALSE,    FALSE,     localFunc},
+        {IfxSmu_Alarm_SCU_External_EmergencyStopSignalEvent, IfxSmu_InternalAlarmAction_nmi, FALSE, FALSE,     localFunc},
+        {SOFT_SMU_ALM_ADC_BND,                        IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,     localFunc},
+        {IfxSmu_Alarm_HSM_Undervoltage_Alarm,         IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,     localFunc},
+        {IfxSmu_Alarm_FSI_PFlash_SingleBitError,      IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,     localFunc},
+        {IfxSmu_Alarm_FSI_PFlash_DoubleBitError,      IfxSmu_InternalAlarmAction_nmi, FALSE, FALSE, localFunc},
+        {IfxSmu_Alarm_FSI_Multiple_BitErrorDetectionTrackingBufferFull, IfxSmu_InternalAlarmAction_nmi, FALSE,      FALSE,     localFunc},
+        {IfxSmu_Alarm_SMU_Access_EnableErrorDetected, IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,     localFunc},
+        {SMU_ALARM_WHICH_TRIGGERS_NMI, IfxSmu_InternalAlarmAction_nmi, FALSE, TRUE,       localFunc},
+        {IfxSmu_Alarm_SMU_Timer0_TimeOut,             IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,      NULL_PTR},
+        {IfxSmu_Alarm_SMU_Timer1_TimeOut,             IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,      NULL_PTR},
+        {SOFT_SMU_ALM_CFG_CHECK,                     IfxSmu_InternalAlarmAction_disabled, FALSE,      FALSE,      NULL_PTR},
+        {IfxSmu_Alarm_SCU_External_RequestUnitAlarm1, IfxSmu_InternalAlarmAction_disabled, FALSE,     FALSE,      NULL_PTR},
+        {IfxSmu_Alarm_SPB_BusErrorEvent,              IfxSmu_InternalAlarmAction_nmi, FALSE,     FALSE,      localFunc}
         /*---------------------------------------------------------------------------------------------------------------*/
 };
 /* The array configArrayIGCS[3] holds the configuration of each Interrupt Generation Configuration Set (IGCS)
@@ -192,7 +121,6 @@ IGCSisrBindingStruct configArrayIGCS[3] = {
  * The complete list of these alarms can be found in SMU_stdby_FSP.h file
  * and in TC39xB user manual (15.4.1) (STDBY alarms are located in alarm group 20 and 21)
  */
-
 /*------------------------------------------------------------------------------------------------------------------*/
 /*               USED BY SOFTWARE - NO USER CONFIG NEEDED HERE                                                      */
 /*------------------------------------------------------------------------------------------------------------------*/
@@ -203,14 +131,14 @@ RuntimeAlarmHandle alarmsThatTriggerIsr2 [USER_ALARM_NUMBER];
 RuntimeAlarmHandle alarmsThatTriggerNMI  [USER_ALARM_NUMBER];
 RuntimeAlarmHandle alarmsThatAreDisabled [USER_ALARM_NUMBER];
 RuntimeAlarmHandle alarmsThatTriggerFSP  [USER_ALARM_NUMBER];
-RuntimeAlarmHandle alarmsThatTriggerRT   [4]; /* With the current implementation you can configure 4 alarms  to trigger a recovery timer */
-uint16 nbrAlarmsThatTriggerIsr0 = 0;
-uint16 nbrAlarmsThatTriggerIsr1 = 0;
-uint16 nbrAlarmsThatTriggerIsr2 = 0;
-uint16 nbrAlarmsThatTriggerNMI  = 0;
-uint16 nbrAlarmsThatAreDisabled = 0;
-uint16 nbrAlarmsThatTriggerFSP  = 0;
-uint16 nbrAlarmsThatTriggerRT   = 0;
+RuntimeAlarmHandle alarmsThatTriggerRT   [4u]; /* With the current implementation you can configure 4 alarms  to trigger a recovery timer */
+uint16 nbrAlarmsThatTriggerIsr0 = 0u;
+uint16 nbrAlarmsThatTriggerIsr1 = 0u;
+uint16 nbrAlarmsThatTriggerIsr2 = 0u;
+uint16 nbrAlarmsThatTriggerNMI  = 0u;
+uint16 nbrAlarmsThatAreDisabled = 0u;
+uint16 nbrAlarmsThatTriggerFSP  = 0u;
+uint16 nbrAlarmsThatTriggerRT   = 0u;
 /* Used to check SMU ISR groups config */
 volatile boolean isrConfigTestRunningSMU = FALSE;
 /* Used to visualize TFT pop up window for alarms which were configured with default configuration during AppSSW */
@@ -220,20 +148,23 @@ RuntimeAlarmHandle runtimeAlarmHandleNotConfiguredAlarm;
 /*********************************************************************************************************************/
 void initFunctionExecutionStatusSMU(SmuExecutionStatusType *SmuExecutionStatusType);
 SmuStatusType initSMUAlarmsSMU(void);
-SmuStatusType activatSMU(void);
+SmuStatusType activateSMU(void);
 /*********************************************************************************************************************/
 /*-------------------------Function Implementations------------------------------------------------------------------*/
 /*********************************************************************************************************************/
+void localFunc(void)
+{
+    McuSm_TRAP7(trapInfo);
+}
 /*
  * activate the  SMU, enable transition from run to fault state and enable configuration of KEYS locked
  * registers and checks if the SMU has really been started
  * */
-SmuStatusType activatSMU(void)
+SmuStatusType activateSMU(void)
 {
     boolean configApplied = FALSE;
 
     IfxSmu_unlockConfigRegisters();
-
     /* Mandatory check! currently not done by the iLLD function IfxSmu_activateRunState */
     if(MODULE_SMU.DBG.B.SSM == IfxSmu_SmuState_run)
     {
@@ -248,16 +179,19 @@ SmuStatusType activatSMU(void)
     else if(MODULE_SMU.DBG.B.SSM == IfxSmu_SmuState_fault)
     {
         IfxSmu_releaseFSP();
+
         uint32 timeout_smu = 0x0FFFFFFF;
+
         do
         {
             __nop();
         } while(IfxSmu_getSmuState() != IfxSmu_SmuState_run && timeout_smu--);
+
         configApplied = TRUE;
     }
     else
     {
-        __debug();
+        /* Do nothing. */
     }
 
     IfxSmu_temporaryLockConfigRegisters();
@@ -271,61 +205,79 @@ SmuStatusType activatSMU(void)
         return fail;
     }
 }
-
 /*
  * configure the SMU and registers related to alarm setup according to the globalAlarmConfig array
  * */
 SmuStatusType initSMUAlarmsSMU(void)
 {
-    uint8 smuInterruptsToEnable = configArrayIGCS[0].igcs_config | configArrayIGCS[1].igcs_config
-            | configArrayIGCS[2].igcs_config;
+    uint8 smuInterruptsToEnable = configArrayIGCS[0].igcs_config | configArrayIGCS[1].igcs_config | configArrayIGCS[2].igcs_config;
     boolean configApplied = FALSE;
-
     /* Configure alarm internal reaction according to globalAlarmConfig set by user */
-    for(int i=0; i<USER_ALARM_NUMBER; i++)
+    for(uint8 i = 0u; i < USER_ALARM_NUMBER; i++)
     {
         IfxSmu_setAlarmAction(globalAlarmConfig[i].alarm, globalAlarmConfig[i].alarmReaction);
-
         /* Each IGCS group can trigger up to 3 isr simultaneously, so each alarm that can trigger a specific
          * isr (according to its IGCS group) is put in the corresponding array to speed-up the alarm source
          * detection process */
-        for (uint8 k=0; k<3; k++)
+        for (uint8 k = 0u; k < 3u; k++)
         {
             if (globalAlarmConfig[i].alarmReaction == configArrayIGCS[k].igcs_id)
             {
-                if (configArrayIGCS[k].igcs_config & 0x1)
+                if (configArrayIGCS[k].igcs_config & 0x1u)
                 {
-                    alarmsThatTriggerIsr0[nbrAlarmsThatTriggerIsr0] = (RuntimeAlarmHandle){&globalAlarmConfig[i],
-                        notPending};
+                    alarmsThatTriggerIsr0[nbrAlarmsThatTriggerIsr0] = (RuntimeAlarmHandle){&globalAlarmConfig[i], notPending};
                     nbrAlarmsThatTriggerIsr0++;
                 }
+                else
+                {
+                    /* Do nothing. */
+                }
+
                 if (configArrayIGCS[k].igcs_config & 0x2)
                 {
-                    alarmsThatTriggerIsr1[nbrAlarmsThatTriggerIsr1] = (RuntimeAlarmHandle){&globalAlarmConfig[i],
-                        notPending};
+                    alarmsThatTriggerIsr1[nbrAlarmsThatTriggerIsr1] = (RuntimeAlarmHandle){&globalAlarmConfig[i], notPending};
                     nbrAlarmsThatTriggerIsr1++;
                 }
+                else
+                {
+                    /* Do nothing. */
+                }
+
                 if (configArrayIGCS[k].igcs_config & 0x4)
                 {
                     alarmsThatTriggerIsr2[nbrAlarmsThatTriggerIsr2] = (RuntimeAlarmHandle){&globalAlarmConfig[i],
                         notPending};
                     nbrAlarmsThatTriggerIsr2++;
                 }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else
+            {
+                /* Do nothing. */
             }
         }
-
         /* Check if alarm external reaction is enabled */
         if (globalAlarmConfig[i].externalReactionEnabled)
         {
             alarmsThatTriggerFSP[nbrAlarmsThatTriggerFSP] = (RuntimeAlarmHandle){&globalAlarmConfig[i], notPending};
             nbrAlarmsThatTriggerFSP ++;
         }
-
+        else
+        {
+            /* Do nothing. */
+        }
         /* Check if alarm should trigger Recovery Timer */
         if (globalAlarmConfig[i].triggerRecoveryTimer)
         {
             alarmsThatTriggerRT[nbrAlarmsThatTriggerRT] = (RuntimeAlarmHandle){&globalAlarmConfig[i], notPending};
             nbrAlarmsThatTriggerRT ++;
+        }
+        else
+        {
+            /* Do nothing. */
         }
 
         if(globalAlarmConfig[i].alarmReaction == IfxSmu_InternalAlarmAction_nmi)
@@ -333,11 +285,19 @@ SmuStatusType initSMUAlarmsSMU(void)
             alarmsThatTriggerNMI[nbrAlarmsThatTriggerNMI] = (RuntimeAlarmHandle){&globalAlarmConfig[i], notPending};
             nbrAlarmsThatTriggerNMI ++;
         }
+        else
+        {
+            /* Do nothing. */
+        }
 
         if(globalAlarmConfig[i].alarmReaction == IfxSmu_InternalAlarmAction_disabled)
         {
             alarmsThatAreDisabled[nbrAlarmsThatAreDisabled] = (RuntimeAlarmHandle){&globalAlarmConfig[i], notPending};
             nbrAlarmsThatAreDisabled ++;
+        }
+        else
+        {
+            /* Do nothing. */
         }
     }
     /* Unlocks the SMU configuration registers for modification */
@@ -352,15 +312,16 @@ SmuStatusType initSMUAlarmsSMU(void)
     }
     /* Configure each Interrupt Generation Configuration Set according to user config */
     IfxScuWdt_clearSafetyEndinitInline (IfxScuWdt_getSafetyWatchdogPasswordInline ());
-
     IfxScuWdt_setSafetyEndinitInline (IfxScuWdt_getSafetyWatchdogPasswordInline ());
-
     /* Enable required interrupts */
     if (smuInterruptsToEnable & 0x1)
     {
-
         IfxSrc_init(&SRC_SMU_SMU0_SR0, IfxCpu_Irq_getTos(0), ISR_PRORITY_SMU_ISR_0);
         IfxSrc_enable(&SRC_SMU_SMU0_SR0);
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     if (smuInterruptsToEnable & 0x2)
@@ -369,6 +330,10 @@ SmuStatusType initSMUAlarmsSMU(void)
         IfxSrc_init(&SRC_SMU_SMU0_SR1, IfxCpu_Irq_getTos(1), ISR_PRORITY_SMU_ISR_1);
         IfxSrc_enable(&SRC_SMU_SMU0_SR1);
     }
+    else
+    {
+        /* Do nothing. */
+    }
 
     if (smuInterruptsToEnable & 0x4)
     {
@@ -376,11 +341,13 @@ SmuStatusType initSMUAlarmsSMU(void)
         IfxSrc_init(&SRC_SMU_SMU0_SR2, IfxCpu_Irq_getTos(2), ISR_PRORITY_SMU_ISR_2);
         IfxSrc_enable(&SRC_SMU_SMU0_SR2);
     }
-
+    else
+    {
+        /* Do nothing. */
+    }
     /* Non Maskable Interrupt config/enabling on CPUs */
     /* Comment and/or uncomment depending on the CPU targeted */
     IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
-
     /* Enable trap requests for the CPU, which takes care of the SMU software */
     SCU_TRAPDIS0.B.CPU0SMUT = 0;
 
@@ -415,7 +382,6 @@ void initFunctionExecutionStatusSMU(SmuExecutionStatusType *functionExecutionSta
     functionExecutionStatus->smuRecoveryTimerConfigSts          = NA;
     functionExecutionStatus->smuCoreSWAlarmTriggerSts           = NA;
 }
-
 /*
  * Initial SMU module
  * */
@@ -423,29 +389,27 @@ void initSMUModule(void)
 {
     /* Prevention of double SMU reset */
     IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
-    SCU_WDTSCON1.B.CLRIRF = 1;
-    IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
 
+    SCU_WDTSCON1.B.CLRIRF = 1;
+
+    IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
     /* Initialize the structure containing the execution state of SMU sensitive functions */
     initFunctionExecutionStatusSMU(&g_SafetyKitStatus.smuStatus);
-
     /* Enable the security Key test */
     enableKeysTestSMU();
-
     /* Reset alarmCounter */
     g_SafetyKitStatus.smuAlarmPending.alarmCounter = 0;
-
     /* Set result to fail */
     SmuStatusType result = fail;
-
     /* Fill the RuntimeAlarmHandle structures and configure alarms */
     result = initSMUAlarmsSMU();
-    g_SafetyKitStatus.smuStatus.smuCoreAlarmConfigSts = result;
 
+    g_SafetyKitStatus.smuStatus.smuCoreAlarmConfigSts = result;
     /* Enable and configure the PES */
     uint8 pesAction = onPESIGCS1;
 
     g_SafetyKitStatus.unlockConfig &= IfxSmu_unlockConfigRegisters();
+
     if (g_SafetyKitStatus.unlockConfig == TRUE)
     {
         g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = pass;
@@ -457,18 +421,24 @@ void initSMUModule(void)
 
     IfxSmu_configAlarmActionPES(pesAction);
     IfxSmu_temporaryLockConfigRegisters();
-
     /* Validation if PES configuration was successful */
     IfxScuWdt_clearSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline());
+
     if(MODULE_SMU.AGC.B.PES != pesAction)
     {
         result = fail;
     }
-    IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline());
-    g_SafetyKitStatus.smuStatus.smuCoreAlarmPESSetSts = result;
+    else
+    {
+        /* Do nothing. */
+    }
 
+    IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline());
+
+    g_SafetyKitStatus.smuStatus.smuCoreAlarmPESSetSts = result;
     /* Enable the SMU */
-    result = activatSMU();
+    result = activateSMU();
+
     g_SafetyKitStatus.smuStatus.smuCoreInitSts = result;
 }
 /*
@@ -571,11 +541,9 @@ void safetyKitEnableAllSMUAlarms(void)
         /* Restore back the write-protection for registers */
         IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
     }
-
     /* After configuration set temporary lock of SMU configuration */
     IfxSmu_temporaryLockConfigRegisters();
 }
-
 /*
  * test if the alarm is really a software alarm, then if so triggers it
  * SM:SMU:APPLICATION_SW_ALARM
@@ -583,13 +551,16 @@ void safetyKitEnableAllSMUAlarms(void)
 SmuStatusType softwareCoreAlarmTriggerSMU(IfxSmu_Alarm alarm)
 {
     boolean configApplied = FALSE;
-
     /* Check that the alarm is of the good group (10) and that the index is strictly lower
      * than 16 to be sure that the alarm given in parameter is a software alarm
      */
     if( ((alarm/32) == 10) & ((alarm%32) < 16) )
     {
         IfxSmu_setAlarmStatus(alarm);
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     configApplied = ~IfxSmu_getAlarmStatus(alarm);
@@ -604,7 +575,6 @@ SmuStatusType softwareCoreAlarmTriggerSMU(IfxSmu_Alarm alarm)
         return fail;
     }
 }
-
 /*
  * clear the alarm status flag in the AG registers and disable all the reaction
  * configured for this alarm.
@@ -615,8 +585,8 @@ SmuStatusType coreAlarmReactionClearSMU(RuntimeAlarmHandle *activeAlarm)
     SmuSR configIGCSGroup = SmuNAN;
 
     IfxSmu_clearAlarmStatus(activeAlarm->alarmConfig->alarm);
-    ack = (IfxSmu_getAlarmStatus(activeAlarm->alarmConfig->alarm) == 0);
 
+    ack = (IfxSmu_getAlarmStatus(activeAlarm->alarmConfig->alarm) == 0u);
     /* Also clear FSP alarm if FSP was configured to be triggered */
     if (activeAlarm->alarmConfig->externalReactionEnabled)
     {
@@ -624,9 +594,12 @@ SmuStatusType coreAlarmReactionClearSMU(RuntimeAlarmHandle *activeAlarm)
         IfxSmu_clearAlarmStatus(IfxSmu_Alarm_SMU_Error_PinFaultStateActivation);
         IfxSmu_releaseFSP();
     }
-
+    else
+    {
+        /* Do nothing. */
+    }
     /* Check if alarm group triggers a Port Emergency Stop */
-    if (MODULE_SMU.AGC.B.PES == (0x1 << (activeAlarm->alarmConfig->alarmReaction - 0x2)))
+    if (MODULE_SMU.AGC.B.PES == (0x1u << (activeAlarm->alarmConfig->alarmReaction - 0x2u)))
     {
         /* EMS has been triggered by SMU */
         if (SMU_AEX.B.EMSSTS && MODULE_SCU.EMSR.B.SEMSF)
@@ -634,49 +607,77 @@ SmuStatusType coreAlarmReactionClearSMU(RuntimeAlarmHandle *activeAlarm)
             /* Clear SMU EMS status flags */
             IfxScuWdt_clearSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
-            SMU_AEXCLR.B.EMSCLR = 1;
-            SMU_AEXCLR.B.EMSAEMCLR = 1;
+            SMU_AEXCLR.B.EMSCLR = 1u;
+            SMU_AEXCLR.B.EMSAEMCLR = 1u;
 
             IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
         }
+        else
+        {
+            /* Do nothing. */
+        }
     }
-
+    else
+    {
+        /* Do nothing. */
+    }
     /* Get the config of the used IGCS group */
-    for (uint8 i=0; i<3; i++)
+    for (uint8 i = 0u; i < 3u; i++)
     {
         if (activeAlarm->alarmConfig->alarmReaction == configArrayIGCS[i].igcs_id)
         {
             configIGCSGroup = configArrayIGCS[i].igcs_config;
             break;
         }
+        else
+        {
+            /* Do nothing. */
+        }
     }
-
     /* Reset necessary Action EXecuted IRQx flags */
-    if (configIGCSGroup & 0x1)
+    if (configIGCSGroup & 0x1u)
     {
         IfxScuWdt_clearSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
-        SMU_AEXCLR.B.IRQ0CLR = 1;
+
+        SMU_AEXCLR.B.IRQ0CLR = 1u;
+
         IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
         ack &= ~SMU_AEX.B.IRQ0STS;
     }
+    else
+    {
+        /* Do nothing. */
+    }
 
-    if (configIGCSGroup & 0x2)
+    if (configIGCSGroup & 0x2u)
     {
         IfxScuWdt_clearSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
-        SMU_AEXCLR.B.IRQ1CLR = 1;
+
+        SMU_AEXCLR.B.IRQ1CLR = 1u;
+
         IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
         ack &= ~SMU_AEX.B.IRQ1STS;
     }
+    else
+    {
+        /* Do nothing. */
+    }
 
-    if (configIGCSGroup & 0x4)
+    if (configIGCSGroup & 0x4u)
     {
         IfxScuWdt_clearSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
-        SMU_AEXCLR.B.IRQ2CLR = 1;
+
+        SMU_AEXCLR.B.IRQ2CLR = 1u;
+
         IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
         ack &= ~SMU_AEX.B.IRQ2STS;
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     if(ack)
@@ -685,20 +686,28 @@ SmuStatusType coreAlarmReactionClearSMU(RuntimeAlarmHandle *activeAlarm)
         /* If the alarm cleared is not the last of the pending alarm list, we need to replace its
          * value in the list by the last alarm of the list to avoid holes in the list
          */
-        if (!(g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter - 1]
-                                                                == activeAlarm))
+        if (!(g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter - 1u] == activeAlarm))
         {
-            for (uint16 i=0; i<USER_ALARM_NUMBER; i++)
+            for (uint16 i = 0u; i < USER_ALARM_NUMBER; i++)
             {
                 if (g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[i] == activeAlarm)
                 {
-                    g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[i] =
-                            g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter - 1];
+                    g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[i] =  g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter - 1u];
+                }
+                else
+                {
+                    /* Do nothing. */
                 }
             }
         }
+        else
+        {
+            /* Do nothing. */
+        }
+
         g_SafetyKitStatus.smuAlarmPending.alarmCounter--;
         activeAlarm->alarmState = notPending;
+
         return pass;
     }
     else
@@ -712,8 +721,9 @@ SmuStatusType coreAlarmReactionClearSMU(RuntimeAlarmHandle *activeAlarm)
  * */
 uint16 detectAlarmSourcSMU(RuntimeAlarmHandle *alarmArray, uint16 nbrAlarms)
 {
-    uint16 nbrAlarmReported = 0;
-    for (uint16 i=0; i<nbrAlarms; i++)
+    uint16 nbrAlarmReported = 0u;
+
+    for (uint16 i = 0u; i < nbrAlarms; i++)
     {
         if (alarmArray[i].alarmState == notPending)
         {
@@ -721,8 +731,7 @@ uint16 detectAlarmSourcSMU(RuntimeAlarmHandle *alarmArray, uint16 nbrAlarms)
             {
                 alarmArray[i].alarmState = pending;
                 __disable();
-                g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter] =&
-                        alarmArray[i];
+                g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[g_SafetyKitStatus.smuAlarmPending.alarmCounter] =& alarmArray[i];
                 g_SafetyKitStatus.smuAlarmPending.alarmCounter++;
                 __enable();
                 nbrAlarmReported++;
@@ -732,6 +741,14 @@ uint16 detectAlarmSourcSMU(RuntimeAlarmHandle *alarmArray, uint16 nbrAlarms)
                 {
                     (alarmArray[i].alarmConfig->functionToCallOnDetection)();
                 }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else
+            {
+                /* Do nothing. */
             }
         }
         else /* alarmArray[i].alarmState == pending */
@@ -742,8 +759,13 @@ uint16 detectAlarmSourcSMU(RuntimeAlarmHandle *alarmArray, uint16 nbrAlarms)
                  * Therefore only increment counter variable and do nothing else*/
                 nbrAlarmReported++;
             }
+            else
+            {
+                /* Do nothing. */
+            }
         }
     }
+
     return nbrAlarmReported;
 }
 /*
@@ -751,19 +773,23 @@ uint16 detectAlarmSourcSMU(RuntimeAlarmHandle *alarmArray, uint16 nbrAlarms)
  * */
 SmuStatusType resetAllAlarmsSMU(void)
 {
-
     SmuStatusType ack = fail;
     uint16 nbrAlarmToClear = g_SafetyKitStatus.smuAlarmPending.alarmCounter;
 
-    for (uint16 i=0; i<nbrAlarmToClear; i++)
+    for (uint16 i = 0u; i < nbrAlarmToClear; i++)
     {
         if ( IfxSmu_getAlarmStatus(g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[i]->alarmConfig->alarm) && \
                 (g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[i]->alarmState == pending))
         {
             ack = coreAlarmReactionClearSMU(g_SafetyKitStatus.smuAlarmPending.lastAlarmRaised[i]);
+
             if (ack == fail)
             {
                 return fail;
+            }
+            else
+            {
+                /* Do nothing. */
             }
         }
         else
@@ -774,20 +800,7 @@ SmuStatusType resetAllAlarmsSMU(void)
 
     return pass;
 }
-/*
- * Alarm handling functions
- * */
-void safetyKitWatchdogAlarmHandling(void)
-{
-    g_SafetyKitStatus.safetyKitRunTask.stopCpuWatchdogService = FALSE;
-    g_SafetyKitStatus.safetyKitRunTask.stopSafetyWatchdogService = FALSE;
-    McuSm_PerformResetHook(8, 11);
-}
-#if defined(__TASKING__)
 #pragma section code restore
 #pragma section fardata restore
 #pragma section farbss restore
 #pragma section farrom restore
-#else
-#error "Only TASKING is supported, add pragmas for your compiler"
-#endif

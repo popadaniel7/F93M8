@@ -18,8 +18,8 @@ uint8 WashingWipingCounter_CodingData = 0;
 /* Variable used to determine the time period of wiper interval. */
 uint16 WiperDelay_Vector[2][6][1] =
 {
-		{{1700}, {1200}, {1100}, {1000}, {900}, {700}},
-		{{600}, {500}, {400}, {300}, {200}, {100}}
+		{{1400}, {1300}, {1200}, {1100}, {1000}, {800}},
+		{{700}, {600}, {500}, {400}, {300}, {200}}
 };
 /* Variable used for speed intervals based on which the wiper actuate. */
 uint8 WiperSpeed_Vector[5] = {5, 15, 30, 40, 50};
@@ -37,6 +37,11 @@ uint8 StatusBodyControl_Recirc = 0;
 uint8 StatusBodyControl_Temperature = 0;
 /* CAN signals for climate fan control. */
 uint8 StatusBodyControl_OutsideTemp = 0;
+uint32 StatusActuator_ClimaFan_NCR __attribute__((section(".ncr")));
+uint32 StatusActuator_DoorLockLeft_NCR __attribute__((section(".ncr")));
+uint32 StatusActuator_DoorLockRight_NCR __attribute__((section(".ncr")));
+uint32 StatusActuator_WindshieldWiperLeft_NCR __attribute__((section(".ncr")));
+uint32 StatusActuator_WindshieldWiperRight_NCR __attribute__((section(".ncr")));
 /* VARIABLES END*/
 /* PROTOTYPE START */
 void ActCtrl_ClimaMainFunction(void);
@@ -54,10 +59,20 @@ void ActCtrl_ClimaMainFunction(void)
 	/* Coefficient calculation. */
 	static uint8 calculatedTemperatureValue = 0;
 	static uint32 localCounter = 0;
+	static uint8 flag = 0;
+
+	if(StatusList_OutputValue[4] == 3)
+	{
+		flag = 1;
+	}
+	else
+	{
+		/* Do nothing. */
+	}
 
 	if(0 == StatusBodyControl_FanValue)
 	{
-		if(StatusList_OutputValue[HC05_ARRPOS] == 3)
+		if(flag == 1)
 		{
 			calculatedPWM = 25 * 4;
 			localCounter++;
@@ -66,13 +81,14 @@ void ActCtrl_ClimaMainFunction(void)
 			{
 				calculatedPWM = 0;
 				localCounter = 0;
-				StatusList_OutputValue[HC05_ARRPOS] = 0;
+				StatusList_OutputValue[4] = 0;
+				StatusList_InputValue[4] = 0;
+				flag = 0;
 			}
 			else
 			{
 				/* Do nothing. */
 			}
-
 		}
 		else
 		{
@@ -81,49 +97,45 @@ void ActCtrl_ClimaMainFunction(void)
 	}
 	else
 	{
-		if(StatusList_OutputValue[HC05_ARRPOS] == 3)
+		if(StatusList_OutputValue[4] == 3)
 		{
-			StatusList_OutputValue[HC05_ARRPOS] = 0;
+			StatusList_OutputValue[4] = 0;
+			StatusList_InputValue[4] = 0;
 		}
 		else
 		{
 			/* Do nothing. */
 		}
-	}
-	/* Manual control. */
-	if(0 == StatusBodyControl_Auto) calculatedPWM = 25 * StatusBodyControl_FanValue;
-	else
-	{
-		/* Scale down. */
-		autoFanValue = (StatusBodyControl_FanValue / 2) + 1;
-		/* Check requested recirculation state to be AUTO. */
-		if(2 == StatusBodyControl_Recirc)
-		{
-			/* Calculate recirculation coefficient that impacts the final PWM value of the climate fan.
-			 * This does not have an impact on how should a climate fan in a car behave I would assume.
-			 * But for the sake of example and demonstration of functionality, this is present here.
-			 * So the fan acts according to the design, in the end! */
-			if(1 == StatusList_ComOutValue[GSNS_ARRPOS] && 1 == StatusList_ComOutValue[AQSNS_ARRPOS]) recirculationCalculatedValue = 4;
-			else if(1 == StatusList_ComOutValue[GSNS_ARRPOS] || 1 == StatusList_ComOutValue[AQSNS_ARRPOS]) recirculationCalculatedValue = 3;
-			else recirculationCalculatedValue = 2;
-		}
-		else recirculationCalculatedValue = 1;
-		/* Calculate the coefficient of the fan speed applied based on the difference of the temperature: requested versus outside. */
-		if(0 == StatusBodyControl_OutsideTemp && 0 == StatusBodyControl_Temperature) calculatedTemperatureValue = 1;
+		flag = 0;
+		/* Manual control. */
+		if(0 == StatusBodyControl_Auto) calculatedPWM = 25 * StatusBodyControl_FanValue;
 		else
 		{
-			if(abs(StatusBodyControl_OutsideTemp - StatusBodyControl_Temperature) > 16) calculatedTemperatureValue = 16;
-			else calculatedTemperatureValue = abs(StatusBodyControl_OutsideTemp - StatusBodyControl_Temperature);
-		}
-		/* Calculate the PWM value to be applied to the fan. */
-		calculatedPWM = 8 * (calculatedTemperatureValue + recirculationCalculatedValue + autoFanValue);
-		/* Scale it down. */
-		calculatedPWM = (calculatedPWM / 5) * 5;
-		/* Fan value requested 0 means no fan. */
-		if(0 == StatusBodyControl_FanValue) calculatedPWM = 0;
-		else
-		{
-			/* Do nothing. */
+			/* Scale down. */
+			autoFanValue = (StatusBodyControl_FanValue / 2) + 1;
+			/* Check requested recirculation state to be AUTO. */
+			if(2 == StatusBodyControl_Recirc)
+			{
+				recirculationCalculatedValue = 2;
+			}
+			else recirculationCalculatedValue = 1;
+			/* Calculate the coefficient of the fan speed applied based on the difference of the temperature: requested versus outside. */
+			if(0 == StatusBodyControl_OutsideTemp && 0 == StatusBodyControl_Temperature) calculatedTemperatureValue = 1;
+			else
+			{
+				if(abs(StatusBodyControl_OutsideTemp - StatusBodyControl_Temperature) > 16) calculatedTemperatureValue = 16;
+				else calculatedTemperatureValue = abs(StatusBodyControl_OutsideTemp - StatusBodyControl_Temperature);
+			}
+			/* Calculate the PWM value to be applied to the fan. */
+			calculatedPWM = 8 * (calculatedTemperatureValue + recirculationCalculatedValue + autoFanValue);
+			/* Scale it down. */
+			calculatedPWM = (calculatedPWM / 5) * 5;
+			/* Fan value requested 0 means no fan. */
+			if(0 == StatusBodyControl_FanValue) calculatedPWM = 0;
+			else
+			{
+				/* Do nothing. */
+			}
 		}
 	}
 	/* Apply the correct PWM to the MOSFET board that controls the speed of the fan. */
@@ -155,48 +167,92 @@ void ActCtrl_MainFunction(void)
 	static uint32 washingCounter = 0;
 	/* Wait before setting the wipers to default position. */
 	static uint32 washingTimeStamp = 0;
-	/* Process climate fan. */
-	ActCtrl_ClimaMainFunction();
+	if(ActCtrl_MainCounter == 0)
+	{
+		htim2.Instance->CCR1 = StatusActuator_ClimaFan_NCR;
+		htim3.Instance->CCR3 = StatusActuator_DoorLockLeft_NCR;
+		htim3.Instance->CCR2 = StatusActuator_DoorLockRight_NCR;
+		htim3.Instance->CCR1 = StatusActuator_WindshieldWiperLeft_NCR;
+		htim3.Instance->CCR4 = StatusActuator_WindshieldWiperRight_NCR;
+	}
+	else
+	{
+		/* Do nothing. */
+	}
 	/* Process the PWM value based on CAN command. */
 	/* Invalidate PWM registers if TIM error is detected. */
 	if(Tim_ErrorStatus[0] == 0)
 	{
-		/* Do nothing. */
+		/* Process climate fan. */
+		ActCtrl_ClimaMainFunction();
 	}
 	else htim2.Instance->CCR1 = 0;
 	/* Invalidate PWM registers if TIM error is detected. */
 	if(Tim_ErrorStatus[1] == 0)
 	{
+		static uint8 pinState = 0;
+		pinState = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+		if(0 == pinState)
+		{
+			StatusList_OutputValue[4] = 2;
+			StatusList_InputValue[4] = 2;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
 		/* If latest command from received via BT is 1. */
-		if(StatusList_OutputValue[HC05_ARRPOS] == 1)
+		if(StatusList_OutputValue[4] == 1)
 		{
 			/* Door lock left */
-			if(1250 - Param_DoorLockPwmIncrement > htim3.Instance->CCR1) htim3.Instance->CCR1 += Param_DoorLockPwmIncrement;
+			if(1250 - Param_DoorLockPwmIncrement > htim3.Instance->CCR3)
+			{
+				htim3.Instance->CCR3 += Param_DoorLockPwmIncrement;
+			}
 			else
 			{
 				/* Do nothing. */
 			}
 			/* Door lock right */
-			if(1250 - Param_DoorLockPwmIncrement > htim3.Instance->CCR2) htim3.Instance->CCR2 += Param_DoorLockPwmIncrement;
+			if(1250 - Param_DoorLockPwmIncrement > htim3.Instance->CCR2)
+			{
+				htim3.Instance->CCR2 += Param_DoorLockPwmIncrement;
+			}
 			else
 			{
 				/* Do nothing. */
 			}
 		}/* Else close the doors. */
-		else if(StatusList_OutputValue[HC05_ARRPOS] == 2)
+		else if(StatusList_OutputValue[4] == 2)
 		{
 			/* Door lock left */
-			if(Param_DoorLockPwmIncrement < htim3.Instance->CCR1) htim3.Instance->CCR1 -= Param_DoorLockPwmIncrement;
+			if(Param_DoorLockPwmIncrement < htim3.Instance->CCR3)
+			{
+				htim3.Instance->CCR3 -= Param_DoorLockPwmIncrement;
+			}
 			else
 			{
 				/* Do nothing. */
 			}
 			/* Door lock right */
-			if(Param_DoorLockPwmIncrement < htim3.Instance->CCR2) htim3.Instance->CCR2 -= Param_DoorLockPwmIncrement;
+			if(Param_DoorLockPwmIncrement < htim3.Instance->CCR2)
+			{
+				htim3.Instance->CCR2 -= Param_DoorLockPwmIncrement;
+			}
 			else
 			{
 				/* Do nothing. */
 			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		if(Param_DoorLockPwmIncrement > htim3.Instance->CCR2 &&
+				Param_DoorLockPwmIncrement > htim3.Instance->CCR3)
+		{
+			StatusList_OutputValue[4] = 0;
+			StatusList_InputValue[4] = 0;
 		}
 		else
 		{
@@ -220,9 +276,9 @@ void ActCtrl_MainFunction(void)
 			if(wiperStatus_speedInterval < 6)
 			{
 				/* Update the PWM registers. */
-				if(htim3.Instance->CCR3 < (1250 - Param_WindshieldWiperSlow_Calibration) && htim3.Instance->CCR4 < (1250 - Param_WindshieldWiperSlow_Calibration))
+				if(htim3.Instance->CCR1 < (1250 - Param_WindshieldWiperSlow_Calibration) && htim3.Instance->CCR4 < (1250 - Param_WindshieldWiperSlow_Calibration))
 				{
-					htim3.Instance->CCR3 += Param_WindshieldWiperSlow_Calibration;
+					htim3.Instance->CCR1 += Param_WindshieldWiperSlow_Calibration;
 					htim3.Instance->CCR4 += Param_WindshieldWiperSlow_Calibration;
 				}
 				else
@@ -238,9 +294,9 @@ void ActCtrl_MainFunction(void)
 			else
 			{
 				/* Update the PWM registers. */
-				if(htim3.Instance->CCR3 < (1250 - Param_WindshieldWiperFast_Calibration) && htim3.Instance->CCR4 < (1250 - Param_WindshieldWiperFast_Calibration))
+				if(htim3.Instance->CCR1 < (1250 - Param_WindshieldWiperFast_Calibration) && htim3.Instance->CCR4 < (1250 - Param_WindshieldWiperFast_Calibration))
 				{
-					htim3.Instance->CCR3 += Param_WindshieldWiperFast_Calibration;
+					htim3.Instance->CCR1 += Param_WindshieldWiperFast_Calibration;
 					htim3.Instance->CCR4 += Param_WindshieldWiperFast_Calibration;
 				}
 				else
@@ -260,9 +316,9 @@ void ActCtrl_MainFunction(void)
 			if(wiperStatus_speedInterval < 6)
 			{
 				/* Update the PWM registers. */
-				if(htim3.Instance->CCR3 > Param_WindshieldWiperSlow_Calibration && htim3.Instance->CCR4 > Param_WindshieldWiperSlow_Calibration)
+				if(htim3.Instance->CCR1 > Param_WindshieldWiperSlow_Calibration && htim3.Instance->CCR4 > Param_WindshieldWiperSlow_Calibration)
 				{
-					htim3.Instance->CCR3 -= Param_WindshieldWiperSlow_Calibration;
+					htim3.Instance->CCR1 -= Param_WindshieldWiperSlow_Calibration;
 					htim3.Instance->CCR4 -= Param_WindshieldWiperSlow_Calibration;
 				}
 				else
@@ -271,7 +327,7 @@ void ActCtrl_MainFunction(void)
 					if(wiperTravel_completed == 2)
 					{
 						wiperTravel_completed = 0;
-						htim3.Instance->CCR3 = 0;
+						htim3.Instance->CCR1 = 0;
 						htim3.Instance->CCR4 = 0;
 					}
 					else
@@ -283,9 +339,9 @@ void ActCtrl_MainFunction(void)
 			else if(wiperStatus_speedInterval == 6)
 			{
 				/* Update the PWM registers. */
-				if(htim3.Instance->CCR3 > Param_WindshieldWiperFast_Calibration && htim3.Instance->CCR4 > Param_WindshieldWiperFast_Calibration)
+				if(htim3.Instance->CCR1 > Param_WindshieldWiperFast_Calibration && htim3.Instance->CCR4 > Param_WindshieldWiperFast_Calibration)
 				{
-					htim3.Instance->CCR3 -= Param_WindshieldWiperFast_Calibration;
+					htim3.Instance->CCR1 -= Param_WindshieldWiperFast_Calibration;
 					htim3.Instance->CCR4 -= Param_WindshieldWiperFast_Calibration;
 				}
 				else
@@ -294,7 +350,7 @@ void ActCtrl_MainFunction(void)
 					if(wiperTravel_completed == 2)
 					{
 						wiperTravel_completed = 0;
-						htim3.Instance->CCR3 = 0;
+						htim3.Instance->CCR1 = 0;
 						htim3.Instance->CCR4 = 0;
 					}
 					else
@@ -313,7 +369,7 @@ void ActCtrl_MainFunction(void)
 			/* Do nothing. */
 		}
 		/* If auto mode is selected. */
-		if(WiperStock_VehicleState == 1 && StatusList_OutputValue[RSNS_ARRPOS] >= 3000)
+		if(WiperStock_VehicleState == 1 && StatusList_OutputValue[3] >= 3000)
 		{
 			if(wiperTravel_completed == 0) wiperTravel_completed = 1;
 			else
@@ -415,18 +471,24 @@ void ActCtrl_MainFunction(void)
 		wiperStatus_speedInterval = 0;
 	}
 	/* Update the variables that are sent on CAN. */
-	CmdList_RawValue[WWR_ARRPOS] = (htim3.Instance->CCR3 * 255) / 1250;
-	CmdList_RawValue[WWL_ARRPOS] = (htim3.Instance->CCR4  * 255) / 1250;
-	CmdList_RawValue[DLL_ARRPOS] = (htim3.Instance->CCR1  * 255) / 1250;
+	CmdList_RawValue[WWR_ARRPOS] = (htim3.Instance->CCR4 * 255) / 1250;
+	CmdList_RawValue[WWL_ARRPOS] = (htim3.Instance->CCR1  * 255) / 1250;
+	CmdList_RawValue[DLL_ARRPOS] = (htim3.Instance->CCR3  * 255) / 1250;
 	CmdList_RawValue[DLR_ARRPOS] = (htim3.Instance->CCR2  * 255) / 1250;
 	CmdList_RawValue[CLIMA_ARRPOS] = (htim2.Instance->CCR1 * 255) / 100;
-	CmdList_ActualValue[WWR_ARRPOS] = (htim3.Instance->CCR3 * 255) / 1250;
-	CmdList_ActualValue[WWL_ARRPOS] = (htim3.Instance->CCR4 * 255) / 1250;
-	CmdList_ActualValue[DLL_ARRPOS] = htim3.Instance->CCR1 / 255;
+	CmdList_ActualValue[WWR_ARRPOS] = (htim3.Instance->CCR4 * 255) / 1250;
+	CmdList_ActualValue[WWL_ARRPOS] = (htim3.Instance->CCR1 * 255) / 1250;
+	CmdList_ActualValue[DLL_ARRPOS] = htim3.Instance->CCR3 / 255;
 	CmdList_ActualValue[DLR_ARRPOS] = htim3.Instance->CCR2 / 255;
 	CmdList_ActualValue[CLIMA_ARRPOS] = htim2.Instance->CCR1;
+	StatusActuator_ClimaFan_NCR = htim2.Instance->CCR1;
+	StatusActuator_DoorLockLeft_NCR = htim3.Instance->CCR3;
+	StatusActuator_DoorLockRight_NCR = htim3.Instance->CCR2;
+	StatusActuator_WindshieldWiperLeft_NCR = htim3.Instance->CCR1;
+	StatusActuator_WindshieldWiperRight_NCR = htim3.Instance->CCR4;
 	/* Increment the main counter. */
 	ActCtrl_MainCounter++;
+
 }
 /* FUNCTIONS END */
 /* STOP OF FILE */

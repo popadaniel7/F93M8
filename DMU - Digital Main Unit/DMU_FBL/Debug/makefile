@@ -76,6 +76,21 @@ default.size.stdout \
 OBJDUMP_LIST += \
 DMU_FBL.list \
 
+OBJCOPY_HEX += \
+DMU_FBL.hex \
+
+OBJCOPY_BIN += \
+DMU_FBL.bin \
+
+OBJCOPY_VERILOG += \
+DMU_FBL.verilog \
+
+OBJCOPY_SREC += \
+DMU_FBL.srec \
+
+OBJCOPY_SYMBOLSREC += \
+DMU_FBL.symbolsrec \
+
 
 # All Target
 all: main-build
@@ -99,12 +114,37 @@ DMU_FBL.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+DMU_FBL.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "DMU_FBL.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+DMU_FBL.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "DMU_FBL.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+DMU_FBL.verilog: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O verilog $(EXECUTABLES) "DMU_FBL.verilog"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+DMU_FBL.srec: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O srec $(EXECUTABLES) "DMU_FBL.srec"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+DMU_FBL.symbolsrec: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O symbolsrec $(EXECUTABLES) "DMU_FBL.symbolsrec"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) DMU_FBL.elf DMU_FBL.list DMU_FBL.map default.size.stdout
+	-$(RM) DMU_FBL.bin DMU_FBL.elf DMU_FBL.hex DMU_FBL.list DMU_FBL.map DMU_FBL.srec DMU_FBL.symbolsrec DMU_FBL.verilog default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN) $(OBJCOPY_VERILOG) $(OBJCOPY_SREC) $(OBJCOPY_SYMBOLSREC)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

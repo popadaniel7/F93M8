@@ -73,6 +73,8 @@ uint8 globalCounter32bytes;
 uint8 FBL_RxFrame[8u] = {0u};
 uint8 FBL_TxFrame[8u] = {0u};
 FBL_DSC_t FBL_DSC_State = JUMPTOAPPL;
+volatile uint32 appEntryGlobal;
+uint8 FBL_ResetCounter __at(0xB00001B0U);
 
 IFX_INTERRUPT(ISR_CanRx, 0u, 1u);
 void Can_Init(void);
@@ -112,10 +114,21 @@ void core0_main(void)
     gpio_init_pins();
     can0_node0_init_pins();
     Can_Init();
+
     FBL_ProgrammingAddress = 0u;
     FBL_ProgrammingIndex = 0u;
     FBL_DSC_Pointer = (uint32*)(SESSIONSTATUS_ADDR);
     FBL_DSC_Status = *FBL_DSC_Pointer;
+
+    if(50u == FBL_ResetCounter)
+    {
+        FBL_DSC_Status = PROGRAMMING;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
     FBL_CopyFunctionsToPSPR();
     IfxCpu_enableInterrupts();
 
@@ -397,7 +410,7 @@ void FBL_DiagService_RAR_MassEraseAPPL(void)
     g_mcmcan.txMsg.dataLengthCode = 0u;
     IfxCpu_enableInterrupts();
 }
-volatile uint32 appEntryGlobal;
+
 void FBL_JumpToAppl(void)
 {
     appEntryGlobal = APPL_START_ADDRESS;

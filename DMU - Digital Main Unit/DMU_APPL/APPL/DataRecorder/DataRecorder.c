@@ -11,11 +11,8 @@ __attribute__((section(".ccmram"))) float aux_km1 = 0;
 __attribute__((section(".ccmram"))) float aux_km2 = 0;
 __attribute__((section(".ccmram"))) float fin_aux_km1 = 0;
 __attribute__((section(".ccmram"))) float fin_aux_km2 = 0;
-extern __attribute__((section(".ccmram"))) uint32 Ain_MeasValues[3];
 extern __attribute__((section(".ccmram"))) uint32 RevCam_DcmiStatus;
 extern __attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus;
-extern __attribute__((section(".ccmram"))) float Ain_McuTemp;
-extern __attribute__((section(".ccmram"))) float Ain_Vbat;
 extern __attribute__((section(".ccmram"))) uint32 vehSpeedConv;
 void DataRecorder_MainFunction(void);
 void DataRecorder_MainFunction(void)

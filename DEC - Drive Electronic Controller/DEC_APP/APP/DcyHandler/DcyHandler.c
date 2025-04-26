@@ -1,12 +1,12 @@
 #include "DcyHandler.h"
 
 static uint32 DcyHandler_MainCounter = 0u;
-uint8 DcyHandler_CanRx_IgnitionState = 255u;
-uint8 DcyHandler_CanRx_ResetDcy = 255u;
-uint8 DcyHandler_CanRx_GearboxState = 255u;
-uint8 DcyHandler_CanRx_VehicleSpeed = 255u;
-uint8 DcyHandler_CanTx_InVehicleSafetyErrorFlag = 255u;
-uint8 DcyHandler_CanRx_RequestDiagnosisMode = 255u;
+uint8 DcyHandler_CanRx_IgnitionState = 254u;
+uint8 DcyHandler_CanRx_ResetDcy = 0u;
+uint8 DcyHandler_CanRx_GearboxState = 0u;
+uint8 DcyHandler_CanRx_VehicleSpeed = 0u;
+uint8 DcyHandler_CanTx_InVehicleSafetyErrorFlag = 254u;
+uint8 DcyHandler_CanRx_RequestDiagnosisMode = 0u;
 DcyHandler_DcyStatus_t DcyHandler_CanTx_DcyStatus = DCY_INIT;
 DcyHandler_VehicleState_t DcyHandler_CanTx_VehicleState = VEHSTATE_INIT;
 
@@ -14,6 +14,8 @@ void DcyHandler_MainFunction(void);
 
 void DcyHandler_MainFunction(void)
 {
+    static uint32 localTimestamp = 0u;
+
     if(0u == DcyHandler_CanTx_InVehicleSafetyErrorFlag)
     {
         switch(DcyHandler_CanRx_IgnitionState)
@@ -37,7 +39,7 @@ void DcyHandler_MainFunction(void)
                 {
                     case 0u:
                         DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
-                        DcyHandler_CanTx_VehicleState = VEHSTATE_PRE_DRIVE_CHECK;
+                        DcyHandler_CanTx_VehicleState = VEHSTATE_STANDING;
                         break;
                     case 1u:
                         DcyHandler_CanTx_DcyStatus = DCY_START;
@@ -90,6 +92,24 @@ void DcyHandler_MainFunction(void)
     if(1u == DcyHandler_CanRx_ResetDcy)
     {
         DcyHandler_CanTx_DcyStatus = DCY_END;
+
+        if(0u == localTimestamp)
+        {
+            localTimestamp = DcyHandler_MainCounter;
+        }
+        else
+        {
+            if(200u > DcyHandler_MainCounter - localTimestamp)
+            {
+                DcyHandler_CanRx_ResetDcy = 0u;
+                DcyHandler_CanTx_DcyStatus = DCY_INIT;
+                localTimestamp = 0u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
     }
     else
     {

@@ -4,7 +4,7 @@
 /* INCLUDE END */
 /* VARIABLES START */
 extern uint32 Adc_Error[3];
-extern uint16 Ain_Mux[10];
+extern uint16 Ain_Mux[4];
 /* VARIABLES END */
 /* FUNCTIONS START */
 extern void Ain_MainFunction(void);

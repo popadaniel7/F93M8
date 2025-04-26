@@ -24,20 +24,16 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
 #include "SafetyKit_SSW_03_MCU_STARTUP.h"
 #include "SafetyKit_Main.h"
 #include "IfxFce_reg.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
 #define MCU_STARTUP_EXPECTED_CRC 0x32CB1E1C//0xB4F361B7
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -46,7 +42,6 @@ typedef struct
         volatile Ifx_UReg_32Bit* regUnderTest;
         uint32  mask;
 } McuStartupType;
-
 const McuStartupType mcuStartupCheck [] =
 {
         /* regUnderTest,                mask        */
@@ -63,31 +58,6 @@ const McuStartupType mcuStartupCheck [] =
         { &DMU_HP_PROCONP13.U,       0xFFFFFFFFU     },
         { &DMU_HP_PROCONP14.U,       0xFFFFFFFFU     },
         { &DMU_HP_PROCONP15.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP20.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP21.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP22.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP23.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP24.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP25.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP30.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP31.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP32.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP33.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP34.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP35.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP40.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP41.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP42.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP43.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP44.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP45.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP50.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP51.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP52.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP53.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP54.U,       0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONP55.U,       0xFFFFFFFFU     },
-
         { &DMU_HF_PROCONPF.U,        0x80000000U     },
         { &DMU_HF_PROCONUSR.U,       0xFFFFFFFFU     },
         { &DMU_HF_PROCONDF.U,        0xFFFFFFFFU     },
@@ -101,7 +71,6 @@ const McuStartupType mcuStartupCheck [] =
         { &DMU_SP_PROCONHSMCOTP0.U,  0xFFFFFFFFU     }, /* only if in use */
         { &DMU_SP_PROCONHSMCOTP1.U,  0xFFFFFFFFU     }, /* only if in use */
         { &DMU_SP_PROCONHSMCFG.U,    0xFFFFFFFFU     }, /* only if in use */
-
         { &DMU_HP_PROCONOTP00.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONOTP01.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONOTP02.U,     0xFFFFFFFFU     },
@@ -114,31 +83,6 @@ const McuStartupType mcuStartupCheck [] =
         { &DMU_HP_PROCONOTP13.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONOTP14.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONOTP15.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP20.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP21.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP22.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP23.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP24.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP25.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP30.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP31.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP32.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP33.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP34.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP35.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP40.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP41.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP42.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP43.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP44.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP45.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP50.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP51.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP52.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP53.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP54.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONOTP55.U,     0xFFFFFFFFU     },
-
         { &DMU_HP_PROCONWOP00.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONWOP01.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONWOP02.U,     0xFFFFFFFFU     },
@@ -151,49 +95,18 @@ const McuStartupType mcuStartupCheck [] =
         { &DMU_HP_PROCONWOP13.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONWOP14.U,     0xFFFFFFFFU     },
         { &DMU_HP_PROCONWOP15.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP20.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP21.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP22.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP23.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP24.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP25.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP30.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP31.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP32.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP33.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP34.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP35.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP40.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP41.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP42.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP43.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP44.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP45.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP50.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP51.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP52.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP53.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP54.U,     0xFFFFFFFFU     },
-        //    { &DMU_HP_PROCONWOP55.U,     0xFFFFFFFFU     },
         { &DMU_HF_PROCONTP.U,        0xFFFFFFFFU     },
-
-        //    { &RIF0_LVDSCON1.U,          0x00380000U     }, /* RIF not always available */
-        //    { &RIF1_LVDSCON1.U,          0x00380000U     },
         { &SCU_STSTAT.U,             0x000000FFU     }, /*Exception for TC33x and TC32 -> PMSWSTAT.HWCFGEVR.U */
 };
-
 const int mcuStartupCheckSize = sizeof(mcuStartupCheck) / sizeof (McuStartupType);
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
 void initFCE(void);
 uint32 calculateCRC32P4(uint32 seedVal, uint32 inputData);
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -205,18 +118,15 @@ void safetyKitSswMcuStartup(void)
     /* Initialize FCE module for CRC calculation
      * Note: FCE module is used as there is a CRC instruction bug with the TASKING compiler version used in ADS */
     initFCE();
-
     /* Set crc_value to initial seed value */
     uint32 initialSeed = 0xFFFFFFFF;
     uint32 crcValue    = initialSeed;
-
     /* And start to calculate the CRC value for all register values */
     for(uint8 i = 0; i < mcuStartupCheckSize; i++)
     {
         uint32 currentRegValue = *(volatile uint32 *)mcuStartupCheck[i].regUnderTest;
         crcValue = calculateCRC32P4(crcValue, (currentRegValue & mcuStartupCheck[i].mask));
     }
-
     /* If value is not as expected appropriate reaction shall be taken */
     if(crcValue != MCU_STARTUP_EXPECTED_CRC)
     {
@@ -227,7 +137,6 @@ void safetyKitSswMcuStartup(void)
         g_SafetyKitStatus.sswStatus.mcuStartupStatus = passed;
     }
 }
-
 /*---------------------------------------------------------------------------------------------*/
 /*                                           FCE                                               */
 /*---------------------------------------------------------------------------------------------*/
@@ -237,12 +146,13 @@ void safetyKitSswMcuStartup(void)
 void initFCE(void)
 {
     uint16 password = IfxScuWdt_getCpuWatchdogPassword();
-    IfxScuWdt_clearCpuEndinit(password);
 
+    IfxScuWdt_clearCpuEndinit(password);
     /* Enable FCE */
     FCE_CLC.B.DISR = 0x0;
 
     Ifx_FCE_IN_CFG fcecfg;
+
     fcecfg.U = 0;
     fcecfg.B.KERNEL     = 1;    /* For AUTOSAR safety polynomial CRC32P4 */
     fcecfg.B.XSEL       = 1;    /* XOR with 0xFFFFFFFF */
@@ -252,7 +162,6 @@ void initFCE(void)
 
     IfxScuWdt_setCpuEndinit(password);
 }
-
 /*
  * Note: FCE module is used as there is a CRC instruction bug with the TASKING compiler version used in ADS
  * */
@@ -260,10 +169,8 @@ uint32 calculateCRC32P4(uint32 seedVal, uint32 inputData)
 {
     /* Set CRC initial value (seed) */
     FCE_CRC0.U = seedVal;
-
     /* Write input_val into the FCE input register */
     FCE_IN0_IR.U = inputData;
-
     /* Return the calculated CRC result */
     return FCE_IN0_RES.U;
 }

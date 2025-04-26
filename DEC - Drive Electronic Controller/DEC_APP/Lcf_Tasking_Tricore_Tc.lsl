@@ -25,16 +25,16 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-#define LCF_CSA0_SIZE               3k
-#define LCF_USTACK0_SIZE            4k
-#define LCF_ISTACK0_SIZE            4k
-#define LCF_CSA1_SIZE               3k
+#define LCF_CSA0_SIZE               700
+#define LCF_USTACK0_SIZE            3k
+#define LCF_ISTACK0_SIZE            3k
+#define LCF_CSA1_SIZE               100
 #define LCF_USTACK1_SIZE            1k
 #define LCF_ISTACK1_SIZE            1k
-#define LCF_CSA2_SIZE               3k
+#define LCF_CSA2_SIZE               100
 #define LCF_USTACK2_SIZE            1k
 #define LCF_ISTACK2_SIZE            1k
-#define LCF_HEAP_SIZE               1k
+#define LCF_HEAP_SIZE               3k
 #define LCF_CPU0                    0
 #define LCF_CPU1                    1
 #define LCF_CPU2                    2

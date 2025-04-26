@@ -24,8 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -33,23 +31,18 @@
 #include "SafetyKit_Main.h"
 #include "IfxSmu.h"
 #include "IfxSmuStdby.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -62,40 +55,34 @@ void safetyKitSswAliveAlarmTest(void)
     g_SafetyKitStatus.smuStatus.smuCoreAliveTestClearSts   = NA;
 
     if((g_SafetyKitStatus.resetCode.resetType == safetyKitResetTypeColdpoweron) ||
-       (g_SafetyKitStatus.resetCode.resetType == safetyKitResetTypeLbist))
+            (g_SafetyKitStatus.resetCode.resetType == safetyKitResetTypeLbist))
     {
         /* Start SMU Alive Test */
         IfxSmu_startAliveTest();
-
         /* Poll for command status (success) */
         uint8 timeout = 0xFF;
         while (SMU_STS.B.RES != 0U && timeout > 0)
         {
             timeout--;
         }
-
         /* Wait for ALM21[16] - SMU Alive Monitor Alarm */
         while(IfxSmuStdby_getSmuStdbyAlarmStatus(21, 16) != IfxSmuStdby_AlarmStatusFlag_faultExist)
         {
             __nop();
         }
-
         /* Set smuCoreAliveTestSts SMU status variable which is displayed on TFT */
         g_SafetyKitStatus.smuStatus.smuCoreAliveTestSts = pass;
-
         /* Stop alive test */
         IfxSmu_stopAliveTest();
-
         /* Clear the ALM21[16] which is triggered by the Core alive test */
         IfxSmuStdby_setSmuStdbyAlarmStatusFlag(21, 16, IfxSmuStdby_AlarmStatusFlag_faultExist);
-
         /* Poll for command status (success) */
         timeout = 0xFF;
+
         while (SMU_STS.B.RES != 0U && timeout > 0)
         {
             timeout--;
         }
-
         /* Check if alarm is cleared */
         if(IfxSmuStdby_getSmuStdbyAlarmStatus(21, 16) == IfxSmuStdby_AlarmStatusFlag_noFaultExist)
         {
@@ -111,5 +98,9 @@ void safetyKitSswAliveAlarmTest(void)
             /* Set smuCoreAliveTestClearSts SMU status variable which is displayed on TFT */
             g_SafetyKitStatus.smuStatus.smuCoreAliveTestClearSts = fail;
         }
+    }
+    else
+    {
+        /* Do nothing. */
     }
 }

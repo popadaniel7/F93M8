@@ -16,22 +16,19 @@
 /* INCLUDE END */
 /* VARIABLES START */
 uint8 EcuM_WakeupReason = 0;
-EcuMSystem_st EcuMSystem_OvwArr __attribute__((section(".ncr")));
-EcuMError_t EcuM_ErrorHistory[8] __attribute__((section(".ncr")));
-EcuMWakeup_t EcuM_WakeupHistory[8] __attribute__((section(".ncr")));
-static uint8 EcuM_WakeupHistoryCounter __attribute__((section(".ncr")));
-static uint8 EcuM_ErrorHistoryCounter __attribute__((section(".ncr")));
-extern uint32 Dcm_AliveCounter __attribute__((section(".ncr")));
 EcuMStates_t EcuM_State = STARTUP;
-uint8 EcuM_Hc05StatePinCheck = 0;
-uint8 EcuM_SleepModeState = 0;
-uint32 EcuM_CyclicWakeupCounter = 0;
 static uint32 EcuM_MainCounter = 0;
 static uint32 EcuM_PostrunTimer = 0;
+uint8 EcuM_LastResetReason __attribute__((section(".ncr")));
+uint32 EcuM_ResetCounter __attribute__((section(".ncr")));
+extern uint32 Dcm_AliveCounter __attribute__((section(".ncr")));
+extern TIM_HandleTypeDef        htim5;
+extern uint32 StatusList_OutputValue[5];
 /* VARIABLES END */
 /* FUNCTIONS START */
 void EcuM_MainFunction(void);
 void EcuM_PerformReset(EcuMReset_t param);
+void EcuM_ProcessTimerInterrupt(void);
 static void EcuM_ProcessEcuState(void);
 static void EcuM_GoSleep(void);
 static void EcuM_ProcessFaultState(void);
@@ -49,8 +46,8 @@ void EcuM_PerformReset(EcuMReset_t param)
 	if(param)
 	{
 		Dcm_AliveCounter = 0;
-		EcuMSystem_OvwArr.resetArr[param].reset = param;
-		EcuMSystem_OvwArr.resetArr[param].counter++;
+		EcuM_LastResetReason = param;
+		EcuM_ResetCounter++;
 	}
 	else
 	{
@@ -60,182 +57,53 @@ void EcuM_PerformReset(EcuMReset_t param)
 }
 static void EcuM_ProcessFaultState(void)
 {
-	uint8 localCounter = 0;
-	if((RCC->CSR & RCC_CSR_IWDGRSTF) != 0)
+	static uint8 firstRun = 0;
+	RCC->CSR |= RCC_CSR_RMVF;
+	if(firstRun == 0)
 	{
-		/* Set the wake-up event. */
-		if(EcuM_ErrorHistoryCounter < 8)
+		firstRun = 1;
+
+		for(uint8 i = 0; i < DEM_SIZE_OF_DTC_ARRAY; i++)
 		{
-			EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = IWDG_RESET_H;
-			EcuM_ErrorHistoryCounter++;
-		}
-		else
-		{
-			EcuM_ErrorHistoryCounter = 0;
-			EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = IWDG_RESET_H;
-			EcuM_ErrorHistoryCounter++;
-		}
-		if(EcuM_WakeupHistoryCounter < 8)
-		{
-			EcuM_WakeupHistory[EcuM_WakeupHistoryCounter] = IWDG_WAKEUP;
-			EcuM_WakeupHistoryCounter++;
-		}
-		else
-		{
-			EcuM_WakeupHistoryCounter = 0;
-			EcuM_WakeupHistory[EcuM_WakeupHistoryCounter] = IWDG_WAKEUP;
-			EcuM_WakeupHistoryCounter++;
-		}
-		/* Reset the flag. */
-		RCC->CSR |= RCC_CSR_IWDGRSTF;
-	}
-	else if((RCC->CSR & RCC_CSR_SFTRSTF) != 0)
-	{
-		/* Set the wake-up event. */
-		if(EcuM_WakeupHistory[EcuM_WakeupHistoryCounter - 1] != HC05_WAKEUP)
-		{
-			if(EcuM_WakeupHistoryCounter < 8)
+			if(0u == i)
 			{
-				EcuM_WakeupHistory[EcuM_WakeupHistoryCounter] = RESET_WAKEUP;
-				EcuM_WakeupHistoryCounter++;
+				/* Do nothing. */
+			}
+			else if(1u == i)
+			{
+				Dem_DTCStoreArray[i] = 0u;
+			}
+			else if(2u == i)
+			{
+				/* Do nothing. */
 			}
 			else
 			{
-				EcuM_WakeupHistoryCounter = 0;
-				EcuM_WakeupHistory[EcuM_WakeupHistoryCounter] = RESET_WAKEUP;
-				EcuM_WakeupHistoryCounter++;
+				/* Do nothing. */
 			}
+
+			if(i % 2 == 1 && 2u < i)
+			{
+				Dem_DTCStoreArray[i] = 0u;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+
+		if(EcuM_LastResetReason)
+		{
+			Dem_SaveDtc(0x08, 1);
 		}
 		else
 		{
 			/* Do nothing. */
 		}
-		/* Reset the flag. */
-		RCC->CSR |= RCC_CSR_SFTRSTF;
 	}
 	else
 	{
-		/* Do nothing.  */
-	}
-	RCC->CSR |= RCC_CSR_RMVF;
-	for(uint8 i = 0; i < 9; i++)
-	{
-		if(CanSpi_ErrorArr[i] != 0)
-		{
-			EcuMSystem_OvwArr.faultArr[SPI_ERROR].fault = SPI_ERROR;
-			EcuMSystem_OvwArr.faultArr[SPI_ERROR].counter++;
-			if(EcuM_ErrorHistoryCounter < 8)
-			{
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = SPI_ERROR_H;
-				EcuM_ErrorHistoryCounter++;
-			}
-			else
-			{
-				EcuM_ErrorHistoryCounter = 0;
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = SPI_ERROR_H;
-				EcuM_ErrorHistoryCounter++;
-			}
-			CanSpi_ErrorArr[i] = 0;
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-	}
-	for(uint8 i = 0; i < 3; i++)
-	{
-		if(CanSpi_Bus_ErrorArr[i] != 0)
-		{
-			EcuMSystem_OvwArr.faultArr[CANBUS_ERROR].fault = CANBUS_ERROR;
-			EcuMSystem_OvwArr.faultArr[CANBUS_ERROR].counter++;
-			if(EcuM_ErrorHistoryCounter < 8)
-			{
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = CANBUS_ERROR_H;
-				EcuM_ErrorHistoryCounter++;
-			}
-			else
-			{
-				EcuM_ErrorHistoryCounter = 0;
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = CANBUS_ERROR_H;
-				EcuM_ErrorHistoryCounter++;
-			}
-			CanSpi_Bus_ErrorArr[i] = 0;
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-		if(Adc_Error[i] != 0)
-		{
-			EcuMSystem_OvwArr.faultArr[ADC_ERROR].fault = ADC_ERROR;
-			EcuMSystem_OvwArr.faultArr[ADC_ERROR].counter++;
-			if(EcuM_ErrorHistoryCounter < 8)
-			{
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = ADC_ERROR_H;
-				EcuM_ErrorHistoryCounter++;
-			}
-			else
-			{
-				EcuM_ErrorHistoryCounter = 0;
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = ADC_ERROR_H;
-				EcuM_ErrorHistoryCounter++;
-			}
-			Adc_Error[i] = 0;
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-		if(i < 2)
-		{
-			if(Tim_ErrorStatus[i] != 0)
-			{
-				if(EcuM_ErrorHistoryCounter < 8)
-				{
-					EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = TIM_ERROR_H;
-					EcuM_ErrorHistoryCounter++;
-				}
-				else
-				{
-					EcuM_ErrorHistoryCounter = 0;
-					EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = TIM_ERROR_H;
-					EcuM_ErrorHistoryCounter++;
-				}
-				Tim_ErrorStatus[i] = 0;
-			}
-			else
-			{
-				/* Do nothing. */
-			}
-		}
-	}
-	for(uint8 i = 0; i < 12; i++)
-	{
-		if(EcuMSystem_OvwArr.resetArr[i].counter != 0)
-		{
-			Dem_SaveDtc(10, 0xC);
-			if(EcuM_ErrorHistoryCounter < 8)
-			{
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = EcuMSystem_OvwArr.resetArr[i].reset - 11;
-				EcuM_ErrorHistoryCounter++;
-			}
-			else
-			{
-				EcuM_ErrorHistoryCounter = 0;
-				EcuM_ErrorHistory[EcuM_ErrorHistoryCounter] = EcuMSystem_OvwArr.resetArr[i].reset - 11;
-				EcuM_ErrorHistoryCounter++;
-			}
-			EcuMSystem_OvwArr.resetArr[i].counter = 0;
-		}
-		else
-		{
-			localCounter++;
-			if(localCounter == 12) Dem_SaveDtc(10, 0);
-			else
-			{
-				/* Do nothing. */
-			}
-		}
+		/* Do nothing. */
 	}
 }
 void EcuM_ProcessEcuState(void)
@@ -254,7 +122,10 @@ void EcuM_ProcessEcuState(void)
 	{
 		/* Do nothing. */
 	}
-	if(((CanSpi_Communication_Status == FULL_COMMUNICATION) || (Ain_Mux[3] >= 400) || (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 1)))
+	if(((CanSpi_Communication_Status == FULL_COMMUNICATION)
+			|| (Ain_Mux[0] >= 1200)
+			|| (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 1))
+			|| (StatusList_OutputValue[4] == 3))
 	{
 		EcuM_State = RUN;
 		EcuM_PostrunTimer = 0;
@@ -263,7 +134,10 @@ void EcuM_ProcessEcuState(void)
 	{
 		/* Do nothing. */
 	}
-	if((CanSpi_Communication_Status == NO_COMMUNICATION) && (Ain_Mux[3] < 400) && (EcuM_State == RUN) && (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 0)) EcuM_State = POSTRUN;
+	if((CanSpi_Communication_Status == NO_COMMUNICATION)
+			&& (Ain_Mux[0] < 1200) && (EcuM_State == RUN)
+			&& (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 0)
+			&& StatusList_OutputValue[4] != 3) EcuM_State = POSTRUN;
 	else
 	{
 		/* Do nothing. */
@@ -287,12 +161,99 @@ void EcuM_ProcessEcuState(void)
 	}
 }
 
-void EcuM_GoSleep(void)
+void EcuM_ProcessTimerInterrupt(void)
+{
+	static uint8 debouncePin = 0;
+	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 1)
+	{
+		debouncePin++;
+		if(debouncePin == 3)
+		{
+			EcuM_PerformReset(0);
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		debouncePin = 0;
+	}
+	HAL_PWR_EnableSleepOnExit();
+}
+
+static void EcuM_GoSleep(void)
 {
 	__disable_irq();
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_1);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_2);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_3);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_6);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_7);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_8);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_10);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_11);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_12);
+	//HAL_GPIO_DeInit(GPIOA, GPIO_PIN_13);
+	//HAL_GPIO_DeInit(GPIOA, GPIO_PIN_14);
+	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_15);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_0);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_1);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_2);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_3);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_4);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_5);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_9);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_10);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_11);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_12);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_13);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_14);
+	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_15);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_1);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_2);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_3);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_4);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_5);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_6);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_7);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_8);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_9);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_10);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_11);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_12);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_13);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_14);
+	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_15);
+	HAL_GPIO_DeInit(GPIOD, GPIO_PIN_2);
+	HAL_GPIO_DeInit(GPIOH, GPIO_PIN_0);
+	HAL_GPIO_DeInit(GPIOH, GPIO_PIN_1);
+	__HAL_RCC_GPIOB_CLK_DISABLE();
+	__HAL_RCC_GPIOC_CLK_DISABLE();
+	__HAL_RCC_GPIOH_CLK_DISABLE();
+	HAL_TIM_PWM_DeInit(&htim2);
+	HAL_TIM_PWM_DeInit(&htim3);
+	HAL_TIM_Base_DeInit(&htim5);
+	HAL_UART_DeInit(&huart1);
 	CanSpi_Sleep();
-	HAL_PWR_EnableWakeUpPin(PWR_WAKEUP_PIN1);
-	HAL_PWR_EnterSTANDBYMode();
+	HAL_SPI_DeInit(&hspi1);
+	HAL_SuspendTick();
+	for(uint8 i = 0; i < 82; i++) HAL_NVIC_ClearPendingIRQ(i);
+	SysTick->CTRL &= ~(SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk);
+	EcuM_LastResetReason = 0;
+	EcuM_ResetCounter = 0;
+	HAL_TIM_Base_Start_IT(&htim4);
+	__enable_irq();
+	HAL_PWR_EnterSLEEPMode(PWR_LOWPOWERREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+	EcuM_PerformReset(0);
 }
 
 /* FUNCTIONS END */

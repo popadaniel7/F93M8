@@ -24,8 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -33,222 +31,103 @@
 #include "SafetyKit_Main.h"
 #include "IfxMtu.h"
 #include "IfxStm.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
 #define REG_MONITOR_TEST_MAX_TIME_S    10e-6 /* Safety manual worst case time */
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
 /* array of functional block for register monitor test */
 const IfxMtu_MbistSel safetyKitRegMonSet[] =
 {
-    /* Group 0: */
-    IfxMtu_MbistSel_cpu0Dspr,
-    IfxMtu_MbistSel_cpu0Dtag,
-    IfxMtu_MbistSel_cpu0Pspr,
-    IfxMtu_MbistSel_cpu0Ptag,
-    IfxMtu_MbistSel_cpu0Dlmu,
+        /* Group 0: */
+        IfxMtu_MbistSel_cpu0Dspr,
+        IfxMtu_MbistSel_cpu0Dtag,
+        IfxMtu_MbistSel_cpu0Pspr,
+        IfxMtu_MbistSel_cpu0Ptag,
+        IfxMtu_MbistSel_cpu0Dlmu,
 #if (IFXCPU_NUM_MODULES > 1)
-    IfxMtu_MbistSel_cpu1Dspr,
-    IfxMtu_MbistSel_cpu1Dtag,
-    IfxMtu_MbistSel_cpu1Pspr,
-    IfxMtu_MbistSel_cpu1Ptag,
-    IfxMtu_MbistSel_cpu1Dlmu,
+        IfxMtu_MbistSel_cpu1Dspr,
+        IfxMtu_MbistSel_cpu1Dtag,
+        IfxMtu_MbistSel_cpu1Pspr,
+        IfxMtu_MbistSel_cpu1Ptag,
+        IfxMtu_MbistSel_cpu1Dlmu,
 #endif
 #if (IFXCPU_NUM_MODULES > 2)
-    IfxMtu_MbistSel_cpu2Dspr,
-    IfxMtu_MbistSel_cpu2Dtag,
-    IfxMtu_MbistSel_cpu2Pspr,
-    IfxMtu_MbistSel_cpu2Ptag,
-    IfxMtu_MbistSel_cpu2Dlmu,
+        IfxMtu_MbistSel_cpu2Dspr,
+        IfxMtu_MbistSel_cpu2Dtag,
+        IfxMtu_MbistSel_cpu2Pspr,
+        IfxMtu_MbistSel_cpu2Ptag,
+        IfxMtu_MbistSel_cpu2Dlmu,
 #endif
-#if (IFXCPU_NUM_MODULES > 3)
-    IfxMtu_MbistSel_cpu3Dspr,
-    IfxMtu_MbistSel_cpu3Dtag,
-    IfxMtu_MbistSel_cpu3Pspr,
-    IfxMtu_MbistSel_cpu3Ptag,
-    IfxMtu_MbistSel_cpu3Dlmu,
-#endif
-#if (IFXCPU_NUM_MODULES > 4)
-    IfxMtu_MbistSel_cpu4Dspr,
-    IfxMtu_MbistSel_cpu4Dtag,
-    IfxMtu_MbistSel_cpu4Pspr,
-    IfxMtu_MbistSel_cpu4Ptag,
-    IfxMtu_MbistSel_cpu4Dlmu,
-#endif
-#if (IFXCPU_NUM_MODULES > 5)
-    IfxMtu_MbistSel_cpu5Dspr,
-    IfxMtu_MbistSel_cpu5Dtag,
-    IfxMtu_MbistSel_cpu5Pspr,
-    IfxMtu_MbistSel_cpu5Ptag,
-    IfxMtu_MbistSel_cpu5Dlmu,
-#endif
-#ifdef IFX_MTU_MEMDONE0_LMU00_DONE_LEN
-    IfxMtu_MbistSel_lmu0,
-#endif
-#ifdef IFX_MTU_MEMDONE0_LMU10_DONE_LEN
-    IfxMtu_MbistSel_lmu1,
-#endif
-
-    /* Group 1: */
-#ifdef IFX_MTU_MEMDONE1_LMU20_DONE_LEN
-    IfxMtu_MbistSel_lmu2,
-#endif
-    IfxMtu_MbistSel_cpu0Dspr1,
+        /* Group 1: */
+        IfxMtu_MbistSel_cpu0Dspr1,
 #if (IFXCPU_NUM_MODULES > 1)
-    IfxMtu_MbistSel_cpu1Dspr1,
+        IfxMtu_MbistSel_cpu1Dspr1,
 #endif
 #ifdef IFX_MTU_MEMFDA1_DAM0_FDA_LEN
-    IfxMtu_MbistSel_dam0,
-#endif
-#ifdef IFX_MTU_MEMFDA1_DAM1_FDA_LEN
-    IfxMtu_MbistSel_dam1,
+        IfxMtu_MbistSel_dam0,
 #endif
 #ifdef IFX_MTU_MEMFDA1_SADMA_FDA_LEN
-    IfxMtu_MbistSel_dma,
+        IfxMtu_MbistSel_dma,
 #endif
-#ifdef IFX_MTU_MEMDONE1_MCDS_DONE_LEN
-    IfxMtu_MbistSel_mcds,
-#endif
-#ifdef IFX_MTU_MEMDONE1_EMEM0_DONE_LEN
-    IfxMtu_MbistSel_ememUpper0,
-#endif
-#ifdef IFX_MTU_MEMDONE1_EMEM1_DONE_LEN
-    IfxMtu_MbistSel_ememUpper1,
-#endif
-#ifdef IFX_MTU_MEMDONE1_EMEM2_DONE_LEN
-    IfxMtu_MbistSel_ememUpper2,
-#endif
-#ifdef IFX_MTU_MEMDONE1_EMEM3_DONE_LEN
-    IfxMtu_MbistSel_emem,
-#endif
-#ifdef IFX_MTU_MEMDONE1_EMEM_XTM_DONE_LEN
-    IfxMtu_MbistSel_ememXtm,
-#endif
-#ifdef IFX_MTU_MEMDONE1_SPU_BUFFER0_DONE_LEN
-    IfxMtu_MbistSel_spu0Buffer,
-#endif
-#ifdef IFX_MTU_MEMDONE1_SPU_BUFFER1_DONE_LEN
-    IfxMtu_MbistSel_spu1Buffer,
-#endif
-#ifdef IFX_MTU_MEMDONE1_SPU_CONFIG0_DONE_LEN
-    IfxMtu_MbistSel_spu0Config,
-#endif
-#ifdef IFX_MTU_MEMDONE1_SPU_CONFIG1_DONE_LEN
-    IfxMtu_MbistSel_spu1Config,
-#endif
+
 #ifdef IFX_MTU_MEMDONE1_GTM_FIFO_DONE_LEN
-    IfxMtu_MbistSel_gtmFifo,
-#endif
-#ifdef IFX_MTU_MEMDONE1_GTM_MCS0SLOW_DONE_LEN
-    IfxMtu_MbistSel_gtmMcs0Slow,
+        IfxMtu_MbistSel_gtmFifo,
 #endif
 #ifdef IFX_MTU_MEMDONE1_GTM_MCS0FAST_DONE_LEN
-    IfxMtu_MbistSel_gtmMcs0Fast,
-#endif
-#ifdef IFX_MTU_MEMDONE1_GTM_MCS1SLOW_DONE_LEN
-    IfxMtu_MbistSel_gtmMcs1Slow,
+        IfxMtu_MbistSel_gtmMcs0Fast,
 #endif
 #ifdef IFX_MTU_MEMDONE1_GTM_MCS1FAST_DONE_LEN
-    IfxMtu_MbistSel_gtmMcs1Fast,
-#endif
-#ifdef IFX_MTU_MEMDONE1_SPU_CONFIG1_DONE_LEN
-    IfxMtu_MbistSel_gtmDpll1a,
+        IfxMtu_MbistSel_gtmMcs1Fast,
 #endif
 #ifdef IFX_MTU_MEMDONE1_GTM_DPLL1BC_DONE_LEN
-    IfxMtu_MbistSel_gtmDpll1b,
+        IfxMtu_MbistSel_gtmDpll1b,
 #endif
 #ifdef IFX_MTU_MEMDONE1_GTM_DPLL2_DONE_LEN
-    IfxMtu_MbistSel_gtmDpll2,
+        IfxMtu_MbistSel_gtmDpll2,
 #endif
 #ifdef IFX_MTU_MEMDONE1_MCAN10_DONE_LEN
-    IfxMtu_MbistSel_mcan0,
+        IfxMtu_MbistSel_mcan0,
 #endif
 #ifdef IFX_MTU_MEMDONE1_MCAN20_DONE_LEN
-    IfxMtu_MbistSel_mcan1,
+        IfxMtu_MbistSel_mcan1,
 #endif
-    /* Group 2: */
-#ifdef IFX_MTU_MEMDONE2_MCAN21_DONE_LEN
-    IfxMtu_MbistSel_mcan2,
-#endif
+        /* Group 2: */
 #ifdef IFX_MTU_MEMDONE2_PSI5_DONE_LEN
-    IfxMtu_MbistSel_psi5,
+        IfxMtu_MbistSel_psi5,
 #endif
 #ifdef IFX_MTU_MEMDONE2_ERAY_OBF0_DONE_LEN
-    IfxMtu_MbistSel_eray0Obf,
-#endif
-#ifdef IFX_MTU_MEMDONE2_ERAY_OBF1_DONE_LEN
-    IfxMtu_MbistSel_eray1Obf,
+        IfxMtu_MbistSel_eray0Obf,
 #endif
 #ifdef IFX_MTU_MEMDONE2_ERAY_TBF_IBF0_DONE_LEN
-    IfxMtu_MbistSel_eray0IbfTbf,
-#endif
-#ifdef IFX_MTU_MEMDONE2_ERAY_TBF_IBF1_DONE_LEN
-    IfxMtu_MbistSel_eray1IbfTbf,
+        IfxMtu_MbistSel_eray0IbfTbf,
 #endif
 #ifdef IFX_MTU_MEMDONE2_ERAY_MBF0_DONE_LEN
-    IfxMtu_MbistSel_eray0Mbf,
-#endif
-#ifdef IFX_MTU_MEMDONE2_ERAY_MBF1_DONE_LEN
-    IfxMtu_MbistSel_eray1Mbf,
+        IfxMtu_MbistSel_eray0Mbf,
 #endif
 #ifdef IFX_MTU_MEMDONE2_SCR_XRAM_DONE_LEN
-    IfxMtu_MbistSel_scrXram,
+        IfxMtu_MbistSel_scrXram,
 #endif
 #ifdef IFX_MTU_MEMDONE2_SCR_RAMINT_DONE_LEN
-    IfxMtu_MbistSel_scrIram,
+        IfxMtu_MbistSel_scrIram,
 #endif
 #ifdef IFX_MTU_MEMDONE2_GIGETH_RX_DONE_LEN
-    IfxMtu_MbistSel_ethermacRx,
+        IfxMtu_MbistSel_ethermacRx,
 #endif
 #ifdef IFX_MTU_MEMDONE2_GIGETH_TX_DONE_LEN
-    IfxMtu_MbistSel_ethermacTx,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SDMMC_DONE_LEN
-    IfxMtu_MbistSel_sdmmc,
-#endif
-#ifdef IFX_MTU_MEMDONE2_HSPDM_RAM_DONE_LEN
-    IfxMtu_MbistSel_hspdm,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT00_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu0Fft0,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT01_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu1Fft0,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT10_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu0Fft1,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT11_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu1Fft1,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT20_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu0Fft2,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT21_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu1Fft2,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT30_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu0Fft3,
-#endif
-#ifdef IFX_MTU_MEMDONE2_SPU_FFT31_RAM_DONE_LEN
-    IfxMtu_MbistSel_spu1Fft3,
+        IfxMtu_MbistSel_ethermacTx,
 #endif
 };
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
 const int safetyKitRegMonSetSize = 34; /* size of array */
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
 boolean safetyKitRunSshRegMonitorTest(uint32 sshReg);
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -263,7 +142,6 @@ void safetyKitRunRegMonitorTest(void)
     for(int i = 0; i < safetyKitRegMonSetSize; i++)
     {
         IfxMtu_MbistSel regToCheck = safetyKitRegMonSet[i];
-
         /* register monitor test if each SSH */
         regMonitorTestPassed &= safetyKitRunSshRegMonitorTest(regToCheck);
     }
@@ -277,28 +155,28 @@ void safetyKitRunRegMonitorTest(void)
         g_SafetyKitStatus.regMonitorTestAllFB = fail;
     }
 }
-
 /*
  * run SSH register monitor test
  * */
 boolean safetyKitRunSshRegMonitorTest(uint32 sshReg)
 {
     Ifx_MTU_MC *mc = &MODULE_MTU.MC[sshReg];
-
     boolean sshRegMonitorTestPassed = TRUE;
     uint64 tStart, tExecution;
     float64 tExecutionSec;
-
     uint16 password = IfxScuWdt_getSafetyWatchdogPassword();
+
     IfxScuWdt_clearSafetyEndinit(password);
     /* Trigger the SFF self test */
     mc->ECCS.B.SFFD = 1;
+
     IfxScuWdt_setSafetyEndinit(password);
 
     tStart = IfxStm_get(&MODULE_STM0);
 
     /* Wait until test is done, as long test is not finished store measure the execution time */
     uint32 timeout = 0xfff;
+
     do
     {
         tExecution = IfxStm_get(&MODULE_STM0) - tStart;
@@ -310,22 +188,34 @@ boolean safetyKitRunSshRegMonitorTest(uint32 sshReg)
 
     /* Validation */
     uint16 regMISCERR = mc->FAULTSTS.B.MISCERR;
+
     if(regMISCERR != 0)
     {
         sshRegMonitorTestPassed = FALSE;
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     if(tExecutionSec > REG_MONITOR_TEST_MAX_TIME_S)
     {
         sshRegMonitorTestPassed = FALSE;
     }
+    else
+    {
+        /* Do nothing. */
+    }
 
     /* Clear SSH */
     mc->ECCD.U = 0x0;
 
     password = IfxScuWdt_getSafetyWatchdogPassword();
+
     IfxScuWdt_clearSafetyEndinit(password);
+
     mc->FAULTSTS.U = 0x0;
+
     IfxScuWdt_setSafetyEndinit(password);
 
     return sshRegMonitorTestPassed;

@@ -30,11 +30,15 @@ void Bsw_Wrapper_MainFunction_C0(void)
 {
     static uint8 pIven_CanTx_DecMcuError = 0u;
 
+    IfxCpu_disableInterrupts();
+
     memcpy(ComMaster_ReceiveTable, Can_ReceiveTable, sizeof(ComMaster_ReceiveTable));
-    for(uint8 i = 0; i < COMMASTER_NO_RX_MSG; i ++)
+
+    for(uint8 i = 0u; i < COMMASTER_NO_RX_MSG; i ++)
     {
         Can_ReceiveTable[i].receiveMessage.rxMsg.messageId = 0u;
     }
+
     ComMaster_TxSignal_ICM_ID = Iven_CanTx_IcmId;
     ComMaster_TxSignal_IrSenStat = ColDet_CanTx_IrSenStat;
     ComMaster_TxSignal_VehicleStatus = DcyHandler_CanTx_VehicleState;
@@ -58,6 +62,7 @@ void Bsw_Wrapper_MainFunction_C0(void)
     Iven_CanRx_IgnitionControl = ComMaster_TxSignal_Ignition;
     Iven_CanRx_StatusDoorLeft = ComMaster_RxSignal_StatusDoorLeft;
     Iven_CanRx_StatusDoorRight = ComMaster_RxSignal_StatusDoorRight;
+
     if((0u != McuSm_LastResetReason && 0xEFEFU != McuSm_LastResetReason) && 0u == pIven_CanTx_DecMcuError)
     {
         Iven_CanTx_DecMcuError = 1u;
@@ -67,6 +72,7 @@ void Bsw_Wrapper_MainFunction_C0(void)
     {
         /* Do nothing. */
     }
+
     Iven_StatusDriveControlMessageState = ComMaster_StatusDriveControlMessageState;
     Iven_StatusActuatorMessageState = ComMaster_StatusActuatorMessageState;
     Iven_CanTx_DiagnosticMode = DiagMaster_DiagnosticModeActivated;
@@ -75,6 +81,8 @@ void Bsw_Wrapper_MainFunction_C0(void)
 
     serviceCpuWatchdog();
     serviceSafetyWatchdog();
+
+    IfxCpu_enableInterrupts();
 
     Bsw_Wrapper_MainCounter_C0++;
 }

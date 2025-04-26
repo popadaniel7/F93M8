@@ -70,8 +70,8 @@ void Iven_MainFunction(void)
         /* Do nothing. */
     }
 
-    if((1u <= Iven_CanRx_StatusDoorLeft) &&
-            (Iven_CanRx_StatusDoorLeft != pIven_CanRx_StatusDoorLeft))
+    if((4u == Iven_CanRx_StatusDoorLeft) &&
+            0u == pIven_CanRx_StatusDoorLeft)
     {
         /* Left door open. */
         /* Trigger ICM. */
@@ -82,8 +82,8 @@ void Iven_MainFunction(void)
         /* Do nothing. */
     }
 
-    if((1u <= Iven_CanRx_StatusDoorRight) &&
-            (Iven_CanRx_StatusDoorRight != pIven_CanRx_StatusDoorRight))
+    if((4u == Iven_CanRx_StatusDoorRight) &&
+            0u == pIven_CanRx_StatusDoorRight)
     {
         /* Left door open. */
         /* Trigger ICM. */

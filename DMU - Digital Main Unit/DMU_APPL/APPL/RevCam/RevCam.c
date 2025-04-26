@@ -63,11 +63,10 @@ void RevCam_MainFunction(void)
 	}/* Initialization retries in case of failure. */
 	else RevCam_InitStatus = DcmiH_OV7670_InitHandler();
 	/* Failure reasons:
-	 * Cable length (solved by using < 10 centimeters cable length)
+	 * Cable length
 	 * Loose connection
-	 * God knows what noise goes near the pin-out of the OV7670 and the STM32F407VET6 MCU board.
-	 * I2C is bad in general
-	 * DCMI is not great either
+	 * I2C
+	 * DCMI
 	 * */
 
 	RevCam_MainCounter++;

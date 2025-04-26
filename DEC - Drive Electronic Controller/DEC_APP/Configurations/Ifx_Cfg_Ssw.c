@@ -51,7 +51,10 @@ void Ifx_Ssw_Pms_Init(void)
     if (IfxPmsEvr_runInitSequence(&IfxPmsEvr_cfgSequenceDefault) == 0)
     {
         McuSm_PerformResetHook(374u, 1u);
-        /* Application may have call to error handling here */
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     Ifx_Ssw_jumpBackToLink();
@@ -63,8 +66,12 @@ void Ifx_Ssw_Pms_InitCheck(void)
     if (IfxPmsEvr_areInitValuesRight(&IfxPmsEvr_checkRegCfgDefault) == 0)
     {
         McuSm_PerformResetHook(375u, 1u);
-        /* Application may have call to error handling here */
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     Ifx_Ssw_jumpBackToLink();
 }
 #endif /* End of Ifx_Ssw_Pms_InitCheck() */
@@ -79,12 +86,23 @@ void Ifx_Ssw_Lbist(void)
         {
             IfxScuLbist_triggerInline(&IfxScuLbist_defaultConfig);
         }
+        else
+        {
+            /* Do nothing. */
+        }
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     if (!IfxScuLbist_evaluateResult(IfxScuLbist_defaultConfig.signature))
     {
-        /* Application may have call to error handling here */
-        while(1){__debug();}
         McuSm_PerformResetHook(376u, 1u);
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     Ifx_Ssw_jumpBackToLink();

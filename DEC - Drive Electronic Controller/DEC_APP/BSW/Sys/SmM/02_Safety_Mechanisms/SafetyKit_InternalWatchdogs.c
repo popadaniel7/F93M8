@@ -24,8 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -33,24 +31,19 @@
 #include "SafetyKit_Main.h"
 #include "SafetyKit_Cfg.h"
 #include "IfxScuWdt.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
 IfxCpu_mutexLock safetyWatchdogLock;
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -63,8 +56,11 @@ void initSafetyWatchdog(void)
     Ifx_SCU_WDTS *safetyWatchdog;
 
     safetyWatchdog = &MODULE_SCU.WDTS;
+
     IfxScuWdt_initConfig(&cfgSafetyWatchdog);
+
     float32 watchdogBaseFreq;
+
     cfgSafetyWatchdog.inputFrequency = IfxScu_WDTCON1_IR_divBy16384;
     watchdogBaseFreq = IfxScuCcu_getSpbFrequency() / 16384.;
     cfgSafetyWatchdog.reload = 0xFF00U; /* 0xC000 gives time to observe the value raising on the debugger */
@@ -77,28 +73,32 @@ void initSafetyWatchdog(void)
     {
         IfxScuWdt_serviceSafetyWatchdog(IfxScuWdt_getSafetyWatchdogPassword());
     }
+    else
+    {
+        /* Do nothing. */
+    }
 }
-
 /*
  * run safety watch dog
  * */
 void serviceSafetyWatchdog(void)
 {
-    /* we wait until we can lock the safety watchdog for our own use */
-    //while (IfxCpu_acquireMutex(&safetyWatchdogLock) == 0);
-
     /* Only service Safety Watchdog if ENDINIT is set, otherwise ENDINIT is currently cleared and in
      * use somewhere else */
     if(IfxScuWdt_getSafetyWatchdogEndInit())
     {
         IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline());
     }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 /*
-* This function is initializing the CPU watchdog. It can be called by every CPU to initialize
-* its respective watchdog
-* */
+ * This function is initializing the CPU watchdog. It can be called by every CPU to initialize
+ * its respective watchdog
+ * */
 void initCpuWatchdog(uint8 cpuIndex)
 {
     IfxScuWdt_Config cpuXwdgCfg;
@@ -106,42 +106,27 @@ void initCpuWatchdog(uint8 cpuIndex)
 
     switch (cpuIndex)
     {
-            case IfxCpu_ResourceCpu_0:
-                ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[0];
-                break;
-    #if (IFXCPU_NUM_MODULES > 1)
-            case IfxCpu_ResourceCpu_1:
-                ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[1];
-                break;
-    #endif
-    #if (IFXCPU_NUM_MODULES > 2)
-            case IfxCpu_ResourceCpu_2:
-                ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[2];
-                break;
-    #endif
-    #if (IFXCPU_NUM_MODULES > 3)
-            case IfxCpu_ResourceCpu_3:
-                ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[3];
-                break;
-    #endif
-    #if (IFXCPU_NUM_MODULES > 4)
-            case IfxCpu_ResourceCpu_4:
-                ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[4];
-                break;
-    #endif
-    #if (IFXCPU_NUM_MODULES > 5)
-            case IfxCpu_ResourceCpu_5:
-                ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[5];
-                break;
-    #endif
-            default:
-                while (1)
-                {};
-                break;
+        case IfxCpu_ResourceCpu_0:
+            ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[0];
+            break;
+#if (IFXCPU_NUM_MODULES > 1)
+        case IfxCpu_ResourceCpu_1:
+            ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[1];
+            break;
+#endif
+#if (IFXCPU_NUM_MODULES > 2)
+        case IfxCpu_ResourceCpu_2:
+            ptrCpuXwatchdog = &MODULE_SCU.WDTCPU[2];
+            break;
+#endif
+        default:
+            break;
     }
 
     IfxScuWdt_initConfig(&cpuXwdgCfg);
+
     float32 watchdogBaseFreq;
+
     cpuXwdgCfg.inputFrequency = IfxScu_WDTCON1_IR_divBy16384;
     watchdogBaseFreq = IfxScuCcu_getSpbFrequency() / 16384.;
     cpuXwdgCfg.reload = 0xFF00U; /* 0xC000 gives time to observe the value raising on the debugger */
@@ -151,6 +136,10 @@ void initCpuWatchdog(uint8 cpuIndex)
     if(IfxScuWdt_getCpuWatchdogEndInit())
     {
         IfxScuWdt_serviceCpuWatchdog(IfxScuWdt_getCpuWatchdogPassword());
+    }
+    else
+    {
+        /* Do nothing. */
     }
 }
 
@@ -163,6 +152,11 @@ void serviceCpuWatchdog(void)
     if(IfxScuWdt_getCpuWatchdogEndInitInline(&MODULE_SCU.WDTCPU[IfxCpu_getCoreIndex()]))
     {
         uint16 password = IfxScuWdt_getCpuWatchdogPasswordInline(&MODULE_SCU.WDTCPU[IfxCpu_getCoreIndex()]);
+
         IfxScuWdt_setCpuEndinitInline(&MODULE_SCU.WDTCPU[IfxCpu_getCoreIndex()], password);
+    }
+    else
+    {
+        /* Do nothing. */
     }
 }

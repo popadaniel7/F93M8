@@ -9,7 +9,7 @@ __attribute__((section(".ccmram"))) uint8 Nvm_ReadAllPending = 0;
 __attribute__((section(".ccmram"))) uint32 Nvm_DataRecorder_CommonBlock[2] = {0};
 extern __attribute__((section(".ccmram"))) uint8 DataRecorder_KilometerTotal;
 extern __attribute__((section(".ccmram"))) uint8 DataRecorder_KilometerPerDcy;
-extern __attribute__((section(".ccmram"))) Dem_DTC_t Dem_DTCArray[DEM_NUMBER_OF_DTCS];
+extern __attribute__((section(".ccmram"))) uint32 Dem_DTCArray[DEM_NUMBER_OF_DTCS];
 
 void Nvm_MainFunction(void);
 void Nvm_ReadAll(void);
@@ -19,7 +19,7 @@ uint32 NvM_FlashWriteData(uint32 StartSectorAddress, uint32 *Data, uint16 number
 void Nvm_ReadAll(void)
 {
 	NvM_FlashReadData(0x0800C000, (uint32*)Dem_DTCArray, DEM_NUMBER_OF_DTCS);
-	if(Dem_DTCArray[0].isActiveNow >= 255) memset(Dem_DTCArray, 0, sizeof(Dem_DTC_t));
+	if(Dem_DTCArray[0] >= 255) memset(Dem_DTCArray, 0, sizeof(Dem_DTCArray));
 	else
 	{
 		/* Do nothing. */
@@ -73,14 +73,14 @@ uint32 NvM_FlashWriteData(uint32 StartSectorAddress, uint32 *Data, uint16 number
 	EraseInitStruct.VoltageRange  = FLASH_VOLTAGE_RANGE_3;
 	EraseInitStruct.Sector        = StartSector;
 	EraseInitStruct.NbSectors     = (EndSector - StartSector) + 1;
-	if (HAL_FLASHEx_Erase(&EraseInitStruct, &SECTORError) != HAL_OK) return HAL_FLASH_GetError ();
+	if(HAL_FLASHEx_Erase(&EraseInitStruct, &SECTORError) != HAL_OK) return HAL_FLASH_GetError ();
 	else
 	{
 		/* Do nothing. */
 	}
-	while (sofar<numberofwords)
+	while(sofar < numberofwords)
 	{
-		if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, StartSectorAddress, Data[sofar]) == HAL_OK)
+		if(HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, StartSectorAddress, Data[sofar]) == HAL_OK)
 		{
 			StartSectorAddress += 4;
 			sofar++;
@@ -92,5 +92,5 @@ uint32 NvM_FlashWriteData(uint32 StartSectorAddress, uint32 *Data, uint16 number
 }
 void NvM_FlashReadData(uint32 StartSectorAddress, uint32 *RxBuf, uint16 numberofwords)
 {
-	for (uint16 i = 0; i < numberofwords; i++) RxBuf[i] = *(__IO uint32 *)(StartSectorAddress + (i * 4));
+	for(uint16 i = 0; i < numberofwords; i++) RxBuf[i] = *(__IO uint32 *)(StartSectorAddress + (i * 4));
 }

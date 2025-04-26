@@ -1,18 +1,18 @@
 #include "ColDet.h"
 #include "Ain.h"
+#include "Dem.h"
+#include "EncCal.h"
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
-#include "time.h"
-#include "Dem.h"
-#include "EncCal.h"
 
 uint32 ColDet_MainCounter = 0u;
-CollisionState ColDet_CanTx_CollisionState = COLLISION_SAFE;
 uint8 ColDet_CanTx_BrakeLevel = 0u;  
 uint8 ColDet_CanTx_IrSenStat = 0u;
 uint8 ColDet_CanRx_CalculatedSpeed = 0u;
+CollisionState ColDet_CanTx_CollisionState = COLLISION_SAFE;
 
 void ColDet_MainFunction(void);
 
@@ -21,10 +21,10 @@ void ColDet_MainFunction(void)
     static float convStableDistanceCm = 0.0f;
     static float convTtcWarn = 0.0f;
     static float convTtcBrake = 0.0f;
-    uint32 distanceCm = EncCal_Calibration_ColDet_InvalidDist;
-    uint32 lastDistanceCm = EncCal_Calibration_ColDet_InvalidDist;
     static double speed = 0.0f;
     static double ttc = 0.0f;
+    uint32 distanceCm = EncCal_Calibration_ColDet_InvalidDist;
+    uint32 lastDistanceCm = EncCal_Calibration_ColDet_InvalidDist;
     static uint16 localCounter = 0u;
     static bool objectDetected = 0u;
     static uint32 cycleTimeTtcWarn = 0u;
@@ -50,7 +50,7 @@ void ColDet_MainFunction(void)
     lastDistanceCm = distanceCm;
     objectDetected = (distanceCm < EncCal_Calibration_ColDet_InvalidDist);
 
-    if (objectDetected && speed > 0.0f)
+    if((objectDetected && speed) > 0.0f)
     {
         ttc = distanceCm / speed;
     }
@@ -59,21 +59,27 @@ void ColDet_MainFunction(void)
         ttc = 9999u; 
     }
     
-    switch (ColDet_CanTx_CollisionState)
+    switch(ColDet_CanTx_CollisionState)
     {
         default:
+
             break;
+
         case COLLISION_ERROR:
+
             ColDet_CanTx_BrakeLevel = 0u;
+
             break;
+
         case COLLISION_SAFE:
-            if (objectDetected && ttc <= convTtcBrake)
+
+            if((0u != objectDetected) && (ttc <= convTtcBrake))
             {                
                 ColDet_CanTx_CollisionState = COLLISION_BRAKE;
 
-                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                if((ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u) && (0u != ColDet_MainCounter))
                 {
-                    if (100u > ColDet_CanTx_BrakeLevel)
+                    if(100u > ColDet_CanTx_BrakeLevel)
                     {
                         ColDet_CanTx_BrakeLevel += 10u;
                     }
@@ -86,13 +92,12 @@ void ColDet_MainFunction(void)
                 {
                     /* Do nothing. */
                 }
-
             }
-            else if (objectDetected && ttc <= convTtcWarn)
+            else if((0u != objectDetected) && (ttc <= convTtcWarn))
             {                
                 ColDet_CanTx_CollisionState = COLLISION_WARNING;
 
-                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                if((ColDet_MainCounter % cycleTimeTtcWarn == 0u) && (0u != ColDet_MainCounter))
                 {
                     if(50u < ColDet_CanTx_BrakeLevel)
                     {
@@ -107,13 +112,12 @@ void ColDet_MainFunction(void)
                 {
                     /* Do nothing. */
                 }
-
             }
             else
             {
                 ColDet_CanTx_CollisionState = COLLISION_SAFE;
 
-                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                if((ColDet_MainCounter % cycleTimeTtcWarn == 0u) && (0u != ColDet_MainCounter))
                 {
                     if(0u < ColDet_CanTx_BrakeLevel)
                     {
@@ -129,14 +133,16 @@ void ColDet_MainFunction(void)
                     /* Do nothing. */
                 }
             }
+
             break;
 
         case COLLISION_WARNING:
-            if (!objectDetected || ttc > convTtcWarn)
+
+            if((0u == objectDetected) || (ttc > convTtcWarn))
             {
                 ColDet_CanTx_CollisionState = COLLISION_SAFE;
 
-                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                if((ColDet_MainCounter % cycleTimeTtcWarn == 0u) && (0u != ColDet_MainCounter))
                 {
                     if(0u < ColDet_CanTx_BrakeLevel)
                     {
@@ -151,13 +157,12 @@ void ColDet_MainFunction(void)
                 {
                     /* Do nothing. */
                 }
-
             }
             else if (ttc <= convTtcBrake)
             {
                 ColDet_CanTx_CollisionState = COLLISION_BRAKE;
 
-                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                if((ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u) && (0u != ColDet_MainCounter))
                 {
                     if (100u > ColDet_CanTx_BrakeLevel)
                     {
@@ -175,9 +180,9 @@ void ColDet_MainFunction(void)
             }
             else
             {
-                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                if((ColDet_MainCounter % cycleTimeTtcWarn == 0u) && (0u != ColDet_MainCounter))
                 {
-                    if (50u > ColDet_CanTx_BrakeLevel)
+                    if(50u > ColDet_CanTx_BrakeLevel)
                     {
                         ColDet_CanTx_BrakeLevel += 10u;
                     }
@@ -191,14 +196,16 @@ void ColDet_MainFunction(void)
                     /* Do nothing. */
                 }
             }
+
             break;
 
         case COLLISION_BRAKE:
-            if (!objectDetected || ttc > convTtcWarn)
+
+            if((0u == objectDetected) || (ttc > convTtcWarn))
             {
                 ColDet_CanTx_CollisionState = COLLISION_SAFE;
 
-                if(ColDet_MainCounter % cycleTimeTtcWarn == 0u)
+                if((ColDet_MainCounter % cycleTimeTtcWarn == 0u) && (0u != ColDet_MainCounter))
                 {
                     if(0u < ColDet_CanTx_BrakeLevel)
                     {
@@ -213,13 +220,12 @@ void ColDet_MainFunction(void)
                 {
                     /* Do nothing. */
                 }
-
             }
-            else if (ttc > convTtcBrake && ttc <= convTtcWarn)
+            else if((ttc > convTtcBrake) && (ttc <= convTtcWarn))
             {
                 ColDet_CanTx_CollisionState = COLLISION_WARNING;
 
-                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                if((ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u) && (0u != ColDet_MainCounter))
                 {
                     if (50u > ColDet_CanTx_BrakeLevel)
                     {
@@ -243,7 +249,7 @@ void ColDet_MainFunction(void)
             {
                 ColDet_CanTx_CollisionState = COLLISION_BRAKE;
 
-                if(ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u)
+                if((ColDet_MainCounter % EncCal_Calibration_ColDet_TtcBrake == 0u) && (0u != ColDet_MainCounter))
                 {
                     if (100u > ColDet_CanTx_BrakeLevel)
                     {
@@ -259,10 +265,12 @@ void ColDet_MainFunction(void)
                     /* Do nothing. */
                 }
             }
+
             break;
+
     }
 
-    if(Ain_IRSensorValue == (EncCal_Calibration_ColDet_InvalidDist << 8 | 0xFFU))
+    if(Ain_IRSensorValue == ((EncCal_Calibration_ColDet_InvalidDist << 8u) | 0xFFU))
     {
         localCounter++;
 
@@ -271,6 +279,7 @@ void ColDet_MainFunction(void)
             Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 1u, 0u);
             ColDet_CanTx_CollisionState = COLLISION_ERROR;
             ColDet_CanTx_BrakeLevel = 0u;
+            localCounter = 0u;
         }
         else
         {
@@ -281,6 +290,7 @@ void ColDet_MainFunction(void)
     {
         Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 0u, 0u);
         ColDet_CanTx_CollisionState = COLLISION_SAFE;
+        localCounter = 0u;
     }
 
     ColDet_CanTx_IrSenStat = ColDet_CanTx_CollisionState;

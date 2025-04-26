@@ -55,7 +55,6 @@
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-//volatile SswStatusXramType *g_sswStatusXram = &SSW_STATUS_DATA_ADDRESS;
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -91,10 +90,8 @@ void runSafeAppSwStartup(void)
  */
 SafetyKitResetCode safetyKitEvaluateReset(void)
 {
-    //g_sswStatusXram->RSTSTAT.U = MODULE_SCU.RSTSTAT.U;
     static boolean resetEvaluated = FALSE;
     static SafetyKitResetCode resetCode;
-
     /* This function guarantees that reset type will be evaluated only once
      * and that its value will not change during runtime.
      * The first time this function is called, it evaluate the reset type and
@@ -105,12 +102,10 @@ SafetyKitResetCode safetyKitEvaluateReset(void)
         Ifx_SCU_RSTCON rstCon;
         Ifx_SCU_RSTSTAT rstStat;
 
-        resetCode.cpuSafeState = (((MODULE_SCU.RSTCON2.U >> IFX_SCU_RSTCON2_CSSX_OFF) & IFX_SCU_RSTCON2_CSSX_MSK)
-                == IFX_SCU_RSTCON2_CSSX_MSK);
+        resetCode.cpuSafeState = (((MODULE_SCU.RSTCON2.U >> IFX_SCU_RSTCON2_CSSX_OFF) & IFX_SCU_RSTCON2_CSSX_MSK) == IFX_SCU_RSTCON2_CSSX_MSK);
         resetCode.resetType = safetyKitResetTypeUndefined;
         resetCode.resetTrigger = IfxScuRcu_Trigger_undefined;
         resetCode.resetReason = 0;
-
         rstStat.U = MODULE_SCU.RSTSTAT.U;
         rstCon.U = MODULE_SCU.RSTCON.U;
 
@@ -208,9 +203,11 @@ SafetyKitResetCode safetyKitEvaluateReset(void)
                 resetCode.resetTrigger = IfxScuRcu_Trigger_stbyr;
                 resetCode.resetReason = 0;
             }
-
+            else
+            {
+                /* Do nothing. */
+            }
         }
-
         /* Finally - Evaluate selectively for PORST */
         if (rstStat.B.PORST)
         {
@@ -220,22 +217,29 @@ SafetyKitResetCode safetyKitEvaluateReset(void)
                 resetCode.resetType = safetyKitResetTypeWarmpoweron;
                 resetCode.resetTrigger = IfxScuRcu_Trigger_portst;
             }
+            else
+            {
+                /* Do nothing. */
+            }
 
             resetCode.resetReason = 0;
         }
+        else
+        {
+            /* Do nothing. */
+        }
 
         resetEvaluated = TRUE;
-
         /* Clear COLD PORST reason */
         IfxScuRcu_clearColdResetStatus();
     }
     else
     {
+        /* Do nothing. */
     }
 
     return resetCode;
 }
-
 /*
  * This function evaluates if software execution is continuing after being in Standby mode
  * */
@@ -250,8 +254,11 @@ boolean safetyKitEvaluateStandby(void)
         {
             /* Clear standby flag */
             uint16 endinitSfty_pw = IfxScuWdt_getSafetyWatchdogPassword();
+
             IfxScuWdt_clearSafetyEndinit(endinitSfty_pw);
+
             PMS_PMSWSTATCLR.U |= (PMS_PMSWSTAT2.U & PMSWSTAT2_WAKE_UP_FLAGS_MASK);
+
             IfxScuWdt_setSafetyEndinit(endinitSfty_pw);
 
             comingFromStandby = TRUE;
@@ -264,23 +271,6 @@ boolean safetyKitEvaluateStandby(void)
 
     return comingFromStandby;
 }
-
-/*
- * This function is triggering a Cold POSRT (excluding standby domain) via the TLF.
- * The TLF35584 will be configured to move to standby state and to wake up after 500ms.
- * During TLF Standby State all rails but the LDO_Stby are disabled, so everything but
- * AURIX Standby Domain will receive a Cold PORST.
- * */
-void safetyKitTriggerColdPorst(void)
-{
-//    /* Set Wake Up Timer to 500ms and enable it afterwards */
-//    safetyKitTlf35584ConfigureWakeUpTimer500ms();
-//    safetyKitTlf35584EnableWakeUpTimer();
-//
-//    /* move TLF to Standby state, it will wake up automatically after 500ms */
-//    safetyKitTlf35584GotoStandbyPowerdownState();
-}
-
 /*
  * Triggering a Warm PORST via the LBIST.
  * Note: As stated in Errata BROM_TC.H017 : "In AURIX™ TC3xx devices, LBIST execution terminates [..]
@@ -292,41 +282,4 @@ void safetyKitTriggerWarmPorst(void)
     safetyKitTriggerLbist();
     /* Note: MCU_FW_CHECK (safetyKitSswMcuFwCheck()) will fail, as FW_CHECK compares expected register
      * values as if no LBIST was executed before. */
-}
-
-/*
- * This function triggers either a SW Application Reset or a SW System Reset, based on the parameter resetType
- * */
-void safetyKitTriggerSwReset(SafetyKitResetType resetType)
-{
-    (void)resetType;
-//    /* Get the CPU EndInit password */
-//    uint16 cpuEndinitPw = IfxScuWdt_getCpuWatchdogPassword();
-//
-//    /* Configure the request trigger in the Reset Configuration Register */
-//    IfxScuRcu_configureResetRequestTrigger(IfxScuRcu_Trigger_sw, (IfxScuRcu_ResetType)resetType);
-//
-//    /* Clear CPU EndInit protection to write in the SWRSTCON register of SCU */
-//    IfxScuWdt_clearCpuEndinit(cpuEndinitPw);
-//
-//    /* Trigger a software reset based on the configuration of RSTCON register */
-//    IfxCpu_triggerSwReset();
-//
-//    /* The following instructions are not executed if a SW reset occurs */
-//    /* Set CPU EndInit protection */
-//    IfxScuWdt_setCpuEndinit(cpuEndinitPw);
-}
-
-/*
- * set standby mode
- * */
-void safetyKitGotoStandby(void)
-{
-    IfxPmsPm_WakeupConfig config;
-    config.wakeup      = IfxPmsPm_WakeupOn_porst;                       /* WakeUp using PORST */
-    config.filter      = IfxPmsPm_DigitalFilter_used;                   /* Digital Filter is used */
-    config.trigger     = IfxPmsPm_EdgeDetectionControl_onRisingEdge;    /* Trigger is generated upon rising edge */
-    config.standbyRam  = IfxPmsPm_StandbyRamSupply_cpu0Cpu1;            /* Standby RAM (CPU0 dLMU RAM Block0 + Block1) &
-                                                                         (CPU1 dLMU RAM Block0 + Block1)  is supplied */
-    IfxPmsPm_setStandbyMode(&MODULE_PMS, &config, IfxPmsPm_RequestPowerMode_standby);
 }

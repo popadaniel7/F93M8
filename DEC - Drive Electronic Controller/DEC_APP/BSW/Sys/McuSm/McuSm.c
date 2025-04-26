@@ -5,6 +5,7 @@
 #include "IfxCpu_reg.h"
 #include "Iven.h"
 
+uint32* McuSm_FBLCounter_Pointer = (uint32*)(0xB00001B0U);
 uint32 McuSm_AGs[12u];
 uint32 McuSm_LastResetReason;
 uint32 McuSm_LastResetInformation;
@@ -13,6 +14,7 @@ McuSm_ResetHistory_t McuSm_ResetHistory[20u];
 Iven_IcmTable_t Iven_IcmLookupTable[IVEN_ICM_NUMBER_OF_MESSAGES] = {{0u,0u}};
 uint32 DiagMaster_AliveTime;
 uint8 DiagMaster_ActiveSessionState;
+
 
 void McuSm_InitializeBusMpu(void);
 void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
@@ -30,6 +32,7 @@ void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
         McuSm_ResetHistory[McuSm_IndexResetHistory].reason = resetReason;
         McuSm_ResetHistory[McuSm_IndexResetHistory].information = resetInformation;
         McuSm_IndexResetHistory++;
+        *McuSm_FBLCounter_Pointer += 1;
         DiagMaster_AliveTime = 0u;
 
         if(19u < McuSm_IndexResetHistory)
@@ -109,14 +112,6 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo)
     reg.U = __mfcr(CPU_CORE_ID);
     coreId =  (IfxCpu_ResourceCpu)reg.B.CORE_ID;
     Ifx_SCU_WDTCPU *cpuwdg = &MODULE_SCU.WDTCPU[coreId];
-
-    __debug();
-    
-  while(1)
-  {
-    __debug();
-  }
-
     McuSm_LastResetReason = 373u;
     McuSm_LastResetInformation = trapInfo.tId;
     McuSm_ResetHistory[McuSm_IndexResetHistory].reason = 373u;
@@ -132,15 +127,11 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo)
         /* Do nothing. */
     }
 
-    /* Read Password from Safety WDT CON0 register
-     * !!! NOTE: !!! when read bottom six bit of password are inverted so we have
-     * to toggle them before returning password */
     password  = watchdog->CON0.B.PW;
     password ^= 0x003Fu;
 
     if (SCU_WDTS_CON0.B.LCK)
     {
-        /* see Table 1 (Password Access Bit Pattern Requirements) */
         SCU_WDTS_CON0.U = (1u << IFX_SCU_WDTS_CON0_ENDINIT_OFF) |
                 (0u << IFX_SCU_WDTS_CON0_LCK_OFF) |
                 (password << IFX_SCU_WDTS_CON0_PW_OFF) |
@@ -151,28 +142,19 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo)
         /* Do nothing. */
     }
 
-    /* Clear ENDINT and set LCK bit in Config_0 register */
     SCU_WDTS_CON0.U = (0u << IFX_SCU_WDTS_CON0_ENDINIT_OFF) |
             (1u << IFX_SCU_WDTS_CON0_LCK_OFF) |
             (password << IFX_SCU_WDTS_CON0_PW_OFF) |
             (SCU_WDTS_CON0.B.REL << IFX_SCU_WDTS_CON0_REL_OFF);
-    /* read back ENDINIT and wait until it has been cleared */
 
-    while (SCU_WDTS_CON0.B.ENDINIT == 1u)
-    {}
+    while (SCU_WDTS_CON0.B.ENDINIT == 1u){}
 
-    MODULE_SCU.RSTCON.B.SW = 2u; /* Application Reset */
-
-    /* Read Password from CON0 register
-     * !!! NOTE: !!! when read bottom six bit of password are inverted so we have
-     * to toggle them before returning password */
-
+    MODULE_SCU.RSTCON.B.SW = 2u;
     password  = cpuwdg->CON0.B.PW;
     password ^= 0x003Fu;
 
     if (cpuwdg->CON0.B.LCK)
     {
-        /* see Table 1 (Password Access Bit Pattern Requirements) */
         cpuwdg->CON0.U = (1u << IFX_SCU_WDTCPU_CON0_ENDINIT_OFF) |
                 (0u << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
                 (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
@@ -183,41 +165,32 @@ void McuSm_TRAP3(IfxCpu_Trap trapInfo)
         /* Do nothing. */
     }
 
-    /* Clear ENDINT and set LCK bit in Config_0 register */
     cpuwdg->CON0.U = (0u << IFX_SCU_WDTCPU_CON0_ENDINIT_OFF) |
             (1u << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
             (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
             (cpuwdg->CON0.B.REL << IFX_SCU_WDTCPU_CON0_REL_OFF);
-    /* read back ENDINIT and wait until it has been cleared */
-    while (cpuwdg->CON0.B.ENDINIT == 1u)
-    {}
+
+    while (cpuwdg->CON0.B.ENDINIT == 1u){}
 
     if (cpuwdg->CON0.B.LCK)
     {
-        /* see Table 1 (Password Access Bit Pattern Requirements) */
         cpuwdg->CON0.U = (1u << IFX_SCU_WDTCPU_CON0_ENDINIT_OFF) |
-                           (0u << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
-                           (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
-                           (cpuwdg->CON0.B.REL << IFX_SCU_WDTCPU_CON0_REL_OFF);
+                (0u << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
+                (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
+                (cpuwdg->CON0.B.REL << IFX_SCU_WDTCPU_CON0_REL_OFF);
     }
 
-    /* Clear ENDINT and set LCK bit in Config_0 register */
     cpuwdg->CON0.U = (0u << IFX_SCU_WDTCPU_CON0_ENDINIT_OFF) |
-                       (1u << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
-                       (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
-                       (cpuwdg->CON0.B.REL << IFX_SCU_WDTCPU_CON0_REL_OFF);
+            (1u << IFX_SCU_WDTCPU_CON0_LCK_OFF) |
+            (password << IFX_SCU_WDTCPU_CON0_PW_OFF) |
+            (cpuwdg->CON0.B.REL << IFX_SCU_WDTCPU_CON0_REL_OFF);
 
-    /* read back ENDINIT and wait until it has been cleared */
-    while (cpuwdg->CON0.B.ENDINIT == 1u)
-    {}
+    while (cpuwdg->CON0.B.ENDINIT == 1u){}
 
-    /* Write the user DATA to reset evaluation */
     MODULE_SCU.RSTCON2.B.USRINFO = 34u;
-    /* software Reset can be performed by writing to Reset Request register  SWRSTCON */
     MODULE_SCU.SWRSTCON.B.SWRSTREQ = 1U;
-    /* Add some delay for HW to reset */
-    for (index = 0U; index < (uint32)90000U; index++)
-    {}
+
+    for (index = 0U; index < (uint32)90000U; index++){}
 }
 
 void McuSm_InitializeBusMpu(void)

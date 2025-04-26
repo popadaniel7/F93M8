@@ -377,7 +377,7 @@ __attribute__((section(".ccmram"))) uint8 DigitalCluster_IsOutsideTemperatureLow
 __attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsDmuError = 0;
 __attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsReverseCameraError = 0;
 __attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsDigitalClusterError = 0;
-__attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsOutsideTemperatureLow = 0;
+__attribute__((section(".ccmram"))) uint8 pDigitalCluster_IsOutsideTemperatureLow = 99;
 
 extern __attribute__((section(".ccmram"))) uint32 RevCam_DcmiStatus;
 extern __attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus;
@@ -391,7 +391,6 @@ void DigitalCluster_SelfTest(void);
 void DigitalCluster_WelcomeAnimationHandler(void);
 void DigitalCluster_LeavingAnimationHandler(void);
 void DigitalCluster_CSEHandler(void);
-void DigitalCluster_GTEHandler(void);
 void DigitalCluster_ShutOffDisplay(void);
 void DigitalCluster_CalculateTime(DigitalCluster_DisplayMode_t *displayType);
 void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayType);
@@ -405,6 +404,7 @@ void DigitalCluster_DisplayCenterSpeedRpm(DigitalCluster_DisplayMode_t *displayT
 void DigitalCluster_DisplaySideSpeedRpm(DigitalCluster_DisplayMode_t *displayType);
 void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType);
 void DigitalCluster_InitMemory(void);
+void DigitalCluster_HandleDigitalClusterBrightnessLevel(void);
 
 void DigitalCluster_Init(void)
 {
@@ -459,7 +459,7 @@ void DigitalCluster_Init(void)
 	pDigitalCluster_IsDmuError = 0;
 	pDigitalCluster_IsReverseCameraError = 0;
 	pDigitalCluster_IsDigitalClusterError = 0;
-	pDigitalCluster_IsOutsideTemperatureLow = 0;
+	pDigitalCluster_IsOutsideTemperatureLow = 99;
 	/* Initialize the ILI9341 via FSMC. */
 	DigitalCluster_RetValInit = FsmcH_LcdInit();
 	/* Delay to prevent wrong initialization. */
@@ -478,7 +478,7 @@ void DigitalCluster_Init(void)
 			 * Switch back-light on.
 			 * Set background color to black. */
 			DigitalCluster_LcdInit = 0x01;
-			htim3.Instance->CCR4 = 999u;
+			htim3.Instance->CCR4 = 9999u;
 			FsmcH_FillRectangle(0, 0, 320, 240, TFT_BLACK);
 		}
 		else
@@ -791,10 +791,10 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 	{
 		if(3 <= pDigitalCluster_IsOutsideTemperatureLow)
 		{
-			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			if(0 == DigitalCluster_RxSig_CheckControlMessageId)
 			{
 				pDigitalCluster_IsOutsideTemperatureLow = DigitalCluster_IsOutsideTemperatureLow;
-				DigitalCluster_RxSig_CheckControlMessageId = 9;
+				DigitalCluster_RxSig_CheckControlMessageId = 10;
 			}
 			else
 			{
@@ -815,7 +815,7 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 	{
 		if(0 == pDigitalCluster_IsDmuError)
 		{
-			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			if(0 == DigitalCluster_RxSig_CheckControlMessageId)
 			{
 				pDigitalCluster_IsDmuError = DigitalCluster_IsDmuError;
 				DigitalCluster_RxSig_CheckControlMessageId = 12;
@@ -839,10 +839,10 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 	{
 		if(0 == pDigitalCluster_IsReverseCameraError)
 		{
-			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			if(0 == DigitalCluster_RxSig_CheckControlMessageId)
 			{
 				pDigitalCluster_IsReverseCameraError = DigitalCluster_IsReverseCameraError;
-				DigitalCluster_RxSig_CheckControlMessageId = 4;
+				DigitalCluster_RxSig_CheckControlMessageId = 5;
 			}
 			else
 			{
@@ -863,7 +863,7 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 	{
 		if(0 == pDigitalCluster_IsDigitalClusterError)
 		{
-			if(0 != DigitalCluster_RxSig_CheckControlMessageId)
+			if(0 == DigitalCluster_RxSig_CheckControlMessageId)
 			{
 				pDigitalCluster_IsDigitalClusterError = DigitalCluster_IsDigitalClusterError;
 				DigitalCluster_RxSig_CheckControlMessageId = 11;
@@ -1352,7 +1352,7 @@ void DigitalCluster_DisplayInfoLights(DigitalCluster_DisplayMode_t *displayType)
 	{
 		/* Do nothing. */
 	}
-	if(DigitalCluster_RxSig_HighBeamStatus == 1 && hbPrevState == 0)
+	if(DigitalCluster_RxSig_HighBeamStatus == 1 && hbPrevState != DigitalCluster_RxSig_HighBeamStatus)
 	{
 		hbPrevState = DigitalCluster_RxSig_HighBeamStatus;
 		FsmcH_DrawString(displayType->DashboardLights.DL_HB.position_x,
@@ -1361,7 +1361,7 @@ void DigitalCluster_DisplayInfoLights(DigitalCluster_DisplayMode_t *displayType)
 				TFT_BLUE,
 				TFT_BLACK);
 	}
-	else if(DigitalCluster_RxSig_HighBeamStatus == 0 && hbPrevState == 1)
+	else if(DigitalCluster_RxSig_HighBeamStatus == 0 && hbPrevState != DigitalCluster_RxSig_HighBeamStatus)
 	{
 		hbPrevState = DigitalCluster_RxSig_HighBeamStatus;
 		FsmcH_DrawString(displayType->DashboardLights.DL_HB.position_x,
@@ -1382,7 +1382,7 @@ void DigitalCluster_DisplayCenterSpeedRpm(DigitalCluster_DisplayMode_t *displayT
 		localDM1 = DigitalCluster_RxSig_DisplayMode;
 		pVehSpeed = DigitalCluster_RxSig_VehicleSpeed;
 		vehSpeedConv = DigitalCluster_RxSig_VehicleSpeed;
-		vehSpeedConv = vehSpeedConv * 330 / 255;
+		vehSpeedConv = vehSpeedConv;
 
 		if(10 > vehSpeedConv)
 		{
@@ -1447,7 +1447,7 @@ void DigitalCluster_DisplayCenterSpeedRpm(DigitalCluster_DisplayMode_t *displayT
 	{
 		pRpm = DigitalCluster_RxSig_MotorRpm;
 		rpmConv = DigitalCluster_RxSig_MotorRpm;
-		rpmConv = rpmConv * 9999 / 255;
+		rpmConv = rpmConv * 7000 / 255;
 		localDM2 = DigitalCluster_RxSig_DisplayMode;
 		if(10 > rpmConv)
 		{
@@ -1570,8 +1570,35 @@ void DigitalCluster_DisplaySideSpeedRpm(DigitalCluster_DisplayMode_t *displayTyp
 		/* Do nothing. */
 	}
 }
+void DigitalCluster_HandleDigitalClusterBrightnessLevel(void)
+{
+	if(1u == DigitalCluster_RxSig_Rls)
+	{
+		if(999 < htim3.Instance->CCR4)
+		{
+			htim3.Instance->CCR4 -= 500u;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		if(9999u > htim3.Instance->CCR4)
+		{
+			htim3.Instance->CCR4 += 500u;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+}
 void DigitalCluster_CSEHandler(void)
 {
+	/* Handle backlight. */
+	DigitalCluster_HandleDigitalClusterBrightnessLevel();
 	/* Display collision warning. */
 	DigitalCluster_HandleCollisionWarning(&DigitalCluster_Display_ComfortEcoSport);
 	/* Display info-cluster warnings. */
@@ -1583,7 +1610,6 @@ void DigitalCluster_CSEHandler(void)
 	/* Display outside temperature
 	 * climate automatic
 	 * recirculation
-	 * power steering warning
 	 * high beam
 	 * RLS
 	 * fog lights
@@ -1691,7 +1717,7 @@ void DigitalCluster_LeavingAnimationHandler(void)
 		pDigitalCluster_IsDmuError = 0;
 		pDigitalCluster_IsReverseCameraError = 0;
 		pDigitalCluster_IsDigitalClusterError = 0;
-		pDigitalCluster_IsOutsideTemperatureLow = 0;
+		pDigitalCluster_IsOutsideTemperatureLow = 99;
 	}
 	else
 	{
@@ -1788,33 +1814,10 @@ void DigitalCluster_InitMemory(void)
 	pDigitalCluster_IsDmuError = 0;
 	pDigitalCluster_IsReverseCameraError = 0;
 	pDigitalCluster_IsDigitalClusterError = 0;
-	pDigitalCluster_IsOutsideTemperatureLow = 0;
+	pDigitalCluster_IsOutsideTemperatureLow = 99;
 }
 void DigitalCluster_MainFunction(void)
 {
-	if(1u == DigitalCluster_RxSig_Rls)
-	{
-		if(499u < htim3.Instance->CCR4)
-		{
-			htim3.Instance->CCR4--;
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-	}
-	else
-	{
-		if(999u > htim3.Instance->CCR4)
-		{
-			htim3.Instance->CCR4++;
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-	}
-
 	/* Make sure to keep buzzer low when needed. */
 	if(DigitalCluster_RxSig_CheckControlMessageId == 0 && DigitalCluster_RxSig_CollisionWarning != 2)
 	{
@@ -1887,19 +1890,19 @@ void DigitalCluster_MainFunction(void)
 						DigitalCluster_Display_ComfortEcoSport.DisplayType = DigitalCluster_RxSig_DisplayMode;
 						if(0 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
 						{
-							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_IVORY;
+							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_MOCCASIN;
 							DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_FIREBRICK;
 							DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_PALEGOLDENROD;
 						}
 						else if(1 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
 						{
-							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_WHITESMOKE;
+							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_YELLOWGREEN;
 							DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_ORANGE;
 							DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_RED;
 						}
 						else if(2 == DigitalCluster_Display_ComfortEcoSport.DisplayType)
 						{
-							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_ALICEBLUE;
+							DigitalCluster_Display_ComfortEcoSport.DisplayColor = TFT_MEDIUMBLUE;
 							DigitalCluster_Display_ComfortEcoSport.DisplayVehSpeedColor = TFT_SKYBLUE;
 							DigitalCluster_Display_ComfortEcoSport.DisplayRPMColor = TFT_AQUA;
 						}
@@ -1907,7 +1910,7 @@ void DigitalCluster_MainFunction(void)
 						{
 							/* Do nothing. */
 						}
-						/* 4 times per second refresh displayable information. */
+						/* 4 times per second refresh display-able information. */
 						if(DigitalCluster_MainCounter % 50 == 0 && DigitalCluster_MainCounter != 0) DigitalCluster_CSEHandler();
 						else
 						{

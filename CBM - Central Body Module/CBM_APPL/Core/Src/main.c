@@ -74,11 +74,16 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_USART1_UART_Init();
+  MX_TIM4_Init();
 
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 	EcuM_WakeupReason = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+	PWR_PVDTypeDef sConfigPVD;
+	sConfigPVD.Mode = PWR_PVD_MODE_IT_FALLING;
+	sConfigPVD.PVDLevel = PWR_PVDLEVEL_0;
+	HAL_PWR_ConfigPVD(&sConfigPVD);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -198,6 +203,14 @@ static void MX_NVIC_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
+	if (htim->Instance == TIM4)
+	{
+		EcuM_ProcessTimerInterrupt();
+	}
+	else
+	{
+		/* Do nothing. */
+	}
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM5)
   {

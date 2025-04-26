@@ -206,13 +206,13 @@ int main(void)
 		{
 			if((RCC->CSR & RCC_CSR_PORRSTF) != 0)
 			{
-				for(uint32* addr = ((uint32_t*)NCR_START_ADDRESS); addr <= ((uint32_t*)NCR_END_ADDRESS); addr++) *addr = 0;
+				for(uint32* addr = ((uint32*)NCR_START_ADDRESS); addr <= ((uint32*)NCR_END_ADDRESS); addr++) *addr = 0;
 				/* Reset the flag. */
 				RCC->CSR |= RCC_CSR_PORRSTF;
 			}/* Check if brown-out reset wake-up event occurred.*/
 			else if((RCC->CSR & RCC_CSR_BORRSTF) != 0)
 			{
-				for(uint32* addr = ((uint32_t*)NCR_START_ADDRESS); addr <= ((uint32_t*)NCR_END_ADDRESS); addr++) *addr = 0;
+				for(uint32* addr = ((uint32*)NCR_START_ADDRESS); addr <= ((uint32*)NCR_END_ADDRESS); addr++) *addr = 0;
 				/* Reset the flag. */
 				RCC->CSR |= RCC_CSR_BORRSTF;
 			}

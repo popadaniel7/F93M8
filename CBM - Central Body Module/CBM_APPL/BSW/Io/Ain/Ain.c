@@ -8,22 +8,11 @@
 #include <stdlib.h>
 /* INCLUDE END */
 /* DEFINE START */
-#define IGNPOT_POS 0
-#define ACCPOT_POS 1
-#define BRPOT_POS 2
-#define AQS_POS 3
-#define RS_POS 4
-#define PSPOT_POS 6
-#define GBPOT_POS 7
-#define LS_POS 8
-#define GS_POS 9
-#define ADC_NUMBER_OF_ERRORS 3
-#define ADCMUX_NUMBER_OF_INPUTS 10
 /* DEFINE STOP */
 /* VARIABLES START */
 static uint8 Ain_ConversionComplete = 0;
-uint16 Ain_Mux[ADCMUX_NUMBER_OF_INPUTS] = {0};
-uint32 Adc_Error[ADC_NUMBER_OF_ERRORS];
+uint16 Ain_Mux[4] = {0};
+uint32 Adc_Error[3];
 /* VARIABLES END */
 /* FUNCTIONS START */
 extern void Dem_SaveDtc(uint8 index, uint8 status);
@@ -67,49 +56,34 @@ void Ain_MainFunction(void)
 	/* Call the error callback in case of error. */
 	if(status) HAL_ADC_ErrorCallback(&hadc1);
 	else for(uint8 i = 0; i < 3; i++) Adc_Error[i] = 0;
-	{
-
-	}
 	/* Process the analog inputs coming from the muxer. */
-	while(Ain_CounterMux < ADCMUX_NUMBER_OF_INPUTS)
+	while(Ain_CounterMux < 4)
 	{
 		switch(Ain_CounterMux)
 		{
-		case 0:
+		case 0: // 1 IGN
 			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 1);
 			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
 			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
 			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
 			break;
-		case 3:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
-			break;
-		case 4:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
-			break;
-		case 7:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 1);
-			break;
-		case 8:
-			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 1);
-			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
-			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 1);
-			break;
-		case 9:
+		case 1: // 2 LS
 			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 0);
 			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 1);
 			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
+			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
+			break;
+		case 2: // 8 GB
+			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 0);
+			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
+			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 0);
 			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 1);
+			break;
+		case 3: // 5 RS
+			HAL_GPIO_WritePin(SIG0_ADCMUX_GPIO_Port, SIG0_ADCMUX_Pin, 1);
+			HAL_GPIO_WritePin(SIG1_ADCMUX_GPIO_Port, SIG1_ADCMUX_Pin, 0);
+			HAL_GPIO_WritePin(SIG2_ADCMUX_GPIO_Port, SIG2_ADCMUX_Pin, 1);
+			HAL_GPIO_WritePin(SIG3_ADCMUX_GPIO_Port, SIG3_ADCMUX_Pin, 0);
 			break;
 		default:
 			break;
@@ -120,7 +94,7 @@ void Ain_MainFunction(void)
 		Ain_ConversionComplete = 0;
 		/* Wait for conversion. */
 		while(Ain_ConversionComplete == 0 && counter < 20000) counter++;
-		if(20000 == counter) Dem_SaveDtc(10, 0xE);
+		if(20000 == counter) Dem_SaveDtc(0xA, 1);
 		else
 		{
 			/* Do nothing. */
@@ -134,18 +108,12 @@ void Ain_MainFunction(void)
 		Ain_CounterMux++;
 	}
 	/* Reset the muxer counter.  */
-	if(Ain_CounterMux == ADCMUX_NUMBER_OF_INPUTS) Ain_CounterMux = 0;
-	else
-	{
-		/* Do nothing. */
-	}
+	Ain_CounterMux = 0;
 	/* Store the measured values. */
-	StatusList_InputValue[IGN_ARRPOS] = Ain_Mux[IGNPOT_POS];
-	StatusList_InputValue[GB_ARRPOS] = Ain_Mux[GBPOT_POS];
-	StatusList_InputValue[LSNS_ARRPOS] = Ain_Mux[LS_POS];
-	StatusList_InputValue[RSNS_ARRPOS] = Ain_Mux[RS_POS];
-	StatusList_InputValue[AQSNS_ARRPOS] = Ain_Mux[AQS_POS];
-	StatusList_InputValue[GSNS_ARRPOS] = Ain_Mux[GS_POS];
+	StatusList_InputValue[0] = Ain_Mux[0];
+	StatusList_InputValue[1] = Ain_Mux[1];
+	StatusList_InputValue[2] = Ain_Mux[2];
+	StatusList_InputValue[3] = Ain_Mux[3];
 	/* Increment the counter. */
 	Ain_MainCounter++;
 }

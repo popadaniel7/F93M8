@@ -24,7 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -36,21 +35,17 @@
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
 IFX_EXTERN const IfxMtu_MbistConfig *const mbistGangConfig[];
 void safetyKitClearMbistSshRegisters(void);
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -69,60 +64,64 @@ void safetyKitSswMbist(void)
     /* Preparations for MBIST */
     /* Disable all other CPUs, but of course not the one which is executing the function */
     IfxCpu_ResourceCpu coreIndex  = IfxCpu_getCoreIndex();
-    if(coreIndex != IfxCpu_ResourceCpu_0){
+
+    if(coreIndex != IfxCpu_ResourceCpu_0)
+    {
         IfxCpu_setCoreMode(&MODULE_CPU0, IfxCpu_CoreMode_idle);
     }
-#if (IFXCPU_NUM_MODULES > 1)
-    if(coreIndex != IfxCpu_ResourceCpu_1){
+    else
+    {
+        /* Do nothing. */
+    }
+#if (IFXCPU_NUM_MODULES > 1u)
+    if(coreIndex != IfxCpu_ResourceCpu_1)
+    {
         IfxCpu_setCoreMode(&MODULE_CPU1, IfxCpu_CoreMode_idle);
     }
+    else
+    {
+        /* Do nothing. */
+    }
 #endif
-#if (IFXCPU_NUM_MODULES > 2)
-    if(coreIndex != IfxCpu_ResourceCpu_2){
+#if (IFXCPU_NUM_MODULES > 2u)
+    if(coreIndex != IfxCpu_ResourceCpu_2)
+    {
         IfxCpu_setCoreMode(&MODULE_CPU2, IfxCpu_CoreMode_idle);
     }
+    else
+    {
+        /* Do nothing. */
+    }
 #endif
-//#if (IFXCPU_NUM_MODULES > 3)
-//#endif
-//    if(coreIndex != IfxCpu_ResourceCpu_3){
-//        IfxCpu_setCoreMode(&MODULE_CPU3, IfxCpu_CoreMode_idle);
-//    }
-//#if (IFXCPU_NUM_MODULES > 4)
-//#endif
-//    if(coreIndex != IfxCpu_ResourceCpu_4){
-//        IfxCpu_setCoreMode(&MODULE_CPU4, IfxCpu_CoreMode_idle);
-//    }
-//#if (IFXCPU_NUM_MODULES > 5)
-//#endif
-//    if(coreIndex != IfxCpu_ResourceCpu_5){
-//        IfxCpu_setCoreMode(&MODULE_CPU5, IfxCpu_CoreMode_idle);
-//    }
-//#endif
-
     /* Disable CPU caches */
-    IfxCpu_setDataCache    (0);
-    IfxCpu_setProgramCache (0);
-
+    IfxCpu_setDataCache    (0u);
+    IfxCpu_setProgramCache (0u);
     /* If DMA master is enabled disable it */
     boolean dmaWasEnabled = FALSE;
-    if(MODULE_DMA.CLC.B.DISS == 0)
+
+    if(MODULE_DMA.CLC.B.DISS == 0u)
     {
         dmaWasEnabled = TRUE;
+
         uint16 passwd = IfxScuWdt_getCpuWatchdogPassword();
+
         IfxScuWdt_clearCpuEndinit(passwd);
-        MODULE_DMA.CLC.B.DISR = 1;
+
+        MODULE_DMA.CLC.B.DISR = 1u;
+
         IfxScuWdt_setCpuEndinit(passwd);
     }
-
+    else
+    {
+        /* Do nothing. */
+    }
     /* MBIST Tests and evaluation */
     boolean nBistError = TRUE;
-
     /*
      * iLLD: &mbistGang3Config from mbistGangConfig is commented (disable) by default but
      * as this device has EMEM, therefore it is enabled in iLLD (IfxMtu_cfg.c).
      * */
     nBistError = IfxMtu_runMbistAll(mbistGangConfig);
-
     /* check if there was any error */
     if (nBistError == FALSE)
     {
@@ -132,55 +131,42 @@ void safetyKitSswMbist(void)
     {
         g_SafetyKitStatus.sswStatus.mbistStatus = failed;
     }
-
     /* Clear all ECCD and FAULTSTS registers of the tested memory */
     safetyKitClearMbistSshRegisters();
-
     /* Enable DMA module again if it got disabled before */
     if(dmaWasEnabled)
     {
         uint16 passwd = IfxScuWdt_getCpuWatchdogPassword();
+
         IfxScuWdt_clearCpuEndinit(passwd);
-        MODULE_DMA.CLC.B.DISR = 0;
+
+        MODULE_DMA.CLC.B.DISR = 0u;
+
         IfxScuWdt_setCpuEndinit(passwd);
     }
-
+    else
+                    {
+                        /* Do nothing. */
+                    }
     /* Enable CPU caches */
-    IfxCpu_setDataCache    (1);
-    IfxCpu_setProgramCache (1);
-
+    IfxCpu_setDataCache    (1u);
+    IfxCpu_setProgramCache (1u);
     /* Enable all other CPUs, but not the one which is executing the function (of course it is also not disabled) */
     if(coreIndex != IfxCpu_ResourceCpu_0){
         IfxCpu_setCoreMode(&MODULE_CPU0, IfxCpu_CoreMode_run);
     }
-#if (IFXCPU_NUM_MODULES > 1)
+#if (IFXCPU_NUM_MODULES > 1u)
     if(coreIndex != IfxCpu_ResourceCpu_1){
         IfxCpu_setCoreMode(&MODULE_CPU1, IfxCpu_CoreMode_run);
     }
 #endif
-#if (IFXCPU_NUM_MODULES > 2)
+#if (IFXCPU_NUM_MODULES > 2u)
     if(coreIndex != IfxCpu_ResourceCpu_2){
         IfxCpu_setCoreMode(&MODULE_CPU2, IfxCpu_CoreMode_run);
     }
 #endif
-#if (IFXCPU_NUM_MODULES > 3)
-    if(coreIndex != IfxCpu_ResourceCpu_3){
-        IfxCpu_setCoreMode(&MODULE_CPU3, IfxCpu_CoreMode_run);
-    }
-#endif
-#if (IFXCPU_NUM_MODULES > 4)
-    if(coreIndex != IfxCpu_ResourceCpu_4){
-        IfxCpu_setCoreMode(&MODULE_CPU4, IfxCpu_CoreMode_run);
-    }
-#endif
-#if (IFXCPU_NUM_MODULES > 5)
-    if(coreIndex != IfxCpu_ResourceCpu_5){
-        IfxCpu_setCoreMode(&MODULE_CPU5, IfxCpu_CoreMode_run);
-    }
-#endif
 }
 #endif /* SAFETYKIT_CFG_SSW_ENABLE_MBIST */
-
 /*
  * Clear all ECCD and FAULTSTS registers of the memory on which MBIST was executed.
  * Algorithm is based on a combination of the two functions
@@ -193,26 +179,28 @@ void safetyKitClearMbistSshRegisters(void)
     Ifx_MTU_MC *mc;
     sint32 count;
     uint16 password;
-
     unsigned int gangConfigCount = 0;
-    while (mbistGangConfig[gangConfigCount] != (void *)0)
+
+    while (mbistGangConfig[gangConfigCount] != (void *)0u)
     {
-        for (count = 0; count < mbistGangConfig[gangConfigCount]->numOfSshConfigurations; count++)
+        for (count = 0u; count < mbistGangConfig[gangConfigCount]->numOfSshConfigurations; count++)
         {
             mbistSel = mbistGangConfig[gangConfigCount]->sshConfigurations[count].sshSel;
 
             mc = &MODULE_MTU.MC[mbistSel];
 
             /* Clear error flags of tested memory */
-            mc->ECCD.U = 0x0;
+            mc->ECCD.U = 0x0u;
 
             password = IfxScuWdt_getSafetyWatchdogPassword();
+
             IfxScuWdt_clearSafetyEndinit(password);
 
-            mc->FAULTSTS.U = 0x0;
+            mc->FAULTSTS.U = 0x0u;
 
             IfxScuWdt_setSafetyEndinit(password);
         }
+
         gangConfigCount++;
     }
 }

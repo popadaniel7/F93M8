@@ -2,10 +2,10 @@
 /* INCLUDE START */
 #include "TimH.h"
 #include "tim.h"
-#include "ActCtrl.h"
 /* INCLUDE END */
 /* VARIABLES START */
-uint32 Tim_ErrorStatus[2] = {0};
+uint32 Tim_ErrorStatus[4] = {0};
+extern TIM_HandleTypeDef htim5;
 /* VARIABLES END */
 /* FUNCTIONS START */
 void TimH_MainFunction(void);
@@ -39,6 +39,12 @@ void TimH_MainFunction(void)
 	/* Error checking. */
 	if(HAL_TIM_Base_GetState(&htim3) == HAL_TIM_STATE_ERROR) Tim_ErrorStatus[1]++;
 	else Tim_ErrorStatus[1] = 0;
+	/* Error checking. */
+	if(HAL_TIM_Base_GetState(&htim4) == HAL_TIM_STATE_ERROR) Tim_ErrorStatus[2]++;
+	else Tim_ErrorStatus[2] = 0;
+	/* Error checking. */
+	if(HAL_TIM_Base_GetState(&htim5) == HAL_TIM_STATE_ERROR) Tim_ErrorStatus[3]++;
+	else Tim_ErrorStatus[3] = 0;
 	/* Increment the counter. */
 	TimH_MainCounter++;
 }

@@ -35,7 +35,7 @@ void UartH_MainFunction(void)
 	/* Store the BT processed data. */
 	if(UartH_BtcProcessedData != 0)
 	{
-		StatusList_InputValue[9] = UartH_BtcProcessedData;
+		StatusList_InputValue[4] = UartH_BtcProcessedData;
 		UartH_BtcProcessedData = 0;
 	}
 	else

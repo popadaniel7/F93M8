@@ -26,21 +26,17 @@
  *********************************************************************************************************************/
 #ifndef SMU_H_
 #define SMU_H_
-
 /*********************************************************************************************************************/
 /*----------------------------------Includes-------------------------------------------------------------------------*/
 /*********************************************************************************************************************/
 #include "Ifx_Types.h"
 #include "IfxCpu.h"
-
 #include "IfxSrc_reg.h"
 #include "IfxSmu.h"
 #include "IfxSmu_cfg.h"
 #include "IfxSrc_cfg.h"
 #include "IfxMtu_cfg.h"
-
 #include "IfxCpu_Trap.h"
-
 /*********************************************************************************************************************/
 /*-----------------------------------Macros--------------------------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -58,11 +54,10 @@
 #define SOFT_SMU_ALM_STM            IfxSmu_Alarm_Software_Alarm11      /* compare two stm ticks */
 #define SOFT_SMU_ALM_PFLASH         IfxSmu_Alarm_Software_Alarm12
 #define SOFT_SMU_ALM_DTS            IfxSmu_Alarm_Software_Alarm13
-#define SOFT_SMU_ALM_PORT_SMs      IfxSmu_Alarm_Software_Alarm14      /* used for port redundancy and loopback*/
-#define SOFT_SMU_ALM_CLOCK_PLAUS     IfxSmu_Alarm_Software_Alarm15     /* used the same for QPSI safe communication */
-
-#define USER_ALARM_NUMBER           36
-#define AMOUNT_OF_SMU_ALARMS        (uint16)(IfxSmu_Alarm_XBAR_SOTA_SwapError + 1)
+#define SOFT_SMU_ALM_PORT_SMs       IfxSmu_Alarm_Software_Alarm14      /* used for port redundancy and loopback*/
+#define SOFT_SMU_ALM_CLOCK_PLAUS    IfxSmu_Alarm_Software_Alarm15     /* used the same for QPSI safe communication */
+#define USER_ALARM_NUMBER           36u
+#define AMOUNT_OF_SMU_ALARMS        (uint16)(IfxSmu_Alarm_XBAR_SOTA_SwapError + 1u)
 /* Just took last alarm as default, any alarm can be set here */
 #define DEFAULT_ALARM               (uint16)(IfxSmu_Alarm_XBAR_SOTA_SwapError)
 #define DEFAULT_ALARM_ACTION        IfxSmu_InternalAlarmAction_nmi
@@ -72,40 +67,35 @@
 /*********************************************************************************************************************/
 typedef enum
 {
-    SmuSR0       = 1,
-    SmuSR1       = 2,
-    SmuSR0SR1    = 3,
-    SmuSR2       = 4,
-    SmuSR0SR2    = 5,
-    SmuSR1SR2    = 6,
-    SmuSR0SR1SR2 = 7,
-    SmuNAN       = 8,
+    SmuSR0       = 1u,
+    SmuSR1       = 2u,
+    SmuSR0SR1    = 3u,
+    SmuSR2       = 4u,
+    SmuSR0SR2    = 5u,
+    SmuSR1SR2    = 6u,
+    SmuSR0SR1SR2 = 7u,
+    SmuNAN       = 8u,
 } SmuSR;
-
 typedef enum
 {
-    disablePES     = 0x0,
-    onPESIGCS0     = 0x1,
-    onPESIGCS1     = 0x2,
-    onPESIGCS2     = 0x4,
-    onPESNMI       = 0x8,
-    onPESCPU_RESET = 0x10,
+    disablePES     = 0x0u,
+    onPESIGCS0     = 0x1u,
+    onPESIGCS1     = 0x2u,
+    onPESIGCS2     = 0x4u,
+    onPESNMI       = 0x8u,
+    onPESCPU_RESET = 0x10u,
 } TargetPES;
-
 typedef enum
 {
     NA     = -1,
-    fail   = 0,
-    pass   = 1,
+    fail   = 0u,
+    pass   = 1u,
 } SmuStatusType;
-
-
 typedef enum
 {
-    notPending = 0,
-    pending    = 1,
+    notPending = 0u,
+    pending    = 1u,
 } AlarmStatSMU;
-
 /*********************************************************************************************************************/
 /*-----------------------------Data Structures-----------------------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -118,29 +108,22 @@ typedef struct
     boolean                     triggerRecoveryTimer;
     void                        (*functionToCallOnDetection)(void);
 } AlarmConfigStruct;
-
-
 /* Bind an IGCS reaction with its config */
 typedef struct {
     IfxSmu_InternalAlarmAction  igcs_id;
     SmuSR                      igcs_config;
 } IGCSisrBindingStruct;
-
-
 /* Store the state of an user configured alarm with its config (const) */
 typedef struct {
     const AlarmConfigStruct*  alarmConfig;
     AlarmStatSMU             alarmState;
 } RuntimeAlarmHandle;
-
-
 /* Hold records of all the alarm raised */
 typedef struct
 {
     RuntimeAlarmHandle  *lastAlarmRaised[USER_ALARM_NUMBER];
     uint16              alarmCounter;
 } SmuAlarmPendingType;
-
 /* Store function execution status */
 typedef struct
 {
@@ -165,7 +148,6 @@ typedef struct
     SmuStatusType smuRecoveryTimerConfigSts;
     SmuStatusType smuCoreSWAlarmTriggerSts;
 } SmuExecutionStatusType;
-
 /*********************************************************************************************************************/
 /*------------------------------Global variables---------------------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -173,12 +155,10 @@ typedef struct
 /*********************************************************************************************************************/
 /*-------------------------Function Prototypes-----------------------------------------------------------------------*/
 /*********************************************************************************************************************/
-void safetyKitWatchdogAlarmHandling(void);
 void safetyKitEnableAllSMUAlarms(void);
 void initSMUModule(void);
 SmuStatusType softwareCoreAlarmTriggerSMU(IfxSmu_Alarm alarm);
 uint16 detectAlarmSourcSMU(RuntimeAlarmHandle *alarm_array, uint16 nbr_alarms);
 SmuStatusType coreAlarmReactionClearSMU(RuntimeAlarmHandle *active_alarm);
 SmuStatusType resetAllAlarmsSMU(void);
-
 #endif /* SMU_H_ */

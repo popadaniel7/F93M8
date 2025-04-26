@@ -48,7 +48,6 @@ void Ifx_Ssw_Pms_Init(void)
 {
     if (IfxPmsEvr_runInitSequence(&IfxPmsEvr_cfgSequenceDefault) == 0)
     {
-        __debug();
         /* Application may have call to error handling here */
     }
 
@@ -61,7 +60,6 @@ void Ifx_Ssw_Pms_InitCheck(void)
 
     if (IfxPmsEvr_areInitValuesRight(&IfxPmsEvr_checkRegCfgDefault) == 0)
     {
-        __debug();
         /* Application may have call to error handling here */
     }
     Ifx_Ssw_jumpBackToLink();

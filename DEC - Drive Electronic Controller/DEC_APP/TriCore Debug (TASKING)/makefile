@@ -40,7 +40,6 @@ RM := rm -rf
 -include Configurations/subdir.mk
 -include BSW/Sys/Wdg/subdir.mk
 -include BSW/Sys/SysMgr/subdir.mk
--include BSW/Sys/SmM/06_Safe_Computation/subdir.mk
 -include BSW/Sys/SmM/02_Safety_Mechanisms/subdir.mk
 -include BSW/Sys/SmM/01_Smu/SMU_Test/subdir.mk
 -include BSW/Sys/SmM/01_Smu/SMU/subdir.mk
@@ -68,14 +67,23 @@ RM := rm -rf
 -include APP/ColDet/subdir.mk
 -include subdir.mk
 ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(C++M_DEPS)),)
+-include $(C++M_DEPS)
+endif
 ifneq ($(strip $(C++_DEPS)),)
 -include $(C++_DEPS)
+endif
+ifneq ($(strip $(CCM_DEPS)),)
+-include $(CCM_DEPS)
 endif
 ifneq ($(strip $(CC_DEPS)),)
 -include $(CC_DEPS)
 endif
 ifneq ($(strip $(CPP_DEPS)),)
 -include $(CPP_DEPS)
+endif
+ifneq ($(strip $(CXXM_DEPS)),)
+-include $(CXXM_DEPS)
 endif
 ifneq ($(strip $(CXX_DEPS)),)
 -include $(CXX_DEPS)
@@ -116,12 +124,17 @@ dependents:
 	-cd "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)" && $(MAKE) clean all
 
 # Tool invocations
-DEC_APP.elf: $(OBJS) "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)/SCR_AURIX_TC3x" makefile $(OPTIONAL_TOOL_DEPS)
+DEC_APP.elf: $(OBJS) "C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP/SCR Debug (SDCC)/SCR_AURIX_TC3x" makefile $(OPTIONAL_TOOL_DEPS) .DEC_APP.elf.opt
 	@echo 'Building target: $@'
 	@echo 'Invoking: TASKING Linker'
-	cctc --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy -Wl--map-file="DEC_APP.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 --fp-model=3 -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc37x -o"DEC_APP.elf" -Wl-o"DEC_APP.hex:IHEX" $(OBJS)
+	cctc -f .DEC_APP.elf.opt
 	@echo 'Finished building target: $@'
 	@echo ' '
+
+.DEC_APP.elf.opt:
+	@argfile .DEC_APP.elf.opt --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy -Wl--map-file="DEC_APP.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 --fp-model=3 -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc37x -o"DEC_APP.elf" -Wl-o"DEC_APP.hex:IHEX" $(OBJS)
+
+.PHONY: .DEC_APP.elf.opt
 
 DEC_APP.siz: DEC_APP.elf makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'

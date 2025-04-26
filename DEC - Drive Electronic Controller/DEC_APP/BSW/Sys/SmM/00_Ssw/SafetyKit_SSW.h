@@ -32,21 +32,16 @@
 #include "SafetyKit_Cfg.h"
 #include "Ifx_Types.h"
 #include "IfxCpu.h"
-
 #include "IfxPms_reg.h"
 #include "IfxScuRcu.h"
 #include "IfxScu_reg.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
 #define SSW_STATUS_DATA_ADDRESS (*(volatile SswStatusXramType*)PMS_XRAM)
-
 #define SAFETKIT_LBIST_MAX_RUNS     (3)
 #define SAFETKIT_FW_CHECK_MAX_RUNS  (2)
-
 #define LAST_IFXSCURCU_RESETTYPE_ENUM IfxScuRcu_ResetType_undefined /* Validate this parameter in case of iLLD update*/
-
 /*********************************************************************************************************************/
 /*---------------------------------------------------Enumerations----------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -62,7 +57,6 @@ typedef enum
     safetyKitResetTypeLbist       = LAST_IFXSCURCU_RESETTYPE_ENUM + 10        /* LBIST Reset, adding 10 to be
                                                                                  sure enum value is not assigned. */
 } SafetyKitResetType;
-
 typedef enum
 {
     notEvaluated = 0,
@@ -79,7 +73,6 @@ typedef struct
     IfxScuRcu_Trigger   resetTrigger;       /* reset Trigger */
     uint16              resetReason;        /* Reset Reason */
 } SafetyKitResetCode;
-
 typedef struct
 {
     uint8               lbistAppSwReq;      /* Amount of LBIST requests (by application software) */
@@ -87,7 +80,6 @@ typedef struct
     uint8               mcuFwcheckRuns;     /* Amount of MCU_FW_CHECK executions*/
     Ifx_SCU_RSTSTAT     RSTSTAT;            /* RSTSTAT register copy */
 } SswStatusXramType;
-
 typedef struct
 {
     SswSMStatusType    lbistStatus;
@@ -98,19 +90,12 @@ typedef struct
     SswSMStatusType    regMonitorTestStatus;
     SswSMStatusType    mbistStatus;
 } SswStatusType;
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-//IFX_EXTERN volatile SswStatusXramType *g_sswStatusXram;
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
 void runSafeAppSwStartup(void);
-void safetyKitTriggerColdPorst(void);
 void safetyKitTriggerWarmPorst(void);
-void safetyKitTriggerSwReset(SafetyKitResetType resetType);
-void safetyKitGotoStandby(void);
-
 #endif /* SAFETYKIT_SSW_H_ */

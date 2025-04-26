@@ -27,7 +27,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 2u,
+                .cycleTime = 20u,
         },
         /* Status Body Control */
         {
@@ -49,7 +49,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 10u,
+                .cycleTime = 100u,
         },
         /* Status Body Control 2 */
         {
@@ -71,7 +71,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 10u,
+                .cycleTime = 100u,
         },
         /* Info Cluster Message */
         {
@@ -93,7 +93,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 20u,
+                .cycleTime = 580u,
         },
         /* DataRecorder */
         {
@@ -115,7 +115,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 20u,
+                .cycleTime = 200u,
         },
         /* Networkmanagement3 */
         {
@@ -128,7 +128,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                                 .remoteTransmitRequest = 0u,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
                                 .errorStateIndicator = 0u,
-                                .dataLengthCode = IfxCan_DataLengthCode_5,
+                                .dataLengthCode = IfxCan_DataLengthCode_2,
                                 .frameMode = IfxCan_FrameMode_standard,
                                 .txEventFifoControl = FALSE,
                                 .storeInTxFifoQueue = FALSE,
@@ -204,6 +204,28 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                 },
                 .transmitFlag = 1u,
                 .cycleTime = 2u,
+        },
+        /* BusSystemDateAndTime */
+        {
+                .transmitMessage =
+                {
+                        .txMsg =
+                        {
+                                .bufferNumber = 9u,
+                                .messageId = 0x201u,
+                                .remoteTransmitRequest = 0u,
+                                .messageIdLength = IfxCan_MessageIdLength_standard,
+                                .errorStateIndicator = 0u,
+                                .dataLengthCode = IfxCan_DataLengthCode_6,
+                                .frameMode = IfxCan_FrameMode_standard,
+                                .txEventFifoControl = FALSE,
+                                .storeInTxFifoQueue = FALSE,
+                                .readFromRxFifo0 = FALSE,
+                                .readFromRxFifo1 = FALSE
+                        },
+                },
+                .transmitFlag = 1u,
+                .cycleTime = 180u,
         }
 };
 ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
@@ -214,7 +236,7 @@ ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
                 {
                         .rxMsg =
                         {
-                                .bufferNumber = 0u,
+                                .bufferNumber = 1u,
                                 .messageId = 0x100u,
                                 .remoteTransmitRequest = FALSE,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -236,12 +258,12 @@ ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
                 {
                         .rxMsg =
                         {
-                                .bufferNumber = 1u,
+                                .bufferNumber = 2u,
                                 .messageId = 0x101u,
                                 .remoteTransmitRequest = FALSE,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
                                 .errorStateIndicator = FALSE,
-                                .dataLengthCode = 3u,
+                                .dataLengthCode = 5u,
                                 .frameMode = IfxCan_FrameMode_standard,
                                 .txEventFifoControl = FALSE,
                                 .storeInTxFifoQueue = FALSE,
@@ -258,7 +280,7 @@ ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
                 {
                         .rxMsg =
                         {
-                                .bufferNumber = 5u,
+                                .bufferNumber = 3u,
                                 .messageId = 0x108u,
                                 .remoteTransmitRequest = FALSE,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -280,7 +302,7 @@ ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
                 {
                         .rxMsg =
                         {
-                                .bufferNumber = 6u,
+                                .bufferNumber = 7u,
                                 .messageId = 0x10Au,
                                 .remoteTransmitRequest = FALSE,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -302,7 +324,7 @@ ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
                 {
                         .rxMsg =
                         {
-                                .bufferNumber = 7u,
+                                .bufferNumber = 4u,
                                 .messageId = 0x10Cu,
                                 .remoteTransmitRequest = FALSE,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
@@ -324,12 +346,56 @@ ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
                 {
                         .rxMsg =
                         {
-                                .bufferNumber = 16u,
+                                .bufferNumber = 8u,
                                 .messageId = 0x001u,
                                 .remoteTransmitRequest = FALSE,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
                                 .errorStateIndicator = FALSE,
                                 .dataLengthCode = 5u,
+                                .frameMode = IfxCan_FrameMode_standard,
+                                .txEventFifoControl = FALSE,
+                                .storeInTxFifoQueue = FALSE,
+                                .readFromRxFifo0 = FALSE,
+                                .readFromRxFifo1 = FALSE
+                        },
+                        .rxData = {0u}
+                },
+                .receivedValidFlag = 0u
+        },
+        /* Dmu_AliveIndication */
+        {
+                .receiveMessage =
+                {
+                        .rxMsg =
+                        {
+                                .bufferNumber = 9u,
+                                .messageId = 0x200u,
+                                .remoteTransmitRequest = FALSE,
+                                .messageIdLength = IfxCan_MessageIdLength_standard,
+                                .errorStateIndicator = FALSE,
+                                .dataLengthCode = 1u,
+                                .frameMode = IfxCan_FrameMode_standard,
+                                .txEventFifoControl = FALSE,
+                                .storeInTxFifoQueue = FALSE,
+                                .readFromRxFifo0 = FALSE,
+                                .readFromRxFifo1 = FALSE
+                        },
+                        .rxData = {0u}
+                },
+                .receivedValidFlag = 0u
+        },
+        /* RealDateAndTime */
+        {
+                .receiveMessage =
+                {
+                        .rxMsg =
+                        {
+                                .bufferNumber = 10u,
+                                .messageId = 0x202u,
+                                .remoteTransmitRequest = FALSE,
+                                .messageIdLength = IfxCan_MessageIdLength_standard,
+                                .errorStateIndicator = FALSE,
+                                .dataLengthCode = 1u,
                                 .frameMode = IfxCan_FrameMode_standard,
                                 .txEventFifoControl = FALSE,
                                 .storeInTxFifoQueue = FALSE,
@@ -348,68 +414,87 @@ uint32 ComMaster_CwcMsgStat_Cnt = 0u;
 uint32 ComMaster_LsMsgStat_Cnt = 0u;
 uint32 ComMaster_SdtsMsgStat_Cnt = 0u;
 uint32 ComMaster_MainCounter = 0u;
-uint8 ComMaster_RxSignal_AutoClimate = 0u;
-uint8 ComMaster_RxSignal_ClimateTemperature = 0u;
-uint8 ComMaster_RxSignal_DisplayMode = 0u;
-uint8 ComMaster_RxSignal_Err701_ID = 0u;
-uint8 ComMaster_RxSignal_FanValue = 0u;
-uint8 ComMaster_RxSignal_Recirculation = 0u;
-uint8 ComMaster_RxSignal_RotaryLightSwitch = 0u;
-uint8 ComMaster_RxSignal_StatusIgn = 0u;
-uint8 ComMaster_RxSignal_StatusGb = 0u;
-uint8 ComMaster_RxSignal_StatusDoorLeft = 0u;
-uint8 ComMaster_RxSignal_StatusDoorRight = 0u;
-uint8 ComMaster_RxSignal_StatusHighBeam = 0u;
-uint8 ComMaster_RxSignal_StatusFogLights = 0u;
-uint8 ComMaster_RxSignal_WiperStock = 0u;
-uint8 ComMaster_RxSignal_OutsideTemperature = 0u;
-uint8 ComMaster_RxSignal_TurnSignals = 0u;
-uint8 ComMaster_RxSignal_StatusHc05 = 0u;
-uint8 ComMaster_TxSignal_AutoClimateRequest = 0u;
-uint8 ComMaster_TxSignal_ClimaTempRequest = 0u;
-uint8 ComMaster_TxSignal_DcyStatus = 0u;
-uint8 ComMaster_TxSignal_DisplayModeRequest = 0u;
-uint8 ComMaster_TxSignal_FanValueRequest = 0u;
-uint8 ComMaster_TxSignal_FogLights = 0u;
-uint8 ComMaster_TxSignal_Gear = 0u;
-uint8 ComMaster_TxSignal_HighBeam = 0u;
-uint8 ComMaster_TxSignal_ICM_ID = 0u;
-uint8 ComMaster_TxSignal_Ignition = 0u;
-uint8 ComMaster_TxSignal_IrSenStat = 0u;
-uint8 ComMaster_TxSignal_NM3 = 0u;
-uint8 ComMaster_TxSignal_NM3_PN1 = 0u;
-uint8 ComMaster_TxSignal_StatusOutTemp = 0u;
-uint8 ComMaster_TxSignal_RecirculationRequest = 0u;
-uint8 ComMaster_TxSignal_RlsRequest = 0u;
-uint8 ComMaster_RxSignal_Rpm = 0u;
-uint8 ComMaster_RxSignal_Speed = 0u;
-uint8 ComMaster_TxSignal_TurnSignals = 0u;
-uint8 ComMaster_TxSignal_WiperStockRequest = 0u;
-uint8 ComMaster_TxSignal_VehicleStatus = 0u;
+uint32 ComMaster_Rdat_Cnt = 0u;
+uint32 ComMaster_Dai_Cnt = 0u;
+uint8 ComMaster_RxSignal_AutoClimate = 253u;
+uint8 ComMaster_RxSignal_ClimateTemperature = 253u;
+uint8 ComMaster_RxSignal_DisplayMode = 253u;
+uint8 ComMaster_RxSignal_Err701_ID = 253u;
+uint8 ComMaster_RxSignal_FanValue = 253u;
+uint8 ComMaster_RxSignal_Recirculation = 253u;
+uint8 ComMaster_RxSignal_RotaryLightSwitch = 253u;
+uint8 ComMaster_RxSignal_StatusIgn = 253u;
+uint8 ComMaster_RxSignal_StatusGb = 253u;
+uint8 ComMaster_RxSignal_StatusDoorLeft = 253u;
+uint8 ComMaster_RxSignal_StatusDoorRight = 253u;
+uint8 ComMaster_RxSignal_StatusHighBeam = 253u;
+uint8 ComMaster_RxSignal_StatusFogLights = 253u;
+uint8 ComMaster_RxSignal_WiperStock = 253u;
+uint8 ComMaster_RxSignal_OutsideTemperature = 253u;
+uint8 ComMaster_RxSignal_TurnSignals = 253u;
+uint8 ComMaster_RxSignal_StatusHc05 = 253u;
+uint8 ComMaster_TxSignal_AutoClimateRequest = 253u;
+uint8 ComMaster_TxSignal_ClimaTempRequest = 253u;
+uint8 ComMaster_TxSignal_DcyStatus = 253u;
+uint8 ComMaster_TxSignal_DisplayModeRequest = 253u;
+uint8 ComMaster_TxSignal_FanValueRequest = 253u;
+uint8 ComMaster_TxSignal_FogLights = 253u;
+uint8 ComMaster_TxSignal_Gear = 253u;
+uint8 ComMaster_TxSignal_HighBeam = 253u;
+uint8 ComMaster_TxSignal_ICM_ID = 253u;
+uint8 ComMaster_TxSignal_Ignition = 253u;
+uint8 ComMaster_TxSignal_IrSenStat = 253u;
+uint8 ComMaster_TxSignal_NM3 = 253u;
+uint8 ComMaster_TxSignal_NM3_PN1 = 253u;
+uint8 ComMaster_TxSignal_StatusOutTemp = 253u;
+uint8 ComMaster_TxSignal_RecirculationRequest = 253u;
+uint8 ComMaster_TxSignal_RlsRequest = 253u;
+uint8 ComMaster_RxSignal_Rpm = 253u;
+uint8 ComMaster_RxSignal_Speed = 253u;
+uint8 ComMaster_TxSignal_TurnSignals = 253u;
+uint8 ComMaster_TxSignal_WiperStockRequest = 253u;
+uint8 ComMaster_TxSignal_VehicleStatus = 253u;
 uint8 ComMaster_ActivityOnTheBus = 0u;
 uint8 ComMaster_SwitchTxOff = 1u;
-uint8 ComMaster_SafeDriveTrainStatusMessageState = 0u;
-uint8 ComMaster_StatusDriveControlMessageState = 0u;
-uint8 ComMaster_StatusActuatorMessageState = 0u;
-uint8 ComMaster_E2eError_Sdts = 0u;
-uint8 ComMaster_E2eSeqCnt_Sdts = 0u;
-uint8 ComMaster_RxSignal_SdtsCrc = 0u;
-uint8 ComMaster_RxSignal_SdtsSeqCnt = 0u;
-uint8 ComMaster_RxSignal_SdtsVehSpeed = 0u;
-uint8 ComMaster_RxSignal_SdtsMotorRpm = 0u;
-uint8 ComMaster_RxSignal_SdtsDriveTrainStatus = 0u;
-uint8 ComMaster_TxSignal_SbaCrc = 0u;
-uint8 ComMaster_TxSignal_SbaSeqCnt = 0u;
-uint8 ComMaster_TxSignal_SbaAssistRequestStatus = 0u;
-uint8 ComMaster_TxSignal_SbaBrakeLevel = 0u;
-uint8 ComMaster_TxSignal_SveCrc = 0u;
-uint8 ComMaster_TxSignal_SveSeqCnt = 0u;
-uint8 ComMaster_TxSignal_SveIvenSafe = 0u;
-uint8 ComMaster_TxSignal_SisCrc = 0u;
-uint8 ComMaster_TxSignal_SisSeqCnt = 0u;
-uint8 ComMaster_TxSignal_SisIgnitionStatus = 0u;
-uint8 ComMaster_CanTx_InVehicleSafetyErrorFlag = 0u;
-uint8 ComMaster_HasStatusDriveControlBeenReceived = 0u;
+uint8 ComMaster_SafeDriveTrainStatusMessageState = 253u;
+uint8 ComMaster_StatusDriveControlMessageState = 253u;
+uint8 ComMaster_StatusActuatorMessageState = 253u;
+uint8 ComMaster_E2eError_Sdts = 253u;
+uint8 ComMaster_E2eSeqCnt_Sdts = 253u;
+uint8 ComMaster_RxSignal_SdtsCrc = 253u;
+uint8 ComMaster_RxSignal_SdtsSeqCnt = 253u;
+uint8 ComMaster_RxSignal_SdtsVehSpeed = 253u;
+uint8 ComMaster_RxSignal_SdtsMotorRpm = 253u;
+uint8 ComMaster_RxSignal_SdtsDriveTrainStatus = 253u;
+uint8 ComMaster_TxSignal_SbaCrc = 253u;
+uint8 ComMaster_TxSignal_SbaSeqCnt = 253u;
+uint8 ComMaster_TxSignal_SbaAssistRequestStatus = 253u;
+uint8 ComMaster_TxSignal_SbaBrakeLevel = 253u;
+uint8 ComMaster_TxSignal_SveCrc = 253u;
+uint8 ComMaster_TxSignal_SveSeqCnt = 253u;
+uint8 ComMaster_TxSignal_SveIvenSafe = 253u;
+uint8 ComMaster_TxSignal_SisCrc = 253u;
+uint8 ComMaster_TxSignal_SisSeqCnt = 253u;
+uint8 ComMaster_TxSignal_SisIgnitionStatus = 253u;
+uint8 ComMaster_CanTx_InVehicleSafetyErrorFlag = 253u;
+uint8 ComMaster_HasStatusDriveControlBeenReceived = 253u;
+uint8 ComMaster_RxSignal_RealYear = 0u;
+uint8 ComMaster_RxSignal_RealMonth = 9u;
+uint8 ComMaster_RxSignal_RealDay = 11u;
+uint8 ComMaster_RxSignal_RealHour = 12u;
+uint8 ComMaster_RxSignal_RealMinute = 0u;
+uint8 ComMaster_RxSignal_RealSecond = 0u;
+uint8 ComMaster_RxSignal_AliveIndicationDmu = 0u;
+uint8 ComMaster_TxSignal_BusYear = 0u;
+uint8 ComMaster_TxSignal_BusMonth = 9u;
+uint8 ComMaster_TxSignal_BusDay = 11u;
+uint8 ComMaster_TxSignal_BusHour = 12u;
+uint8 ComMaster_TxSignal_BusMinute = 0u;
+uint8 ComMaster_TxSignal_BusSecond = 0u;
+uint8 ComMaster_RxSignal_HC05ConnectionStatus = 253u;
+uint8 ComMaster_RxSignal_LightSensorStatus = 253u;
+
+extern uint8 DiagMaster_DiagnosticModeActivated;
 
 void ComMaster_MainFunction(void);
 void ComMaster_E2e_UpdateTx(Can_TxMsg_t *message, uint8 sequenceCounter);
@@ -439,6 +524,8 @@ void ComMaster_MainFunction(void)
         ComMaster_CwcMsgStat_Cnt = 0u;
         ComMaster_LsMsgStat_Cnt = 0u;
         ComMaster_SdtsMsgStat_Cnt = 0u;
+        ComMaster_Dai_Cnt = 0u;
+        ComMaster_Rdat_Cnt = 0u;
     }
     else
     {
@@ -447,11 +534,21 @@ void ComMaster_MainFunction(void)
         ComMaster_CwcMsgStat_Cnt++;
         ComMaster_LsMsgStat_Cnt++;
         ComMaster_SdtsMsgStat_Cnt++;
+        ComMaster_Dai_Cnt++;
+
+        if(ComMaster_MainCounter % 200u == 0u && 0u != ComMaster_MainCounter)
+        {
+            ComMaster_Rdat_Cnt++;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
     }
 
     if(CAN_PROCESS_RXTX == Can_State)
     {
-        for(uint8 i = 0; i < COMMASTER_NO_RX_MSG; i ++)
+        for(uint8 i = 0u; i < COMMASTER_NO_RX_MSG; i ++)
         {
             if(0u == ComMaster_ReceiveTable[i].receiveMessage.rxMsg.errorStateIndicator)
             {
@@ -499,6 +596,19 @@ void ComMaster_MainFunction(void)
                     case 0x10Cu:
                         ComMaster_RxSignal_Err701_ID = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
                         break;
+                    case 0x200u:
+                        ComMaster_RxSignal_AliveIndicationDmu = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
+                        ComMaster_Dai_Cnt = 0u;
+                        break;
+                    case 0x202u:
+                        ComMaster_RxSignal_RealYear = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[0u];
+                        ComMaster_RxSignal_RealMonth = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[1u];
+                        ComMaster_RxSignal_RealDay = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[2u];
+                        ComMaster_RxSignal_RealHour = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[3u];
+                        ComMaster_RxSignal_RealMinute = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[4u];
+                        ComMaster_RxSignal_RealSecond = (uint8)ComMaster_ReceiveTable[i].receiveMessage.rxData[5u];
+                        ComMaster_Rdat_Cnt = 0u;
+                        break;
                     default:
                         ComMaster_ReceiveTable[i].receivedValidFlag = 0xFFU;
                         break;
@@ -508,12 +618,342 @@ void ComMaster_MainFunction(void)
             {
                 ComMaster_ReceiveTable[i].receivedValidFlag = 0xFFU;
             }
+
             ComMaster_ReceiveTable[i].receiveMessage.rxMsg.messageId = 0u;
         }
     }
     else
     {
         /* Do nothing. */
+    }
+
+    if(1u == ComMaster_E2eError_Sdts)
+    {
+        ComMaster_RxSignal_SdtsVehSpeed = 0u;
+        ComMaster_RxSignal_SdtsMotorRpm = 0u;
+        ComMaster_RxSignal_SdtsDriveTrainStatus = 253u;
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_E2EERROR_SDTS, 1u, 28u);
+    }
+    else
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_E2EERROR_SDTS, 0u, 28u);
+    }
+
+    if(2000u < ComMaster_Dai_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_DMU_NOT_ACTIVE_ON_CAN, 1u, 26u);
+    }
+    else
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_DMU_NOT_ACTIVE_ON_CAN, 0u, 26u);
+    }
+
+    if(2000u < ComMaster_Rdat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X202_MISSING, 1u, 27u);
+    }
+    else
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X202_MISSING, 0u, 27u);
+    }
+
+    if(1u < ComMaster_RxSignal_HC05ConnectionStatus)
+    {
+        ComMaster_RxSignal_HC05ConnectionStatus = 0u;
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_HC05CONNECTIONSTATUS_INVALID, 1u, 28u);
+    }
+    else
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_HC05CONNECTIONSTATUS_INVALID, 0u, 28u);
+    }
+
+    if(1u < ComMaster_RxSignal_LightSensorStatus)
+    {
+        ComMaster_RxSignal_LightSensorStatus = 0u;
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_LIGHTSENSORSTATUS_INVALID, 1u, 29u);
+    }
+    else
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_LIGHTSENSORSTATUS_INVALID, 0u, 29u);
+    }
+
+    if(2000u < ComMaster_Rdat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X202_MISSING, 1u, 27u);
+
+        if(ComMaster_MainCounter % 200u == 0u && 0u != ComMaster_MainCounter)
+        {
+            ComMaster_TxSignal_BusSecond++;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        if(59u == ComMaster_TxSignal_BusSecond)
+        {
+            ComMaster_TxSignal_BusMinute++;
+            ComMaster_TxSignal_BusSecond = 0u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        if(59u == ComMaster_TxSignal_BusMinute
+                && 59u == ComMaster_TxSignal_BusSecond)
+        {
+            ComMaster_TxSignal_BusHour++;
+            ComMaster_TxSignal_BusMinute = 0u;
+            ComMaster_TxSignal_BusSecond = 0u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        if(23u == ComMaster_TxSignal_BusHour
+                && 59u == ComMaster_TxSignal_BusMinute
+                && 59u == ComMaster_TxSignal_BusSecond)
+        {
+            ComMaster_TxSignal_BusDay++;
+            ComMaster_TxSignal_BusHour = 0u;
+            ComMaster_TxSignal_BusMinute = 0u;
+            ComMaster_TxSignal_BusSecond = 0u;
+        }
+
+        if(ComMaster_TxSignal_BusYear % 4 == 0u)
+        {
+            if(29u == ComMaster_TxSignal_BusDay && 2u == ComMaster_TxSignal_BusMonth)
+            {
+                ComMaster_TxSignal_BusDay = 1u;
+                ComMaster_TxSignal_BusMonth++;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+        else
+        {
+            if(28u == ComMaster_TxSignal_BusDay && 2u == ComMaster_TxSignal_BusMonth)
+            {
+                ComMaster_TxSignal_BusDay = 1u;
+                ComMaster_TxSignal_BusMonth++;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+
+        if(1u == ComMaster_TxSignal_BusMonth
+                || 3u == ComMaster_TxSignal_BusMonth
+                || 7u == ComMaster_TxSignal_BusMonth
+                || 8u == ComMaster_TxSignal_BusMonth
+                || 10u == ComMaster_TxSignal_BusMonth
+                || 12u == ComMaster_TxSignal_BusMonth)
+        {
+            if(31u == ComMaster_TxSignal_BusDay)
+            {
+                ComMaster_TxSignal_BusDay = 1u;
+                ComMaster_TxSignal_BusMonth++;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+        else if(4u == ComMaster_TxSignal_BusMonth
+                || 5u == ComMaster_TxSignal_BusMonth
+                || 6u == ComMaster_TxSignal_BusMonth
+                || 9u == ComMaster_TxSignal_BusMonth
+                || 11u == ComMaster_TxSignal_BusMonth)
+        {
+            if(30u == ComMaster_TxSignal_BusDay)
+            {
+                ComMaster_TxSignal_BusDay = 1u;
+                ComMaster_TxSignal_BusMonth++;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+        else
+        {
+            /* Do nothing.*/
+        }
+
+        if(12u == ComMaster_TxSignal_BusMonth
+                && 31u == ComMaster_TxSignal_BusDay
+                && 23u == ComMaster_TxSignal_BusHour
+                && 59u == ComMaster_TxSignal_BusMinute
+                && 59u == ComMaster_TxSignal_BusSecond)
+        {
+            ComMaster_TxSignal_BusMonth = 1u;
+            ComMaster_TxSignal_BusDay = 1u;
+            ComMaster_TxSignal_BusHour = 0u;
+            ComMaster_TxSignal_BusMinute = 0u;
+            ComMaster_TxSignal_BusSecond = 0u;
+            ComMaster_TxSignal_BusYear++;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        ComMaster_RxSignal_RealYear = ComMaster_TxSignal_BusYear;
+        ComMaster_RxSignal_RealMonth = ComMaster_TxSignal_BusMonth;
+        ComMaster_RxSignal_RealDay = ComMaster_TxSignal_BusDay;
+        ComMaster_RxSignal_RealHour = ComMaster_TxSignal_BusHour;
+        ComMaster_RxSignal_RealMinute = ComMaster_TxSignal_BusMinute;
+        ComMaster_RxSignal_RealSecond = ComMaster_TxSignal_BusSecond;
+    }
+    else
+    {
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X202_MISSING, 0u, 27u);
+
+        if(0u == ComMaster_Rdat_Cnt)
+        {
+            ComMaster_TxSignal_BusYear = ComMaster_RxSignal_RealYear;
+            ComMaster_TxSignal_BusMonth = ComMaster_RxSignal_RealMonth;
+            ComMaster_TxSignal_BusDay = ComMaster_RxSignal_RealDay;
+            ComMaster_TxSignal_BusHour = ComMaster_RxSignal_RealHour;
+            ComMaster_TxSignal_BusMinute = ComMaster_RxSignal_RealMinute;
+            ComMaster_TxSignal_BusSecond = ComMaster_RxSignal_RealSecond;
+        }
+        else
+        {
+            if(ComMaster_MainCounter % 200u == 0u && 0u != ComMaster_MainCounter)
+            {
+                ComMaster_TxSignal_BusSecond++;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if(59u == ComMaster_TxSignal_BusSecond)
+            {
+                ComMaster_TxSignal_BusMinute++;
+                ComMaster_TxSignal_BusSecond = 0u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if(59u == ComMaster_TxSignal_BusMinute
+                    && 59u == ComMaster_TxSignal_BusSecond)
+            {
+                ComMaster_TxSignal_BusHour++;
+                ComMaster_TxSignal_BusMinute = 0u;
+                ComMaster_TxSignal_BusSecond = 0u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            if(23u == ComMaster_TxSignal_BusHour
+                    && 59u == ComMaster_TxSignal_BusMinute
+                    && 59u == ComMaster_TxSignal_BusSecond)
+            {
+                ComMaster_TxSignal_BusDay++;
+                ComMaster_TxSignal_BusHour = 0u;
+                ComMaster_TxSignal_BusMinute = 0u;
+                ComMaster_TxSignal_BusSecond = 0u;
+            }
+
+            if(ComMaster_TxSignal_BusYear % 4 == 0u)
+            {
+                if(29u == ComMaster_TxSignal_BusDay && 2u == ComMaster_TxSignal_BusMonth)
+                {
+                    ComMaster_TxSignal_BusDay = 1u;
+                    ComMaster_TxSignal_BusMonth++;
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else
+            {
+                if(28u == ComMaster_TxSignal_BusDay && 2u == ComMaster_TxSignal_BusMonth)
+                {
+                    ComMaster_TxSignal_BusDay = 1u;
+                    ComMaster_TxSignal_BusMonth++;
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+
+            if(1u == ComMaster_TxSignal_BusMonth
+                    || 3u == ComMaster_TxSignal_BusMonth
+                    || 7u == ComMaster_TxSignal_BusMonth
+                    || 8u == ComMaster_TxSignal_BusMonth
+                    || 10u == ComMaster_TxSignal_BusMonth
+                    || 12u == ComMaster_TxSignal_BusMonth)
+            {
+                if(31u == ComMaster_TxSignal_BusDay)
+                {
+                    ComMaster_TxSignal_BusDay = 1u;
+                    ComMaster_TxSignal_BusMonth++;
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else if(4u == ComMaster_TxSignal_BusMonth
+                    || 5u == ComMaster_TxSignal_BusMonth
+                    || 6u == ComMaster_TxSignal_BusMonth
+                    || 9u == ComMaster_TxSignal_BusMonth
+                    || 11u == ComMaster_TxSignal_BusMonth)
+            {
+                if(30u == ComMaster_TxSignal_BusDay)
+                {
+                    ComMaster_TxSignal_BusDay = 1u;
+                    ComMaster_TxSignal_BusMonth++;
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else
+            {
+                /* Do nothing.*/
+            }
+
+            if(12u == ComMaster_TxSignal_BusMonth
+                    && 31u == ComMaster_TxSignal_BusDay
+                    && 23u == ComMaster_TxSignal_BusHour
+                    && 59u == ComMaster_TxSignal_BusMinute
+                    && 59u == ComMaster_TxSignal_BusSecond)
+            {
+                ComMaster_TxSignal_BusMonth = 1u;
+                ComMaster_TxSignal_BusDay = 1u;
+                ComMaster_TxSignal_BusHour = 0u;
+                ComMaster_TxSignal_BusMinute = 0u;
+                ComMaster_TxSignal_BusSecond = 0u;
+                ComMaster_TxSignal_BusYear++;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+
+            ComMaster_RxSignal_RealYear = ComMaster_TxSignal_BusYear;
+            ComMaster_RxSignal_RealMonth = ComMaster_TxSignal_BusMonth;
+            ComMaster_RxSignal_RealDay = ComMaster_TxSignal_BusDay;
+            ComMaster_RxSignal_RealHour = ComMaster_TxSignal_BusHour;
+            ComMaster_RxSignal_RealMinute = ComMaster_TxSignal_BusMinute;
+            ComMaster_RxSignal_RealSecond = ComMaster_TxSignal_BusSecond;
+        }
     }
 
     if(ComMaster_RxSignal_SdtsDriveTrainStatus != 253u)
@@ -527,36 +967,36 @@ void ComMaster_MainFunction(void)
         ComMaster_RxSignal_Rpm = 0u;
     }
 
-    if(200u < ComMaster_SdtsMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
+    if(2000u < ComMaster_SdtsMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         ComMaster_SafeDriveTrainStatusMessageState = 253u;
-        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X001_MISSING, 1u, 32u);
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X001_MISSING, 1u, 22U);
         ComMaster_RxSignal_Speed = 0u;
         ComMaster_RxSignal_Rpm = 0u;
     }
     else
     {
         ComMaster_SafeDriveTrainStatusMessageState = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X100_MISSING, 0u, 32u);
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X100_MISSING, 0u, 22U);
     }
 
-    if(200u < ComMaster_SdcMsgStat_Cnt)
+    if(2000u < ComMaster_SdcMsgStat_Cnt)
     {
         ComMaster_StatusDriveControlMessageState = 253u;
-        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X100_MISSING, 1u, 7u);
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X100_MISSING, 1u, 4U);
         ComMaster_RxSignal_StatusGb = 0u;
         ComMaster_RxSignal_StatusIgn = 0u;
     }
     else
     {
         ComMaster_StatusDriveControlMessageState = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X100_MISSING, 0u, 7u);
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X100_MISSING, 0u, 4U);
     }
 
-    if(200u < ComMaster_SaMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
+    if(2000u < ComMaster_SaMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         ComMaster_StatusActuatorMessageState = 253u;
-        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X101_MISSING, 1u, 6u);
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X101_MISSING, 1u, 3U);
         ComMaster_RxSignal_StatusDoorLeft = 0u;
         ComMaster_RxSignal_StatusDoorRight = 0u;
         ComMaster_RxSignal_StatusHc05 = 0u;
@@ -564,10 +1004,10 @@ void ComMaster_MainFunction(void)
     else
     {
         ComMaster_StatusActuatorMessageState = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X101_MISSING, 0u, 6u);
+        Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X101_MISSING, 0u, 3U);
     }
 
-    if(200u < ComMaster_CwcMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
+    if(2000u < ComMaster_CwcMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X10A_MISSING, 1u, 1u);
         ComMaster_RxSignal_AutoClimate = 0u;
@@ -584,7 +1024,7 @@ void ComMaster_MainFunction(void)
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X10A_MISSING, 0u, 1u);
     }
 
-    if(200u < ComMaster_LsMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
+    if(2000u < ComMaster_LsMsgStat_Cnt && 1u == ComMaster_HasStatusDriveControlBeenReceived)
     {
         Dem_SetDtc(COMMASTER_DTC_ID_MESSAGE_0X108_MISSING, 1u, 2u);
         ComMaster_RxSignal_StatusFogLights = 0u;
@@ -600,82 +1040,122 @@ void ComMaster_MainFunction(void)
     {
         ComMaster_RxSignal_AutoClimate = 253u; // invalid value
         ComMaster_TxSignal_AutoClimateRequest = 0u; // default value
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_AUTOCLIMATE_INVALID, 1u, 9u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_AUTOCLIMATE_INVALID, 1u, 6U);
     }
     else
     {
         ComMaster_TxSignal_AutoClimateRequest = ComMaster_RxSignal_AutoClimate;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_AUTOCLIMATE_INVALID, 0u, 9u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_AUTOCLIMATE_INVALID, 0u, 6U);
     }
 
     if(16u < ComMaster_RxSignal_ClimateTemperature && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_ClimateTemperature = 253u; // invalid value
         ComMaster_TxSignal_ClimaTempRequest = 6u; // default value
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_CLIMATETEMPERATURE_INVALID, 1u, 10u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_CLIMATETEMPERATURE_INVALID, 1u, 7U);
     }
     else
     {
         ComMaster_TxSignal_ClimaTempRequest = ComMaster_RxSignal_ClimateTemperature;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_CLIMATETEMPERATURE_INVALID, 0u, 10u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_CLIMATETEMPERATURE_INVALID, 0u, 7U);
     }
 
     if(3u < ComMaster_RxSignal_DisplayMode && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_DisplayMode = 253u; // invalid value
         ComMaster_TxSignal_DisplayModeRequest = 0u; // default value
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_DISPLAYMODEREQUEST_INVALID, 1u, 11u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_DISPLAYMODEREQUEST_INVALID, 1u, 8U);
     }
     else
     {
         ComMaster_TxSignal_DisplayModeRequest = ComMaster_RxSignal_DisplayMode;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_DISPLAYMODEREQUEST_INVALID, 0u, 11u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_DISPLAYMODEREQUEST_INVALID, 0u, 8U);
     }
 
     if(8u < ComMaster_RxSignal_FanValue && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_FanValue = 253u; // invalid value
         ComMaster_TxSignal_FanValueRequest = 0u; // default value
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_FANVALUE_INVALID, 1u, 12u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_FANVALUE_INVALID, 1u, 9U);
     }
     else
     {
         ComMaster_TxSignal_FanValueRequest = ComMaster_RxSignal_FanValue;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_FANVALUE_INVALID, 0u, 12u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_FANVALUE_INVALID, 0u, 9U);
     }
 
     if(3u < ComMaster_RxSignal_Recirculation && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_Recirculation = 253u; // invalid value
         ComMaster_TxSignal_RecirculationRequest = 0u; // default value
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_RECIRCULATION_INVALID, 1u, 16u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_RECIRCULATION_INVALID, 1u, 10U);
     }
     else
     {
         ComMaster_TxSignal_RecirculationRequest = ComMaster_RxSignal_Recirculation;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_RECIRCULATION_INVALID, 0u, 16u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_RECIRCULATION_INVALID, 0u, 10U);
     }
 
     if(3u < ComMaster_RxSignal_RotaryLightSwitch && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_RotaryLightSwitch = 253u; // invalid value
         ComMaster_TxSignal_RlsRequest = 0u; // default value
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_ROTARYLIGHTSWITCH_INVALID, 1u, 17u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_ROTARYLIGHTSWITCH_INVALID, 1u, 11U);
     }
     else
     {
         ComMaster_TxSignal_RlsRequest = ComMaster_RxSignal_RotaryLightSwitch;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_ROTARYLIGHTSWITCH_INVALID, 0u, 17u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_ROTARYLIGHTSWITCH_INVALID, 0u, 11U);
     }
 
     if(3u < ComMaster_RxSignal_StatusGb && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_StatusGb = 253u;
         ComMaster_TxSignal_Gear = 253u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSGEARBOX_INVALID, 1u, 22u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSGEARBOX_INVALID, 1u, 13U);
     }
     else
     {
+        if(253u != ComMaster_RxSignal_StatusGb)
+        {
+            if(pComMaster_RxSignal_StatusGb > ComMaster_RxSignal_StatusGb)
+            {
+                if(pComMaster_RxSignal_StatusGb - ComMaster_RxSignal_StatusGb > 1)
+                {
+                    pComMaster_RxSignal_StatusGb = ComMaster_RxSignal_StatusGb;
+                    ComMaster_RxSignal_StatusGb = 253u;
+                    ComMaster_TxSignal_Gear = 253u;
+                    Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSGEARBOX_INVALID, 1u, 12U);
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else if(pComMaster_RxSignal_StatusGb < ComMaster_RxSignal_StatusGb)
+            {
+                if(ComMaster_RxSignal_StatusGb - pComMaster_RxSignal_StatusGb > 1)
+                {
+                    pComMaster_RxSignal_StatusGb = ComMaster_RxSignal_StatusGb;
+                    ComMaster_RxSignal_StatusGb = 253u;
+                    ComMaster_TxSignal_Gear = 253u;
+                    Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSGEARBOX_INVALID, 1u, 12U);
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
         if((pComMaster_RxSignal_StatusGb != ComMaster_RxSignal_StatusGb)  &&
                 (ComMaster_RxSignal_StatusGb != 253u) && 1u == debFlagExceeded)
         {
@@ -686,37 +1166,43 @@ void ComMaster_MainFunction(void)
             /* Do nothing. */
         }
 
-        if(ComMaster_TxSignal_Ignition != 2u)
+        if(ComMaster_TxSignal_Ignition != 2u && 253u != ComMaster_RxSignal_StatusGb)
         {
             ComMaster_TxSignal_Gear = 0u;
+            Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSGEARBOX_INVALID, 0U, 13U);
+        }
+        else if(253u != ComMaster_RxSignal_StatusGb)
+        {
+            ComMaster_TxSignal_Gear = ComMaster_RxSignal_StatusGb;
+            Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSGEARBOX_INVALID, 0U, 13U);
         }
         else
         {
-            ComMaster_TxSignal_Gear = ComMaster_RxSignal_StatusGb;
+            /* Do nothing. */
         }
     }
 
     if(4u < ComMaster_RxSignal_StatusDoorLeft && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_StatusDoorLeft = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORLEFT_INVALID, 1u, 23u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORLEFT_INVALID, 1u, 14U);
     }
     else
     {
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORLEFT_INVALID, 0u, 23u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORLEFT_INVALID, 0u, 14U);
     }
 
     if(4u < ComMaster_RxSignal_StatusDoorRight && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_StatusDoorRight = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORRIGHT_INVALID, 1u, 24u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORRIGHT_INVALID, 1u, 15U);
     }
     else
     {
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORRIGHT_INVALID, 0u, 24u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSDOORRIGHT_INVALID, 0u, 15U);
     }
 
-    if(4u < ComMaster_RxSignal_StatusHc05 && 1u == debFlagExceeded)
+    if(3u < ComMaster_RxSignal_StatusHc05 && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_StatusHc05 = 0u;
     }
@@ -729,81 +1215,130 @@ void ComMaster_MainFunction(void)
     {
         ComMaster_RxSignal_StatusHighBeam = 253u;
         ComMaster_TxSignal_HighBeam = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSHIGHBEAM_INVALID, 1u, 25u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSHIGHBEAM_INVALID, 1u, 16U);
     }
     else
     {
         ComMaster_TxSignal_HighBeam = ComMaster_RxSignal_StatusHighBeam;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSHIGHBEAM_INVALID, 0u, 25u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSHIGHBEAM_INVALID, 0u, 16U);
     }
 
     if(3u < ComMaster_RxSignal_StatusFogLights && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_StatusFogLights = 253u;
         ComMaster_TxSignal_FogLights = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSFOGLIGHTS_INVALID, 1u, 26u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSFOGLIGHTS_INVALID, 1u, 17U);
     }
     else
     {
         ComMaster_TxSignal_FogLights = ComMaster_RxSignal_StatusFogLights;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSFOGLIGHTS_INVALID, 0u, 26u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSFOGLIGHTS_INVALID, 0u, 17U);
     }
 
     if(4u < ComMaster_RxSignal_WiperStock && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_WiperStock = 253u;
         ComMaster_TxSignal_WiperStockRequest = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSWIPERSTOCK_INVALID, 1u, 27u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSWIPERSTOCK_INVALID, 1u, 18U);
     }
     else
     {
         ComMaster_TxSignal_WiperStockRequest = ComMaster_RxSignal_WiperStock;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSWIPERSTOCK_INVALID, 0u, 27u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSWIPERSTOCK_INVALID, 0u, 18U);
     }
 
     if(99u < ComMaster_RxSignal_OutsideTemperature && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_OutsideTemperature = 253u;
         ComMaster_TxSignal_StatusOutTemp = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSOUTSIDETEMPERATURE_INVALID, 1u, 28u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSOUTSIDETEMPERATURE_INVALID, 1u, 19U);
     }
     else
     {
         ComMaster_TxSignal_StatusOutTemp = ComMaster_RxSignal_OutsideTemperature;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSOUTSIDETEMPERATURE_INVALID, 0u, 28u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSOUTSIDETEMPERATURE_INVALID, 0u, 19U);
     }
 
     if(3u < ComMaster_RxSignal_TurnSignals && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_TurnSignals = 253u;
         ComMaster_TxSignal_TurnSignals = 0u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSTURNSIGNALS_INVALID, 1u, 29u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSTURNSIGNALS_INVALID, 1u, 20U);
     }
     else
     {
         ComMaster_TxSignal_TurnSignals = ComMaster_RxSignal_TurnSignals;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSTURNSIGNALS_INVALID, 0u, 29u);
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSTURNSIGNALS_INVALID, 0u, 20U);
     }
 
     if(2u < ComMaster_RxSignal_StatusIgn && 1u == debFlagExceeded)
     {
         ComMaster_RxSignal_StatusIgn = 253u;
-        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSIGNITION_INVALID, 1u, 21u);
         ComMaster_TxSignal_Ignition = 253u;
+        Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSIGNITION_INVALID, 1u, 12U);
     }
     else
     {
-        ComMaster_TxSignal_Ignition = ComMaster_RxSignal_StatusIgn;
-
-        if(pComMaster_RxSignal_StatusIgn != ComMaster_RxSignal_StatusIgn &&
-                253u != ComMaster_RxSignal_StatusIgn && 1u == debFlagExceeded)
+        if(253u != ComMaster_RxSignal_StatusIgn)
         {
-            pComMaster_RxSignal_StatusIgn = ComMaster_RxSignal_StatusIgn;
+            if(pComMaster_RxSignal_StatusIgn > ComMaster_RxSignal_StatusIgn)
+            {
+                if(pComMaster_RxSignal_StatusIgn - ComMaster_RxSignal_StatusIgn > 1)
+                {
+                    pComMaster_RxSignal_StatusIgn = ComMaster_RxSignal_StatusIgn;
+                    ComMaster_RxSignal_StatusIgn = 253u;
+                    ComMaster_TxSignal_Ignition = 253u;
+                    Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSIGNITION_INVALID, 1u, 12U);
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else if(pComMaster_RxSignal_StatusIgn < ComMaster_RxSignal_StatusIgn)
+            {
+                if(ComMaster_RxSignal_StatusIgn - pComMaster_RxSignal_StatusIgn > 1)
+                {
+                    pComMaster_RxSignal_StatusIgn = ComMaster_RxSignal_StatusIgn;
+                    ComMaster_RxSignal_StatusIgn = 253u;
+                    ComMaster_TxSignal_Ignition = 253u;
+                    Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSIGNITION_INVALID, 1u, 12U);
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
+            }
+            else
+            {
+                /* Do nothing. */
+            }
         }
         else
         {
             /* Do nothing. */
         }
+
+        if(pComMaster_RxSignal_StatusIgn != ComMaster_RxSignal_StatusIgn &&
+                253u != ComMaster_RxSignal_StatusIgn && 1u == debFlagExceeded)
+        {
+            pComMaster_RxSignal_StatusIgn = ComMaster_RxSignal_StatusIgn;
+            Dem_SetDtc(COMMASTER_DTC_ID_SIGNAL_STATUSIGNITION_INVALID, 0U, 12U);
+            ComMaster_TxSignal_Ignition = ComMaster_RxSignal_StatusIgn;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+
+    if(1u == ComMaster_RxSignal_RotaryLightSwitch && 1u == ComMaster_RxSignal_LightSensorStatus)
+    {
+        ComMaster_TxSignal_RlsRequest = 1u;
+    }
+    else
+    {
+        ComMaster_TxSignal_RlsRequest = 0u;
     }
 
     if(8u == ComMaster_TxSignal_VehicleStatus)
@@ -843,8 +1378,13 @@ void ComMaster_MainFunction(void)
         case 253u:
             ComMaster_TxSignal_NM3 = 0x10u;
             ComMaster_TxSignal_NM3_PN1 = 0x11u;
+            ComMaster_TxSignal_AutoClimateRequest = 0u;
+            ComMaster_TxSignal_ClimaTempRequest = 0u;
+            ComMaster_TxSignal_FanValueRequest = 0u;
+            ComMaster_TxSignal_WiperStockRequest = 0u;
+            ComMaster_TxSignal_RecirculationRequest = 0u;
 
-            if((0u == ComMaster_RxSignal_StatusDoorLeft || 0u == ComMaster_RxSignal_StatusDoorRight) && 0u == ComMaster_RxSignal_StatusHc05)
+            if((0u == ComMaster_RxSignal_StatusDoorLeft || 0u == ComMaster_RxSignal_StatusDoorRight) && 0u == ComMaster_RxSignal_HC05ConnectionStatus)
             {
                 ComMaster_TxSignal_NM3_PN1 = 0x00u;
 
@@ -862,7 +1402,7 @@ void ComMaster_MainFunction(void)
                 /* Do nothing. */
             }
 
-            if(20u < ComMaster_MainCounter - timestampSwitchOffNm3s && timestampSwitchOffNm3s != 0u)
+            if(2000u < ComMaster_MainCounter - timestampSwitchOffNm3s && timestampSwitchOffNm3s != 0u)
             {
                 ComMaster_TxSignal_NM3 = 0x00u;
             }
@@ -874,6 +1414,17 @@ void ComMaster_MainFunction(void)
             break;
         default:
             break;
+    }
+
+    if(1u == DiagMaster_DiagnosticModeActivated)
+    {
+        ComMaster_TxSignal_NM3 = 0x10u;
+        ComMaster_TxSignal_NM3_PN1 = 0x11u;
+        Can_ActivityOnTheBus = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
     }
 
     if(1u == Can_ActivityOnTheBus)
@@ -903,7 +1454,7 @@ void ComMaster_MainFunction(void)
             /* Do nothing. */
         }
 
-        if(40u < ComMaster_MainCounter - timestampActivityOnTheBus && 0u != timestampActivityOnTheBus)
+        if(2000u < ComMaster_MainCounter - timestampActivityOnTheBus && 0u != timestampActivityOnTheBus)
         {
             if(0x00u == ComMaster_TxSignal_NM3 && 0x00u == ComMaster_TxSignal_NM3_PN1)
             {
@@ -987,6 +1538,14 @@ void ComMaster_MainFunction(void)
     ComMaster_TransmitTable[8u].transmitMessage.txData[2u] = ComMaster_TxSignal_SbaBrakeLevel;
     ComMaster_TransmitTable[8u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_4;
 
+    ComMaster_TransmitTable[9U].transmitMessage.txData[0U] = ComMaster_TxSignal_BusYear;
+    ComMaster_TransmitTable[9U].transmitMessage.txData[1U] = ComMaster_TxSignal_BusMonth;
+    ComMaster_TransmitTable[9U].transmitMessage.txData[2U] = ComMaster_TxSignal_BusDay;
+    ComMaster_TransmitTable[9U].transmitMessage.txData[3U] = ComMaster_TxSignal_BusHour;
+    ComMaster_TransmitTable[9U].transmitMessage.txData[4U] = ComMaster_TxSignal_BusMinute;
+    ComMaster_TransmitTable[9U].transmitMessage.txData[5U] = ComMaster_TxSignal_BusSecond;
+    ComMaster_TransmitTable[9U].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_6;
+
     ComMaster_E2e_UpdateTx(&ComMaster_TransmitTable[8u].transmitMessage, ComMaster_TxSignal_SbaSeqCnt);
 
     if((ComMaster_MainCounter) != 0u && (ComMaster_SwitchTxOff == 1u))
@@ -1012,6 +1571,23 @@ void ComMaster_MainFunction(void)
         if(ComMaster_MainCounter % ComMaster_TransmitTable[2u].cycleTime == 0u)
         {
             ComMaster_TransmitTable[2u].transmitFlag = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+        if(ComMaster_MainCounter % ComMaster_TransmitTable[3u].cycleTime == 0u)
+        {
+            ComMaster_TransmitTable[3u].transmitFlag = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        if(ComMaster_MainCounter % ComMaster_TransmitTable[4u].cycleTime == 0u)
+        {
+            ComMaster_TransmitTable[4u].transmitFlag = 1u;
         }
         else
         {
@@ -1054,18 +1630,9 @@ void ComMaster_MainFunction(void)
             /* Do nothing. */
         }
 
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[3u].cycleTime == 0u)
+        if(ComMaster_MainCounter % ComMaster_TransmitTable[9u].cycleTime == 0u)
         {
-            ComMaster_TransmitTable[3u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[4u].cycleTime == 0u)
-        {
-            ComMaster_TransmitTable[4u].transmitFlag = 1u;
+            ComMaster_TransmitTable[9u].transmitFlag = 1u;
         }
         else
         {
@@ -1075,20 +1642,23 @@ void ComMaster_MainFunction(void)
     }
     else
     {
-        /* Do nothing. */
+        for(uint8 i = 0; i < COMMASTER_NO_TX_MSG; i++)
+        {
+            ComMaster_TransmitTable[i].transmitFlag = 0;
+        }
     }
 
-    //IfxCpu_disableInterrupts();
+    IfxCpu_disableInterrupts();
     memcpy(Can_TransmitTable, ComMaster_TransmitTable, sizeof(ComMaster_TransmitTable));
-    for(uint8 i = 0; i < 7u; i++)
+    for(uint8 i = 0; i < COMMASTER_NO_TX_MSG; i++)
     {
         ComMaster_TransmitTable[i].transmitFlag = 0u;
-        for(uint8 j = 0; j < 8u; j++)
+        for(uint8 j = 0; j < COMMASTER_NO_TX_MSG; j++)
         {
             ComMaster_TransmitTable[i].transmitMessage.txData[j] = 0u;
         }
     }
-    //IfxCpu_enableInterrupts();
+    IfxCpu_enableInterrupts();
     ComMaster_MainCounter++;
 }
 
@@ -1112,8 +1682,14 @@ uint8 ComMaster_E2e_CheckRx(Can_RxMsg_t *message, uint8 sequenceCounter)
     seqCnt = (uint8)message->rxData[1u];
     calculatedCrc = (uint8)Crc_Calculate((uint32*)message->rxData, 2u, 0u);
 
-    if (receivedCrc == calculatedCrc && seqCnt == sequenceCounter) retVal = 0u;
-    else retVal = 1u;
+    if (receivedCrc == calculatedCrc && seqCnt == sequenceCounter)
+    {
+        retVal = 0u;
+    }
+    else
+    {
+        retVal = 1u;
+    }
 
     return retVal;
 }

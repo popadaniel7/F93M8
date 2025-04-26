@@ -24,8 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -33,7 +31,6 @@
 #include "SafetyKit_Main.h"
 #include "SafetyKit_Cfg.h"
 #include "IfxPmsEvr.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -62,75 +59,57 @@ void initVoltageMonitors(void)
     /* Set all Threshold parameters for each Vx_MONITOR in EVROVMON, EVROVMON2, EVRUVMON, EVRUVMON2 registers */
     IfxPmsEvr_setSecondaryOverVoltageThresholdMv(&MODULE_PMS, SWD_OV_VAL_MILLIVOLT,     IfxPmsEvr_SupplyMode_swd);
     IfxPmsEvr_setSecondaryUnderVoltageThresholdMv(&MODULE_PMS, SWD_UV_VAL_MILLIVOLT,     IfxPmsEvr_SupplyMode_swd);
-
     IfxPmsEvr_setSecondaryOverVoltageThresholdMv(&MODULE_PMS, EVR33_OV_VAL_MILLIVOLT,   IfxPmsEvr_SupplyMode_evr33);
     IfxPmsEvr_setSecondaryUnderVoltageThresholdMv(&MODULE_PMS, EVR33_UV_VAL_MILLIVOLT,   IfxPmsEvr_SupplyMode_evr33);
-
     IfxPmsEvr_setSecondaryOverVoltageThresholdMv(&MODULE_PMS, EVRC_OV_VAL_MILLIVOLT,    IfxPmsEvr_SupplyMode_evrc);
     IfxPmsEvr_setSecondaryUnderVoltageThresholdMv(&MODULE_PMS, EVRC_UV_VAL_MILLIVOLT,    IfxPmsEvr_SupplyMode_evrc);
-
     IfxPmsEvr_setSecondaryOverVoltageThresholdMv(&MODULE_PMS, SB_OV_VAL_MILLIVOLT,      IfxPmsEvr_SupplyMode_sb);
     IfxPmsEvr_setSecondaryUnderVoltageThresholdMv(&MODULE_PMS, SB_UV_VAL_MILLIVOLT,      IfxPmsEvr_SupplyMode_sb);
-
     IfxPmsEvr_setSecondaryOverVoltageThresholdMv(&MODULE_PMS, VDDM_OV_VAL_MILLIVOLT,    IfxPmsEvr_SupplyMode_vddm);
     IfxPmsEvr_setSecondaryUnderVoltageThresholdMv(&MODULE_PMS, VDDM_UV_VAL_MILLIVOLT,    IfxPmsEvr_SupplyMode_vddm);
-
     IfxPmsEvr_setSecondaryOverVoltageThresholdMv(&MODULE_PMS, PRE_OV_VAL_MILLIVOLT,     IfxPmsEvr_SupplyMode_evrpr);
     IfxPmsEvr_setSecondaryUnderVoltageThresholdMv(&MODULE_PMS, PRE_UV_VAL_MILLIVOLT,     IfxPmsEvr_SupplyMode_evrpr);
-
     /* Save the configured undervoltage limits of register EVRUVMON to a global struct to enable modification via TFT */
     g_SafetyKitStatus.voltStatus.vextVoltageUvLimit     = SWD_UV_VAL_MILLIVOLT  /1000;
     g_SafetyKitStatus.voltStatus.vddp3VoltageUvLimit    = EVR33_UV_VAL_MILLIVOLT / 1000;
     g_SafetyKitStatus.voltStatus.coreVoltageUvLimit     = EVRC_UV_VAL_MILLIVOLT /1000;
-
     /* Enable over- and undervoltage monitoring and direction of voltage crossing in the EVRMONCTRL register*/
     IfxPmsEvr_setOverVoltageMonitoringMode(&MODULE_PMS, IfxPmsEvr_OverVoltageMonitoring_lowToHighVoltageTransition,
             IfxPmsEvr_SupplyMode_swd);
     IfxPmsEvr_setUnderVoltageMonitoringMode(&MODULE_PMS, IfxPmsEvr_UnderVoltageMonitoring_highToLowVoltageTransition,
             IfxPmsEvr_SupplyMode_swd);
-
     IfxPmsEvr_setOverVoltageMonitoringMode(&MODULE_PMS, IfxPmsEvr_OverVoltageMonitoring_lowToHighVoltageTransition,
             IfxPmsEvr_SupplyMode_evr33);
     IfxPmsEvr_setUnderVoltageMonitoringMode(&MODULE_PMS, IfxPmsEvr_UnderVoltageMonitoring_highToLowVoltageTransition,
             IfxPmsEvr_SupplyMode_evr33);
-
     IfxPmsEvr_setOverVoltageMonitoringMode(&MODULE_PMS, IfxPmsEvr_OverVoltageMonitoring_lowToHighVoltageTransition,
             IfxPmsEvr_SupplyMode_evrc);
     IfxPmsEvr_setUnderVoltageMonitoringMode(&MODULE_PMS, IfxPmsEvr_UnderVoltageMonitoring_highToLowVoltageTransition,
             IfxPmsEvr_SupplyMode_evrc);
-
     /* SM:PMS:MON_REDUNDANCY_CFG */
     IfxScuWdt_clearSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
-
     /* Configure threshold parameters for each Vx_MONITOR (Primary voltage monitors) in HSMOVMON, HSMUVMON registers */
     /* +20mV just to have a different limit as EVROV*/
     PMS_HSMOVMON.B.SWDOVVAL = (uint8) (((SWD_OV_VAL_MILLIVOLT + 20) - 1050)  / 20);
     /* -20mV just to have a different limit as EVRUV*/
     PMS_HSMUVMON.B.SWDUVVAL = (uint8) (((SWD_UV_VAL_MILLIVOLT - 20) - 1050)  / 20);
-
     /* +20mV just to have a different limit as EVROV*/
     PMS_HSMOVMON.B.EVR33OVVAL = (uint8) (((EVR33_OV_VAL_MILLIVOLT + 20) - 937.5) / 15);
     /* -20mV just to have a different limit as EVRUV*/
     PMS_HSMUVMON.B.EVR33UVVAL = (uint8) (((EVR33_UV_VAL_MILLIVOLT - 20) - 937.5) / 15);
-
     /* +20mV just to have a different limit as EVROV*/
     PMS_HSMOVMON.B.EVRCOVVAL = (uint8) (((EVRC_OV_VAL_MILLIVOLT + 20) - 712.5) / 5);
     /* -20mV just to have a different limit as EVRUV*/
     PMS_HSMUVMON.B.EVRCUVVAL = (uint8) (((EVRC_UV_VAL_MILLIVOLT - 20) - 712.5) / 5);
-
     IfxScuWdt_setSafetyEndinit(IfxScuWdt_getSafetyWatchdogPassword());
-
     /* Initialize Lowest and Highest variables for runtime minimum maximum runtime tracking */
     g_SafetyKitStatus.voltStatus.vextVoltageLowest      = 6.0f;
     g_SafetyKitStatus.voltStatus.vextVoltageHighest     = 0.0f;
-
     g_SafetyKitStatus.voltStatus.vddp3VoltageLowest     = 6.0f;
     g_SafetyKitStatus.voltStatus.vddp3VoltageHighest    = 0.0f;
-
     g_SafetyKitStatus.voltStatus.coreVoltageLowest      = 6.0f;
     g_SafetyKitStatus.voltStatus.coreVoltageHighest     = 0.0f;
 }
-
 /*
  * Function gets the PMS voltage measurement
  * */
@@ -138,46 +117,71 @@ void getPmsVoltageMeasurements(void)
 {
     /* We get the voltage result of the primary monitor */
     float32 vext = IfxPmsEvr_getAdcVextResult((float32)PMS_EVRADCSTAT.B.ADCSWDV);
-
     /* If new result is higher or lower then the actual Highest and Lowest variables
      * overwrite Highest and Lowest variables. */
     if(vext > g_SafetyKitStatus.voltStatus.vextVoltageHighest)
     {
         g_SafetyKitStatus.voltStatus.vextVoltageHighest = vext;
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     if(vext < g_SafetyKitStatus.voltStatus.vextVoltageLowest)
     {
         g_SafetyKitStatus.voltStatus.vextVoltageLowest = vext;
     }
-    g_SafetyKitStatus.voltStatus.vextVoltage = vext;
+    else
+    {
+        /* Do nothing. */
+    }
 
+    g_SafetyKitStatus.voltStatus.vextVoltage = vext;
     /* We get the voltage result of the primary monitor */
     float32 vddp3 = IfxPmsEvr_getAdcVddp3Result((float32)PMS_EVRADCSTAT.B.ADC33V);
-
     /* If new result is higher or lower then the actual Highest and Lowest variables
      * overwrite Highest and Lowest variables. */
     if(vddp3 > g_SafetyKitStatus.voltStatus.vddp3VoltageHighest)
     {
         g_SafetyKitStatus.voltStatus.vddp3VoltageHighest = vddp3;
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     if(vddp3 < g_SafetyKitStatus.voltStatus.vddp3VoltageLowest)
     {
         g_SafetyKitStatus.voltStatus.vddp3VoltageLowest = vddp3;
     }
-    g_SafetyKitStatus.voltStatus.vddp3Voltage = vddp3;
+    else
+    {
+        /* Do nothing. */
+    }
 
+    g_SafetyKitStatus.voltStatus.vddp3Voltage = vddp3;
     /* We get the voltage result of the primary monitor */
     float32 coreVoltage = IfxPmsEvr_getAdcVddResult((float32)PMS_EVRADCSTAT.B.ADCCV);
-
     /* If new result is higher or lower then the actual Highest and Lowest variables
      * overwrite Highest and Lowest variables. */
     if(coreVoltage > g_SafetyKitStatus.voltStatus.coreVoltageHighest)
     {
         g_SafetyKitStatus.voltStatus.coreVoltageHighest = coreVoltage;
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     if(coreVoltage < g_SafetyKitStatus.voltStatus.coreVoltageLowest)
     {
         g_SafetyKitStatus.voltStatus.coreVoltageLowest  = coreVoltage;
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     g_SafetyKitStatus.voltStatus.coreVoltage = coreVoltage;
 }

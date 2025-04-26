@@ -7,14 +7,14 @@
 
 typedef struct
 {
-        uint32              reason;
-        uint32              information;
+        uint32 reason;
+        uint32 information;
 }McuSm_ResetHistory_t;
 
-extern  uint32 McuSm_LastResetReason;
-extern  uint32 McuSm_LastResetInformation;
-extern  uint32 McuSm_IndexResetHistory;
-extern  McuSm_ResetHistory_t McuSm_ResetHistory[20u];
+extern uint32 McuSm_LastResetReason;
+extern uint32 McuSm_LastResetInformation;
+extern uint32 McuSm_IndexResetHistory;
+extern McuSm_ResetHistory_t McuSm_ResetHistory[20u];
 
 extern void McuSm_InitializeBusMpu(void);
 extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);

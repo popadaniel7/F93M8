@@ -27,7 +27,7 @@ void EcuM_MainFunction(void);
 void EcuM_GoToSleep(void);
 void EcuM_DeInitGpio(void);
 void EcuM_PerformReset(uint8 param);
-extern void Dem_SetDtc(uint8 IDPrimary, uint32 Reason, uint8 Status);
+extern void Dem_SetDtc(uint8 IDPrimary, uint8 Status);
 
 void EcuM_PerformReset(uint8 param)
 {
@@ -51,11 +51,11 @@ void EcuM_MainFunction(void)
 		{
 			if(0 != EcuM_ResetFlag[i])
 			{
-				Dem_SetDtc(0, i, 1);
+				Dem_SetDtc(DEM_CONTROLLER_INTERNALFAULT_ID, 1);
 				EcuM_ResetFlag[i] = 0;
 				EcuM_ResetOccured = 1u;
 			}
-			else Dem_SetDtc(0, i, 0);
+			else Dem_SetDtc(DEM_CONTROLLER_INTERNALFAULT_ID, 0);
 		}
 	}
 	else
@@ -74,6 +74,7 @@ void EcuM_MainFunction(void)
 			if(1 == CanH_RequestBusSleep)
 			{
 				EcuM_State = 2;
+				htim3.Instance->CCR4 = 0;
 				if(0 == Nvm_WriteAllPending && 2 != Nvm_WriteAllPending) Nvm_WriteAllPending = 1;
 				else
 				{
@@ -145,10 +146,10 @@ void EcuM_DeInitGpio(void)
 }
 void EcuM_GoToSleep(void)
 {
+	HAL_Delay(1);
 	__disable_irq();
 	HAL_SuspendTick();
 	HAL_DCMI_Stop(&hdcmi);
-	HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_4);
 	HAL_TIM_PWM_DeInit(&htim3);
 	HAL_TIM_Base_Stop(&htim1);
 	HAL_I2C_DeInit(&hi2c2);

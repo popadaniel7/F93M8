@@ -24,8 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -41,15 +39,9 @@
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
 #define SMU_REG_MONITOR_TEST_MAX_TIME_SEC 2e-6 /* Safety Manual recommends 2µs, assuming default clock configurations*/
-#define TYPE_SMU_CORE   0
-#define TYPE_SMU_STDBY  1
-
-#ifdef IFXEMEM_REG_H
-#define NUM_UNCORRECTABLE_ERRORS     14
-#else
+#define TYPE_SMU_CORE   0u
+#define TYPE_SMU_STDBY  1u
 #define NUM_UNCORRECTABLE_ERRORS     13
-#endif
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -66,30 +58,21 @@ typedef enum
     smuRegMonitorModuleSCUSRU = 4,          /* ALM6[4], (ALM10[21], alarm triggered during test of every module) */
     smuRegMonitorModulePMS = 5,             /* ALM6[5], (ALM10[21], alarm triggered during test of every module) */
     smuRegMonitorModuleDMA = 6,             /* ALM6[6], (ALM10[21], alarm triggered during test of every module) */
-    smuRegMonitorModulSMUcore = 7,         /* ALM6[7], (ALM10[21], alarm triggered during test of every module) */
+    smuRegMonitorModulSMUcore = 7,          /* ALM6[7], (ALM10[21], alarm triggered during test of every module) */
     smuRegMonitorModuleCERBERUS = 8,        /* ALM6[23], (ALM10[21], alarm triggered during test of every module) */
     smuRegMonitorModuleSYSPllPERPll = 9,    /* ALM6[8], (ALM10[21], alarm triggered during test of every module) */
-    smuRegMonitorModuleCCU = 10,            /* ALM6[24] & ALM6[25] & ALM10[20], (ALM10[21], alarm triggered during test
-     * of every module) */
+    smuRegMonitorModuleCCU = 10,            /* ALM6[24] & ALM6[25] & ALM10[20], (ALM10[21], alarm triggered during test of every module) */
     numSmuRegMonitorModule = 11
 } SmuRegMonitorModule;
-
 typedef struct
 {
         uint8   smuType;
         uint16  alarmName;
 } SafetyFfUncorrectableErrorsType;
-
 SafetyFfUncorrectableErrorsType safetyFfUncorrectableErrors[NUM_UNCORRECTABLE_ERRORS] =
 {
         {TYPE_SMU_CORE,     IfxSmu_Alarm_MTU_Safety_FfUncorrectableErrorDetected                },
-#ifdef IFXEMEM_REG_H
-        {TYPE_SMU_CORE,     IfxSmu_Alarm_IOM_Safety_FfUncorrectableErrorDetected                },
-#endif
         {TYPE_SMU_CORE,     IfxSmu_Alarm_IR_Safety_FfUncorrectableErrorDetected                 },
-#ifdef IFXEMEM_REG_H
-        {TYPE_SMU_CORE,     IfxSmu_Alarm_EMEM_Safety_FfUncorrectableErrorDetected               },
-#endif
         {TYPE_SMU_CORE,     IfxSmu_Alarm_SCU_Safety_FfUncorrectableErrorDetected                },
         {TYPE_SMU_CORE,     IfxSmu_Alarm_PMS_Safety_FfUncorrectableErrorDetected                },
         {TYPE_SMU_CORE,     IfxSmu_Alarm_DMA_Safety_FfUncorrectableErrorDetected                },
@@ -100,15 +83,12 @@ SafetyFfUncorrectableErrorsType safetyFfUncorrectableErrors[NUM_UNCORRECTABLE_ER
         {TYPE_SMU_CORE,     IfxSmu_Alarm_CCU_Safety_FfUncorrectableErrorDetected                },
         {TYPE_SMU_CORE,     IfxSmu_Alarm_CCU_Safety_FfCorrectableErrorDetected                  }
 };
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -124,36 +104,44 @@ void safetyKitSswSmuRegMonitorTest(void)
     g_SafetyKitStatus.smuStatus.regMonitorTestSmu  = NA;
     g_SafetyKitStatus.unlockConfig = TRUE;
     g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = NA;
-
     /* Enable all clocks */
     boolean mtuWasEnabled = IfxMtu_isModuleEnabled();
     if (mtuWasEnabled == FALSE)
     {
         IfxMtu_enableModule();
     }
-#ifdef IFXEMEM_REG_H
-    boolean ememWasEnabled = IfxEmem_isModuleEnabled();
-    if(ememWasEnabled == FALSE)
+    else
     {
-        IfxEmem_enableModule(&MODULE_EMEM);
-        IfxEmem_setUnlockMode(&MODULE_EMEM);
+        /* Do nothing. */
     }
-#endif
+
     IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+
     boolean dmaWasEnabled = TRUE;
+
     if(MODULE_DMA.CLC.B.DISS != 0)
     {
         dmaWasEnabled = FALSE;
         DMA_CLC.B.DISS = 0;
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     boolean smuWasEnabled = TRUE;
+
     if(MODULE_SMU.CLC.B.DISS != 0)
     {
         smuWasEnabled = FALSE;
         SMU_CLC.B.DISS = 0;
     }
-    IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    else
+    {
+        /* Do nothing. */
+    }
 
+    IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     /* Unlock SMU registers for configuration */
     g_SafetyKitStatus.unlockConfig &= IfxSmu_unlockConfigRegisters();
     if (g_SafetyKitStatus.unlockConfig == TRUE)
@@ -169,7 +157,6 @@ void safetyKitSswSmuRegMonitorTest(void)
     float64 tExecutionInSec;
 
     boolean smuRegMonitorTestPassed = TRUE;
-
     /* Iterate through all modules listed in the SmuRegMonitorModule enumeration */
     for (SmuRegMonitorModule testModeEnable = smuRegMonitorModuleMTU; testModeEnable < numSmuRegMonitorModule;
             testModeEnable++)
@@ -194,12 +181,10 @@ void safetyKitSswSmuRegMonitorTest(void)
             /* Do nothing. */
         }
 #endif
-
         /* Enable the test */
         IfxSmu_setRegMonTestModeEnable(testModeEnable);
 
         tStart = IfxStm_get(&MODULE_STM0);
-
         /* Wait until test is done, as long test is not finished measure the execution time */
         uint32 timeout = 0xfff;
         do
@@ -207,32 +192,35 @@ void safetyKitSswSmuRegMonitorTest(void)
             tExecution = IfxStm_get(&MODULE_STM0) - tStart;
             timeout--;
         } while(!(IfxSmu_getRegisterMonitorStatus() & (1U << testModeEnable)) && (timeout > 0));
-
         /* Disable the test */
         IfxSmu_clearRegMonTestModeEnable(testModeEnable);
-
         /* Convert the time to seconds */
         tExecutionInSec = tExecution / IfxStm_getFrequency(&MODULE_STM0);
-
         /* Validation */
         if(IfxSmu_getRegisterMonitorErrorFlag() && (1U << testModeEnable))
         {
             smuRegMonitorTestPassed = FALSE;
+        }
+        else
+        {
+            /* Do nothing. */
         }
 
         if(tExecutionInSec > SMU_REG_MONITOR_TEST_MAX_TIME_SEC)
         {
             smuRegMonitorTestPassed = FALSE;
         }
+        else
+        {
+            /* Do nothing. */
+        }
     }
-
     /* Set g_SafetyKitStatus.smuStatus variable */
     if(smuRegMonitorTestPassed == TRUE)
     {
         g_SafetyKitStatus.smuStatus.smuSafetyFlipFlopTriggerTestSts       = pass;
         g_SafetyKitStatus.smuStatus.smuSafetyFlipFlopTestResultCheckSts  = pass;
     }
-
     /* CLear all Safety Flip-Flop uncorrectable errors which are raised during the test */
     /* Required for g_SafetyKitStatus.smuStatus variable */
     boolean alarmClearedSuccessful = FALSE;
@@ -247,22 +235,27 @@ void safetyKitSswSmuRegMonitorTest(void)
             {
                 alarmClearedSuccessful = TRUE;
             }
+            else
+            {
+                /* Do nothing. */
+            }
         }
         else
         {
-
+            /* Do nothing. */
         }
     }
-
     /* Set g_SafetyKitStatus.smuStatus variable */
     if((alarmClearedSuccessful == TRUE) && (result == pass))
     {
         g_SafetyKitStatus.smuStatus.smuSafetyFlipFlopTestAlarmFlagClearSts = pass;
     }
-
+    else
+    {
+        /* Do nothing. */
+    }
     /* Lock SMU registers again*/
     IfxSmu_temporaryLockConfigRegisters();
-
     /* Disable all clocks */
     if (mtuWasEnabled == FALSE)
     {
@@ -274,23 +267,32 @@ void safetyKitSswSmuRegMonitorTest(void)
         /*Set EndInit */
         IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
     }
-#ifdef IFXEMEM_REG_H
-    if(ememWasEnabled == FALSE)
+    else
     {
-        IfxEmem_disableModule(&MODULE_EMEM);
+        /* Do nothing. */
     }
-#endif
+
     IfxScuWdt_clearCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+
     if(dmaWasEnabled == FALSE)
     {
         MODULE_DMA.CLC.B.DISR = 0x1U;
     }
+    else
+    {
+        /* Do nothing. */
+    }
+
     if(smuWasEnabled == FALSE)
     {
         MODULE_SMU.CLC.B.DISR = 0x1U;
     }
-    IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
+    else
+    {
+        /* Do nothing. */
+    }
 
+    IfxScuWdt_setCpuEndinit(IfxScuWdt_getCpuWatchdogPassword());
 
     if(smuRegMonitorTestPassed == TRUE)
     {

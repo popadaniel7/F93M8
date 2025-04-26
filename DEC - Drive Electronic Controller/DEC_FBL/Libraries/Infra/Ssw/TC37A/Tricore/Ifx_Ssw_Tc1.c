@@ -1,3 +1,8 @@
+#include "Ifx_Cfg.h"
+#include "Platform_Types.h"
+
+uint8 flag2;
+
 ///**
 // * \file Ifx_Ssw_Tc1.c
 // * \brief Startup Software for Core1

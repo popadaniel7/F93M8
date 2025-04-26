@@ -310,7 +310,6 @@ void FPU_IRQHandler(void)
 	EcuM_PerformReset(10);
   /* USER CODE END FPU_IRQn 0 */
   /* USER CODE BEGIN FPU_IRQn 1 */
-
   /* USER CODE END FPU_IRQn 1 */
 }
 

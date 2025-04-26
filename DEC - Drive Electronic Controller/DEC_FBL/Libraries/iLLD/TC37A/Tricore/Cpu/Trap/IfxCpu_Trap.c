@@ -108,7 +108,7 @@
 /*******************************************************************************
 **                      variables                                     **
 *******************************************************************************/
-
+extern uint8 FBL_ResetCounter;
 /*******************************************************************************
 **                      Function definitions                          **
 *******************************************************************************/
@@ -128,6 +128,8 @@ void IfxCpu_Trap_memoryManagementError(uint32 tin)
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_memoryManagement, tin);
     IFX_CFG_CPU_TRAP_MME_HOOK(trapWatch);
+    FBL_ResetCounter++;
+    IfxScuRcu_performReset(2, 0u);
     IFX_CFG_CPU_TRAP_DEBUG;
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
@@ -139,6 +141,8 @@ void IfxCpu_Trap_internalProtectionError(uint32 tin)
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_internalProtection, tin);
     IFX_CFG_CPU_TRAP_IPE_HOOK(trapWatch);
+    FBL_ResetCounter++;
+    IfxScuRcu_performReset(2, 0u);
     IFX_CFG_CPU_TRAP_DEBUG;
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
@@ -150,6 +154,8 @@ void IfxCpu_Trap_instructionError(uint32 tin)
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_instructionErrors, tin);
     IFX_CFG_CPU_TRAP_IE_HOOK(trapWatch);
+    FBL_ResetCounter++;
+    IfxScuRcu_performReset(2, 0u);
     IFX_CFG_CPU_TRAP_DEBUG;
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
@@ -161,6 +167,8 @@ void IfxCpu_Trap_contextManagementError(uint32 tin)
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_contextManagement, tin);
     IFX_CFG_CPU_TRAP_CME_HOOK(trapWatch);
+    FBL_ResetCounter++;
+    IfxScuRcu_performReset(2, 0u);
     IFX_CFG_CPU_TRAP_DEBUG;
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
@@ -172,6 +180,8 @@ void IfxCpu_Trap_busError(uint32 tin)
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_bus, tin);
     IFX_CFG_CPU_TRAP_BE_HOOK(trapWatch);
+    FBL_ResetCounter++;
+    IfxScuRcu_performReset(2, 0u);
     IFX_CFG_CPU_TRAP_DEBUG;
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
@@ -183,6 +193,8 @@ void IfxCpu_Trap_assertion(uint32 tin)
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_assertion, tin);
     IFX_CFG_CPU_TRAP_ASSERT_HOOK(trapWatch);
+    FBL_ResetCounter++;
+    IfxScuRcu_performReset(2, 0u);
     IFX_CFG_CPU_TRAP_DEBUG;
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
@@ -257,7 +269,9 @@ void IfxCpu_Trap_nonMaskableInterrupt(uint32 tin)
 {
     volatile IfxCpu_Trap trapWatch;
     trapWatch = IfxCpu_Trap_extractTrapInfo(IfxCpu_Trap_Class_nonMaskableInterrupt, tin);
-    IFX_CFG_CPU_TRAP_NMI_HOOK(trapWatch);    
+    IFX_CFG_CPU_TRAP_NMI_HOOK(trapWatch);
+    FBL_ResetCounter++;
+    IfxScuRcu_performReset(2, 0u);
     __asm("rslcx"); /* Restore lower context before returning. lower context was stored in the trap vector */
     __asm("rfe");
 }

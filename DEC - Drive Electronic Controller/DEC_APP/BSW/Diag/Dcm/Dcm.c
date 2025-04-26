@@ -38,7 +38,6 @@ void Dcm_RC_Request701Active(uint8* data);
 void Dcm_RC_Request703Active(uint8* data);
 void Dcm_RC_RequestMasterActive(uint8* data);
 void Dcm_RC_ResetDcy(uint8* data);
-// Called when a complete ISO-TP diagnostic message has been reassembled.
 void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length);
 
 typedef struct
@@ -48,24 +47,23 @@ typedef struct
         uint8 msgType;
         uint8 masterDiagReqId;
 }Dcm_DiagReq_t;
+typedef void (*FuncPtr_t)(uint8*);
 
 uint8 Dcm_SwVersion[4u] =
 {
-        4u,
-        1u,
-        1u,
-        1u
+        1u, // FLASH BOOTLOADER
+        1u, // APPLICATION
+        1u, // CODING
+        1u  // CALIBRATION
 };
 uint8 Dcm_SwitchTxOff = 0u;
 Dcm_DiagReq_t Dcm_Receive_DiagnosticMessageBuffer[50u];
 uint32 Dcm_Rx_DiagBufCnt = 0u;
 uint32 Dcm_MainCounter = 0u;
+extern uint8 storedData_04[ENCCAL_CODING_SIZE];
+extern uint8 storedData_05[ENCCAL_CALIBRATION_SIZE];
+extern uint8 storedData_06[sizeof(EncCal_VODataComplete)];
 
-extern uint8 storedData_04[ENCCAL_CODING_SIZE];         // For sub-function 0x04
-extern uint8 storedData_05[ENCCAL_CALIBRATION_SIZE];    // For sub-function 0x05
-extern uint8 storedData_06[sizeof(EncCal_VODataComplete)];    // For sub-function 0x06
-
-typedef void (*FuncPtr_t)(uint8*);
 FuncPtr_t Dcm_FuncPtr[26u] =
 {
         Dcm_DSC_DefaultSession,
@@ -100,14 +98,14 @@ void Dcm_MainFunction(void)
 {
     static uint8 localData = 0u;
     /* Copy data in exclusive area. */
-    //IfxCpu_disableInterrupts();
+    IfxCpu_disableInterrupts();
     memcpy(&Dcm_Receive_DiagnosticMessageBuffer,
             &DiagMaster_Transmit_DiagnosticMessageBuffer,
             sizeof(DiagMaster_Transmit_DiagnosticMessageBuffer));
     memset(&DiagMaster_Transmit_DiagnosticMessageBuffer,
             0u,
             sizeof(DiagMaster_Transmit_DiagnosticMessageBuffer));
-    //IfxCpu_enableInterrupts();
+    IfxCpu_enableInterrupts();
     /* Process the queue. */
     for(uint8 i = 0u; i < Dcm_Rx_DiagBufCnt; i++)
     {
@@ -375,11 +373,10 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
 
     if(0x19u == serviceId)
     {
-        // Service 0x19 (e.g., "19 0A"): Read DTCs
         if (2u <= length && 0x0Au == data[1u])
         {
             uint8 response[2u + DEM_NUMBER_OF_DTCS];
-            response[0u] = 0x59; // Positive response for 0x19
+            response[0u] = 0x59;
             response[1u] = 0x0Au;
 
             for (uint8 i = 0u; i < DEM_NUMBER_OF_DTCS; i++)
@@ -397,7 +394,7 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
     else if(0x31u == serviceId)
     {
         uint8 subFunction = data[3u];
-        // Service 0x31: Determine sub-function from byte 3 (must have at least 4 bytes)
+
         if (4u > length)
         {
             return;
@@ -406,12 +403,12 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
         {
             /* Do nothing. */
         }
-        // Group A: ECU responds with data (read request)
+
         if(0x15u == subFunction || 0x16u == subFunction || 0x17u == subFunction)
         {
             uint8 response[136U] = {0u};
             uint16 respLen = 0u;
-            response[0u] = 0x71u; // Positive response for service 0x31
+            response[0u] = 0x71u;
             response[3u] = subFunction;
             if (0x15u == subFunction)
             {
@@ -438,7 +435,6 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
 
             Can_IsoTpTransmit(0x6FFu, response, respLen);
         }
-        // Group B: Tester sends data to be stored (write request)
         else if(0x04u == subFunction || 0x05u == subFunction || 0x06u == subFunction)
         {
             uint16 payloadLen = (length > 4u) ? (length - 4u) : 0u;

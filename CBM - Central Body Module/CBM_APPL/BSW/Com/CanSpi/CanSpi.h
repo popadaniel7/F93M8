@@ -320,8 +320,6 @@ typedef struct
 }CANSPI_id_reg_t;
 /* TYPEDEF STOP */
 /* VARIABLES START */
-/* Error counter for SPI. */
-extern uint32 CanSpi_ErrorArr[9];
 /* Error counter for CAN bus. */
 extern uint32 CanSpi_Bus_ErrorArr[3];
 /* Communication status variable. */

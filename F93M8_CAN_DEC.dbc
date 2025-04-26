@@ -1,0 +1,162 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: TCB Tester EMC CBS FRBE CBM DMU DEC
+
+
+BO_ 513 BusSystemDateAndTime: 6 DEC
+ SG_ Bus_Year : 0|8@1+ (1,0) [0|99] ""  DMU
+ SG_ Bus_Second : 40|8@1+ (1,0) [0|59] ""  DMU
+ SG_ Bus_Month : 8|8@1+ (1,0) [0|12] ""  DMU
+ SG_ Bus_Minute : 32|8@1+ (1,0) [0|59] ""  DMU
+ SG_ Bus_Hour : 24|8@1+ (1,0) [0|23] ""  DMU
+ SG_ Bus_Day : 16|8@1+ (1,0) [0|31] ""  DMU
+
+BO_ 514 RealDateAndTime: 6 TCB
+ SG_ Real_Second : 40|8@1+ (1,0) [0|59] ""  DEC
+ SG_ Real_Minute : 32|8@1+ (1,0) [0|59] ""  DEC
+ SG_ Real_Hour : 24|8@1+ (1,0) [0|23] ""  DEC
+ SG_ Real_Day : 16|8@1+ (1,0) [0|31] ""  DEC
+ SG_ Real_Month : 8|8@1+ (1,0) [0|12] ""  DEC
+ SG_ Real_Year : 0|8@1+ (1,0) [0|99] ""  DEC
+
+BO_ 512 Dmu_AliveIndication: 1 DMU
+ SG_ AliveIndication : 0|8@1+ (1,0) [0|255] ""  DEC
+
+BO_ 5 SafeIgnitionStatus: 3 DEC
+ SG_ Sis_IgnitionStatus : 16|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sis_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sis_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
+
+BO_ 4 SafeVehicleError: 3 DEC
+ SG_ Sve_IvenSafe : 16|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sve_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sve_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
+
+BO_ 2 SafeBrakeAssist: 3 DEC
+ SG_ Sba_AssistRequestStatus : 16|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sba_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
+ SG_ Sba_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
+
+BO_ 1 SafeDriveTrainStatus: 5 EMC
+ SG_ Sdts_DriveTrainStatus : 32|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_MotorRpm : 24|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_VehSpeed : 16|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_SeqCnt : 8|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Sdts_Crc : 0|8@1+ (1,0) [0|255] ""  DEC
+
+BO_ 153 StatusBodyControl2: 5 DEC
+ SG_ WiperStockRequest : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ RlsRequest : 24|8@1+ (1,0) [0|255] ""  DMU
+ SG_ ClimaTempRequest : 16|8@1+ (1,0) [0|255] ""  DMU,CBM
+ SG_ DisplayModeRequest : 8|8@1+ (1,0) [0|255] ""  DMU
+ SG_ FanValueRequest : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
+
+BO_ 271 DataRecorder: 2 DEC
+ SG_ DcyStatus : 0|8@1+ (1,0) [0|255] ""  DMU
+
+BO_ 264 LightStatus: 3 FRBE
+ SG_ StatusTurnSignals : 16|8@1+ (1,0) [0|255] ""  DEC
+ SG_ StatusHighBeam : 8|8@1+ (1,0) [0|255] ""  DEC
+ SG_ StatusFogLights : 0|8@1+ (1,0) [0|255] ""  DEC
+
+BO_ 266 ClimateWiperControl: 8 CBS
+ SG_ OutTemp : 56|8@1+ (1,0) [0|255] ""  DEC
+ SG_ WiperStock : 48|8@1+ (1,0) [0|255] ""  DEC
+ SG_ RotaryLightSwitch : 40|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Recirculation : 32|8@1+ (1,0) [0|255] ""  DEC
+ SG_ FanValue : 24|8@1+ (1,0) [0|255] ""  DEC
+ SG_ DisplayMode : 16|8@1+ (1,0) [0|255] ""  DEC
+ SG_ ClimateTemperature : 8|8@1+ (1,0) [0|255] ""  DEC
+ SG_ AutoClimate : 0|8@1+ (1,0) [0|255] ""  DEC
+
+BO_ 267 InfoClustermessage: 1 DEC
+ SG_ ICM_ID : 0|8@1+ (1,0) [0|255] ""  DMU
+
+BO_ 151 VehicleState: 6 DEC
+ SG_ VehicleStatus : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Ignition : 0|8@1+ (1,0) [0|255] ""  DMU
+ SG_ Speed : 32|8@1+ (1,0) [0|255] ""  CBM,DMU
+ SG_ Rpm : 24|8@1+ (1,0) [0|255] ""  DMU
+ SG_ IrSenStat : 16|8@1+ (1,0) [0|255] ""  DMU
+ SG_ Gear : 8|8@1+ (1,0) [0|255] ""  DMU
+
+BO_ 268 StatusErrorSetting_701: 1 CBM
+ SG_ Err701_ID : 0|8@1+ (1,0) [0|255] ""  DEC
+
+BO_ 256 StatusDriveControl: 2 CBM
+ SG_ StatusIgn : 0|8@1+ (1,0) [0|255] ""  DEC
+ SG_ StatusGb : 8|8@1+ (1,0) [0|255] ""  DEC
+
+BO_ 152 StatusBodyControl: 6 DEC
+ SG_ AutoClimateRequest : 40|8@1+ (1,0) [0|255] ""  DMU,CBM
+ SG_ RecirculationRequest : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
+ SG_ TurnSignals : 32|8@1+ (1,0) [0|255] ""  DMU
+ SG_ StatusOutTemp : 24|8@1+ (1,0) [0|255] ""  CBM,DMU
+ SG_ HighBeam : 16|8@1+ (1,0) [0|255] ""  DMU
+ SG_ FogLights : 8|8@1+ (1,0) [0|255] ""  DMU
+
+BO_ 257 StatusActuator: 5 CBM
+ SG_ LightSensorStatus : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ HC05_ConnectionStatus : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ StatusHc05 : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ StatusDoorRight : 8|8@1+ (1,0) [0|255] ""  DEC
+ SG_ StatusDoorLeft : 0|8@1+ (1,0) [0|255] ""  DEC
+
+BO_ 1795 DiagCAN_Response_703: 8 DMU
+
+BO_ 1793 DiagCAN_Response_701: 8 CBM
+
+BO_ 1791 DiagCAN_Response_DiagMaster: 8 DEC
+
+BO_ 1790 DiagCAN_Request_DiagMaster: 8 Tester
+
+BO_ 1794 DiagCAN_Request_702: 8 Tester
+
+BO_ 1792 DiagCAN_Request_700: 8 Tester
+
+BO_ 1296 Networkmanagement3: 3 DEC
+ SG_ NM3_PN1 : 8|8@1+ (1,0) [0|255] ""  CBM
+ SG_ NM3 : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
+
+BO_TX_BU_ 1795 : DEC,DMU;
+BO_TX_BU_ 1793 : DEC,CBM;
+
+
+BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "MultiplexExtEnabled" "No";
+BA_DEF_DEF_  "BusType" "CAN";
+

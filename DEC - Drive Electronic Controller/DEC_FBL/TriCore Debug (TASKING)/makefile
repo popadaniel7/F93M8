@@ -30,14 +30,23 @@ RM := rm -rf
 -include Configurations/subdir.mk
 -include subdir.mk
 ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(C++M_DEPS)),)
+-include $(C++M_DEPS)
+endif
 ifneq ($(strip $(C++_DEPS)),)
 -include $(C++_DEPS)
+endif
+ifneq ($(strip $(CCM_DEPS)),)
+-include $(CCM_DEPS)
 endif
 ifneq ($(strip $(CC_DEPS)),)
 -include $(CC_DEPS)
 endif
 ifneq ($(strip $(CPP_DEPS)),)
 -include $(CPP_DEPS)
+endif
+ifneq ($(strip $(CXXM_DEPS)),)
+-include $(CXXM_DEPS)
 endif
 ifneq ($(strip $(CXX_DEPS)),)
 -include $(CXX_DEPS)
@@ -75,12 +84,17 @@ all: main-build
 main-build: DEC_FBL.elf secondary-outputs
 
 # Tool invocations
-DEC_FBL.elf: $(OBJS) makefile $(OPTIONAL_TOOL_DEPS)
+DEC_FBL.elf: $(OBJS) makefile $(OPTIONAL_TOOL_DEPS) .DEC_FBL.elf.opt
 	@echo 'Building target: $@'
 	@echo 'Invoking: TASKING Linker'
-	cctc --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy -Wl--map-file="DEC_FBL.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 --fp-model=3 -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc37x -o"DEC_FBL.elf" -Wl-o"DEC_FBL.hex:IHEX" $(OBJS)
+	cctc -f .DEC_FBL.elf.opt
 	@echo 'Finished building target: $@'
 	@echo ' '
+
+.DEC_FBL.elf.opt:
+	@argfile .DEC_FBL.elf.opt --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy -Wl--map-file="DEC_FBL.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 --fp-model=3 -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc37x -o"DEC_FBL.elf" -Wl-o"DEC_FBL.hex:IHEX" $(OBJS)
+
+.PHONY: .DEC_FBL.elf.opt
 
 DEC_FBL.siz: DEC_FBL.elf makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'

@@ -15,10 +15,7 @@
 #define CANSPI_MCP2515_CS_LOW()    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4, GPIO_PIN_RESET)
 /* DEFINE STOP */
 /* VARIABLES START */
-/* Needed for freeze frames. */
-uint8 VehicleState_Rpm = 0;
-/* Needed for freeze frames. */
-uint8 VehicleState_Voltage = 0;
+uint32 CanSpi_StatusBodyControl2_MissCnt = 0;
 /* Message missed counter. */
 uint32 CanSpi_StatusBodyControl_MissCnt = 0;
 /* Message missed counter. */
@@ -35,8 +32,6 @@ extern uint8 StatusBodyControl_Temperature;
 extern uint8 StatusBodyControl_OutsideTemp;
 /* SW state. */
 extern EcuMStates_t EcuM_State;
-/* Error counter for SPI. */
-uint32 CanSpi_ErrorArr[9] = {0};
 /* Error counter for CAN bus. */
 uint32 CanSpi_Bus_ErrorArr[3] = {0};
 /* Communication status variable. */
@@ -52,9 +47,7 @@ CANSPI_uCAN_MSG Dcm_DiagServiceResponse_Frame = {0};
 /* DIAG ROUTINE CAN TX buffer. */
 CANSPI_uCAN_MSG Dcm_DiagServiceRequest_Frame = {0};
 /* NM3 signal value. */
-uint8 CanSpi_Networkmanagement3_Signal = {0};
-/* XCP status variable. */
-uint8 CanSpi_isXcpActive = {0};
+uint8 CanSpi_Networkmanagement3_Signal = 255;
 extern uint8 EcuM_WakeupReason;
 /* VARIABLES STOP */
 /* FUNCTIONS START */
@@ -125,8 +118,6 @@ uint8 CanSpi_Receive(CANSPI_uCAN_MSG *tempCanMsg);
 /* FUNCTIONS START */
 void CanSpi_MainFunction(void)
 {
-	/* SPI error status. */
-	static uint32 errorStatus = 0;
 	/* TX buffer. */
 	static CANSPI_uCAN_MSG CanSpi_TxFrame = {0};
 	/* Message received in buffers value. */
@@ -134,11 +125,6 @@ void CanSpi_MainFunction(void)
 	/* Main counter. */
 	static uint32 CanSpi_MainCounter = 0;
 	/* Restore error state. */
-	if(0 == hspi1.ErrorCode) for(uint8 i = 0; i < 7; i++) CanSpi_ErrorArr[i] = 0;
-	else
-	{
-		/* Do nothing. */
-	}
 	/* Perform transceiver initialization. */
 	if(CanSpi_MainCounter == 0) CanSpi_MCP2515_Reset();
 	else if(1 == CanSpi_MainCounter)
@@ -147,18 +133,18 @@ void CanSpi_MainFunction(void)
 		CanSpi_Communication_Status = PARTIAL_COMMUNICATION;
 		CanSpi_TxFrame.frame.idType = 1;
 		CanSpi_TxFrame.frame.id = 0x100;
+		CanSpi_TxFrame.frame.dlc = 2;
+		CanSpi_TxFrame.frame.data0 = 0;
+		CanSpi_TxFrame.frame.data1 = 0;
+		CanSpi_Transmit(&CanSpi_TxFrame);
+		CanSpi_TxFrame.frame.idType = 1;
+		CanSpi_TxFrame.frame.id = 0x101;
 		CanSpi_TxFrame.frame.dlc = 5;
 		CanSpi_TxFrame.frame.data0 = 0;
 		CanSpi_TxFrame.frame.data1 = 0;
 		CanSpi_TxFrame.frame.data2 = 0;
 		CanSpi_TxFrame.frame.data3 = 0;
 		CanSpi_TxFrame.frame.data4 = 0;
-		CanSpi_Transmit(&CanSpi_TxFrame);
-		CanSpi_TxFrame.frame.idType = 1;
-		CanSpi_TxFrame.frame.id = 0x101;
-		CanSpi_TxFrame.frame.dlc = 2;
-		CanSpi_TxFrame.frame.data0 = 0;
-		CanSpi_TxFrame.frame.data1 = 0;
 		CanSpi_Transmit(&CanSpi_TxFrame);
 	}
 	else
@@ -182,6 +168,7 @@ void CanSpi_MainFunction(void)
 					StatusBodyControl_FanValue = CanSpi_RxFrame_Buffer0.frame.data0;
 					StatusBodyControl_Temperature = CanSpi_RxFrame_Buffer0.frame.data2;
 					WiperStock_VehicleState = CanSpi_RxFrame_Buffer0.frame.data4;
+					CanSpi_StatusBodyControl2_MissCnt = 0;
 				}
 				else
 				{
@@ -259,6 +246,7 @@ void CanSpi_MainFunction(void)
 					StatusBodyControl_FanValue = CanSpi_RxFrame_Buffer1.frame.data0;
 					StatusBodyControl_Temperature = CanSpi_RxFrame_Buffer1.frame.data2;
 					WiperStock_VehicleState = CanSpi_RxFrame_Buffer1.frame.data4;
+					CanSpi_StatusBodyControl2_MissCnt = 0;
 				}
 				else
 				{
@@ -349,14 +337,6 @@ void CanSpi_MainFunction(void)
 		CanSpi_RxFrame_Buffer1.frame.data6 = 0;
 		CanSpi_RxFrame_Buffer1.frame.data7 = 0;
 	}
-	/* Get the error status. */
-	errorStatus = HAL_SPI_GetError(&hspi1);
-	/* If error is detected, call the callback. */
-	if(errorStatus != 0) HAL_SPI_ErrorCallback(&hspi1);
-	else
-	{
-		/* Do nothing. */
-	}
 	/* Check for RX error. */
 	if(CanSpi_IsRxErrorPassive() != 0 && 0 == CanSpi_MainCounter % 20 && 0 != CanSpi_MainCounter) CanSpi_Bus_ErrorArr[0]++;
 	else CanSpi_Bus_ErrorArr[0] = 0;
@@ -367,12 +347,12 @@ void CanSpi_MainFunction(void)
 	if(CanSpi_IsBussOff() != 0 && 0 == CanSpi_MainCounter % 20 && 0 != CanSpi_MainCounter)
 	{
 		CanSpi_Bus_ErrorArr[2]++;
-		Dem_SaveDtc(0x0D, 1);
+		Dem_SaveDtc(0x09, 1);
 	}
 	else
 	{
 		CanSpi_Bus_ErrorArr[2] = 0;
-		Dem_SaveDtc(0x0D, 0);
+		Dem_SaveDtc(0x09, 0);
 	}
 	/* If ignition processed value is greater than zero. */
 	if((StatusList_ComOutValue[0] != 0))
@@ -402,25 +382,45 @@ void CanSpi_MainFunction(void)
 		/* Do nothing. */
 	}
 	/* If communication status is full or partial. */
-	if(CanSpi_Communication_Status != NO_COMMUNICATION
-			&& CanSpi_Communication_Status != CC_ACTIVE
-			&& CanSpi_Communication_Status != PARTIAL_COMMUNICATION
+	if(CanSpi_Communication_Status != CC_ACTIVE
 			&& EcuM_State == RUN)
 	{
+		CanSpi_StatusBodyControl2_MissCnt++;
 		CanSpi_StatusBodyControl_MissCnt++;
 		CanSpi_VehicleState_MissCnt++;
-		if(200 < CanSpi_StatusBodyControl_MissCnt) Dem_SaveDtc(0x0A, 1);
-		else Dem_SaveDtc(0x0A, 0);
-		if(200 < CanSpi_VehicleState_MissCnt) Dem_SaveDtc(0x0B, 1);
-		else Dem_SaveDtc(0x0B, 0);
+
+		if(2000 < CanSpi_StatusBodyControl2_MissCnt)
+		{
+			Dem_SaveDtc(0xB, 1);
+			StatusBodyControl_FanValue = 0;
+			StatusBodyControl_Temperature = 0;
+			WiperStock_VehicleState = 255;
+		}
+		else Dem_SaveDtc(0xB, 0);
+		if(2000 < CanSpi_StatusBodyControl_MissCnt)
+		{
+			Dem_SaveDtc(0x06, 1);
+
+			StatusBodyControl_OutsideTemp = 0;
+			StatusBodyControl_Auto = 0;
+			StatusBodyControl_Recirc = 0;
+		}
+		else Dem_SaveDtc(0x06, 0);
+		if(2000 < CanSpi_VehicleState_MissCnt)
+		{
+			Dem_SaveDtc(0x07, 1);
+			VehicleSpeed_VehicleState = 0;
+
+		}
+		else Dem_SaveDtc(0x07, 0);
 		/* Status Drive Control */
-		if(CanSpi_MainCounter % 2 == 0)
+		if(CanSpi_MainCounter % 20 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x100;
 			CanSpi_TxFrame.frame.dlc = 2;
 			CanSpi_TxFrame.frame.data0 = StatusList_ComOutValue[0];
-			CanSpi_TxFrame.frame.data1 = StatusList_ComOutValue[4];
+			CanSpi_TxFrame.frame.data1 = StatusList_ComOutValue[2];
 			CanSpi_Transmit(&CanSpi_TxFrame);
 			CanSpi_TxFrame.frame.idType = 0;
 			CanSpi_TxFrame.frame.id = 0;
@@ -439,14 +439,16 @@ void CanSpi_MainFunction(void)
 			/* Do nothing. */
 		}
 		/* Status Command Actuator */
-		if(CanSpi_MainCounter % 20 == 0)
+		if(CanSpi_MainCounter % 200 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x101;
-			CanSpi_TxFrame.frame.dlc = 3;
+			CanSpi_TxFrame.frame.dlc = 5;
 			CanSpi_TxFrame.frame.data0 = CmdList_ActualValue[2];
 			CanSpi_TxFrame.frame.data1 = CmdList_ActualValue[3];
-			CanSpi_TxFrame.frame.data2 = StatusList_ComOutValue[9];
+			CanSpi_TxFrame.frame.data2 = StatusList_ComOutValue[4];
+			CanSpi_TxFrame.frame.data3 = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+			CanSpi_TxFrame.frame.data4 = StatusList_ComOutValue[1];
 			CanSpi_Transmit(&CanSpi_TxFrame);
 			CanSpi_TxFrame.frame.idType = 0;
 			CanSpi_TxFrame.frame.id = 0;
@@ -484,35 +486,6 @@ void CanSpi_MainFunction(void)
 	/* Increase the main counter. */
 	CanSpi_MainCounter++;
 }
-void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
-{
-	switch(hspi->ErrorCode)
-	{
-	case HAL_SPI_ERROR_MODF:
-		CanSpi_ErrorArr[0]++;
-		break;
-	case HAL_SPI_ERROR_CRC:
-		CanSpi_ErrorArr[1]++;
-		break;
-	case HAL_SPI_ERROR_OVR:
-		CanSpi_ErrorArr[2]++;
-		break;
-	case HAL_SPI_ERROR_FRE:
-		CanSpi_ErrorArr[3]++;
-		break;
-	case HAL_SPI_ERROR_DMA:
-		CanSpi_ErrorArr[4]++;
-		break;
-	case HAL_SPI_ERROR_FLAG:
-		CanSpi_ErrorArr[5]++;
-		break;
-	case HAL_SPI_ERROR_ABORT:
-		CanSpi_ErrorArr[6]++;
-		break;
-	default:
-		break;
-	}
-}
 void CanSpi_Sleep(void)
 {
 	CanSpi_MCP2515_BitModify(CANSPI_MCP2515_CANINTF, 0x40, 0x00);
@@ -546,19 +519,19 @@ uint8 CanSpi_Initialize(void)
 	RXF1reg.RXF1SIDL = 0x00;
 	RXF1reg.RXF1EID8 = 0x00;
 	RXF1reg.RXF1EID0 = 0x00;
-	RXF2reg.RXF2SIDH = 0xE0;
-	RXF2reg.RXF2SIDL = 0x00;
+	RXF2reg.RXF2SIDH = 0x13;
+	RXF2reg.RXF2SIDL = 0x20;
 	RXF2reg.RXF2EID8 = 0x00;
 	RXF2reg.RXF2EID0 = 0x00;
-	RXF3reg.RXF3SIDH = 0xC0;
+	RXF3reg.RXF3SIDH = 0xA2;
 	RXF3reg.RXF3SIDL = 0x00;
 	RXF3reg.RXF3EID8 = 0x00;
 	RXF3reg.RXF3EID0 = 0x00;
-	RXF4reg.RXF4SIDH = 0xA2;
+	RXF4reg.RXF4SIDH = 0xE0;
 	RXF4reg.RXF4SIDL = 0x00;
 	RXF4reg.RXF4EID8 = 0x00;
 	RXF4reg.RXF4EID0 = 0x00;
-	RXF5reg.RXF5SIDH = 0x00;
+	RXF5reg.RXF5SIDH = 0xE0;
 	RXF5reg.RXF5SIDL = 0x00;
 	RXF5reg.RXF5EID8 = 0x00;
 	RXF5reg.RXF5EID0 = 0x00;

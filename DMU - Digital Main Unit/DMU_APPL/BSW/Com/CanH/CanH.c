@@ -1,6 +1,7 @@
 #include "CanH.h"
 #include "can.h"
 #include "Dem.h"
+#include "rtc.h"
 
 __attribute__((section(".ccmram"))) uint32 CanH_MainCounter = 0;
 __attribute__((section(".ccmram"))) uint32 CanH_Status = 0;
@@ -39,19 +40,17 @@ __attribute__((section(".ccmram"))) CAN_RxHeaderTypeDef CanH_DiagRxHeader = {0, 
 __attribute__((section(".ccmram"))) uint32 CanH_VehState_MissCnt = 0;
 __attribute__((section(".ccmram"))) uint32 CanH_BodyState_MissCnt = 0;
 __attribute__((section(".ccmram"))) uint32 CanH_BodyState2_MissCnt = 0;
+__attribute__((section(".ccmram"))) uint32 CanH_BusSystemDateAndTime_MissCnt = 0;
 __attribute__((section(".ccmram"))) uint32 CanH_DataRecorder_MissCnt = 0;
+__attribute__((section(".ccmram"))) uint8 CanH_AliveCounter = 0;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_ReadDisplayPowerMode_RegisterValue;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_LcdInit;
 extern __attribute__((section(".ccmram"))) uint16 DigitalCluster_ReadDisplayStatus_RegisterValue;
 extern __attribute__((section(".ccmram"))) uint32 RevCam_DcmiStatus;
 extern __attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus;
 extern __attribute__((section(".ccmram"))) uint8 RevCam_InitStatus;
-extern __attribute__((section(".ccmram"))) uint32 Ain_MeasValues[3];
 extern __attribute__((section(".ccmram"))) uint32 DataRecorder_RxSig_VehicleSpeed;
 extern __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_DriveCycleStatus;
-extern __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_LVBat;
-extern __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_CurrentConsumptionInstantLV;
-extern __attribute__((section(".ccmram"))) uint8 DataRecorder_RxSig_QC;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_IgnitionStatus;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_Gear;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_HighBeamStatus;
@@ -70,12 +69,9 @@ extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_Recirculat
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_RequestedTemperature;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_AutoClimate;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_FanValue;
-extern __attribute__((section(".ccmram"))) float Ain_VrefInt;
-extern __attribute__((section(".ccmram"))) float Ain_McuTemp;
-extern __attribute__((section(".ccmram"))) float Ain_Vbat;
 extern __attribute__((section(".ccmram"))) uint8 EcuM_StopModeActive;
 extern CAN_HandleTypeDef hcan1;
-
+extern RTC_HandleTypeDef hrtc;
 extern void EcuM_PerformReset(uint8 param);
 
 void CanH_MainFunction(void);
@@ -104,6 +100,7 @@ void CanH_MainFunction(void)
 	{
 		/* Do nothing. */
 	}
+
 	if((FULL_COMMUNICATION == CanH_CommunicationState || PARTIAL_COMMUNICATION == CanH_CommunicationState) && CC_ACTIVE != CanH_CommunicationState)
 	{
 		for(uint8 i = 0; i < 21; i++) CanH_ErrArr[i] = 0;
@@ -111,14 +108,66 @@ void CanH_MainFunction(void)
 		CanH_VehState_MissCnt++;
 		CanH_DataRecorder_MissCnt++;
 		CanH_BodyState2_MissCnt++;
-		if(200 < CanH_BodyState_MissCnt) Dem_SetDtc(DEM_BODYSTATE_MESSAGEMISSING_ID, 1, 1);
-		else Dem_SetDtc(DEM_BODYSTATE_MESSAGEMISSING_ID, 1, 0);
-		if(200 < CanH_VehState_MissCnt) Dem_SetDtc(DEM_VEHSTATE_MESSAGEMISSING_ID, 1, 1);
-		else Dem_SetDtc(DEM_VEHSTATE_MESSAGEMISSING_ID, 1, 0);
-		if(200 < CanH_DataRecorder_MissCnt) Dem_SetDtc(DEM_DATARECORDER_MESSAGEMISSING_ID, 1, 1);
-		else Dem_SetDtc(DEM_DATARECORDER_MESSAGEMISSING_ID, 1, 0);
-		if(200 < CanH_BodyState2_MissCnt) Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 1, 1);
-		else Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 1, 0);
+		CanH_BusSystemDateAndTime_MissCnt++;
+		if(2000 < CanH_BodyState_MissCnt)
+		{
+			Dem_SetDtc(DEM_BODYSTATE_MESSAGEMISSING_ID, 1);
+			CanH_RxSig_Recirculation = 0;
+			CanH_RxSig_FogLights = 0;
+			CanH_RxSig_HighBeam = 0;
+			CanH_RxSig_TemperatureSensor = 0;
+			CanH_RxSig_TurnSignal = 0;
+			CanH_RxSig_AutoClimate = 0;
+		}
+		else Dem_SetDtc(DEM_BODYSTATE_MESSAGEMISSING_ID, 0);
+		if(2000 < CanH_VehState_MissCnt)
+		{
+			Dem_SetDtc(DEM_VEHSTATE_MESSAGEMISSING_ID, 1);
+			CanH_RxSig_Ignition = 0;
+			CanH_RxSig_Speed = 0;
+			CanH_RxSig_Rpm = 0;
+			CanH_RxSig_Gear = 0;
+			CanH_RxSig_IrSensStat = 0;
+		}
+		else Dem_SetDtc(DEM_VEHSTATE_MESSAGEMISSING_ID, 0);
+		if(2000 < CanH_DataRecorder_MissCnt)
+		{
+			Dem_SetDtc(DEM_DATARECORDER_MESSAGEMISSING_ID, 1);
+			CanH_RxSig_DrivecycleStatus = 0;
+		}
+		else Dem_SetDtc(DEM_DATARECORDER_MESSAGEMISSING_ID, 0);
+		if(2000 < CanH_BodyState2_MissCnt)
+		{
+			Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 1);
+			CanH_RxSig_FanValue = 0;
+			CanH_RxSig_DisplayMode = 0;
+			CanH_RxSig_ClimaTemp = 0;
+			CanH_RxSig_RotaryLightSwitch = 0;
+		}
+		else Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 0);
+		if(2000 < CanH_BodyState2_MissCnt)
+		{
+			Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 1);
+			CanH_RxSig_FanValue = 0;
+			CanH_RxSig_DisplayMode = 0;
+			CanH_RxSig_ClimaTemp = 0;
+			CanH_RxSig_RotaryLightSwitch = 0;
+		}
+		else Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 0);
+
+		if(CanH_MainCounter % 200 == 0)
+		{
+			CanH_TxHeader.DLC = 1;
+			CanH_TxHeader.IDE = CAN_ID_STD;
+			CanH_TxHeader.StdId = 0x200;
+			CanH_AliveCounter++;
+			CanH_TxData[0] = CanH_AliveCounter;
+			HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
+		}
+		else
+		{
+			/* Do nothing. */
+		}
 	}
 	else
 	{
@@ -235,6 +284,7 @@ void HAL_CAN_ErrorCallback(CAN_HandleTypeDef *hcan)
 }
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
+	CanH_RxFifo0MsgPendingCnt++;
 	if(1u == EcuM_StopModeActive)
 	{
 		HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &CanH_RxHeader, CanH_RxData);
@@ -287,11 +337,11 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		/* VehicleState */
 		if(0x97 == CanH_RxHeader.StdId)
 		{
-			CanH_RxSig_Ignition = CanH_RxData[2];
-			CanH_RxSig_Speed = CanH_RxData[7];
-			CanH_RxSig_Rpm = CanH_RxData[6];
-			CanH_RxSig_Gear = CanH_RxData[3];
-			CanH_RxSig_IrSensStat = CanH_RxData[5];
+			CanH_RxSig_Ignition = CanH_RxData[0];
+			CanH_RxSig_Speed = CanH_RxData[4];
+			CanH_RxSig_Rpm = CanH_RxData[3];
+			CanH_RxSig_Gear = CanH_RxData[1];
+			CanH_RxSig_IrSensStat = CanH_RxData[2];
 			CanH_VehState_MissCnt = 0;
 		}
 		else
@@ -302,11 +352,11 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		if(0x98 == CanH_RxHeader.StdId)
 		{
 			CanH_RxSig_Recirculation = CanH_RxData[0];
-			CanH_RxSig_FogLights = CanH_RxData[3];
-			CanH_RxSig_HighBeam = CanH_RxData[4];
-			CanH_RxSig_TemperatureSensor = CanH_RxData[5];
-			CanH_RxSig_TurnSignal = CanH_RxData[6];
-			CanH_RxSig_AutoClimate = CanH_RxData[7];
+			CanH_RxSig_FogLights = CanH_RxData[1];
+			CanH_RxSig_HighBeam = CanH_RxData[2];
+			CanH_RxSig_TemperatureSensor = CanH_RxData[3];
+			CanH_RxSig_TurnSignal = CanH_RxData[4];
+			CanH_RxSig_AutoClimate = CanH_RxData[5];
 			CanH_BodyState_MissCnt = 0;
 		}
 		else
@@ -336,6 +386,24 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		{
 			CanH_RxSig_DrivecycleStatus = CanH_RxData[0];
 			CanH_DataRecorder_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		if(0x201 == CanH_RxHeader.StdId)
+		{
+			CanH_BusSystemDateAndTime_MissCnt = 0;
+			RTC_DateTypeDef sDate;
+			RTC_TimeTypeDef sTime;
+			sDate.Year = CanH_RxData[0] + 2000;
+			sDate.Month = CanH_RxData[1];
+			sDate.Date = CanH_RxData[2];
+			HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sTime.Hours = CanH_RxData[3];
+			sTime.Minutes = CanH_RxData[4];
+			sTime.Seconds = CanH_RxData[5];
+			HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 		}
 		else
 		{
@@ -430,6 +498,7 @@ void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan)
 		{
 			/* Do nothing. */
 		}
+		HAL_PWR_EnableSleepOnExit();
 	}
 	else
 	{
@@ -461,11 +530,11 @@ void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan)
 		/* VehicleState */
 		if(0x97 == CanH_RxHeader.StdId)
 		{
-			CanH_RxSig_Ignition = CanH_RxData[2];
-			CanH_RxSig_Speed = CanH_RxData[7];
-			CanH_RxSig_Rpm = CanH_RxData[6];
-			CanH_RxSig_Gear = CanH_RxData[3];
-			CanH_RxSig_IrSensStat = CanH_RxData[5];
+			CanH_RxSig_Ignition = CanH_RxData[0];
+			CanH_RxSig_Speed = CanH_RxData[4];
+			CanH_RxSig_Rpm = CanH_RxData[3];
+			CanH_RxSig_Gear = CanH_RxData[1];
+			CanH_RxSig_IrSensStat = CanH_RxData[2];
 			CanH_VehState_MissCnt = 0;
 		}
 		else
@@ -476,11 +545,11 @@ void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan)
 		if(0x98 == CanH_RxHeader.StdId)
 		{
 			CanH_RxSig_Recirculation = CanH_RxData[0];
-			CanH_RxSig_FogLights = CanH_RxData[3];
-			CanH_RxSig_HighBeam = CanH_RxData[4];
-			CanH_RxSig_TemperatureSensor = CanH_RxData[5];
-			CanH_RxSig_TurnSignal = CanH_RxData[6];
-			CanH_RxSig_AutoClimate = CanH_RxData[7];
+			CanH_RxSig_FogLights = CanH_RxData[1];
+			CanH_RxSig_HighBeam = CanH_RxData[2];
+			CanH_RxSig_TemperatureSensor = CanH_RxData[3];
+			CanH_RxSig_TurnSignal = CanH_RxData[4];
+			CanH_RxSig_AutoClimate = CanH_RxData[5];
 			CanH_BodyState_MissCnt = 0;
 		}
 		else
@@ -510,6 +579,24 @@ void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan)
 		{
 			CanH_RxSig_DrivecycleStatus = CanH_RxData[0];
 			CanH_DataRecorder_MissCnt = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+		if(0x201 == CanH_RxHeader.StdId)
+		{
+			CanH_BusSystemDateAndTime_MissCnt = 0;
+			RTC_DateTypeDef sDate;
+			RTC_TimeTypeDef sTime;
+			sDate.Year = CanH_RxData[0] + 2000;
+			sDate.Month = CanH_RxData[1];
+			sDate.Date = CanH_RxData[2];
+			HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+			sTime.Hours = CanH_RxData[3];
+			sTime.Minutes = CanH_RxData[4];
+			sTime.Seconds = CanH_RxData[5];
+			HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 		}
 		else
 		{

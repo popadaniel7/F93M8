@@ -14,10 +14,7 @@ void core2_main(void)
 {
     IfxCpu_enableInterrupts();
     initCpuWatchdog(2u);
-    while(OsInit_C1 == 0u)
-    {
-        serviceCpuWatchdog();
-    }
+    while(OsInit_C1 == 0u) serviceCpuWatchdog();
     Os_Init_C2();
     OsInit_C2 = 1u;
     serviceCpuWatchdog();

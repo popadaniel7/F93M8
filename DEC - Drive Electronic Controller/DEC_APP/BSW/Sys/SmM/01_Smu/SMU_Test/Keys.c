@@ -24,18 +24,14 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /******************************************************************************/
 /*----------------------------------Includes----------------------------------*/
 /******************************************************************************/
 #include "01_Smu/SMU_Test/Keys.h"
 #include "SafetyKit_Main.h"
-
 /******************************************************************************/
 /*------------------------------Global variables------------------------------*/
 /******************************************************************************/
-
 /******************************************************************************/
 /*-------------------------Function Implementations---------------------------*/
 /******************************************************************************/
@@ -46,19 +42,20 @@
 SmuStatusType coreKeysTestSMU(void)
 {
     Ifx_SMU_AGC AGC;
-
     /* Temporarily lock the KEYS register */
     IfxSmu_temporaryLockConfigRegisters();
 
     AGC.U = SMU_AGC.U;
-
     /* Try to access a KEYS locked register */
     IfxScuWdt_clearSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
+
     SMU_AGC.B.IGCS0 = 0x7;
+
     IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
     /* Unlock KEYS register */
     g_SafetyKitStatus.unlockConfig &= IfxSmu_unlockConfigRegisters();
+
     if (g_SafetyKitStatus.unlockConfig == TRUE)
     {
         g_SafetyKitStatus.smuStatus.unlockConfigRegisterSMU = pass;
@@ -77,7 +74,6 @@ SmuStatusType coreKeysTestSMU(void)
         return fail;
     }
 }
-
 /*
  * This function resets the KEYS register by setting CFGLCK to 0xBC
  * */
@@ -89,7 +85,9 @@ SmuStatusType clearCoreKeysTestSMU(void)
 
     /* Modify the FSP to check that the register is no longer locked */
     IfxScuWdt_clearSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
+
     SMU_AGC.B.IGCS0 = 0x7;
+
     IfxScuWdt_setSafetyEndinitInline(IfxScuWdt_getSafetyWatchdogPasswordInline ());
 
     if(AGC.U != SMU_AGC.U)
@@ -111,9 +109,12 @@ SmuStatusType clearCoreKeysTestSMU(void)
 void enableKeysTestSMU(void)
 {
     SmuStatusType result = fail;
+
     result = coreKeysTestSMU();
+
     g_SafetyKitStatus.smuStatus.smuCoreKeysTestSts = result;
 
     result = clearCoreKeysTestSMU();
+
     g_SafetyKitStatus.smuStatus.smuCoreKeysTestClearSts = result;
 }

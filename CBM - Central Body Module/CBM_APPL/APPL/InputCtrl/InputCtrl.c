@@ -12,30 +12,24 @@
 uint8 Param_UndervoltageThreshold_Calibration = 0;
 /* De-bounce time parameterizable variable. */
 uint8 Param_ErrorSettingDebouceThreshold_Calibration = 0;
-/* Out of bound value parameterizable variable. */
-uint16 Param_OutofboundThreshold_Calibration = 0;
-/* De-bounce previous state time value parameterizable variable. */
-uint16 Param_DebouncePreviouState_Calibration = 0;
 /* Calibration values array. */
-uint16 Param_Input_Calibration[INPUT_NUMBER] = {0};
-/* Lock state signal status. */
-uint8 LockState_VehicleState = 0;
+uint16 Param_Input_Calibration[4] = {0};
 /* Vehicle speed signal status. */
-uint8 VehicleSpeed_VehicleState = 0;
+uint8 VehicleSpeed_VehicleState = 253;
 /* Wiper stock signal status. */
-uint8 WiperStock_VehicleState = 0;
+uint8 WiperStock_VehicleState = 255;
 /* Input value array. */
-uint32 StatusList_InputValue[INPUT_NUMBER] = {0};
+uint32 StatusList_InputValue[5] = {253};
 /* Input status array. */
-InStat StatusList_InputStatus[STATUS_NUMBER] = {0};
+InStat StatusList_InputStatus[5];
 /* Processed output values array. */
-uint32 StatusList_OutputValue[INPUT_NUMBER] = {0};
+uint32 StatusList_OutputValue[5] = {253};
 /* Processed CAN output values array. */
-uint8 StatusList_ComOutValue[INPUT_NUMBER] = {0};
+uint8 StatusList_ComOutValue[5] = {253};
 /* Processed raw output values array. */
-uint8 StatusList_RawValue[RAW_INPUTS] = {0};
+uint8 StatusList_RawValue[5] = {253};
 /* Input coding data. */
-uint32 InputCtrl_CodingData[INPUT_NUMBER - 2] = {0};
+uint32 InputCtrl_CodingData[4] = {253};
 /* VARIABLES STOP */
 /* PROTOTYPE START */
 void InputCtrl_MainFunction(void);
@@ -50,13 +44,14 @@ void InputCtrl_MainFunction(void)
 	{
 		if(Adc_Error[i] != 0)
 		{
-			for(uint8 j = IGN_ARRPOS; j <= STATUS_GSNS_ARRPOS; j++)
+			for(uint8 j = 0; j < 5; j++)
 			{
 				StatusList_InputValue[j] = 0;
 				StatusList_OutputValue[j] = 0;
 				StatusList_ComOutValue[j] = 0;
 				StatusList_RawValue[j] = 0;
 			}
+			break;
 		}
 		else
 		{
@@ -68,11 +63,11 @@ void InputCtrl_MainFunction(void)
 	{
 		if(UartH_ErrorArr[i] != 0)
 		{
-			StatusList_InputValue[HC05_ARRPOS] = 0;
-			StatusList_OutputValue[HC05_ARRPOS] = 0;
-			StatusList_ComOutValue[HC05_ARRPOS] = 0;
-			StatusList_InputStatus[HC05_ARRPOS].DCYStatus = 1;
-			StatusList_InputStatus[HC05_ARRPOS].errorStatus = 0xA;
+			StatusList_InputValue[4] = 0;
+			StatusList_OutputValue[4] = 0;
+			StatusList_ComOutValue[4] = 0;
+			StatusList_InputStatus[4].DCYStatus = 1;
+			StatusList_InputStatus[4].errorStatus = 1;
 			break;
 		}
 		else
@@ -80,9 +75,18 @@ void InputCtrl_MainFunction(void)
 			/* Do nothing. */
 		}
 	}
+	StatusList_OutputValue[4] = StatusList_InputValue[4];
 	/* Process input status. */
-	for(uint8 i = IGN_ARRPOS; i <= GSNS_ARRPOS; i++)
+	for(uint8 i = 0; i < 4; i++)
 	{
+		if(i == 0 || i == 2)
+		{
+			continue;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
 		/* If this has not been set this drive cycle status. */
 		if(StatusList_InputStatus[i].DCYStatus == 0)
 		{
@@ -115,7 +119,7 @@ void InputCtrl_MainFunction(void)
 		}
 	}
 	/* Process the output values. */
-	for(uint8 i = STATUS_IGN_ARRPOS; i <= STATUS_GSNS_ARRPOS; i++)
+	for(uint8 i = 0; i < 4; i++)
 	{
 		/* In case of error is detected, invalidate the input. */
 		if(StatusList_InputStatus[i].errorStatus == 0)
@@ -126,54 +130,84 @@ void InputCtrl_MainFunction(void)
 		else StatusList_OutputValue[i] = 0xFF;
 	}
 	/* Process the raw value to be sent on CAN. */
-	for(uint8 i = IGN_ARRPOS; i < RAW_INPUTS; i++) StatusList_RawValue[i] = (StatusList_InputValue[i] * 255) / 4095;
+	for(uint8 i = 0; i < 4; i++) StatusList_RawValue[i] = (StatusList_InputValue[i] * 255) / 4095;
 	/* Update the to-be-sent-on-CAN variables. */
-	StatusList_ComOutValue[IGN_ARRPOS] = (StatusList_OutputValue[IGN_ARRPOS] * 2) / 4095;
-	//StatusList_ComOutValue[ACC_ARRPOS] = (StatusList_OutputValue[ACC_ARRPOS] * 100) / 4095;
-	//StatusList_ComOutValue[BR_ARRPOS] = (StatusList_OutputValue[BR_ARRPOS] * 100) / 4095;
-	//StatusList_ComOutValue[PS_ARRPOS] = (StatusList_OutputValue[PS_ARRPOS] * 180) / 4095;
-	StatusList_ComOutValue[GB_ARRPOS] = (StatusList_OutputValue[GB_ARRPOS] * 2) / 4095;
-	StatusList_ComOutValue[HC05_ARRPOS] = StatusList_OutputValue[HC05_ARRPOS];
-	/* Process the input values of sensors. */
-	for(uint8 i = LSNS_ARRPOS; i <= GSNS_ARRPOS; i++)
+
+	StatusList_ComOutValue[4] = StatusList_OutputValue[4];
+
+	if(StatusList_OutputValue[0] < 1500)
 	{
-		if(StatusList_OutputValue[i] > 3000) StatusList_ComOutValue[i] = 1;
-		else StatusList_ComOutValue[i] = 0;
+		StatusList_ComOutValue[0] = 0;
 	}
-	/* Process error discovered on inputs. */
-	for(uint8 i = STATUS_IGN_ARRPOS; i < STATUS_NUMBER; i++)
+	else if(1500 <= StatusList_OutputValue[0] && StatusList_OutputValue[0] < 4000)
 	{
-		/* If input is not coded, do not set a DTC. */
-		if(i >= STATUS_LSNS_ARRPOS && i <= STATUS_GSNS_ARRPOS)
-		{
-			if(InputCtrl_CodingData[i] == 1)
-			{
-				StatusList_InputStatus[i].DCYStatus = 0;
-				StatusList_InputStatus[i].errorStatus = 0;
-			}
-			else
-			{
-				/* Do nothing */
-			}
-		}
-		else
-		{
-			/* Do nothing. */
-		}
+		StatusList_ComOutValue[0] = 1;
+	}
+	else if(4000 <= StatusList_OutputValue[0])
+	{
+		StatusList_ComOutValue[0] = 2;
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
+	if(StatusList_OutputValue[2] < 1200)
+	{
+		StatusList_ComOutValue[2] = 0;
+	}
+	else if(StatusList_OutputValue[2] >= 1200 && StatusList_OutputValue[2] < 2000)
+	{
+		StatusList_ComOutValue[2] = 1;
+	}
+	else if(StatusList_OutputValue[2] >= 2000 && StatusList_OutputValue[2] < 4000)
+	{
+		StatusList_ComOutValue[2] = 2;
+	}
+	else if(StatusList_OutputValue[2] >= 4000)
+	{
+		StatusList_ComOutValue[2] = 3;
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
+	if(StatusList_OutputValue[1] >= 3000)
+	{
+		StatusList_ComOutValue[1] = 1;
+	}
+	else
+	{
+		StatusList_ComOutValue[1] = 0;
+	}
+
+	if(StatusList_OutputValue[3] >= 3000)
+	{
+		StatusList_ComOutValue[3] = 1;
+	}
+	else
+	{
+		StatusList_ComOutValue[3] = 0;
+	}
+
+	/* Process error discovered on inputs. */
+	for(uint8 i = 0; i < 4; i++)
+	{
 		/* Store DTCs in case of errors were detected. */
 		if((StatusList_InputStatus[i].DCYStatus == 1) && (StatusList_InputStatus[i].errorStatus != 0))
 		{
-			Dem_SaveDtc(i, StatusList_InputStatus[i].errorStatus);
+			Dem_SaveDtc(i + 1, StatusList_InputStatus[i].errorStatus);
 			StatusList_InputStatus[i].DCYStatus = 2;
 		}
-		else if(StatusList_InputStatus[i].errorStatus == 0) Dem_SaveDtc(i, StatusList_InputStatus[i].errorStatus);
+		else if(StatusList_InputStatus[i].errorStatus == 0) Dem_SaveDtc(i + 1, StatusList_InputStatus[i].errorStatus);
 		else
 		{
 			/* Do nothing. */
 		}
 	}
 	/* Invalidate the input if not coded. */
-	if(InputCtrl_CodingData[0] == 1) StatusList_ComOutValue[HC05_ARRPOS] = 0;
+	if(InputCtrl_CodingData[0] == 1) StatusList_ComOutValue[4] = 0;
 	else
 	{
 		/* Do nothing. */
@@ -181,7 +215,7 @@ void InputCtrl_MainFunction(void)
 	/* Invalidate the input if not coded. */
 	if(InputCtrl_CodingData[1] == 1)
 	{
-		if(StatusList_OutputValue[HC05_ARRPOS] == 0x03) StatusList_ComOutValue[HC05_ARRPOS] = 0;
+		if(StatusList_OutputValue[4] == 0x03) StatusList_ComOutValue[4] = 0;
 		else
 		{
 			/* Do nothing. */
@@ -192,51 +226,13 @@ void InputCtrl_MainFunction(void)
 		/* Do nothing. */
 	}
 	/* Invalidate the input if not coded. */
-	if(InputCtrl_CodingData[2] == 1)
-	{
-		if(StatusList_OutputValue[HC05_ARRPOS] == 0x04) StatusList_ComOutValue[HC05_ARRPOS] = 0;
-		else
-		{
-			/* Do nothing. */
-		}
-	}
+	if(InputCtrl_CodingData[2] == 1) StatusList_ComOutValue[3] = 0;
 	else
 	{
 		/* Do nothing. */
 	}
 	/* Invalidate the input if not coded. */
-	if(InputCtrl_CodingData[3] == 1)
-	{
-		if(StatusList_OutputValue[HC05_ARRPOS] == 0x05) StatusList_ComOutValue[HC05_ARRPOS] = 0;
-		else
-		{
-			/* Do nothing. */
-		}
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* Invalidate the input if not coded. */
-	if(InputCtrl_CodingData[4] == 1) StatusList_ComOutValue[RSNS_ARRPOS] = 0;
-	else
-	{
-		/* Do nothing. */
-	}
-	/* Invalidate the input if not coded. */
-	if(InputCtrl_CodingData[5] == 1) StatusList_ComOutValue[LSNS_ARRPOS] = 0;
-	else
-	{
-		/* Do nothing. */
-	}
-	/* Invalidate the input if not coded. */
-	if(InputCtrl_CodingData[6] == 1) StatusList_ComOutValue[AQSNS_ARRPOS] = 0;
-	else
-	{
-		/* Do nothing. */
-	}
-	/* Invalidate the input if not coded. */
-	if(InputCtrl_CodingData[7] == 1) StatusList_ComOutValue[GSNS_ARRPOS] = 0;
+	if(InputCtrl_CodingData[3] == 1) StatusList_ComOutValue[1] = 0;
 	else
 	{
 		/* Do nothing. */

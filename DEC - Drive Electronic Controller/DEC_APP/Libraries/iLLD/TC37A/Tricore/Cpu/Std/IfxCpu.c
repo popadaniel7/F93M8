@@ -60,7 +60,7 @@ boolean IfxCpu_acquireMutex(IfxCpu_mutexLock *lock)
 
     spinLockVal = 1UL;
     spinLockVal =
-        (uint32)__cmpAndSwap(((unsigned int *)lock), spinLockVal, 0);
+            (uint32)__cmpAndSwap(((unsigned int *)lock), spinLockVal, 0);
 
     /* Check if the SpinLock WAS set before the attempt to acquire spinlock */
     if (spinLockVal == 0)
@@ -86,22 +86,22 @@ void IfxCpu_disableOverlayBlock(IfxCpu_ResourceCpu cpu, uint16 overlayBlock)
     /* Disable Overlay in SCU */
     switch (cpu)
     {
-    case IfxCpu_ResourceCpu_1:
-        ovcSfrBase        = &MODULE_CPU1;
-        ovcenable.B.OVEN1 = 0;
-        ovccon.B.CSEL1    = 0;
-        break;
-    case IfxCpu_ResourceCpu_2:
-        ovcSfrBase        = &MODULE_CPU2;
-        ovcenable.B.OVEN2 = 0;
-        ovccon.B.CSEL2    = 0;
-        break;
+        case IfxCpu_ResourceCpu_1:
+            ovcSfrBase        = &MODULE_CPU1;
+            ovcenable.B.OVEN1 = 0;
+            ovccon.B.CSEL1    = 0;
+            break;
+        case IfxCpu_ResourceCpu_2:
+            ovcSfrBase        = &MODULE_CPU2;
+            ovcenable.B.OVEN2 = 0;
+            ovccon.B.CSEL2    = 0;
+            break;
 
-    default:
-        ovcSfrBase        = &MODULE_CPU0;
-        ovcenable.B.OVEN0 = 0;
-        ovccon.B.CSEL0    = 0;
-        break;
+        default:
+            ovcSfrBase        = &MODULE_CPU0;
+            ovcenable.B.OVEN0 = 0;
+            ovccon.B.CSEL0    = 0;
+            break;
     }
 
     ovccon.B.OVSTP         = 1;
@@ -122,16 +122,16 @@ void IfxCpu_enableOverlayBlock(IfxCpu_ResourceCpu cpu, uint16 overlayBlock, IfxC
 
     switch (cpu)
     {
-    case IfxCpu_ResourceCpu_1:
-        ovcSfrBase = &MODULE_CPU1;
-        break;
-    case IfxCpu_ResourceCpu_2:
-        ovcSfrBase = &MODULE_CPU2;
-        break;
+        case IfxCpu_ResourceCpu_1:
+            ovcSfrBase = &MODULE_CPU1;
+            break;
+        case IfxCpu_ResourceCpu_2:
+            ovcSfrBase = &MODULE_CPU2;
+            break;
 
-    default:
-        ovcSfrBase = &MODULE_CPU0;
-        break;
+        default:
+            ovcSfrBase = &MODULE_CPU0;
+            break;
     }
 
     /* Select overlay Block */
@@ -159,18 +159,18 @@ void IfxCpu_enableOverlayBlock(IfxCpu_ResourceCpu cpu, uint16 overlayBlock, IfxC
 
     switch (cpu)
     {
-    case IfxCpu_ResourceCpu_1:
-        MODULE_SCU.OVCENABLE.B.OVEN1 = 1;
-        ovccon.B.CSEL1               = 1;
-        break;
-    case IfxCpu_ResourceCpu_2:
-        MODULE_SCU.OVCENABLE.B.OVEN2 = 1;
-        ovccon.B.CSEL2               = 1;
-        break;
-    default:
-        MODULE_SCU.OVCENABLE.B.OVEN0 = 1;
-        ovccon.B.CSEL0               = 1;
-        break;
+        case IfxCpu_ResourceCpu_1:
+            MODULE_SCU.OVCENABLE.B.OVEN1 = 1;
+            ovccon.B.CSEL1               = 1;
+            break;
+        case IfxCpu_ResourceCpu_2:
+            MODULE_SCU.OVCENABLE.B.OVEN2 = 1;
+            ovccon.B.CSEL2               = 1;
+            break;
+        default:
+            MODULE_SCU.OVCENABLE.B.OVEN0 = 1;
+            ovccon.B.CSEL0               = 1;
+            break;
     }
 
     ovccon.B.OVSTRT     = 1;
@@ -212,60 +212,60 @@ IfxCpu_CoreMode IfxCpu_getCoreMode(Ifx_CPU *cpu)
         {                       /*CPU is in DBG RUNNING mode now check PMCSR status */
             switch (index)
             {
-            case IfxCpu_ResourceCpu_0:
+                case IfxCpu_ResourceCpu_0:
 
-                pmcsr_val0 = &MODULE_SCU.PMCSR0;
+                    pmcsr_val0 = &MODULE_SCU.PMCSR0;
 
-                if (pmcsr_val0->B.PMST == (uint32)IfxCpu_PMCSR_PMST_normalMode)
-                {                   /*Cpu is in normal run mode */
-                    cpuMode = IfxCpu_CoreMode_run;
-                }
-                else
-                {                   /*Cpu is not in run mode */
-                    if (pmcsr_val0->B.PMST == (uint32)IfxCpu_PMCSR_PMST_idleMode)
-                    {               /*Cpu is in idle mode */
-                        cpuMode = IfxCpu_CoreMode_idle;
+                    if (pmcsr_val0->B.PMST == (uint32)IfxCpu_PMCSR_PMST_normalMode)
+                    {                   /*Cpu is in normal run mode */
+                        cpuMode = IfxCpu_CoreMode_run;
                     }
-                }
-
-                break;
-            case IfxCpu_ResourceCpu_1:
-
-                pmcsr_val1 = &MODULE_SCU.PMCSR1;
-
-                if (pmcsr_val1->B.PMST == (uint32)IfxCpu_PMCSR_PMST_normalMode)
-                {                   /*Cpu is in normal run mode */
-                    cpuMode = IfxCpu_CoreMode_run;
-                }
-                else
-                {                   /*Cpu is not in run mode */
-                    if (pmcsr_val1->B.PMST == (uint32)IfxCpu_PMCSR_PMST_idleMode)
-                    {               /*Cpu is in idle mode */
-                        cpuMode = IfxCpu_CoreMode_idle;
+                    else
+                    {                   /*Cpu is not in run mode */
+                        if (pmcsr_val0->B.PMST == (uint32)IfxCpu_PMCSR_PMST_idleMode)
+                        {               /*Cpu is in idle mode */
+                            cpuMode = IfxCpu_CoreMode_idle;
+                        }
                     }
-                }
 
-                break;
-            case IfxCpu_ResourceCpu_2:
+                    break;
+                case IfxCpu_ResourceCpu_1:
 
-                pmcsr_val2 = &MODULE_SCU.PMCSR2;
+                    pmcsr_val1 = &MODULE_SCU.PMCSR1;
 
-                if (pmcsr_val2->B.PMST == (uint32)IfxCpu_PMCSR_PMST_normalMode)
-                {                   /*Cpu is in normal run mode */
-                    cpuMode = IfxCpu_CoreMode_run;
-                }
-                else
-                {                   /*Cpu is not in run mode */
-                    if (pmcsr_val2->B.PMST == (uint32)IfxCpu_PMCSR_PMST_idleMode)
-                    {               /*Cpu is in idle mode */
-                        cpuMode = IfxCpu_CoreMode_idle;
+                    if (pmcsr_val1->B.PMST == (uint32)IfxCpu_PMCSR_PMST_normalMode)
+                    {                   /*Cpu is in normal run mode */
+                        cpuMode = IfxCpu_CoreMode_run;
                     }
-                }
+                    else
+                    {                   /*Cpu is not in run mode */
+                        if (pmcsr_val1->B.PMST == (uint32)IfxCpu_PMCSR_PMST_idleMode)
+                        {               /*Cpu is in idle mode */
+                            cpuMode = IfxCpu_CoreMode_idle;
+                        }
+                    }
 
-                break;
-            default:
-                /* Invalid core selected */
-                break;
+                    break;
+                case IfxCpu_ResourceCpu_2:
+
+                    pmcsr_val2 = &MODULE_SCU.PMCSR2;
+
+                    if (pmcsr_val2->B.PMST == (uint32)IfxCpu_PMCSR_PMST_normalMode)
+                    {                   /*Cpu is in normal run mode */
+                        cpuMode = IfxCpu_CoreMode_run;
+                    }
+                    else
+                    {                   /*Cpu is not in run mode */
+                        if (pmcsr_val2->B.PMST == (uint32)IfxCpu_PMCSR_PMST_idleMode)
+                        {               /*Cpu is in idle mode */
+                            cpuMode = IfxCpu_CoreMode_idle;
+                        }
+                    }
+
+                    break;
+                default:
+                    /* Invalid core selected */
+                    break;
             }
         }
     }
@@ -405,7 +405,7 @@ boolean IfxCpu_setSpinLock(IfxCpu_spinLock *lock, uint32 timeoutCount)
     {
         spinLockVal = 1UL;
         spinLockVal =
-            (uint32)__cmpAndSwap(((unsigned int *)lock), spinLockVal, 0);
+                (uint32)__cmpAndSwap(((unsigned int *)lock), spinLockVal, 0);
 
         /* Check if the SpinLock WAS set before the attempt to acquire spinlock */
         if (spinLockVal == 0)
@@ -496,7 +496,7 @@ void IfxCpu_triggerCpuReset(IfxCpu_ResourceCpu coreIndex)
     else
 
     {
-//Do nothing because one cannot set the endinit back from the same CPU which is reset
+        //Do nothing because one cannot set the endinit back from the same CPU which is reset
     }
 }
 
@@ -518,47 +518,47 @@ void IfxCpu_setAllIdleExceptMasterCpu(IfxCpu_ResourceCpu masterCpu)
 
     switch (masterCpu)
     {
-    case IfxCpu_ResourceCpu_0:
-        SCU_PMCSR1.B.REQSLP = 0x1;
+        case IfxCpu_ResourceCpu_0:
+            SCU_PMCSR1.B.REQSLP = 0x1;
 
-        while (SCU_PMSTAT0.B.CPU1)
-        {}
+            while (SCU_PMSTAT0.B.CPU1)
+            {}
 
-        SCU_PMCSR2.B.REQSLP = 0x1;
+            SCU_PMCSR2.B.REQSLP = 0x1;
 
-        while (SCU_PMSTAT0.B.CPU2)
-        {}
+            while (SCU_PMSTAT0.B.CPU2)
+            {}
 
-        break;
+            break;
 
-    case IfxCpu_ResourceCpu_1:
-        SCU_PMCSR0.B.REQSLP = 0x1;
+        case IfxCpu_ResourceCpu_1:
+            SCU_PMCSR0.B.REQSLP = 0x1;
 
-        while (SCU_PMSTAT0.B.CPU0)
-        {}
+            while (SCU_PMSTAT0.B.CPU0)
+            {}
 
-        SCU_PMCSR2.B.REQSLP = 0x1;
+            SCU_PMCSR2.B.REQSLP = 0x1;
 
-        while (SCU_PMSTAT0.B.CPU2)
-        {}
+            while (SCU_PMSTAT0.B.CPU2)
+            {}
 
-        break;
+            break;
 
-    case IfxCpu_ResourceCpu_2:
-        SCU_PMCSR0.B.REQSLP = 0x1;
+        case IfxCpu_ResourceCpu_2:
+            SCU_PMCSR0.B.REQSLP = 0x1;
 
-        while (SCU_PMSTAT0.B.CPU0)
-        {}
+            while (SCU_PMSTAT0.B.CPU0)
+            {}
 
-        SCU_PMCSR1.B.REQSLP = 0x1;
+            SCU_PMCSR1.B.REQSLP = 0x1;
 
-        while (SCU_PMSTAT0.B.CPU1)
-        {}
+            while (SCU_PMSTAT0.B.CPU1)
+            {}
 
-        break;
-    default:
-        /* Invalid core selected */
-        break;
+            break;
+        default:
+            /* Invalid core selected */
+            break;
     }
 
     IfxScuWdt_setSafetyEndinitInline(endinitSfty_pw);
@@ -572,47 +572,47 @@ void IfxCpu_disableInterruptsAllExceptMaster(IfxCpu_ResourceCpu masterCpu)
 
     switch (masterCpu)
     {
-    case IfxCpu_ResourceCpu_0:
-        CPU1_ICR.B.IE = 0;
+        case IfxCpu_ResourceCpu_0:
+            CPU1_ICR.B.IE = 0;
 
-        while (CPU1_ICR.B.IE)
-        {}
+            while (CPU1_ICR.B.IE)
+            {}
 
-        CPU2_ICR.B.IE = 0;
+            CPU2_ICR.B.IE = 0;
 
-        while (CPU2_ICR.B.IE)
-        {}
+            while (CPU2_ICR.B.IE)
+            {}
 
-        break;
+            break;
 
-    case IfxCpu_ResourceCpu_1:
-        CPU0_ICR.B.IE = 0;
+        case IfxCpu_ResourceCpu_1:
+            CPU0_ICR.B.IE = 0;
 
-        while (CPU0_ICR.B.IE)
-        {}
+            while (CPU0_ICR.B.IE)
+            {}
 
-        CPU2_ICR.B.IE = 0;
+            CPU2_ICR.B.IE = 0;
 
-        while (CPU2_ICR.B.IE)
-        {}
+            while (CPU2_ICR.B.IE)
+            {}
 
-        break;
+            break;
 
-    case IfxCpu_ResourceCpu_2:
-        CPU0_ICR.B.IE = 0;
+        case IfxCpu_ResourceCpu_2:
+            CPU0_ICR.B.IE = 0;
 
-        while (CPU0_ICR.B.IE)
-        {}
+            while (CPU0_ICR.B.IE)
+            {}
 
-        CPU1_ICR.B.IE = 0;
+            CPU1_ICR.B.IE = 0;
 
-        while (CPU1_ICR.B.IE)
-        {}
+            while (CPU1_ICR.B.IE)
+            {}
 
-        break;
-    default:
-        /* Invalid core selected */
-        break;
+            break;
+        default:
+            /* Invalid core selected */
+            break;
     }
 
     IfxScuWdt_setGlobalEndinit(password);

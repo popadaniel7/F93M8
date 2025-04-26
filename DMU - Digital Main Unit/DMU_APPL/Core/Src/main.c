@@ -206,6 +206,9 @@ static void MX_NVIC_Init(void)
   /* DMA2_Stream7_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream7_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
+  /* TIM3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(TIM3_IRQn, 1, 0);
+  HAL_NVIC_EnableIRQ(TIM3_IRQn);
 }
 
 /* USER CODE BEGIN 4 */
@@ -223,7 +226,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM1) {
+  if (htim->Instance == TIM1)
+  {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */

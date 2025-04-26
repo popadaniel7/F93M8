@@ -30,14 +30,12 @@
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
 #include "Ifx_Types.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
 /* The undervoltage monitor range stated in the User manual is not big enough to trigger an undervoltage SMU alarm by
  * modifying the undervoltage limit via TFT. Therefore the User Manual limit is extended by 10 percent. */
 #define UV_TFT_ALARM_FACTOR ((float32) 1.1)
-
 /* Refer to Figure 111 Voltage Monitoring - VEXT, VDDP3 & VDD and Figure 112 Voltage Monitoring - VEVRSB,
  * VDDM & VDDPD in the AURIX(TM) TC3xx User Manual */
 /* VEXT (SWD = Supply Watchdog) */
@@ -46,37 +44,30 @@
 #define SWD_UV_VAL_RANGE_MIN_MV   ((float32) 2970 ) /* [mV] */
 /* [mV] Value from user manual times a factor for SMU alarm triggering by changing the UV limit */
 #define SWD_UV_VAL_RANGE_MAX_MV   ((float32) 4750 * UV_TFT_ALARM_FACTOR)
-
 /* EVR33 */
 #define EVR33_OV_VAL_MILLIVOLT  ((float32) 3630 ) /* [mV], between 3470 and 3630 */
 #define EVR33_UV_VAL_MILLIVOLT  ((float32) 3020 ) /* [mV], between 2970 and 3130 */
 #define EVR33_UV_VAL_RANGE_MIN_MV ((float32) 2970 ) /* [mV] */
 /* [mV] Value from user manual times a factor for SMU alarm triggering by changing the UV limit */
 #define EVR33_UV_VAL_RANGE_MAX_MV ((float32) 3130 * UV_TFT_ALARM_FACTOR )
-
 /* EVRC */
 #define EVRC_OV_VAL_MILLIVOLT   ((float32) 1375 ) /* [mV], between 1313 and 1375 */
 #define EVRC_UV_VAL_MILLIVOLT   ((float32) 1180 ) /* [mV], between 1125 and 1188 */
 #define EVRC_UV_VAL_RANGE_MIN_MV ((float32) 1125 ) /* [mV] */
 /* [mV] Value from user manual times a factor for SMU alarm triggering by changing the UV limit */
 #define EVRC_UV_VAL_RANGE_MAX_MV ((float32) 1188 * UV_TFT_ALARM_FACTOR)
-
 /* EVRSB */
 #define SB_OV_VAL_MILLIVOLT     ((float32) 5500 ) /* [mV], between 3470 and 5500 */
 #define SB_UV_VAL_MILLIVOLT     ((float32) 4500 ) /* [mV], between 2970 and 4750 */
-
 /* VDDM */
 #define VDDM_OV_VAL_MILLIVOLT   ((float32) 5500 ) /* [mV], between 3470 and 5500 */
 #define VDDM_UV_VAL_MILLIVOLT   ((float32) 4500 ) /* [mV], between 2970 and 4750 */
-
 /*EVR Pre Reg*/
 #define PRE_OV_VAL_MILLIVOLT    ((float32) 1460 ) /* [mV], between 1430 and 1480 */
 #define PRE_UV_VAL_MILLIVOLT    ((float32) 1125 ) /* [mV], between 1100 and 1150 */
-
 /*********************************************************************************************************************/
 /*---------------------------------------------------Enumerations----------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -86,26 +77,21 @@ typedef struct
     float32 vextVoltageHighest;
     float32 vextVoltageLowest;
     float32 vextVoltageUvLimit;
-
     float32 vddp3Voltage;
     float32 vddp3VoltageHighest;
     float32 vddp3VoltageLowest;
     float32 vddp3VoltageUvLimit;
-
     float32 coreVoltage;
     float32 coreVoltageHighest;
     float32 coreVoltageLowest;
     float32 coreVoltageUvLimit;
 } VoltStatusType;
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
 void initVoltageMonitors(void);
 void getPmsVoltageMeasurements(void);
-
 #endif /* SAFETYKIT_VOLTMON_H_ */

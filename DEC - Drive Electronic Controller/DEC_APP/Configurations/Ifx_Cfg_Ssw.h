@@ -98,10 +98,10 @@ extern void Ifx_Ssw_Pms_InitCheck(void);
  * THIS CALLOUT HOOK SHALL NOT BE IMPLEMENTED AS FUNCTION CALL!
  */
 #define IFX_CFG_SSW_CALLOUT_PMS_INIT()                     \
-    {                                                      \
-        Ifx_Ssw_jumpToFunctionWithLink(&Ifx_Ssw_Pms_Init); \
-        IFX_CFG_SSW_CALLOUT_PMS_CHECK();                   \
-    }
+        {                                                      \
+    Ifx_Ssw_jumpToFunctionWithLink(&Ifx_Ssw_Pms_Init); \
+    IFX_CFG_SSW_CALLOUT_PMS_CHECK();                   \
+        }
 
 #if IFX_CFG_SSW_ENABLE_PMS_INIT_CHECK == 1U
 
@@ -112,9 +112,9 @@ extern void Ifx_Ssw_Pms_InitCheck(void);
  * THIS CALLOUT HOOK SHALL NOT BE IMPLEMENTED AS FUNCTION CALL!
  */
 #define IFX_CFG_SSW_CALLOUT_PMS_CHECK()                         \
-    {                                                           \
-        Ifx_Ssw_jumpToFunctionWithLink(&Ifx_Ssw_Pms_InitCheck); \
-    }
+        {                                                           \
+    Ifx_Ssw_jumpToFunctionWithLink(&Ifx_Ssw_Pms_InitCheck); \
+        }
 #else
 #define IFX_CFG_SSW_CALLOUT_PMS_CHECK()
 #endif /* End of IFX_CFG_SSW_ENABLE_PMS_INIT_CHECK */
@@ -132,9 +132,9 @@ extern void Ifx_Ssw_Pms_InitCheck(void);
 extern void Ifx_Ssw_Lbist(void);
 
 #define IFX_CFG_SSW_CALLOUT_LBIST()                     \
-    {                                                   \
-        Ifx_Ssw_jumpToFunctionWithLink(&Ifx_Ssw_Lbist); \
-    }
+        {                                                   \
+    Ifx_Ssw_jumpToFunctionWithLink(&Ifx_Ssw_Lbist); \
+        }
 
 #endif /* End of IFX_CFG_SSW_ENABLE_LBIST */
 
@@ -150,9 +150,9 @@ extern void Ifx_Ssw_Lbist(void);
 extern void Ifx_Ssw_Monbist(void);
 
 #define IFX_CFG_SSW_CALLOUT_MONBIST()                 \
-{                                                     \
+        {                                                     \
     Ifx_Ssw_jumpToFunctionWithLink(&Ifx_Ssw_Monbist); \
-}
+        }
 #endif /* End of IFX_CFG_SSW_ENABLE_MONBIST */
 
 /* Callout hook API macro for PLL initialization.
@@ -163,7 +163,7 @@ extern void Ifx_Ssw_Monbist(void);
 #include "IfxScuCcu.h"
 extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
 #define IFX_CFG_SSW_CALLOUT_PLL_INIT()                      \
-{                                                           \
+        {                                                           \
     if (IfxScuCcu_init(&IfxScuCcu_defaultClockConfig) == 1) \
     {                                                       \
         McuSm_PerformResetHook(377u, 1u);                   \
@@ -171,7 +171,7 @@ extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
     else                                                    \
     {                                                       \
         /* Do nothing */                                    \
-    }                                                       \
+        }                                                       \
 }                                                           \
 
 #endif /* End of IFX_CFG_SSW_ENABLE_PLL_INIT */
@@ -185,13 +185,13 @@ extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
 #include "McuSm.h"
 
 #define IFX_CFG_SSW_CALLOUT_MBIST() \
-    {                               \
-        IFX_EXTERN const IfxMtu_MbistConfig *const mbistGangConfig[]; \
-        if (IfxMtu_runMbistAll(mbistGangConfig) == 1U)                \
-        {                                                             \
-            McuSm_PerformResetHook(1u, 1u);                           \
-        }                                                             \
-    }
+        {                               \
+    IFX_EXTERN const IfxMtu_MbistConfig *const mbistGangConfig[]; \
+    if (IfxMtu_runMbistAll(mbistGangConfig) == 1U)                \
+    {                                                             \
+        McuSm_PerformResetHook(1u, 1u);                           \
+    }                                                             \
+        }
 
 #endif /* End of IFX_CFG_SSW_ENABLE_MBIST */
 
@@ -222,9 +222,9 @@ extern void Smu_Init(void);
 extern void Ifx_Ssw_UnlockEmem(void);
 
 #define IFX_CFG_SSW_CALLOUT_EMEM_INIT() \
-  {                                     \
-     Ifx_Ssw_UnlockEmem();              \
-  }
+        {                                     \
+    Ifx_Ssw_UnlockEmem();              \
+        }
 #endif
 
 #endif /* IFX_CFG_SSW_H_ */

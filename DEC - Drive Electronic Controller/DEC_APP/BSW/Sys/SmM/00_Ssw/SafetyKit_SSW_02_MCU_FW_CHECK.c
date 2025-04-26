@@ -24,8 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -37,37 +35,28 @@
 #include "IfxMtu_cfg.h"
 #include "IfxSmu.h"
 #include "IfxDmu_Reg.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
 volatile Ifx_SMU_AG g_SafetyKitSmuAlarmRegStatus[IFXSMU_NUM_ALARM_GROUPS];
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
-boolean safetyKitFwCheckSmuStmemLclcon(const FwCheckStruct *fwCheckTablSMU, const int structSize,
-        const SafetyKitResetType resetType, FwCheckVerificationStruct *fwCheckVerification);
+boolean safetyKitFwCheckSmuStmemLclcon(const FwCheckStruct *fwCheckTablSMU, const int structSize, const SafetyKitResetType resetType, FwCheckVerificationStruct *fwCheckVerification);
 IfxMtu_MbistSel safetyKitFwCheckSsh(const SafetyKitResetType resetType);
-
 IfxMtu_MbistSel safetyKitFwCheckCheckSshRegisters(const MemoryTestedStruct* sshTable, int tableSize);
 boolean safetyKitFwCheckEvaluateRamInit(uint16 memoryMask);
 boolean safetyKitFwCheckEvaluateLmuInit(uint16 memoryMask);
-
 void safetyKitFwCheckClearSSH(const SafetyKitResetType resetType);
 void safetyKitFwCheckClearSmuAlarms(const FwCheckStruct *fwCheckTable, const int tableSize);
 void clearFaultStatusAndECCDetectionFSIRAM(void);
-
 void safetyKitFwCheckRetriggerCheck(const SafetyKitResetType resetType);
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -76,12 +65,6 @@ void safetyKitFwCheckRetriggerCheck(const SafetyKitResetType resetType);
  * */
 void safetyKitSswMcuFwCheck(void)
 {
-    if(g_SafetyKitStatus.resetCode.resetType == safetyKitResetTypeColdpoweron)
-    {
-        /* Initialize the g_sswStatusXram data if it was a Cold PORST */
-        //g_sswStatusXram->mcuFwcheckRuns  = 0;
-    }
-
     /* Enable MTU module if not yet enabled */
     boolean mtuWasEnabled = IfxMtu_isModuleEnabled();
     if (mtuWasEnabled == FALSE)
@@ -89,14 +72,16 @@ void safetyKitSswMcuFwCheck(void)
         /* Enable MTU module */
         IfxMtu_enableModule();
     }
+    else
+    {
+        /* Do nothing. */
+    }
     /* Take a snapshot of the SMU alarm registers before executing the FW check */
     for(uint8 alarmReg = 0; alarmReg < IFXSMU_NUM_ALARM_GROUPS; alarmReg++)
     {
         g_SafetyKitSmuAlarmRegStatus[alarmReg].U = MODULE_SMU.AG[alarmReg].U;
     }
 
-    /* Increment the firmware check execution counter */
-    //g_sswStatusXram->mcuFwcheckRuns++;
     if  (
             /* Read SMU alarm register values and compare with expected ones(listed in Appendix A of the
              * Safety Manual)
@@ -118,7 +103,6 @@ void safetyKitSswMcuFwCheck(void)
     {
         /* If all four checks have passed set FW check status variable to "passed" */
         g_SafetyKitStatus.sswStatus.mcuFwcheckStatus = passed;
-
         /* If all registers and SMU alarm registers have reported the expected values .. */
         /* .. clear the content of the registers mentioned in the Appendix table */
         safetyKitFwCheckClearSSH(g_SafetyKitStatus.resetCode.resetType);
@@ -130,13 +114,8 @@ void safetyKitSswMcuFwCheck(void)
     else
     {
         g_SafetyKitStatus.sswStatus.mcuFwcheckStatus = failed;
-        /* If FW check has failed during its first execution trigger the check again */
-        //if(g_sswStatusXram->mcuFwcheckRuns < SAFETKIT_FW_CHECK_MAX_RUNS)
-        //{
-            /* Clear COLD PORST reason to preserve the data on the SCR XRAM */
-            IfxScuRcu_clearColdResetStatus();
-            //safetyKitFwCheckRetriggerCheck(g_SafetyKitStatus.resetCode.resetType);
-        //}
+        /* Clear COLD PORST reason to preserve the data on the SCR XRAM */
+        IfxScuRcu_clearColdResetStatus();
     }
 
     /* Disable MTU module if it was disabled */
@@ -190,7 +169,6 @@ boolean safetyKitFwCheckSmuStmemLclcon (const FwCheckStruct *fwCheckTable, const
                 ptrRegisterCheckStrct = &fwCheckTable[i].applicationReset;
                 break;
             default:
-                __debug();
                 break;
         }
 
@@ -238,7 +216,6 @@ IfxMtu_MbistSel safetyKitFwCheckSsh(const SafetyKitResetType resetType)
             fwcheckSshResult = safetyKitFwCheckCheckSshRegisters(applicationSSHTC39B, applicationSSHTC39BSize);
             break;
         default:
-            __debug();
             break;
     }
     return fwcheckSshResult;
@@ -273,7 +250,6 @@ void safetyKitFwCheckClearSSH(const SafetyKitResetType resetType)
             tableSize  = applicationSSHTC39BSize;
             break;
         default:
-            __debug();
             break;
     }
 
@@ -340,7 +316,6 @@ void safetyKitFwCheckClearSmuAlarms(const FwCheckStruct *FW_CHECK_table, const i
     IfxScuWdt_setSafetyEndinit(passwd);
 
 }
-
 /*
  * retrigger firmware check
  * */
@@ -352,28 +327,21 @@ void safetyKitFwCheckRetriggerCheck(const SafetyKitResetType resetType)
     {
         case safetyKitResetTypeColdpoweron :
         case safetyKitResetTypeLbist :
-            /* Trigger Cold PORST */
-            //safetyKitTriggerColdPorst();
             break;
         case safetyKitResetTypeWarmpoweron :
             safetyKitFwCheckClearSSH(resetType);
-            /* Trigger Warm PORST */
-            //safetyKitTriggerWarmPorst();
             break;
         case safetyKitResetTypeSystem :
             safetyKitFwCheckClearSSH(resetType);
-            //safetyKitTriggerSwReset(safetyKitResetTypeSystem);
             break;
         case safetyKitResetTypeApplication :
             safetyKitFwCheckClearSSH(resetType);
-            //safetyKitTriggerSwReset(safetyKitResetTypeApplication);
             break;
         default:
             __debug();
             break;
     }
 }
-
 /*
  * This function is comparing the SSH registers of all RAMs with their expected values
  * */
@@ -432,7 +400,10 @@ IfxMtu_MbistSel safetyKitFwCheckCheckSshRegisters (const MemoryTestedStruct* ssh
             expectedValueECCD = sshTable[a].sshRegistersStb.eccdVal;
             expectedValueERRINFO = sshTable[a].sshRegistersStb.errinfoVal;
         }
-
+        else
+        {
+            /* Do nothing. */
+        }
         /* Finally compare register values of selected memory with the expected ones, if any mismatch is detected
          * return the name of the selected memory and stop the function execution. */
         if (mc->ECCD.U != expectedValueECCD || mc->FAULTSTS.U != expectedValueFAULTSTS
@@ -440,11 +411,14 @@ IfxMtu_MbistSel safetyKitFwCheckCheckSshRegisters (const MemoryTestedStruct* ssh
         {
             return (IfxMtu_MbistSel_none);//(mbistSel);
         }
+        else
+        {
+            /* Do nothing. */
+        }
     }
 
     return (IfxMtu_MbistSel_none);
 }
-
 /*
  * Verify if CPU memory is initialized
  * */
@@ -467,7 +441,6 @@ boolean safetyKitFwCheckEvaluateRamInit(uint16 memoryMask)
         return (FALSE);
     }
 }
-
 /*
  * Verify if LMU memory is initialized
  * */

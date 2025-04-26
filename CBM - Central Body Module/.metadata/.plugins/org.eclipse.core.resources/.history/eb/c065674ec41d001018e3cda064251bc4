@@ -1,0 +1,76 @@
+/* START OF FILE */
+/* INCLUDE START */
+#include "Std_Types.h"
+/* INCLUDE END */
+/* DEFINE START */
+/* IGNITION ARRAY POSITION */
+#define IGN_ARRPOS 0
+/* GEARBOX ARRAY POSITION */
+#define GB_ARRPOS 1
+/* LIGHT SENSOR ARRAY POSITION */
+#define LSNS_ARRPOS 2
+/* RAIN SENSOR ARRAY POSITION */
+#define RSNS_ARRPOS 3
+/* AIR QUALITY SENSOR ARRAY POSITION */
+#define AQSNS_ARRPOS 4
+/* GAS SENSOR ARRAY POSITION */
+#define GSNS_ARRPOS 5
+/* HC05 ARRAY POSITION */
+#define HC05_ARRPOS 6
+/* IGNITION ARRAY POSITION */
+#define STATUS_IGN_ARRPOS 0
+/* GEARBOX ARRAY POSITION */
+#define STATUS_GB_ARRPOS 1
+/* LIGHT SENSOR ARRAY POSITION */
+#define STATUS_LSNS_ARRPOS 2
+/* RAIN SENSOR ARRAY POSITION */
+#define STATUS_RSNS_ARRPOS 3
+/* AIR QUALITY SENSOR ARRAY POSITION */
+#define STATUS_AQSNS_ARRPOS 4
+/* GAS SENSOR ARRAY POSITION */
+#define STATUS_GSNS_ARRPOS 5
+/* HC05 ARRAY POSITION */
+#define STATUS_HC05_ARRPOS 6
+/* DEFINE STOP */
+/* TYPEDEF START */
+/* INPUT STATUS STRUCT */
+typedef struct
+{
+	uint8 errorStatus;
+	uint8 DCYStatus;
+	uint32 debounceTimer_undervoltage;
+	uint32 debounceTimer_outofbound;
+}InStat;
+/* TYPEDEF STOP */
+/* VARIABLES START */
+/* Under-voltage de-bounce parameterizable variable. */
+extern uint8 Param_UndervoltageThreshold_Calibration;
+/* De-bounce time parameterizable variable. */
+extern uint8 Param_ErrorSettingDebouceThreshold_Calibration;
+/* Out of bound value parameterizable variable. */
+extern uint16 Param_OutofboundThreshold_Calibration;
+/* De-bounce previous state time value parameterizable variable. */
+extern uint16 Param_DebouncePreviouState_Calibration;
+/* Calibration values array. */
+extern uint16 Param_Input_Calibration[10];
+/* Vehicle speed signal status. */
+extern uint8 VehicleSpeed_VehicleState;
+/* Wiper stock signal status. */
+extern uint8 WiperStock_VehicleState;
+/* Input value array. */
+extern uint32 StatusList_InputValue[7];
+/* Input status array. */
+extern InStat StatusList_InputStatus[7];
+/* Processed output values array. */
+extern uint32 StatusList_OutputValue[7];
+/* Processed CAN output values array. */
+extern uint8 StatusList_ComOutValue[7];
+/* Processed raw output values array. */
+extern uint8 StatusList_RawValue[7];
+/* Input coding data. */
+extern uint32 InputCtrl_CodingData[8];
+/* VARIABLES STOP */
+/* FUNCTIONS START */
+extern void InputCtrl_MainFunction(void);
+/* FUNCTIONS STOP */
+/* STOP OF FILE */

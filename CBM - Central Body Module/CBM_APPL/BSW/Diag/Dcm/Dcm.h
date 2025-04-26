@@ -34,8 +34,6 @@ typedef struct
 /* VARIABLES START */
 /* Diagnostic session state. */
 extern DiagState DiagnosticSession __attribute__((section(".ncr")));
-/* Received calibration data. */
-extern uint32 Dcm_DiagnosticCalibrationData[16];
 /* VARIABLES STOP */
 /* FUNCTIONS START */
 extern void Dcm_MainFunction(void);

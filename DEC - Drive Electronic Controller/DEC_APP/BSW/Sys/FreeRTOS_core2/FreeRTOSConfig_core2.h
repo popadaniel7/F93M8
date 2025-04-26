@@ -7,7 +7,7 @@
 #define configTICK_RATE_HZ_core2                         ( ( TickType_t_core2 ) 1000UL )
 #define configMAX_PRIORITIES_core2                       ( 31 )
 #define configMINIMAL_STACK_SIZE_core2                   ( ( unsigned short ) 256 )
-#define configTOTAL_HEAP_SIZE_core2                      ( ( size_t ) ( 32U * 1024U ) )
+#define configTOTAL_HEAP_SIZE_core2                      ( ( size_t ) ( 5U * 1024U ) )
 #define configMAX_TASK_NAME_LEN_core2                    ( 254 )
 #define configENABLE_BACKWARD_COMPATIBILITY_core2        0
 #define configUSE_TRACE_FACILITY_core2                   0

@@ -24,7 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -36,17 +35,14 @@
 #include "IfxPms_reg.h"
 #include "IfxCpu_Irq.h"
 #include "SMU.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
-#define MIN_TEMP_LIMIT          -35     /* Lower temperature limit */
-#define MAX_TEMP_LIMIT          150     /* Upper temperature limit */
-
+#define MIN_TEMP_LIMIT          -40     /* Lower temperature limit */
+#define MAX_TEMP_LIMIT          140     /* Upper temperature limit */
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -62,7 +58,6 @@
  *  - priority: Interrupt priority. Refer Usage of Interrupt Macro for more details.
  */
 IFX_INTERRUPT(dtsMeasurementISR, CPU_WHICH_RUN_DTS, ISR_PRIORITY_DTS);
-
 /* DTS ISr handler */
 void dtsMeasurementISR(void)
 {
@@ -78,19 +73,16 @@ void dtsMeasurementISR(void)
     {
         float32 dieTemperaturePms;
         float32 dieTemperatureCore;
-
         /* Get the new PMS die temperature measurement */
         dieTemperaturePms = IfxDts_Dts_getTemperatureCelsius();
-
         /* Also get the CORE die temperature from DTSCSTAT register of SCU module */
         dieTemperatureCore = IfxDts_Dts_convertToCelsius((uint16)MODULE_SCU.DTSCSTAT.B.RESULT);
-
         /* SM:DTS_RESULT */
         /* Calculate the absolute value of the temperature difference, trigger SMU software alarm if value is above limit.*/
         float32 dieTempDifference;
+
         dieTempDifference = (dieTemperatureCore > dieTemperaturePms) ? dieTemperatureCore - \
                                 dieTemperaturePms : dieTemperaturePms - dieTemperatureCore;
-
         g_SafetyKitStatus.dieTempStatus.dieTemperaturePms   =   dieTemperaturePms;
         g_SafetyKitStatus.dieTempStatus.dieTemperatureCore  =   dieTemperatureCore;
         g_SafetyKitStatus.dieTempStatus.dieTempDifference   =   dieTempDifference;
@@ -103,12 +95,15 @@ void dtsMeasurementISR(void)
                 g_SafetyKitStatus.dieTempStatus.dieTemperatureCore < g_SafetyKitStatus.dieTempStatus.dieTemperaturePms ?
                         g_SafetyKitStatus.dieTempStatus.dieTemperatureCore :
                         g_SafetyKitStatus.dieTempStatus.dieTemperaturePms;
-
         /* limit checking for highest */
         if(higherTemp > g_SafetyKitStatus.dieTempStatus.dieTempHighest)
         {
             /* Overwrite if new value is higher as old maximum */
             g_SafetyKitStatus.dieTempStatus.dieTempHighest = higherTemp;
+        }
+        else
+        {
+            /* Do nothing. */
         }
         /* limit checking for lowest value */
         if(lowerTemp < g_SafetyKitStatus.dieTempStatus.dieTempLowest)
@@ -116,9 +111,18 @@ void dtsMeasurementISR(void)
             /* Overwrite if new value is lower as old minimum */
             g_SafetyKitStatus.dieTempStatus.dieTempLowest = lowerTemp;
         }
+        else
+        {
+            /* Do nothing. */
+        }
+
         if(dieTempDifference > MAX_DIE_TEMP_DIFF)
         {
             softwareCoreAlarmTriggerSMU(SOFT_SMU_ALM_DTS);
+        }
+        else
+        {
+            /* Do nothing. */
         }
     }
 }

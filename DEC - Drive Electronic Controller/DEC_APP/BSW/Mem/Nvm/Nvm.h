@@ -1,8 +1,7 @@
 #include "Ifx_Types.h"
 
-#define NVM_NO_BLOCKS               5U// - +1, first is not used
-#define NVM_SIZE_HEADER_BYTES       8U// Data-flash write done in 8 bytes at a time
-
+#define NVM_NO_BLOCKS               5U //+1, first is not used
+#define NVM_SIZE_HEADER_BYTES       8U // Data-flash write done in 8 bytes at a time
 
 typedef struct
 {

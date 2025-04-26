@@ -11,39 +11,38 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAXIMUM_CAN_DATA_PAYLOAD 8u
-#define CAN_NO_RX_MSG 6u
-#define CAN_NO_TX_MSG 9u
-#define CAN_RX_BUFFER_COUNT        9      // Number of hardware Rx buffers
-#define ISO_TP_MAX_PAYLOAD         2048   // Maximum reassembly buffer size
-#define ISO_TP_CAN_DL              8       // CAN data length (8 bytes)
+#define MAXIMUM_CAN_DATA_PAYLOAD    8u
+#define CAN_NO_RX_MSG               10u
+#define CAN_NO_TX_MSG               10u
+#define CAN_RX_BUFFER_COUNT         9u
+#define ISO_TP_MAX_PAYLOAD          2048u
+#define ISO_TP_CAN_DL               8u
 
 typedef struct
 {
-        uint16 id;        // CAN identifier
-        uint8  dlc;       // Data Length Code (number of valid data bytes)
-        uint8  data[ISO_TP_CAN_DL];   // Up to 8 data bytes per CAN frame
+        uint16 id;
+        uint8  dlc;
+        uint8  data[ISO_TP_CAN_DL];
 } CanMsg;
 
 typedef enum
 {
     ISO_TP_TX_IDLE = 0,
-    ISO_TP_TX_WAIT_FC,  // Waiting for Flow Control (FC) frame from tester
-    ISO_TP_TX_CF       // Transmitting Consecutive Frames
+    ISO_TP_TX_WAIT_FC,
+    ISO_TP_TX_CF
 } IsoTpTxState_t;
 
 typedef struct
 {
-    uint16 txId;           // CAN Identifier for transmission (ECU sends on 0x6FF)
-    const uint8 *txData;   // Pointer to the full response payload to be sent
-    uint16 txDataSize;     // Total length of the response payload
-    uint16 txDataOffset;   // Offset into the payload for the next frame
-    uint8  txSequenceNumber; // Next consecutive frame sequence number (0-15)
-    uint8  blockSize;      // Block size as received in FC (0 means “send all”)
-    uint8  stMin;          // Minimum separation time (in ms) from FC
-    uint8  blockCounter;   // Counter for frames sent in current block
-    IsoTpTxState_t state;    // Current state of the transmit state machine
-    // Optionally, add a timer for STmin handling if needed.
+    uint16 txId;
+    const uint8 *txData;
+    uint16 txDataSize;
+    uint16 txDataOffset;
+    uint8  txSequenceNumber;
+    uint8  blockSize;
+    uint8  stMin;
+    uint8  blockCounter;
+    IsoTpTxState_t state;
 } IsoTpTx_t;
 
 
@@ -60,28 +59,28 @@ typedef enum
 
 typedef struct
 {
-        IfxCan_Can_Config canConfig;                            /* CAN module configuration structure                   */
-        IfxCan_Can canModule;                                   /* CAN module handle                                    */
-        IfxCan_Can_Node canSrcNode;                             /* CAN source node handle data structure                */
-        IfxCan_Can_Node canDstNode;                             /* CAN destination node handle data structure           */
-        IfxCan_Can_NodeConfig canNodeConfig;                    /* CAN node configuration structure                     */
-        IfxCan_Filter canFilter;                                /* CAN filter configuration structure                   */
-        IfxCan_Message txMsg;                                   /* Transmitted CAN message structure                    */
-        IfxCan_Message rxMsg;                                   /* Received CAN message structure                       */
-        uint8 txData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
-        uint8 rxData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Received CAN data array                              */
+        IfxCan_Can_Config canConfig;
+        IfxCan_Can canModule;
+        IfxCan_Can_Node canSrcNode;
+        IfxCan_Can_Node canDstNode;
+        IfxCan_Can_NodeConfig canNodeConfig;
+        IfxCan_Filter canFilter;
+        IfxCan_Message txMsg;
+        IfxCan_Message rxMsg;
+        uint8 txData[MAXIMUM_CAN_DATA_PAYLOAD];
+        uint8 rxData[MAXIMUM_CAN_DATA_PAYLOAD];
 } McmcanType;
 
 typedef struct
 {
-        IfxCan_Message rxMsg;                                   /* Received CAN message structure                       */
-        uint8 rxData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
+        IfxCan_Message rxMsg;
+        uint8 rxData[MAXIMUM_CAN_DATA_PAYLOAD];
 }Can_RxMsg_t;
 
 typedef struct
 {
-        IfxCan_Message txMsg;                                   /* Transmitted CAN message structure                    */
-        uint8 txData[MAXIMUM_CAN_DATA_PAYLOAD];                 /* Transmitted CAN data array                           */
+        IfxCan_Message txMsg;
+        uint8 txData[MAXIMUM_CAN_DATA_PAYLOAD];
 }Can_TxMsg_t;
 
 typedef struct
@@ -124,14 +123,9 @@ extern void Can_Rx(void);
 extern void Can_MainFunction(void);
 extern bool Can_IsoTp_SendFrame(uint16 canId, const uint8 *data, uint8 size);
 extern void Can_IsoTp_MainFunction(void);
-// Low-level CAN transmit function (assumed to be implemented to drive your hardware)
 extern bool Can_SendFrame(uint16 id, const uint8_t *data, uint8 dlc);
-// ISO-TP transmit: sends a full ISO-TP message (single or multi-frame)
 extern bool Can_IsoTpTransmit(uint16 txId, const uint8 *data, uint16 length);
-// ISO-TP processing for one incoming CAN frame
 extern void Can_ProcessIsoTpMessage(const CanMsg *msg);
-// Transmit a Flow Control frame in response to a First Frame
 extern void Can_SendFlowControlFrame(void);
-// Called periodically (or in main loop) to handle ISO-TP CF transmissions
 extern void Can_IsoTpTx_MainFunction(void);
 #endif /* MCMCAN_H_ */

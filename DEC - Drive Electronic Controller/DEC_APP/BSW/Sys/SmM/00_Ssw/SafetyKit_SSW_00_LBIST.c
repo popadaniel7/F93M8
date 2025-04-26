@@ -24,7 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -34,7 +33,6 @@
 #include "SafetyKit_Main.h"
 #include "IfxScuLbist.h"
 #include "Ifx_Ssw_Infra.h"
-
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -48,52 +46,47 @@
 #endif
 #endif
 /* TC39x-BA, TC39x-BB,TC39x-BC and TC39x-BD has Chip revision ID as
-*  0x10,     0x11,    0x12     and 0x13 */
+ *  0x10,     0x11,    0x12     and 0x13 */
 #ifndef IFX_SCU_CHIPID_CHREV_TC39X_BD
 #define IFX_SCU_CHIPID_CHREV_TC39X_BD   0x13
 #endif
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*---------------------------------------------------Enumerations----------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*------------------------------------------Exported Variables/Constants---------------------------------------------*/
 /*********************************************************************************************************************/
-IFX_CONST IfxScuLbist_ParameterSet IfxScuLbist_defaultConfig_tc39x_bd = {
+IFX_CONST IfxScuLbist_ParameterSet IfxScuLbist_defaultConfig_tc39x_bd =
+{
 #ifndef IFX_CFG_LBIST_BODY_ENABLED
 
-    .application     = IfxScuLbist_Application_pt,
-    .freq            = IfxScuLbist_Freq_div6,
-    .splitShiftSel   = IfxScuLbist_SplitShiftSel_fourScanPartitions,
-    .seed            = IFXSCULBIST_CFG_SEED,
-    .pattern         = IFXSCULBIST_CFG_PATTERN_A,
-    .scanChainLength = IFXSCULBIST_CFG_SCANCHAINLENGTH,
-    .signature       = IFXSCULBIST_CFG_SIGNATURE_A_TC39X_BD,
+        .application     = IfxScuLbist_Application_pt,
+        .freq            = IfxScuLbist_Freq_div6,
+        .splitShiftSel   = IfxScuLbist_SplitShiftSel_fourScanPartitions,
+        .seed            = IFXSCULBIST_CFG_SEED,
+        .pattern         = IFXSCULBIST_CFG_PATTERN_A,
+        .scanChainLength = IFXSCULBIST_CFG_SCANCHAINLENGTH,
+        .signature       = IFXSCULBIST_CFG_SIGNATURE_A_TC39X_BD,
 #else
-    .application     = IfxScuLbist_Application_body,
-    .freq            = IfxScuLbist_Freq_div6,
-    .splitShiftSel   = IfxScuLbist_SplitShiftSel_fourScanPartitions,
-    .seed            = IFXSCULBIST_CFG_SEED,
-    .pattern         = IFXSCULBIST_CFG_PATTERN_A,
-    .scanChainLength = IFXSCULBIST_CFG_SCANCHAINLENGTH,
-    .signature       = IFXSCULBIST_CFG_SIGNATURE_A_TC39X_BD,
+        .application     = IfxScuLbist_Application_body,
+        .freq            = IfxScuLbist_Freq_div6,
+        .splitShiftSel   = IfxScuLbist_SplitShiftSel_fourScanPartitions,
+        .seed            = IFXSCULBIST_CFG_SEED,
+        .pattern         = IFXSCULBIST_CFG_PATTERN_A,
+        .scanChainLength = IFXSCULBIST_CFG_SCANCHAINLENGTH,
+        .signature       = IFXSCULBIST_CFG_SIGNATURE_A_TC39X_BD,
 #endif
 };
-
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
 boolean IfxScuLbist_isTerminatedPORST(void);
-
 /*********************************************************************************************************************/
 /*---------------------------------------------Function Implementations----------------------------------------------*/
 /*********************************************************************************************************************/
@@ -105,23 +98,12 @@ boolean IfxScuLbist_isTerminatedPORST(void);
 void safetyKitSswLbist(void)
 {
     boolean lbistHasPassed;
-    /* First of all check if it is a Cold PORST */
-    if (Ifx_Ssw_isColdPoweronReset())
-    {
-        /* Initialize the SswStatus_XRAM data if it was a Cold PORST */
-        //g_sswStatusXram->lbistRuns = 0;
-        //g_sswStatusXram->lbistAppSwReq = 0;
-    }
-
     /* check if LBIST was terminated by a PORST */
     if (FALSE == IfxScuLbist_isTerminatedPORST())
     {
         /* Check if LBIST was already executed, either within firmware of within application SSW */
         if (IfxScuLbist_isDone())
         {
-            /* Increment execution counter variable (is not reset by WarmPORST) */
-            //g_sswStatusXram->lbistRuns++;
-
             /* SM:LBIST_RESULT */
             if ( IFX_SCU_CHIPID_CHREV_TC39X_BD == MODULE_SCU.CHIPID.B.CHREV)
             {
@@ -133,12 +115,18 @@ void safetyKitSswLbist(void)
                 /* Default signature for TC39X-BA/BB/BC device i.e. look to Appendix  */
                 lbistHasPassed = IfxScuLbist_evaluateResult(IfxScuLbist_defaultConfig.signature);
             }
+
             uint16 password = IfxScuWdt_getSafetyWatchdogPasswordInline();
+
             IfxScuWdt_clearSafetyEndinitInline(password);
+
             /* Reset LBIST module and wait till reset is done */
             MODULE_SCU.LBISTCTRL0.B.LBISTRES = 1;
+
             IfxScuWdt_setSafetyEndinitInline(password);
+
             uint8 timeout = 0xFF;
+
             while (MODULE_SCU.LBISTCTRL0.B.LBISTDONE == 1U && timeout > 0)
             {
                 timeout--;
@@ -151,18 +139,8 @@ void safetyKitSswLbist(void)
             else
             {
                 g_SafetyKitStatus.sswStatus.lbistStatus = failed;
-                /* Check if another LBIST attempt should be started */
-                //if (g_sswStatusXram->lbistRuns < SAFETKIT_LBIST_MAX_RUNS)
-                //{
-                    /* SM:LBIST_CFG */
-                    safetyKitTriggerLbist();
-                //}
-                //else
-                //{
-                //    /* LBIST has failed three consecutive times, device has to be considered as defect. */
-                //   while (1);
-                //    __debug();
-                //}
+                /* SM:LBIST_CFG */
+                safetyKitTriggerLbist();
             }
         }
         else
@@ -173,6 +151,10 @@ void safetyKitSswLbist(void)
             {
                 /* SM:LBIST_CFG */
                 safetyKitTriggerLbist();
+            }
+            else
+            {
+                /* Do nothing. */
             }
 #endif
         }
@@ -190,18 +172,13 @@ boolean IfxScuLbist_isTerminatedPORST(void)
 {
     return (boolean)MODULE_SCU.RSTSTAT.B.LBPORST;
 }
-
 /*
  * SM:LBIST_CFG
  * */
 void safetyKitTriggerLbist(void)
 {
-    /* Increment counter variable which counts the LBIST requests via Application SW */
-    //g_sswStatusXram->lbistAppSwReq++;
-
     /* Clear COLD PORST reason to preserve the data on the SCR XRAM */
     IfxScuRcu_clearColdResetStatus();
-
     /* Trigger LBIST */
     if ( IFX_SCU_CHIPID_CHREV_TC39X_BD == MODULE_SCU.CHIPID.B.CHREV)
     {
