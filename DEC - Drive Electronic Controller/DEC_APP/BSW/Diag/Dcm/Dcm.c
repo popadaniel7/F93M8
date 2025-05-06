@@ -47,19 +47,25 @@ typedef struct
         uint8 msgType;
         uint8 masterDiagReqId;
 }Dcm_DiagReq_t;
+
 typedef void (*FuncPtr_t)(uint8*);
 
-uint8 Dcm_SwVersion[4u] =
-{
-        1u, // FLASH BOOTLOADER
-        1u, // APPLICATION
-        1u, // CODING
-        1u  // CALIBRATION
-};
-uint8 Dcm_SwitchTxOff = 0u;
-Dcm_DiagReq_t Dcm_Receive_DiagnosticMessageBuffer[50u];
 uint32 Dcm_Rx_DiagBufCnt = 0u;
 uint32 Dcm_MainCounter = 0u;
+Dcm_DiagReq_t Dcm_Receive_DiagnosticMessageBuffer[50u];
+uint16 respLen_read = 0u;
+uint8 Dcm_SwitchTxOff = 0u;
+uint8 response_write[4u] = {0u};
+uint8 response_dtc[2u + DEM_NUMBER_OF_DTCS];
+uint8 response_read[sizeof(EncCal_VODataComplete) + 4u] = {0u};
+uint8 Dcm_SwVersion[4u] =
+{
+        2u, // FLASH BOOTLOADER
+        2u, // APPLICATION
+        2u, // CODING
+        2u  // CALIBRATION
+};
+
 extern uint8 storedData_04[ENCCAL_CODING_SIZE];
 extern uint8 storedData_05[ENCCAL_CALIBRATION_SIZE];
 extern uint8 storedData_06[sizeof(EncCal_VODataComplete)];
@@ -142,7 +148,6 @@ void Dcm_MainFunction(void)
             /* Check if we are allowed to respond to the tester. */
             if(1u == Dcm_Receive_DiagnosticMessageBuffer[i].isAllowed)
             {
-                Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId = DiagMaster_ActiveId - 1u;
                 Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId,
                         (uint8*)Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData,
                         ((Dcm_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
@@ -189,7 +194,7 @@ void Dcm_DSC_ProgrammingSession(uint8* data)
             (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
             ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
     Nvm_WriteAll();
-    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
+    McuSm_PerformResetHook(0xDFDFu, 0u);
 }
 
 void Dcm_DSC_ExtendedSession(uint8* data)
@@ -211,7 +216,7 @@ void Dcm_ER_HardReset(uint8* data)
             (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
             ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
     Nvm_WriteAll();
-    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
+    McuSm_PerformResetHook(0xDFDFu, 0u);
 }
 
 void Dcm_ER_SoftReset(uint8* data)
@@ -226,7 +231,7 @@ void Dcm_ER_SoftReset(uint8* data)
             (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
             ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
     Nvm_WriteAll();
-    IfxScuRcu_performReset(IfxScuRcu_ResetType_application, 0u);
+    McuSm_PerformResetHook(0xDFDFu, 0u);
 }
 
 void Dcm_TP_TesterPresent(uint8* data)
@@ -238,8 +243,7 @@ void Dcm_RDTCI_ReadSupportDTCInformation(uint8* data){/*empty*/}
 void Dcm_CDTCI_ClearDTCInformation(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    Dem_PreInit();
-    Dem_Init();
+    Dem_ClearDtc();
 }
 
 void Dcm_CC_CommunicationControl(uint8* data)
@@ -284,7 +288,7 @@ void Dcm_RC_ReadVOData(uint8* data){/*empty*/}
 void Dcm_RC_RequestDiagnosticModeActive(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    if(data[3u] == 1u)
+    if(data[5u] == 1u)
     {
         DiagMaster_RequestDiagnosticMode = 0u;
     }
@@ -348,14 +352,7 @@ void Dcm_RC_RequestMasterActive(uint8* data)
 void Dcm_RC_ResetDcy(uint8* data)
 {
     data[1] = data[1] + 0x40u;
-    if(0x01u == data[5u])
-    {
-        DiagMaster_ResetDcy = 1u;
-    }
-    else
-    {
-        DiagMaster_ResetDcy = 0u;
-    }
+    DiagMaster_ResetDcy = 1u;
 }
 
 void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
@@ -373,18 +370,17 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
 
     if(0x19u == serviceId)
     {
-        if (2u <= length && 0x0Au == data[1u])
+        if(2u <= length && 0x0Au == data[1u])
         {
-            uint8 response[2u + DEM_NUMBER_OF_DTCS];
-            response[0u] = 0x59;
-            response[1u] = 0x0Au;
+            response_dtc[0u] = 0x59;
+            response_dtc[1u] = 0x0Au;
 
-            for (uint8 i = 0u; i < DEM_NUMBER_OF_DTCS; i++)
+            for(uint8 i = 0u; i < DEM_NUMBER_OF_DTCS; i++)
             {
-                response[2u + i] = Dem_DtcArray[i];
+                response_dtc[2u + i] = Dem_DtcArray[i];
             }
 
-            Can_IsoTpTransmit(0x6FFu, response, sizeof(response));
+            Can_IsoTpTransmit(0x6FFu, response_dtc, sizeof(response_dtc));
         }
         else
         {
@@ -395,7 +391,7 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
     {
         uint8 subFunction = data[3u];
 
-        if (4u > length)
+        if(4u > length)
         {
             return;
         }
@@ -406,34 +402,42 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
 
         if(0x15u == subFunction || 0x16u == subFunction || 0x17u == subFunction)
         {
-            uint8 response[136U] = {0u};
-            uint16 respLen = 0u;
-            response[0u] = 0x71u;
-            response[3u] = subFunction;
-            if (0x15u == subFunction)
+            response_read[0u] = 0x71u;
+            response_read[3u] = subFunction;
+
+            if(0x15u == subFunction)
             {
-                respLen = 4u + ENCCAL_CODING_SIZE;
-                for (uint8 i = 0u; i < ENCCAL_CODING_SIZE; i++)
-                    response[4u + i] = EncCal_Coding_Buffer[i];
+                respLen_read = 4u + ENCCAL_CODING_SIZE;
+
+                for(uint8 i = 0u; i < ENCCAL_CODING_SIZE; i++)
+                {
+                    response_read[4u + i] = EncCal_Coding_Buffer[i];
+                }
             }
-            else if (0x16u == subFunction)
+            else if(0x16u == subFunction)
             {
-                respLen = 4u + ENCCAL_CALIBRATION_SIZE;
-                memcpy(&response[4u], &EncCal_Calibration_Buffer[0u], ENCCAL_CALIBRATION_SIZE);
-                for (uint8 i = 0u; i < ENCCAL_CALIBRATION_SIZE; i++)
-                    response[4u + i] = (uint8)EncCal_Calibration_Buffer[i];
+                respLen_read = 4u + ENCCAL_CALIBRATION_SIZE;
+
+                for(uint8 i = 0u; i < ENCCAL_CALIBRATION_SIZE; i++)
+                {
+                    response_read[4u + i] = EncCal_Calibration_Buffer[i];
+                }
             }
-            else if (0x17u == subFunction)
+            else if(0x17u == subFunction)
             {
-                respLen = 4u + sizeof(EncCal_VODataComplete);
-                memcpy(&response[4u], &EncCal_VODataComplete, sizeof(EncCal_VODataComplete));
+                respLen_read = 4u + sizeof(EncCal_VODataComplete);
+
+                for(uint8 i = 0; i < sizeof(EncCal_VODataComplete); i++)
+                {
+                    response_read[4u + i] = EncCal_VODataComplete[i];
+                }
             }
             else
             {
                 /* Do nothing. */
             }
 
-            Can_IsoTpTransmit(0x6FFu, response, respLen);
+            Can_IsoTpTransmit(0x6FFu, response_read, respLen_read);
         }
         else if(0x04u == subFunction || 0x05u == subFunction || 0x06u == subFunction)
         {
@@ -441,7 +445,7 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
 
             if(0x04u == subFunction)
             {
-                if (payloadLen > sizeof(storedData_04))
+                if(payloadLen > sizeof(storedData_04))
                 {
                     payloadLen = sizeof(storedData_04);
                 }
@@ -456,7 +460,7 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
             }
             else if(0x05u == subFunction)
             {
-                if (payloadLen > sizeof(storedData_05))
+                if(payloadLen > sizeof(storedData_05))
                 {
                     payloadLen = sizeof(storedData_05);
                 }
@@ -471,7 +475,7 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
             }
             else if(0x06u == subFunction)
             {
-                if (payloadLen > sizeof(storedData_06))
+                if(payloadLen > sizeof(storedData_06))
                 {
                     payloadLen = sizeof(storedData_06);
                 }
@@ -489,12 +493,12 @@ void Dcm_ProcessDiagnosticRequest(const uint8 *data, uint16 length)
                 /* Do nothing. */
             }
 
-            uint8 response[4u] = {0u};
-            response[0u] = 0x71u;
-            response[1u] = data[1u]; // Echo if needed
-            response[2u] = data[2u];
-            response[3u] = subFunction;
-            Can_IsoTpTransmit(0x6FFu, response, sizeof(response));
+            response_write[0u] = 0x71u;
+            response_write[1u] = data[1u];
+            response_write[2u] = data[2u];
+            response_write[3u] = subFunction;
+
+            Can_IsoTpTransmit(0x6FFu, response_write, sizeof(response_write));
         }
         else
         {

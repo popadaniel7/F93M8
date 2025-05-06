@@ -9,7 +9,8 @@
 #define MAXIMUM_CAN_DATA_PAYLOAD    8u
 #define IRQ_CANRX_CHANNEL           4U
 #define IRQ_CANTX_CHANNEL           5U
-#define SESSIONSTATUS_ADDR          0xb00000acu
+#define SESSIONSTATUS_ADDR          0xb00000dcu
+#define RSTCNT_ADDR                 0xb0000108u
 #define APPL_START_ADDRESS          0xA0300000
 #define PFLASH_PAGE_LENGTH          IFXFLASH_PFLASH_PAGE_LENGTH /* 0x20 = 32 Bytes (smallest unit that can be programmed in the Program Flash memory (PFLASH)) */
 #define FLASH_MODULE                0u                           /* Macro to select the flash (PMU) module           */
@@ -61,6 +62,7 @@ typedef struct
 McmcanType g_mcmcan;
 long long alive_counter = 0u;
 uint32* FBL_DSC_Pointer = (uint32*)(SESSIONSTATUS_ADDR);
+uint32* FBL_RSTCNT_Pointer = (uint32*)(RSTCNT_ADDR);
 uint32 FBL_ProgrammingData = 0u;
 uint32 FBL_ProgrammingIndex = 0u;
 uint32 FBL_ProgrammingAddress = 0u;
@@ -74,7 +76,7 @@ uint8 FBL_RxFrame[8u] = {0u};
 uint8 FBL_TxFrame[8u] = {0u};
 FBL_DSC_t FBL_DSC_State = JUMPTOAPPL;
 volatile uint32 appEntryGlobal;
-uint8 FBL_ResetCounter __at(0xB00001B0U);
+uint8 FBL_ResetCounter = 0u;
 
 IFX_INTERRUPT(ISR_CanRx, 0u, 1u);
 void Can_Init(void);
@@ -119,6 +121,8 @@ void core0_main(void)
     FBL_ProgrammingIndex = 0u;
     FBL_DSC_Pointer = (uint32*)(SESSIONSTATUS_ADDR);
     FBL_DSC_Status = *FBL_DSC_Pointer;
+    FBL_RSTCNT_Pointer = (uint32*)(RSTCNT_ADDR);
+    FBL_ResetCounter = (uint8)*FBL_RSTCNT_Pointer;
 
     if(50u == FBL_ResetCounter)
     {

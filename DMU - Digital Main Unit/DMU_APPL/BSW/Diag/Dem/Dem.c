@@ -52,17 +52,28 @@ void Dem_SetDtc(uint8 IDPrimary, uint8 Status)
 	{
 		if(1 == Status)
 		{
-			Dem_TxHeader.DLC = 1;
-			Dem_TxHeader.StdId = 0x10D;
-			Dem_TxData[0] = IDPrimary;
-			HAL_CAN_AddTxMessage(&hcan1, &Dem_TxHeader, Dem_TxData, &Dem_TxMailbox);
+			if(Dem_DTCArray[(IDPrimary - 0x01) * 2 + 1] == 1 || Dem_DTCArray[(IDPrimary - 0x01) * 2 + 1] == 0)
+			{
+				Dem_DTCArray[(IDPrimary - 0x01) * 2] = IDPrimary;
+				Dem_DTCArray[(IDPrimary - 0x01) * 2 + 1] = Status + 1;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
 		}
 		else
 		{
-			/* Do nothing */
+			if(Dem_DTCArray[(IDPrimary - 0x01) * 2 + 1] == 1)
+			{
+				Dem_DTCArray[(IDPrimary - 0x01) * 2] = IDPrimary;
+				Dem_DTCArray[(IDPrimary - 0x01) * 2 + 1] = Status + 1;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
 		}
-		Dem_DTCArray[(IDPrimary - 0x0E) * 2] = IDPrimary;
-		Dem_DTCArray[(IDPrimary - 0x0E) * 2 + 1] = Status;
 	}
 	else
 	{

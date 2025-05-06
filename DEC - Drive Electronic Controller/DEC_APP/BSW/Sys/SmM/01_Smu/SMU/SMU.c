@@ -86,7 +86,7 @@ const AlarmConfigStruct globalAlarmConfig[USER_ALARM_NUMBER] =
         {SOFT_SMU_ALM_CLOCK_PLAUS,                   IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
         {IfxSmu_Alarm_DMA_DMASRI_EccError,           IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
         {IfxSmu_Alarm_IOM_Pin_MismatchIndication,    IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
-        {IfxSmu_Alarm_EVR_Undervoltage_Alarm,        IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
+        {IfxSmu_Alarm_EVR_Undervoltage_Alarm,        IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,      localFunc},
         {IfxSmu_Alarm_XBAR_EDC_WritePhaseError,      IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
         {IfxSmu_Alarm_LMU_EDC_WritePhaseError,       IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,      localFunc},
         {IfxSmu_Alarm_CPU0_Lockstep_ComparatorError, IfxSmu_InternalAlarmAction_nmi,   TRUE,       FALSE,      localFunc},
@@ -96,7 +96,7 @@ const AlarmConfigStruct globalAlarmConfig[USER_ALARM_NUMBER] =
         {IfxSmu_Alarm_SMU_Error_PinFaultStateActivation, IfxSmu_InternalAlarmAction_nmi,  FALSE,    FALSE,     localFunc},
         {IfxSmu_Alarm_SCU_External_EmergencyStopSignalEvent, IfxSmu_InternalAlarmAction_nmi, FALSE, FALSE,     localFunc},
         {SOFT_SMU_ALM_ADC_BND,                        IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,     localFunc},
-        {IfxSmu_Alarm_HSM_Undervoltage_Alarm,         IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,     localFunc},
+        {IfxSmu_Alarm_HSM_Undervoltage_Alarm,         IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,     localFunc},
         {IfxSmu_Alarm_FSI_PFlash_SingleBitError,      IfxSmu_InternalAlarmAction_nmi,   FALSE,      FALSE,     localFunc},
         {IfxSmu_Alarm_FSI_PFlash_DoubleBitError,      IfxSmu_InternalAlarmAction_nmi, FALSE, FALSE, localFunc},
         {IfxSmu_Alarm_FSI_Multiple_BitErrorDetectionTrackingBufferFull, IfxSmu_InternalAlarmAction_nmi, FALSE,      FALSE,     localFunc},
@@ -104,7 +104,7 @@ const AlarmConfigStruct globalAlarmConfig[USER_ALARM_NUMBER] =
         {SMU_ALARM_WHICH_TRIGGERS_NMI, IfxSmu_InternalAlarmAction_nmi, FALSE, TRUE,       localFunc},
         {IfxSmu_Alarm_SMU_Timer0_TimeOut,             IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,      NULL_PTR},
         {IfxSmu_Alarm_SMU_Timer1_TimeOut,             IfxSmu_InternalAlarmAction_disabled,   FALSE,      FALSE,      NULL_PTR},
-        {SOFT_SMU_ALM_CFG_CHECK,                     IfxSmu_InternalAlarmAction_disabled, FALSE,      FALSE,      NULL_PTR},
+        {SOFT_SMU_ALM_CFG_CHECK,                      IfxSmu_InternalAlarmAction_disabled, FALSE,      FALSE,      NULL_PTR},
         {IfxSmu_Alarm_SCU_External_RequestUnitAlarm1, IfxSmu_InternalAlarmAction_disabled, FALSE,     FALSE,      NULL_PTR},
         {IfxSmu_Alarm_SPB_BusErrorEvent,              IfxSmu_InternalAlarmAction_nmi, FALSE,     FALSE,      localFunc}
         /*---------------------------------------------------------------------------------------------------------------*/

@@ -22,10 +22,10 @@ extern uint8 Dem_ControlDtcSettingStatus;
 /* Software versions. */
 static SWV Dcm_SWVersion =
 {
-		0x01, /* SW */
-		0x01, /* FBL */
-		0x01, /* CODING */
-		0x01  /* CALIBRATION */
+		0x02, /* SW */
+		0x02, /* FBL */
+		0x02, /* CODING */
+		0x02  /* CALIBRATION */
 };
 /* FUNCTIONS START */
 void Dcm_MainFunction(void);
@@ -53,7 +53,6 @@ static void DiagService_RDBPI_ReadPeriodicLS(void);
 static void DiagService_RDBPI_ReadPeriodicRS(void);
 static void DiagService_CC_CommunicationControl(void);
 static void DiagService_CDTCS_ControlDTCSetting(void);
-void Dcm_TxIsoTp(uint8 *data, uint16 size);
 extern void NvM_WriteAll(void);
 /* FUNCTIONS STOP */
 /* VARIABLES START */
@@ -70,53 +69,6 @@ Dcm_RDBPI_Table_t Dcm_RDBPI_Table[] =
 };
 /* VARIABLES STOP */
 /* FUNCTIONS START */
-void Dcm_TxIsoTp(uint8 *data, uint16 size)
-{
-	CANSPI_uCAN_MSG isoTpFrame = {0};
-	uint16 remainingData = size;
-	uint16 offset = 0;
-	uint8 seqNum = 1;
-	isoTpFrame.frame.id = 0x701;
-	isoTpFrame.frame.idType = 1;
-	isoTpFrame.frame.dlc = 8;
-	if (size > 7)
-	{
-		isoTpFrame.frame.data0 = 0x10 | ((size >> 8) & 0x0F);
-		isoTpFrame.frame.data1 = size & 0xFF;
-		memcpy(&isoTpFrame.frame.data2, &data[0], 6);
-		offset = 6;
-		remainingData -= 6;
-		CanSpi_Transmit(&isoTpFrame);
-	}
-	else
-	{
-		isoTpFrame.frame.data0 = size & 0x0F;
-		memcpy(&isoTpFrame.frame.data1, &data[0], size);
-		isoTpFrame.frame.dlc = size + 1;
-		CanSpi_Transmit(&isoTpFrame);
-		return;
-	}
-	while (remainingData > 0)
-	{
-		isoTpFrame.frame.data0 = 0x20 | (seqNum & 0x0F);
-		if (remainingData >= 7)
-		{
-			memcpy(&isoTpFrame.frame.data1, &data[offset], 7);
-			offset += 7;
-			remainingData -= 7;
-		}
-		else
-		{
-			memcpy(&isoTpFrame.frame.data1, &data[offset], remainingData);
-			isoTpFrame.frame.dlc = remainingData + 1;
-			offset += remainingData;
-			remainingData = 0;
-		}
-		CanSpi_Transmit(&isoTpFrame);
-		seqNum++;
-		HAL_Delay(1);
-	}
-}
 static void DiagService_CDTCS_ControlDTCSetting(void)
 {
 	if(Dcm_DiagServiceRequest_Frame.frame.data2 == 0x01) Dem_ControlDtcSettingStatus = 1;
@@ -257,7 +209,7 @@ static void DiagService_RDBI_ReadCodingData(void)
 	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
 	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
 	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
-	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x08;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
 	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x62;
 	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x00;
 	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x02;
@@ -266,7 +218,17 @@ static void DiagService_RDBI_ReadCodingData(void)
 	Dcm_DiagServiceResponse_Frame.frame.data6 = NvMBlock_Coding[2];
 	Dcm_DiagServiceResponse_Frame.frame.data7 = NvMBlock_Coding[3];
 	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
-	Dcm_TxIsoTp((uint8*)NvMBlock_Coding[4], 6 - 4);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 6;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x05;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x62;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x00;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x02;
+	Dcm_DiagServiceResponse_Frame.frame.data4 = NvMBlock_Coding[4];
+	Dcm_DiagServiceResponse_Frame.frame.data5 = NvMBlock_Coding[5];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
 	Dcm_DiagServiceResponse_Frame.frame.idType = 0;
 	Dcm_DiagServiceResponse_Frame.frame.id = 0;
 	Dcm_DiagServiceResponse_Frame.frame.dlc = 0;
@@ -295,7 +257,7 @@ static void DiagService_RDBI_ReadCalibrationData(void)
 	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
 	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
 	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
-	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x13;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
 	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x62;
 	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x00;
 	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x03;
@@ -304,7 +266,30 @@ static void DiagService_RDBI_ReadCalibrationData(void)
 	Dcm_DiagServiceResponse_Frame.frame.data6 = NvMBlock_Calibration[2];
 	Dcm_DiagServiceResponse_Frame.frame.data7 = NvMBlock_Calibration[3];
 	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
-	Dcm_TxIsoTp((uint8*)NvMBlock_Calibration[4], 10 - 4);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x62;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x00;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x03;
+	Dcm_DiagServiceResponse_Frame.frame.data4 = NvMBlock_Calibration[4];
+	Dcm_DiagServiceResponse_Frame.frame.data5 = NvMBlock_Calibration[5];
+	Dcm_DiagServiceResponse_Frame.frame.data6 = NvMBlock_Calibration[6];
+	Dcm_DiagServiceResponse_Frame.frame.data7 = NvMBlock_Calibration[7];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 6;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x05;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x62;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x00;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x03;
+	Dcm_DiagServiceResponse_Frame.frame.data4 = NvMBlock_Calibration[8];
+	Dcm_DiagServiceResponse_Frame.frame.data5 = NvMBlock_Calibration[9];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
 	Dcm_DiagServiceResponse_Frame.frame.idType = 0;
 	Dcm_DiagServiceResponse_Frame.frame.id = 0;
 	Dcm_DiagServiceResponse_Frame.frame.dlc = 0;
@@ -401,7 +386,7 @@ static void DiagService_RDBI_ReadActiveDiagnosticSession(void)
 }
 static void DiagService_RDBI_ReadAliveTime(void)
 {
-	Dcm_DiagServiceResponse_Frame.frame.dlc = 5;
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
 	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
 	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
 	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
@@ -533,7 +518,7 @@ static void DiagService_RDBPI_ReadPeriodicDoorLockActuatorStatus(void)
 	{
 		/* Do nothing. */
 	}
-	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x05;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x02;
 	Dcm_DiagServiceResponse_Frame.frame.data4 = CmdList_RawValue[2];
 	Dcm_DiagServiceResponse_Frame.frame.data5 = CmdList_RawValue[3];
 	Dcm_DiagServiceResponse_Frame.frame.data6 = CmdList_ActualValue[2];
@@ -575,7 +560,7 @@ static void DiagService_RDBPI_ReadPeriodicWindshieldWiperActuatorStatus(void)
 	{
 		/* Do nothing. */
 	}
-	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x06;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x03;
 	Dcm_DiagServiceResponse_Frame.frame.data4 = CmdList_RawValue[0];
 	Dcm_DiagServiceResponse_Frame.frame.data5 = CmdList_RawValue[1];
 	Dcm_DiagServiceResponse_Frame.frame.data6 = CmdList_ActualValue[0];
@@ -617,7 +602,7 @@ static void DiagService_RDBPI_ReadPeriodicClimaFanStatus(void)
 	{
 		/* Do nothing. */
 	}
-	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x07;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x04;
 	Dcm_DiagServiceResponse_Frame.frame.data4 = CmdList_RawValue[4];
 	Dcm_DiagServiceResponse_Frame.frame.data5 = CmdList_ActualValue[4];
 	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
@@ -657,7 +642,7 @@ static void DiagService_RDBPI_ReadPeriodicLS(void)
 	{
 		/* Do nothing. */
 	}
-	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x0A;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x05;
 	Dcm_DiagServiceResponse_Frame.frame.data4 = StatusList_ComOutValue[1];
 	Dcm_DiagServiceResponse_Frame.frame.data5 = StatusList_RawValue[1];
 	Dcm_DiagServiceResponse_Frame.frame.data6 = StatusList_InputStatus[1].errorStatus;
@@ -699,7 +684,7 @@ static void DiagService_RDBPI_ReadPeriodicRS(void)
 	{
 		/* Do nothing. */
 	}
-	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x0B;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0x06;
 	Dcm_DiagServiceResponse_Frame.frame.data4 = StatusList_ComOutValue[3];
 	Dcm_DiagServiceResponse_Frame.frame.data5 = StatusList_RawValue[3];
 	Dcm_DiagServiceResponse_Frame.frame.data6 = StatusList_InputStatus[3].errorStatus;
@@ -880,7 +865,90 @@ static void DiagService_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_DiagServiceResponse_Frame.frame.data6 = Dem_DTCStoreArray[3];
 	Dcm_DiagServiceResponse_Frame.frame.data7 = Dem_DTCStoreArray[4];
 	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
-	Dcm_TxIsoTp((uint8*)Dem_DTCStoreArray, DEM_SIZE_OF_DTC_ARRAY - 5);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x59;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x0A;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = Dem_DTCStoreArray[5];
+	Dcm_DiagServiceResponse_Frame.frame.data4 = Dem_DTCStoreArray[6];
+	Dcm_DiagServiceResponse_Frame.frame.data5 = Dem_DTCStoreArray[7];
+	Dcm_DiagServiceResponse_Frame.frame.data6 = Dem_DTCStoreArray[8];
+	Dcm_DiagServiceResponse_Frame.frame.data7 = Dem_DTCStoreArray[9];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x59;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x0A;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = Dem_DTCStoreArray[10];
+	Dcm_DiagServiceResponse_Frame.frame.data4 = Dem_DTCStoreArray[11];
+	Dcm_DiagServiceResponse_Frame.frame.data5 = Dem_DTCStoreArray[12];
+	Dcm_DiagServiceResponse_Frame.frame.data6 = Dem_DTCStoreArray[13];
+	Dcm_DiagServiceResponse_Frame.frame.data7 = Dem_DTCStoreArray[14];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x59;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x0A;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = Dem_DTCStoreArray[15];
+	Dcm_DiagServiceResponse_Frame.frame.data4 = Dem_DTCStoreArray[16];
+	Dcm_DiagServiceResponse_Frame.frame.data5 = Dem_DTCStoreArray[17];
+	Dcm_DiagServiceResponse_Frame.frame.data6 = Dem_DTCStoreArray[18];
+	Dcm_DiagServiceResponse_Frame.frame.data7 = Dem_DTCStoreArray[19];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 8;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x07;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x59;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x0A;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = Dem_DTCStoreArray[20];
+	Dcm_DiagServiceResponse_Frame.frame.data4 = Dem_DTCStoreArray[21];
+	Dcm_DiagServiceResponse_Frame.frame.data5 = Dem_DTCStoreArray[22];
+	Dcm_DiagServiceResponse_Frame.frame.data6 = Dem_DTCStoreArray[23];
+	Dcm_DiagServiceResponse_Frame.frame.data7 = Dem_DTCStoreArray[24];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 4;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0x701;
+	Dcm_DiagServiceResponse_Frame.frame.idType = 1;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0x03;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0x59;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0x0A;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = Dem_DTCStoreArray[25];
+	CanSpi_Transmit(&Dcm_DiagServiceResponse_Frame);
+	HAL_Delay(5);
+	Dcm_DiagServiceResponse_Frame.frame.idType = 0;
+	Dcm_DiagServiceResponse_Frame.frame.id = 0;
+	Dcm_DiagServiceResponse_Frame.frame.dlc = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data0 = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data1 = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data2 = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data3 = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data4 = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data5 = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data6 = 0;
+	Dcm_DiagServiceResponse_Frame.frame.data7 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.idType = 0;
+	Dcm_DiagServiceRequest_Frame.frame.id = 0;
+	Dcm_DiagServiceRequest_Frame.frame.dlc = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data0 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data1 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data2 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data3 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data4 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data5 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data6 = 0;
+	Dcm_DiagServiceRequest_Frame.frame.data7 = 0;
 	__enable_irq();
 }
 void Dcm_MainFunction(void)

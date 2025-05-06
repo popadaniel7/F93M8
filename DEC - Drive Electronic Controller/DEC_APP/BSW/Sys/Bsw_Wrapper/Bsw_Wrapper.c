@@ -52,8 +52,6 @@ void Bsw_Wrapper_MainFunction_C0(void)
     DiagMaster_GearboxStatus = DcyHandler_CanRx_GearboxState;
     DiagMaster_VehicleSpeed = ComMaster_RxSignal_Speed;
     ColDet_CanRx_CalculatedSpeed = ComMaster_RxSignal_Speed;
-    Iven_CanRx_SafeDriveTrainStatusMessageState = ComMaster_SafeDriveTrainStatusMessageState;
-    Iven_CanRx_SdtsDriveTrainStatus = ComMaster_RxSignal_SdtsDriveTrainStatus;
     ComMaster_TxSignal_SbaBrakeLevel = ColDet_CanTx_BrakeLevel;
     Iven_CanRx_ErrorDetectedCbm = ComMaster_RxSignal_Err701_ID;
     ComMaster_RxSignal_Err701_ID = 0u;
@@ -63,7 +61,10 @@ void Bsw_Wrapper_MainFunction_C0(void)
     Iven_CanRx_StatusDoorLeft = ComMaster_RxSignal_StatusDoorLeft;
     Iven_CanRx_StatusDoorRight = ComMaster_RxSignal_StatusDoorRight;
 
-    if((0u != McuSm_LastResetReason && 0xEFEFU != McuSm_LastResetReason) && 0u == pIven_CanTx_DecMcuError)
+    if(0u != McuSm_LastResetReason
+            && 0xEFEFU != McuSm_LastResetReason
+            && 0xDFDFu != McuSm_LastResetReason
+            && 0u == pIven_CanTx_DecMcuError)
     {
         Iven_CanTx_DecMcuError = 1u;
         pIven_CanTx_DecMcuError = 1u;

@@ -32,7 +32,5 @@ extern uint8 Iven_CanRx_ErrorDetectedCbm;
 extern uint8 Iven_CanTx_InVehicleSafetyError;
 extern uint8 Iven_CanTx_DecMcuError;
 extern uint8 Iven_CanTx_DiagnosticMode;
-extern uint8 Iven_CanRx_SafeDriveTrainStatusMessageState;
-extern uint8 Iven_CanRx_SdtsDriveTrainStatus;
 
 extern void Iven_MainFunction(void);

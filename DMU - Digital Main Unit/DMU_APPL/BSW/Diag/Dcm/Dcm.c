@@ -26,8 +26,8 @@ typedef enum
 typedef void (*Dcm_FuncPtr)();
 SWV Dcm_SWVersion =
 {
-		0x01, /* SW */
-		0x01, /* FBL */
+		0x02, /* SW */
+		0x02, /* FBL */
 };
 __attribute__((section(".ncr"))) DiagState Dcm_DiagnosticSession = 0x00;
 __attribute__((section(".ncr"))) uint32 Dcm_AliveCounter = 0x00;
@@ -55,7 +55,6 @@ extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_ShutOffDisplayFl
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_ReadDisplaySelfDiagnosticsResult;
 
 void Dcm_MainFunction(void);
-void Dcm_TxIsoTp(uint8 *data, uint16 size);
 void DiagRoutine_DSC_DefaultSession(void);
 void DiagRoutine_DSC_ExtendedSession(void);
 void DiagRoutine_DSC_ProgrammingSession(void);
@@ -405,110 +404,90 @@ void DiagRoutine_CDTCI_ClearDiagnosticInformation(void)
 	Dem_ClearDtc();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void Dcm_TxIsoTp(uint8 *data, uint16 size)
-{
-	CAN_TxHeaderTypeDef localTxHeader = {0, 0, 0, 0, 0, 0};
-	uint32 localTxMailbox = 0;
-	uint16 localRemainingData = size;
-	uint16 localOffset = 0;
-	uint8 localCANData[DCM_MAX_CAN_DATA_LEN];
-	uint8 localSeqNum = 1;
-	localTxHeader.StdId = DCM_CAN_ID_TX;
-	localTxHeader.RTR = CAN_RTR_DATA;
-	localTxHeader.IDE = CAN_ID_STD;
-	localTxHeader.DLC = DCM_MAX_CAN_DATA_LEN;
-	localTxHeader.TransmitGlobalTime = DISABLE;
-	if (7 < size)
-	{
-		localCANData[0] = 0x10 | ((size >> 8) & 0x0F);
-		localCANData[1] = (size & 0xFF);
-		memcpy(&localCANData[2], &data[0], 6);
-		localOffset = 6;
-		localRemainingData -= 6;
-		HAL_CAN_AddTxMessage(&hcan1, &localTxHeader, localCANData, &localTxMailbox);
-	}
-	else
-	{
-		localCANData[0] = size & 0x0F;
-		memcpy(&localCANData[1], &data[0], size);
-		HAL_CAN_AddTxMessage(&hcan1, &localTxHeader, localCANData, &localTxMailbox);
-	}
-	while(localRemainingData > 0)
-	{
-		localCANData[0] = 0x20 | (localSeqNum & 0x0F);
-		if (localRemainingData >= 7)
-		{
-			memcpy(&localCANData[1], &data[localOffset], 7);
-			localOffset += 7;
-			localRemainingData -= 7;
-		}
-		else
-		{
-			memcpy(&localCANData[1], &data[localOffset], localRemainingData);
-			localOffset += localRemainingData;
-			localRemainingData = 0;
-		}
-		HAL_CAN_AddTxMessage(&hcan1, &localTxHeader, localCANData, &localTxMailbox);
-		HAL_Delay(1);
-		localSeqNum++;
-	}
-}
 void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void)
 {
-	uint8 *data = (uint8*)Dem_DTCArray;
-	uint16 total_size = DEM_NUMBER_OF_DTCS;
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
 	Dcm_TxData[1] = 0x59;
 	Dcm_TxData[2] = 0x0A;
-	Dcm_TxData[3] = data[0];
-	Dcm_TxData[4] = data[1];
-	Dcm_TxData[5] = data[2];
-	Dcm_TxData[6] = data[3];
-	Dcm_TxData[7] = data[4];
+	Dcm_TxData[3] = Dem_DTCArray[0];
+	Dcm_TxData[4] = Dem_DTCArray[1];
+	Dcm_TxData[5] = Dem_DTCArray[2];
+	Dcm_TxData[6] = Dem_DTCArray[3];
+	Dcm_TxData[7] = Dem_DTCArray[4];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	Dcm_TxIsoTp(data, total_size - 5);
+	HAL_Delay(5);
+	Dcm_TxHeader.DLC = 8;
+	Dcm_TxHeader.StdId = 0x703;
+	Dcm_TxData[0] = 7;
+	Dcm_TxData[1] = 0x59;
+	Dcm_TxData[2] = 0x0A;
+	Dcm_TxData[3] = Dem_DTCArray[5];
+	Dcm_TxData[4] = Dem_DTCArray[6];
+	Dcm_TxData[5] = Dem_DTCArray[7];
+	Dcm_TxData[6] = Dem_DTCArray[8];
+	Dcm_TxData[7] = Dem_DTCArray[9];
+	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	HAL_Delay(5);
+	Dcm_TxHeader.DLC = 8;
+	Dcm_TxHeader.StdId = 0x703;
+	Dcm_TxData[0] = 7;
+	Dcm_TxData[1] = 0x59;
+	Dcm_TxData[2] = 0x0A;
+	Dcm_TxData[3] = Dem_DTCArray[10];
+	Dcm_TxData[4] = Dem_DTCArray[11];
+	Dcm_TxData[5] = Dem_DTCArray[12];
+	Dcm_TxData[6] = Dem_DTCArray[13];
+	Dcm_TxData[7] = Dem_DTCArray[14];
+	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	HAL_Delay(5);
+	Dcm_TxHeader.DLC = 6;
+	Dcm_TxHeader.StdId = 0x703;
+	Dcm_TxData[0] = 5;
+	Dcm_TxData[1] = 0x59;
+	Dcm_TxData[2] = 0x0A;
+	Dcm_TxData[3] = Dem_DTCArray[15];
+	Dcm_TxData[4] = Dem_DTCArray[16];
+	Dcm_TxData[5] = Dem_DTCArray[17];
+	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
 void DiagRoutine_RDBI_ReadSWData(void)
 {
-	Dcm_TxHeader.DLC = 6;
+	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
-	Dcm_TxData[0] = 5;
+	Dcm_TxData[0] = 7;
 	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
 	Dcm_TxData[2] = CanH_DiagArray[2];
 	Dcm_TxData[3] = CanH_DiagArray[3];
 	Dcm_TxData[4] = Dcm_SWVersion.FlashBootLoaderVersion;
 	Dcm_TxData[5] = Dcm_SWVersion.SoftwareVersion;
-	Dcm_TxData[6] = 0;
-	Dcm_TxData[7] = 0;
+	Dcm_TxData[6] = 1;
+	Dcm_TxData[7] = 1;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
 void DiagRoutine_RDBI_ReadActiveDiagnosticSession(void)
 {
-	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
+	Dcm_TxHeader.DLC = 5;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
-	Dcm_TxData[0] = CanH_DiagRxHeader.DLC - 1;
-	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
-	Dcm_TxData[2] = CanH_DiagArray[2];
-	Dcm_TxData[3] = CanH_DiagArray[3];
-	Dcm_TxData[4] = CanH_DiagArray[4];
-	Dcm_TxData[5] = Dcm_DiagnosticSession;
-	Dcm_TxData[6] = 0;
-	Dcm_TxData[7] = 0;
+	Dcm_TxData[0] = 4;
+	Dcm_TxData[1] = 0x62;
+	Dcm_TxData[2] = 0xf1;
+	Dcm_TxData[3] = 0x86;
+	Dcm_TxData[4] = Dcm_DiagnosticSession;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
 void DiagRoutine_RDBI_ReadAliveTime(void)
 {
-	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
+	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
-	Dcm_TxData[0] = CanH_DiagRxHeader.DLC - 1;
+	Dcm_TxData[0] = 7;
 	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
 	Dcm_TxData[2] = CanH_DiagArray[2];
 	Dcm_TxData[3] = CanH_DiagArray[3];
-	Dcm_TxData[4] = (uint8)(Dcm_AliveCounter << 24);
-	Dcm_TxData[5] = (uint8)(Dcm_AliveCounter << 16);
-	Dcm_TxData[6] = (uint8)(Dcm_AliveCounter << 8);
+	Dcm_TxData[4] = (uint8)(Dcm_AliveCounter >> 24);
+	Dcm_TxData[5] = (uint8)(Dcm_AliveCounter >> 16);
+	Dcm_TxData[6] = (uint8)(Dcm_AliveCounter >> 8);
 	Dcm_TxData[7] = (uint8)(Dcm_AliveCounter);
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
@@ -534,8 +513,8 @@ void DiagRoutine_CDTCS_ControlDTCSetting(void)
 	Dcm_TxData[0] = CanH_DiagArray[0];
 	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
 	Dcm_TxData[2] = CanH_DiagArray[2];
-	if(CanH_DiagArray[2] == 1) Dem_DTCSettingDeactivated = 0;
-	else if(CanH_DiagArray[2] == 2) Dem_DTCSettingDeactivated = 1;
+	if(CanH_DiagArray[2] == 1) Dem_DTCSettingDeactivated = 1;
+	else if(CanH_DiagArray[2] == 2) Dem_DTCSettingDeactivated = 0;
 	else
 	{
 		/* Do nothing. */

@@ -5,16 +5,15 @@
 #include "IfxCpu_reg.h"
 #include "Iven.h"
 
-uint32* McuSm_FBLCounter_Pointer = (uint32*)(0xB00001B0U);
 uint32 McuSm_AGs[12u];
 uint32 McuSm_LastResetReason;
 uint32 McuSm_LastResetInformation;
 uint32 McuSm_IndexResetHistory;
 McuSm_ResetHistory_t McuSm_ResetHistory[20u];
-Iven_IcmTable_t Iven_IcmLookupTable[IVEN_ICM_NUMBER_OF_MESSAGES] = {{0u,0u}};
+Iven_IcmTable_t Iven_IcmLookupTable[IVEN_ICM_NUMBER_OF_MESSAGES];
 uint32 DiagMaster_AliveTime;
 uint8 DiagMaster_ActiveSessionState;
-
+uint8 McuSm_FBL_ResetCounter;
 
 void McuSm_InitializeBusMpu(void);
 void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
@@ -25,15 +24,23 @@ void McuSm_TRAP7(IfxCpu_Trap trapInfo);
 
 void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation)
 {
-    if(resetReason != 0u)
+    if(0u != resetReason)
     {
         McuSm_LastResetReason = resetReason;
         McuSm_LastResetInformation = resetInformation;
         McuSm_ResetHistory[McuSm_IndexResetHistory].reason = resetReason;
         McuSm_ResetHistory[McuSm_IndexResetHistory].information = resetInformation;
         McuSm_IndexResetHistory++;
-        *McuSm_FBLCounter_Pointer += 1;
-        DiagMaster_AliveTime = 0u;
+
+        if(0xEFEFU != resetReason && 0xDFDFU != resetReason)
+        {
+            McuSm_FBL_ResetCounter += 1u;
+            DiagMaster_AliveTime = 0u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
 
         if(19u < McuSm_IndexResetHistory)
         {

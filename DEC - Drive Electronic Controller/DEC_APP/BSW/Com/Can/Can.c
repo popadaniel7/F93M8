@@ -35,8 +35,10 @@ uint8 storedData_06[sizeof(EncCal_VODataComplete)];
 uint8 isoTpRxNextSeq = 0u;
 uint8 counter;
 extern uint8 SysMgr_Core0OnIdlePowerDown;
+extern uint16 DiagMaster_ActiveId;
 
 extern void McuSm_PerformResetHook(uint32 resetReason, uint32 resetInformation);
+
 void Can_Init(void);
 void Can_ReInitAfterError(void);
 bool Can_Tx(McmcanType message);
@@ -109,14 +111,14 @@ void Can_ReInitAfterError(void)
     g_mcmcan.canNodeConfig.messageRAM.rxFifo1StartAddress = 0x0u;
     g_mcmcan.canNodeConfig.messageRAM.rxBuffersStartAddress = 0x120;
     g_mcmcan.canNodeConfig.messageRAM.txEventFifoStartAddress = 0x0u;
-    g_mcmcan.canNodeConfig.messageRAM.txBuffersStartAddress = 0x520u;
+    g_mcmcan.canNodeConfig.messageRAM.txBuffersStartAddress = 0x620u;
     /* Setup CAN node handles */
     g_mcmcan.canDstNode.can = &MODULE_CAN0;
     g_mcmcan.canDstNode.frameMode = IfxCan_FrameMode_standard;
     g_mcmcan.canSrcNode.can = &MODULE_CAN0;
     g_mcmcan.canSrcNode.frameMode = IfxCan_FrameMode_standard;
     g_mcmcan.canNodeConfig.filterConfig.messageIdLength = IfxCan_MessageIdLength_standard;
-    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 17u;
+    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 18u;
     g_mcmcan.canNodeConfig.filterConfig.extendedListSize = 0u;
     g_mcmcan.canNodeConfig.filterConfig.standardFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
     g_mcmcan.canNodeConfig.filterConfig.extendedFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
@@ -255,14 +257,14 @@ void Can_Init(void)
     g_mcmcan.canNodeConfig.messageRAM.rxFifo1StartAddress = 0x0u;
     g_mcmcan.canNodeConfig.messageRAM.rxBuffersStartAddress = 0x120;
     g_mcmcan.canNodeConfig.messageRAM.txEventFifoStartAddress = 0x0u;
-    g_mcmcan.canNodeConfig.messageRAM.txBuffersStartAddress = 0x520u;
+    g_mcmcan.canNodeConfig.messageRAM.txBuffersStartAddress = 0x620u;
     /* Setup CAN node handles */
     g_mcmcan.canDstNode.can = &MODULE_CAN0;
     g_mcmcan.canDstNode.frameMode = IfxCan_FrameMode_standard;
     g_mcmcan.canSrcNode.can = &MODULE_CAN0;
     g_mcmcan.canSrcNode.frameMode = IfxCan_FrameMode_standard;
     g_mcmcan.canNodeConfig.filterConfig.messageIdLength = IfxCan_MessageIdLength_standard;
-    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 17u;
+    g_mcmcan.canNodeConfig.filterConfig.standardListSize = 18u;
     g_mcmcan.canNodeConfig.filterConfig.extendedListSize = 0u;
     g_mcmcan.canNodeConfig.filterConfig.standardFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
     g_mcmcan.canNodeConfig.filterConfig.extendedFilterForNonMatchingFrames = IfxCan_NonMatchingFrame_reject;
@@ -376,6 +378,7 @@ void Can_Rx(void)
     {
         /* Read the received CAN message */
         g_mcmcan.rxMsg.bufferNumber = i;
+
         if(1U == IfxCan_Can_isNewDataReceived(&g_mcmcan.canDstNode, i))
         {
             IfxCan_Can_readMessage(&g_mcmcan.canDstNode, &g_mcmcan.rxMsg, (uint32*)&g_mcmcan.rxData[0u]);
@@ -385,7 +388,7 @@ void Can_Rx(void)
             IfxCan_Node_clearRxBufferNewDataFlag(g_mcmcan.canDstNode.node, i);
         }
 
-        if(0x6FEU == g_mcmcan.rxMsg.messageId)
+        if(0x6FEU == g_mcmcan.rxMsg.messageId && 0x6FF == DiagMaster_ActiveId)
         {
             if(0x10u <= g_mcmcan.rxData[0u] ||
                     (((0x10 > g_mcmcan.rxData[0u])
@@ -446,9 +449,10 @@ void Can_ProcessIsoTpMessage(const CanMsg *msg)
 {
     uint8 pciType = msg->data[0u] & 0xF0u;
 
-    if (pciType == 0x00u)
+    if(pciType == 0x00u)
     {
         uint8 sfDataLen = msg->data[0u] & 0x0Fu;
+
         if (msg->dlc < (1 + sfDataLen))
         {
             return;
@@ -465,7 +469,7 @@ void Can_ProcessIsoTpMessage(const CanMsg *msg)
 
         Dcm_ProcessDiagnosticRequest(isoTpRxBuffer, isoTpRxLength);
     }
-    else if (pciType == 0x10u)
+    else if(pciType == 0x10u)
     {
         uint16 totalLen = ((msg->data[0u] & 0x0Fu) << 8u) | msg->data[1u];
 
@@ -481,11 +485,11 @@ void Can_ProcessIsoTpMessage(const CanMsg *msg)
 
         Can_SendFlowControlFrame();
     }
-    else if (pciType == 0x20u)
+    else if(pciType == 0x20u)
     {
-        if (!isoTpRxInProgress)
+        if(!isoTpRxInProgress)
         {
-            return; // No active multi-frame reception
+            return;
         }
         else
         {
@@ -494,9 +498,8 @@ void Can_ProcessIsoTpMessage(const CanMsg *msg)
 
         uint8 seqNum = msg->data[0u] & 0x0Fu;
 
-        if (seqNum != isoTpRxNextSeq)
+        if(seqNum != isoTpRxNextSeq)
         {
-            // Sequence mismatch: abort multi-frame reception
             isoTpRxInProgress = false;
             isoTpRxLength = 0;
             return;
@@ -513,7 +516,7 @@ void Can_ProcessIsoTpMessage(const CanMsg *msg)
         isoTpRxLength += cfDataLen;
         isoTpRxNextSeq = (isoTpRxNextSeq + 1u) & 0x0Fu;
 
-        if (isoTpRxLength >= isoTpRxExpectedLength)
+        if(isoTpRxLength >= isoTpRxExpectedLength)
         {
             Dcm_ProcessDiagnosticRequest(isoTpRxBuffer, isoTpRxExpectedLength);
 
@@ -524,11 +527,11 @@ void Can_ProcessIsoTpMessage(const CanMsg *msg)
             /* Do nothing. */
         }
     }
-    else if (pciType == 0x30u)
+    else if(pciType == 0x30u)
     {
         uint8 flowStatus = msg->data[0u] & 0x0Fu;
 
-        if (flowStatus == 0u) // Clear To Send (CTS)
+        if (flowStatus == 0u)
         {
             isoTpTx.blockSize = msg->data[1u];
             isoTpTx.stMin = msg->data[2u];
@@ -537,7 +540,7 @@ void Can_ProcessIsoTpMessage(const CanMsg *msg)
 
             Can_IsoTpTx_MainFunction();
         }
-        else if (flowStatus == 1u)
+        else if(flowStatus == 1u)
         {
             /* Do nothing. */
         }
@@ -565,7 +568,7 @@ void Can_SendFlowControlFrame(void)
 
 bool Can_IsoTpTransmit(uint16 txId, const uint8 *data, uint16 length)
 {
-    if (length <= 7)
+    if(length <= 7)
     {
         uint8 frame[ISO_TP_CAN_DL] = {0u};
 
@@ -594,7 +597,7 @@ bool Can_IsoTpTransmit(uint16 txId, const uint8 *data, uint16 length)
 
         memcpy(&ff[2u], data, bytesInFF);
 
-        if (!Can_IsoTp_SendFrame(txId, ff, ISO_TP_CAN_DL))
+        if(!Can_IsoTp_SendFrame(txId, ff, ISO_TP_CAN_DL))
         {
             isoTpTx.state = ISO_TP_TX_IDLE;
             return false;
@@ -610,7 +613,7 @@ bool Can_IsoTpTransmit(uint16 txId, const uint8 *data, uint16 length)
 
 void Can_IsoTpTx_MainFunction(void)
 {
-    if (isoTpTx.state != ISO_TP_TX_CF)
+    if(isoTpTx.state != ISO_TP_TX_CF)
     {
         return;
     }
@@ -619,7 +622,7 @@ void Can_IsoTpTx_MainFunction(void)
         /* Do nothing. */
     }
 
-    if (isoTpTx.txDataOffset >= isoTpTx.txDataSize)
+    if(isoTpTx.txDataOffset >= isoTpTx.txDataSize)
     {
         isoTpTx.state = ISO_TP_TX_IDLE;
         return;
@@ -638,7 +641,7 @@ void Can_IsoTpTx_MainFunction(void)
 
     memcpy(&cf[1u], &isoTpTx.txData[isoTpTx.txDataOffset], bytesToSend);
 
-    if (!Can_IsoTp_SendFrame(isoTpTx.txId, cf, bytesToSend + 1u))
+    if(!Can_IsoTp_SendFrame(isoTpTx.txId, cf, bytesToSend + 1u))
     {
         /* Do nothing. */
     }
@@ -651,13 +654,13 @@ void Can_IsoTpTx_MainFunction(void)
     isoTpTx.txSequenceNumber = (isoTpTx.txSequenceNumber + 1u) & 0x0Fu;
     isoTpTx.blockCounter++;
 
-    if ((isoTpTx.blockSize != 0u) && (isoTpTx.blockCounter >= isoTpTx.blockSize) && (isoTpTx.txDataOffset < isoTpTx.txDataSize))
+    if((isoTpTx.blockSize != 0u) && (isoTpTx.blockCounter >= isoTpTx.blockSize) && (isoTpTx.txDataOffset < isoTpTx.txDataSize))
     {
         isoTpTx.state = ISO_TP_TX_WAIT_FC;
     }
     else
     {
-        if (isoTpTx.txDataOffset < isoTpTx.txDataSize)
+        if(isoTpTx.txDataOffset < isoTpTx.txDataSize)
         {
             /* Do nothing. */
         }
@@ -671,6 +674,7 @@ void Can_IsoTpTx_MainFunction(void)
 void Can_TransmitAllMessages(void)
 {
     memcpy(Can_TransmitTable, ComMaster_TransmitTable, sizeof(Can_TransmitType_t));
+
     for(uint8 i = 0u; i < COMMASTER_NO_TX_MSG; i++)
     {
         if(1u == Can_TransmitTable[i].transmitFlag)

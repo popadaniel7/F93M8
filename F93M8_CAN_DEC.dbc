@@ -65,17 +65,15 @@ BO_ 4 SafeVehicleError: 3 DEC
  SG_ Sve_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
  SG_ Sve_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
 
-BO_ 2 SafeBrakeAssist: 3 DEC
+BO_ 2 SafeBrakeAssist: 4 DEC
+ SG_ Sba_BrakeLevel : 24|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ Sba_AssistRequestStatus : 16|8@1+ (1,0) [0|255] ""  EMC
  SG_ Sba_SeqCnt : 8|8@1+ (1,0) [0|255] ""  EMC
  SG_ Sba_Crc : 0|8@1+ (1,0) [0|255] ""  EMC
 
-BO_ 1 SafeDriveTrainStatus: 5 EMC
- SG_ Sdts_DriveTrainStatus : 32|8@1+ (1,0) [0|255] ""  DEC
- SG_ Sdts_MotorRpm : 24|8@1+ (1,0) [0|255] ""  DEC
- SG_ Sdts_VehSpeed : 16|8@1+ (1,0) [0|255] ""  DEC
- SG_ Sdts_SeqCnt : 8|8@1+ (1,0) [0|255] ""  DEC
- SG_ Sdts_Crc : 0|8@1+ (1,0) [0|255] ""  DEC
+BO_ 1 DriveTrainStatus: 2 EMC
+ SG_ Dts_MotorRpm : 8|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Dts_VehSpeed : 0|8@1+ (1,0) [0|255] ""  DEC
 
 BO_ 153 StatusBodyControl2: 5 DEC
  SG_ WiperStockRequest : 32|8@1+ (1,0) [0|255] "" Vector__XXX
@@ -147,7 +145,7 @@ BO_ 1794 DiagCAN_Request_702: 8 Tester
 
 BO_ 1792 DiagCAN_Request_700: 8 Tester
 
-BO_ 1296 Networkmanagement3: 3 DEC
+BO_ 1296 Networkmanagement3: 2 DEC
  SG_ NM3_PN1 : 8|8@1+ (1,0) [0|255] ""  CBM
  SG_ NM3 : 0|8@1+ (1,0) [0|255] ""  DMU,CBM
 

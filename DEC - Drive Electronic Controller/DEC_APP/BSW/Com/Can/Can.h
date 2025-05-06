@@ -14,8 +14,8 @@
 #define MAXIMUM_CAN_DATA_PAYLOAD    8u
 #define CAN_NO_RX_MSG               10u
 #define CAN_NO_TX_MSG               10u
-#define CAN_RX_BUFFER_COUNT         9u
-#define ISO_TP_MAX_PAYLOAD          2048u
+#define CAN_RX_BUFFER_COUNT         8u
+#define ISO_TP_MAX_PAYLOAD          100u
 #define ISO_TP_CAN_DL               8u
 
 typedef struct
@@ -87,8 +87,7 @@ typedef struct
 {
         Can_TxMsg_t transmitMessage;
         uint8 transmitFlag;
-        uint8 cycleTime;
-        uint8 transmissionRule;
+        uint32 cycleTime;
 }Can_TransmitType_t;
 
 typedef struct

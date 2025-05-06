@@ -12,12 +12,12 @@ void Fls_ReadBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
 {
     uint32 numPages = (DataLength + DFLASH_PAGE_LENGTH - 1u) / DFLASH_PAGE_LENGTH;
 
-    for (uint32 page = 0u; page < numPages; page++)
+    for(uint32 page = 0u; page < numPages; page++)
     {
         uint32 pageAddr = BlockAddress + (page * DFLASH_PAGE_LENGTH);
         uint32 dataIndex = page * (DFLASH_PAGE_LENGTH / sizeof(uint32));
 
-        if (dataIndex < DataLength)
+        if(dataIndex < DataLength)
         {
             BlockData[dataIndex] = MEM(pageAddr);
         }
@@ -26,7 +26,7 @@ void Fls_ReadBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
             /* Do nothing. */
         }
 
-        if ((dataIndex + 1u) < DataLength)
+        if((dataIndex + 1u) < DataLength)
         {
             BlockData[dataIndex + 1u] = MEM(pageAddr + 4u);
         }
@@ -42,7 +42,7 @@ void Fls_WriteBlock(uint32 BlockAddress, uint32 *BlockData, uint32 DataLength)
     uint16 endInitSafetyPassword = IfxScuWdt_getSafetyWatchdogPassword();
     uint32 numPages = (DataLength + DFLASH_PAGE_LENGTH - 1u) / DFLASH_PAGE_LENGTH;
 
-    for (uint32 page = 0u; page < numPages; page++)
+    for(uint32 page = 0u; page < numPages; page++)
     {
         uint32 pageAddr = BlockAddress + (page * DFLASH_PAGE_LENGTH); /* Get correct address */
 

@@ -166,6 +166,7 @@ uint8 DcmiH_OV7670_InitHandler()
 }
 uint8 DcmiH_OV7670_Init(DCMI_HandleTypeDef *p_hdcmi, DMA_HandleTypeDef *p_hdma_dcmi, I2C_HandleTypeDef *p_hi2c)
 {
+	__enable_irq();
 	static uint8 retVal = 0;
 	sp_hdcmi     = p_hdcmi;
 	sp_hdma_dcmi = p_hdma_dcmi;
@@ -184,6 +185,7 @@ uint8 DcmiH_OV7670_Init(DCMI_HandleTypeDef *p_hdcmi, DMA_HandleTypeDef *p_hdma_d
 		RevCam_OV7670InitRetry++;
 	}
 	HAL_Delay(1);
+	__disable_irq();
 	retVal = DcmiH_OV7670_Config(OV7670_MODE_QVGA_RGB565);
 	return retVal;
 }

@@ -49,6 +49,7 @@
 #include "Cpu/Std/IfxCpu_Intrinsics.h"
 #include "IfxCpu_reg.h"
 #include "Ifx_Cfg.h"
+#include "IfxScuRcu.h"
 #ifdef IFX_CFG_EXTEND_TRAP_HOOKS
 #include "Ifx_Cfg_Trap.h"
 #endif

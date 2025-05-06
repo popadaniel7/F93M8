@@ -10,6 +10,8 @@ uint8 DcyHandler_CanRx_RequestDiagnosisMode = 0u;
 DcyHandler_DcyStatus_t DcyHandler_CanTx_DcyStatus = DCY_INIT;
 DcyHandler_VehicleState_t DcyHandler_CanTx_VehicleState = VEHSTATE_INIT;
 
+extern uint8 DiagMaster_ResetDcy;
+
 void DcyHandler_MainFunction(void);
 
 void DcyHandler_MainFunction(void)
@@ -38,22 +40,12 @@ void DcyHandler_MainFunction(void)
                 switch(DcyHandler_CanRx_GearboxState)
                 {
                     case 0u:
+                    case 1u:
                         DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
                         DcyHandler_CanTx_VehicleState = VEHSTATE_STANDING;
                         break;
-                    case 1u:
-                        DcyHandler_CanTx_DcyStatus = DCY_START;
-
-                        if(1u <= DcyHandler_CanRx_VehicleSpeed)
-                        {
-                            DcyHandler_CanTx_VehicleState = VEHSTATE_DRIVING;
-                        }
-                        else
-                        {
-                            DcyHandler_CanTx_VehicleState = VEHSTATE_STANDING;
-                        }
-                        break;
                     case 2u:
+                    case 3u:
                         DcyHandler_CanTx_DcyStatus = DCY_START;
 
                         if(1u <= DcyHandler_CanRx_VehicleSpeed)
@@ -99,10 +91,11 @@ void DcyHandler_MainFunction(void)
         }
         else
         {
-            if(200u > DcyHandler_MainCounter - localTimestamp)
+            if(800u < DcyHandler_MainCounter - localTimestamp)
             {
                 DcyHandler_CanRx_ResetDcy = 0u;
                 DcyHandler_CanTx_DcyStatus = DCY_INIT;
+                DiagMaster_ResetDcy = 0u;
                 localTimestamp = 0u;
             }
             else

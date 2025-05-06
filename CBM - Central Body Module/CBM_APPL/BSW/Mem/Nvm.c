@@ -127,6 +127,7 @@ void NvM_WriteAll(void)
 		{
 			NvM_WriteFlag_Dtc = 1;
 			memcpy(NvMBlock_DemDTCArray, Dem_DTCStoreArray, NVMBLOCK_DTC_SIZE);
+			break;
 		}
 		else
 		{

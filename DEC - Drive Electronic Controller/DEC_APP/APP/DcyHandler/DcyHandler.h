@@ -26,7 +26,6 @@ extern uint8 DcyHandler_CanRx_ResetDcy;
 extern uint8 DcyHandler_CanRx_GearboxState;
 extern uint8 DcyHandler_CanRx_VehicleSpeed;
 extern uint8 DcyHandler_CanTx_InVehicleSafetyErrorFlag;
-extern uint8 DcyHandler_CanRx_TesterPresentStatus;
 extern uint8 DcyHandler_CanRx_RequestDiagnosisMode;
 extern DcyHandler_DcyStatus_t DcyHandler_CanTx_DcyStatus;
 extern DcyHandler_VehicleState_t DcyHandler_CanTx_VehicleState;

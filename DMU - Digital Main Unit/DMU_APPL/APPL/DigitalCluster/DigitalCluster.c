@@ -405,6 +405,7 @@ void DigitalCluster_DisplaySideSpeedRpm(DigitalCluster_DisplayMode_t *displayTyp
 void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType);
 void DigitalCluster_InitMemory(void);
 void DigitalCluster_HandleDigitalClusterBrightnessLevel(void);
+void DigitalCluster_RefreshDisplayContent(DigitalCluster_DisplayMode_t *displayType);
 
 void DigitalCluster_Init(void)
 {
@@ -463,7 +464,9 @@ void DigitalCluster_Init(void)
 	/* Initialize the ILI9341 via FSMC. */
 	DigitalCluster_RetValInit = FsmcH_LcdInit();
 	/* Delay to prevent wrong initialization. */
+	__enable_irq();
 	HAL_Delay(10);
+	__disable_irq();
 	/* If all good. */
 	if(0x00 == DigitalCluster_RetValInit)
 	{
@@ -517,7 +520,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerTotal,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(displayType->KmTot.KMTOTStat_Text.position_x - 85,
+			FsmcH_DrawString(displayType->KmTot.KMTOTStat_Text.position_x - 85,
 					displayType->KmTot.KMTOTStat_Text.position_y,
 					displayType->KmTot.KMTOTStat_Text.text,
 					TFT_TAN,
@@ -535,7 +538,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerTotal,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(displayType->KmTot.KMTOTStat_Text.position_x - 68,
+			FsmcH_DrawString(displayType->KmTot.KMTOTStat_Text.position_x - 68,
 					displayType->KmTot.KMTOTStat_Text.position_y,
 					displayType->KmTot.KMTOTStat_Text.text,
 					TFT_TAN,
@@ -553,7 +556,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerTotal,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(displayType->KmTot.KMTOTStat_Text.position_x - 51,
+			FsmcH_DrawString(displayType->KmTot.KMTOTStat_Text.position_x - 51,
 					displayType->KmTot.KMTOTStat_Text.position_y,
 					displayType->KmTot.KMTOTStat_Text.text,
 					TFT_TAN,
@@ -571,7 +574,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerTotal,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(displayType->KmTot.KMTOTStat_Text.position_x - 34,
+			FsmcH_DrawString(displayType->KmTot.KMTOTStat_Text.position_x - 34,
 					displayType->KmTot.KMTOTStat_Text.position_y,
 					displayType->KmTot.KMTOTStat_Text.text,
 					TFT_TAN,
@@ -589,7 +592,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerTotal,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(displayType->KmTot.KMTOTStat_Text.position_x - 17,
+			FsmcH_DrawString(displayType->KmTot.KMTOTStat_Text.position_x - 17,
 					displayType->KmTot.KMTOTStat_Text.position_y,
 					displayType->KmTot.KMTOTStat_Text.text,
 					TFT_TAN,
@@ -607,7 +610,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerTotal,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(displayType->KmTot.KMTOTStat_Text.position_x,
+			FsmcH_DrawString(displayType->KmTot.KMTOTStat_Text.position_x,
 					displayType->KmTot.KMTOTStat_Text.position_y,
 					displayType->KmTot.KMTOTStat_Text.text,
 					TFT_TAN,
@@ -633,7 +636,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerPerDcy,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(203,
+			FsmcH_DrawString(203,
 					displayType->KmDcy.KMDCY_Text.position_y,
 					"KM",
 					TFT_TAN,
@@ -651,7 +654,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerPerDcy,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(220,
+			FsmcH_DrawString(220,
 					displayType->KmDcy.KMDCY_Text.position_y,
 					"KM",
 					TFT_TAN,
@@ -669,7 +672,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerPerDcy,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(237,
+			FsmcH_DrawString(237,
 					displayType->KmDcy.KMDCY_Text.position_y,
 					"KM",
 					TFT_TAN,
@@ -687,7 +690,7 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 					DataRecorder_KilometerPerDcy,
 					TFT_TAN,
 					TFT_BLACK);
-			FsmcH_DrawString8(254,
+			FsmcH_DrawString(254,
 					displayType->KmDcy.KMDCY_Text.position_y,
 					"KM",
 					TFT_TAN,
@@ -723,7 +726,7 @@ void DigitalCluster_CalculateTime(DigitalCluster_DisplayMode_t *displayType)
 					displayType->Time.TimeBox.width,
 					displayType->Time.TimeBox.height,
 					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->Time.T_HourText.position_x - 17,
+			FsmcH_DrawInteger(displayType->Time.T_HourText.position_x + 17,
 					displayType->Time.T_HourText.position_y,
 					DigitalCluster_CalculatedHour,
 					TFT_TAN,
@@ -885,9 +888,9 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 
 	if(0 != DigitalCluster_RxSig_CheckControlMessageId)
 	{
-		if(12 > CCM_Counter)
+		if(600 > CCM_Counter)
 		{
-			if(2 > CCM_Counter && pCheckControlMessageId != DigitalCluster_RxSig_CheckControlMessageId) DigitalCluster_BuzzerState = 1;
+			if(20 > CCM_Counter && pCheckControlMessageId != DigitalCluster_RxSig_CheckControlMessageId) DigitalCluster_BuzzerState = 1;
 			else if(DigitalCluster_RxSig_CollisionWarning != 2) DigitalCluster_BuzzerState = 0;
 			else
 			{
@@ -901,9 +904,9 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 						displayType->CheckControlMessage.CheckControlMsgBox.position_y,
 						displayType->CheckControlMessage.CheckControlMsgBox.width,
 						displayType->CheckControlMessage.CheckControlMsgBox.height,
-						TFT_GRAY);
+						TFT_BLACK);
 				displayType->CheckControlMessage.CCM_Text.text = DigitalCluster_CheckControlMessage_String[DigitalCluster_RxSig_CheckControlMessageId];
-				FsmcH_DrawString8(displayType->CheckControlMessage.CCM_Text.position_x,
+				FsmcH_DrawString(displayType->CheckControlMessage.CCM_Text.position_x,
 						displayType->CheckControlMessage.CCM_Text.position_y,
 						displayType->CheckControlMessage.CCM_Text.text,
 						TFT_WHITE,
@@ -935,67 +938,66 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 }
 void DigitalCluster_HandleTurnSignal(DigitalCluster_DisplayMode_t *displayType)
 {
+	TS_Counter++;
 	if(1 == DigitalCluster_RxSig_TurnSignals)
 	{
-		if(TS_Counter % 2 == 0 && TS_Counter != 0)
+		TS_Counter++;
+
+		if(TS_Counter == 100)
 		{
 			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
 					displayType->TurnSignalsBox.TSBox.position_y,
 					displayType->TurnSignalsBox.TSBox.width - displayType->TurnSignalsBox.TSBox.width / 2,
 					displayType->TurnSignalsBox.TSBox.height,
-					TFT_GREEN);
-			TS_Counter = 0;
+					TFT_BLACK);
 		}
-		else
+		else if(TS_Counter == 200)
 		{
-			TS_Counter++;
 			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
 					displayType->TurnSignalsBox.TSBox.position_y,
 					displayType->TurnSignalsBox.TSBox.width,
 					displayType->TurnSignalsBox.TSBox.height,
-					TFT_BLACK);
+					TFT_GREEN);
 		}
 	}
 	else if(2 == DigitalCluster_RxSig_TurnSignals)
 	{
-		if(TS_Counter % 2 == 0  && TS_Counter != 0)
+		if(TS_Counter == 100)
 		{
 			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x + displayType->TurnSignalsBox.TSBox.width / 2,
 					displayType->TurnSignalsBox.TSBox.position_y,
 					displayType->TurnSignalsBox.TSBox.width / 2,
 					displayType->TurnSignalsBox.TSBox.height,
-					TFT_GREEN);
-			TS_Counter = 0;
+					TFT_BLACK);
 		}
-		else
+		else if(TS_Counter == 200)
 		{
-			TS_Counter++;
+			TS_Counter = 0;
 			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
 					displayType->TurnSignalsBox.TSBox.position_y,
 					displayType->TurnSignalsBox.TSBox.width,
 					displayType->TurnSignalsBox.TSBox.height,
-					TFT_BLACK);
+					TFT_GREEN);
 		}
 	}
 	else if(3 == DigitalCluster_RxSig_TurnSignals)
 	{
-		if(TS_Counter % 2 == 0  && TS_Counter != 0)
+		if(TS_Counter == 100)
 		{
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_GREEN);
-			TS_Counter = 0;
-		}
-		else
-		{
-			TS_Counter++;
 			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
 					displayType->TurnSignalsBox.TSBox.position_y,
 					displayType->TurnSignalsBox.TSBox.width,
 					displayType->TurnSignalsBox.TSBox.height,
 					TFT_BLACK);
+		}
+		else if(TS_Counter == 200)
+		{
+			TS_Counter = 0;
+			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
+					displayType->TurnSignalsBox.TSBox.position_y,
+					displayType->TurnSignalsBox.TSBox.width,
+					displayType->TurnSignalsBox.TSBox.height,
+					TFT_GREEN);
 		}
 	}
 	else
@@ -1041,8 +1043,9 @@ void DigitalCluster_HandleCollisionWarning(DigitalCluster_DisplayMode_t *display
 	}
 	else if(2 == DigitalCluster_RxSig_CollisionWarning)
 	{
+		CAW_Counter++;
 		collisionFlagClear = 0;
-		if(CAW_Counter % 2 == 0 && CAW_Counter != 0)
+		if(CAW_Counter == 75)
 		{
 			FsmcH_FillRectangle(displayType->DriverAssistanceMessage.DASBox.position_x,
 					displayType->DriverAssistanceMessage.DASBox.position_y,
@@ -1054,18 +1057,22 @@ void DigitalCluster_HandleCollisionWarning(DigitalCluster_DisplayMode_t *display
 					displayType->DriverAssistanceMessage.DAS_Text.text,
 					TFT_WHITE,
 					TFT_BLACK);
-			CAW_Counter = 0;
+
 			DigitalCluster_BuzzerState = 1;
 		}
-		else
+		else if(CAW_Counter == 150)
 		{
-			CAW_Counter++;
 			FsmcH_FillRectangle(displayType->DriverAssistanceMessage.DASBox.position_x,
 					displayType->DriverAssistanceMessage.DASBox.position_y,
 					displayType->DriverAssistanceMessage.DASBox.width,
 					displayType->DriverAssistanceMessage.DASBox.height,
 					TFT_BLACK);
 			DigitalCluster_BuzzerState = 0;
+			CAW_Counter = 0;
+		}
+		else
+		{
+			/* Do nothing. */
 		}
 	}
 	else
@@ -1382,7 +1389,6 @@ void DigitalCluster_DisplayCenterSpeedRpm(DigitalCluster_DisplayMode_t *displayT
 		localDM1 = DigitalCluster_RxSig_DisplayMode;
 		pVehSpeed = DigitalCluster_RxSig_VehicleSpeed;
 		vehSpeedConv = DigitalCluster_RxSig_VehicleSpeed;
-		vehSpeedConv = vehSpeedConv;
 
 		if(10 > vehSpeedConv)
 		{
@@ -1597,12 +1603,6 @@ void DigitalCluster_HandleDigitalClusterBrightnessLevel(void)
 }
 void DigitalCluster_CSEHandler(void)
 {
-	/* Handle backlight. */
-	DigitalCluster_HandleDigitalClusterBrightnessLevel();
-	/* Display collision warning. */
-	DigitalCluster_HandleCollisionWarning(&DigitalCluster_Display_ComfortEcoSport);
-	/* Display info-cluster warnings. */
-	DigitalCluster_DisplayCheckControl(&DigitalCluster_Display_ComfortEcoSport);
 	/* Display speed and RPM values. */
 	DigitalCluster_DisplayCenterSpeedRpm(&DigitalCluster_Display_ComfortEcoSport);
 	/* Display fill-bars for speed and RPM values. */
@@ -1616,14 +1616,8 @@ void DigitalCluster_CSEHandler(void)
 	 * requested temperature
 	 * fan value */
 	DigitalCluster_DisplayInfoLights(&DigitalCluster_Display_ComfortEcoSport);
-	/* Display turn signals and hazard lights. */
-	DigitalCluster_HandleTurnSignal(&DigitalCluster_Display_ComfortEcoSport);
-	/* Display time with RTC. */
-	DigitalCluster_CalculateTime(&DigitalCluster_Display_ComfortEcoSport);
 	/* Display total KM and DCY KM. */
 	DigitalCluster_DisplayKMTotalDcy(&DigitalCluster_Display_ComfortEcoSport);
-	/* Buzzer will beep on CAW or on ICM. */
-	HAL_GPIO_WritePin(BUZOUT_GPIO_Port, BUZOUT_Pin, DigitalCluster_BuzzerState);
 }
 void DigitalCluster_ShutOffDisplay(void)
 {
@@ -1818,6 +1812,7 @@ void DigitalCluster_InitMemory(void)
 }
 void DigitalCluster_MainFunction(void)
 {
+	__disable_irq();
 	/* Make sure to keep buzzer low when needed. */
 	if(DigitalCluster_RxSig_CheckControlMessageId == 0 && DigitalCluster_RxSig_CollisionWarning != 2)
 	{
@@ -1828,15 +1823,37 @@ void DigitalCluster_MainFunction(void)
 	{
 		/* Do nothing. */
 	}
-	/* Execute logic only when initialization is succesful. */
+	/* Execute logic only when initialization is successful. */
 	if(0x01 == DigitalCluster_LcdInit)
 	{
 		/* Ignition is above 1. */
-		if(0x01 <= DigitalCluster_RxSig_IgnitionStatus)
+		if(0x01 <= DigitalCluster_RxSig_IgnitionStatus && 3 > DigitalCluster_RxSig_IgnitionStatus)
 		{
 			DigitalCluster_PreviousIgnStat = DigitalCluster_RxSig_IgnitionStatus;
 			/* Execute reverse camera functionality only after welcoming animation is executed. */
-			if(0x01 == DigitalCluster_WelcomeAnimationFlag) RevCam_MainFunction();
+			if(0x01 == DigitalCluster_WelcomeAnimationFlag)
+			{
+				RevCam_MainFunction();
+				/* Handle back-light. */
+				DigitalCluster_HandleDigitalClusterBrightnessLevel();
+				/* Display turn signals and hazard lights. */
+				if(0 == DigitalCluster_IsReverseCameraActive)
+				{
+					DigitalCluster_HandleTurnSignal(&DigitalCluster_Display_ComfortEcoSport);
+					/* Display time with RTC. */
+					DigitalCluster_CalculateTime(&DigitalCluster_Display_ComfortEcoSport);
+					/* Display collision warning. */
+					DigitalCluster_HandleCollisionWarning(&DigitalCluster_Display_ComfortEcoSport);
+					/* Display info-cluster warnings. */
+					DigitalCluster_DisplayCheckControl(&DigitalCluster_Display_ComfortEcoSport);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* Buzzer will beep on CAW or on ICM. */
+				HAL_GPIO_WritePin(BUZOUT_GPIO_Port, BUZOUT_Pin, DigitalCluster_BuzzerState);
+			}
 			else
 			{
 				/* Do nothing. */
@@ -1969,4 +1986,5 @@ void DigitalCluster_MainFunction(void)
 		else DigitalCluster_InitHandler();
 	}
 	DigitalCluster_MainCounter++;
+	__enable_irq();
 }

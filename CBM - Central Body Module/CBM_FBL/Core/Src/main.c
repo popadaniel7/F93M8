@@ -174,7 +174,7 @@ typedef struct
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SESSIONSTATUS_ADDR 						0x02001FDA8
+#define SESSIONSTATUS_ADDR 						0x2001fdc0
 #define NCR_START_ADDRESS 						0x2001F30C
 #define NCR_END_ADDRESS   						0x2001FFFF
 #define FBL_BLU_RAM_EXECUTION_ADDRESS 			0x20001000

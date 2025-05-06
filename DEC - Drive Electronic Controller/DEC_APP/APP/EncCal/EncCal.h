@@ -3,8 +3,8 @@
 #define ENCCAL_CODING_SIZE      8U
 #define ENCCAL_CALIBRATION_SIZE 8U
 
-extern uint8 EncCal_VODataComplete_Default[136u];
-extern uint8 EncCal_VODataComplete[136u];
+extern uint8 EncCal_VODataComplete_Default[80u];
+extern uint8 EncCal_VODataComplete[80u];
 extern uint8 EncCal_Calibration_Buffer[ENCCAL_CALIBRATION_SIZE];
 extern uint8 EncCal_Calibration_DefaultBuffer[ENCCAL_CALIBRATION_SIZE];
 extern uint8 EncCal_Calibration_ColDet_StableDistanceCm;
@@ -15,8 +15,6 @@ extern uint8 EncCal_Calibration_ColDet_MaxDist;
 extern uint8 EncCal_Calibration_ColDet_InvalidDist;
 extern uint8 EncCal_Coding_DefaultBuffer[ENCCAL_CODING_SIZE];
 extern uint8 EncCal_Coding_Buffer[ENCCAL_CODING_SIZE];
-extern uint8 EncCal_Coding_IgnCtrl;
-extern uint8 EncCal_Coding_CenLoc;
 extern uint8 EncCal_Coding_Hc05;
 extern uint8 EncCal_Coding_Hc05Vent;
 extern uint8 EncCal_Coding_Lsen;

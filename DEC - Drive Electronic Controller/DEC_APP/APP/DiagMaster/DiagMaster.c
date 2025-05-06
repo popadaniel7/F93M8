@@ -86,8 +86,6 @@ void DiagMaster_MainFunction(void)
     {
         if(0x6FEU == DiagMaster_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId)
         {
-            DiagMaster_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId = 0x6FFu;
-
             if((0x03u <= DiagMaster_ActiveSessionState) && (0x01u <= DiagMaster_DiagnosticModeActivated))
             {
                 if(0x04u == DiagMaster_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxData[0u] &&
@@ -98,6 +96,7 @@ void DiagMaster_MainFunction(void)
                     DiagMaster_Receive_DiagnosticMessageBuffer[i].isAllowed = 1u;
                     DiagMaster_Receive_DiagnosticMessageBuffer[i].msgType = DIAGMASTER_REQUEST_TYPE;
                     DiagMaster_ActiveId = 0x6FFU;
+                    DiagMaster_Receive_DiagnosticMessageBuffer[i].diagnosticMessage.rxMsg.messageId = 0x6FFu;
                     break;
                 }
                 else

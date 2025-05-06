@@ -48,7 +48,6 @@ CANSPI_uCAN_MSG Dcm_DiagServiceResponse_Frame = {0};
 CANSPI_uCAN_MSG Dcm_DiagServiceRequest_Frame = {0};
 /* NM3 signal value. */
 uint8 CanSpi_Networkmanagement3_Signal = 255;
-extern uint8 EcuM_WakeupReason;
 /* VARIABLES STOP */
 /* FUNCTIONS START */
 /* Transceiver handling function. */
@@ -102,8 +101,6 @@ static bool CanSpi_MCP2515_SetConfigMode(void);
 static bool CanSpi_MCP2515_SetNormalMode(void);
 /* Transceiver mode configuration. */
 static bool CanSpi_MCP2515_SetSleepMode(void);
-/* HAL error callback for SPI. */
-void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi);
 /* Main function. */
 void CanSpi_MainFunction(void);
 /* Configure CAN transceiver for sleep. */
@@ -414,7 +411,7 @@ void CanSpi_MainFunction(void)
 		}
 		else Dem_SaveDtc(0x07, 0);
 		/* Status Drive Control */
-		if(CanSpi_MainCounter % 20 == 0)
+		if(CanSpi_MainCounter % 170 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x100;

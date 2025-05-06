@@ -37,8 +37,8 @@ void Ain_Filtering_InitEvAdcGroup(void)
     IfxEvadc_Adc_initGroupConfig(&adcGroupConf, &g_evadc);
     adcGroupConf.arbiter.requestSlotQueue0Enabled = TRUE;
     adcGroupConf.queueRequest[0].triggerConfig.gatingMode = IfxEvadc_GatingMode_always;
-    adcGroupConf.master = IfxEvadc_GroupId_0;
-    adcGroupConf.groupId = IfxEvadc_GroupId_0;
+    adcGroupConf.master = IfxEvadc_GroupId_8;
+    adcGroupConf.groupId = IfxEvadc_GroupId_8;
     IfxEvadc_Adc_initGroup(&g_evadcGroup, &adcGroupConf);
 }
 
@@ -59,6 +59,6 @@ void Ain_Filtering_InitEvAdcChannels(void)
 
 void Ain_Filtering_ApplyFiltering(void)
 {
-    EVADC_G0_RCR0.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;
-    EVADC_G0_RCR0.B.DRCTR = IfxEvadc_DataReductionControlMode_15;
+    EVADC_G8_RCR4.B.DMM = IfxEvadc_DataModificationMode_resultFilteringMode;
+    EVADC_G8_RCR4.B.DRCTR = IfxEvadc_DataReductionControlMode_15;
 }

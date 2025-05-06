@@ -35,6 +35,8 @@ uint8 StatusBodyControl_Auto = 0;
 uint8 StatusBodyControl_Recirc = 0;
 /* CAN signals for climate fan control. */
 uint8 StatusBodyControl_Temperature = 0;
+uint8 StatusDoorLeft __attribute__((section(".ncr")));
+uint8 StatusDoorRight __attribute__((section(".ncr")));
 /* CAN signals for climate fan control. */
 uint8 StatusBodyControl_OutsideTemp = 0;
 uint32 StatusActuator_ClimaFan_NCR __attribute__((section(".ncr")));
@@ -74,10 +76,21 @@ void ActCtrl_ClimaMainFunction(void)
 	{
 		if(flag == 1)
 		{
+
+			if(StatusList_OutputValue[4] == 0 && StatusList_InputValue[4])
+			{
+				StatusList_InputValue[4] = 3;
+				StatusList_OutputValue[4] = 3;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+
 			calculatedPWM = 25 * 4;
 			localCounter++;
 
-			if(360000 < localCounter)
+			if(180000 < localCounter)
 			{
 				calculatedPWM = 0;
 				localCounter = 0;
@@ -123,7 +136,7 @@ void ActCtrl_ClimaMainFunction(void)
 			if(0 == StatusBodyControl_OutsideTemp && 0 == StatusBodyControl_Temperature) calculatedTemperatureValue = 1;
 			else
 			{
-				if(abs(StatusBodyControl_OutsideTemp - StatusBodyControl_Temperature) > 16) calculatedTemperatureValue = 16;
+				if(abs(StatusBodyControl_OutsideTemp - StatusBodyControl_Temperature) > 16) calculatedTemperatureValue = 18;
 				else calculatedTemperatureValue = abs(StatusBodyControl_OutsideTemp - StatusBodyControl_Temperature);
 			}
 			/* Calculate the PWM value to be applied to the fan. */
@@ -191,11 +204,19 @@ void ActCtrl_MainFunction(void)
 	if(Tim_ErrorStatus[1] == 0)
 	{
 		static uint8 pinState = 0;
+		static uint32 timestamp = 0;
 		pinState = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
 		if(0 == pinState)
 		{
-			StatusList_OutputValue[4] = 2;
-			StatusList_InputValue[4] = 2;
+			if(htim3.Instance->CCR3 != 0 || htim3.Instance->CCR2 != 0)
+			{
+				StatusList_OutputValue[4] = 2;
+				StatusList_InputValue[4] = 2;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
 		}
 		else
 		{
@@ -205,54 +226,76 @@ void ActCtrl_MainFunction(void)
 		if(StatusList_OutputValue[4] == 1)
 		{
 			/* Door lock left */
-			if(1250 - Param_DoorLockPwmIncrement > htim3.Instance->CCR3)
+			if(1250 - 25 >= htim3.Instance->CCR2)
 			{
-				htim3.Instance->CCR3 += Param_DoorLockPwmIncrement;
+				htim3.Instance->CCR2 += 25;
 			}
 			else
 			{
 				/* Do nothing. */
 			}
-			/* Door lock right */
-			if(1250 - Param_DoorLockPwmIncrement > htim3.Instance->CCR2)
+
+			htim3.Instance->CCR3 = 1250;
+
+			if(timestamp == 0)
 			{
-				htim3.Instance->CCR2 += Param_DoorLockPwmIncrement;
+				timestamp = ActCtrl_MainCounter;
 			}
 			else
 			{
 				/* Do nothing. */
 			}
+
+			if(ActCtrl_MainCounter - timestamp >= 60)
+			{
+				htim3.Instance->CCR3 = 0;
+				StatusList_OutputValue[4] = 0;
+				StatusList_InputValue[4] = 0;
+				timestamp = 0;
+				StatusDoorLeft = 4;
+				StatusDoorRight = 4;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+
 		}/* Else close the doors. */
 		else if(StatusList_OutputValue[4] == 2)
 		{
-			/* Door lock left */
-			if(Param_DoorLockPwmIncrement < htim3.Instance->CCR3)
+			htim3.Instance->CCR3 = 1250;
+
+			if(25 <= htim3.Instance->CCR2)
 			{
-				htim3.Instance->CCR3 -= Param_DoorLockPwmIncrement;
+				htim3.Instance->CCR2 -= 25;
 			}
 			else
 			{
 				/* Do nothing. */
 			}
-			/* Door lock right */
-			if(Param_DoorLockPwmIncrement < htim3.Instance->CCR2)
+
+			if(timestamp == 0)
 			{
-				htim3.Instance->CCR2 -= Param_DoorLockPwmIncrement;
+				timestamp = ActCtrl_MainCounter;
 			}
 			else
 			{
 				/* Do nothing. */
 			}
-		}
-		else
-		{
-			/* Do nothing. */
-		}
-		if(Param_DoorLockPwmIncrement > htim3.Instance->CCR2 &&
-				Param_DoorLockPwmIncrement > htim3.Instance->CCR3)
-		{
-			StatusList_OutputValue[4] = 0;
-			StatusList_InputValue[4] = 0;
+
+			if(ActCtrl_MainCounter - timestamp >= 60)
+			{
+				htim3.Instance->CCR3 = 0;
+				StatusList_OutputValue[4] = 0;
+				StatusList_InputValue[4] = 0;
+				timestamp = 0;
+				StatusDoorLeft = 0;
+				StatusDoorRight = 0;
+			}
+			else
+			{
+				/* Do nothing. */
+			}
 		}
 		else
 		{
@@ -478,8 +521,8 @@ void ActCtrl_MainFunction(void)
 	CmdList_RawValue[CLIMA_ARRPOS] = (htim2.Instance->CCR1 * 255) / 100;
 	CmdList_ActualValue[WWR_ARRPOS] = (htim3.Instance->CCR4 * 255) / 1250;
 	CmdList_ActualValue[WWL_ARRPOS] = (htim3.Instance->CCR1 * 255) / 1250;
-	CmdList_ActualValue[DLL_ARRPOS] = htim3.Instance->CCR3 / 255;
-	CmdList_ActualValue[DLR_ARRPOS] = htim3.Instance->CCR2 / 255;
+	CmdList_ActualValue[DLL_ARRPOS] = StatusDoorLeft;
+	CmdList_ActualValue[DLR_ARRPOS] = StatusDoorRight;
 	CmdList_ActualValue[CLIMA_ARRPOS] = htim2.Instance->CCR1;
 	StatusActuator_ClimaFan_NCR = htim2.Instance->CCR1;
 	StatusActuator_DoorLockLeft_NCR = htim3.Instance->CCR3;

@@ -396,7 +396,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 			CanH_BusSystemDateAndTime_MissCnt = 0;
 			RTC_DateTypeDef sDate;
 			RTC_TimeTypeDef sTime;
-			sDate.Year = CanH_RxData[0] + 2000;
+			sDate.Year = CanH_RxData[0];
 			sDate.Month = CanH_RxData[1];
 			sDate.Date = CanH_RxData[2];
 			HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
@@ -443,7 +443,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		DigitalCluster_RxSig_TurnSignals = CanH_RxSig_TurnSignal;
 		DigitalCluster_RxSig_DisplayMode = CanH_RxSig_DisplayMode;
 		DigitalCluster_RxSig_CollisionWarning = CanH_RxSig_IrSensStat;
-		if(0 != CanH_RxSig_CcmId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
+		if(0 != CanH_RxSig_CcmId && 0 == DigitalCluster_RxSig_CheckControlMessageId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
 		else
 		{
 			/* Do nothing. */
@@ -636,7 +636,7 @@ void HAL_CAN_RxFifo0FullCallback(CAN_HandleTypeDef *hcan)
 		DigitalCluster_RxSig_TurnSignals = CanH_RxSig_TurnSignal;
 		DigitalCluster_RxSig_DisplayMode = CanH_RxSig_DisplayMode;
 		DigitalCluster_RxSig_CollisionWarning = CanH_RxSig_IrSensStat;
-		if(0 != CanH_RxSig_CcmId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
+		if(0 != CanH_RxSig_CcmId && 0 != DigitalCluster_RxSig_CheckControlMessageId) DigitalCluster_RxSig_CheckControlMessageId = CanH_RxSig_CcmId;
 		else
 		{
 			/* Do nothing. */

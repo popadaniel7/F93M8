@@ -29,8 +29,7 @@
 #define COMMASTER_DTC_ID_DMU_NOT_ACTIVE_ON_CAN                          0x2Fu//26
 #define COMMASTER_DTC_ID_MESSAGE_0X202_MISSING                          0x30u//27
 #define COMMASTER_DTC_ID_SIGNAL_HC05CONNECTIONSTATUS_INVALID            0x31u//28
-#define COMMASTER_DTC_ID_SIGNAL_LIGHTSENSORSTATUS_INVALID               0x32u//28
-#define COMMASTER_DTC_ID_SIGNAL_E2EERROR_SDTS                           0x33u//28
+#define COMMASTER_DTC_ID_SIGNAL_LIGHTSENSORSTATUS_INVALID               0x32u//29
 
 #define DEM_NUMBER_OF_DTCS 80u
 
@@ -41,3 +40,4 @@ extern uint8 Dem_ControlDtcSetting;
 extern void Dem_SetDtc(uint32 dtcId, uint8 dtcStatus, uint8 index);
 extern void Dem_Init(void);
 extern void Dem_PreInit(void);
+extern void Dem_ClearDtc(void);
