@@ -32,6 +32,7 @@ void ASILD_BSW_Task_C0(void *pvParameters);
 void ASILB_BSW_Task_C0(void *pvParameters);
 void QM_BSW_Task_C0(void *pvParameters);
 void ASILD_BSW_Task_C1(void *pvParameters);
+void ASILD_APPL_MainCycle_Task_C1(void *pvParameters);
 void ASILD_APPL_MainCycle_Task_C2(void *pvParameters);
 void ASILD_BSW_Task_C2(void *pvParameters);
 void Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C0( TimerHandle_t_core0 xTimer_core0 );
@@ -40,6 +41,7 @@ void Alarm5ms_Callback_ASILD_BSW_Task_C0( TimerHandle_t_core0 xTimer_core0 );
 void Alarm5ms_Callback_ASILB_BSW_Task_C0( TimerHandle_t_core0 xTimer_core0 );
 void Alarm5ms_Callback_QM_BSW_Task_C0( TimerHandle_t_core0 xTimer_core0 );
 void Alarm5ms_Callback_ASILD_BSW_Task_C1( TimerHandle_t_core1 xTimer_core1);
+void Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1( TimerHandle_t_core1 xTimer_core1);
 void Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C2( TimerHandle_t_core2 xTimer_core2);
 void Alarm5ms_Callback_ASILD_BSW_Task_C2( TimerHandle_t_core2 xTimer_core2);
 
@@ -55,6 +57,7 @@ uint8 Alarm5ms_Flag_ASILD_BSW_Task_C0 = 0u;
 uint8 Alarm5ms_Flag_ASILB_BSW_Task_C0 = 0u;
 uint8 Alarm5ms_Flag_QM_BSW_Task_C0 = 0u;
 uint8 Alarm5ms_Flag_ASILD_BSW_Task_C1 = 0u;
+uint8 Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C1 = 0u;
 uint8 Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C2 = 0u;
 uint8 Alarm5ms_Flag_ASILD_BSW_Task_C2 = 0u;
 TimerHandle_t_core0 Handler_Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C0;
@@ -63,6 +66,7 @@ TimerHandle_t_core0 Handler_Alarm5ms_Callback_QM_APPL_MainCycle_Task_C0;
 TimerHandle_t_core0 Handler_Alarm5ms_Callback_ASILB_BSW_Task_C0;
 TimerHandle_t_core0 Handler_Alarm5ms_Callback_QM_BSW_Task_C0;
 TimerHandle_t_core1 Handler_Alarm5ms_Callback_ASILD_BSW_Task_C1;
+TimerHandle_t_core1 Handler_Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1;
 TimerHandle_t_core2 Handler_Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C2;
 TimerHandle_t_core2 Handler_Alarm5ms_Callback_ASILD_BSW_Task_C2;
 TaskHandle_t_core0 ASILD_APPL_MainCycle_Task_C0_THandle   ;
@@ -71,6 +75,7 @@ TaskHandle_t_core0 ASILD_BSW_Task_C0_THandle              ;
 TaskHandle_t_core0 ASILB_BSW_Task_C0_THandle              ;
 TaskHandle_t_core0 QM_BSW_Task_C0_THandle                 ;
 TaskHandle_t_core1 ASILD_BSW_Task_C1_THandle              ;
+TaskHandle_t_core1 ASILD_APPL_MainCycle_Task_C1_THandle   ;
 TaskHandle_t_core2 ASILD_APPL_MainCycle_Task_C2_THandle   ;
 TaskHandle_t_core2 ASILD_BSW_Task_C2_THandle              ;
 
@@ -122,6 +127,14 @@ void Os_Init_C1(void)
             NULL,
             Alarm5ms_Callback_ASILD_BSW_Task_C1);
     xTimerStart_core1(Handler_Alarm5ms_Callback_ASILD_BSW_Task_C1, 5u);
+
+    xTaskCreate_core1(ASILD_APPL_MainCycle_Task_C1, "ASILD_APPL_MainCycle_Task_C1", 4*configMINIMAL_STACK_SIZE_core1, NULL, 28u, &ASILD_APPL_MainCycle_Task_C1_THandle);
+    Handler_Alarm5ms_Callback_ASILD_BSW_Task_C1 = xTimerCreate_core1("Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1",
+            5u,
+            1u,
+            NULL,
+            Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1);
+    xTimerStart_core1(Handler_Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1, 5u);
 }
 
 void Os_Init_C2(void)
@@ -313,6 +326,24 @@ void ASILD_BSW_Task_C1(void *pvParameters)
     }
 }
 
+void ASILD_APPL_MainCycle_Task_C1(void *pvParameters)
+{
+    while(1)
+    {
+        if(1u == Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C1  && 2u == SysMgr_EcuState)
+        {
+            Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C1 = 0u;
+            ColDet_MainFunction();
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+
+        vTaskSuspend_core1(NULL);
+    }
+}
+
 void ASILD_APPL_MainCycle_Task_C2(void *pvParameters)
 {
     while(1)
@@ -320,7 +351,6 @@ void ASILD_APPL_MainCycle_Task_C2(void *pvParameters)
         if(1u == Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C2 && 2u == SysMgr_EcuState)
         {
             Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C2 = 0u;
-            ColDet_MainFunction();
             Iven_MainFunction();
         }
         else
@@ -384,6 +414,12 @@ void Alarm5ms_Callback_ASILD_BSW_Task_C1( TimerHandle_t_core1 xTimer_core1 )
 {
     Alarm5ms_Flag_ASILD_BSW_Task_C1 = 1u;
     vTaskResume_core1(ASILD_BSW_Task_C1_THandle);
+}
+
+void Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1( TimerHandle_t_core1 xTimer_core1 )
+{
+    Alarm5ms_Flag_ASILD_APPL_MainCycle_Task_C1 = 1u;
+    vTaskResume_core1(ASILD_APPL_MainCycle_Task_C1_THandle);
 }
 
 void Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C2( TimerHandle_t_core2 xTimer_core2 )

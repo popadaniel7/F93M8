@@ -142,9 +142,10 @@ void Iven_MainFunction(void)
             /* Do nothing. */
         }
 
-        if(((1u == Iven_IcmLookupTable[IVEN_ICMID28].messageStatus) ||
-                (1u == Iven_IcmLookupTable[IVEN_ICMID34].messageStatus) ||
-                (1u == Iven_IcmLookupTable[IVEN_ICMID35].messageStatus)))
+        if(1u == Iven_IcmLookupTable[IVEN_ICMID28].messageStatus ||
+                1u == Iven_IcmLookupTable[IVEN_ICMID34].messageStatus ||
+                1u == Iven_IcmLookupTable[IVEN_ICMID35].messageStatus ||
+                1u == Iven_IcmLookupTable[IVEN_ICMID37].messageStatus)
         {
             Iven_CanTx_InVehicleSafetyError = 1u;
         }
