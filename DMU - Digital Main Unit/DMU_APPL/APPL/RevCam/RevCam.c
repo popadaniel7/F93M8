@@ -43,7 +43,7 @@ void RevCam_MainFunction(void)
 			/* Do nothing. */
 		}
 		/* Display reverse camera if requested. */
-		if((0x01 == RevCam_RxSig_ReverseCameraRequest || 0x03 == DigitalCluster_RxSig_Gear) && 0x01 <= DigitalCluster_RxSig_IgnitionStatus)
+		if((0x01 == RevCam_RxSig_ReverseCameraRequest || 0x02 == DigitalCluster_RxSig_Gear) && 0x01 <= DigitalCluster_RxSig_IgnitionStatus)
 		{
 			if(0 == DigitalCluster_IsReverseCameraActive)
 			{

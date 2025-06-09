@@ -411,7 +411,7 @@ void CanSpi_MainFunction(void)
 		}
 		else Dem_SaveDtc(0x07, 0);
 		/* Status Drive Control */
-		if(CanSpi_MainCounter % 170 == 0)
+		if(CanSpi_MainCounter % 20 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x100;
@@ -436,7 +436,7 @@ void CanSpi_MainFunction(void)
 			/* Do nothing. */
 		}
 		/* Status Command Actuator */
-		if(CanSpi_MainCounter % 200 == 0)
+		if(CanSpi_MainCounter % 20 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x101;

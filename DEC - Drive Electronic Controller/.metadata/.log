@@ -11428,3 +11428,1197 @@ Caused by: java.nio.channels.UnresolvedAddressException
 
 !ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-12 18:42:22.442
 !MESSAGE Include paths were discovered in 23 milliseconds.
+!SESSION 2025-05-12 23:48:07.227 -----------------------------------------------
+eclipse.buildId=1.10.10
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -perspective com.infineon.aurix.buildmanager.perspective.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -perspective com.infineon.aurix.buildmanager.perspective.c
+
+!ENTRY org.eclipse.ui 2 0 2025-05-12 23:48:08.580
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-05-12 23:48:08.580
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY org.eclipse.ui 2 0 2025-05-12 23:48:08.978
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-05-12 23:48:08.978
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-12 23:48:09.600
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-12 23:48:09.601
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-12 23:48:09.730
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-12 23:48:09.731
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 4 0 2025-05-12 23:48:11.623
+!MESSAGE ConnectException
+!STACK 0
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:573)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:44)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1055)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:472)
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:404)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:476)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:476)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:380)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:372)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:157)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2673)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:294)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:654)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:552)
+	... 3 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185)
+	... 29 more
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-05-13 01:00:26.740
+!MESSAGE Cannot boost source folder /DEC_APP/EnergyMgmt because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-05-13 01:00:26.741
+!MESSAGE Cannot boost source folder /DEC_APP/SCR because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-13 01:00:27.057
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 316 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-13 01:00:28.171
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 1112 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-13 01:00:28.265
+!MESSAGE Include paths were discovered in 91 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-13 01:00:39.979
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_FBL boosted in 1058 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-05-13 01:00:40.003
+!MESSAGE Include paths were discovered in 23 milliseconds.
+!SESSION 2025-06-09 23:51:18.874 -----------------------------------------------
+eclipse.buildId=1.10.10
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -perspective com.infineon.aurix.buildmanager.perspective.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -perspective com.infineon.aurix.buildmanager.perspective.c
+
+!ENTRY org.eclipse.ui 2 0 2025-06-09 23:51:20.263
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-09 23:51:20.263
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY org.eclipse.ui 2 0 2025-06-09 23:51:20.673
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-09 23:51:20.673
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:21.246
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:21.248
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:21.366
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:21.366
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 4 0 2025-06-09 23:51:23.724
+!MESSAGE ConnectException
+!STACK 0
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:573)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:44)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1055)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:472)
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:404)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:476)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:476)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:380)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:372)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:157)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2673)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:294)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:654)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:552)
+	... 3 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185)
+	... 29 more
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-06-09 23:51:38.780
+!MESSAGE Cannot boost source folder /DEC_APP/EnergyMgmt because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-06-09 23:51:38.780
+!MESSAGE Cannot boost source folder /DEC_APP/SCR because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:39.247
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 467 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:40.387
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 1138 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:40.490
+!MESSAGE Include paths were discovered in 97 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:47.050
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_FBL boosted in 1230 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-09 23:51:47.076
+!MESSAGE Include paths were discovered in 24 milliseconds.
+!SESSION 2025-06-10 00:02:18.589 -----------------------------------------------
+eclipse.buildId=1.10.10
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -perspective com.infineon.aurix.buildmanager.perspective.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -perspective com.infineon.aurix.buildmanager.perspective.c
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 00:02:19.867
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 00:02:19.867
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 00:02:20.175
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 00:02:20.176
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:02:20.748
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:02:20.750
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:02:20.877
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:02:20.878
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 4 0 2025-06-10 00:02:23.072
+!MESSAGE ConnectException
+!STACK 0
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:573)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:44)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1055)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:472)
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:404)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:476)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:476)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:380)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:372)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:157)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2673)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:294)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:654)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:552)
+	... 3 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185)
+	... 29 more
+
+!ENTRY com.infineon.aurix.buildsystem.analytics 2 0 2025-06-10 00:02:23.075
+!MESSAGE Unable to initialize Analytics Service.
+
+!ENTRY com.infineon.aurix.buildsystem.analytics 4 0 2025-06-10 00:02:23.076
+!MESSAGE java.net.MalformedURLException: no protocol: 
+!STACK 0
+java.lang.IllegalArgumentException: java.net.MalformedURLException: no protocol: 
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:679)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:125)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:108)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService.<init>(AnalyticsService.java:69)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService.getInstance(AnalyticsService.java:98)
+	at com.infineon.aurix.buildsystem.Logger.logError(Logger.java:34)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:47)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.MalformedURLException: no protocol: 
+	at java.base/java.net.URL.<init>(URL.java:674)
+	at java.base/java.net.URL.<init>(URL.java:569)
+	at java.base/java.net.URL.<init>(URL.java:516)
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:677)
+	... 7 more
+
+!ENTRY com.infineon.aurix.buildsystem.notification 2 0 2025-06-10 00:02:23.087
+!MESSAGE Unable to initialize Notification Service.
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2025-06-10 00:02:23.087
+!MESSAGE java.net.MalformedURLException: no protocol: 
+!STACK 0
+java.lang.IllegalArgumentException: java.net.MalformedURLException: no protocol: 
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:679)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:125)
+	at com.google.api.client.http.GenericUrl.<init>(GenericUrl.java:108)
+	at com.infineon.aurix.buildsystem.notification.NotificationService.<init>(NotificationService.java:64)
+	at com.infineon.aurix.buildsystem.notification.NotificationService.getInstance(NotificationService.java:89)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService.send(AnalyticsService.java:190)
+	at com.infineon.aurix.buildsystem.AnalyticsUtils.send(AnalyticsUtils.java:24)
+	at com.infineon.aurix.buildsystem.Analytics.sendToolStarted(Analytics.java:6)
+	at com.infineon.aurix.buildsystem.AurixIDEStartup.earlyStartup(AurixIDEStartup.java:25)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2699)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.MalformedURLException: no protocol: 
+	at java.base/java.net.URL.<init>(URL.java:674)
+	at java.base/java.net.URL.<init>(URL.java:569)
+	at java.base/java.net.URL.<init>(URL.java:516)
+	at com.google.api.client.http.GenericUrl.parseURL(GenericUrl.java:677)
+	... 13 more
+
+!ENTRY com.infineon.aurix.buildsystem.notification 4 0 2025-06-10 00:02:23.141
+!MESSAGE NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:892)
+	at com.google.api.client.util.Preconditions.checkNotNull(Preconditions.java:125)
+	at com.google.api.client.http.GenericUrl.buildAuthority(GenericUrl.java:389)
+	at com.google.api.client.http.GenericUrl.build(GenericUrl.java:374)
+	at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:883)
+	at com.infineon.aurix.buildsystem.notification.NotificationService$NotificationGetJob.run(NotificationService.java:205)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2025-06-10 00:21:18.517 -----------------------------------------------
+eclipse.buildId=1.10.10
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -perspective com.infineon.aurix.buildmanager.perspective.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -perspective com.infineon.aurix.buildmanager.perspective.c
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 00:21:19.746
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 00:21:19.746
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 00:21:20.041
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 00:21:20.041
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:20.574
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:20.575
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:20.710
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:20.711
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 4 0 2025-06-10 00:21:22.497
+!MESSAGE ConnectException
+!STACK 0
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:573)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:44)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1055)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:472)
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:404)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:476)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:476)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:380)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:372)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:157)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2673)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:294)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:654)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:552)
+	... 3 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185)
+	... 29 more
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-06-10 00:21:27.647
+!MESSAGE Cannot boost source folder /DEC_APP/EnergyMgmt because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-06-10 00:21:27.647
+!MESSAGE Cannot boost source folder /DEC_APP/SCR because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:28.035
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 387 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:29.156
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 1120 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:29.248
+!MESSAGE Include paths were discovered in 87 milliseconds.
+
+!ENTRY winIDEA 4 4 2025-06-10 00:21:49.475
+!MESSAGE ISysConnectionService initialization(sub) failed: 'Failed to initialize connection service.'!
+!STACK 0
+java.io.IOException: ICONNECT_E_ERROR: Error occurred while performing the requested operation. / Application: App
+Symbol file not found: C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.elf
+ / isys::CSessionCtrl::begin_program() failed! winIDEA error:   [WrapperBase.cpp, 91]
+	at si.isystem.connect.connectJNI.CSessionCtrl_begin_program(Native Method)
+	at si.isystem.connect.CSessionCtrl.begin_program(CSessionCtrl.java:65)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.beginProgram(Unknown Source)
+	at si.isystem.debug.core.proxy.ISysSessionManager.begin(Unknown Source)
+	at si.isystem.debug.core.winidea.IConLaunchManager.startDebugSession(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.startWinIdeaDebugSession(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.startWinIdeaDebugSessionWithProgressDialog(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.doInitialize(Unknown Source)
+	at si.isystem.dsf.ISysAbstractDsfService.initialize(Unknown Source)
+	at si.isystem.dsf.launch.ISysServiceInitializationSequence$1.execute(Unknown Source)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:475)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.run(Sequence.java:380)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY winIDEA 4 4 2025-06-10 00:21:49.479
+!MESSAGE Launch failed.
+!STACK 1
+org.eclipse.debug.core.DebugException: TASKING winIDEA services initialization failed.
+	at si.isystem.dsf.launch.ISysLaunchDelegate.initializeServices(Unknown Source)
+	at si.isystem.dsf.launch.ISysLaunchDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1038)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.util.concurrent.ExecutionException: org.eclipse.core.runtime.CoreException: Failed to initialize connection service.
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:112)
+	... 7 more
+Caused by: org.eclipse.core.runtime.CoreException: Failed to initialize connection service.
+	... 8 more
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:21:49.479
+!MESSAGE TASKING winIDEA services initialization failed.
+!STACK 0
+java.util.concurrent.ExecutionException: org.eclipse.core.runtime.CoreException: Failed to initialize connection service.
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:112)
+	at si.isystem.dsf.launch.ISysLaunchDelegate.initializeServices(Unknown Source)
+	at si.isystem.dsf.launch.ISysLaunchDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1038)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.core.runtime.CoreException: Failed to initialize connection service.
+	... 8 more
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:52.595
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 202 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:52.862
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 265 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:52.932
+!MESSAGE Include paths were discovered in 68 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:57.164
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_FBL boosted in 872 milliseconds. (full boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:21:57.184
+!MESSAGE Include paths were discovered in 20 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:22:01.660
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 115 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:22:01.836
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 176 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:22:01.900
+!MESSAGE Include paths were discovered in 62 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:29:35.216
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 127 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:29:35.934
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 717 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:29:35.990
+!MESSAGE Include paths were discovered in 55 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:29:39.855
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_FBL boosted in 178 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:29:39.877
+!MESSAGE Include paths were discovered in 20 milliseconds.
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.225
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.226
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.228
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@6e7b23f8): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.228
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.228
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@4c5d1980): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.228
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.308
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.309
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@6b16199e): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.309
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.409
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.410
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@60df242c): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.410
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.509
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.510
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@4bc389a8): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.510
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.610
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.610
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@43fe1e37): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.610
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.711
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.711
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@11a6dd31): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.711
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.812
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.812
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@35ec480d): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.812
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:06.912
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:06.912
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@28d5c4d6): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:06.912
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:07.013
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:07.013
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@7ef5d3d7): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:07.013
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:07.114
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:07.114
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@19a678e3): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:07.114
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:07.215
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:07.216
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@121ea966): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:07.216
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:07.316
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:07.316
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@38e32afc): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:07.316
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:07.416
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:07.417
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@30179324): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:07.417
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:07.516
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:07.517
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@42307fb7): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:07.517
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 2 2 2025-06-10 00:30:07.617
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
+	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
+	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
+	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
+	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
+	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-06-10 00:30:07.620
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.DataRequestMonitor@35b4ec6b): Status ERROR: si.isystem.eclipse.debug code=0 Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]' resulted in an error.
+!SUBENTRY 1 si.isystem.eclipse.debug 4 0 2025-06-10 00:30:07.620
+!MESSAGE Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
+
+!ENTRY winIDEA 4 4 2025-06-10 00:30:07.673
+!MESSAGE ISysConnectionService shutdown(sub) failed: 'Failed to shutdown Connection Service.'!
+!STACK 0
+java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+ / isys::CIDEController::application() failed!  [CIDEController.cpp, 336]
+	at si.isystem.connect.connectJNI.CIDEController_iOpenDisconnect(Native Method)
+	at si.isystem.connect.CIDEController.iOpenDisconnect(CIDEController.java:315)
+	at si.isystem.debug.core.proxy.ISysSessionManager.debugSessionStop(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.closeWinIDEA(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.doShutdown(Unknown Source)
+	at si.isystem.dsf.ISysAbstractDsfService.shutdown(Unknown Source)
+	at si.isystem.dsf.launch.ISysServiceShutdownSequence.shutDownService(Unknown Source)
+	at si.isystem.dsf.launch.ISysServiceShutdownSequence$14.execute(Unknown Source)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:475)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:437)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:391)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:317)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+!SESSION 2025-06-10 00:33:13.677 -----------------------------------------------
+eclipse.buildId=1.10.10
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -perspective com.infineon.aurix.buildmanager.perspective.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -perspective com.infineon.aurix.buildmanager.perspective.c
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 00:33:14.945
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 00:33:14.945
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 00:33:15.242
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 00:33:15.242
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:15.773
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:15.775
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:15.895
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:15.895
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 4 0 2025-06-10 00:33:18.251
+!MESSAGE ConnectException
+!STACK 0
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:573)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:44)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1055)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:472)
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:404)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:476)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:476)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:380)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:372)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:157)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2673)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:294)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:654)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:552)
+	... 3 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185)
+	... 29 more
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-06-10 00:33:19.682
+!MESSAGE Cannot boost source folder /DEC_APP/EnergyMgmt because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 2 0 2025-06-10 00:33:19.682
+!MESSAGE Cannot boost source folder /DEC_APP/SCR because it can't be found.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:20.040
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 358 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:21.201
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 1160 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:21.302
+!MESSAGE Include paths were discovered in 94 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:26.026
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_FBL boosted in 986 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:26.050
+!MESSAGE Include paths were discovered in 24 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:31.022
+!MESSAGE Boosting configuration SCR Debug (SDCC) of project DEC_APP boosted in 128 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:31.220
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_APP boosted in 197 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:31.284
+!MESSAGE Include paths were discovered in 63 milliseconds.
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:35.012
+!MESSAGE Boosting configuration TriCore Debug (TASKING) of project DEC_FBL boosted in 201 milliseconds. (incremental boost)
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 00:33:35.042
+!MESSAGE Include paths were discovered in 29 milliseconds.
+!SESSION 2025-06-10 01:47:53.429 -----------------------------------------------
+eclipse.buildId=1.10.10
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -perspective com.infineon.aurix.buildmanager.perspective.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -perspective com.infineon.aurix.buildmanager.perspective.c
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 01:47:54.632
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 01:47:54.632
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY org.eclipse.ui 2 0 2025-06-10 01:47:54.925
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-06-10 01:47:54.925
+!MESSAGE Commands should really have a category: plug-in='com.infineon.aurix.buildsystem.debug', id='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand', categoryId='com.infineon.aurix.buildsystem.debug.debugActiveProjectCommand'
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 01:47:55.443
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 01:47:55.445
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc2-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 01:47:55.575
+!MESSAGE Cannot open remote device description from URL https://itools.infineon.com/aurix_ide/ADS/com.infineon.aurix.buildsystem/1.10.10/tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 1 0 2025-06-10 01:47:55.576
+!MESSAGE Cannot open cached device description from  C:\Users\Daniel\ADSDocuments\1.10.10\tc3-hardware.json. Resource does not exist
+
+!ENTRY com.infineon.aurix.buildsystem 4 0 2025-06-10 01:47:57.419
+!MESSAGE ConnectException
+!STACK 0
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:573)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:123)
+	at com.infineon.aurix.buildsystem.IFXNetworkUtils$1.run(IFXNetworkUtils.java:44)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1055)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.sendHeadersAsync(Http1Exchange.java:239)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$9(Exchange.java:472)
+	at java.net.http/jdk.internal.net.http.Exchange.checkFor407(Exchange.java:404)
+	at java.net.http/jdk.internal.net.http.Exchange.lambda$responseAsyncImpl0$10(Exchange.java:476)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:476)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:380)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:372)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:408)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:449)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:950)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2340)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:439)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:341)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:157)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2673)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:294)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:654)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:552)
+	... 3 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:149)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:157)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:816)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:839)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185)
+	... 29 more
+
+!ENTRY org.eclipse.core.jobs 4 2 2025-06-10 01:48:02.654
+!MESSAGE An internal error occurred during: "Analytics Job".
+!STACK 0
+java.lang.IllegalStateException: Job manager has been shut down.
+	at org.eclipse.core.internal.jobs.JobManager.scheduleInternal(JobManager.java:1406)
+	at org.eclipse.core.internal.jobs.JobManager.lambda$5(JobManager.java:1396)
+	at org.eclipse.core.internal.jobs.JobManager.withWriteLock(JobManager.java:546)
+	at org.eclipse.core.internal.jobs.JobManager.schedule(JobManager.java:1395)
+	at org.eclipse.core.internal.jobs.InternalJob.schedule(InternalJob.java:396)
+	at org.eclipse.core.runtime.jobs.Job.schedule(Job.java:684)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService$AnalyticsSubmitJob.run(AnalyticsService.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2025-06-10 01:48:02.666
+!MESSAGE An internal error occurred during: "Analytics Job".
+!STACK 0
+java.lang.IllegalStateException: Job manager has been shut down.
+	at org.eclipse.core.internal.jobs.JobManager.scheduleInternal(JobManager.java:1406)
+	at org.eclipse.core.internal.jobs.JobManager.lambda$5(JobManager.java:1396)
+	at org.eclipse.core.internal.jobs.JobManager.withWriteLock(JobManager.java:546)
+	at org.eclipse.core.internal.jobs.JobManager.schedule(JobManager.java:1395)
+	at org.eclipse.core.internal.jobs.InternalJob.schedule(InternalJob.java:396)
+	at org.eclipse.core.runtime.jobs.Job.schedule(Job.java:684)
+	at com.infineon.aurix.buildsystem.analytics.AnalyticsService$AnalyticsSubmitJob.run(AnalyticsService.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

@@ -29,5 +29,7 @@ extern uint8 DcyHandler_CanTx_InVehicleSafetyErrorFlag;
 extern uint8 DcyHandler_CanRx_RequestDiagnosisMode;
 extern DcyHandler_DcyStatus_t DcyHandler_CanTx_DcyStatus;
 extern DcyHandler_VehicleState_t DcyHandler_CanTx_VehicleState;
+extern uint8 DcyHandler_CanRx_StatusDoorLeft;
+extern uint8 DcyHandler_CanRx_StatusDoorRight;
 
 extern void DcyHandler_MainFunction(void);

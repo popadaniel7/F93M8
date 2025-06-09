@@ -121,19 +121,22 @@ void Os_Init_C0(void)
 void Os_Init_C1(void)
 {
     xTaskCreate_core1(ASILD_BSW_Task_C1, "ASILD_BSW_Task_C1", 4*configMINIMAL_STACK_SIZE_core1, NULL, 29u, &ASILD_BSW_Task_C1_THandle);
+    xTaskCreate_core1(ASILD_APPL_MainCycle_Task_C1, "ASILD_APPL_MainCycle_Task_C1", 4*configMINIMAL_STACK_SIZE_core1, NULL, 28u, &ASILD_APPL_MainCycle_Task_C1_THandle);
+
     Handler_Alarm5ms_Callback_ASILD_BSW_Task_C1 = xTimerCreate_core1("Alarm5ms_Callback_ASILD_BSW_Task_C1",
-            5u,
+            pdMS_TO_TICKS_core1(5u),
             1u,
             NULL,
             Alarm5ms_Callback_ASILD_BSW_Task_C1);
-    xTimerStart_core1(Handler_Alarm5ms_Callback_ASILD_BSW_Task_C1, 5u);
 
-    xTaskCreate_core1(ASILD_APPL_MainCycle_Task_C1, "ASILD_APPL_MainCycle_Task_C1", 4*configMINIMAL_STACK_SIZE_core1, NULL, 28u, &ASILD_APPL_MainCycle_Task_C1_THandle);
-    Handler_Alarm5ms_Callback_ASILD_BSW_Task_C1 = xTimerCreate_core1("Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1",
-            5u,
+
+    Handler_Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1 = xTimerCreate_core1("Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1",
+            pdMS_TO_TICKS_core1(5u),
             1u,
             NULL,
             Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1);
+
+    xTimerStart_core1(Handler_Alarm5ms_Callback_ASILD_BSW_Task_C1, 5u);
     xTimerStart_core1(Handler_Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C1, 5u);
 }
 
@@ -142,12 +145,12 @@ void Os_Init_C2(void)
     xTaskCreate_core2(ASILD_APPL_MainCycle_Task_C2, "ASILD_APPL_MainCycle_Task_C2", 4*configMINIMAL_STACK_SIZE_core2, NULL, 29u, &ASILD_APPL_MainCycle_Task_C2_THandle);
     xTaskCreate_core2(ASILD_BSW_Task_C2, "ASILD_BSW_Task_C2", 4*configMINIMAL_STACK_SIZE_core2, NULL, 28u, &ASILD_BSW_Task_C2_THandle);
     Handler_Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C2 = xTimerCreate_core2("Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C2",
-            5u,
+            pdMS_TO_TICKS_core2(5u),
             1u,
             NULL,
             Alarm5ms_Callback_ASILD_APPL_MainCycle_Task_C2);
     Handler_Alarm5ms_Callback_ASILD_BSW_Task_C2 = xTimerCreate_core2("Alarm5ms_Callback_ASILD_BSW_Task_C2",
-            5u,
+            pdMS_TO_TICKS_core2(5u),
             1u,
             NULL,
             Alarm5ms_Callback_ASILD_BSW_Task_C2);

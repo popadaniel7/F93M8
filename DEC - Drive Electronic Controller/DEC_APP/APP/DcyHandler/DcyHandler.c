@@ -7,6 +7,8 @@ uint8 DcyHandler_CanRx_GearboxState = 0u;
 uint8 DcyHandler_CanRx_VehicleSpeed = 0u;
 uint8 DcyHandler_CanTx_InVehicleSafetyErrorFlag = 254u;
 uint8 DcyHandler_CanRx_RequestDiagnosisMode = 0u;
+uint8 DcyHandler_CanRx_StatusDoorLeft = 0u;
+uint8 DcyHandler_CanRx_StatusDoorRight = 0u;
 DcyHandler_DcyStatus_t DcyHandler_CanTx_DcyStatus = DCY_INIT;
 DcyHandler_VehicleState_t DcyHandler_CanTx_VehicleState = VEHSTATE_INIT;
 
@@ -26,13 +28,27 @@ void DcyHandler_MainFunction(void)
             case 253u:
             case 254u:
                 /* Ignition off. */
-                DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
-                DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_IGNITION_OFF;
+                if(0u == DcyHandler_CanRx_StatusDoorLeft || 0u == DcyHandler_CanRx_StatusDoorRight)
+                {
+                    DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
+                    DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_IGNITION_OFF;
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
                 break;
             case 1u:
                 /* Ignition on. */
-                DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
-                DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_INGITION_ON;
+                if(0u != DcyHandler_CanRx_StatusDoorLeft || 0u != DcyHandler_CanRx_StatusDoorRight)
+                {
+                    DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
+                    DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_INGITION_ON;
+                }
+                else
+                {
+                    /* Do nothing. */
+                }
                 break;
             case 2u:
             {

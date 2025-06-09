@@ -961,6 +961,22 @@ void ComMaster_MainFunction(void)
         /* Do nothing. */
     }
 
+    if((0u != ComMaster_RxSignal_StatusDoorLeft || 0u != ComMaster_RxSignal_StatusDoorRight) && 0u != ComMaster_RxSignal_HC05ConnectionStatus)
+    {
+        if(0u == ComMaster_RxSignal_StatusIgn)
+        {
+            ComMaster_TxSignal_Ignition = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
     switch(ComMaster_TxSignal_Ignition)
     {
         case 2u:

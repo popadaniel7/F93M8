@@ -1337,14 +1337,14 @@ void DigitalCluster_DisplayInfoLights(DigitalCluster_DisplayMode_t *displayType)
 					displayType->DisplayColor,
 					TFT_BLACK);
 			break;
-		case 2:
+		case 3:
 			FsmcH_DrawString(displayType->Gear.G_GselText.position_x,
 					displayType->Gear.G_GselText.position_y,
 					"D",
 					displayType->DisplayColor,
 					TFT_BLACK);
 			break;
-		case 3:
+		case 2:
 			FsmcH_DrawString(displayType->Gear.G_GselText.position_x,
 					displayType->Gear.G_GselText.position_y,
 					"R",

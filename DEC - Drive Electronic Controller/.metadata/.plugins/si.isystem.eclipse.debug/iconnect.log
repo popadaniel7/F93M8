@@ -1,21 +1,21 @@
-40   INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  47.5493  ***  **********************************************************
-40   INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  47.969  ***  Logger configuration successful. Configuration file used: 
-40   INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  48.015  ***  C:\Infineon\AURIX-Studio-1.10.10\configuration\org.eclipse.osgi\386\0\.cp\lib\log4j.properties
-40   INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  48.0457  ***  **********************************************************
-41   INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISysPluginConfiguration : ***  49.2127  ***  Loading debug plugin properties from 'C:\Infineon\AURIX-Studio-1.10.10\isys_debugger_configuration.json'
-207  INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISysPluginConfiguration : ***  214.6174  ***  Loaded plugin configuration:
+44   INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  51.44  ***  **********************************************************
+44   INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  51.8917  ***  Logger configuration successful. Configuration file used: 
+44   INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  51.9486  ***  C:\Infineon\AURIX-Studio-1.10.10\configuration\org.eclipse.osgi\386\0\.cp\lib\log4j.properties
+44   INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] Log5J : ***  51.9896  ***  **********************************************************
+45   INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISysPluginConfiguration : ***  53.4027  ***  Loading debug plugin properties from 'C:\Infineon\AURIX-Studio-1.10.10\isys_debugger_configuration.json'
+221  INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISysPluginConfiguration : ***  228.7488  ***  Loaded plugin configuration:
 	 - Enable embedded: false
 	 - Enable portable false
 	 - Default selection: Custom
 	 - Default install path: '\winIDEA'
-207  INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISystemPreferences : ***  214.7839  ***  State location loaded at C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\.metadata\.plugins\si.isystem.eclipse.debug
-208  INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISystemPreferences : ***  215.720299  ***  Preferences loaded: Install type: Custom, Custom path: '\winIDEA'
-211  INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  218.1608  ***  Starting Plugin si.isystem.eclipse.debug version 921.25900.179258.
-217  INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  224.898499  ***  Plugin si.isystem.eclipse.debug started.
-217  INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  224.9841  ***  winIDEA installation cancelled because embedded winIDEA is not allowed.
-217  INFO  [Worker-8: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  225.0201  ***  Plugin started: si.isystem.eclipse.debug
-5111 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  5118.8212  ***  ISysConnectionService initialization(super) started.
-5120 INFO  [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  5127.335  ***  
+221  INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISystemPreferences : ***  228.9501  ***  State location loaded at C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\.metadata\.plugins\si.isystem.eclipse.debug
+222  INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISystemPreferences : ***  229.8663  ***  Preferences loaded: Install type: Custom, Custom path: '\winIDEA'
+224  INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  232.7236  ***  Starting Plugin si.isystem.eclipse.debug version 921.25900.179258.
+228  INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  236.9155  ***  Plugin si.isystem.eclipse.debug started.
+228  INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  237.0039  ***  winIDEA installation cancelled because embedded winIDEA is not allowed.
+228  INFO  [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISysDebugPlugin : ***  237.0488  ***  Plugin started: si.isystem.eclipse.debug
+12002 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  12009.9341  ***  ISysConnectionService initialization(super) started.
+12009 INFO  [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  12017.3316  ***  
 Starting debug session using launch configuration paramenters: 
  - Launch name = 'DEC_APP TriCore Debug (TASKING)'
  - Project name = 'DEC_APP'
@@ -38,102 +38,176 @@ Starting debug session using launch configuration paramenters:
  - Image check = 'No'
  - Create SMP = 'true'
 
-5124 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  5132.2079  ***  Connecting to winIDEA 'C:\Infineon\AURIX-Studio-1.10.10\winIDEA\' with workspace 'C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\.ads\winIDEAWorkspaces\TriCore-Debug-(TASKING)\ADS.xjrf', winIDEA-ID: 'com.tasking.winIDEA.instance.id-DEC_APP TriCore Debug (TASKING)', visible: true, CLI args: '/HideCrashDumpMessage'
-8796 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  8804.2494  ***  DAS Servers:
-8797 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  8804.5058  ***  [i] = 'IFX_DAS: AURIX LITE KIT V2.0 (TC375) LK7KFCVS [USB]'
-8797 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  8804.621399  ***  Loading DAS Server list finished. [939ms]
-8802 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  8810.2895  ***  Setting DAS server.
-8803 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  8810.5895  ***  DAS server already set to 'AURIX LITE KIT V2.0 (TC375) LK7KFCVS'.
-8826 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  8833.5956  ***  Connected to winIDEA and setup workspace.
-8827 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  8834.6107  ***  Version of isystem.connect for Java: 9.21.259.0
-8827 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  8834.7412  ***  Version of isystem.connect DLL: 9.21.259.0.0
-8827 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  8835.0258  ***  Version of winIDEA: 9.21.298
-8827 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  8835.0847  ***  Downloading ...
-13219 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  13227.1987  ***  Downloading finished.
-13219 DEBUG [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  13227.3916  ***  Deleting all breakpoints...
-13363 INFO  [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  13370.1078  ***  Connected to target.
-13363 DEBUG [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  13370.2412  ***  Log level set to DEBUG
-13412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13419.1266  ***  ISysConnectionService initialization(super) finished.
-13412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13419.2227  ***  ISysConnectionService initialization(main) started.
-13412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13419.4316  ***  ISysConnectionService initialization(main) finished.
-13412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13419.4949  ***  ISysConnectionService initialization(sub) finished.
-13413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13420.4772  ***  ISysCommandControl initialization(super) started.
-13414 INFO  [Worker-13: Command Executor Job] ISysAbstractDsfService : ***  13421.548999  ***  Command Executor Job started.
-13414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13421.681099  ***  ISysCommandControl initialization(super) finished.
-13414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13421.7299  ***  ISysCommandControl initialization(main) started.
-13415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13422.2043  ***  ISysCommandControl initialization(main) finished.
-13415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13422.2608  ***  ISysCommandControl initialization(sub) finished.
-13423 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13430.7859  ***  ISysRunControl initialization(super) started.
-13445 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13452.545299  ***  ISysRunControl initialization(super) finished.
-13445 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13452.5863  ***  ISysRunControl initialization(main) started.
-13446 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13453.2688  ***  ISysRunControl specified as service event listener (method: eventDispatched)
-13446 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13453.394299  ***  ISysRunControl initialization(main) finished.
-13463 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13471.4246  ***  ISysRunControl initialization(sub) finished.
-13464 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13471.963899  ***  ISysStackService initialization(super) started.
-13466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13473.5539  ***  ISysStackService initialization(super) finished.
-13466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13473.5996  ***  ISysStackService initialization(main) started.
-13467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13473.876  ***  ISysStackService specified as service event listener (method: eventDispatched)
-13467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13473.967  ***  ISysStackService initialization(main) finished.
-13467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13474.042099  ***  ISysStackService initialization(sub) finished.
-13467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13474.4792  ***  ISysMemoryService initialization(super) started.
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.1956  ***  Starting Memory Service sub-initialization sequence.
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.2662  ***  ISysMemoryService initialization(super) finished.
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.289799  ***  ISysMemoryService initialization(main) started.
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.598199  ***  ISysMemoryService specified as service event listener (method: eventDispatched)
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.6377  ***  ISysMemoryService initialization(main) finished.
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.6817  ***  Initializing Memory Service command cache.
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.797299  ***  Memory Service command cache initialized.
-13468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13475.866699  ***  Initializing Memory Service block retrieval.
-13474 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13481.9059  ***  Memory Service block retrieval initialized.
-13474 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13481.973899  ***  Loading memory area properties.
-13481 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13488.7194  ***  Adding 1 memory blocks.
-13481 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13488.818699  ***  Block 'Virtual' [00000000:ffffffff] MAU=8 visible
-13481 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13488.8718  ***  Memory Service block retrieval initialized.
-13481 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13488.9566  ***  Registering memory model adapter and service.
-13481 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13489.230299  ***  Memory model adapter and service registered.
-13481 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13489.2932  ***  ISysMemoryService initialization(sub) finished.
-13482 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13489.6667  ***  ISysSourceLookupService initialization(super) started.
-13482 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13489.8839  ***  ISysSourceLookupService initialization(super) finished.
-13482 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13489.922699  ***  ISysSourceLookupService initialization(main) started.
-13482 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13489.9747  ***  ISysSourceLookupService initialization(main) finished.
-13482 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13490.0024  ***  ISysSourceLookupService initialization(sub) finished.
-13483 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13491.0207  ***  ISysExpressionsService initialization(super) started.
-13483 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13491.3287  ***  ISysExpressionsService initialization(super) finished.
-13483 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13491.374  ***  ISysExpressionsService initialization(main) started.
-13484 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13491.8859  ***  ISysExpressionsService specified as service event listener (method: eventDispatched)
-13484 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13491.961099  ***  ISysExpressionsService initialization(main) finished.
-13484 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13492.0185  ***  ISysExpressionsService initialization(sub) finished.
-13485 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13492.8796  ***  ISysRegistersService initialization(super) started.
-13486 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13493.4787  ***  ISysRegistersService initialization(super) finished.
-13486 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13493.526  ***  ISysRegistersService initialization(main) started.
-13486 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13494.017899  ***  ISysRegistersService specified as service event listener (method: eventDispatched)
-13486 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13494.059699  ***  ISysRegistersService initialization(main) finished.
-13486 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13494.0909  ***  ISysRegistersService initialization(sub) finished.
-13487 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13494.689899  ***  ISysDisassemblyService initialization(super) started.
-13487 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13494.9972  ***  ISysDisassemblyService initialization(super) finished.
-13487 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13495.0375  ***  ISysDisassemblyService initialization(main) started.
-13487 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13495.174699  ***  ISysDisassemblyService initialization(main) finished.
-13487 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13495.239799  ***  ISysDisassemblyService initialization(sub) finished.
-13488 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13495.7434  ***  ISysSfrService initialization(super) started.
-13488 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13496.0242  ***  ISysSfrService initialization(super) finished.
-13488 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13496.058  ***  ISysSfrService initialization(main) started.
-13488 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13496.4129  ***  ISysSfrService specified as service event listener (method: eventDispatched)
-13488 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  13496.4632  ***  ISysSfrService initialization(main) finished.
-14013 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14020.3043  ***  ISysSfrService initialization(sub) finished.
-14013 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14020.808399  ***  ISysRteService initialization(super) started.
-14013 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14021.140199  ***  ISysRteService initialization(super) finished.
-14014 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14021.179  ***  ISysRteService initialization(main) started.
-14014 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14021.444  ***  ISysRteService specified as service event listener (method: eventDispatched)
-14014 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14021.500099  ***  ISysRteService initialization(main) finished.
-14014 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14021.5391  ***  ISysRteService initialization(sub) finished.
-14016 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14023.257  ***  ISysBreakpointService initialization(super) started.
-14016 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14023.731  ***  ISysBreakpointService initialization(super) finished.
-14016 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14023.7727  ***  ISysBreakpointService initialization(main) started.
-14016 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14024.063199  ***  ISysBreakpointService specified as service event listener (method: eventDispatched)
-14016 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14024.1134  ***  ISysBreakpointService initialization(main) finished.
-14016 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  14024.1475  ***  ISysBreakpointService initialization(sub) finished.
-14023 INFO  [si.isystem.eclipse.debug - 0] ISysLaunch : ***  14030.8303  ***  Services initialization sequence completed
-1206141 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+12014 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  12021.8326  ***  Connecting to winIDEA 'C:\Infineon\AURIX-Studio-1.10.10\winIDEA\' with workspace 'C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\.ads\winIDEAWorkspaces\TriCore-Debug-(TASKING)\ADS.xjrf', winIDEA-ID: 'com.tasking.winIDEA.instance.id-DEC_APP TriCore Debug (TASKING)', visible: true, CLI args: '/HideCrashDumpMessage'
+19194 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  19202.3209  ***  DAS Servers:
+19194 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  19202.5572  ***  [i] = 'IFX_DAS: AURIX LITE KIT V2.0 (TC375) LK7KFCVS [USB]'
+19195 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  19202.6647  ***  Loading DAS Server list finished. [1964ms]
+19201 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  19208.9111  ***  Setting DAS server.
+19201 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  19209.1669  ***  DAS server already set to 'AURIX LITE KIT V2.0 (TC375) LK7KFCVS'.
+19224 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  19231.9913  ***  Connected to winIDEA and setup workspace.
+19225 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  19232.9561  ***  Version of isystem.connect for Java: 9.21.259.0
+19225 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  19233.1094  ***  Version of isystem.connect DLL: 9.21.259.0.0
+19225 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  19233.4119  ***  Version of winIDEA: 9.21.298
+19226 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  19233.4845  ***  Downloading ...
+22218 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  22226.1427  ***  ISysConnectionService initialization(super) finished.
+22218 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  22226.2829  ***  ISysConnectionService initialization(main) started.
+22218 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  22226.5376  ***  ISysConnectionService initialization(main) finished.
+22220 ERROR [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ISysConnectionService initialization(sub) failed: 'Failed to initialize connection service.'!
+java.io.IOException: ICONNECT_E_ERROR: Error occurred while performing the requested operation. / Application: App
+Symbol file not found: C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_FBL\TriCore Debug (TASKING)\DEC_FBL.elf
+ / isys::CSessionCtrl::begin_program() failed! winIDEA error:   [WrapperBase.cpp, 91]
+	at si.isystem.connect.connectJNI.CSessionCtrl_begin_program(Native Method)
+	at si.isystem.connect.CSessionCtrl.begin_program(CSessionCtrl.java:65)
+	at si.isystem.debug.core.proxy.SessionControllerProxy.beginProgram(Unknown Source)
+	at si.isystem.debug.core.proxy.ISysSessionManager.begin(Unknown Source)
+	at si.isystem.debug.core.winidea.IConLaunchManager.startDebugSession(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.startWinIdeaDebugSession(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.startWinIdeaDebugSessionWithProgressDialog(Unknown Source)
+	at si.isystem.dsf.services.ISysConnectionService.doInitialize(Unknown Source)
+	at si.isystem.dsf.ISysAbstractDsfService.initialize(Unknown Source)
+	at si.isystem.dsf.launch.ISysServiceInitializationSequence$1.execute(Unknown Source)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:475)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.run(Sequence.java:380)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+22222 ERROR [Worker-6: Launching DEC_APP TriCore Debug (TASKING)] ISysLaunchDelegate : Launch failed.
+org.eclipse.debug.core.DebugException: TASKING winIDEA services initialization failed.
+	at si.isystem.dsf.launch.ISysLaunchDelegate.initializeServices(Unknown Source)
+	at si.isystem.dsf.launch.ISysLaunchDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1038)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.util.concurrent.ExecutionException: org.eclipse.core.runtime.CoreException: Failed to initialize connection service.
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:112)
+	... 7 more
+Caused by: org.eclipse.core.runtime.CoreException: Failed to initialize connection service.
+	... 8 more
+37959 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  37967.2023  ***  ISysConnectionService initialization(super) started.
+37959 INFO  [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  37967.5353  ***  
+Starting debug session using launch configuration paramenters: 
+ - Launch name = 'DEC_APP TriCore Debug (TASKING)'
+ - Project name = 'DEC_APP'
+ - Project path = 'C:/Users/Daniel/Desktop/FG9326M8GTEI4/DEC - Drive Electronic Controller/DEC_APP'
+ - Output file = 'TriCore Debug (TASKING)/DEC_APP.elf'
+ - Stop on startup = 'true'
+ - Stop on startup location = 'core0_main'
+ - Verbose mode = true' - Invisible winIDEA = 'false'
+ - Bring winIDEA to top = 'true'
+ - Verify download = 'true'
+ - Analyze source files = 'true'
+ - Shutdown winIDEA at terminate session = 'false'
+ - Save winIDEA workspace = 'true'
+ - winIDEA workspace path = '.ads/winIDEAWorkspaces/TriCore-Debug-(TASKING)/ADS.xjrf'
+ - full winIDEA workspace path = 'C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\.ads\winIDEAWorkspaces\TriCore-Debug-(TASKING)\ADS.xjrf'
+ - Device = 'TC375T'
+ - Hardware = 'IFX_DAS'
+ - Communication = 'USB'
+ - Hardware debugger = 'AURIX LITE KIT V2.0 (TC375) LK7KFCVS'
+ - Image check = 'No'
+ - Create SMP = 'true'
+
+37959 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  37967.7799  ***  Connecting to winIDEA 'C:\Infineon\AURIX-Studio-1.10.10\winIDEA\' with workspace 'C:\Users\Daniel\Desktop\FG9326M8GTEI4\DEC - Drive Electronic Controller\DEC_APP\.ads\winIDEAWorkspaces\TriCore-Debug-(TASKING)\ADS.xjrf', winIDEA-ID: 'com.tasking.winIDEA.instance.id-DEC_APP TriCore Debug (TASKING)', visible: true, CLI args: '/HideCrashDumpMessage'
+39141 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  39148.4254  ***  DAS Servers:
+39141 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  39148.5785  ***  [i] = 'IFX_DAS: AURIX LITE KIT V2.0 (TC375) LK7KFCVS [USB]'
+39141 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  39148.6248  ***  Loading DAS Server list finished. [160ms]
+39141 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  39148.6461  ***  Setting DAS server.
+39159 INFO  [si.isystem.eclipse.debug - 0] ISysConfigOptions : ***  39166.7531  ***  DAS server already set to 'AURIX LITE KIT V2.0 (TC375) LK7KFCVS'.
+39179 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  39187.0629  ***  Connected to winIDEA and setup workspace.
+39179 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  39187.1454  ***  Version of isystem.connect for Java: 9.21.259.0
+39179 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  39187.1881  ***  Version of isystem.connect DLL: 9.21.259.0.0
+39179 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  39187.4395  ***  Version of winIDEA: 9.21.298
+39179 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  39187.4745  ***  Downloading ...
+42787 INFO  [si.isystem.eclipse.debug - 0] ISysSessionManager : ***  42794.7253  ***  Downloading finished.
+42787 DEBUG [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  42794.8418  ***  Deleting all breakpoints...
+42870 INFO  [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  42878.162  ***  Connected to target.
+42870 DEBUG [si.isystem.eclipse.debug - 0] IConLaunchManager : ***  42878.2494  ***  Log level set to DEBUG
+42958 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42965.4086  ***  ISysConnectionService initialization(super) finished.
+42958 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42965.4733  ***  ISysConnectionService initialization(main) started.
+42958 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42965.5034  ***  ISysConnectionService initialization(main) finished.
+42958 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42965.5482  ***  ISysConnectionService initialization(sub) finished.
+42959 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42966.2823  ***  ISysCommandControl initialization(super) started.
+42960 INFO  [Worker-4: Command Executor Job] ISysAbstractDsfService : ***  42967.377  ***  Command Executor Job started.
+42960 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42967.5031  ***  ISysCommandControl initialization(super) finished.
+42960 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42967.5363  ***  ISysCommandControl initialization(main) started.
+42960 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42967.9178  ***  ISysCommandControl initialization(main) finished.
+42960 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42967.9591  ***  ISysCommandControl initialization(sub) finished.
+42965 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42972.7122  ***  ISysRunControl initialization(super) started.
+42973 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42981.4412  ***  ISysRunControl initialization(super) finished.
+42973 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42981.4852  ***  ISysRunControl initialization(main) started.
+42974 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42982.0959  ***  ISysRunControl specified as service event listener (method: eventDispatched)
+42974 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42982.1667  ***  ISysRunControl initialization(main) finished.
+42983 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42990.8995  ***  ISysRunControl initialization(sub) finished.
+42983 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42991.4173  ***  ISysStackService initialization(super) started.
+42985 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42992.7539  ***  ISysStackService initialization(super) finished.
+42985 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42992.7862  ***  ISysStackService initialization(main) started.
+42985 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42992.9582  ***  ISysStackService specified as service event listener (method: eventDispatched)
+42985 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42993.0086  ***  ISysStackService initialization(main) finished.
+42985 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42993.0516  ***  ISysStackService initialization(sub) finished.
+42985 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42993.3905  ***  ISysMemoryService initialization(super) started.
+42986 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.1278  ***  Starting Memory Service sub-initialization sequence.
+42986 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.2018  ***  ISysMemoryService initialization(super) finished.
+42986 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.2263  ***  ISysMemoryService initialization(main) started.
+42986 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.5042  ***  ISysMemoryService specified as service event listener (method: eventDispatched)
+42986 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.5434  ***  ISysMemoryService initialization(main) finished.
+42986 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.5842  ***  Initializing Memory Service command cache.
+42986 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.675  ***  Memory Service command cache initialized.
+42987 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42994.7175  ***  Initializing Memory Service block retrieval.
+42990 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42998.2623  ***  Memory Service block retrieval initialized.
+42990 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  42998.3181  ***  Loading memory area properties.
+42993 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43001.4073  ***  Adding 1 memory blocks.
+42993 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43001.5333  ***  Block 'Virtual' [00000000:ffffffff] MAU=8 visible
+42993 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43001.5686  ***  Memory Service block retrieval initialized.
+42993 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43001.6307  ***  Registering memory model adapter and service.
+42994 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43001.8929  ***  Memory model adapter and service registered.
+42994 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43001.9528  ***  ISysMemoryService initialization(sub) finished.
+42994 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43002.2687  ***  ISysSourceLookupService initialization(super) started.
+42994 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43002.4389  ***  ISysSourceLookupService initialization(super) finished.
+42994 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43002.4645  ***  ISysSourceLookupService initialization(main) started.
+42994 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43002.5109  ***  ISysSourceLookupService initialization(main) finished.
+42994 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43002.5454  ***  ISysSourceLookupService initialization(sub) finished.
+42995 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43003.3723  ***  ISysExpressionsService initialization(super) started.
+42995 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43003.5857  ***  ISysExpressionsService initialization(super) finished.
+42995 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43003.6139  ***  ISysExpressionsService initialization(main) started.
+42996 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43004.0794  ***  ISysExpressionsService specified as service event listener (method: eventDispatched)
+42996 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43004.1181  ***  ISysExpressionsService initialization(main) finished.
+42996 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43004.1469  ***  ISysExpressionsService initialization(sub) finished.
+42996 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43004.7404  ***  ISysRegistersService initialization(super) started.
+42997 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43005.484  ***  ISysRegistersService initialization(super) finished.
+42997 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43005.5161  ***  ISysRegistersService initialization(main) started.
+42998 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43006.1684  ***  ISysRegistersService specified as service event listener (method: eventDispatched)
+42998 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43006.2965  ***  ISysRegistersService initialization(main) finished.
+42998 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43006.3568  ***  ISysRegistersService initialization(sub) finished.
+42998 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43006.924  ***  ISysDisassemblyService initialization(super) started.
+42998 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43007.1923  ***  ISysDisassemblyService initialization(super) finished.
+42998 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43007.2244  ***  ISysDisassemblyService initialization(main) started.
+43000 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43007.3419  ***  ISysDisassemblyService initialization(main) finished.
+43000 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43007.3895  ***  ISysDisassemblyService initialization(sub) finished.
+43000 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43007.8  ***  ISysSfrService initialization(super) started.
+43000 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43008.1126  ***  ISysSfrService initialization(super) finished.
+43000 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43008.1441  ***  ISysSfrService initialization(main) started.
+43001 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43008.5023  ***  ISysSfrService specified as service event listener (method: eventDispatched)
+43001 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43008.5405  ***  ISysSfrService initialization(main) finished.
+43459 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43467.4254  ***  ISysSfrService initialization(sub) finished.
+43460 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43467.9312  ***  ISysRteService initialization(super) started.
+43460 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43468.2572  ***  ISysRteService initialization(super) finished.
+43460 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43468.2932  ***  ISysRteService initialization(main) started.
+43461 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43468.531  ***  ISysRteService specified as service event listener (method: eventDispatched)
+43461 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43468.5769  ***  ISysRteService initialization(main) finished.
+43461 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43468.6056  ***  ISysRteService initialization(sub) finished.
+43462 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43470.0592  ***  ISysBreakpointService initialization(super) started.
+43462 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43470.5045  ***  ISysBreakpointService initialization(super) finished.
+43463 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43470.5391  ***  ISysBreakpointService initialization(main) started.
+43463 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43470.8102  ***  ISysBreakpointService specified as service event listener (method: eventDispatched)
+43463 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43470.854  ***  ISysBreakpointService initialization(main) finished.
+43463 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  43470.8836  ***  ISysBreakpointService initialization(sub) finished.
+43467 INFO  [si.isystem.eclipse.debug - 0] ISysLaunch : ***  43475.1178  ***  Services initialization sequence completed
+518969 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -150,7 +224,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206145 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+518970 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -167,7 +241,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206211 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519052 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -184,7 +258,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206312 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519152 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -201,7 +275,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206412 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519252 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -218,7 +292,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206512 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519353 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -235,7 +309,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206612 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519454 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -252,7 +326,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206712 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519555 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -269,7 +343,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206812 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519655 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -286,7 +360,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1206912 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519756 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -303,7 +377,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1207013 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519857 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -320,7 +394,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1207113 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+519958 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -337,7 +411,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1207213 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+520059 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -354,7 +428,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1207313 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+520159 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -371,7 +445,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1207414 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+520259 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -388,7 +462,7 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1207514 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
+520362 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
@@ -405,231 +479,80 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1207614 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1207715 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1207815 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1207916 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1208016 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1208116 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1208217 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1208317 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1208418 WARN  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : Failed to execute command: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
- / isys::CSessionCtrl::get_status() failed! winIDEA error: CallClient failed:   [WrapperBase.cpp, 73]
-	at si.isystem.connect.connectJNI.CSessionCtrl_get_status(Native Method)
-	at si.isystem.connect.CSessionCtrl.get_status(CSessionCtrl.java:120)
-	at si.isystem.debug.core.proxy.SessionControllerProxy.hasSoC(Unknown Source)
-	at si.isystem.dsf.services.ISysRunControl.updateCpuStatus(Unknown Source)
-	at si.isystem.dsf.control.commands.ISysCmdMiscUpdateCpuStatus.process(Unknown Source)
-	at si.isystem.dsf.control.ISysAbstractCommand.executeCommand(Unknown Source)
-	at si.isystem.dsf.services.ISysCommandControl$CommandExecutorJob$1.run(Unknown Source)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-1208464 INFO  [Worker-13: Command Executor Job] ISysAbstractDsfService : ***  1208471.3989  ***  ISysCommandControl command dequeued - exiting command processing loop
-1208464 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : ***  1208471.4194  ***  Processing the last command to be processed: si.isystem.dsf.control.commands.ISysCmdMiscTerminateDebugger
-1208464 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208471.4701  ***  Command Control was shut down - cancelling remaining commands in queue.
-1208464 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208471.649  ***  Command Controll queue is empty and closed.
-1208464 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208471.9698  ***  ISysBreakpointService shutdown(super) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.0983  ***  ISysBreakpointService shutdown(super) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.14  ***  ISysBreakpointService shutdown(main) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.1779  ***  ISysBreakpointService removed from service event listener list
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.2928  ***  ISysBreakpointService shutdown(main) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.3279  ***  ISysBreakpointService shutdown(sub) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.3619  ***  ISysRteService shutdown(super) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.459  ***  ISysRteService shutdown(super) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.4839  ***  ISysRteService shutdown(main) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.4994  ***  ISysRteService removed from service event listener list
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.5987  ***  ISysRteService shutdown(main) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.6434  ***  ISysRteService shutdown(sub) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.6696  ***  ISysSfrService shutdown(super) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.7707  ***  ISysSfrService shutdown(super) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.7966  ***  ISysSfrService shutdown(main) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.8107  ***  ISysSfrService removed from service event listener list
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.8928  ***  ISysSfrService shutdown(main) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.9229  ***  ISysSfrService shutdown(sub) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.9497  ***  ISysDisassemblyService shutdown(super) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.9739  ***  ISysDisassemblyService shutdown(super) finished.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208472.988  ***  ISysDisassemblyService shutdown(main) started.
-1208465 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.0556  ***  ISysDisassemblyService shutdown(main) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.0719  ***  ISysDisassemblyService shutdown(sub) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.0991  ***  ISysRegistersService shutdown(super) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.1283  ***  ISysRegistersService shutdown(super) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.1464  ***  ISysRegistersService shutdown(main) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.1627  ***  ISysRegistersService removed from service event listener list
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.2603  ***  ISysRegistersService shutdown(main) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.2925  ***  ISysRegistersService shutdown(sub) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.3295  ***  ISysExpressionsService shutdown(super) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.362  ***  ISysExpressionsService shutdown(super) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.3869  ***  ISysExpressionsService shutdown(main) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.4093  ***  ISysExpressionsService removed from service event listener list
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.5376  ***  ISysExpressionsService shutdown(main) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.5643  ***  ISysExpressionsService shutdown(sub) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.6066  ***  ISysSourceLookupService shutdown(super) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.6341  ***  ISysSourceLookupService shutdown(super) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.6528  ***  ISysSourceLookupService shutdown(main) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.7469  ***  ISysSourceLookupService shutdown(main) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.7711  ***  ISysSourceLookupService shutdown(sub) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.8062  ***  ISysMemoryService shutdown(super) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.8354  ***  ISysMemoryService shutdown(super) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.8552  ***  ISysMemoryService shutdown(main) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.8733  ***  ISysMemoryService removed from service event listener list
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.9739  ***  ISysMemoryService shutdown(main) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208473.9994  ***  ISysMemoryService shutdown(sub) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.0273  ***  ISysStackService shutdown(super) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.0554  ***  ISysStackService shutdown(super) finished.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.075  ***  ISysStackService shutdown(main) started.
-1208466 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.0922  ***  ISysStackService removed from service event listener list
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.1771  ***  ISysStackService shutdown(main) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.1961  ***  ISysStackService shutdown(sub) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.216  ***  ISysRunControl shutdown(super) started.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.2356  ***  ISysRunControl shutdown(super) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.2532  ***  ISysRunControl shutdown(main) started.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.2678  ***  ISysRunControl removed from service event listener list
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.3565  ***  ISysRunControl shutdown(main) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.3752  ***  ISysRunControl shutdown(sub) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.3955  ***  ISysCommandControl shutdown(super) started.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.4135  ***  ISysCommandControl shutdown(super) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.4327  ***  ISysCommandControl shutdown(main) started.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.4977  ***  ISysCommandControl shutdown(main) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.5138  ***  ISysCommandControl shutdown(sub) finished.
-1208467 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208474.5378  ***  ISysConnectionService shutdown(super) started.
-1208468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208475.2935  ***  ISysConnectionService shutdown(super) finished.
-1208468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208475.3414  ***  ISysConnectionService shutdown(main) started.
-1208468 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  1208475.4086  ***  ISysConnectionService shutdown(main) finished.
-1208468 ERROR [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ISysConnectionService shutdown(sub) failed: 'Failed to shutdown Connection Service.'!
+520408 INFO  [Framework stop - Equinox Container: 72664239-da9b-4eb9-bd4d-c0217834b5ce] ISysDebugPlugin : ***  520416.0578  ***  Stopping Plugin si.isystem.eclipse.debug
+520408 INFO  [Framework stop - Equinox Container: 72664239-da9b-4eb9-bd4d-c0217834b5ce] ISysDebugPlugin : ***  520416.1762  ***  si.isystem.eclipse.debug Initiated termination of launch si.isystem.dsf.launch.ISysLaunch@1fad4d21.
+520411 INFO  [Worker-4: Command Executor Job] ISysAbstractDsfService : ***  520418.4344  ***  ISysCommandControl command dequeued - exiting command processing loop
+520411 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractCommand : ***  520418.4542  ***  Processing the last command to be processed: si.isystem.dsf.control.commands.ISysCmdMiscTerminateDebugger
+520411 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520418.53  ***  Command Control was shut down - cancelling remaining commands in queue.
+520411 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.0861  ***  Command Controll queue is empty and closed.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.4204  ***  ISysBreakpointService shutdown(super) started.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.6327  ***  ISysBreakpointService shutdown(super) finished.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.6781  ***  ISysBreakpointService shutdown(main) started.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.7179  ***  ISysBreakpointService removed from service event listener list
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.8389  ***  ISysBreakpointService shutdown(main) finished.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.8905  ***  ISysBreakpointService shutdown(sub) finished.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520419.9406  ***  ISysRteService shutdown(super) started.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.0832  ***  ISysRteService shutdown(super) finished.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.1283  ***  ISysRteService shutdown(main) started.
+520412 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.1592  ***  ISysRteService removed from service event listener list
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.4707  ***  ISysRteService shutdown(main) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.5441  ***  ISysRteService shutdown(sub) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.5852  ***  ISysSfrService shutdown(super) started.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.703  ***  ISysSfrService shutdown(super) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.7323  ***  ISysSfrService shutdown(main) started.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.7531  ***  ISysSfrService removed from service event listener list
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.8489  ***  ISysSfrService shutdown(main) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.8903  ***  ISysSfrService shutdown(sub) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.9266  ***  ISysDisassemblyService shutdown(super) started.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520420.9585  ***  ISysDisassemblyService shutdown(super) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.0471  ***  ISysDisassemblyService shutdown(main) started.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.1643  ***  ISysDisassemblyService shutdown(main) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.2067  ***  ISysDisassemblyService shutdown(sub) finished.
+520413 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.253  ***  ISysRegistersService shutdown(super) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.2819  ***  ISysRegistersService shutdown(super) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.3074  ***  ISysRegistersService shutdown(main) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.3329  ***  ISysRegistersService removed from service event listener list
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.4305  ***  ISysRegistersService shutdown(main) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.4575  ***  ISysRegistersService shutdown(sub) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.4912  ***  ISysExpressionsService shutdown(super) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.527  ***  ISysExpressionsService shutdown(super) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.5491  ***  ISysExpressionsService shutdown(main) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.5679  ***  ISysExpressionsService removed from service event listener list
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.6789  ***  ISysExpressionsService shutdown(main) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.7234  ***  ISysExpressionsService shutdown(sub) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.7599  ***  ISysSourceLookupService shutdown(super) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.796  ***  ISysSourceLookupService shutdown(super) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.8252  ***  ISysSourceLookupService shutdown(main) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.9266  ***  ISysSourceLookupService shutdown(main) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.9582  ***  ISysSourceLookupService shutdown(sub) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520421.9984  ***  ISysMemoryService shutdown(super) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.0376  ***  ISysMemoryService shutdown(super) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.0725  ***  ISysMemoryService shutdown(main) started.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.1049  ***  ISysMemoryService removed from service event listener list
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.2158  ***  ISysMemoryService shutdown(main) finished.
+520414 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.2466  ***  ISysMemoryService shutdown(sub) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.2793  ***  ISysStackService shutdown(super) started.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.3137  ***  ISysStackService shutdown(super) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.3382  ***  ISysStackService shutdown(main) started.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.3602  ***  ISysStackService removed from service event listener list
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.4612  ***  ISysStackService shutdown(main) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.4871  ***  ISysStackService shutdown(sub) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.5172  ***  ISysRunControl shutdown(super) started.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.5479  ***  ISysRunControl shutdown(super) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.5974  ***  ISysRunControl shutdown(main) started.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.624  ***  ISysRunControl removed from service event listener list
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.7268  ***  ISysRunControl shutdown(main) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.78  ***  ISysRunControl shutdown(sub) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.8213  ***  ISysCommandControl shutdown(super) started.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.8574  ***  ISysCommandControl shutdown(super) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520422.8822  ***  ISysCommandControl shutdown(main) started.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520423.0029  ***  ISysCommandControl shutdown(main) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520423.0306  ***  ISysCommandControl shutdown(sub) finished.
+520415 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520423.0654  ***  ISysConnectionService shutdown(super) started.
+520416 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520423.5642  ***  ISysConnectionService shutdown(super) finished.
+520416 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520423.6003  ***  ISysConnectionService shutdown(main) started.
+520416 INFO  [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ***  520423.6872  ***  ISysConnectionService shutdown(main) finished.
+520416 ERROR [si.isystem.eclipse.debug - 0] ISysAbstractDsfService : ISysConnectionService shutdown(sub) failed: 'Failed to shutdown Connection Service.'!
 java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Check if it is still up and running.
  / isys::CIDEController::application() failed!  [CIDEController.cpp, 336]
 	at si.isystem.connect.connectJNI.CIDEController_iOpenDisconnect(Native Method)
@@ -650,6 +573,5 @@ java.lang.IllegalStateException: ICONNECT_E_ROUTING: can not access winIDEA. Che
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-1208468 INFO  [si.isystem.eclipse.debug - 0] ISysLaunch : ***  1208476.124  ***  Debug services shutdown completed.
-1209467 INFO  [Framework stop - Equinox Container: 1b5dbc36-f475-42ab-9289-71d2a6c326c9] ISysDebugPlugin : ***  1209475.0929  ***  Stopping Plugin si.isystem.eclipse.debug
-1209469 INFO  [Framework stop - Equinox Container: 1b5dbc36-f475-42ab-9289-71d2a6c326c9] ISysDebugPlugin : ***  1209477.344  ***  Plugin si.isystem.eclipse.debug stopped.
+520417 INFO  [si.isystem.eclipse.debug - 0] ISysLaunch : ***  520424.8037  ***  Debug services shutdown completed.
+520418 INFO  [Framework stop - Equinox Container: 72664239-da9b-4eb9-bd4d-c0217834b5ce] ISysDebugPlugin : ***  520426.6186  ***  Plugin si.isystem.eclipse.debug stopped.

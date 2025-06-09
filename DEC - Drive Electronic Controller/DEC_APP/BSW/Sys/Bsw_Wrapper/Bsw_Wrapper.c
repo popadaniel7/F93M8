@@ -60,6 +60,8 @@ void Bsw_Wrapper_MainFunction_C0(void)
     Iven_CanRx_IgnitionControl = ComMaster_TxSignal_Ignition;
     Iven_CanRx_StatusDoorLeft = ComMaster_RxSignal_StatusDoorLeft;
     Iven_CanRx_StatusDoorRight = ComMaster_RxSignal_StatusDoorRight;
+    DcyHandler_CanRx_StatusDoorLeft = ComMaster_RxSignal_StatusDoorLeft;
+    DcyHandler_CanRx_StatusDoorRight = ComMaster_RxSignal_StatusDoorRight;
 
     if(0u != McuSm_LastResetReason
             && 0xEFEFU != McuSm_LastResetReason

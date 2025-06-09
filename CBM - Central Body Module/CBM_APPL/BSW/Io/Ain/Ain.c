@@ -47,6 +47,8 @@ void Ain_MainFunction(void)
 	/* Status variable. */
 	static uint32 status = 0;
 	static uint32 counter = 0;
+	static uint32 localCnt = 0;
+	static uint32 localAvg[4] = {0, 0, 0, 0};
 	/* Main counter. */
 	static uint32 Ain_MainCounter = 0;
 	/* Muxer pin iterator. */
@@ -110,10 +112,20 @@ void Ain_MainFunction(void)
 	/* Reset the muxer counter.  */
 	Ain_CounterMux = 0;
 	/* Store the measured values. */
-	StatusList_InputValue[0] = Ain_Mux[0];
-	StatusList_InputValue[1] = Ain_Mux[1];
-	StatusList_InputValue[2] = Ain_Mux[2];
-	StatusList_InputValue[3] = Ain_Mux[3];
+	if(localCnt % 20 == 0 && localCnt != 0)
+	{
+		for(uint8 i = 0; i < 4; i++)
+		{
+			StatusList_InputValue[i] = localAvg[i] / 20;
+			localAvg[i] = 0;
+		}
+		localCnt = 0;
+	}
+	else
+	{
+		for(uint8 i = 0; i < 4; i++) localAvg[i] += Ain_Mux[i];
+		localCnt++;
+	}
 	/* Increment the counter. */
 	Ain_MainCounter++;
 }
