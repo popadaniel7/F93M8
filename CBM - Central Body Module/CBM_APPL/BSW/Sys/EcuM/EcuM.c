@@ -189,21 +189,57 @@ void EcuM_ProcessTimerInterrupt(void)
 	{
 		debouncePin = 0;
 	}
-
 	messagesInBuffer = CanSpi_MessagesInBuffer();
-
 	if(messagesInBuffer != 0)
 	{
-		/* Store them in the buffer 1 if it is empty. */
 		if(CanSpi_RxFrame_Buffer0.frame.id == 0)
 		{
-			/* Networkmanagement3 Frame */
-			if(CanSpi_RxFrame_Buffer0.frame.id == 0x510)
+			if(CanSpi_Receive(&CanSpi_RxFrame_Buffer0) != 0)
 			{
-				if(CanSpi_RxFrame_Buffer0.frame.data0 == 0x10)
+				if(0x99 == CanSpi_RxFrame_Buffer0.frame.id)
 				{
 					EcuM_PerformReset(0);
 				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* StatusBodyControl */
+				if(0x98 == CanSpi_RxFrame_Buffer0.frame.id)
+				{
+					EcuM_PerformReset(0);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* VehicleState Frame */
+				if(CanSpi_RxFrame_Buffer0.frame.id == 0x097)
+				{
+					EcuM_PerformReset(0);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* Networkmanagement3 Frame */
+				if(CanSpi_RxFrame_Buffer0.frame.id == 0x510)
+				{
+					if(CanSpi_RxFrame_Buffer0.frame.data0 == 0x10)
+					{
+						EcuM_PerformReset(0);
+					}
+					else
+					{
+						/* Do nothing. */
+					}
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* Diagnostic request Frame */
+				if(CanSpi_RxFrame_Buffer0.frame.id == 0x700) EcuM_PerformReset(0);
 				else
 				{
 					/* Do nothing. */
@@ -213,34 +249,61 @@ void EcuM_ProcessTimerInterrupt(void)
 			{
 				/* Do nothing. */
 			}
-			/* Diagnostic request Frame */
-			if(CanSpi_RxFrame_Buffer0.frame.id == 0x700) EcuM_PerformReset(0);
-			else
-			{
-				/* Do nothing. */
-			}
 		}
 		else
 		{
 			/* Do nothing. */
 		}
-	}
-	else
-	{
-		/* Do nothing. */
-	}
-	/* Store them in the buffer 2 if it is empty. */
-	if(CanSpi_RxFrame_Buffer1.frame.id == 0)
-	{
-		if(CanSpi_Receive(&CanSpi_RxFrame_Buffer1) != 0)
+		/* Store them in the buffer 2 if it is empty. */
+		if(CanSpi_RxFrame_Buffer1.frame.id == 0)
 		{
-			/* Networkmanagement3 Frame */
-			if(CanSpi_RxFrame_Buffer1.frame.id == 0x510)
+			if(CanSpi_Receive(&CanSpi_RxFrame_Buffer1) != 0)
 			{
-				if(CanSpi_RxFrame_Buffer1.frame.data0 == 0x10)
+				/* StatusBodyControl2 */
+				if(0x99 == CanSpi_RxFrame_Buffer1.frame.id)
 				{
 					EcuM_PerformReset(0);
 				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* StatusBodyControl */
+				if(0x98 == CanSpi_RxFrame_Buffer1.frame.id)
+				{
+					EcuM_PerformReset(0);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* VehicleState Frame */
+				if(CanSpi_RxFrame_Buffer1.frame.id == 0x097)
+				{
+					EcuM_PerformReset(0);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* Networkmanagement3 Frame */
+				if(CanSpi_RxFrame_Buffer1.frame.id == 0x510)
+				{
+					if(CanSpi_RxFrame_Buffer1.frame.data0 == 0x10)
+					{
+						EcuM_PerformReset(0);
+					}
+					else
+					{
+						/* Do nothing. */
+					}
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+				/* Diagnostic request Frame */
+				if(CanSpi_RxFrame_Buffer1.frame.id == 0x700) EcuM_PerformReset(0);
 				else
 				{
 					/* Do nothing. */
@@ -250,17 +313,34 @@ void EcuM_ProcessTimerInterrupt(void)
 			{
 				/* Do nothing. */
 			}
-			/* Diagnostic request Frame */
-			if(CanSpi_RxFrame_Buffer0.frame.id == 0x700) EcuM_PerformReset(0);
-			else
-			{
-				/* Do nothing. */
-			}
 		}
 		else
 		{
 			/* Do nothing. */
 		}
+		/* Reset the buffers. */
+		CanSpi_RxFrame_Buffer0.frame.idType = 0;
+		CanSpi_RxFrame_Buffer0.frame.id = 0;
+		CanSpi_RxFrame_Buffer0.frame.dlc = 0;
+		CanSpi_RxFrame_Buffer0.frame.data0 = 0;
+		CanSpi_RxFrame_Buffer0.frame.data1 = 0;
+		CanSpi_RxFrame_Buffer0.frame.data2 = 0;
+		CanSpi_RxFrame_Buffer0.frame.data3 = 0;
+		CanSpi_RxFrame_Buffer0.frame.data4 = 0;
+		CanSpi_RxFrame_Buffer0.frame.data5 = 0;
+		CanSpi_RxFrame_Buffer0.frame.data6 = 0;
+		CanSpi_RxFrame_Buffer0.frame.data7 = 0;
+		CanSpi_RxFrame_Buffer1.frame.idType = 0;
+		CanSpi_RxFrame_Buffer1.frame.id = 0;
+		CanSpi_RxFrame_Buffer1.frame.dlc = 0;
+		CanSpi_RxFrame_Buffer1.frame.data0 = 0;
+		CanSpi_RxFrame_Buffer1.frame.data1 = 0;
+		CanSpi_RxFrame_Buffer1.frame.data2 = 0;
+		CanSpi_RxFrame_Buffer1.frame.data3 = 0;
+		CanSpi_RxFrame_Buffer1.frame.data4 = 0;
+		CanSpi_RxFrame_Buffer1.frame.data5 = 0;
+		CanSpi_RxFrame_Buffer1.frame.data6 = 0;
+		CanSpi_RxFrame_Buffer1.frame.data7 = 0;
 	}
 	else
 	{
@@ -321,9 +401,9 @@ static void EcuM_GoSleep(void)
 	HAL_GPIO_DeInit(GPIOD, GPIO_PIN_2);
 	HAL_GPIO_DeInit(GPIOH, GPIO_PIN_0);
 	HAL_GPIO_DeInit(GPIOH, GPIO_PIN_1);
-	__HAL_RCC_GPIOB_CLK_DISABLE();
-	__HAL_RCC_GPIOC_CLK_DISABLE();
-	__HAL_RCC_GPIOH_CLK_DISABLE();
+	//	__HAL_RCC_GPIOB_CLK_DISABLE();
+	//	__HAL_RCC_GPIOC_CLK_DISABLE();
+	//	__HAL_RCC_GPIOH_CLK_DISABLE();
 	HAL_TIM_PWM_DeInit(&htim2);
 	HAL_TIM_PWM_DeInit(&htim3);
 	HAL_TIM_Base_DeInit(&htim5);
