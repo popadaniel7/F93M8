@@ -291,7 +291,7 @@ __attribute__((section(".ccmram"))) uint8 DigitalCluster_WelcomeAnimationFlag = 
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_LeavingAnimationFlag = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_ReadDisplayPowerMode_RegisterValue = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_LcdInit = 0x00;
-__attribute__((section(".ccmram"))) uint8 DigitalCluster_RetValInit = 0x00;
+__attribute__((section(".ccmram"))) uint8 DigitalCluster_RetValInit = 0xFF;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_IgnitionStatus = 0;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_Gear = 0x00;
 __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_HighBeamStatus = 0x00;
@@ -386,6 +386,8 @@ extern __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerPerDcy;
 extern __attribute__((section(".ccmram"))) uint32 DataRecorder_RxSig_VehicleSpeed;
 extern __attribute__((section(".ccmram"))) uint8 EcuM_ResetOccured;
 extern TIM_HandleTypeDef htim3;
+extern __attribute__((section(".ccmram"))) uint8 Dem_DigitalClusterErrorStatus;
+extern __attribute__((section(".ccmram"))) uint8 Dem_ReverseCameraErrorStatus;
 
 void DigitalCluster_SelfTest(void);
 void DigitalCluster_WelcomeAnimationHandler(void);
@@ -406,6 +408,8 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 void DigitalCluster_InitMemory(void);
 void DigitalCluster_HandleDigitalClusterBrightnessLevel(void);
 void DigitalCluster_RefreshDisplayContent(DigitalCluster_DisplayMode_t *displayType);
+
+extern void Dem_SetDtc(uint8 IDPrimary, uint8 Status);
 
 void DigitalCluster_Init(void)
 {
@@ -486,8 +490,12 @@ void DigitalCluster_Init(void)
 		}
 		else
 		{
-			/* Do nothing. */
+			Dem_SetDtc(0x11, 1);
 		}
+	}
+	else
+	{
+		Dem_SetDtc(0x11, 1);
 	}
 }
 void DigitalCluster_InitHandler(void)
@@ -621,89 +629,16 @@ void DigitalCluster_DisplayKMTotalDcy(DigitalCluster_DisplayMode_t *displayType)
 	{
 		/* Do nothing. */
 	}
-	if(pKmDcy != DataRecorder_KilometerPerDcy)
-	{
-		pKmDcy = DataRecorder_KilometerPerDcy;
-		if(10 > DataRecorder_KilometerPerDcy)
-		{
-			FsmcH_FillRectangle(displayType->KmDcy.KMDCYBox.position_x,
-					displayType->KmDcy.KMDCYBox.position_y,
-					displayType->KmDcy.KMDCYBox.width,
-					displayType->KmDcy.KMDCYBox.height,
-					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->KmDcy.KMDCY_Text.position_x,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					DataRecorder_KilometerPerDcy,
-					TFT_TAN,
-					TFT_BLACK);
-			FsmcH_DrawString(203,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					"KM",
-					TFT_TAN,
-					TFT_BLACK);
-		}
-		else if(100 > DataRecorder_KilometerPerDcy)
-		{
-			FsmcH_FillRectangle(displayType->KmDcy.KMDCYBox.position_x,
-					displayType->KmDcy.KMDCYBox.position_y,
-					displayType->KmDcy.KMDCYBox.width,
-					displayType->KmDcy.KMDCYBox.height,
-					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->KmDcy.KMDCY_Text.position_x,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					DataRecorder_KilometerPerDcy,
-					TFT_TAN,
-					TFT_BLACK);
-			FsmcH_DrawString(220,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					"KM",
-					TFT_TAN,
-					TFT_BLACK);
-		}
-		else if(1000 > DataRecorder_KilometerPerDcy)
-		{
-			FsmcH_FillRectangle(displayType->KmDcy.KMDCYBox.position_x,
-					displayType->KmDcy.KMDCYBox.position_y,
-					displayType->KmDcy.KMDCYBox.width,
-					displayType->KmDcy.KMDCYBox.height,
-					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->KmDcy.KMDCY_Text.position_x,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					DataRecorder_KilometerPerDcy,
-					TFT_TAN,
-					TFT_BLACK);
-			FsmcH_DrawString(237,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					"KM",
-					TFT_TAN,
-					TFT_BLACK);
-		}
-		else
-		{
-			FsmcH_FillRectangle(displayType->KmDcy.KMDCYBox.position_x,
-					displayType->KmDcy.KMDCYBox.position_y,
-					displayType->KmDcy.KMDCYBox.width,
-					displayType->KmDcy.KMDCYBox.height,
-					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->KmDcy.KMDCY_Text.position_x,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					DataRecorder_KilometerPerDcy,
-					TFT_TAN,
-					TFT_BLACK);
-			FsmcH_DrawString(254,
-					displayType->KmDcy.KMDCY_Text.position_y,
-					"KM",
-					TFT_TAN,
-					TFT_BLACK);
-		}
-	}
-	else
-	{
-		/* Do nothing. */
-	}
 }
+
 void DigitalCluster_CalculateTime(DigitalCluster_DisplayMode_t *displayType)
 {
+	static uint32 localCnt = 0;
+	char hourStr[4];
+	char minStr[4];
+
+	localCnt++;
+
 	HAL_RTC_GetTime(&hrtc, &getCurrentTime, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, &getCurrentDate, RTC_FORMAT_BIN);
 	DigitalCluster_CalculatedHour = getCurrentTime.Hours;
@@ -713,81 +648,44 @@ void DigitalCluster_CalculateTime(DigitalCluster_DisplayMode_t *displayType)
 	DigitalCluster_CalculatedMonth = getCurrentDate.Month;
 	DigitalCluster_CalculatedYear = getCurrentDate.Year;
 	DigitalCluster_CalculatedWeekDay = getCurrentDate.WeekDay;
-	if(hasTimeHChanged != DigitalCluster_CalculatedHour ||
-			hasTimeMChanged != DigitalCluster_CalculatedMinutes)
+
+	if(localCnt % 50 == 0 && localCnt != 0)
 	{
 		hasTimeHChanged = DigitalCluster_CalculatedHour;
 		hasTimeMChanged = DigitalCluster_CalculatedMinutes;
 
-		if(10 > DigitalCluster_CalculatedHour)
-		{
-			FsmcH_FillRectangle(displayType->Time.TimeBox.position_x,
-					displayType->Time.TimeBox.position_y,
-					displayType->Time.TimeBox.width,
-					displayType->Time.TimeBox.height,
-					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->Time.T_HourText.position_x + 17,
-					displayType->Time.T_HourText.position_y,
-					DigitalCluster_CalculatedHour,
-					TFT_TAN,
-					TFT_BLACK);
-			FsmcH_DrawString(displayType->Time.T_DotDotText.position_x,
-					displayType->Time.T_DotDotText.position_y,
-					displayType->Time.T_DotDotText.text,
-					TFT_TAN,
-					TFT_BLACK);
-		}
-		else
-		{
-			FsmcH_FillRectangle(displayType->Time.TimeBox.position_x,
-					displayType->Time.TimeBox.position_y,
-					displayType->Time.TimeBox.width,
-					displayType->Time.TimeBox.height,
-					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->Time.T_HourText.position_x,
-					displayType->Time.T_HourText.position_y,
-					DigitalCluster_CalculatedHour,
-					TFT_TAN,
-					TFT_BLACK);
-			FsmcH_DrawString(displayType->Time.T_DotDotText.position_x,
-					displayType->Time.T_DotDotText.position_y,
-					displayType->Time.T_DotDotText.text,
-					TFT_TAN,
-					TFT_BLACK);
-		}
-		if(10 > DigitalCluster_CalculatedMinutes)
-		{
-			FsmcH_DrawInteger(displayType->Time.T_MinuteText.position_x,
-					displayType->Time.T_MinuteText.position_y,
-					0,
-					TFT_TAN,
-					TFT_BLACK);
-			FsmcH_DrawInteger(displayType->Time.T_MinuteText.position_x + 17,
-					displayType->Time.T_MinuteText.position_y,
-					DigitalCluster_CalculatedMinutes,
-					TFT_TAN,
-					TFT_BLACK);
-		}
-		else
-		{
-			FsmcH_DrawInteger(displayType->Time.T_MinuteText.position_x,
-					displayType->Time.T_MinuteText.position_y,
-					DigitalCluster_CalculatedMinutes,
-					TFT_TAN,
-					TFT_BLACK);
-		}
-	}
-	else
-	{
-		/* Do nothing. */
+		sprintf(hourStr, "%02u", DigitalCluster_CalculatedHour);
+		sprintf(minStr, "%02u", DigitalCluster_CalculatedMinutes);
+
+		FsmcH_FillRectangle(displayType->Time.TimeBox.position_x,
+				displayType->Time.TimeBox.position_y,
+				displayType->Time.TimeBox.width,
+				displayType->Time.TimeBox.height,
+				TFT_BLACK);
+		FsmcH_DrawString(displayType->Time.T_HourText.position_x,
+				displayType->Time.T_HourText.position_y,
+				hourStr,
+				TFT_TAN,
+				TFT_BLACK);
+		FsmcH_DrawString(displayType->Time.T_DotDotText.position_x,
+				displayType->Time.T_DotDotText.position_y,
+				displayType->Time.T_DotDotText.text,
+				TFT_TAN,
+				TFT_BLACK);
+		FsmcH_DrawString(displayType->Time.T_MinuteText.position_x,
+				displayType->Time.T_MinuteText.position_y,
+				minStr,
+				TFT_TAN,
+				TFT_BLACK);
 	}
 }
+
 void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayType)
 {
 	__disable_irq();
 	DigitalCluster_IsDmuError = EcuM_ResetOccured;
-	DigitalCluster_IsReverseCameraError = RevCam_I2cStatus | RevCam_DcmiStatus;
-	DigitalCluster_IsDigitalClusterError = DigitalCluster_FsmcDmaErrorFlag;
+	DigitalCluster_IsReverseCameraError = Dem_ReverseCameraErrorStatus;
+	DigitalCluster_IsDigitalClusterError = Dem_DigitalClusterErrorStatus;
 	DigitalCluster_IsOutsideTemperatureLow = DigitalCluster_RxSig_OutsideTemperature;
 
 	if(3 >= DigitalCluster_IsOutsideTemperatureLow)
@@ -890,7 +788,7 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 	{
 		if(600 > CCM_Counter)
 		{
-			if(20 > CCM_Counter && pCheckControlMessageId != DigitalCluster_RxSig_CheckControlMessageId) DigitalCluster_BuzzerState = 1;
+			if(20 > CCM_Counter) DigitalCluster_BuzzerState = 1;
 			else if(DigitalCluster_RxSig_CollisionWarning != 2) DigitalCluster_BuzzerState = 0;
 			else
 			{
@@ -936,87 +834,78 @@ void DigitalCluster_DisplayCheckControl(DigitalCluster_DisplayMode_t *displayTyp
 	}
 	__enable_irq();
 }
+
 void DigitalCluster_HandleTurnSignal(DigitalCluster_DisplayMode_t *displayType)
 {
 	TS_Counter++;
-	if(1 == DigitalCluster_RxSig_TurnSignals)
-	{
-		TS_Counter++;
 
-		if(TS_Counter == 100)
-		{
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width - displayType->TurnSignalsBox.TSBox.width / 2,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_BLACK);
-		}
-		else if(TS_Counter == 200)
-		{
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_GREEN);
-		}
-	}
-	else if(2 == DigitalCluster_RxSig_TurnSignals)
+	uint16 x = displayType->TurnSignalsBox.TSBox.position_x;
+	uint16 y = displayType->TurnSignalsBox.TSBox.position_y;
+	uint16 w = displayType->TurnSignalsBox.TSBox.width;
+	uint16 h = displayType->TurnSignalsBox.TSBox.height;
+
+	if (DigitalCluster_RxSig_TurnSignals == 1)
 	{
-		if(TS_Counter == 100)
+		if (TS_Counter == 100)
 		{
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x + displayType->TurnSignalsBox.TSBox.width / 2,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width / 2,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_BLACK);
+			FsmcH_FillRectangle(x + w / 2, y, w / 2, h, TFT_GREEN);
 		}
-		else if(TS_Counter == 200)
+		else if (TS_Counter == 200)
 		{
+			FsmcH_FillRectangle(x + w / 2, y, w / 2, h, TFT_BLACK);
 			TS_Counter = 0;
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_GREEN);
-		}
-	}
-	else if(3 == DigitalCluster_RxSig_TurnSignals)
-	{
-		if(TS_Counter == 100)
-		{
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_BLACK);
-		}
-		else if(TS_Counter == 200)
-		{
-			TS_Counter = 0;
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_GREEN);
-		}
-	}
-	else
-	{
-		if(TS_Counter != 0)
-		{
-			FsmcH_FillRectangle(displayType->TurnSignalsBox.TSBox.position_x,
-					displayType->TurnSignalsBox.TSBox.position_y,
-					displayType->TurnSignalsBox.TSBox.width,
-					displayType->TurnSignalsBox.TSBox.height,
-					TFT_BLACK);
 		}
 		else
 		{
 			/* Do nothing. */
 		}
-		TS_Counter = 0;
+	}
+	else if (DigitalCluster_RxSig_TurnSignals == 2)
+	{
+		if (TS_Counter == 100)
+		{
+			FsmcH_FillRectangle(x, y, w / 2, h, TFT_GREEN);
+		}
+		else if (TS_Counter == 200)
+		{
+			FsmcH_FillRectangle(x, y, w / 2, h, TFT_BLACK);
+			TS_Counter = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else if (DigitalCluster_RxSig_TurnSignals == 3)
+	{
+		if (TS_Counter == 100)
+		{
+			FsmcH_FillRectangle(x, y, w, h, TFT_GREEN);
+		}
+		else if (TS_Counter == 200)
+		{
+			FsmcH_FillRectangle(x, y, w, h, TFT_BLACK);
+			TS_Counter = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		if (TS_Counter != 0)
+		{
+			FsmcH_FillRectangle(x, y, w, h, TFT_BLACK);
+			TS_Counter = 0;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
 	}
 }
+
 void DigitalCluster_HandleCollisionWarning(DigitalCluster_DisplayMode_t *displayType)
 {
 	if(1 == DigitalCluster_RxSig_CollisionWarning)
@@ -1580,7 +1469,7 @@ void DigitalCluster_HandleDigitalClusterBrightnessLevel(void)
 {
 	if(1u == DigitalCluster_RxSig_Rls)
 	{
-		if(999 < htim3.Instance->CCR4)
+		if(2499 < htim3.Instance->CCR4)
 		{
 			htim3.Instance->CCR4 -= 500u;
 		}

@@ -4,8 +4,6 @@
 
 __attribute__((section(".ccmram"))) uint32 FsmcH_MainCounter = 0x00;
 __attribute__((section(".ccmram"))) uint32 FsmcH_Status = 0x00;
-__attribute__((section(".ccmram"))) uint32 FsmcH_DmaStatus = 0x00;
-__attribute__((section(".ccmram"))) uint32 FsmcH_DmaErrArr[7] = {0x00};
 __attribute__((section(".ccmram"))) uint32 FsmcH_InitRetry = 0;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_FsmcDmaErrorFlag;
 extern SRAM_HandleTypeDef hsram1;

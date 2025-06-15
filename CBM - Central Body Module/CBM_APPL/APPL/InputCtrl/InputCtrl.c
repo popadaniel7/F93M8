@@ -197,10 +197,10 @@ void InputCtrl_MainFunction(void)
 		/* Store DTCs in case of errors were detected. */
 		if((StatusList_InputStatus[i].DCYStatus == 1) && (StatusList_InputStatus[i].errorStatus != 0))
 		{
-			Dem_SaveDtc(i + 1, StatusList_InputStatus[i].errorStatus);
+			Dem_SaveDtc(i + 1, 1);
 			StatusList_InputStatus[i].DCYStatus = 2;
 		}
-		else if(StatusList_InputStatus[i].errorStatus == 0) Dem_SaveDtc(i + 1, StatusList_InputStatus[i].errorStatus);
+		else if(StatusList_InputStatus[i].errorStatus == 0) Dem_SaveDtc(i + 1, 0);
 		else
 		{
 			/* Do nothing. */

@@ -36,6 +36,16 @@ BS_:
 BU_: TCB Tester EMC CBS FRBE CBM DMU DEC
 
 
+BO_ 665 KilometerDriveCycle: 8 DMU
+ SG_ Kilometer_Byte7 : 56|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Kilometer_Byte6 : 48|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Kilometer_Byte5 : 40|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Kilometer_Byte4 : 32|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Kilometer_Byte3 : 24|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Kilometer_Byte2 : 16|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Kilometer_Byte1 : 8|8@1+ (1,0) [0|255] ""  DEC
+ SG_ Kilometer_Byte0 : 0|8@1+ (1,0) [0|255] ""  DEC
+
 BO_ 513 BusSystemDateAndTime: 6 DEC
  SG_ Bus_Year : 0|8@1+ (1,0) [0|99] ""  DMU
  SG_ Bus_Second : 40|8@1+ (1,0) [0|59] ""  DMU

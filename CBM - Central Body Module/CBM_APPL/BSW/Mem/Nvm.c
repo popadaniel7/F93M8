@@ -39,8 +39,8 @@ static uint32 NvMBlockDefault_Calibration[NVMBLOCK_CALIBRATION_SIZE] =
 		20, /* Rain sensor calibration data. */
 		255, /* Param_ErrorSettingDebouceThreshold_Calibration */
 		5, /* Param_UndervoltageThreshold_Calibration */
-		15, /* Param_WindshieldWiperFast_Calibration */
-		5, /* Param_WindshieldWiperSlow_Calibration */
+		25, /* Param_WindshieldWiperFast_Calibration */
+		15, /* Param_WindshieldWiperSlow_Calibration */
 		5 /* Param_DoorLockPwmIncrement */
 };
 static uint32 NvMBlockDefault_Coding[NVMBLOCK_CODING_SIZE] =
@@ -100,8 +100,8 @@ void NvM_ReadAll(void)
 		Param_Input_Calibration[3] = NvMBlock_Calibration[3];
 		Param_ErrorSettingDebouceThreshold_Calibration = NvMBlock_Calibration[4];
 		Param_UndervoltageThreshold_Calibration = NvMBlock_Calibration[5];
-		Param_WindshieldWiperSlow_Calibration = NvMBlock_Calibration[6];
-		Param_WindshieldWiperFast_Calibration = NvMBlock_Calibration[7];
+		Param_WindshieldWiperSlow_Calibration = NvMBlock_Calibration[7];
+		Param_WindshieldWiperFast_Calibration = NvMBlock_Calibration[6];
 		Param_DoorLockPwmIncrement = NvMBlock_Calibration[8];
 	}
 	if(NvMBlock_Coding[0] == 0xFFFFFFFF)

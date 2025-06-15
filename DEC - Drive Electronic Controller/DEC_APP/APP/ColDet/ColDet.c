@@ -284,7 +284,7 @@ void ColDet_MainFunction(void)
     {
         localCounter++;
 
-        if(200u < localCounter)
+        if(2000u < localCounter)
         {
             Dem_SetDtc(COLDET_DTC_ID_IR_SENSOR_MALFUNCTION, 1u, 0u);
             ColDet_CanTx_CollisionState = COLLISION_ERROR;

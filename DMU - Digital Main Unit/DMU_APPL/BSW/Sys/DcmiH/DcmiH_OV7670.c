@@ -175,16 +175,22 @@ uint8 DcmiH_OV7670_Init(DCMI_HandleTypeDef *p_hdcmi, DMA_HandleTypeDef *p_hdma_d
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11, GPIO_PIN_SET);
+	__enable_irq();
 	HAL_Delay(1);
+	__disable_irq();
 	retVal = DcmiH_OV7670_Write(0x12, 0x80);
-	while(retVal != 0)
+	do
 	{
 		/* Retry initialization. */
+		__enable_irq();
 		HAL_Delay(1);
+		__disable_irq();
 		retVal = DcmiH_OV7670_Write(0x12, 0x80);
 		RevCam_OV7670InitRetry++;
-	}
+	}while(retVal != 0 && RevCam_OV7670InitRetry < 10);
+	__enable_irq();
 	HAL_Delay(1);
+	__disable_irq();
 	__disable_irq();
 	retVal = DcmiH_OV7670_Config(OV7670_MODE_QVGA_RGB565);
 	return retVal;
@@ -195,7 +201,7 @@ uint8 DcmiH_OV7670_Config(uint32 mode)
 	for(uint32 i = 0; OV7670_reg[i][0] != REG_BATT; i++)
 	{
 		retVal = DcmiH_OV7670_Write(OV7670_reg[i][0], OV7670_reg[i][1]);
-		if(0 != retVal)
+		if(0 != retVal && RevCam_OV7670InitRetry < 10)
 		{
 			/* Retry initialization. */
 			i = 0;

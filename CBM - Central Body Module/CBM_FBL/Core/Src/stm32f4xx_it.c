@@ -22,6 +22,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
+extern uint32_t* FBL_ResetCounterFBL;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -49,6 +50,7 @@ extern TIM_HandleTypeDef htim5;
 void NMI_Handler(void)
 {
   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+	(*FBL_ResetCounterFBL)++;
 	__NVIC_SystemReset();
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
@@ -64,6 +66,7 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
+	(*FBL_ResetCounterFBL)++;
 	__NVIC_SystemReset();
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
@@ -79,6 +82,7 @@ void HardFault_Handler(void)
 void MemManage_Handler(void)
 {
   /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+	(*FBL_ResetCounterFBL)++;
 	__NVIC_SystemReset();
   /* USER CODE END MemoryManagement_IRQn 0 */
   while (1)
@@ -94,6 +98,7 @@ void MemManage_Handler(void)
 void BusFault_Handler(void)
 {
   /* USER CODE BEGIN BusFault_IRQn 0 */
+	(*FBL_ResetCounterFBL)++;
 	__NVIC_SystemReset();
   /* USER CODE END BusFault_IRQn 0 */
   while (1)
@@ -109,6 +114,7 @@ void BusFault_Handler(void)
 void UsageFault_Handler(void)
 {
   /* USER CODE BEGIN UsageFault_IRQn 0 */
+	(*FBL_ResetCounterFBL)++;
 	__NVIC_SystemReset();
   /* USER CODE END UsageFault_IRQn 0 */
   while (1)
@@ -255,6 +261,7 @@ void TIM5_IRQHandler(void)
 void FPU_IRQHandler(void)
 {
   /* USER CODE BEGIN FPU_IRQn 0 */
+	(*FBL_ResetCounterFBL)++;
 	__NVIC_SystemReset();
   /* USER CODE END FPU_IRQn 0 */
   /* USER CODE BEGIN FPU_IRQn 1 */

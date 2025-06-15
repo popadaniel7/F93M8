@@ -70,6 +70,8 @@ extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_RequestedT
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_AutoClimate;
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RxSig_FanValue;
 extern __attribute__((section(".ccmram"))) uint8 EcuM_StopModeActive;
+extern __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerTotal;
+extern __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerPerDcy;
 extern CAN_HandleTypeDef hcan1;
 extern RTC_HandleTypeDef hrtc;
 extern void EcuM_PerformReset(uint8 param);
@@ -95,6 +97,25 @@ void CanH_MainFunction(void)
 				CAN_IT_ERROR;
 		HAL_CAN_ActivateNotification(&hcan1, notificationLocal);
 		CanH_CommunicationState = PARTIAL_COMMUNICATION;
+		CanH_TxHeader.DLC = 1;
+		CanH_TxHeader.IDE = CAN_ID_STD;
+		CanH_TxHeader.StdId = 0x200;
+		CanH_TxData[0] = CanH_AliveCounter;
+		HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
+
+		CanH_TxHeader.DLC = 8;
+		CanH_TxHeader.IDE = CAN_ID_STD;
+		CanH_TxHeader.StdId = 0x299;
+		CanH_AliveCounter++;
+		CanH_TxData[0] = (uint8)(DataRecorder_KilometerTotal >> 24);
+		CanH_TxData[1] = (uint8)(DataRecorder_KilometerTotal >> 16);
+		CanH_TxData[2] = (uint8)(DataRecorder_KilometerTotal >> 8);
+		CanH_TxData[3] = (uint8)(DataRecorder_KilometerTotal);
+		CanH_TxData[4] = (uint8)(DataRecorder_KilometerPerDcy >> 24);
+		CanH_TxData[5] = (uint8)(DataRecorder_KilometerPerDcy >> 16);
+		CanH_TxData[6] = (uint8)(DataRecorder_KilometerPerDcy >> 8);
+		CanH_TxData[7] = (uint8)(DataRecorder_KilometerPerDcy);
+		HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
 	}
 	else
 	{
@@ -162,6 +183,19 @@ void CanH_MainFunction(void)
 			CanH_TxHeader.StdId = 0x200;
 			CanH_AliveCounter++;
 			CanH_TxData[0] = CanH_AliveCounter;
+			HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
+
+			CanH_TxHeader.DLC = 8;
+			CanH_TxHeader.IDE = CAN_ID_STD;
+			CanH_TxHeader.StdId = 0x299;
+			CanH_TxData[0] = (uint8)(DataRecorder_KilometerTotal >> 24);
+			CanH_TxData[1] = (uint8)(DataRecorder_KilometerTotal >> 16);
+			CanH_TxData[2] = (uint8)(DataRecorder_KilometerTotal >> 8);
+			CanH_TxData[3] = (uint8)(DataRecorder_KilometerTotal);
+			CanH_TxData[4] = (uint8)(DataRecorder_KilometerPerDcy >> 24);
+			CanH_TxData[5] = (uint8)(DataRecorder_KilometerPerDcy >> 16);
+			CanH_TxData[6] = (uint8)(DataRecorder_KilometerPerDcy >> 8);
+			CanH_TxData[7] = (uint8)(DataRecorder_KilometerPerDcy);
 			HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
 		}
 		else

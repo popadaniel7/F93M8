@@ -1,6 +1,7 @@
 #include "Dem.h"
 #include "can.h"
 #include <string.h>
+#include "DigitalCluster.h"
 
 __attribute__((section(".ccmram"))) uint32 Dem_MainCounter = 0;
 __attribute__((section(".ccmram"))) uint32 Dem_DTCArray[DEM_NUMBER_OF_DTCS];
@@ -8,12 +9,25 @@ __attribute__((section(".ccmram"))) uint8 Dem_DTCSettingDeactivated = 0;
 __attribute__((section(".ccmram"))) CAN_TxHeaderTypeDef Dem_TxHeader = {0, 0, 0, 0, 0, 0};
 __attribute__((section(".ccmram"))) uint8 Dem_TxData[8] = {0};
 __attribute__((section(".ccmram"))) uint32 Dem_TxMailbox = 0;
+__attribute__((section(".ccmram"))) uint8 Dem_DigitalClusterErrorStatus = 0;
+__attribute__((section(".ccmram"))) uint8 Dem_ReverseCameraErrorStatus = 0;
 extern __attribute__((section(".ccmram"))) uint32 CanH_ErrArr[21];
 extern __attribute__((section(".ccmram"))) uint32 I2cH_ErrArr[9];
 extern __attribute__((section(".ccmram"))) uint32 DcmiH_ErrArr[4];
 extern __attribute__((section(".ccmram"))) uint32 DcmiH_DmaErrArr[7];
-extern __attribute__((section(".ccmram"))) uint32 FsmcH_DmaErrArr[7];
+extern __attribute__((section(".ccmram"))) uint32 RevCam_DcmiStatus;
+extern __attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus;
+extern __attribute__((section(".ccmram"))) uint8 RevCam_InitStatus;
+extern __attribute__((section(".ccmram"))) uint32 RevCam_I2cInitRetry;
+extern __attribute__((section(".ccmram"))) uint32 RevCam_DcmiInitRetry;
+extern __attribute__((section(".ccmram"))) uint32 RevCam_OV7670InitRetry;
 extern __attribute__((section(".ncr"))) uint32 Dcm_AliveCounter;
+extern __attribute__((section(".ccmram"))) uint32 FsmcH_Status;
+extern __attribute__((section(".ccmram"))) uint32 FsmcH_InitRetry;
+extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_RetValInit;
+extern __attribute__((section(".ccmram"))) uint32 DigitalCluster_InitRetry;
+extern __attribute__((section(".ccmram"))) uint16 DigitalCluster_ReadDisplayStatus_RegisterValue;
+extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_ReadDisplayPowerMode_RegisterValue;
 
 void Dem_MainFunction(void);
 void Dem_SetDtc(uint8 IDPrimary, uint8 Status);
@@ -27,7 +41,6 @@ void Dem_ClearDtc(void)
 		if(i < 7)
 		{
 			DcmiH_DmaErrArr[i] = 0;
-			FsmcH_DmaErrArr[i] = 0;
 		}
 		else
 		{
@@ -121,17 +134,55 @@ void Dem_MainFunction(void)
 	{
 		if(0 != CanH_ErrArr[i]) Dem_SetDtc(DEM_COMMUNICATION_ERROR_ID, 1);
 		else Dem_SetDtc(DEM_COMMUNICATION_ERROR_ID, 0);
+
 		if(i < 7)
 		{
-			if(0 != DcmiH_DmaErrArr[i]) Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 1);
-			else Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 0);
-			if(0 != FsmcH_DmaErrArr[i]) Dem_SetDtc(DEM_DIGITALCLUSTER_CONTROLINTERFACE_MALFUNCTION_ID, 1);
-			else Dem_SetDtc(DEM_DIGITALCLUSTER_CONTROLINTERFACE_MALFUNCTION_ID, 0);
+			if(0 != DcmiH_DmaErrArr[i] ||
+					10 < RevCam_DcmiInitRetry ||
+					0 != RevCam_DcmiStatus ||
+					10 < RevCam_OV7670InitRetry || (0 != RevCam_InitStatus && 0xFF != RevCam_InitStatus))
+			{
+				Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 1);
+				Dem_ReverseCameraErrorStatus = 1;
+			}
+			else
+			{
+				Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 0);
+				Dem_ReverseCameraErrorStatus = 0;
+			}
+
+			if(4 == FsmcH_Status ||
+					10 < FsmcH_InitRetry ||
+					(0 != DigitalCluster_RetValInit && 0xFF != DigitalCluster_RetValInit) ||
+					10 < DigitalCluster_InitRetry ||
+					DIGITALCLUSTER_LCD_DISPLAYSTATUS_REGISTERVALUE != DigitalCluster_ReadDisplayStatus_RegisterValue ||
+					DIGITALCLUSTER_LCD_POWERMODE_REGISTERVALUE != DigitalCluster_ReadDisplayPowerMode_RegisterValue)
+			{
+				Dem_SetDtc(DEM_DIGITALCLUSTER_CONTROLINTERFACE_MALFUNCTION_ID, 1);
+				Dem_DigitalClusterErrorStatus = 1;
+			}
+			else
+			{
+				Dem_SetDtc(DEM_DIGITALCLUSTER_CONTROLINTERFACE_MALFUNCTION_ID, 0);
+				Dem_DigitalClusterErrorStatus = 0;
+			}
 		}
 		if (i < 4)
 		{
-			if(0 != DcmiH_ErrArr[i]) Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 1);
-			else Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 0);
+			if(0 != DcmiH_ErrArr[i] ||
+					10 < RevCam_DcmiInitRetry ||
+					0 != RevCam_DcmiStatus ||
+					10 < RevCam_OV7670InitRetry ||
+					(0 != RevCam_InitStatus && 0xFF != RevCam_InitStatus))
+			{
+				Dem_ReverseCameraErrorStatus = 1;
+				Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 1);
+			}
+			else
+			{
+				Dem_ReverseCameraErrorStatus = 0;
+				Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 0);
+			}
 		}
 		else
 		{
@@ -139,8 +190,19 @@ void Dem_MainFunction(void)
 		}
 		if(i < 9)
 		{
-			if(0 != I2cH_ErrArr[i]) Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 1);
-			else Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 0);
+			if(0 != I2cH_ErrArr[i]||
+					10 < RevCam_OV7670InitRetry ||
+					(0 != RevCam_InitStatus && 0xFF != RevCam_InitStatus) ||
+					10 < RevCam_I2cInitRetry)
+			{
+				Dem_ReverseCameraErrorStatus = 1;
+				Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 1);
+			}
+			else
+			{
+				Dem_ReverseCameraErrorStatus = 0;
+				Dem_SetDtc(DEM_REVERSECAMERA_DCMIINTERFACE_MALFUNCTION_ID, 0);
+			}
 		}
 		else
 		{

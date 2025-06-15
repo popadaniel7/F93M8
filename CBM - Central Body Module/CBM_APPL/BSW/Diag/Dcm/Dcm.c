@@ -22,10 +22,10 @@ extern uint8 Dem_ControlDtcSettingStatus;
 /* Software versions. */
 static SWV Dcm_SWVersion =
 {
-		0x02, /* SW */
-		0x02, /* FBL */
-		0x02, /* CODING */
-		0x02  /* CALIBRATION */
+		30, /* SW */
+		30, /* FBL */
+		30, /* CODING */
+		30  /* CALIBRATION */
 };
 /* FUNCTIONS START */
 void Dcm_MainFunction(void);
@@ -110,8 +110,8 @@ static void DiagService_CDTCS_ControlDTCSetting(void)
 
 static void DiagService_CC_CommunicationControl(void)
 {
-	if(Dcm_DiagServiceRequest_Frame.frame.data2 == 0x01) CanSpi_Communication_Status = CC_ACTIVE;
-	else if(Dcm_DiagServiceRequest_Frame.frame.data2 == 0x00) CanSpi_Communication_Status = FULL_COMMUNICATION;
+	if(Dcm_DiagServiceRequest_Frame.frame.data2 == 0x00) CanSpi_Communication_Status = CC_ACTIVE;
+	else if(Dcm_DiagServiceRequest_Frame.frame.data2 == 0x01) CanSpi_Communication_Status = FULL_COMMUNICATION;
 	else
 	{
 		/* Do nothing. */
@@ -956,7 +956,7 @@ void Dcm_MainFunction(void)
 	/* Main counter. */
 	static uint32 Dcm_MainCounter = 0;
 	/* Increment time without reset. */
-	Dcm_AliveCounter++;
+	Dcm_AliveCounter += 5;
 	/* Set diagnostic session to default. */
 	if(Dcm_MainCounter == 0) Dcm_DiagnosticSession = DEFAULT;
 	else

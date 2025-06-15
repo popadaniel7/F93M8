@@ -12,6 +12,8 @@ typedef struct
 {
 	uint8 SoftwareVersion;
 	uint8 FlashBootLoaderVersion;
+	uint8 padding1;
+	uint8 padding2;
 }SWV;
 /* DIAGNOSTIC SESSION DATA TYPE */
 typedef enum
@@ -26,8 +28,10 @@ typedef enum
 typedef void (*Dcm_FuncPtr)();
 SWV Dcm_SWVersion =
 {
-		0x02, /* SW */
-		0x02, /* FBL */
+		30, /* SW */
+		30, /* FBL */
+		0xFF,
+		0xFF
 };
 __attribute__((section(".ncr"))) DiagState Dcm_DiagnosticSession = 0x00;
 __attribute__((section(".ncr"))) uint32 Dcm_AliveCounter = 0x00;
@@ -36,6 +40,8 @@ __attribute__((section(".ccmram"))) CAN_TxHeaderTypeDef Dcm_TxHeader = {0, 0, 0,
 __attribute__((section(".ccmram"))) uint8 Dcm_TxData[8] = {0};
 __attribute__((section(".ccmram"))) uint32 Dcm_TxMailbox = 0;
 extern CAN_HandleTypeDef hcan1;
+extern __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerPerDcy;
+extern __attribute__((section(".ccmram"))) uint32 DataRecorder_KilometerTotal;
 extern __attribute__((section(".ccmram"))) uint32 Dem_DTCArray[DEM_NUMBER_OF_DTCS];
 extern __attribute__((section(".ccmram"))) uint8 CanH_DiagArray[8];
 extern __attribute__((section(".ccmram"))) uint8 CanH_RequestBusSleep;
@@ -55,24 +61,26 @@ extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_ShutOffDisplayFl
 extern __attribute__((section(".ccmram"))) uint8 DigitalCluster_ReadDisplaySelfDiagnosticsResult;
 
 void Dcm_MainFunction(void);
-void DiagRoutine_DSC_DefaultSession(void);
-void DiagRoutine_DSC_ExtendedSession(void);
-void DiagRoutine_DSC_ProgrammingSession(void);
-void DiagRoutine_DSC_CodingSession(void);
-void DiagRoutine_ER_HardReset(void);
-void DiagRoutine_ER_SoftReset(void);
-void DiagRoutine_TP_TesterPresent(void);
-void DiagRoutine_CDTCI_ClearDiagnosticInformation(void);
-void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void);
-void DiagRoutine_RDBI_ReadSWData(void);
-void DiagRoutine_RDBI_ReadActiveDiagnosticSession(void);
-void DiagRoutine_RDBI_ReadAliveTime(void);
-void DiagRoutine_RDBPI_ReadCameraStatus(void);
-void DiagRoutine_RDBPI_ReadDisplayStatus(void);
-void DiagRoutine_CC_CommunicationControl(void);
-void DiagRoutine_CDTCS_ControlDTCSetting(void);
-void DiagRoutine_RC_DisplaySelfTest(void);
-void DiagRoutine_RC_CameraDisplay(void);
+void DiagRequest_DSC_DefaultSession(void);
+void DiagRequest_DSC_ExtendedSession(void);
+void DiagRequest_DSC_ProgrammingSession(void);
+void DiagRequest_DSC_CodingSession(void);
+void DiagRequest_ER_HardReset(void);
+void DiagRequest_ER_SoftReset(void);
+void DiagRequest_TP_TesterPresent(void);
+void DiagRequest_CDTCI_ClearDiagnosticInformation(void);
+void DiagRequest_RDTCI_ReadDTCInformationSupportedDtc(void);
+void DiagRequest_RDBI_ReadSWData(void);
+void DiagRequest_RDBI_ReadActiveDiagnosticSession(void);
+void DiagRequest_RDBI_ReadAliveTime(void);
+void DiagRequest_RDBPI_ReadCameraStatus(void);
+void DiagRequest_RDBPI_ReadDisplayStatus(void);
+void DiagRequest_CC_CommunicationControl(void);
+void DiagRequest_CDTCS_ControlDTCSetting(void);
+void DiagRequest_RC_DisplaySelfTest(void);
+void DiagRequest_RC_CameraDisplay(void);
+void DiagRequest_RC_WriteKM(void);
+void DiagRequest_RC_ReadKM(void);
 extern void EcuM_PerformReset(uint8 param);
 extern void Dem_ClearDtc(void);
 extern void Nvm_WriteAll(void);
@@ -83,28 +91,28 @@ typedef struct
 }Dcm_RDBPI_Table_t;
 Dcm_RDBPI_Table_t Dcm_RDBPI_Table[] =
 {
-		{DiagRoutine_RDBPI_ReadCameraStatus},
-		{DiagRoutine_RDBPI_ReadDisplayStatus},
+		{DiagRequest_RDBPI_ReadCameraStatus},
+		{DiagRequest_RDBPI_ReadDisplayStatus},
 };
 void Dcm_MainFunction(void)
 {
-	Dcm_AliveCounter++;
+	Dcm_AliveCounter += 5;
 	if(Dcm_MainCounter == 0) Dcm_DiagnosticSession = DEFAULT;
 	else
 	{
 		/* Do nothing. */
 	}
-	if(0x3E == CanH_DiagArray[1]) DiagRoutine_TP_TesterPresent();
+	if(0x3E == CanH_DiagArray[1]) DiagRequest_TP_TesterPresent();
 	else
 	{
 		/* Do nothing. */
 	}
-	if(0x28 == CanH_DiagArray[1]) DiagRoutine_CC_CommunicationControl();
+	if(0x28 == CanH_DiagArray[1]) DiagRequest_CC_CommunicationControl();
 	else
 	{
 		/* Do nothing. */
 	}
-	if(0x85 == CanH_DiagArray[1]) DiagRoutine_CDTCS_ControlDTCSetting();
+	if(0x85 == CanH_DiagArray[1]) DiagRequest_CDTCS_ControlDTCSetting();
 	else
 	{
 		/* Do nothing. */
@@ -112,19 +120,19 @@ void Dcm_MainFunction(void)
 	if(CanH_DiagArray[1] == 0x10)
 	{
 		/* DEFAULT */
-		if(CanH_DiagArray[2] == 0x01) DiagRoutine_DSC_DefaultSession();
+		if(CanH_DiagArray[2] == 0x01) DiagRequest_DSC_DefaultSession();
 		else
 		{
 			/* Do nothing. */
 		}
 		/* EXTENDED */
-		if(CanH_DiagArray[2] == 0x03) DiagRoutine_DSC_ExtendedSession();
+		if(CanH_DiagArray[2] == 0x03) DiagRequest_DSC_ExtendedSession();
 		else
 		{
 			/* Do nothing. */
 		}
 		/* PROGRAMMING */
-		if(CanH_DiagArray[2] == 0x02 && Dcm_DiagnosticSession == EXTENDED) DiagRoutine_DSC_ProgrammingSession();
+		if(CanH_DiagArray[2] == 0x02 && Dcm_DiagnosticSession == EXTENDED) DiagRequest_DSC_ProgrammingSession();
 		else
 		{
 			/* Do nothing. */
@@ -134,31 +142,31 @@ void Dcm_MainFunction(void)
 	{
 		/* Do nothing. */
 	}
-	if(CanH_DiagArray[3] == 0x86 && CanH_DiagArray[2] == 0xF1 && CanH_DiagArray[1] == 0x22) DiagRoutine_RDBI_ReadActiveDiagnosticSession();
+	if(CanH_DiagArray[3] == 0x86 && CanH_DiagArray[2] == 0xF1 && CanH_DiagArray[1] == 0x22) DiagRequest_RDBI_ReadActiveDiagnosticSession();
 	else
 	{
 		/* Do nothing. */
 	}
 	/* Execute hard reset. */
-	if(CanH_DiagArray[1] == 0x11 && CanH_DiagArray[2] == 0x01) DiagRoutine_ER_HardReset();
+	if(CanH_DiagArray[1] == 0x11 && CanH_DiagArray[2] == 0x01) DiagRequest_ER_HardReset();
 	else
 	{
 		/* Do nothing. */
 	}
 	/* Execute soft reset. */
-	if(CanH_DiagArray[1] == 0x11 && CanH_DiagArray[2] == 0x03) DiagRoutine_ER_SoftReset();
+	if(CanH_DiagArray[1] == 0x11 && CanH_DiagArray[2] == 0x03) DiagRequest_ER_SoftReset();
 	else
 	{
 		/* Do nothing. */
 	}
 	/* Execute clear DTC. */
-	if(CanH_DiagArray[1] == 0x14) DiagRoutine_CDTCI_ClearDiagnosticInformation();
+	if(CanH_DiagArray[1] == 0x14) DiagRequest_CDTCI_ClearDiagnosticInformation();
 	else
 	{
 		/* Do nothing. */
 	}
 	/* Execute read DTC. */
-	if(CanH_DiagArray[1] == 0x19) DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc();
+	if(CanH_DiagArray[1] == 0x19) DiagRequest_RDTCI_ReadDTCInformationSupportedDtc();
 	else
 	{
 		/* Do nothing. */
@@ -168,19 +176,38 @@ void Dcm_MainFunction(void)
 	{
 		if(CanH_DiagArray[1] == 0x31)
 		{
+			if(CanH_DiagArray[4] == 0x30) DiagRequest_RC_ReadKM();
+			else
+			{
+				/* Do nothing. */
+			}
+			if(CanH_DiagArray[4] == 0x31) DiagRequest_RC_WriteKM();
+			else
+			{
+				/* Do nothing. */
+			}
+
 			if(CanH_DiagArray[2] == 0x01)
 			{
-				if(CanH_DiagArray[3] == 0x3E && CanH_DiagArray[4] == 0x3E) DiagRoutine_RC_DisplaySelfTest();
+				if(CanH_DiagArray[3] == 0x3E && CanH_DiagArray[4] == 0x3E) DiagRequest_RC_DisplaySelfTest();
 				else
 				{
 					/* Do nothing. */
 				}
-				if(CanH_DiagArray[3] == 0x3F && CanH_DiagArray[4] == 0x3F) DiagRoutine_RC_CameraDisplay();
+				if(CanH_DiagArray[3] == 0x3F && CanH_DiagArray[4] == 0x3F) DiagRequest_RC_CameraDisplay();
 				else
 				{
 					/* Do nothing. */
 				}
 			}
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
 		}
 		/* Read data routines. */
 		if(CanH_DiagArray[1] == 0x2A)
@@ -206,7 +233,7 @@ void Dcm_MainFunction(void)
 		{
 			if(CanH_DiagArray[2] == 0x00)
 			{
-				if(CanH_DiagArray[3] == 0x05) DiagRoutine_RDBI_ReadAliveTime();
+				if(CanH_DiagArray[3] == 0x05) DiagRequest_RDBI_ReadAliveTime();
 				else
 				{
 					/* Do nothing. */
@@ -216,7 +243,7 @@ void Dcm_MainFunction(void)
 			{
 				/* Do nothing. */
 			}
-			if(CanH_DiagArray[2] == 0xF1 && CanH_DiagArray[3] == 0x80) DiagRoutine_RDBI_ReadSWData();
+			if(CanH_DiagArray[2] == 0xF1 && CanH_DiagArray[3] == 0x80) DiagRequest_RDBI_ReadSWData();
 			else
 			{
 				/* Do nothing. */
@@ -250,7 +277,74 @@ void Dcm_MainFunction(void)
 	}
 	Dcm_MainCounter++;
 }
-void DiagRoutine_RDBPI_ReadCameraStatus(void)
+
+void DiagRequest_RC_WriteKM(void)
+{
+	Dcm_TxHeader.DLC = 7;
+	Dcm_TxHeader.StdId = 0x703;
+	Dcm_TxData[0] = 7;
+	Dcm_TxData[1] = 0x71;
+	Dcm_TxData[2] = 0x00;
+	Dcm_TxData[3] = 0x00;
+	Dcm_TxData[4] = 0x31;
+	Dcm_TxData[5] = 0;
+	Dcm_TxData[6] = 0;
+	Dcm_TxData[7] = 0;
+
+	DataRecorder_KilometerTotal = (CanH_DiagArray[7] << 16) | (CanH_DiagArray[6] << 8) | (CanH_DiagArray[5]);
+
+	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+}
+
+void DiagRequest_RC_ReadKM(void)
+{
+	Dcm_TxHeader.DLC = 8;
+	Dcm_TxHeader.StdId = 0x703;
+	Dcm_TxData[0] = 7;
+	Dcm_TxData[1] = 0x71;
+	Dcm_TxData[2] = 0x00;
+	Dcm_TxData[3] = 0x00;
+	Dcm_TxData[4] = 0x30;
+	Dcm_TxData[5] = (uint8)(DataRecorder_KilometerTotal >> 24);
+	Dcm_TxData[6] = (uint8)(DataRecorder_KilometerTotal >> 16);
+	Dcm_TxData[7] = (uint8)(DataRecorder_KilometerTotal >> 8);
+	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+
+	__enable_irq();
+	HAL_Delay(5);
+	__disable_irq();
+
+	Dcm_TxHeader.DLC = 8;
+	Dcm_TxHeader.StdId = 0x703;
+	Dcm_TxData[0] = 7;
+	Dcm_TxData[1] = 0x71;
+	Dcm_TxData[2] = 0x00;
+	Dcm_TxData[3] = 0x00;
+	Dcm_TxData[4] = 0x30;
+	Dcm_TxData[5] = (uint8)(DataRecorder_KilometerTotal);
+	Dcm_TxData[6] = (uint8)(DataRecorder_KilometerPerDcy >> 24);
+	Dcm_TxData[7] = (uint8)(DataRecorder_KilometerPerDcy >> 16);
+	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+
+	__enable_irq();
+	HAL_Delay(5);
+	__disable_irq();
+
+
+	Dcm_TxHeader.DLC = 8;
+	Dcm_TxHeader.StdId = 0x703;
+	Dcm_TxData[0] = 7;
+	Dcm_TxData[1] = 0x71;
+	Dcm_TxData[2] = 0x00;
+	Dcm_TxData[3] = 0x00;
+	Dcm_TxData[4] = 0x30;
+	Dcm_TxData[5] = (uint8)(DataRecorder_KilometerPerDcy >> 8);
+	Dcm_TxData[6] = (uint8)(DataRecorder_KilometerPerDcy);
+	Dcm_TxData[7] = 0;
+	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+}
+
+void DiagRequest_RDBPI_ReadCameraStatus(void)
 {
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
@@ -264,7 +358,7 @@ void DiagRoutine_RDBPI_ReadCameraStatus(void)
 	Dcm_TxData[7] = RevCam_RxSig_ReverseCameraRequest;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_RDBPI_ReadDisplayStatus(void)
+void DiagRequest_RDBPI_ReadDisplayStatus(void)
 {
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
@@ -278,7 +372,7 @@ void DiagRoutine_RDBPI_ReadDisplayStatus(void)
 	Dcm_TxData[7] = DigitalCluster_ShutOffDisplayFlag;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_DSC_DefaultSession(void)
+void DiagRequest_DSC_DefaultSession(void)
 {
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
 	Dcm_TxHeader.StdId = 0x703;
@@ -293,7 +387,7 @@ void DiagRoutine_DSC_DefaultSession(void)
 	Dcm_DiagnosticSession = DEFAULT;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_DSC_ExtendedSession(void)
+void DiagRequest_DSC_ExtendedSession(void)
 {
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
@@ -308,7 +402,7 @@ void DiagRoutine_DSC_ExtendedSession(void)
 	Dcm_DiagnosticSession = EXTENDED;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_DSC_ProgrammingSession(void)
+void DiagRequest_DSC_ProgrammingSession(void)
 {
 	__disable_irq();
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
@@ -325,10 +419,13 @@ void DiagRoutine_DSC_ProgrammingSession(void)
 	Nvm_WriteAll();
 	__enable_irq();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	__enable_irq();
 	HAL_Delay(1);
+	__disable_irq();
+
 	EcuM_PerformReset(0);
 }
-void DiagRoutine_ER_HardReset(void)
+void DiagRequest_ER_HardReset(void)
 {
 	__disable_irq();
 	Dcm_TxHeader.DLC = 3;
@@ -345,10 +442,12 @@ void DiagRoutine_ER_HardReset(void)
 	Nvm_WriteAll();
 	__enable_irq();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	__enable_irq();
 	HAL_Delay(1);
+	__disable_irq();
 	EcuM_PerformReset(0);
 }
-void DiagRoutine_ER_SoftReset(void)
+void DiagRequest_ER_SoftReset(void)
 {
 	__disable_irq();
 	Dcm_TxHeader.DLC = 3;
@@ -365,10 +464,12 @@ void DiagRoutine_ER_SoftReset(void)
 	Nvm_WriteAll();
 	__enable_irq();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	__enable_irq();
 	HAL_Delay(1);
+	__disable_irq();
 	EcuM_PerformReset(0);
 }
-void DiagRoutine_TP_TesterPresent(void)
+void DiagRequest_TP_TesterPresent(void)
 {
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
@@ -389,7 +490,7 @@ void DiagRoutine_TP_TesterPresent(void)
 	CanH_NoCommCounter = 0;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_CDTCI_ClearDiagnosticInformation(void)
+void DiagRequest_CDTCI_ClearDiagnosticInformation(void)
 {
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
@@ -404,7 +505,7 @@ void DiagRoutine_CDTCI_ClearDiagnosticInformation(void)
 	Dem_ClearDtc();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void)
+void DiagRequest_RDTCI_ReadDTCInformationSupportedDtc(void)
 {
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
@@ -417,7 +518,9 @@ void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_TxData[6] = Dem_DTCArray[3];
 	Dcm_TxData[7] = Dem_DTCArray[4];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	__enable_irq();
 	HAL_Delay(5);
+	__disable_irq();
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
@@ -429,7 +532,9 @@ void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_TxData[6] = Dem_DTCArray[8];
 	Dcm_TxData[7] = Dem_DTCArray[9];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	__enable_irq();
 	HAL_Delay(5);
+	__disable_irq();
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
@@ -441,7 +546,9 @@ void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_TxData[6] = Dem_DTCArray[13];
 	Dcm_TxData[7] = Dem_DTCArray[14];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
+	__enable_irq();
 	HAL_Delay(5);
+	__disable_irq();
 	Dcm_TxHeader.DLC = 6;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 5;
@@ -452,7 +559,7 @@ void DiagRoutine_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_TxData[5] = Dem_DTCArray[17];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_RDBI_ReadSWData(void)
+void DiagRequest_RDBI_ReadSWData(void)
 {
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
@@ -462,11 +569,11 @@ void DiagRoutine_RDBI_ReadSWData(void)
 	Dcm_TxData[3] = CanH_DiagArray[3];
 	Dcm_TxData[4] = Dcm_SWVersion.FlashBootLoaderVersion;
 	Dcm_TxData[5] = Dcm_SWVersion.SoftwareVersion;
-	Dcm_TxData[6] = 1;
-	Dcm_TxData[7] = 1;
+	Dcm_TxData[6] = Dcm_SWVersion.padding1;
+	Dcm_TxData[7] = Dcm_SWVersion.padding2;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_RDBI_ReadActiveDiagnosticSession(void)
+void DiagRequest_RDBI_ReadActiveDiagnosticSession(void)
 {
 	Dcm_TxHeader.DLC = 5;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
@@ -477,7 +584,7 @@ void DiagRoutine_RDBI_ReadActiveDiagnosticSession(void)
 	Dcm_TxData[4] = Dcm_DiagnosticSession;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_RDBI_ReadAliveTime(void)
+void DiagRequest_RDBI_ReadAliveTime(void)
 {
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
@@ -491,22 +598,22 @@ void DiagRoutine_RDBI_ReadAliveTime(void)
 	Dcm_TxData[7] = (uint8)(Dcm_AliveCounter);
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_CC_CommunicationControl(void)
+void DiagRequest_CC_CommunicationControl(void)
 {
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
 	Dcm_TxData[0] = 0x02;
 	Dcm_TxData[1] = CanH_DiagArray[1] + 0x40;
 	Dcm_TxData[2] = CanH_DiagArray[2];
-	if(CanH_DiagArray[2] == 0) CanH_CommunicationState = FULL_COMMUNICATION;
-	else if(CanH_DiagArray[2] == 1) CanH_CommunicationState = CC_ACTIVE;
+	if(CanH_DiagArray[2] == 1) CanH_CommunicationState = FULL_COMMUNICATION;
+	else if(CanH_DiagArray[2] == 0) CanH_CommunicationState = CC_ACTIVE;
 	else
 	{
 		/* Do nothing. */
 	}
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_CDTCS_ControlDTCSetting(void)
+void DiagRequest_CDTCS_ControlDTCSetting(void)
 {
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
@@ -521,7 +628,7 @@ void DiagRoutine_CDTCS_ControlDTCSetting(void)
 	}
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_RC_DisplaySelfTest(void)
+void DiagRequest_RC_DisplaySelfTest(void)
 {
 	Dcm_TxHeader.DLC = 5;
 	Dcm_TxHeader.StdId = 0x703;
@@ -536,7 +643,7 @@ void DiagRoutine_RC_DisplaySelfTest(void)
 	DigitalCluster_IsSelfTestRequested = 1;
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
 }
-void DiagRoutine_RC_CameraDisplay(void)
+void DiagRequest_RC_CameraDisplay(void)
 {
 	Dcm_TxHeader.DLC = 5;
 	Dcm_TxHeader.StdId = 0x703;

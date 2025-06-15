@@ -8,6 +8,7 @@
 
 __attribute__((section(".ncr"))) uint32 EcuM_ResetCounter[13];
 __attribute__((section(".ncr"))) uint32 EcuM_ResetFlag[13];
+__attribute__((section(".ncr"))) uint8 EcuM_ResetCounterFBL;
 __attribute__((section(".ccmram"))) uint8 EcuM_State = 0;
 __attribute__((section(".ccmram"))) uint32 EcuM_MainCounter = 0;
 __attribute__((section(".ccmram"))) uint8 EcuM_ResetOccured = 0;
@@ -36,11 +37,14 @@ void EcuM_PerformReset(uint8 param)
 	{
 		EcuM_ResetCounter[param]++;
 		EcuM_ResetFlag[param] = 1;
+		EcuM_ResetCounterFBL++;
+		RCC->CSR |= RCC_CSR_RMVF;
 	}
 	else
 	{
 		/* Do nothing. */
 	}
+	RCC->CSR |= RCC_CSR_RMVF;
 	__NVIC_SystemReset();
 }
 void EcuM_MainFunction(void)
@@ -157,7 +161,9 @@ void EcuM_DeInitGpio(void)
 }
 void EcuM_GoToSleep(void)
 {
+	__enable_irq();
 	HAL_Delay(1);
+	__disable_irq();
 	__disable_irq();
 	HAL_SuspendTick();
 	HAL_DCMI_Stop(&hdcmi);

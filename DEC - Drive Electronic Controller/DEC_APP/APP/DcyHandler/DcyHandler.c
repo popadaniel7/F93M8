@@ -94,7 +94,8 @@ void DcyHandler_MainFunction(void)
     }
     else
     {
-        /* Do nothing. */
+        DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
+        DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_INGITION_ON;
     }
 
     if(1u == DcyHandler_CanRx_ResetDcy)

@@ -947,9 +947,9 @@ void ComMaster_MainFunction(void)
 
     if(8u == ComMaster_TxSignal_VehicleStatus)
     {
-        if(253u == ComMaster_RxSignal_StatusIgn)
+        if(1u != ComMaster_TxSignal_Ignition || 2u !=  ComMaster_TxSignal_Ignition)
         {
-            ComMaster_TxSignal_Ignition = 254u;
+            ComMaster_TxSignal_Ignition = 1u;
         }
         else
         {

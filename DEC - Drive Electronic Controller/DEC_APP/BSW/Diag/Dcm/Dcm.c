@@ -60,10 +60,10 @@ uint8 response_dtc[2u + DEM_NUMBER_OF_DTCS];
 uint8 response_read[sizeof(EncCal_VODataComplete) + 4u] = {0u};
 uint8 Dcm_SwVersion[4u] =
 {
-        2u, // FLASH BOOTLOADER
-        2u, // APPLICATION
-        2u, // CODING
-        2u  // CALIBRATION
+        30u, // FLASH BOOTLOADER
+        30u, // APPLICATION
+        30u, // CODING
+        30u  // CALIBRATION
 };
 
 extern uint8 storedData_04[ENCCAL_CODING_SIZE];
@@ -178,7 +178,15 @@ void Dcm_MainFunction(void)
 void Dcm_DSC_DefaultSession(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    DiagMaster_ActiveSessionState = 1u;
+
+    if(0x6FF == DiagMaster_ActiveId)
+    {
+        DiagMaster_ActiveSessionState = 1u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 void Dcm_DSC_ProgrammingSession(uint8* data)
@@ -200,38 +208,63 @@ void Dcm_DSC_ProgrammingSession(uint8* data)
 void Dcm_DSC_ExtendedSession(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    DiagMaster_ActiveSessionState = 3u;
+
+    if(0x6FF == DiagMaster_ActiveId)
+    {
+        DiagMaster_ActiveSessionState = 3u;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 void Dcm_DSC_CodingSession(uint8* data){/*empty*/}
 void Dcm_DSC_CalibrationSession(uint8* data){/*empty*/}
 void Dcm_ER_HardReset(uint8* data)
 {
     (void)data;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x01u;
-    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
-            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
-            ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-    Nvm_WriteAll();
-    McuSm_PerformResetHook(0xDFDFu, 0u);
+
+    if(0x6FF == DiagMaster_ActiveId)
+    {
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x01u;
+        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+        Nvm_WriteAll();
+        McuSm_PerformResetHook(0xDFDFu, 0u);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 void Dcm_ER_SoftReset(uint8* data)
 {
     (void)data;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
-    Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x03u;
-    Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
-            (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
-            ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
-    Nvm_WriteAll();
-    McuSm_PerformResetHook(0xDFDFu, 0u);
+
+    if(0x6FF == DiagMaster_ActiveId)
+    {
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId = 0x6FFU;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] = 0x02u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[1u] = 0x51u;
+        Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[2u] = 0x03u;
+        Can_IsoTp_SendFrame((uint16)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxMsg.messageId,
+                (uint8*)Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData,
+                ((Dcm_Receive_DiagnosticMessageBuffer[0u].diagnosticMessage.rxData[0u] & 0x0Fu) + 1u));
+        Nvm_WriteAll();
+        McuSm_PerformResetHook(0xDFDFu, 0u);
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
 }
 
 void Dcm_TP_TesterPresent(uint8* data)
@@ -243,19 +276,34 @@ void Dcm_RDTCI_ReadSupportDTCInformation(uint8* data){/*empty*/}
 void Dcm_CDTCI_ClearDTCInformation(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    Dem_ClearDtc();
+    if(0x6FF == DiagMaster_ActiveId)
+    {
+        Dem_ClearDtc();
+    }
+    else
+    {
+        /* Do nothing. */
+    }
 }
 
 void Dcm_CC_CommunicationControl(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    if(1u == data[2u])
+
+    if(0x6FF == DiagMaster_ActiveId)
     {
-        Dcm_SwitchTxOff = 0u;
-    }
-    else if(0u == data[2u])
-    {
-        Dcm_SwitchTxOff = 1u;
+        if(1u == data[2u])
+        {
+            Dcm_SwitchTxOff = 0u;
+        }
+        else if(0u == data[2u])
+        {
+            Dcm_SwitchTxOff = 1u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
     }
     else
     {
@@ -266,13 +314,21 @@ void Dcm_CC_CommunicationControl(uint8* data)
 void Dcm_CDTCS_ControlDTCSetting(uint8* data)
 {
     data[1u] = data[1u] + 0x40u;
-    if(1u == data[2u])
+
+    if(0x6FF == DiagMaster_ActiveId)
     {
-        Dem_ControlDtcSetting = 1u;
-    }
-    else if(2u == data[2u])
-    {
-        Dem_ControlDtcSetting = 0u;
+        if(1u == data[2u])
+        {
+            Dem_ControlDtcSetting = 1u;
+        }
+        else if(2u == data[2u])
+        {
+            Dem_ControlDtcSetting = 0u;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
     }
     else
     {

@@ -80,7 +80,7 @@ static void CanSpi_MCP2515_LoadTxSequence(uint8 instruction, uint8 *idReg, uint8
 /* Transceiver handling function. */
 static void CanSpi_MCP2515_RequestToSend(uint8 instruction);
 /* Retrieve the number of messages in the buffers. */
-static uint32 CanSpi_MessagesInBuffer(void);
+uint32 CanSpi_MessagesInBuffer(void);
 /* Transceiver reading function. */
 static uint8 CanSpi_MCP2515_ReadByte (uint8 address);
 /* Bus error retrieval. */
@@ -333,6 +333,10 @@ void CanSpi_MainFunction(void)
 		CanSpi_RxFrame_Buffer1.frame.data5 = 0;
 		CanSpi_RxFrame_Buffer1.frame.data6 = 0;
 		CanSpi_RxFrame_Buffer1.frame.data7 = 0;
+	}
+	else
+	{
+		/* Do nothing. */
 	}
 	/* Check for RX error. */
 	if(CanSpi_IsRxErrorPassive() != 0 && 0 == CanSpi_MainCounter % 20 && 0 != CanSpi_MainCounter) CanSpi_Bus_ErrorArr[0]++;
@@ -640,7 +644,7 @@ uint8 CanSpi_Receive(CANSPI_uCAN_MSG *tempCanMsg)
 	__enable_irq();
 	return (returnValue);
 }
-static uint32 CanSpi_MessagesInBuffer(void)
+uint32 CanSpi_MessagesInBuffer(void)
 {
 	CANSPI_CtrlStatus_t ctrlStatus = {0};
 	uint8 messageCount = 0;

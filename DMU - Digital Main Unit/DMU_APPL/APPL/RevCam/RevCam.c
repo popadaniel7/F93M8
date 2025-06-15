@@ -4,8 +4,8 @@
 __attribute__((section(".ccmram"))) uint32 RevCam_MainCounter = 0x00;
 __attribute__((section(".ccmram"))) uint8 RevCam_RxSig_ReverseCameraRequest = 0x00;
 __attribute__((section(".ccmram"))) uint32 RevCam_DcmiStatus = 0x00;
-__attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus = 0x00;
-__attribute__((section(".ccmram"))) uint8 RevCam_InitStatus = 0x00;
+__attribute__((section(".ccmram"))) uint32 RevCam_I2cStatus = 0xFF;
+__attribute__((section(".ccmram"))) uint8 RevCam_InitStatus = 0xFF;
 __attribute__((section(".ccmram"))) uint32 RevCam_I2cInitRetry = 0;
 __attribute__((section(".ccmram"))) uint32 RevCam_DcmiInitRetry = 0;
 __attribute__((section(".ccmram"))) uint32 RevCam_OV7670InitRetry = 0;
@@ -23,6 +23,7 @@ void RevCam_MainFunction(void)
 {
 	static uint16* drawAddr = NULL;
 	static uint8 firstCall = 0;
+	static uint32 localTimer = 0;
 	/* Initialize at first call of main function to speed up the process. */
 	if(0 == RevCam_MainCounter) RevCam_InitStatus = DcmiH_OV7670_InitHandler();
 	else
@@ -47,8 +48,17 @@ void RevCam_MainFunction(void)
 		{
 			if(0 == DigitalCluster_IsReverseCameraActive)
 			{
-				DigitalCluster_IsReverseCameraActive = 1;
-				DcmiH_OV7670_Start(0, (uint32)drawAddr);
+				localTimer++;
+
+				if(localTimer == 200)
+				{
+					DigitalCluster_IsReverseCameraActive = 1;
+					DcmiH_OV7670_Start(0, (uint32)drawAddr);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
 			}
 			else
 			{
@@ -58,6 +68,7 @@ void RevCam_MainFunction(void)
 		else
 		{
 			DigitalCluster_IsReverseCameraActive = 0;
+			localTimer = 0;
 			DcmiH_OV7670_Stop();
 		}
 	}/* Initialization retries in case of failure. */
@@ -68,6 +79,5 @@ void RevCam_MainFunction(void)
 	 * I2C
 	 * DCMI
 	 * */
-
 	RevCam_MainCounter++;
 }

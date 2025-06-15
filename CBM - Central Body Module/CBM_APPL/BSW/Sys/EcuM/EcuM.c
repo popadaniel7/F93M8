@@ -21,9 +21,12 @@ static uint32 EcuM_MainCounter = 0;
 static uint32 EcuM_PostrunTimer = 0;
 uint8 EcuM_LastResetReason __attribute__((section(".ncr")));
 uint32 EcuM_ResetCounter __attribute__((section(".ncr")));
+uint32 EcuM_ResetCounterFBL __attribute__((section(".ncr")));
 extern uint32 Dcm_AliveCounter __attribute__((section(".ncr")));
 extern TIM_HandleTypeDef        htim5;
 extern uint32 StatusList_OutputValue[5];
+extern CANSPI_uCAN_MSG CanSpi_RxFrame_Buffer0;
+extern CANSPI_uCAN_MSG CanSpi_RxFrame_Buffer1;
 /* VARIABLES END */
 /* FUNCTIONS START */
 void EcuM_MainFunction(void);
@@ -32,6 +35,7 @@ void EcuM_ProcessTimerInterrupt(void);
 static void EcuM_ProcessEcuState(void);
 static void EcuM_GoSleep(void);
 static void EcuM_ProcessFaultState(void);
+extern uint32 CanSpi_MessagesInBuffer(void);
 /* FUNCTIONS END */
 /* FUNCTIONS START */
 void EcuM_MainFunction(void)
@@ -48,11 +52,14 @@ void EcuM_PerformReset(EcuMReset_t param)
 		Dcm_AliveCounter = 0;
 		EcuM_LastResetReason = param;
 		EcuM_ResetCounter++;
+		EcuM_ResetCounterFBL++;
+		RCC->CSR |= RCC_CSR_RMVF;
 	}
 	else
 	{
 		/* Do nothing. */
 	}
+	RCC->CSR |= RCC_CSR_RMVF;
 	__NVIC_SystemReset();
 }
 static void EcuM_ProcessFaultState(void)
@@ -164,6 +171,8 @@ void EcuM_ProcessEcuState(void)
 void EcuM_ProcessTimerInterrupt(void)
 {
 	static uint8 debouncePin = 0;
+	static uint32 messagesInBuffer = 0;
+
 	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 1)
 	{
 		debouncePin++;
@@ -180,6 +189,84 @@ void EcuM_ProcessTimerInterrupt(void)
 	{
 		debouncePin = 0;
 	}
+
+	messagesInBuffer = CanSpi_MessagesInBuffer();
+
+	if(messagesInBuffer != 0)
+	{
+		/* Store them in the buffer 1 if it is empty. */
+		if(CanSpi_RxFrame_Buffer0.frame.id == 0)
+		{
+			/* Networkmanagement3 Frame */
+			if(CanSpi_RxFrame_Buffer0.frame.id == 0x510)
+			{
+				if(CanSpi_RxFrame_Buffer0.frame.data0 == 0x10)
+				{
+					EcuM_PerformReset(0);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+			/* Diagnostic request Frame */
+			if(CanSpi_RxFrame_Buffer0.frame.id == 0x700) EcuM_PerformReset(0);
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+	/* Store them in the buffer 2 if it is empty. */
+	if(CanSpi_RxFrame_Buffer1.frame.id == 0)
+	{
+		if(CanSpi_Receive(&CanSpi_RxFrame_Buffer1) != 0)
+		{
+			/* Networkmanagement3 Frame */
+			if(CanSpi_RxFrame_Buffer1.frame.id == 0x510)
+			{
+				if(CanSpi_RxFrame_Buffer1.frame.data0 == 0x10)
+				{
+					EcuM_PerformReset(0);
+				}
+				else
+				{
+					/* Do nothing. */
+				}
+			}
+			else
+			{
+				/* Do nothing. */
+			}
+			/* Diagnostic request Frame */
+			if(CanSpi_RxFrame_Buffer0.frame.id == 0x700) EcuM_PerformReset(0);
+			else
+			{
+				/* Do nothing. */
+			}
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+	else
+	{
+		/* Do nothing. */
+	}
+
 	HAL_PWR_EnableSleepOnExit();
 }
 
@@ -190,16 +277,14 @@ static void EcuM_GoSleep(void)
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_2);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_3);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4);
-	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
-	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_6);
-	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_7);
+	//	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
+	//	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_6);
+	//	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_7);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_8);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_10);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_11);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_12);
-	//HAL_GPIO_DeInit(GPIOA, GPIO_PIN_13);
-	//HAL_GPIO_DeInit(GPIOA, GPIO_PIN_14);
 	HAL_GPIO_DeInit(GPIOA, GPIO_PIN_15);
 	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_0);
 	HAL_GPIO_DeInit(GPIOB, GPIO_PIN_1);
@@ -221,7 +306,7 @@ static void EcuM_GoSleep(void)
 	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_1);
 	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_2);
 	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_3);
-	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_4);
+	//	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_4);
 	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_5);
 	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_6);
 	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_7);
@@ -243,8 +328,8 @@ static void EcuM_GoSleep(void)
 	HAL_TIM_PWM_DeInit(&htim3);
 	HAL_TIM_Base_DeInit(&htim5);
 	HAL_UART_DeInit(&huart1);
-	CanSpi_Sleep();
-	HAL_SPI_DeInit(&hspi1);
+	//	CanSpi_Sleep();
+	//	HAL_SPI_DeInit(&hspi1);
 	HAL_SuspendTick();
 	for(uint8 i = 0; i < 82; i++) HAL_NVIC_ClearPendingIRQ(i);
 	SysTick->CTRL &= ~(SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk);

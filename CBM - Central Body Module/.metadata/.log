@@ -762,3 +762,288 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-10 01:35:26.403
 !MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-13 23:46:23.583 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-13 23:46:40.973
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-13 23:46:40.975
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-13 23:46:44.761
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-14 00:05:45.268 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-14 00:05:48.818
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-14 00:05:48.819
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-14 00:05:51.914
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.jobs 2 2 2025-06-14 00:05:52.999
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.Workbench$39 RUNNING
+	 at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	 at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027)
+	 at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
+	 at java.base/java.net.URLClassLoader.defineClass(URLClassLoader.java:524)
+	 at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:427)
+	 at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:421)
+	 at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	 at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:420)
+	 at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:593)
+	 at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	 at com.st.microxplorer.plugins.thirdparty.engine.PackLoader.<init>(PackLoader.java:141)
+	 at com.st.microxplorer.plugins.thirdparty.engine.PackLoader.createFromFile(PackLoader.java:515)
+	 at com.st.microxplorer.plugins.thirdparty.ThirdPartyApiDb.addIntegratedSoftwarePack(ThirdPartyApiDb.java:140)
+	 at com.st.microxplorer.plugins.thirdparty.ThirdPartyApiDb.loadIntegratedPacks(ThirdPartyApiDb.java:131)
+	 at com.st.microxplorer.plugins.thirdparty.ThirdPartyApiDb.loadDb(ThirdPartyApiDb.java:125)
+	 at com.st.microxplorer.plugins.thirdparty.ThirdPartyApiDb.<init>(ThirdPartyApiDb.java:92)
+	 at com.st.microxplorer.plugins.thirdparty.engine.Engine.create(Engine.java:950)
+	 at com.st.microxplorer.plugins.thirdparty.engine.Engine.create(Engine.java:945)
+	 at com.st.microxplorer.plugins.thirdparty.ThirdParty.<init>(ThirdParty.java:159)
+	 at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	 at com.st.microxplorer.plugin.PluginManage.loadPluginJar(PluginManage.java:352)
+	 at com.st.microxplorer.plugin.PluginManage.PluginSearch(PluginManage.java:224)
+	 at com.st.microxplorer.plugin.PluginManage.PluginDiscovery(PluginManage.java:67)
+	 at com.st.microxplorer.maingui.MainPanel.initialization(MainPanel.java:329)
+	 at com.st.microxplorer.maingui.AppletMainFrameCubeIde.init(AppletMainFrameCubeIde.java:242)
+	 at com.st.stm32cube.common.mx.core.CubeMxInstance.<init>(CubeMxInstance.java:117)
+	 at com.st.stm32cube.common.mx.core.CubeMxInstance.getInstance(CubeMxInstance.java:91)
+	 at com.st.stm32cube.common.mx.userauth.UserAuthAdapter.<init>(UserAuthAdapter.java:25)
+	 at com.st.stm32cube.common.mx.userauth.UserAuthProvider.getUserAuthAdapter(UserAuthProvider.java:16)
+	 at com.st.stm32cube.common.ecosystemintegration.ui.core.MCUEcoSystemIntegrationUiHelper.getUserAuth(MCUEcoSystemIntegrationUiHelper.java:100)
+	 at com.st.stm32cube.ide.mcu.userauth.UserAuthStartup.earlyStartup(UserAuthStartup.java:32)
+	 at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	 at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	 at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	 at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2733)
+	 at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2025-06-14 00:16:43.696 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-14 00:16:47.096
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-14 00:16:47.096
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-14 00:16:50.069
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-14 01:49:03.226 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-14 01:49:06.860
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-14 01:49:06.862
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-14 01:49:09.962
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.ui 4 0 2025-06-14 01:50:09.173
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.swt.widgets.Shell.setVisible(boolean)" because the return value of "org.eclipse.ui.internal.findandreplace.overlay.FindReplaceOverlay.getShell()" is null
+	at org.eclipse.ui.internal.findandreplace.overlay.FindReplaceOverlay.updatePlacementAndVisibility(FindReplaceOverlay.java:844)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4099)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3715)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+!SESSION 2025-06-14 01:51:27.282 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-14 01:51:30.733
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-14 01:51:30.734
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-14 01:51:33.762
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-14 03:01:21.124 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-14 03:01:24.457
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-14 03:01:24.458
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-14 03:01:27.355
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-14 14:16:28.392 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-14 14:16:42.147
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-14 14:16:42.149
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-14 14:16:47.021
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-14 15:38:45.842 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-14 15:38:49.305
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-14 15:38:49.306
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-14 15:38:52.197
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-15 16:42:35.185 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-15 16:42:38.785
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-15 16:42:38.787
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-15 16:42:43.203
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-15 17:05:47.633 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-15 17:05:51.289
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-15 17:05:51.290
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-15 17:05:54.713
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-15 17:25:23.432 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-15 17:25:27.156
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-15 17:25:27.157
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-15 17:25:30.998
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-15 17:28:17.982 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-15 17:28:21.391
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-15 17:28:21.391
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-15 17:28:24.273
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-15 17:28:50.861 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-15 17:28:54.710
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-15 17:28:54.711
+!MESSAGE Log4j2 initialized with config file C:\Users\Daniel\Desktop\FG9326M8GTEI4\CBM - Central Body Module\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-15 17:28:57.868
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.ui.workbench 4 2 2025-06-15 17:28:58.063
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.workbench".
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.core.runtime.IExtensionRegistry.getExtensionPoint(String)" because "reg" is null
+	at com.st.stm32cube.common.mx.registry.MxRegistry.loadExternalToolsExtensions(MxRegistry.java:214)
+	at com.st.stm32cube.common.mx.registry.MxRegistry.loadExtensions(MxRegistry.java:81)
+	at com.st.stm32cube.common.mx.registry.MxRegistry.<init>(MxRegistry.java:73)
+	at com.st.stm32cube.common.mx.registry.MxRegistry.getInstance(MxRegistry.java:40)
+	at com.st.stm32cube.common.mx.core.CubeMxInstance.<init>(CubeMxInstance.java:108)
+	at com.st.stm32cube.common.mx.core.CubeMxInstance.getInstance(CubeMxInstance.java:91)
+	at com.st.stm32cube.common.mx.userauth.UserAuthAdapter.<init>(UserAuthAdapter.java:25)
+	at com.st.stm32cube.common.mx.userauth.UserAuthProvider.getUserAuthAdapter(UserAuthProvider.java:16)
+	at com.st.stm32cube.common.ecosystemintegration.ui.core.MCUEcoSystemIntegrationUiHelper.getUserAuth(MCUEcoSystemIntegrationUiHelper.java:100)
+	at com.st.stm32cube.ide.mcu.userauth.UserAuthStartup.earlyStartup(UserAuthStartup.java:32)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2733)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
