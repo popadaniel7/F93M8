@@ -28,7 +28,7 @@ typedef enum
 typedef void (*Dcm_FuncPtr)();
 SWV Dcm_SWVersion =
 {
-		30, /* SW */
+		33, /* SW */
 		30, /* FBL */
 		0xFF,
 		0xFF
@@ -309,11 +309,7 @@ void DiagRequest_RC_ReadKM(void)
 	Dcm_TxData[6] = (uint8)(DataRecorder_KilometerTotal >> 16);
 	Dcm_TxData[7] = (uint8)(DataRecorder_KilometerTotal >> 8);
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-
-	__enable_irq();
 	HAL_Delay(5);
-	__disable_irq();
-
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
@@ -325,12 +321,7 @@ void DiagRequest_RC_ReadKM(void)
 	Dcm_TxData[6] = (uint8)(DataRecorder_KilometerPerDcy >> 24);
 	Dcm_TxData[7] = (uint8)(DataRecorder_KilometerPerDcy >> 16);
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-
-	__enable_irq();
 	HAL_Delay(5);
-	__disable_irq();
-
-
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
@@ -404,7 +395,6 @@ void DiagRequest_DSC_ExtendedSession(void)
 }
 void DiagRequest_DSC_ProgrammingSession(void)
 {
-	__disable_irq();
 	Dcm_TxHeader.DLC = CanH_DiagRxHeader.DLC;
 	Dcm_TxHeader.StdId = CanH_DiagRxHeader.StdId + 1;
 	Dcm_TxData[0] = CanH_DiagRxHeader.DLC - 1;
@@ -417,17 +407,12 @@ void DiagRequest_DSC_ProgrammingSession(void)
 	Dcm_TxData[7] = 0;
 	Dcm_DiagnosticSession = PROGRAMMING;
 	Nvm_WriteAll();
-	__enable_irq();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	__enable_irq();
 	HAL_Delay(1);
-	__disable_irq();
-
 	EcuM_PerformReset(0);
 }
 void DiagRequest_ER_HardReset(void)
 {
-	__disable_irq();
 	Dcm_TxHeader.DLC = 3;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 2;
@@ -440,16 +425,12 @@ void DiagRequest_ER_HardReset(void)
 	Dcm_TxData[7] = 0;
 	Dcm_DiagnosticSession = HARDRESET;
 	Nvm_WriteAll();
-	__enable_irq();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	__enable_irq();
 	HAL_Delay(1);
-	__disable_irq();
 	EcuM_PerformReset(0);
 }
 void DiagRequest_ER_SoftReset(void)
 {
-	__disable_irq();
 	Dcm_TxHeader.DLC = 3;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 2;
@@ -462,11 +443,8 @@ void DiagRequest_ER_SoftReset(void)
 	Dcm_TxData[7] = 0;
 	Dcm_DiagnosticSession = SOFTRESET;
 	Nvm_WriteAll();
-	__enable_irq();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	__enable_irq();
 	HAL_Delay(1);
-	__disable_irq();
 	EcuM_PerformReset(0);
 }
 void DiagRequest_TP_TesterPresent(void)
@@ -518,9 +496,7 @@ void DiagRequest_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_TxData[6] = Dem_DTCArray[3];
 	Dcm_TxData[7] = Dem_DTCArray[4];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	__enable_irq();
 	HAL_Delay(5);
-	__disable_irq();
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
@@ -532,9 +508,7 @@ void DiagRequest_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_TxData[6] = Dem_DTCArray[8];
 	Dcm_TxData[7] = Dem_DTCArray[9];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	__enable_irq();
 	HAL_Delay(5);
-	__disable_irq();
 	Dcm_TxHeader.DLC = 8;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 7;
@@ -546,9 +520,7 @@ void DiagRequest_RDTCI_ReadDTCInformationSupportedDtc(void)
 	Dcm_TxData[6] = Dem_DTCArray[13];
 	Dcm_TxData[7] = Dem_DTCArray[14];
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	__enable_irq();
 	HAL_Delay(5);
-	__disable_irq();
 	Dcm_TxHeader.DLC = 6;
 	Dcm_TxHeader.StdId = 0x703;
 	Dcm_TxData[0] = 5;

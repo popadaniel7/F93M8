@@ -174,13 +174,14 @@ typedef struct
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SESSIONSTATUS_ADDR 						0x02001FDA8
+#define SESSIONSTATUS_ADDR 						0x2001fdc0
 #define NCR_START_ADDRESS 						0x2001F30C
 #define NCR_END_ADDRESS   						0x2001FFFF
 #define FBL_BLU_RAM_EXECUTION_ADDRESS 			0x20001000
 #define NCR_SIZE          						(NCR_END_ADDRESS - NCR_START_ADDRESS + 1)
 #define APPL_START_ADDRESS 						0x800C000
 #define FBL_START_ADDRESS 						0x8000000
+#define RESET_COUNTER_ADDRESS					0x2001fdd0
 #define FBL_CANSPI_MCP2515_RESET           		0xC0
 #define FBL_CANSPI_MCP2515_READ            		0x03
 #define FBL_CANSPI_MCP2515_READ_RXB0SIDH   		0x90
@@ -270,6 +271,7 @@ typedef struct
 FBL_CANSPI_uCAN_MSG FBL_RxFrame = {0};
 FBL_CANSPI_uCAN_MSG FBL_TxFrame = {0};
 uint32* FBL_DSC_Pointer = (uint32*)(SESSIONSTATUS_ADDR);
+uint32* FBL_ResetCounterFBL = (uint32*)(RESET_COUNTER_ADDRESS);
 FBL_DSC_t FBL_DSC_State = JUMPTOAPPL;
 uint32 FBL_ProgrammingData = 0;
 uint32 FBL_ProgrammingIndex = 0;
@@ -374,37 +376,47 @@ int main(void)
 	FBL_ProgrammingAddress = 0;
 	FBL_ProgrammingIndex = 0;
 	FBL_CanSpi_Initialize();
-	FBL_NvM_FlashReadData(ROM_APPL_START_ADDR, &ROM_APPL_START_ADDR_storedValue, 1);
-	if(ROM_APPL_START_ADDR_storedValue != 0xFFFFFFFF)
+
+	if((RCC->CSR & RCC_CSR_PORRSTF) != 0)
 	{
-		FBL_DSC_Pointer = (uint32*)(SESSIONSTATUS_ADDR);
-		FBL_DSC_Status = *FBL_DSC_Pointer;
+		for(uint32* addr = ((uint32_t*)0x2001FDA8); addr <= ((uint32_t*)0x2001FFFF); addr++) *addr = 0;
+		/* Reset the flag. */
+		RCC->CSR |= RCC_CSR_PORRSTF;
+	}/* Check if brown-out reset wake-up event occurred.*/
+	else if((RCC->CSR & RCC_CSR_BORRSTF) != 0)
+	{
+		for(uint32* addr = ((uint32_t*)0x2001FDA8); addr <= ((uint32_t*)0x2001FFFF); addr++) *addr = 0;
+		/* Reset the flag. */
+		RCC->CSR |= RCC_CSR_BORRSTF;
 	}
 	else
 	{
 		/* Do nothing. */
 	}
+
+	if(*FBL_ResetCounterFBL == 50)
+	{
+		FBL_DSC_Status = PROGRAMMING;
+	}
+	else
+	{
+		FBL_NvM_FlashReadData(ROM_APPL_START_ADDR, &ROM_APPL_START_ADDR_storedValue, 1);
+		if(ROM_APPL_START_ADDR_storedValue != 0xFFFFFFFF)
+		{
+			FBL_DSC_Pointer = (uint32*)(SESSIONSTATUS_ADDR);
+			FBL_DSC_Status = *FBL_DSC_Pointer;
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+	}
+
 	if((FBL_DSC_Status == PROGRAMMING) || (FBL_DSC_Status == SOFTRESET) || (FBL_DSC_Status == HARDRESET) || (FBL_DSC_Status == CODING) || (FBL_DSC_Status == CALIBRATION)) FBL_DSC_State = FBL_DSC_Status;
 	else
 	{
 		if(ROM_APPL_START_ADDR_storedValue != 0xFFFFFFFF)
 		{
-			if((RCC->CSR & RCC_CSR_PORRSTF) != 0)
-			{
-				for(uint32* addr = ((uint32_t*)0x2001FDA8); addr <= ((uint32_t*)0x2001FFFF); addr++) *addr = 0;
-				/* Reset the flag. */
-				RCC->CSR |= RCC_CSR_PORRSTF;
-			}/* Check if brown-out reset wake-up event occurred.*/
-			else if((RCC->CSR & RCC_CSR_BORRSTF) != 0)
-			{
-				for(uint32* addr = ((uint32_t*)0x2001FDA8); addr <= ((uint32_t*)0x2001FFFF); addr++) *addr = 0;
-				/* Reset the flag. */
-				RCC->CSR |= RCC_CSR_BORRSTF;
-			}
-			else
-			{
-				/* Do nothing. */
-			}
 			FBL_JumpToAppl();
 		}
 		else
@@ -1558,9 +1570,9 @@ void FBL_DiagRoutine_DSC_Programming(void)
 			if(FBL_RxFrame.frame.data1 == 0x34)
 			{
 				FBL_ProgrammingAddress = (0x08 << 24)
-				| (FBL_RxFrame.frame.data4 << 16)
-				| (FBL_RxFrame.frame.data5 << 8)
-				| (FBL_RxFrame.frame.data6);
+						| (FBL_RxFrame.frame.data4 << 16)
+						| (FBL_RxFrame.frame.data5 << 8)
+						| (FBL_RxFrame.frame.data6);
 				FBL_DiagRoutine_DSC_RequestDownload();
 			}
 			else
@@ -1693,6 +1705,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
+	(*FBL_ResetCounterFBL)++;
 	__NVIC_SystemReset();
   /* USER CODE END Error_Handler_Debug */
 }

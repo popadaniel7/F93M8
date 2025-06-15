@@ -19,6 +19,7 @@ void DcyHandler_MainFunction(void);
 void DcyHandler_MainFunction(void)
 {
     static uint32 localTimestamp = 0u;
+    static uint8 pDcyHandler_CanRx_RequestDiagnosisMode = 0u;
 
     if(0u == DcyHandler_CanTx_InVehicleSafetyErrorFlag)
     {
@@ -91,11 +92,20 @@ void DcyHandler_MainFunction(void)
     {
         DcyHandler_CanTx_VehicleState = VEHSTATE_VEHICLE_DIAGNOSIS;
         DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
+        pDcyHandler_CanRx_RequestDiagnosisMode = DcyHandler_CanRx_RequestDiagnosisMode;
     }
     else
     {
-        DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
-        DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_INGITION_ON;
+        if(1u <= pDcyHandler_CanRx_RequestDiagnosisMode && 0u == DcyHandler_CanRx_RequestDiagnosisMode)
+        {
+            DcyHandler_CanTx_DcyStatus = DCY_NOTSTARTED;
+            DcyHandler_CanTx_VehicleState = VEHSTATE_PARK_INGITION_ON;
+            pDcyHandler_CanRx_RequestDiagnosisMode = DcyHandler_CanRx_RequestDiagnosisMode;
+        }
+        else
+        {
+            /* Do nothing. */
+        }
     }
 
     if(1u == DcyHandler_CanRx_ResetDcy)

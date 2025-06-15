@@ -7,6 +7,28 @@
 
 ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
 {
+        /* NULL_MSG */
+        {
+                .transmitMessage =
+                {
+                        .txMsg =
+                        {
+                                .bufferNumber = 0u,
+                                .messageId = 0x00u,
+                                .remoteTransmitRequest = 0u,
+                                .messageIdLength = IfxCan_MessageIdLength_standard,
+                                .errorStateIndicator = 0u,
+                                .dataLengthCode = 0x00,
+                                .frameMode = IfxCan_FrameMode_standard,
+                                .txEventFifoControl = FALSE,
+                                .storeInTxFifoQueue = FALSE,
+                                .readFromRxFifo0 = FALSE,
+                                .readFromRxFifo1 = FALSE
+                        },
+                },
+                .transmitFlag = 0u,
+                .cycleTime = 2u,
+        },
         /* Vehicle State */
         {
                 .transmitMessage =
@@ -1100,175 +1122,120 @@ void ComMaster_MainFunction(void)
     ComMaster_TxSignal_SveIvenSafe = ComMaster_CanTx_InVehicleSafetyErrorFlag;
     ComMaster_TxSignal_SisIgnitionStatus = ComMaster_TxSignal_Ignition;
 
-    ComMaster_TransmitTable[0u].transmitMessage.txData[0u] = ComMaster_TxSignal_Ignition;
-    ComMaster_TransmitTable[0u].transmitMessage.txData[1u] = ComMaster_TxSignal_Gear;
-    ComMaster_TransmitTable[0u].transmitMessage.txData[2u] = ComMaster_TxSignal_IrSenStat;
-    ComMaster_TransmitTable[0u].transmitMessage.txData[3u] = ComMaster_RxSignal_Rpm;
-    ComMaster_TransmitTable[0u].transmitMessage.txData[4u] = ComMaster_RxSignal_Speed;
-    ComMaster_TransmitTable[0u].transmitMessage.txData[5u] = ComMaster_TxSignal_VehicleStatus;
-    ComMaster_TransmitTable[0u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_6;
-
-    ComMaster_TransmitTable[1u].transmitMessage.txData[0u] = ComMaster_TxSignal_RecirculationRequest;
-    ComMaster_TransmitTable[1u].transmitMessage.txData[1u] = ComMaster_TxSignal_FogLights;
-    ComMaster_TransmitTable[1u].transmitMessage.txData[2u] = ComMaster_TxSignal_HighBeam;
-    ComMaster_TransmitTable[1u].transmitMessage.txData[3u] = ComMaster_TxSignal_StatusOutTemp;
-    ComMaster_TransmitTable[1u].transmitMessage.txData[4u] = ComMaster_TxSignal_TurnSignals;
-    ComMaster_TransmitTable[1u].transmitMessage.txData[5u] = ComMaster_TxSignal_AutoClimateRequest;
+    ComMaster_TransmitTable[1u].transmitMessage.txData[0u] = ComMaster_TxSignal_Ignition;
+    ComMaster_TransmitTable[1u].transmitMessage.txData[1u] = ComMaster_TxSignal_Gear;
+    ComMaster_TransmitTable[1u].transmitMessage.txData[2u] = ComMaster_TxSignal_IrSenStat;
+    ComMaster_TransmitTable[1u].transmitMessage.txData[3u] = ComMaster_RxSignal_Rpm;
+    ComMaster_TransmitTable[1u].transmitMessage.txData[4u] = ComMaster_RxSignal_Speed;
+    ComMaster_TransmitTable[1u].transmitMessage.txData[5u] = ComMaster_TxSignal_VehicleStatus;
     ComMaster_TransmitTable[1u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_6;
 
-    ComMaster_TransmitTable[2u].transmitMessage.txData[0u] = ComMaster_TxSignal_FanValueRequest;
-    ComMaster_TransmitTable[2u].transmitMessage.txData[1u] = ComMaster_TxSignal_DisplayModeRequest;
-    ComMaster_TransmitTable[2u].transmitMessage.txData[2u] = ComMaster_TxSignal_ClimaTempRequest;
-    ComMaster_TransmitTable[2u].transmitMessage.txData[3u] = ComMaster_TxSignal_RlsRequest;
-    ComMaster_TransmitTable[2u].transmitMessage.txData[4u] = ComMaster_TxSignal_WiperStockRequest;
-    ComMaster_TransmitTable[2u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_5;
+    ComMaster_TransmitTable[2u].transmitMessage.txData[0u] = ComMaster_TxSignal_RecirculationRequest;
+    ComMaster_TransmitTable[2u].transmitMessage.txData[1u] = ComMaster_TxSignal_FogLights;
+    ComMaster_TransmitTable[2u].transmitMessage.txData[2u] = ComMaster_TxSignal_HighBeam;
+    ComMaster_TransmitTable[2u].transmitMessage.txData[3u] = ComMaster_TxSignal_StatusOutTemp;
+    ComMaster_TransmitTable[2u].transmitMessage.txData[4u] = ComMaster_TxSignal_TurnSignals;
+    ComMaster_TransmitTable[2u].transmitMessage.txData[5u] = ComMaster_TxSignal_AutoClimateRequest;
+    ComMaster_TransmitTable[2u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_6;
+
+    ComMaster_TransmitTable[3u].transmitMessage.txData[0u] = ComMaster_TxSignal_FanValueRequest;
+    ComMaster_TransmitTable[3u].transmitMessage.txData[1u] = ComMaster_TxSignal_DisplayModeRequest;
+    ComMaster_TransmitTable[3u].transmitMessage.txData[2u] = ComMaster_TxSignal_ClimaTempRequest;
+    ComMaster_TransmitTable[3u].transmitMessage.txData[3u] = ComMaster_TxSignal_RlsRequest;
+    ComMaster_TransmitTable[3u].transmitMessage.txData[4u] = ComMaster_TxSignal_WiperStockRequest;
+    ComMaster_TransmitTable[3u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_5;
 
     if(0u != ComMaster_TxSignal_ICM_ID)
     {
-        ComMaster_TransmitTable[3u].transmitMessage.txData[0u] = ComMaster_TxSignal_ICM_ID;
-        ComMaster_TransmitTable[3u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_1;
+        ComMaster_TransmitTable[4u].transmitMessage.txData[0u] = ComMaster_TxSignal_ICM_ID;
+        ComMaster_TransmitTable[4u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_1;
     }
     else
     {
         /* Do nothing. */
     }
 
-    ComMaster_TransmitTable[4u].transmitMessage.txData[0u] = ComMaster_TxSignal_DcyStatus;
-    ComMaster_TransmitTable[4u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_1;
+    ComMaster_TransmitTable[5u].transmitMessage.txData[0u] = ComMaster_TxSignal_DcyStatus;
+    ComMaster_TransmitTable[5u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_1;
 
-    ComMaster_TransmitTable[5u].transmitMessage.txData[0u] = ComMaster_TxSignal_NM3;
-    ComMaster_TransmitTable[5u].transmitMessage.txData[1u] = ComMaster_TxSignal_NM3_PN1;
-    ComMaster_TransmitTable[5u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_2;
+    ComMaster_TransmitTable[6u].transmitMessage.txData[0u] = ComMaster_TxSignal_NM3;
+    ComMaster_TransmitTable[6u].transmitMessage.txData[1u] = ComMaster_TxSignal_NM3_PN1;
+    ComMaster_TransmitTable[6u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_2;
 
-    ComMaster_TxSignal_SisSeqCnt++;
-    ComMaster_TxSignal_SbaSeqCnt++;
-    ComMaster_TxSignal_SveSeqCnt++;
-
-    ComMaster_TransmitTable[6u].transmitMessage.txData[0u] = ComMaster_TxSignal_SisCrc;
-    ComMaster_TransmitTable[6u].transmitMessage.txData[1u] = ComMaster_TxSignal_SisSeqCnt;
-    ComMaster_TransmitTable[6u].transmitMessage.txData[2u] = ComMaster_TxSignal_SisIgnitionStatus;
-    ComMaster_TransmitTable[6u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-
-    ComMaster_E2e_UpdateTx(&ComMaster_TransmitTable[6u].transmitMessage, ComMaster_TxSignal_SisSeqCnt, ComMaster_TransmitTable[6u].transmitMessage.txMsg.dataLengthCode);
-
-    ComMaster_TransmitTable[7u].transmitMessage.txData[0u] = ComMaster_TxSignal_SveCrc;
-    ComMaster_TransmitTable[7u].transmitMessage.txData[1u] = ComMaster_TxSignal_SveSeqCnt;
-    ComMaster_TransmitTable[7u].transmitMessage.txData[2u] = ComMaster_TxSignal_SveIvenSafe;
-    ComMaster_TransmitTable[7u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_3;
-
-    ComMaster_E2e_UpdateTx(&ComMaster_TransmitTable[7u].transmitMessage, ComMaster_TxSignal_SveSeqCnt, ComMaster_TransmitTable[7u].transmitMessage.txMsg.dataLengthCode);
-
-    ComMaster_TransmitTable[8u].transmitMessage.txData[0u] = ComMaster_TxSignal_SbaCrc;
-    ComMaster_TransmitTable[8u].transmitMessage.txData[1u] = ComMaster_TxSignal_SbaSeqCnt;
-    ComMaster_TransmitTable[8u].transmitMessage.txData[2u] = ComMaster_TxSignal_SbaAssistRequestStatus;
-    ComMaster_TransmitTable[8u].transmitMessage.txData[3u] = ComMaster_TxSignal_SbaBrakeLevel;
-    ComMaster_TransmitTable[8u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_4;
-
-    ComMaster_TransmitTable[9U].transmitMessage.txData[0U] = ComMaster_TxSignal_BusYear;
-    ComMaster_TransmitTable[9U].transmitMessage.txData[1U] = ComMaster_TxSignal_BusMonth;
-    ComMaster_TransmitTable[9U].transmitMessage.txData[2U] = ComMaster_TxSignal_BusDay;
-    ComMaster_TransmitTable[9U].transmitMessage.txData[3U] = ComMaster_TxSignal_BusHour;
-    ComMaster_TransmitTable[9U].transmitMessage.txData[4U] = ComMaster_TxSignal_BusMinute;
-    ComMaster_TransmitTable[9U].transmitMessage.txData[5U] = ComMaster_TxSignal_BusSecond;
-    ComMaster_TransmitTable[9U].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_6;
-
-    ComMaster_E2e_UpdateTx(&ComMaster_TransmitTable[8u].transmitMessage, ComMaster_TxSignal_SbaSeqCnt, ComMaster_TransmitTable[8u].transmitMessage.txMsg.dataLengthCode);
-
-    if((ComMaster_MainCounter) != 0u && (ComMaster_SwitchTxOff == 1u))
+    if(ComMaster_MainCounter % ComMaster_TransmitTable[7u].cycleTime == 0u || 1u == ComMaster_TransmitTable[0u].cycleTime)
     {
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[0u].cycleTime == 0u || 1u == ComMaster_TransmitTable[0u].cycleTime)
-        {
-            ComMaster_TransmitTable[0u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[1u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[1u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[2u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[2u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[3u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[3u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[4u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[4u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[5u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[5u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[6u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[6u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[7u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[7u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[8u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[8u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
-        if(ComMaster_MainCounter % ComMaster_TransmitTable[9u].cycleTime == 0u || 1u == ComMaster_TransmitTable[1u].cycleTime)
-        {
-            ComMaster_TransmitTable[9u].transmitFlag = 1u;
-        }
-        else
-        {
-            /* Do nothing. */
-        }
-
+        ComMaster_TxSignal_SisSeqCnt++;
     }
     else
     {
-        for(uint8 i = 0; i < COMMASTER_NO_TX_MSG; i++)
+        /* Do nothing. */
+    }
+
+    if(ComMaster_MainCounter % ComMaster_TransmitTable[8u].cycleTime == 0u || 1u == ComMaster_TransmitTable[0u].cycleTime)
+    {
+        ComMaster_TxSignal_SbaSeqCnt++;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    if(ComMaster_MainCounter % ComMaster_TransmitTable[9u].cycleTime == 0u || 1u == ComMaster_TransmitTable[0u].cycleTime)
+    {
+        ComMaster_TxSignal_SveSeqCnt++;
+    }
+    else
+    {
+        /* Do nothing. */
+    }
+
+    ComMaster_TransmitTable[7u].transmitMessage.txData[0u] = ComMaster_TxSignal_SisCrc;
+    ComMaster_TransmitTable[7u].transmitMessage.txData[1u] = ComMaster_TxSignal_SisSeqCnt;
+    ComMaster_TransmitTable[7u].transmitMessage.txData[2u] = ComMaster_TxSignal_SisIgnitionStatus;
+    ComMaster_TransmitTable[7u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+
+    ComMaster_E2e_UpdateTx(&ComMaster_TransmitTable[7u].transmitMessage, ComMaster_TxSignal_SisSeqCnt, ComMaster_TransmitTable[6u].transmitMessage.txMsg.dataLengthCode);
+
+    ComMaster_TransmitTable[8u].transmitMessage.txData[0u] = ComMaster_TxSignal_SveCrc;
+    ComMaster_TransmitTable[8u].transmitMessage.txData[1u] = ComMaster_TxSignal_SveSeqCnt;
+    ComMaster_TransmitTable[8u].transmitMessage.txData[2u] = ComMaster_TxSignal_SveIvenSafe;
+    ComMaster_TransmitTable[8u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_3;
+
+    ComMaster_E2e_UpdateTx(&ComMaster_TransmitTable[8u].transmitMessage, ComMaster_TxSignal_SveSeqCnt, ComMaster_TransmitTable[7u].transmitMessage.txMsg.dataLengthCode);
+
+    ComMaster_TransmitTable[9u].transmitMessage.txData[0u] = ComMaster_TxSignal_SbaCrc;
+    ComMaster_TransmitTable[9u].transmitMessage.txData[1u] = ComMaster_TxSignal_SbaSeqCnt;
+    ComMaster_TransmitTable[9u].transmitMessage.txData[2u] = ComMaster_TxSignal_SbaAssistRequestStatus;
+    ComMaster_TransmitTable[9u].transmitMessage.txData[3u] = ComMaster_TxSignal_SbaBrakeLevel;
+    ComMaster_TransmitTable[9u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_4;
+
+    ComMaster_E2e_UpdateTx(&ComMaster_TransmitTable[9u].transmitMessage, ComMaster_TxSignal_SbaSeqCnt, ComMaster_TransmitTable[8u].transmitMessage.txMsg.dataLengthCode);
+
+    ComMaster_TransmitTable[10u].transmitMessage.txData[0U] = ComMaster_TxSignal_BusYear;
+    ComMaster_TransmitTable[10u].transmitMessage.txData[1U] = ComMaster_TxSignal_BusMonth;
+    ComMaster_TransmitTable[10u].transmitMessage.txData[2U] = ComMaster_TxSignal_BusDay;
+    ComMaster_TransmitTable[10u].transmitMessage.txData[3U] = ComMaster_TxSignal_BusHour;
+    ComMaster_TransmitTable[10u].transmitMessage.txData[4U] = ComMaster_TxSignal_BusMinute;
+    ComMaster_TransmitTable[10u].transmitMessage.txData[5U] = ComMaster_TxSignal_BusSecond;
+    ComMaster_TransmitTable[10u].transmitMessage.txMsg.dataLengthCode = IfxCan_DataLengthCode_6;
+
+    if((ComMaster_MainCounter) != 0u && (ComMaster_SwitchTxOff == 1u))
+    {
+        for(uint8 i = 1u; i < COMMASTER_NO_TX_MSG; i++)
+        {
+            if(ComMaster_MainCounter % ComMaster_TransmitTable[i].cycleTime == 0u || 1u == ComMaster_TransmitTable[i].cycleTime)
+            {
+                ComMaster_TransmitTable[i].transmitFlag = 1u;
+            }
+            else
+            {
+                /* Do nothing. */
+            }
+        }
+    }
+    else
+    {
+        for(uint8 i = 1u; i < COMMASTER_NO_TX_MSG; i++)
         {
             ComMaster_TransmitTable[i].transmitFlag = 0;
         }

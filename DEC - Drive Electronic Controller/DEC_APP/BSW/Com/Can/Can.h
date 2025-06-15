@@ -13,7 +13,7 @@
 
 #define MAXIMUM_CAN_DATA_PAYLOAD    8u
 #define CAN_NO_RX_MSG               10u
-#define CAN_NO_TX_MSG               10u
+#define CAN_NO_TX_MSG               11u
 #define CAN_RX_BUFFER_COUNT         8u
 #define ISO_TP_MAX_PAYLOAD          100u
 #define ISO_TP_CAN_DL               8u

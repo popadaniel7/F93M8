@@ -2,7 +2,7 @@
 #include "Can.h"
 
 #define COMMASTER_NO_RX_MSG 10u
-#define COMMASTER_NO_TX_MSG 10u
+#define COMMASTER_NO_TX_MSG 11u
 
 typedef struct
 {

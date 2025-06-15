@@ -161,7 +161,6 @@ void EcuM_DeInitGpio(void)
 }
 void EcuM_GoToSleep(void)
 {
-	__disable_irq();
 	HAL_Delay(1);
 	HAL_SuspendTick();
 	HAL_DCMI_Stop(&hdcmi);

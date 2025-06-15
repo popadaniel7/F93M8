@@ -61,7 +61,7 @@ uint8 response_read[sizeof(EncCal_VODataComplete) + 4u] = {0u};
 uint8 Dcm_SwVersion[4u] =
 {
         30u, // FLASH BOOTLOADER
-        30u, // APPLICATION
+        31u, // APPLICATION
         30u, // CODING
         30u  // CALIBRATION
 };
