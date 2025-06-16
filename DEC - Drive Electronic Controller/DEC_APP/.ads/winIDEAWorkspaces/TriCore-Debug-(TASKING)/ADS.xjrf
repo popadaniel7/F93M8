@@ -176,7 +176,7 @@
             <Type>ELF</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
-             <CallStackGeneration>Automatic</CallStackGeneration>
+             <CallStackGeneration>Simulated</CallStackGeneration>
              <CopyPropertiesFromVirtualToPhysical>true</CopyPropertiesFromVirtualToPhysical>
              <DumpELFHeaders>false</DumpELFHeaders>
              <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
@@ -268,7 +268,7 @@
             <Type>ELF</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
-             <CallStackGeneration>Automatic</CallStackGeneration>
+             <CallStackGeneration>Simulated</CallStackGeneration>
              <CopyPropertiesFromVirtualToPhysical>true</CopyPropertiesFromVirtualToPhysical>
              <DumpELFHeaders>false</DumpELFHeaders>
              <GCCARMDoubleFormat>Straight (VFP)</GCCARMDoubleFormat>
@@ -337,7 +337,7 @@
         <SFRName>TC375T</SFRName>
         <UserName>MCU</UserName>
         <DLFs_Program>
-         <DefaultFile>1</DefaultFile>
+         <DefaultFile>-1</DefaultFile>
          <File>
           <__.0>
            <Area></Area>
@@ -435,7 +435,7 @@
            <Area></Area>
            <Load>true</Load>
            <OverrideMemArea>false</OverrideMemArea>
-           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.elf</Path>
+           <Path>..\..\..\TriCore Debug (TASKING)\DEC_APP.hex</Path>
            <PgmDestination>memory</PgmDestination>
            <TargetDir></TargetDir>
            <UseDefaultMSID>true</UseDefaultMSID>
@@ -462,7 +462,7 @@
             <OptimizeTypeName>true</OptimizeTypeName>
             <SymbolOffset>0x0</SymbolOffset>
             <TrustLineSymbolsToStartOnInstruction>true</TrustLineSymbolsToStartOnInstruction>
-            <Type>ELF</Type>
+            <Type>HEX</Type>
             <Elf>
              <BitfieldsOverrideTypeFromByteSize>false</BitfieldsOverrideTypeFromByteSize>
              <CallStackGeneration>Automatic</CallStackGeneration>
@@ -682,7 +682,7 @@
         <DisplayCollapsedArrayStruct>true</DisplayCollapsedArrayStruct>
         <DisplayPointerMemArea>false</DisplayPointerMemArea>
         <EnumDisplay>Enum</EnumDisplay>
-        <Hex>true</Hex>
+        <Hex>false</Hex>
         <MaxParseUpload>256</MaxParseUpload>
         <QualifiedNames>Unique</QualifiedNames>
         <UseSpacers>false</UseSpacers>
@@ -756,7 +756,7 @@
         <CustomReturn></CustomReturn>
        </CallFrameNone>
        <CallFrameRange>
-        <CallFrameLocation>1108801304</CallFrameLocation>
+        <CallFrameLocation>1866685555</CallFrameLocation>
         <CallFrameLocationAddr>
          <ContentAddress></ContentAddress>
          <ContentSize></ContentSize>
@@ -769,7 +769,7 @@
       <PersistentVars>
        <PersistentVariables>Stack</PersistentVariables>
        <PersistentVariablesRange>
-        <PersistentVariablesLocation>7602287</PersistentVariablesLocation>
+        <PersistentVariablesLocation>1145981271</PersistentVariablesLocation>
         <PersistentVariablesLocationAddr>
          <ContentAddress></ContentAddress>
          <ContentSize></ContentSize>
@@ -889,7 +889,7 @@
         <TraceToXCP>
          <A2LPath></A2LPath>
          <Enable>false</Enable>
-         <SendAlways>true</SendAlways>
+         <SendAlways>false</SendAlways>
          <TrdPath></TrdPath>
         </TraceToXCP>
        </Config>
@@ -958,7 +958,7 @@
         <TraceToXCP>
          <A2LPath></A2LPath>
          <Enable>false</Enable>
-         <SendAlways>true</SendAlways>
+         <SendAlways>false</SendAlways>
          <TrdPath></TrdPath>
         </TraceToXCP>
        </Config>
@@ -1003,7 +1003,7 @@
           <Enabled>0</Enabled>
           <BP.0>
            <Access>1</Access>
-           <Address>ComMaster_RxSignal_RealDay,,DEC_APP.elf</Address>
+           <Address>((ComMaster_TransmitTable)[0]).transmitFlag</Address>
            <Enabled>1</Enabled>
            <EntireObject>1</EntireObject>
            <Range>1</Range>
@@ -3106,7 +3106,7 @@
          </__.0>
          <__.1>
           <AllowDownloadOnly>false</AllowDownloadOnly>
-          <AllowErase>true</AllowErase>
+          <AllowErase>false</AllowErase>
           <CoreIndex>4294967295</CoreIndex>
           <Device>TC37x_DFLASH_384kB</Device>
           <DeviceAddress>0xAF000000</DeviceAddress>
@@ -3263,11 +3263,11 @@
       <V_MINOR>21</V_MINOR>
       <BDM>
        <CallPoint>
-        <Attach_ConnectToSoC_Same>false</Attach_ConnectToSoC_Same>
-        <Attach_InitSoC_Same>false</Attach_InitSoC_Same>
-        <Attach_StopToExecute>true</Attach_StopToExecute>
-        <Debug_ConnectToSoC_Same>false</Debug_ConnectToSoC_Same>
-        <Debug_InitSoC_Same>false</Debug_InitSoC_Same>
+        <Attach_ConnectToSoC_Same>true</Attach_ConnectToSoC_Same>
+        <Attach_InitSoC_Same>true</Attach_InitSoC_Same>
+        <Attach_StopToExecute>false</Attach_StopToExecute>
+        <Debug_ConnectToSoC_Same>true</Debug_ConnectToSoC_Same>
+        <Debug_InitSoC_Same>true</Debug_InitSoC_Same>
         <Program_ResetAfterProgram>false</Program_ResetAfterProgram>
         <WDTDisable>false</WDTDisable>
         <Attach_ConnectToSoC>
@@ -3321,7 +3321,7 @@
          <ApplicationLBIST>true</ApplicationLBIST>
          <BRKIN>HIGH</BRKIN>
          <ClearICRIEWhenStopped>false</ClearICRIEWhenStopped>
-         <DAPClock>20000</DAPClock>
+         <DAPClock>30000</DAPClock>
          <DAPE>false</DAPE>
          <DAPE_Clock>10000</DAPE_Clock>
          <DAPE_DebugMode>DAP</DAPE_DebugMode>
@@ -3346,7 +3346,7 @@
          <TraceBufferMode>ONCHIP_TBUF_TFIF</TraceBufferMode>
          <TraceLMUAuto>true</TraceLMUAuto>
          <TraceMemoryRegion>TCM</TraceMemoryRegion>
-         <UseAllEmMemForTrace>true</UseAllEmMemForTrace>
+         <UseAllEmMemForTrace>false</UseAllEmMemForTrace>
          <UsePassword>false</UsePassword>
          <Events1p8>
           <BreakoutDisable>false</BreakoutDisable>
@@ -3493,7 +3493,7 @@
          <ApplicationLBIST>1</ApplicationLBIST>
          <BRKIN>1</BRKIN>
          <ClearICRIEWhenStopped>0</ClearICRIEWhenStopped>
-         <DAPClockkHz>20000</DAPClockkHz>
+         <DAPClockkHz>30000</DAPClockkHz>
          <DAPE>0</DAPE>
          <DAPEClockkHz>10000</DAPEClockkHz>
          <DAPEDebugMode>1</DAPEDebugMode>
@@ -3517,7 +3517,7 @@
          <TimeSource_Profiler>1</TimeSource_Profiler>
          <TraceBufferMode>1</TraceBufferMode>
          <TraceMemoryRegion>0</TraceMemoryRegion>
-         <UseAllEmMemForTrace>1</UseAllEmMemForTrace>
+         <UseAllEmMemForTrace>0</UseAllEmMemForTrace>
          <UsePassword>0</UsePassword>
          <Event.0>
           <BBM>1</BBM>
@@ -3583,9 +3583,9 @@
         <IgnoreAccessErrors>false</IgnoreAccessErrors>
         <InitRAM>Never</InitRAM>
         <LatchRESET>false</LatchRESET>
-        <MemorySecurityND_Policy>Allow</MemorySecurityND_Policy>
+        <MemorySecurityND_Policy>Reject</MemorySecurityND_Policy>
         <MemorySecurity_CheckEntryPoint>false</MemorySecurity_CheckEntryPoint>
-        <MemorySecurity_Policy>Allow</MemorySecurity_Policy>
+        <MemorySecurity_Policy>Reject</MemorySecurity_Policy>
         <MemorySecurity_Policy_Preset></MemorySecurity_Policy_Preset>
         <MultiCoreSync>true</MultiCoreSync>
         <NexusClockDivider>1</NexusClockDivider>
@@ -3653,9 +3653,9 @@
         <IgnoreAccessErrors>0</IgnoreAccessErrors>
         <InitRAM>0</InitRAM>
         <LatchRESET>0</LatchRESET>
-        <MemorySecurityND_Policy>2</MemorySecurityND_Policy>
+        <MemorySecurityND_Policy>0</MemorySecurityND_Policy>
         <MemorySecurity_CheckEntryPoint>0</MemorySecurity_CheckEntryPoint>
-        <MemorySecurity_Policy>2</MemorySecurity_Policy>
+        <MemorySecurity_Policy>0</MemorySecurity_Policy>
         <MemorySecurity_Policy_Preset></MemorySecurity_Policy_Preset>
         <NexusClockDivider>0</NexusClockDivider>
         <NexusDataRate>0</NexusDataRate>
@@ -4249,7 +4249,7 @@
         <PeripheralsSuspendInStop>
          <SuspendItems>
           <__.0>
-           <Enabled>true</Enabled>
+           <Enabled>false</Enabled>
            <Name>M0</Name>
           </__.0>
           <__.10>
@@ -4293,7 +4293,7 @@
            <Name>ASCLIN3</Name>
           </__.19>
           <__.1>
-           <Enabled>true</Enabled>
+           <Enabled>false</Enabled>
            <Name>M1</Name>
           </__.1>
           <__.20>
@@ -4337,7 +4337,7 @@
            <Name>SENT_RCR0</Name>
           </__.29>
           <__.2>
-           <Enabled>true</Enabled>
+           <Enabled>false</Enabled>
            <Name>M2</Name>
           </__.2>
           <__.30>
@@ -4381,7 +4381,7 @@
            <Name>SENT_RCR10</Name>
           </__.39>
           <__.3>
-           <Enabled>true</Enabled>
+           <Enabled>false</Enabled>
            <Name>HSS1</Name>
           </__.3>
           <__.40>
@@ -4425,7 +4425,7 @@
            <Name>VADC</Name>
           </__.49>
           <__.4>
-           <Enabled>true</Enabled>
+           <Enabled>false</Enabled>
            <Name>HSS0</Name>
           </__.4>
           <__.50>

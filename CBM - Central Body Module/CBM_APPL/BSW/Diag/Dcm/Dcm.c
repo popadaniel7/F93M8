@@ -22,7 +22,7 @@ extern uint8 Dem_ControlDtcSettingStatus;
 /* Software versions. */
 static SWV Dcm_SWVersion =
 {
-		31, /* SW */
+		32, /* SW */
 		30, /* FBL */
 		30, /* CODING */
 		30  /* CALIBRATION */

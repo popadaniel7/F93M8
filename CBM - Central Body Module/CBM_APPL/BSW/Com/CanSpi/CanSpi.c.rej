@@ -1,0 +1,27 @@
+diff a/CBM - Central Body Module/CBM_APPL/BSW/Com/CanSpi/CanSpi.c b/CBM - Central Body Module/CBM_APPL/BSW/Com/CanSpi/CanSpi.c	(rejected hunks)
+@@ -898,21 +898,21 @@
+ }
+ static void CanSpi_SPI_Tx(uint8 data)
+ {
+-	HAL_SPI_Transmit(CANSPI_SPI_CAN, &data, 1, 2);
++	HAL_SPI_Transmit(CANSPI_SPI_CAN, &data, 1, 10);
+ }
+ static void CanSpi_SPI_TxBuffer(uint8 *buffer, uint8 length)
+ {
+-	HAL_SPI_Transmit(CANSPI_SPI_CAN, buffer, length, 2);
++	HAL_SPI_Transmit(CANSPI_SPI_CAN, buffer, length, 10);
+ }
+ static uint8 CanSpi_SPI_Rx(void)
+ {
+ 	uint8 retVal = 0;
+-	HAL_SPI_Receive(CANSPI_SPI_CAN, &retVal, 1, 2);
++	HAL_SPI_Receive(CANSPI_SPI_CAN, &retVal, 1, 10);
+ 	return retVal;
+ }
+ static void CanSpi_SPI_RxBuffer(uint8 *buffer, uint8 length)
+ {
+-	HAL_SPI_Receive(CANSPI_SPI_CAN, buffer, length, 2);
++	HAL_SPI_Receive(CANSPI_SPI_CAN, buffer, length, 10);
+ }
+ /* FUNCTIONS STOP */
+ /* STOP OF FILE */

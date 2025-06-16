@@ -13,21 +13,21 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                 {
                         .txMsg =
                         {
-                                .bufferNumber = 0u,
-                                .messageId = 0x00u,
-                                .remoteTransmitRequest = 0u,
+                                .bufferNumber = 0xFFu,
+                                .messageId = 0xFFu, // identify problem if the case
+                                .remoteTransmitRequest = 0xFFu,
                                 .messageIdLength = IfxCan_MessageIdLength_standard,
-                                .errorStateIndicator = 0u,
-                                .dataLengthCode = 0x00,
+                                .errorStateIndicator = 0xFFu,
+                                .dataLengthCode = IfxCan_DataLengthCode_8,
                                 .frameMode = IfxCan_FrameMode_standard,
-                                .txEventFifoControl = FALSE,
-                                .storeInTxFifoQueue = FALSE,
-                                .readFromRxFifo0 = FALSE,
-                                .readFromRxFifo1 = FALSE
+                                .txEventFifoControl = 0xFFu,
+                                .storeInTxFifoQueue = 0xFFu,
+                                .readFromRxFifo0 = 0xFFu,
+                                .readFromRxFifo1 = 0xFFu
                         },
                 },
-                .transmitFlag = 0u,
-                .cycleTime = 2u,
+                .transmitFlag = 0xFFu,
+                .cycleTime = 0xFFu,
         },
         /* Vehicle State */
         {
@@ -49,7 +49,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 20u,
+                .cycleTime = 15u,
         },
         /* Status Body Control */
         {
@@ -71,7 +71,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 50u,
+                .cycleTime = 25U,
         },
         /* Status Body Control 2 */
         {
@@ -93,7 +93,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 50u,
+                .cycleTime = 27U,
         },
         /* Info Cluster Message */
         {
@@ -115,7 +115,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 100u,
+                .cycleTime = 102u,
         },
         /* DataRecorder */
         {
@@ -137,7 +137,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 100u,
+                .cycleTime = 101u,
         },
         /* Networkmanagement3 */
         {
@@ -159,7 +159,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 20u,
+                .cycleTime = 19u,
         },
         /* SafeIgnitionStatus */
         {
@@ -181,7 +181,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 1u,
+                .cycleTime = 89u,
         },
         /* SafeVehicleError */
         {
@@ -203,7 +203,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 1u,
+                .cycleTime = 39u,
         },
         /* SafeBrakeAssist */
         {
@@ -225,7 +225,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 1u,
+                .cycleTime = 17u,
         },
         /* BusSystemDateAndTime */
         {
@@ -247,7 +247,7 @@ ComMaster_TransmitType_t ComMaster_TransmitTable[COMMASTER_NO_TX_MSG] =
                         },
                 },
                 .transmitFlag = 1u,
-                .cycleTime = 180u,
+                .cycleTime = 197u,
         }
 };
 ComMaster_ReceiveType_t ComMaster_ReceiveTable[COMMASTER_NO_RX_MSG] =
@@ -1243,10 +1243,10 @@ void ComMaster_MainFunction(void)
 
     IfxCpu_disableInterrupts();
     memcpy(Can_TransmitTable, ComMaster_TransmitTable, sizeof(ComMaster_TransmitTable));
-    for(uint8 i = 0; i < COMMASTER_NO_TX_MSG; i++)
+    for(uint8 i = 1u; i < COMMASTER_NO_TX_MSG; i++)
     {
         ComMaster_TransmitTable[i].transmitFlag = 0u;
-        for(uint8 j = 0; j < COMMASTER_NO_TX_MSG; j++)
+        for(uint8 j = 0u; j < 8u; j++)
         {
             ComMaster_TransmitTable[i].transmitMessage.txData[j] = 0u;
         }

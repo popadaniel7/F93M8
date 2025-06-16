@@ -28,7 +28,7 @@ typedef enum
 typedef void (*Dcm_FuncPtr)();
 SWV Dcm_SWVersion =
 {
-		33, /* SW */
+		34, /* SW */
 		30, /* FBL */
 		0xFF,
 		0xFF
@@ -408,7 +408,7 @@ void DiagRequest_DSC_ProgrammingSession(void)
 	Dcm_DiagnosticSession = PROGRAMMING;
 	Nvm_WriteAll();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	HAL_Delay(1);
+	HAL_Delay(5);
 	EcuM_PerformReset(0);
 }
 void DiagRequest_ER_HardReset(void)
@@ -426,7 +426,7 @@ void DiagRequest_ER_HardReset(void)
 	Dcm_DiagnosticSession = HARDRESET;
 	Nvm_WriteAll();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	HAL_Delay(1);
+	HAL_Delay(5);
 	EcuM_PerformReset(0);
 }
 void DiagRequest_ER_SoftReset(void)
@@ -444,7 +444,7 @@ void DiagRequest_ER_SoftReset(void)
 	Dcm_DiagnosticSession = SOFTRESET;
 	Nvm_WriteAll();
 	HAL_CAN_AddTxMessage(&hcan1, &Dcm_TxHeader, Dcm_TxData, &Dcm_TxMailbox);
-	HAL_Delay(1);
+	HAL_Delay(5);
 	EcuM_PerformReset(0);
 }
 void DiagRequest_TP_TesterPresent(void)

@@ -176,7 +176,7 @@ void CanH_MainFunction(void)
 		}
 		else Dem_SetDtc(DEM_BODYSTATE2_MESSAGEMISSING_ID, 0);
 
-		if(CanH_MainCounter % 200 == 0)
+		if(CanH_MainCounter % 207 == 0)
 		{
 			CanH_TxHeader.DLC = 1;
 			CanH_TxHeader.IDE = CAN_ID_STD;
@@ -184,6 +184,14 @@ void CanH_MainFunction(void)
 			CanH_AliveCounter++;
 			CanH_TxData[0] = CanH_AliveCounter;
 			HAL_CAN_AddTxMessage(&hcan1, &CanH_TxHeader, CanH_TxData, &CanH_TxMailbox);
+		}
+		else
+		{
+			/* Do nothing. */
+		}
+
+		if(CanH_MainCounter % 205 == 0)
+		{
 
 			CanH_TxHeader.DLC = 8;
 			CanH_TxHeader.IDE = CAN_ID_STD;

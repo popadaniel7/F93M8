@@ -217,10 +217,7 @@ void CanSpi_MainFunction(void)
 					/* Do nothing. */
 				}
 				/* Diagnostic request Frame */
-				if(CanSpi_RxFrame_Buffer0.frame.id == 0x700)
-				{
-					Dcm_DiagServiceRequest_Frame = CanSpi_RxFrame_Buffer0;
-				}
+				if(CanSpi_RxFrame_Buffer0.frame.id == 0x700) Dcm_DiagServiceRequest_Frame = CanSpi_RxFrame_Buffer0;
 				else
 				{
 					/* Do nothing. */
@@ -298,10 +295,7 @@ void CanSpi_MainFunction(void)
 					/* Do nothing. */
 				}
 				/* Diagnostic request Frame */
-				if(CanSpi_RxFrame_Buffer1.frame.id == 0x700)
-				{
-					Dcm_DiagServiceRequest_Frame = CanSpi_RxFrame_Buffer1;
-				}
+				if(CanSpi_RxFrame_Buffer1.frame.id == 0x700) Dcm_DiagServiceRequest_Frame = CanSpi_RxFrame_Buffer1;
 				else
 				{
 					/* Do nothing. */
@@ -421,7 +415,7 @@ void CanSpi_MainFunction(void)
 		}
 		else Dem_SaveDtc(0x07, 0);
 		/* Status Drive Control */
-		if(CanSpi_MainCounter % 20 == 0)
+		if(CanSpi_MainCounter % 14 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x100;
@@ -446,7 +440,7 @@ void CanSpi_MainFunction(void)
 			/* Do nothing. */
 		}
 		/* Status Command Actuator */
-		if(CanSpi_MainCounter % 20 == 0)
+		if(CanSpi_MainCounter % 26 == 0)
 		{
 			CanSpi_TxFrame.frame.idType = 1;
 			CanSpi_TxFrame.frame.id = 0x101;
@@ -562,6 +556,7 @@ uint8 CanSpi_Initialize(void)
 }
 uint8 CanSpi_Transmit(CANSPI_uCAN_MSG *tempCanMsg)
 {
+	__disable_irq();
 	uint8 returnValue = 0;
 	CANSPI_id_reg_t idReg = {0};
 	CANSPI_CtrlStatus_t ctrlStatus = {0};
@@ -595,10 +590,12 @@ uint8 CanSpi_Transmit(CANSPI_uCAN_MSG *tempCanMsg)
 	{
 		/* Do nothing. */
 	}
+	__enable_irq();
 	return (returnValue);
 }
 uint8 CanSpi_Receive(CANSPI_uCAN_MSG *tempCanMsg)
 {
+	__disable_irq();
 	uint8 returnValue = 0;
 	CANSPI_rx_reg_t rxReg = {0};
 	CANSPI_CtrlRxStatus_t rxStatus = {0};
@@ -644,6 +641,7 @@ uint8 CanSpi_Receive(CANSPI_uCAN_MSG *tempCanMsg)
 	{
 		/* Do nothing. */
 	}
+	__enable_irq();
 	return (returnValue);
 }
 uint32 CanSpi_MessagesInBuffer(void)
@@ -898,21 +896,21 @@ static void CanSpi_MCP2515_BitModify(uint8 address, uint8 mask, uint8 data)
 }
 static void CanSpi_SPI_Tx(uint8 data)
 {
-	HAL_SPI_Transmit(CANSPI_SPI_CAN, &data, 1, 10);
+	HAL_SPI_Transmit(CANSPI_SPI_CAN, &data, 1, 2);
 }
 static void CanSpi_SPI_TxBuffer(uint8 *buffer, uint8 length)
 {
-	HAL_SPI_Transmit(CANSPI_SPI_CAN, buffer, length, 10);
+	HAL_SPI_Transmit(CANSPI_SPI_CAN, buffer, length, 2);
 }
 static uint8 CanSpi_SPI_Rx(void)
 {
 	uint8 retVal = 0;
-	HAL_SPI_Receive(CANSPI_SPI_CAN, &retVal, 1, 10);
+	HAL_SPI_Receive(CANSPI_SPI_CAN, &retVal, 1, 2);
 	return retVal;
 }
 static void CanSpi_SPI_RxBuffer(uint8 *buffer, uint8 length)
 {
-	HAL_SPI_Receive(CANSPI_SPI_CAN, buffer, length, 10);
+	HAL_SPI_Receive(CANSPI_SPI_CAN, buffer, length, 2);
 }
 /* FUNCTIONS STOP */
 /* STOP OF FILE */
